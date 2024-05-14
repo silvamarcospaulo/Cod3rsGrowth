@@ -12,4 +12,5 @@ Para a construção dessa solução, será utilizada a API gratuita do (ScryFall
 
 #### Modelo de Dados 
 
+
 ![Coders Growth - Marcos Paulo Silva - MTG Deck Buillder](https://github.com/silvamarcospaulo/Cod3rsGrowth/assets/118779266/31a5d857-77d7-48d9-955e-0dd94267ac64)
