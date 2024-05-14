@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Dominio
 {
-    internal class Colors
+    public enum Colors
     {
+        Energy = 'E',
+        White = 'W',
+        Blue = 'U',
+        Black = 'B',
+        Red = 'R'
     }
 }

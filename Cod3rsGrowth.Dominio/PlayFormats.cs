@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Dominio
 {
-    internal class PlayFormats
+    public enum PlayFormats
     {
+        Commander,
+        Standard,
+        Pauper
     }
 }

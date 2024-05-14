@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Dominio
 {
-    internal class Deck
+    public class Deck
     {
+        public int deckId { get; }
+        public int playerId { get; }
+        public string deckName { get; }
+        public PlayFormats deckPlayFormat { get; set; }
+        public int deckCardQuantity { get; }
+        public decimal deckCost { get; }
+        public List<Card> deckCards = new List<Card>();
     }
 }
