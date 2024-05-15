@@ -8,11 +8,11 @@ namespace Cod3rsGrowth.Dominio
 {
     public class Carta
     {
-        public int idCarta {  get; }
+        public int idCarta { get; }
         public string nomeCarta { get; }
         public double custoDeManaConvertidoCarta { get; }
         public string raridadeCarta { get; }
-        public decimal precoCarta { get; set; }
-        public List<CoresEnum> corCarta;
+        public decimal precoCarta { get; }
+        public List<CoresEnum> corCarta { get;}
     }
 }

@@ -4,12 +4,12 @@ namespace Cod3rsGrowth.Dominio
 {
     public class Jogador
     {
-        public int idJogador {  get; set; }
+        public int idJogador { get; set; }
         public string nomeJogador { get; set; }
         public DateTime dataNascimentoJodador { get; set; }
         public decimal custoDasCartasJogador { get; set; }
         public int quantidadeDeBaralhosJogador { get; set; }
         public bool contaAtivaJogador { get; set; }
-        public Hashtable baralhosJogador;
+        public List<Baralho> baralhosJogador { get; set; }
     }
 }

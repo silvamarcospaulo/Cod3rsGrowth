@@ -21,29 +21,7 @@ namespace Cod3rsGrowth.Dominio
         Preto = 'B',
         [Description("Vermelho")]
         Vermelho = 'R',
-        [Description("Mana Generica")]
+        [Description("Incolor")]
         ManaGenerica = 'C',
-        [Description("Zero Mana")]
-        ZeroMana = '0',
-        [Description("Meia Mana Generica")]
-        MeiaManaGenerica = '½',
-        [Description("Uma Mana Generica")]
-        UmaMana = '1',
-        [Description("Duas Manas Genericas")]
-        DuasManas = '2',
-        [Description("Tres Manas Genericas")]
-        TresManas = '3',
-        [Description("Quatro Manas Genericas")]
-        QuatroManas = '4',
-        [Description("Cinco Manas Genericas")]
-        CincoManas = '5',
-        [Description("Seis Manas Genericas")]
-        SeisManas = '6',
-        [Description("Sete Manas Genericas")]
-        SeteManas = '7',
-        [Description("Oito Manas Genericas")]
-        OitoManas = '8',
-        [Description("Nove Manas Genericas")]
-        NoveManas = '9'
     }
 }
