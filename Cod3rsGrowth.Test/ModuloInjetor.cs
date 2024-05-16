@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Test
 {
-    public class ModuloInjetor
+    public static class ModuloInjetor
     {
-        static public void implementarServico(IServiceCollection serviceProvider)
+        public static void implementarServico(IServiceCollection serviceProvider)
         {
         }
     }
