@@ -9,10 +9,6 @@ namespace Cod3rsGrowth.Dominio.Servicos
 {
     public interface IServicoJogador
     {
-        public List<Jogador> ObterTodos()
-        {
-            List<Jogador> listaJogadores = new List<Jogador>();
-            return listaJogadores;
-        }
+        public List<Jogador> ObterTodos();
     }
 }

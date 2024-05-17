@@ -9,5 +9,9 @@ namespace Cod3rsGrowth.Dominio.Servicos
 {
     internal class ServicoJogador : IServicoJogador
     {
+        public List<Jogador> ObterTodos()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
