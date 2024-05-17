@@ -9,12 +9,11 @@ namespace Cod3rsGrowth.Test
 {
     public class TesteBase : IDisposable
     {
-        protected ServiceProvider ServiceProvider { get; set; }
+        protected ServiceProvider ServiceProvider;
 
         public TesteBase()
         {
-            var service = new ServiceCollection();
-            ModuloInjetor.implementarServico(service);
+            IServiceCollection service = new ServiceCollection();
             ServiceProvider = service.BuildServiceProvider();
         }
 

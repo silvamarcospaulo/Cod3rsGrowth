@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Dominio
+namespace Cod3rsGrowth.Dominio.Modelos
 {
     public class Carta
     {
@@ -13,6 +13,6 @@ namespace Cod3rsGrowth.Dominio
         public double custoDeManaConvertidoCarta { get; }
         public string raridadeCarta { get; }
         public decimal precoCarta { get; }
-        public List<CoresEnum> corCarta { get;}
+        public List<CoresEnum> corCarta { get; }
     }
 }
