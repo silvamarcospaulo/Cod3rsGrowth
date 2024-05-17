@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Dominio.Servicos
 {
-    internal class ServicoJogador : IServicoJogador
+    public class ServicoJogador : IServicoJogador
     {
         public List<Jogador> ObterTodos()
         {
