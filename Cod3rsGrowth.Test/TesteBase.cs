@@ -13,7 +13,8 @@ namespace Cod3rsGrowth.Test
 
         public TesteBase()
         {
-            IServiceCollection service = new ServiceCollection();
+            var service = new ServiceCollection();
+            ModuloInjetor.implementarServico(service);
             ServiceProvider = service.BuildServiceProvider();
         }
 

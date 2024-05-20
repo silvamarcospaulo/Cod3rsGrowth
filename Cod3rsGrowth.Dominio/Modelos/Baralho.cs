@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 
 namespace Cod3rsGrowth.Dominio.Modelos
 {
