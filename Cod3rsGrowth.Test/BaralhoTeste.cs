@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Test.TesteJogador
+namespace Cod3rsGrowth.Test
 {
-    public class JogadorTeste : TesteBase
+    public class BaralhoTeste
     {
     }
 }
