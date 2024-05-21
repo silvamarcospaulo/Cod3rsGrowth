@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cod3rsGrowth.Dominio.Modelos;
 
-namespace Cod3rsGrowth.Infra.Repository
+namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
 {
     public interface ICartaRepository
     {

@@ -5,12 +5,12 @@ namespace Cod3rsGrowth.Dominio.Modelos
 {
     public class Jogador
     {
-        public int idJogador { get; set; }
-        public string nomeJogador { get; set; }
-        public DateTime dataNascimentoJodador { get; set; }
-        public decimal custoDasCartasJogador { get; set; }
-        public int quantidadeDeBaralhosJogador { get; set; }
-        public bool contaAtivaJogador { get; set; }
-        public List<Baralho> baralhosJogador { get; set; }
+        public int IdJogador { get; set; }
+        public string NomeJogador { get; set; }
+        public DateTime DataNascimentoJodador { get; set; }
+        public decimal CustoDasCartasJogador { get; set; }
+        public int QuantidadeDeBaralhosJogador { get; set; }
+        public bool ContaAtivaJogador { get; set; }
+        public List<Baralho> BaralhosJogador { get; set; }
     }
 }

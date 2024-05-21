@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
+﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
 
 namespace Cod3rsGrowth.Dominio.Modelos
 {
     public class Baralho
     {
-        public int idBaralho { get; set; }
-        public int idJogador { get; set; }
-        public string nomeBaralho { get; set; }
-        public FormatoDeJogoEnum formatoDeJogoBaralho { get; set; }
-        public Hashtable cartasNoBaralho { get; set; }
-        public int quantidadeDeCartasNoBaralho { get; set; }
-        public decimal custoDoBaralho { get; set; }
-        public List<CoresEnum> corBaralho { get; set; }
+        public int IdBaralho { get; set; }
+        public int IdJogador { get; set; }
+        public string NomeBaralho { get; set; }
+        public FormatoDeJogoEnum FormatoDeJogoBaralho { get; set; }
+        public List<CopiaDeCartasNoBaralho> CartasDoBaralho { get; set; }
+        public int QuantidadeDeCartasNoBaralho { get; set; }
+        public decimal PrecoDoBaralho { get; set; }
+        public int CustoDeManaConvertidoDoBaralho { get; set; }
+        public List<CoresEnum> CorBaralho { get; set; }
     }
 }
