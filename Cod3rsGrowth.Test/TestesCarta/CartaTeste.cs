@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Test.TestesCarta
 {
-    public class CartaTeste
+    public class CartaTeste : TesteBase
     {
     }
 }

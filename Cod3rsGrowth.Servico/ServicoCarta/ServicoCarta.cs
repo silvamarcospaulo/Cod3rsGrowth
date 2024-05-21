@@ -10,14 +10,12 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
-    public class ServicoCarta : IServicoCarta, ICartaRepository
+    public class ServicoCarta : IServicoCarta
     {
-
-        public Carta NovaCarta(string nomeCarta, double custoDeManaConvetido, RaridadeEnum raridadeCarta, List<CoresEnum> corCarta)
+        public ServicoCarta()
         {
-            return new Carta();
-                //(GerarIdCarta(ObterTodos()), nomeCarta, custoDeManaConvetido, raridadeCarta, GerarPrecoCarta(raridadeCarta), corCarta);
         }
+
         public int GerarIdCarta(List<Carta> quantidadeDeCartasNoBancoDeDados)
         {
             return quantidadeDeCartasNoBancoDeDados.Count + 1;
@@ -51,26 +49,6 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             if (cor.Contains("U")) cores.Add(CoresEnum.Azul);
 
             return cores;
-        }
-
-        public bool Atualizar(int idCarta)
-        {
-            return new bool();
-        }
-
-        public bool Excluir(int idCarta)
-        {
-            return new bool();
-        }
-
-        public Carta ObterPorId(int idCarta)
-        {
-            return new Carta();
-        }
-
-        public List<Carta> ObterTodos()
-        {
-            return new List<Carta>();
         }
     }
 }

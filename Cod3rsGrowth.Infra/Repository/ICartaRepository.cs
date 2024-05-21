@@ -9,9 +9,10 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public interface ICartaRepository
     {
-        List<Carta> ObterTodos();
-        Carta ObterPorId(int idCarta);
-        bool Atualizar (int idCarta);
-        bool Excluir(int idCarta);
+        public bool Excluir(int idCarta, List<Carta> cartas);
+
+        public Carta ObterPorId(int idCarta, List<Carta> cartas);
+
+        public List<Carta> ObterTodos(List<Carta> Cartas);
     }
 }

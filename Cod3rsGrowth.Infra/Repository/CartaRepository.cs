@@ -9,24 +9,19 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class CartaRepository : ICartaRepository
     {
-        public bool Atualizar(int idCarta)
+        public bool Excluir(int idCarta, List<Carta> cartas)
         {
-            return new bool();
+            return cartas.Remove(ObterPorId(idCarta, cartas));
         }
 
-        public bool Excluir(int idCarta)
+        public Carta ObterPorId(int idCarta, List<Carta> cartas)
         {
-            return new bool();
+            return cartas.FirstOrDefault(carta => carta.idCarta == idCarta);
         }
 
-        public Carta ObterPorId(int idCarta)
+        public List<Carta> ObterTodos(List<Carta> Cartas)
         {
-            return new Carta();
-        }
-
-        public List<Carta> ObterTodos()
-        {
-            return new List<Carta>();
+            return Cartas;
         }
     }
 }

@@ -9,22 +9,11 @@ namespace Cod3rsGrowth.Dominio.Modelos
 {
     public class Carta
     {
-        public int idCarta { get; }
-        public string nomeCarta { get; }
-        public double custoDeManaConvertidoCarta { get; }
-        public RaridadeEnum raridadeCarta { get; }
-        public decimal precoCarta { get; }
-        public List<CoresEnum> corCarta { get; }
-
-        public Carta(int idCarta, string nomeCarta, int custoDeManaConvertidoCarta, RaridadeEnum raridadeCarta,
-            decimal precoCarta, List<CoresEnum> corCarta)
-        {
-            this.idCarta = idCarta;
-            this.nomeCarta = nomeCarta;
-            this.custoDeManaConvertidoCarta = custoDeManaConvertidoCarta;
-            this.raridadeCarta = raridadeCarta;
-            this.precoCarta = precoCarta;
-            this.corCarta = corCarta;
-        }
+        public int idCarta { get; set; }
+        public string nomeCarta { get; set; }
+        public double custoDeManaConvertidoCarta { get; set; }
+        public RaridadeEnum raridadeCarta { get; set; }
+        public decimal precoCarta { get; set; }
+        public List<CoresEnum> corCarta { get; set; }
     }
 }
