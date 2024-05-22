@@ -1,9 +1,11 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
+using Cod3rsGrowth.Servico.ServicoCarta;
 
 namespace Cod3rsGrowth.Test.TestesCarta
 {
-    public class CartaRepositoryTeste : ICartaRepository
+    public class CartaRepositoryMock
     {
         public void Excluir(int idCarta)
         {
@@ -12,12 +14,13 @@ namespace Cod3rsGrowth.Test.TestesCarta
 
         public Carta ObterPorId(int idCarta)
         {
-            return cartas.FirstOrDefault(carta => carta.IdCarta == idCarta);
+            //return cartas.FirstOrDefault(carta => carta.IdCarta == idCarta);
+            return new Carta();
         }
 
         public List<Carta> ObterTodos()
         {
-            return Cartas;
+            return new List<Carta>();
         }
     }
 }

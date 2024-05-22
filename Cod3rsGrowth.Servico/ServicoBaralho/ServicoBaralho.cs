@@ -12,7 +12,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class ServicoBaralho : IServicoBaralho
     {
-        public int GerarIdCarta(int quantidadeDeBaralhosDoJogadorNoBancoDeDados)
+        public int GerarIdBaralho(int quantidadeDeBaralhosDoJogadorNoBancoDeDados)
         {
             return quantidadeDeBaralhosDoJogadorNoBancoDeDados + 1;
         }

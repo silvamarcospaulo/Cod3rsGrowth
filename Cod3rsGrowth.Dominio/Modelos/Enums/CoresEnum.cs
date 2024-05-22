@@ -19,5 +19,7 @@ namespace Cod3rsGrowth.Dominio.Modelos.Enums
         Vermelho = 'R',
         [Description("Verde")]
         Verde = 'G',
+        [Description("Incolor")]
+        Incolor = 'C',
     }
 }
