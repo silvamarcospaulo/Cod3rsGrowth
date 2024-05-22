@@ -12,9 +12,9 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class ServicoBaralho : IServicoBaralho
     {
-        public int GerarIdCarta(List<Baralho> quantidadeDeBaralhosDoJogadorNoBancoDeDados)
+        public int GerarIdCarta(int quantidadeDeBaralhosDoJogadorNoBancoDeDados)
         {
-            return quantidadeDeBaralhosDoJogadorNoBancoDeDados.Count + 1;
+            return quantidadeDeBaralhosDoJogadorNoBancoDeDados + 1;
         }
 
         public decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)

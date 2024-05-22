@@ -9,17 +9,17 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryBaralho
 {
     public class BaralhoRepository : IBaralhoRepository
     {
-        public bool Excluir(int idBaralho, List<Baralho> baralhos)
+        public void Excluir(int idBaralho)
         {
             throw new NotImplementedException();
         }
 
-        public Baralho ObterPorId(int idBaralho, List<Baralho> baralhos)
+        public Baralho ObterPorId(int idBaralho)
         {
             throw new NotImplementedException();
         }
 
-        public List<Baralho> ObterTodos(List<Baralho> baralhos)
+        public List<Baralho> ObterTodos()
         {
             throw new NotImplementedException();
         }

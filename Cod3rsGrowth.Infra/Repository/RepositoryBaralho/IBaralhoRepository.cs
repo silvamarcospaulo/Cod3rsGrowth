@@ -4,8 +4,8 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryBaralho
 {
     public interface IBaralhoRepository
     {
-        bool Excluir(int idBaralho, List<Baralho> baralhos);
-        Baralho ObterPorId(int idBaralho, List<Baralho> baralhos);
-        List<Baralho> ObterTodos(List<Baralho> baralhos);
+        void Excluir(int idBaralho);
+        Baralho ObterPorId(int idBaralho);
+        List<Baralho> ObterTodos();
     }
 }

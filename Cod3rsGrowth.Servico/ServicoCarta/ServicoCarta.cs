@@ -16,9 +16,9 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
         {
         }
 
-        public int GerarIdCarta(List<Carta> quantidadeDeCartasNoBancoDeDados)
+        public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
         {
-            return quantidadeDeCartasNoBancoDeDados.Count + 1;
+            return quantidadeDeCartasNoBancoDeDados + 1;
         }
 
         public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)

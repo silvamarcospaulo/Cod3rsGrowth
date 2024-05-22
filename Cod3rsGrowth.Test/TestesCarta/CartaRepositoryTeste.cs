@@ -5,17 +5,17 @@ namespace Cod3rsGrowth.Test.TestesCarta
 {
     public class CartaRepositoryTeste : ICartaRepository
     {
-        public bool Excluir(int idCarta, List<Carta> cartas)
+        public void Excluir(int idCarta)
         {
-            return cartas.Remove(ObterPorId(idCarta, cartas));
+            //cartas.Remove(ObterPorId(idCarta, cartas));
         }
 
-        public Carta ObterPorId(int idCarta, List<Carta> cartas)
+        public Carta ObterPorId(int idCarta)
         {
             return cartas.FirstOrDefault(carta => carta.IdCarta == idCarta);
         }
 
-        public List<Carta> ObterTodos(List<Carta> Cartas)
+        public List<Carta> ObterTodos()
         {
             return Cartas;
         }

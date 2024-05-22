@@ -4,17 +4,17 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
 {
     public class JogadorRepository : IJogadorRepository
     {
-        public bool Excluir(int idJogador, List<Jogador> jogadores)
+        public void Excluir(int idJogador)
         {
             throw new NotImplementedException();
         }
 
-        public Jogador ObterPorId(int idJogador, List<Jogador> jogadores)
+        public Jogador ObterPorId(int idJogador)
         {
             throw new NotImplementedException();
         }
 
-        public List<Jogador> ObterTodos(List<Jogador> jogadores)
+        public List<Jogador> ObterTodos()
         {
             throw new NotImplementedException();
         }
