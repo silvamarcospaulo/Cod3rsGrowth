@@ -1,5 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Infra.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,13 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 {
     public class ServicoCarta : IServicoCarta
     {
-        public Carta NovaCarta(int idCarta, string nomeCarta, double custoDeManaConvetido, RaridadeEnum raridadeCarta, List<CoresEnum> corCarta)
+        public ServicoCarta()
         {
-            return new Carta();
+        }
+
+        public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
+        {
+            return quantidadeDeCartasNoBancoDeDados + 1;
         }
 
         public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
@@ -34,9 +39,16 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return Convert.ToDecimal(7.5);
         }
 
-        public int GerarIdCarta(List<Carta> quantidadeDeCartasNoBancoDeDados)
+        public List<CoresEnum> AdicionarCoresDaCarta(string cor)
         {
-            return quantidadeDeCartasNoBancoDeDados.Count + 1;
+            List<CoresEnum> cores = new List<CoresEnum>();
+            if (cor.Contains("W")) cores.Add(CoresEnum.Branco);
+            if (cor.Contains("R")) cores.Add(CoresEnum.Vermelho);
+            if (cor.Contains("G")) cores.Add(CoresEnum.Verde);
+            if (cor.Contains("B")) cores.Add(CoresEnum.Preto);
+            if (cor.Contains("U")) cores.Add(CoresEnum.Azul);
+
+            return cores;
         }
     }
 }

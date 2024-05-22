@@ -9,10 +9,6 @@ namespace Cod3rsGrowth.Dominio.Modelos.Enums
 {
     public enum CoresEnum
     {
-        [Description("Energia")]
-        Energia = 'E',
-        [Description("Phyrexiano")]
-        Phyrexiano = 'P',
         [Description("Branco")]
         Branco = 'W',
         [Description("Azul")]
@@ -21,7 +17,7 @@ namespace Cod3rsGrowth.Dominio.Modelos.Enums
         Preto = 'B',
         [Description("Vermelho")]
         Vermelho = 'R',
-        [Description("Incolor")]
-        ManaGenerica = 'C',
+        [Description("Verde")]
+        Verde = 'G',
     }
 }

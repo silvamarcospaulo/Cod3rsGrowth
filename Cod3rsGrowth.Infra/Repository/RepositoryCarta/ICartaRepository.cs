@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Cod3rsGrowth.Dominio.Modelos;
 
-namespace Cod3rsGrowth.Infra.Repository
+namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
 {
     public interface ICartaRepository
     {
-        List<Carta> ObterTodos();
-        Carta ObterPorId(int idCarta);
-        bool Atualizar (int idCarta);
-        bool Excluir(int idCarta);
+        public void Excluir(int idCarta);
+
+        public Carta ObterPorId(int idCarta);
+
+        public List<Carta> ObterTodos();
     }
 }

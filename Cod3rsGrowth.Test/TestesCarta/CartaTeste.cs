@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Test
+namespace Cod3rsGrowth.Test.TestesCarta
 {
-    public class BaralhoTeste
+    public class CartaTeste : TesteBase
     {
     }
 }
