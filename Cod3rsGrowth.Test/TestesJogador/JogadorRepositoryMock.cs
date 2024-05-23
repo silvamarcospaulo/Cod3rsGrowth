@@ -6,11 +6,8 @@ namespace Cod3rsGrowth.Test.TestesJogador
 {
     internal class JogadorRepositoryMock : IJogadorRepository
     {
-        public JogadorRepositoryMock()
-        {
-            List<JogadorTabela> _jogador = Singleton.SingletonTabelas<List<JogadorTabela>>.Instance();
-        }
-
+        List<JogadorTabela> _jogador = Singleton.SingletonTabelas<List<JogadorTabela>>.Instance();
+        
         public void Excluir(int idJogador)
         {
             //jogadores.Remove(ObterPorId(idJogador, jogadores));
@@ -19,6 +16,7 @@ namespace Cod3rsGrowth.Test.TestesJogador
         public Jogador ObterPorId(int idJogador)
         {
             //return jogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador);
+            _jogador.
             return new Jogador();
         }
 

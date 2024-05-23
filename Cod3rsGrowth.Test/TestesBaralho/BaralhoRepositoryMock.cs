@@ -11,11 +11,8 @@ namespace Cod3rsGrowth.Test.TestesBaralho
 {
     public class BaralhoRepositoryMock : IBaralhoRepository
     {
-        public BaralhoRepositoryMock()
-        {
-            List<ListaDeCartasTabela> _listDeCartasTabelas = Singleton.SingletonTabelas<List<ListaDeCartasTabela>>.Instance();
-            List<Baralho> _baralho = Singleton.SingletonTabelas<List<Baralho>>.Instance();
-        }
+        List<ListaDeCartasTabela> _listDeCartasTabelas = Singleton.SingletonTabelas<List<ListaDeCartasTabela>>.Instance();
+        List<Baralho> _baralho = Singleton.SingletonTabelas<List<Baralho>>.Instance();
         public void Excluir(int idBaralho)
         {
             //baralhos.Remove(ObterPorId(idBaralho));

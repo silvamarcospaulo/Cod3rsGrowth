@@ -7,10 +7,7 @@ namespace Cod3rsGrowth.Test.TestesCarta
 {
     public class CartaRepositoryMock
     {
-        public CartaRepositoryMock()
-        {
-            List<CartaTabela> _carta = Singleton.SingletonTabelas<List<CartaTabela>>.Instance();
-        }
+        List<CartaTabela> _carta = Singleton.SingletonTabelas<List<CartaTabela>>.Instance();
         public void Excluir(int idCarta)
         {
             //cartas.Remove(ObterPorId(idCarta, cartas));
