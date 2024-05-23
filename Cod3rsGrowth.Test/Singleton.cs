@@ -9,7 +9,7 @@ public class Singleton
         public static List<Baralho> instanceBaralho;
         public static List<Jogador> instanceJogador;
 
-        public static List<Carta> InstanceCarta()
+        public static List<Carta> GetInstanceCarta()
         {
             lock (typeof(List<Carta>))
             {
@@ -21,7 +21,7 @@ public class Singleton
             return instanceCarta;
         }
 
-        public static List<CopiaDeCartasNoBaralho> InstanceCopiaDeCartasNoBaralho()
+        public static List<CopiaDeCartasNoBaralho> GetInstanceCopiaDeCartasNoBaralho()
         {
             lock (typeof(List<CopiaDeCartasNoBaralho>))
             {
@@ -33,7 +33,7 @@ public class Singleton
             return instanceCopiaDeCartasNoBaralho;
         }
 
-        public static List<Baralho> InstanceBaralho()
+        public static List<Baralho> GetInstanceBaralho()
         {
             lock (typeof(List<Baralho>))
             {
@@ -45,7 +45,7 @@ public class Singleton
             return instanceBaralho;
         }
 
-        public static List<Jogador> InstanceJogador()
+        public static List<Jogador> GetInstanceJogador()
         {
             lock (typeof(List<Jogador>))
             {
