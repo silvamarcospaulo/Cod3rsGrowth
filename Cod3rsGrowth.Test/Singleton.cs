@@ -2,7 +2,7 @@
 
 public class Singleton
 {
-    public sealed class SingletonTabelas<T> where T : class, new()
+    public sealed class SingletonTabelas
     {
         public static List<Carta> instanceCarta;
         public static List<CopiaDeCartasNoBaralho> instanceCopiaDeCartasNoBaralho;
