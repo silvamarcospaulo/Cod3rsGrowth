@@ -5,7 +5,7 @@ public class Singleton
 {
     public sealed class SingletonTabelas
     {
-        private static  Lazy<SingletonTabelas>? Instancia = new Lazy<SingletonTabelas>(() => new SingletonTabelas());
+        private static  Lazy<SingletonTabelas>? Lazy = new Lazy<SingletonTabelas>(() => new SingletonTabelas());
         public List<Carta> Cartas;
         public List<CopiaDeCartasNoBaralho> CopiaDeCartasNosBaralhos;
         public List<Baralho> Baralhos;
@@ -20,7 +20,7 @@ public class Singleton
         }
         public static SingletonTabelas ObterInstancia
         {
-            get{ return Instancia.Value; }
+            get{ return Lazy.Value; }
         }
     }
 }
