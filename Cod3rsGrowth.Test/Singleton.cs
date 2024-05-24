@@ -1,60 +1,26 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
+using NUnit.Framework.Constraints;
 
 public class Singleton
 {
     public sealed class SingletonTabelas
     {
-        public static List<Carta> instanceCarta;
-        public static List<CopiaDeCartasNoBaralho> instanceCopiaDeCartasNoBaralho;
-        public static List<Baralho> instanceBaralho;
-        public static List<Jogador> instanceJogador;
+        private static  Lazy<SingletonTabelas>? Instancia = new Lazy<SingletonTabelas>(() => new SingletonTabelas());
+        public List<Carta> Cartas;
+        public List<CopiaDeCartasNoBaralho> CopiaDeCartasNosBaralhos;
+        public List<Baralho> Baralhos;
+        public List<Jogador> Jogadores;
 
-        public static List<Carta> GetInstanceCarta()
+        private SingletonTabelas()
         {
-            lock (typeof(List<Carta>))
-            {
-                if (instanceCarta == null)
-                {
-                    instanceCarta = new List<Carta>();
-                }
-            }
-            return instanceCarta;
+            Cartas = new List<Carta>();
+            CopiaDeCartasNosBaralhos = new List<CopiaDeCartasNoBaralho>();
+            Baralhos = new List<Baralho>();
+            Jogadores = new List<Jogador>();
         }
-
-        public static List<CopiaDeCartasNoBaralho> GetInstanceCopiaDeCartasNoBaralho()
+        public static SingletonTabelas ObterInstancia
         {
-            lock (typeof(List<CopiaDeCartasNoBaralho>))
-            {
-                if (instanceCopiaDeCartasNoBaralho == null)
-                {
-                    instanceCopiaDeCartasNoBaralho = new List<CopiaDeCartasNoBaralho>();
-                }
-            }
-            return instanceCopiaDeCartasNoBaralho;
-        }
-
-        public static List<Baralho> GetInstanceBaralho()
-        {
-            lock (typeof(List<Baralho>))
-            {
-                if (instanceBaralho == null)
-                {
-                    instanceBaralho = new List<Baralho>();
-                }
-            }
-            return instanceBaralho;
-        }
-
-        public static List<Jogador> GetInstanceJogador()
-        {
-            lock (typeof(List<Jogador>))
-            {
-                if (instanceJogador == null)
-                {
-                    instanceJogador = new List<Jogador>();
-                }
-            }
-            return instanceJogador;
+            get{ return Instancia.Value; }
         }
     }
 }
