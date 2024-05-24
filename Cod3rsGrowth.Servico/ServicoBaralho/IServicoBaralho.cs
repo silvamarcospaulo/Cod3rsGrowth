@@ -5,7 +5,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public interface IServicoBaralho
     {
-        int GerarIdCarta(List<Baralho> quantidadeDeBaralhosDoJogadorNoBancoDeDados);
+        int GerarIdBaralho(int quantidadeDeBaralhosDoJogadorNoBancoDeDados);
         decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho);
         int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho);
         int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho);

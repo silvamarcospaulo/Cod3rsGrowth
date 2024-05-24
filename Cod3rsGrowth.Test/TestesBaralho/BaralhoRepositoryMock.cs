@@ -1,5 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
+using Cod3rsGrowth.Test.TestesJogador;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Test.TestesBaralho
 {
-    public class BaralhoRepositoryTeste : IBaralhoRepository
+    public class BaralhoRepositoryMock : IBaralhoRepository
     {
         public void Excluir(int idBaralho)
         {
@@ -17,12 +18,13 @@ namespace Cod3rsGrowth.Test.TestesBaralho
 
         public Baralho ObterPorId(int idBaralho)
         {
-            return baralhos.FirstOrDefault(baralho => baralho.IdBaralho == idBaralho);
+            return new Baralho();
+            //baralhos.FirstOrDefault(baralho => baralho.IdBaralho == idBaralho);
         }
 
         public List<Baralho> ObterTodos()
         {
-            return baralhos;
+            return new List<Baralho>();
         }
     }
 }

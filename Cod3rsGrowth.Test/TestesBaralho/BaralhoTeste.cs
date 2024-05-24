@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Test.TestesBaralho
 {
-    public class BaralhoTeste : TesteBase
+    internal class BaralhoTeste : TesteBase
     {
     }
 }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Dominio.Modelos;
+using static Singleton;
 
 namespace Cod3rsGrowth.Test.TestesCarta
 {
     public class CartaTeste : TesteBase
     {
+        public CartaTeste()
+        {
+        }
     }
 }
