@@ -61,7 +61,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
                         break;
                 }
             }
-            return cores;
+            return cores.Distinct().ToList();
         }
     }
 }
