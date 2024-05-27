@@ -5,14 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Dominio
+namespace Cod3rsGrowth.Dominio.Modelos.Enums
 {
     public enum CoresEnum
     {
-        [Description("Energia")]
-        Energia = 'E',
-        [Description("Phyrexiano")]
-        Phyrexiano = 'P',
         [Description("Branco")]
         Branco = 'W',
         [Description("Azul")]
@@ -21,7 +17,9 @@ namespace Cod3rsGrowth.Dominio
         Preto = 'B',
         [Description("Vermelho")]
         Vermelho = 'R',
+        [Description("Verde")]
+        Verde = 'G',
         [Description("Incolor")]
-        ManaGenerica = 'C',
+        Incolor = 'C',
     }
 }
