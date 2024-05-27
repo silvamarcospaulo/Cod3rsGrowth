@@ -16,17 +16,24 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
         {
+            decimal valorCarta;
+
             switch (raridadeDaCarta)
             {
                 case RaridadeEnum.Common:
-                    return PRECO_CARTA_COMMON;
+                    valorCarta = PRECO_CARTA_COMMON;
+                    break;
                 case RaridadeEnum.Uncommon:
-                    return PRECO_CARTA_UNCOMMON;
+                    valorCarta = PRECO_CARTA_UNCOMMON;
+                    break;
                 case RaridadeEnum.Rare:
-                    return PRECO_CARTA_RARE;
+                    valorCarta = PRECO_CARTA_RARE;
+                    break;
                 case RaridadeEnum.Mythic:
-                    return PRECO_CARTA_MYTHIC;
+                    valorCarta = PRECO_CARTA_MYTHIC;
+                    break;
             }
+            return valorCarta;
         }
 
         public List<CoresEnum> AdicionarCoresDaCarta(string cor)
