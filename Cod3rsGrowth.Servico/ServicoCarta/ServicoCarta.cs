@@ -4,10 +4,10 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 {
     public class ServicoCarta : IServicoCarta
     {
-        public static readonly decimal PRECO_CARTA_COMMON = Convert.ToDecimal(0.5);
-        public static readonly decimal PRECO_CARTA_UNCOMMON = Convert.ToDecimal(2.5);
-        public static readonly decimal PRECO_CARTA_RARE = Convert.ToDecimal(5);
-        public static readonly decimal PRECO_CARTA_MYTHIC = Convert.ToDecimal(7.5);
+        public const decimal precoCartaCommon = 0.5m;
+        public const decimal precoCartaUncommon = 2.5m;
+        public const decimal precoCartaRare = 5m;
+        public const decimal precoCartaMythic = 7.5m;
 
         public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
         {
@@ -16,21 +16,21 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
         {
-            decimal valorCarta;
+            decimal valorCarta = 0;
 
             switch (raridadeDaCarta)
             {
                 case RaridadeEnum.Common:
-                    valorCarta = PRECO_CARTA_COMMON;
+                    valorCarta = precoCartaCommon;
                     break;
                 case RaridadeEnum.Uncommon:
-                    valorCarta = PRECO_CARTA_UNCOMMON;
+                    valorCarta = precoCartaUncommon;
                     break;
                 case RaridadeEnum.Rare:
-                    valorCarta = PRECO_CARTA_RARE;
+                    valorCarta = precoCartaRare;
                     break;
                 case RaridadeEnum.Mythic:
-                    valorCarta = PRECO_CARTA_MYTHIC;
+                    valorCarta = precoCartaMythic;
                     break;
             }
             return valorCarta;

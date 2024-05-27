@@ -5,12 +5,12 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class ServicoBaralho : IServicoBaralho
     {
-        public static readonly int TAMANHO_MINIMO_BARALHO_COMMANDER = 100;
-        public static readonly int TAMANHO_MINIMO_BARALHO_PAUPER = 60;
-        public static readonly int TAMANHO_MINIMO_BARALHO_STANDARD = 60;
-        public static readonly int QUANTIDADE_MAXIMA_DE_CARTAS_COMMANDER = 1;
-        public static readonly int QUANTIDADE_MAXIMA_DE_CARTAS_PAUPER = 4;
-        public static readonly int QUANTIDADE_MAXIMA_DE_CARTAS_STANDARD = 4;
+        public const int quantidadeBaralhoCommander = 100;
+        public const int quantidadeBaralhoPauper = 60;
+        public const int quantidadeBaralhoStandard = 60;
+        public const int quantidadeMaximaDeCopiaDeCartasCommander = 1;
+        public const int quantidadeMaximaDeCopiaDeCartasPauper = 4;
+        public const int quantidadeMaximaDeCopiaDeCartasStandard = 4;
         public int GerarIdBaralho(int quantidadeDeBaralhosDoJogadorNoBancoDeDados)
         {
             return quantidadeDeBaralhosDoJogadorNoBancoDeDados + 1;
@@ -43,21 +43,21 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             switch (formatoDeJogo)
             {
                 case FormatoDeJogoEnum.Commander:
-                    if (SomarQuantidadeDeCartasDoBaralho(cartas) != TAMANHO_MINIMO_BARALHO_COMMANDER) return false;
+                    if (SomarQuantidadeDeCartasDoBaralho(cartas) != quantidadeBaralhoCommander) return false;
                     if (cartas.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > QUANTIDADE_MAXIMA_DE_CARTAS_COMMANDER))) return false;
+                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasCommander))) return false;
                     break;
 
                 case FormatoDeJogoEnum.Pauper:
-                    if (SomarQuantidadeDeCartasDoBaralho(cartas) < TAMANHO_MINIMO_BARALHO_PAUPER) return false;
+                    if (SomarQuantidadeDeCartasDoBaralho(cartas) < quantidadeBaralhoPauper) return false;
                     if (cartas.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > QUANTIDADE_MAXIMA_DE_CARTAS_PAUPER))) return false;
+                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasPauper))) return false;
                     if (cartas.All(c => c.Carta.RaridadeCarta != RaridadeEnum.Common)) return false;
                     break;
                 case FormatoDeJogoEnum.Standard:
-                    if (SomarQuantidadeDeCartasDoBaralho(cartas) < TAMANHO_MINIMO_BARALHO_STANDARD) return false;
+                    if (SomarQuantidadeDeCartasDoBaralho(cartas) < quantidadeBaralhoStandard) return false;
                     if (cartas.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > QUANTIDADE_MAXIMA_DE_CARTAS_STANDARD))) return false;
+                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasStandard))) return false;
                     break;
             }
             return true;
