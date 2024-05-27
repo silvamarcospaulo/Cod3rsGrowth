@@ -12,10 +12,6 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 {
     public class ServicoCarta : IServicoCarta
     {
-        public ServicoCarta()
-        {
-        }
-
         public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
         {
             return quantidadeDeCartasNoBancoDeDados + 1;
@@ -23,31 +19,48 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
         {
-            if(raridadeDaCarta == RaridadeEnum.Common)
+            switch (raridadeDaCarta)
             {
-                return Convert.ToDecimal(0.5);
+                case RaridadeEnum.Common:
+                    return Convert.ToDecimal(0.5);
+                case RaridadeEnum.Uncommon:
+                    return Convert.ToDecimal(2.5);
+                case RaridadeEnum.Rare:
+                    return Convert.ToDecimal(5.0);
+                case RaridadeEnum.Mythic:
+                    return Convert.ToDecimal(7.5);
+                default:
+                    return Convert.ToDecimal(0);
             }
-            else if(raridadeDaCarta == RaridadeEnum.Uncommon)
-            {
-                return Convert.ToDecimal(2.5);
-            }
-            else if (raridadeDaCarta == RaridadeEnum.Rare)
-            {
-                return Convert.ToDecimal(5.0);
-            }
-
-            return Convert.ToDecimal(7.5);
         }
 
         public List<CoresEnum> AdicionarCoresDaCarta(string cor)
         {
             List<CoresEnum> cores = new List<CoresEnum>();
-            if (cor.Contains("W")) cores.Add(CoresEnum.Branco);
-            if (cor.Contains("R")) cores.Add(CoresEnum.Vermelho);
-            if (cor.Contains("G")) cores.Add(CoresEnum.Verde);
-            if (cor.Contains("B")) cores.Add(CoresEnum.Preto);
-            if (cor.Contains("U")) cores.Add(CoresEnum.Azul);
 
+            foreach (char c in cor)
+            {
+                switch (c)
+                {
+                    case 'W':
+                            cores.Add(CoresEnum.Branco);
+                        break;
+                    case 'B':
+                            cores.Add(CoresEnum.Preto);
+                        break;
+                    case 'G':
+                        cores.Add(CoresEnum.Verde);
+                        break;
+                    case 'R':
+                        cores.Add(CoresEnum.Vermelho);
+                        break;
+                    case 'U':
+                        cores.Add(CoresEnum.Azul);
+                        break;
+                    default:
+                        break;
+                }
+            }
             return cores;
         }
     }

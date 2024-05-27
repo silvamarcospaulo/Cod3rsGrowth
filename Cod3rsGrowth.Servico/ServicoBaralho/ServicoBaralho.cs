@@ -36,20 +36,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public List<CoresEnum> ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
-            List<CoresEnum> coresDoBaralho = new List<CoresEnum>();
-
-            foreach (CopiaDeCartasNoBaralho copia in baralho)
-            {
-                foreach (CoresEnum cor in copia.Carta.CorCarta)
-                {
-                    if (cor == CoresEnum.Branco) { if (!(coresDoBaralho.Contains(cor))) { coresDoBaralho.Add(cor); } }
-                    if (cor == CoresEnum.Verde) { if (!(coresDoBaralho.Contains(cor))) { coresDoBaralho.Add(cor); } }
-                    if (cor == CoresEnum.Vermelho) { if (!(coresDoBaralho.Contains(cor))) { coresDoBaralho.Add(cor); } }
-                    if (cor == CoresEnum.Azul) { if (!(coresDoBaralho.Contains(cor))) { coresDoBaralho.Add(cor); } }
-                    if (cor == CoresEnum.Preto) { if (!(coresDoBaralho.Contains(cor))) { coresDoBaralho.Add(cor); } }
-                }
-            }
-            return coresDoBaralho;
+            return baralho.SelectMany(carta => carta.Carta.CorCarta).Distinct().ToList();
         }
 
         public bool ValidacaoTipoDeBaralho(List<CopiaDeCartasNoBaralho> cartas, FormatoDeJogoEnum formatoDeJogo)
