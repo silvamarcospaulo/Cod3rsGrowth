@@ -1,17 +1,14 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Infra.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
     public class ServicoCarta : IServicoCarta
     {
+        public static readonly decimal PRECO_CARTA_COMMON = Convert.ToDecimal(0.5);
+        public static readonly decimal PRECO_CARTA_UNCOMMON = Convert.ToDecimal(2.5);
+        public static readonly decimal PRECO_CARTA_RARE = Convert.ToDecimal(5);
+        public static readonly decimal PRECO_CARTA_MYTHIC = Convert.ToDecimal(7.5);
+
         public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
         {
             return quantidadeDeCartasNoBancoDeDados + 1;
@@ -22,15 +19,13 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             switch (raridadeDaCarta)
             {
                 case RaridadeEnum.Common:
-                    return Convert.ToDecimal(0.5);
+                    return PRECO_CARTA_COMMON;
                 case RaridadeEnum.Uncommon:
-                    return Convert.ToDecimal(2.5);
+                    return PRECO_CARTA_UNCOMMON;
                 case RaridadeEnum.Rare:
-                    return Convert.ToDecimal(5.0);
+                    return PRECO_CARTA_RARE;
                 case RaridadeEnum.Mythic:
-                    return Convert.ToDecimal(7.5);
-                default:
-                    return Convert.ToDecimal(0);
+                    return PRECO_CARTA_MYTHIC;
             }
         }
 
@@ -43,10 +38,10 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
                 switch (c)
                 {
                     case 'W':
-                            cores.Add(CoresEnum.Branco);
+                        cores.Add(CoresEnum.Branco);
                         break;
                     case 'B':
-                            cores.Add(CoresEnum.Preto);
+                        cores.Add(CoresEnum.Preto);
                         break;
                     case 'G':
                         cores.Add(CoresEnum.Verde);

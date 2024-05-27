@@ -13,13 +13,11 @@ namespace Cod3rsGrowth.Test.TestesBaralho
     {
         public void Excluir(int idBaralho)
         {
-            //baralhos.Remove(ObterPorId(idBaralho));
         }
 
         public Baralho ObterPorId(int idBaralho)
         {
             return new Baralho();
-            //baralhos.FirstOrDefault(baralho => baralho.IdBaralho == idBaralho);
         }
 
         public List<Baralho> ObterTodos()

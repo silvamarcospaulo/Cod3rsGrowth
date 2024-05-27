@@ -9,12 +9,10 @@ namespace Cod3rsGrowth.Test.TestesCarta
     {
         public void Excluir(int idCarta)
         {
-            //cartas.Remove(ObterPorId(idCarta, cartas));
         }
 
         public Carta ObterPorId(int idCarta)
         {
-            //return cartas.FirstOrDefault(carta => carta.IdCarta == idCarta);
             return new Carta();
         }
 

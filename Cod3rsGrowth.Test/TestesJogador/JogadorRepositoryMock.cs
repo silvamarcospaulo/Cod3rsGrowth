@@ -8,12 +8,10 @@ namespace Cod3rsGrowth.Test.TestesJogador
     {   
         public void Excluir(int idJogador)
         {
-            //jogadores.Remove(ObterPorId(idJogador, jogadores));
         }
 
         public Jogador ObterPorId(int idJogador)
         {
-            //return jogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador);
             return new Jogador();
         }
 
