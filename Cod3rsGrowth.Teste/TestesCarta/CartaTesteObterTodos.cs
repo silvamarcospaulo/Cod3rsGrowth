@@ -2,31 +2,41 @@
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
 using Microsoft.Extensions.DependencyInjection;
-using Xunit;
 
-namespace Cod3rsGrowth.Test.TestesCarta
+namespace Cod3rsGrowth.Teste.TestesCarta
 {
-    public class CartaTeste : TesteBase
+    public class CartaTesteObterTodos : TesteBase
     {
         private readonly ICartaRepository ObterServico;
-        public CartaTeste()
+        public CartaTesteObterTodos()
         {
             ObterServico = ServiceProvider.GetService<ICartaRepository>() ?? throw new Exception($"Erro ao obter servico");
         }
 
         [Fact]
-        public void CartaRepositoryDeveRetornarListaNaoNula()
+        public void CartaRepositoryObterTodosDeveRetornarListaNaoNula()
         {
             // arrange
             // act
             var cartas = ObterServico.ObterTodos();
 
             // assert
-            Assert.Equals(cartas, Is.Not.Null);
+            Assert.NotNull(cartas);
         }
 
         [Fact]
-        public void CartaRepositoryDeveRetornarTodasAsCartasDoRepositorioMock()
+        public void CartaRepositoryObterTodosDeveRetornarListaNaoVazia()
+        {
+            // arrange
+            // act
+            var cartas = ObterServico.ObterTodos();
+
+            // assert
+            Assert.NotEmpty(cartas);
+        }
+
+        [Fact]
+        public void CartaRepositoryObterTodosDeveRetornarTodasAsCartasDoRepositorioMock()
         {
             // arrange
             List<Carta> listaDeCartas = new()
@@ -216,17 +226,7 @@ namespace Cod3rsGrowth.Test.TestesCarta
             var cartas = ObterServico.ObterTodos();
 
             // assert
-            Assert.Equals(listaDeCartas, cartas);
-        }
-
-        [Fact]
-        public void TesteDoTeste()
-        {
-            // arrange
-            // act
-
-            // assert
-            Assert.IsTrue(false);
+            Assert.Equivalent(listaDeCartas, cartas);
         }
     }
 }
