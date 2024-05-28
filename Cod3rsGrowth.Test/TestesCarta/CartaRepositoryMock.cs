@@ -1,12 +1,13 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
-using Cod3rsGrowth.Servico.ServicoCarta;
+using Cod3rsGrowth.Test.Singleton;
 
 namespace Cod3rsGrowth.Test.TestesCarta
 {
-    public class CartaRepositoryMock
+    public class CartaRepositoryMock : ICartaRepository
     {
+        List<Carta> tabelasCartas = SingletonTabelas.InstanciaCartas;
+
         public void Excluir(int idCarta)
         {
         }
@@ -18,7 +19,7 @@ namespace Cod3rsGrowth.Test.TestesCarta
 
         public List<Carta> ObterTodos()
         {
-            return new List<Carta>();
+            return tabelasCartas;
         }
     }
 }

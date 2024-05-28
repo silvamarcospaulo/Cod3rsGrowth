@@ -1,4 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
+﻿using System;
+using Cod3rsGrowth.Dominio.Modelos;
 
 namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
 {

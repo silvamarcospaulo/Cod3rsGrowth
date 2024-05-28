@@ -1,9 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Test
 {
@@ -20,7 +16,7 @@ namespace Cod3rsGrowth.Test
 
         public void Dispose()
         {
-            ServiceProvider.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

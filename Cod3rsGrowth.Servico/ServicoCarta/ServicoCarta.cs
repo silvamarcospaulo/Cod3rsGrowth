@@ -1,4 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
+﻿using System;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
@@ -38,7 +39,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         public List<CoresEnum> AdicionarCoresDaCarta(string cor)
         {
-            List<CoresEnum> cores = new List<CoresEnum>();
+            List<CoresEnum> cores = new();
 
             foreach (char c in cor)
             {

@@ -1,6 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 
-namespace Cod3rsGrowth.Dominio.Servicos
+namespace Cod3rsGrowth.Servicos.ServicoJogador
 {
     public class ServicoJogador : IServicoJogador
     {
