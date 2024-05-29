@@ -2,7 +2,7 @@
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
 using Cod3rsGrowth.Teste.Singleton;
 
-namespace Cod3rsGrowth.Teste.TestesCarta
+namespace Cod3rsGrowth.Teste.Repository
 {
     public class CartaRepositoryMock : ICartaRepository
     {

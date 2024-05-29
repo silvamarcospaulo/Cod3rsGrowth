@@ -3,7 +3,7 @@ using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using Cod3rsGrowth.Teste.Singleton;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Cod3rsGrowth.Teste.TestesJogador
+namespace Cod3rsGrowth.Teste.Repository
 {
     public class JogadorRepositoryMock : IJogadorRepository
     {

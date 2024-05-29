@@ -1,45 +1,29 @@
-﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Dominio.Modelos;
+﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Cod3rsGrowth.Teste.TesteJogador
+namespace Cod3rsGrowth.Teste.Testes
 {
-    public class JogadorTesteObterTodos : TesteBase
+    public class JogadorTest : TesteBase
     {
         private readonly IJogadorRepository ObterServico;
-        public JogadorTesteObterTodos()
+        public JogadorTest()
         {
             ObterServico = ServiceProvider.GetService<IJogadorRepository>() ?? throw new Exception("Erro ao obter servico");
         }
 
         [Fact]
-        public void JogadorRepositoryObterTodosDeveRetornarListaNaoNula()
+        public void verifica_se_a_lista_de_esta_vazia()
         {
-            // arrange
-            // act
             var jogadores = ObterServico.ObterTodos();
 
-            // assert
-            Assert.NotNull(jogadores);
-        }
-
-        [Fact]
-        public void JogadorRepositoryObterTodosDeveRetornarListaNaoVazia()
-        {
-            // arrange
-            // act
-            var jogadores = ObterServico.ObterTodos();
-
-            // assert
             Assert.NotEmpty(jogadores);
         }
 
         [Fact]
-        public void JogadorRepositoryObterTodosDeveRetornarTodasAsCartasDoRepositorioMock()
+        public void verifica_se_o_metodo_retorna_todas_as_cartas()
         {
-            // arrange
             List<Jogador> listaDeJogadores = new()
             {
                 new Jogador()
@@ -73,10 +57,9 @@ namespace Cod3rsGrowth.Teste.TesteJogador
                     BaralhosJogador = null
                 }
             };
-            // act
+
             var jogadores = ObterServico.ObterTodos();
 
-            // assert
             Assert.Equivalent(listaDeJogadores, jogadores);
         }
     }

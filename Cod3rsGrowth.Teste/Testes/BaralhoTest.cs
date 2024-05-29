@@ -1,50 +1,34 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
-using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Cod3rsGrowth.Teste.Singleton;
 
-namespace Cod3rsGrowth.Teste.TestesBaralho
+namespace Cod3rsGrowth.Teste.Testes
 {
-    public class BaralhoTesteObterTodos : TesteBase
+    public class BaralhoTest : TesteBase
     {
         private readonly IBaralhoRepository ObterServico;
-        public BaralhoTesteObterTodos()
+        private List<Baralho> _listaBaralho;
+        private List<Baralho> _listaBaralhoMock;
+
+        public BaralhoTest()
         {
             ObterServico = ServiceProvider.GetService<IBaralhoRepository>() ?? throw new Exception($"Erro ao obter servico");
         }
 
         [Fact]
-        public void CartaRepositoryObterTodosDeveRetornarListaNaoNula()
+        public void verifica_se_a_lista_esta_vazia()
         {
-            // arrange
-            // act
             var baralhos = ObterServico.ObterTodos();
 
-            // assert
-            Assert.NotNull(baralhos);
-        }
-
-        [Fact]
-        public void CartaRepositoryObterTodosDeveRetornarListaNaoVazia()
-        {
-            // arrange
-            // act
-            var baralhos = ObterServico.ObterTodos();
-
-            // assert
             Assert.NotEmpty(baralhos);
         }
 
         [Fact]
-        public void CartaRepositoryObterTodosDeveRetornarTodasAsCartasDoRepositorioMock()
+        public void verifica_se_o_metodo_retorna_todas_as_cartas()
         {
-            // arrange
             List<Baralho> listaDeBaralhos = new List<Baralho>()
             {
                 new Baralho()
@@ -146,10 +130,9 @@ namespace Cod3rsGrowth.Teste.TestesBaralho
                     CorBaralho = new List<CoresEnum>() {CoresEnum.Azul, CoresEnum.Vermelho}
                 }
             };
-            // act
+
             var baralhos = ObterServico.ObterTodos();
 
-            // assert
             Assert.Equivalent(listaDeBaralhos, baralhos);
         }
     }

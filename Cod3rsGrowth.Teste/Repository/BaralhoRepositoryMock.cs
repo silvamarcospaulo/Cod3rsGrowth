@@ -1,15 +1,12 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
 using Cod3rsGrowth.Teste.Singleton;
-using Cod3rsGrowth.Teste.TestesJogador;
 using System;
 
-namespace Cod3rsGrowth.Teste.TestesBaralho
+namespace Cod3rsGrowth.Teste.Repository
 {
     public class BaralhoRepositoryMock : IBaralhoRepository
     {
-        List<Baralho> tabelasBaralhos = SingletonTabelas.InstanciaBaralhos;
-
         public void Excluir(int idBaralho)
         {
         }
