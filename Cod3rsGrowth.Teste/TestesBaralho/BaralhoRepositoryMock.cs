@@ -21,7 +21,7 @@ namespace Cod3rsGrowth.Teste.TestesBaralho
 
         public List<Baralho> ObterTodos()
         {
-            return new List<Baralho>();
+            return tabelasBaralhos;
         }
     }
 }

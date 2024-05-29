@@ -1,45 +1,18 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
-using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Teste.TestesCarta
+namespace Cod3rsGrowth.Teste.Singleton
 {
-    public class CartaTesteObterTodos : TesteBase
+    public static class TabelaCartas
     {
-        private readonly ICartaRepository ObterServico;
-        public CartaTesteObterTodos()
+        public static List<Carta> TabelaDeCartas()
         {
-            ObterServico = ServiceProvider.GetService<ICartaRepository>() ?? throw new Exception("Erro ao obter servico");
-        }
-
-        [Fact]
-        public void CartaRepositoryObterTodosDeveRetornarListaNaoNula()
-        {
-            // arrange
-            // act
-            var cartas = ObterServico.ObterTodos();
-
-            // assert
-            Assert.NotNull(cartas);
-        }
-
-        [Fact]
-        public void CartaRepositoryObterTodosDeveRetornarListaNaoVazia()
-        {
-            // arrange
-            // act
-            var cartas = ObterServico.ObterTodos();
-
-            // assert
-            Assert.NotEmpty(cartas);
-        }
-
-        [Fact]
-        public void CartaRepositoryObterTodosDeveRetornarTodasAsCartasDoRepositorioMock()
-        {
-            // arrange
-            List<Carta> listaDeCartas = new()
+            return new List<Carta>()
             {
                 new Carta()
                 {
@@ -222,11 +195,6 @@ namespace Cod3rsGrowth.Teste.TestesCarta
                     CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Verde, CoresEnum.Vermelho, CoresEnum.Preto, CoresEnum.Branco }
                 }
             };
-            // act
-            var cartas = ObterServico.ObterTodos();
-
-            // assert
-            Assert.Equivalent(listaDeCartas, cartas);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Teste
 
         public void Dispose()
         {
-            GC.SuppressFinalize(this);
+            ServiceProvider.Dispose();
         }
     }
 }
