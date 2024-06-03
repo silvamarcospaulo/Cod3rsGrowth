@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Cod3rsGrowth.Test
+namespace Cod3rsGrowth.Teste
 {
     public class TesteBase : IDisposable
     {
@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Test
 
         public void Dispose()
         {
-            GC.SuppressFinalize(this);
+            ServiceProvider.Dispose();
         }
     }
 }

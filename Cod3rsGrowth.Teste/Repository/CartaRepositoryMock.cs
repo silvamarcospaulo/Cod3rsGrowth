@@ -1,12 +1,17 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
-using Cod3rsGrowth.Test.Singleton;
+using Cod3rsGrowth.Teste.Singleton;
 
-namespace Cod3rsGrowth.Test.TestesCarta
+namespace Cod3rsGrowth.Teste.Repository
 {
     public class CartaRepositoryMock : ICartaRepository
     {
-        List<Carta> tabelasCartas = SingletonTabelas.InstanciaCartas;
+        public List<Carta> tabelasCartas = SingletonTabelas.InstanciaCartas;
+
+        public void Inserir(Carta carta)
+        {
+            tabelasCartas.Add(carta);
+        }
 
         public void Excluir(int idCarta)
         {
