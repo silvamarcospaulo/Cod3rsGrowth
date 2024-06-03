@@ -7,9 +7,7 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
     {
         void Inserir(Carta carta);
         void Excluir(int idCarta);
-
         Carta ObterPorId(int idCarta);
-
         List<Carta> ObterTodos();
     }
 }
