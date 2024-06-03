@@ -6,7 +6,12 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class CartaRepositoryMock : ICartaRepository
     {
-        List<Carta> tabelasCartas = SingletonTabelas.InstanciaCartas;
+        public List<Carta> tabelasCartas = SingletonTabelas.InstanciaCartas;
+
+        public void Inserir(Carta carta)
+        {
+            tabelasCartas.Add(carta);
+        }
 
         public void Excluir(int idCarta)
         {

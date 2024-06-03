@@ -7,6 +7,12 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class BaralhoRepositoryMock : IBaralhoRepository
     {
+        public List<Baralho> tabelasBaralhos = SingletonTabelas.InstanciaBaralhos;
+
+        public void Inserir(Baralho baralho)
+        {
+            tabelasBaralhos.Add(baralho);
+        }
         public void Excluir(int idBaralho)
         {
         }

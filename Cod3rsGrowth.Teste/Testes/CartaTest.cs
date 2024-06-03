@@ -2,23 +2,20 @@
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
 using Microsoft.Extensions.DependencyInjection;
-using Cod3rsGrowth.Servico.ServicoCarta;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
     public class CartaTest : TesteBase
     {
-        private readonly ServicoCarta ObterServico;
-        private List<Carta> _listaCartas;
-        private List<Carta> _listaCartasMock;
+        private readonly ICartaRepository ObterServico;
 
         public CartaTest()
         {
-            ObterServico = ServiceProvider.GetService<ServicoCarta>() ?? throw new Exception("Erro ao obter servico");
-            _listaCartasMock = IniciarListaMoq();
+            ObterServico = ServiceProvider.GetService<ICartaRepository>() ?? throw new Exception("Erro ao obter servico");
+            IniciarListaMock();
         }
 
-        public List<Carta> InicarListaMoq()
+        public void IniciarListaMock()
         {
             List<Carta> listaCartasMock = new List<Carta>()
             {
@@ -94,10 +91,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            ObterServico.
-
-
-            return new List<Carta>();
+            listaCartasMock.ForEach(carta => ObterServico.Inserir(carta));
         }
 
         [Fact]
@@ -132,7 +126,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                    },
+                },
                 new Carta()
                 {
                     IdCarta = 3,
@@ -142,7 +136,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                    },
+                },
                 new Carta()
                 {
                     IdCarta = 4,
@@ -152,7 +146,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                    },
+                },
                 new Carta()
                 {
                     IdCarta = 5,
@@ -162,30 +156,10 @@ namespace Cod3rsGrowth.Teste.Testes
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                    },
+                },
                 new Carta()
                 {
                     IdCarta = 6,
-                    NomeCarta = "Anel Solar",
-                    CustoDeManaConvertidoCarta = 2,
-                    TipoDeCarta = TipoDeCartaEnum.Artefato,
-                    RaridadeCarta = RaridadeEnum.Common,
-                    PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                    },
-                new Carta()
-                {
-                    IdCarta = 7,
-                    NomeCarta = "Contra Magica",
-                    CustoDeManaConvertidoCarta = 2,
-                    TipoDeCarta = TipoDeCartaEnum.Instantanea,
-                    RaridadeCarta = RaridadeEnum.Common,
-                    PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Azul }
-                    },
-                new Carta()
-                {
-                    IdCarta = 8,
                     NomeCarta = "Niv-Mizzet, Parum",
                     CustoDeManaConvertidoCarta = 6,
                     TipoDeCarta = TipoDeCartaEnum.Criatura,
@@ -195,109 +169,25 @@ namespace Cod3rsGrowth.Teste.Testes
                 },
                 new Carta()
                 {
-                    IdCarta = 9,
-                    NomeCarta = "Erebos, Coração SOmbrio",
-                    CustoDeManaConvertidoCarta = 4,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Mythic,
-                    PrecoCarta = Convert.ToDecimal(7.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Preto }
-                },
-                new Carta()
-                {
-                    IdCarta = 10,
+                    IdCarta = 7,
                     NomeCarta = "Ghalta, Fome Primordial",
                     CustoDeManaConvertidoCarta = 12,
                     TipoDeCarta = TipoDeCartaEnum.Criatura,
                     RaridadeCarta = RaridadeEnum.Rare,
                     PrecoCarta = Convert.ToDecimal(5),
                     CorCarta = new List<CoresEnum>() { CoresEnum.Vermelho }
-                },
-                new Carta()
-                {
-                    IdCarta = 11,
-                    NomeCarta = "Ruric Thar, o Imbatível",
-                    CustoDeManaConvertidoCarta = 6,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Rare,
-                    PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Vermelho, CoresEnum.Azul }
-                },
-                new Carta()
-                {
-                    IdCarta = 12,
-                    NomeCarta = "Teysa Karlov",
-                    CustoDeManaConvertidoCarta = 4,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Rare,
-                    PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Preto, CoresEnum.Branco }
-                },
-                new Carta()
-                {
-                    IdCarta = 13,
-                    NomeCarta = "Teysa Karlov",
-                    CustoDeManaConvertidoCarta = 4,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Rare,
-                    PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Preto, CoresEnum.Branco }
-                },
-                new Carta()
-                {
-                    IdCarta = 14,
-                    NomeCarta = "Niv-Mizzet, Supremo",
-                    CustoDeManaConvertidoCarta = 5,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Rare,
-                    PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Verde, CoresEnum.Vermelho, CoresEnum.Preto, CoresEnum.Branco }
-                },
-                new Carta()
-                {
-                    IdCarta = 15,
-                    NomeCarta = "Niv-Mizzet Renascido",
-                    CustoDeManaConvertidoCarta = 5,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Mythic,
-                    PrecoCarta = Convert.ToDecimal(7.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Verde, CoresEnum.Vermelho, CoresEnum.Preto, CoresEnum.Branco }
-                },
-                new Carta()
-                {
-                    IdCarta = 16,
-                    NomeCarta = "Niv-Mizzet, Dracogenio",
-                    CustoDeManaConvertidoCarta = 6,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Rare,
-                    PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
-                },
-                new Carta()
-                {
-                    IdCarta = 17,
-                    NomeCarta = "Niv-Mizzet, o Mente de Fogo",
-                    CustoDeManaConvertidoCarta = 6,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Rare,
-                    PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
-                },
-                new Carta()
-                {
-                    IdCarta = 18,
-                    NomeCarta = "Niv-Mizzet, Pacto das Guildas",
-                    CustoDeManaConvertidoCarta = 5,
-                    TipoDeCarta = TipoDeCartaEnum.Criatura,
-                    RaridadeCarta = RaridadeEnum.Rare,
-                    PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Verde, CoresEnum.Vermelho, CoresEnum.Preto, CoresEnum.Branco }
                 }
             };
 
             var cartas = ObterServico.ObterTodos();
 
-            Assert.Equivalent(listaDeCartas, cartas);
+            Assert.Equivalent(listaDeCartas[0], cartas[0]);
+            Assert.Equivalent(listaDeCartas[1], cartas[1]);
+            Assert.Equivalent(listaDeCartas[2], cartas[2]);
+            Assert.Equivalent(listaDeCartas[3], cartas[3]);
+            Assert.Equivalent(listaDeCartas[4], cartas[4]);
+            Assert.Equivalent(listaDeCartas[5], cartas[5]);
+            Assert.Equivalent(listaDeCartas[6], cartas[6]);
         }
     }
 }

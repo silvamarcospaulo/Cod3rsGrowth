@@ -17,9 +17,6 @@ namespace Cod3rsGrowth.Teste
             serviceProvider.AddScoped<ICartaRepository, CartaRepositoryMock>();
             serviceProvider.AddScoped<IBaralhoRepository, BaralhoRepositoryMock>();
             serviceProvider.AddScoped<IJogadorRepository, JogadorRepositoryMock>();
-            serviceProvider.AddScoped<IServicoCarta, ServicoCarta>();
-            serviceProvider.AddScoped<IServicoBaralho, ServicoBaralho>();
-            serviceProvider.AddScoped<IServicoJogador, ServicoJogador>();
         }
     }
 }
