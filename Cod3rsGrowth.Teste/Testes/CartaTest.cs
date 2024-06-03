@@ -95,7 +95,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void verifica_se_a_lista_esta_vazia()
+        public void verifica_se_a_lista_nao_esta_vazia()
         {
             var cartas = ObterServico.ObterTodos();
 
@@ -103,7 +103,15 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void verifica_se_o_metodo_retorna_todas_as_cartas()
+        public void ao_ObterTodos_deve_retornar_uma_lista_com_sete_cartas()
+        {
+            var quantidadeDeCartas = ObterServico.ObterTodos().Count();
+
+            Assert.Equal(7, quantidadeDeCartas);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_compara_se_os_primeiros_elementos_sao_iguais()
         {
             List<Carta> listaDeCartas = new()
             {
@@ -181,13 +189,13 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var cartas = ObterServico.ObterTodos();
 
-            Assert.Equivalent(listaDeCartas[0], cartas[0]);
-            Assert.Equivalent(listaDeCartas[1], cartas[1]);
-            Assert.Equivalent(listaDeCartas[2], cartas[2]);
-            Assert.Equivalent(listaDeCartas[3], cartas[3]);
-            Assert.Equivalent(listaDeCartas[4], cartas[4]);
-            Assert.Equivalent(listaDeCartas[5], cartas[5]);
-            Assert.Equivalent(listaDeCartas[6], cartas[6]);
+            Assert.Equal(cartas.First().IdCarta, listaDeCartas.First().IdCarta);
+            Assert.Equal(cartas.First().NomeCarta, listaDeCartas.First().NomeCarta);
+            Assert.Equal(cartas.First().CustoDeManaConvertidoCarta, listaDeCartas.First().CustoDeManaConvertidoCarta);
+            Assert.Equal(cartas.First().TipoDeCarta, listaDeCartas.First().TipoDeCarta);
+            Assert.Equal(cartas.First().RaridadeCarta, listaDeCartas.First().RaridadeCarta);
+            Assert.Equal(cartas.First().PrecoCarta, listaDeCartas.First().PrecoCarta);
+            Assert.Equal(cartas.First().CorCarta, listaDeCartas.First().CorCarta);
         }
     }
 }

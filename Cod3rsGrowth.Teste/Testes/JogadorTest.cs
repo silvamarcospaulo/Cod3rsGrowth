@@ -55,7 +55,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void verifica_se_a_lista_de_esta_vazia()
+        public void verifica_se_a_lista_de_nao_esta_vazia()
         {
             var jogadores = ObterServico.ObterTodos();
 
@@ -63,7 +63,15 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void verifica_se_o_metodo_retorna_todos_os_jogadores()
+        public void ao_ObterTodos_deve_retornar_uma_lista_com_tres_jogadores()
+        {
+            var quantidadeDeJogadores = ObterServico.ObterTodos().Count();
+
+            Assert.Equal(3, quantidadeDeJogadores);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_compara_se_os_primeiros_elementos_sao_iguais()
         {
             List<Jogador> listaDeJogadores = new()
             {
@@ -101,7 +109,13 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadores = ObterServico.ObterTodos();
 
-            Assert.Equivalent(listaDeJogadores, jogadores);
+            Assert.Equal(listaDeJogadores.First().IdJogador, jogadores.First().IdJogador);
+            Assert.Equal(listaDeJogadores.First().NomeJogador, jogadores.First().NomeJogador);
+            Assert.Equal(listaDeJogadores.First().DataNascimentoJodador, jogadores.First().DataNascimentoJodador);
+            Assert.Equal(listaDeJogadores.First().CustoDasCartasJogador, jogadores.First().CustoDasCartasJogador);
+            Assert.Equal(listaDeJogadores.First().QuantidadeDeBaralhosJogador, jogadores.First().QuantidadeDeBaralhosJogador);
+            Assert.Equal(listaDeJogadores.First().ContaAtivaJogador, jogadores.First().ContaAtivaJogador);
+            Assert.Equal(listaDeJogadores.First().BaralhosJogador, jogadores.First().BaralhosJogador);
         }
     }
 }
