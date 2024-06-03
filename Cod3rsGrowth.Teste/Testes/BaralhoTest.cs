@@ -133,7 +133,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void verifica_se_o_metodo_retorna_todas_as_cartas()
+        public void verifica_se_o_metodo_retorna_todas_os_baralhos()
         {
             List<Baralho> listaDeBaralhos = new List<Baralho>()
             {

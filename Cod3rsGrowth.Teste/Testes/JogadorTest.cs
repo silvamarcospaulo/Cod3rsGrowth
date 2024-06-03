@@ -63,7 +63,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void verifica_se_o_metodo_retorna_todas_as_cartas()
+        public void verifica_se_o_metodo_retorna_todos_os_jogadores()
         {
             List<Jogador> listaDeJogadores = new()
             {
