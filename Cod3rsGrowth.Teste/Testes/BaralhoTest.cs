@@ -120,7 +120,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            listaBaralhosMock.ForEach(baralho => ObterServico.Inserir(baralho));
+            if(ObterServico.ObterTodos().Count() < 1) listaBaralhosMock.ForEach(baralho => ObterServico.Inserir(baralho));
         }
 
         [Fact]
@@ -129,6 +129,15 @@ namespace Cod3rsGrowth.Teste.Testes
             var baralhos = ObterServico.ObterTodos();
 
             Assert.NotEmpty(baralhos);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_deve_retornar_uma_lista_com_dois_baralhos()
+        {
+
+            var quantidadeDeBaralhos = ObterServico.ObterTodos().Count();
+
+            Assert.Equal(2, quantidadeDeBaralhos);
         }
 
         [Fact]
@@ -247,15 +256,6 @@ namespace Cod3rsGrowth.Teste.Testes
             Assert.Equal(listaDeBaralhos.First().PrecoDoBaralho, baralhos.First().PrecoDoBaralho);
             Assert.Equal(listaDeBaralhos.First().CustoDeManaConvertidoDoBaralho, baralhos.First().CustoDeManaConvertidoDoBaralho);
             Assert.Equal(listaDeBaralhos.First().CorBaralho, baralhos.First().CorBaralho);
-        }
-        
-        [Fact]
-        public void ao_ObterTodos_deve_retornar_uma_lista_com_dois_baralhos()
-        {
-
-            var quantidadeDeBaralhos = ObterServico.ObterTodos().Count();
-
-            Assert.Equal(2, quantidadeDeBaralhos);
         }
     }
 }

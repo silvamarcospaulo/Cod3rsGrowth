@@ -54,7 +54,7 @@ namespace Cod3rsGrowth.Teste.Testes
             listaJogadoresMock.ForEach(jogador => ObterServico.Inserir(jogador));
         }
 
-        [Fact]
+            [Fact]
         public void verifica_se_a_lista_de_nao_esta_vazia()
         {
             var jogadores = ObterServico.ObterTodos();
