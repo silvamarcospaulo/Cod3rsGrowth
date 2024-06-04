@@ -12,11 +12,7 @@ namespace Cod3rsGrowth.Teste.Singleton
         private SingletonTabelas()
         {
         }
-        public static List<Carta> InstanciaCartas
-        {
-            get => instanciaCartas.Value;
-            set => instanciaCartas = new Lazy<List<Carta>>(() => value ?? new List<Carta>());
-        }
+        public static List<Carta> InstanciaCartas => instanciaCartas.Value;
         public static List<Baralho> InstanciaBaralhos => instanciaBaralhos.Value;
         public static List<Jogador> InstanciaJogadores => instanciaJogadores.Value;
     }
