@@ -1,13 +1,13 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
+﻿using System;
+using Cod3rsGrowth.Dominio.Modelos;
 
 namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
 {
     public interface IJogadorRepository
     {
-        public void Excluir(int idJogador);
-
-        public Jogador ObterPorId(int idJogador);
-
-        public List<Jogador> ObterTodos();
+        void Inserir(Jogador jogador);
+        void Excluir(int idJogador);
+        Jogador ObterPorId(int idJogador);
+        List<Jogador> ObterTodos();
     }
 }

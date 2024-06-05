@@ -1,13 +1,37 @@
-﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
+﻿using System;
+using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
     public class ServicoCarta : IServicoCarta
     {
+        public ICartaRepository _ICartaRepository;
         public const decimal precoCartaCommon = 0.5m;
         public const decimal precoCartaUncommon = 2.5m;
         public const decimal precoCartaRare = 5m;
         public const decimal precoCartaMythic = 7.5m;
+
+        public ServicoCarta(ICartaRepository cartaRepository)
+        {
+            _ICartaRepository = cartaRepository;
+        }
+
+        public void Inserir(Carta carta)
+        {
+            _ICartaRepository.Inserir(carta);
+        }
+
+        public Carta ObterPorId(int idCarta)
+        {
+            return _ICartaRepository.ObterPorId(idCarta);
+        }
+
+        public List<Carta> ObterTodos()
+        {
+            return _ICartaRepository.ObterTodos();
+        }
 
         public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
         {
@@ -38,7 +62,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         public List<CoresEnum> AdicionarCoresDaCarta(string cor)
         {
-            List<CoresEnum> cores = new List<CoresEnum>();
+            List<CoresEnum> cores = new();
 
             foreach (char c in cor)
             {

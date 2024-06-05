@@ -1,9 +1,14 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
+﻿using System;
+using Cod3rsGrowth.Dominio.Modelos;
 
 namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
 {
     public class CartaRepository : ICartaRepository
     {
+        public void Inserir (Carta carta)
+        {
+
+        }
         public void Excluir(int idCarta)
         {
             throw new NotImplementedException();

@@ -1,4 +1,6 @@
-﻿namespace Cod3rsGrowth.Dominio.Modelos
+﻿using System;
+
+namespace Cod3rsGrowth.Dominio.Modelos
 {
     public class CopiaDeCartasNoBaralho
     {
