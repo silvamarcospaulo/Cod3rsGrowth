@@ -21,7 +21,7 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 new Jogador()
                 {
-                    IdJogador = "12345678911",
+                    IdJogador = "51404195050",
                     NomeJogador = "Marcos",
                     DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
                     CustoDasCartasJogador = 0,
@@ -31,7 +31,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 },
                 new Jogador()
                 {
-                    IdJogador = "12345678912",
+                    IdJogador = "81597599085",
                     NomeJogador = "Paulo",
                     DataNascimentoJodador = Convert.ToDateTime("09/03/1999"),
                     CustoDasCartasJogador = 0,
@@ -41,7 +41,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 },
                 new Jogador()
                 {
-                    IdJogador = "12345678913",
+                    IdJogador = "60130087017",
                     NomeJogador = "Silva",
                     DataNascimentoJodador = Convert.ToDateTime("10/03/1999"),
                     CustoDasCartasJogador = 0,
@@ -73,9 +73,29 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_invalido()
+        public void ao_ObterPorId_51404195050_retornar_jogador_Marcos()
         {
-            var idJogadorTeste = "123456789121";
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = "51404195050",
+                NomeJogador = "Marcos",
+                DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
+                CustoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = null
+            };
+
+            var jogadorMock = ObterServico.ObterPorId(jogadorTeste.IdJogador);
+
+            Assert.Equal(jogadorTeste.IdJogador, jogadorMock.IdJogador);
+            Assert.Equal(jogadorTeste.NomeJogador, jogadorMock.NomeJogador);
+        }
+
+        [Fact]
+        public void ao_ObterPorId_invalido_deve_retornar_Exception_quando_informado_id_invalido()
+        {
+            var idJogadorTeste = "12345678911";
 
             var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idJogadorTeste); });
 
@@ -87,7 +107,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_nao_existente()
         {
-            var idJogadorTeste = "12345678914";
+            var idJogadorTeste = "41186917016";
 
             var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idJogadorTeste); });
 
