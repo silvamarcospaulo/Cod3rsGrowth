@@ -120,7 +120,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            if(ObterServico.ObterTodos().Count() < 1) listaBaralhosMock.ForEach(baralho => ObterServico.Inserir(baralho));
+            ObterServico.ObterTodos().Clear(); 
+            
+            listaBaralhosMock.ForEach(baralho => ObterServico.Inserir(baralho));
         }
 
         [Fact]

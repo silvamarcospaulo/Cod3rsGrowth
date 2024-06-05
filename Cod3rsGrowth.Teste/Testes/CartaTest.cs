@@ -91,7 +91,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            if (ObterServico.ObterTodos().Count() < 1) listaCartasMock.ForEach(carta => ObterServico.Inserir(carta));
+            ObterServico.ObterTodos().Clear(); 
+            
+            listaCartasMock.ForEach(carta => ObterServico.Inserir(carta));
         }
 
         [Fact]

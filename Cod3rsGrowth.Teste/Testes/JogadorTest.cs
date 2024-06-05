@@ -50,7 +50,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            if (ObterServico.ObterTodos().Count() < 1) listaJogadoresMock.ForEach(jogador => ObterServico.Inserir(jogador));
+            ObterServico.ObterTodos().Clear(); 
+            
+            listaJogadoresMock.ForEach(jogador => ObterServico.Inserir(jogador));
         }
 
         [Fact]
