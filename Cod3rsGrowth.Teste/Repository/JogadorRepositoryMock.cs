@@ -7,25 +7,26 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class JogadorRepositoryMock : IJogadorRepository
     {
-        public List<Jogador> listaDeJogadores = SingletonTabelas.InstanciaJogadores;
+        public List<Jogador> tabelasJogadores = SingletonTabelas.InstanciaJogadores;
 
         public void Inserir(Jogador jogador)
         {
-            listaDeJogadores.Add(jogador);
+            tabelasJogadores.Add(jogador);
         }
 
         public void Excluir(int idJogador)
         {
         }
 
-        public Jogador ObterPorId(int idJogador)
+        public Jogador ObterPorId(string idJogador)
         {
-            return new Jogador();
+            return idJogador.Length != 11 ? throw new Exception("Valor Invalido")
+                : tabelasJogadores.FirstOrDefault(carta => carta.IdJogador == idJogador) ?? throw new Exception("Jogador Nao Encontrado");
         }
 
         public List<Jogador> ObterTodos()
         {
-            return listaDeJogadores;
+            return tabelasJogadores;
         }
     }
 }

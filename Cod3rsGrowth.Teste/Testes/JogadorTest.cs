@@ -21,7 +21,7 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 new Jogador()
                 {
-                    IdJogador = 1,
+                    IdJogador = "12345678911",
                     NomeJogador = "Marcos",
                     DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
                     CustoDasCartasJogador = 0,
@@ -31,7 +31,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 },
                 new Jogador()
                 {
-                    IdJogador = 2,
+                    IdJogador = "12345678912",
                     NomeJogador = "Paulo",
                     DataNascimentoJodador = Convert.ToDateTime("09/03/1999"),
                     CustoDasCartasJogador = 0,
@@ -41,7 +41,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 },
                 new Jogador()
                 {
-                    IdJogador = 3,
+                    IdJogador = "12345678913",
                     NomeJogador = "Silva",
                     DataNascimentoJodador = Convert.ToDateTime("10/03/1999"),
                     CustoDasCartasJogador = 0,
@@ -50,6 +50,8 @@ namespace Cod3rsGrowth.Teste.Testes
                     BaralhosJogador = null
                 }
             };
+
+            ObterServico.ObterTodos().Clear();
 
             listaJogadoresMock.ForEach(jogador => ObterServico.Inserir(jogador));
         }
@@ -71,51 +73,27 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_ObterTodos_compara_se_os_primeiros_elementos_sao_iguais()
+        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_invalido()
         {
-            List<Jogador> listaDeJogadores = new()
-            {
-                new Jogador()
-                {
-                    IdJogador = 1,
-                    NomeJogador = "Marcos",
-                    DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
-                    CustoDasCartasJogador = 0,
-                    QuantidadeDeBaralhosJogador = 0,
-                    ContaAtivaJogador = true,
-                    BaralhosJogador = null
-                },
-                new Jogador()
-                {
-                    IdJogador = 2,
-                    NomeJogador = "Paulo",
-                    DataNascimentoJodador = Convert.ToDateTime("09/03/1999"),
-                    CustoDasCartasJogador = 0,
-                    QuantidadeDeBaralhosJogador = 0,
-                    ContaAtivaJogador = true,
-                    BaralhosJogador = null
-                },
-                new Jogador()
-                {
-                    IdJogador = 3,
-                    NomeJogador = "Silva",
-                    DataNascimentoJodador = Convert.ToDateTime("10/03/1999"),
-                    CustoDasCartasJogador = 0,
-                    QuantidadeDeBaralhosJogador = 0,
-                    ContaAtivaJogador = true,
-                    BaralhosJogador = null
-                }
-            };
+            var idJogadorTeste = "123456789121";
 
-            var jogadores = ObterServico.ObterTodos();
+            var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idJogadorTeste); });
 
-            Assert.Equal(listaDeJogadores.First().IdJogador, jogadores.First().IdJogador);
-            Assert.Equal(listaDeJogadores.First().NomeJogador, jogadores.First().NomeJogador);
-            Assert.Equal(listaDeJogadores.First().DataNascimentoJodador, jogadores.First().DataNascimentoJodador);
-            Assert.Equal(listaDeJogadores.First().CustoDasCartasJogador, jogadores.First().CustoDasCartasJogador);
-            Assert.Equal(listaDeJogadores.First().QuantidadeDeBaralhosJogador, jogadores.First().QuantidadeDeBaralhosJogador);
-            Assert.Equal(listaDeJogadores.First().ContaAtivaJogador, jogadores.First().ContaAtivaJogador);
-            Assert.Equal(listaDeJogadores.First().BaralhosJogador, jogadores.First().BaralhosJogador);
+            var mensagemDeErroEsperada = "Valor Invalido";
+
+            Assert.Equal(mensagemDeErroEsperada, baralhoMock.Message);
+        }
+
+        [Fact]
+        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_nao_existente()
+        {
+            var idJogadorTeste = "12345678914";
+
+            var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idJogadorTeste); });
+
+            var mensagemDeErroEsperada = "Jogador Nao Encontrado";
+
+            Assert.Equal(mensagemDeErroEsperada, baralhoMock.Message);
         }
     }
 }

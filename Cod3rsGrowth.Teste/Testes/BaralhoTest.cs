@@ -120,7 +120,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            if(ObterServico.ObterTodos().Count() < 1) listaBaralhosMock.ForEach(baralho => ObterServico.Inserir(baralho));
+            ObterServico.ObterTodos().Clear(); 
+            
+            listaBaralhosMock.ForEach(baralho => ObterServico.Inserir(baralho));
         }
 
         [Fact]
@@ -141,121 +143,92 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_ObterTodos_compara_se_os_primeiros_elementos_sao_iguais()
+        public void ao_ObterPorId_com_id_dois_retorna_baralho_mono_green_stomp()
         {
-            List<Baralho> listaDeBaralhos = new List<Baralho>()
+            var baralhoTeste = new Baralho()
             {
-                new Baralho()
+                IdBaralho = 2,
+                IdJogador = 1,
+                NomeBaralho = "Niv-Mizzet Combo",
+                FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
+                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
                 {
-                    IdBaralho = 1,
-                    IdJogador = 1,
-                    NomeBaralho = "Mono Green Stomp",
-                    FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
-                    CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                    new CopiaDeCartasNoBaralho()
                     {
-                        new CopiaDeCartasNoBaralho
+                        Carta = new Carta()
                         {
-                            Carta = new Carta()
-                            {
-                                IdCarta = 7,
-                                NomeCarta = "Ghalta, Fome Primordial",
-                                CustoDeManaConvertidoCarta = 12,
-                                TipoDeCarta = TipoDeCartaEnum.Criatura,
-                                RaridadeCarta = RaridadeEnum.Rare,
-                                PrecoCarta = Convert.ToDecimal(5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Verde }
-                            },
-                            QuantidadeCopiasDaCartaNoBaralho = 1
+                            IdCarta = 1,
+                            NomeCarta = "Ilha",
+                            CustoDeManaConvertidoCarta = 0,
+                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            RaridadeCarta = RaridadeEnum.Common,
+                            PrecoCarta = Convert.ToDecimal(0.5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
                         },
-                        new CopiaDeCartasNoBaralho
-                        {
-                            Carta = new Carta()
-                            {
-                                IdCarta = 3,
-                                NomeCarta = "Floresta",
-                                CustoDeManaConvertidoCarta = 0,
-         
-                                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                                RaridadeCarta = RaridadeEnum.Common,
-                                PrecoCarta = Convert.ToDecimal(0.5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                            },
-                            QuantidadeCopiasDaCartaNoBaralho = 99
-                        }
+                        QuantidadeCopiasDaCartaNoBaralho = 49
                     },
-                    QuantidadeDeCartasNoBaralho = 100,
-                    PrecoDoBaralho = 54.5m,
-                    CustoDeManaConvertidoDoBaralho = 12,
-                    CorBaralho = new List<CoresEnum>() {CoresEnum.Verde}
+                    new CopiaDeCartasNoBaralho()
+                    {
+                        Carta = new Carta()
+                        {
+                            IdCarta = 5,
+                            NomeCarta = "Montanha",
+                            CustoDeManaConvertidoCarta = 0,
+                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            RaridadeCarta = RaridadeEnum.Common,
+                            PrecoCarta = Convert.ToDecimal(0.5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                        },
+                        QuantidadeCopiasDaCartaNoBaralho = 50
+                    },
+                    new CopiaDeCartasNoBaralho()
+                    {
+                        Carta = new Carta()
+                        {
+                            IdCarta = 8,
+                            NomeCarta = "Niv-Mizzet, Parum",
+                            CustoDeManaConvertidoCarta = 6,
+                            TipoDeCarta = TipoDeCartaEnum.Criatura,
+                            RaridadeCarta = RaridadeEnum.Rare,
+                            PrecoCarta = Convert.ToDecimal(5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
+                        },
+                        QuantidadeCopiasDaCartaNoBaralho = 1
+                    }
                 },
-                new Baralho()
-                {
-                    IdBaralho = 2,
-                    IdJogador = 1,
-                    NomeBaralho = "Niv-Mizzet Combo",
-                    FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
-                    CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
-                    {
-                        new CopiaDeCartasNoBaralho ()
-                        {
-                            Carta = new Carta()
-                            {
-                                IdCarta = 1,
-                                NomeCarta = "Ilha",
-                                CustoDeManaConvertidoCarta = 0,
-                                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                                RaridadeCarta = RaridadeEnum.Common,
-                                PrecoCarta = Convert.ToDecimal(0.5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                            },
-                            QuantidadeCopiasDaCartaNoBaralho = 49
-                        },
-                        new CopiaDeCartasNoBaralho ()
-                        {
-                            Carta = new Carta()
-                            {
-                                IdCarta = 5,
-                                NomeCarta = "Montanha",
-                                CustoDeManaConvertidoCarta = 0,
-                                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                                RaridadeCarta = RaridadeEnum.Common,
-                                PrecoCarta = Convert.ToDecimal(0.5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                            },
-                            QuantidadeCopiasDaCartaNoBaralho = 50
-                        },
-                        new CopiaDeCartasNoBaralho ()
-                        {
-                            Carta = new Carta()
-                            {
-                                IdCarta = 8,
-                                NomeCarta = "Niv-Mizzet, Parum",
-                                CustoDeManaConvertidoCarta = 6,
-                                TipoDeCarta = TipoDeCartaEnum.Criatura,
-                                RaridadeCarta = RaridadeEnum.Rare,
-                                PrecoCarta = Convert.ToDecimal(5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
-                            },
-                            QuantidadeCopiasDaCartaNoBaralho = 1
-                        }
-                    },
-                    QuantidadeDeCartasNoBaralho = 100,
-                    PrecoDoBaralho = 54.5m,
-                    CustoDeManaConvertidoDoBaralho = 6,
-                    CorBaralho = new List<CoresEnum>() {CoresEnum.Azul, CoresEnum.Vermelho}
-                }
+                QuantidadeDeCartasNoBaralho = 100,
+                PrecoDoBaralho = 54.5m,
+                CustoDeManaConvertidoDoBaralho = 6,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
             };
 
-            var baralhos = ObterServico.ObterTodos();
+            var baralhoMock = ObterServico.ObterPorId(baralhoTeste.IdBaralho);
 
-            Assert.Equal(listaDeBaralhos.First().IdBaralho, baralhos.First().IdBaralho);
-            Assert.Equal(listaDeBaralhos.First().IdJogador, baralhos.First().IdJogador);
-            Assert.Equal(listaDeBaralhos.First().NomeBaralho, baralhos.First().NomeBaralho);
-            Assert.Equal(listaDeBaralhos.First().FormatoDeJogoBaralho, baralhos.First().FormatoDeJogoBaralho);
-            Assert.Equal(listaDeBaralhos.First().QuantidadeDeCartasNoBaralho, baralhos.First().QuantidadeDeCartasNoBaralho);
-            Assert.Equal(listaDeBaralhos.First().PrecoDoBaralho, baralhos.First().PrecoDoBaralho);
-            Assert.Equal(listaDeBaralhos.First().CustoDeManaConvertidoDoBaralho, baralhos.First().CustoDeManaConvertidoDoBaralho);
-            Assert.Equal(listaDeBaralhos.First().CorBaralho, baralhos.First().CorBaralho);
+            Assert.Equal(baralhoTeste.IdBaralho, baralhoMock.IdBaralho);
+        }
+
+        [Fact]
+        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_invalido()
+        {
+            var idBaralhoTeste = -10;
+
+            var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idBaralhoTeste); });
+
+            var mensagemDeErroEsperada = "Valor Invalido";
+
+            Assert.Equal(mensagemDeErroEsperada, baralhoMock.Message);
+        }
+
+        [Fact]
+        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_nao_existente()
+        {
+            var idBaralhoTeste = 10;
+
+            var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idBaralhoTeste); });
+
+            var mensagemDeErroEsperada = "Baralho Nao Encontrado";
+
+            Assert.Equal(mensagemDeErroEsperada, baralhoMock.Message);
         }
     }
 }

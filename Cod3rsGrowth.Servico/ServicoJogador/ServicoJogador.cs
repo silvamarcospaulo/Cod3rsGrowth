@@ -14,7 +14,7 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
         {
             _IJogadorRepository.Inserir(jogador);
         }
-        public Jogador ObterPorId(int idJogador)
+        public Jogador ObterPorId(string idJogador)
         {
             return _IJogadorRepository.ObterPorId(idJogador);
         }
