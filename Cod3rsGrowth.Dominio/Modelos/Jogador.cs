@@ -4,7 +4,7 @@ namespace Cod3rsGrowth.Dominio.Modelos
 {
     public class Jogador
     {
-        public string IdJogador { get; set; }
+        public int IdJogador { get; set; }
         public string? NomeJogador { get; set; }
         public DateTime DataNascimentoJodador { get; set; }
         public decimal CustoDasCartasJogador { get; set; }

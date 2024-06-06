@@ -7,7 +7,7 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
     {
         void Inserir(Jogador jogador);
         void Excluir(int idJogador);
-        Jogador ObterPorId(string idJogador);
+        Jogador ObterPorId(int idJogador);
         List<Jogador> ObterTodos();
     }
 }

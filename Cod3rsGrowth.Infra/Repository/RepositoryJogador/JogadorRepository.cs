@@ -13,7 +13,7 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
             throw new NotImplementedException();
         }
 
-        public Jogador ObterPorId(string idJogador)
+        public Jogador ObterPorId(int idJogador)
         {
             throw new NotImplementedException();
         }
