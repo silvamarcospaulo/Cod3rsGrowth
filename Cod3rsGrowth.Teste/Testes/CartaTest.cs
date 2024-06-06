@@ -141,7 +141,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(8)]
         public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
         {
-            Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idCartaTeste); });
+            Assert.Throws<Exception>(() => ObterServico.ObterPorId(idCartaTeste));
         }
     }
 }

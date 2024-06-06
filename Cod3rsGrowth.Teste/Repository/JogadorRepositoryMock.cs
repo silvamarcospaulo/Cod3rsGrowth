@@ -20,7 +20,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Jogador ObterPorId(int idJogador)
         {
-            return idJogador < 1 ? throw new Exception("Valor Invalido") : tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception("Jogador Nao Encontrado");
+            return tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
         }
 
         public List<Jogador> ObterTodos()
