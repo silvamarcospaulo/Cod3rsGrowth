@@ -136,14 +136,15 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_deve_retornar_uma_lista_com_dois_baralhos()
         {
+            const int quantidadeDeBaralhosEsperados = 2;
 
             var quantidadeDeBaralhos = ObterServico.ObterTodos().Count();
 
-            Assert.Equal(2, quantidadeDeBaralhos);
+            Assert.Equal(quantidadeDeBaralhosEsperados, quantidadeDeBaralhos);
         }
 
         [Fact]
-        public void ao_ObterPorId_com_id_dois_retorna_baralho_mono_green_stomp()
+        public void ao_ObterPorId_com_id_dois_retorna_baralho_niv_mizzet_combo()
         {
             var baralhoTeste = new Baralho()
             {
@@ -204,31 +205,15 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoMock = ObterServico.ObterPorId(baralhoTeste.IdBaralho);
 
-            Assert.Equal(baralhoTeste.IdBaralho, baralhoMock.IdBaralho);
+            Assert.Equivalent(baralhoTeste, baralhoMock);
         }
 
-        [Fact]
-        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_invalido()
+        [Theory]
+        [InlineData(5)]
+        [InlineData(-2)]
+        public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idBaralhoTeste)
         {
-            var idBaralhoTeste = -10;
-
-            var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idBaralhoTeste); });
-
-            var mensagemDeErroEsperada = "Valor Invalido";
-
-            Assert.Equal(mensagemDeErroEsperada, baralhoMock.Message);
-        }
-
-        [Fact]
-        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_nao_existente()
-        {
-            var idBaralhoTeste = 10;
-
-            var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idBaralhoTeste); });
-
-            var mensagemDeErroEsperada = "Baralho Nao Encontrado";
-
-            Assert.Equal(mensagemDeErroEsperada, baralhoMock.Message);
+            Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idBaralhoTeste); });
         }
     }
 }

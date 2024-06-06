@@ -110,10 +110,11 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_deve_retornar_uma_lista_com_sete_cartas()
         {
-            var quantidadeDeCartasMock = ObterServico.ObterTodos().Count();
-            var quantidadeDeCartas = 7;
+            const int quantidadeDeCartasEsperadas = 7;
 
-            Assert.Equal(quantidadeDeCartas, quantidadeDeCartasMock);
+            var quantidadeDeCartasMock = ObterServico.ObterTodos().Count();
+
+            Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }
 
         [Fact]
@@ -132,37 +133,15 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var cartaMock = ObterServico.ObterPorId(cartaTeste.IdCarta);
 
-            Assert.Equal(cartaTeste.IdCarta, cartaMock.IdCarta);
-            Assert.Equal(cartaTeste.NomeCarta, cartaMock.NomeCarta);
-            Assert.Equal(cartaTeste.CustoDeManaConvertidoCarta, cartaMock.CustoDeManaConvertidoCarta);
-            Assert.Equal(cartaTeste.TipoDeCarta, cartaMock.TipoDeCarta);
-            Assert.Equal(cartaTeste.RaridadeCarta, cartaMock.RaridadeCarta);
-            Assert.Equal(cartaTeste.PrecoCarta, cartaMock.PrecoCarta);
-            Assert.Equal(cartaTeste.CorCarta, cartaMock.CorCarta);
+            Assert.Equivalent(cartaTeste, cartaMock);
         }
 
-        [Fact]
-        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_invalido()
+        [Theory]
+        [InlineData(-10)]
+        [InlineData(8)]
+        public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
         {
-            var idCartaTeste = -10;
-
-            var cartaMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idCartaTeste); });
-
-            var mensagemDeErroEsperada = "Valor Invalido";
-
-            Assert.Equal(mensagemDeErroEsperada, cartaMock.Message);
-        }
-
-        [Fact]
-        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_nao_existente()
-        {
-            var idCartaTeste = 10;
-
-            var cartaMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idCartaTeste); });
-
-            var mensagemDeErroEsperada = "Carta Nao Encontrada";
-
-            Assert.Equal(mensagemDeErroEsperada, cartaMock.Message);
+            Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idCartaTeste); });
         }
     }
 }

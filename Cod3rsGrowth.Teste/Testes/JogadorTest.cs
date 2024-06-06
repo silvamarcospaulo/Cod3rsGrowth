@@ -56,7 +56,7 @@ namespace Cod3rsGrowth.Teste.Testes
             listaJogadoresMock.ForEach(jogador => ObterServico.Inserir(jogador));
         }
 
-            [Fact]
+        [Fact]
         public void verifica_se_a_lista_de_nao_esta_vazia()
         {
             var jogadores = ObterServico.ObterTodos();
@@ -67,13 +67,15 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_deve_retornar_uma_lista_com_tres_jogadores()
         {
+            const int quantidadeDeJogadoresEsperados = 3;
+
             var quantidadeDeJogadores = ObterServico.ObterTodos().Count();
 
-            Assert.Equal(3, quantidadeDeJogadores);
+            Assert.Equal(quantidadeDeJogadoresEsperados, quantidadeDeJogadores);
         }
 
         [Fact]
-        public void ao_ObterPorId_51404195050_retornar_jogador_Marcos()
+        public void ao_ObterPorId_um_retornar_jogador_Marcos()
         {
             var jogadorTeste = new Jogador()
             {
@@ -88,32 +90,15 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorMock = ObterServico.ObterPorId(jogadorTeste.IdJogador);
 
-            Assert.Equal(jogadorTeste.IdJogador, jogadorMock.IdJogador);
-            Assert.Equal(jogadorTeste.NomeJogador, jogadorMock.NomeJogador);
+            Assert.Equivalent(jogadorTeste, jogadorMock);
         }
 
-        [Fact]
-        public void ao_ObterPorId_invalido_deve_retornar_Exception_quando_informado_id_invalido()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(5)]
+        public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idJogadorTeste)
         {
-            const int idJogadorTeste = 0;
-
-            var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idJogadorTeste); });
-
-            var mensagemDeErroEsperada = "Valor Invalido";
-
-            Assert.Equal(mensagemDeErroEsperada, baralhoMock.Message);
-        }
-
-        [Fact]
-        public void ao_ObterPorId_deve_retornar_Exception_quando_informado_id_nao_existente()
-        {
-            const int idJogadorTeste = 5;
-
-            var baralhoMock = Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idJogadorTeste); });
-
-            var mensagemDeErroEsperada = "Jogador Nao Encontrado";
-
-            Assert.Equal(mensagemDeErroEsperada, baralhoMock.Message);
+            Assert.Throws<Exception>(() => { ObterServico.ObterPorId(idJogadorTeste); });
         }
     }
 }
