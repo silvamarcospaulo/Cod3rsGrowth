@@ -20,7 +20,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Jogador ObterPorId(string idJogador)
         {
-            return verificaIdJdogador(idJogador) == false ? throw new Exception("Valor Invalido")
+            return verificaIdJogador(idJogador) == false ? throw new Exception("Valor Invalido")
                 : tabelasJogadores.FirstOrDefault(carta => carta.IdJogador == idJogador) ?? throw new Exception("Jogador Nao Encontrado");
         }
 
@@ -29,27 +29,29 @@ namespace Cod3rsGrowth.Teste.Repository
             return tabelasJogadores;
         }
 
-        public bool verificaIdJdogador(string idJogador)
+        static public bool verificaIdJogador(string idJogador)
         {
-            var quantidadeDeDigitosCpf = 11;
-            if (idJogador == null) return false;
-            if (idJogador.Length != quantidadeDeDigitosCpf) return false;
+            int tamanhoDeUmCpf = 11;
+            int SomatorioDigitoUm = 0;
+            int SomatorioDigitoDois = 0;
 
-            int verificacaoValorNumerosEsquerdaCpfDigitoUm = 0;
-            for (int contador = 0; contador < 9; contador++)
-            {
-                verificacaoValorNumerosEsquerdaCpfDigitoUm += (Convert.ToInt32(idJogador[contador]) * (quantidadeDeDigitosCpf - (contador + 1)));
-            }
-            if ((((verificacaoValorNumerosEsquerdaCpfDigitoUm * 10) % quantidadeDeDigitosCpf) < 2) && (idJogador[10] != 0)) return false;
-            if (Convert.ToInt32(idJogador[10]) != (quantidadeDeDigitosCpf - ((verificacaoValorNumerosEsquerdaCpfDigitoUm * 10) % quantidadeDeDigitosCpf))) return false;
+            if (idJogador.Length != tamanhoDeUmCpf) return false;
 
-            int verificacaoValorNumerosEsquerdaCpfDigitoDois = 0;
-            for (int contador = 0; contador < 10; contador++)
+            for (int cont = 0; cont < (tamanhoDeUmCpf - 2); cont++)
             {
-                verificacaoValorNumerosEsquerdaCpfDigitoDois += (Convert.ToInt32(idJogador[contador]) * (quantidadeDeDigitosCpf - contador));
+                SomatorioDigitoUm = SomatorioDigitoUm + ((int.Parse(idJogador[cont].ToString()) * (tamanhoDeUmCpf - (cont + 1))));
             }
-            if ((((verificacaoValorNumerosEsquerdaCpfDigitoDois * 10) % quantidadeDeDigitosCpf) < 2) && (idJogador[11] != 0)) return false;
-            if (Convert.ToInt32(idJogador[11]) != (quantidadeDeDigitosCpf - ((verificacaoValorNumerosEsquerdaCpfDigitoDois * 10) % quantidadeDeDigitosCpf))) return false;
+            int valorDigitoUm = ((SomatorioDigitoUm * 10) % tamanhoDeUmCpf);
+            if (valorDigitoUm > 9) valorDigitoUm = 0;
+            if (valorDigitoUm != int.Parse(idJogador[9].ToString())) return false;
+
+            for (int cont = 0; cont < (tamanhoDeUmCpf - 1); cont++)
+            {
+                SomatorioDigitoDois = SomatorioDigitoDois + ((int.Parse(idJogador[cont].ToString()) * (tamanhoDeUmCpf - cont)));
+            }
+            int valorDigitoDois = ((SomatorioDigitoDois * 10) % tamanhoDeUmCpf);
+            if (valorDigitoDois > 9) valorDigitoDois = 0;
+            if (valorDigitoDois != int.Parse(idJogador[10].ToString())) return false;
 
             return true;
         }
