@@ -7,18 +7,20 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 {
     public class ServicoCarta : IServicoCarta
     {
-        public ICartaRepository _ICartaRepository;
-        public const decimal precoCartaCommon = 0.5m;
-        public const decimal precoCartaUncommon = 2.5m;
-        public const decimal precoCartaRare = 5m;
-        public const decimal precoCartaMythic = 7.5m;
+        private ICartaRepository _ICartaRepository;
+        private ValidadorCarta _validadorCarta;
+        private const decimal precoCartaCommon = 0.5m;
+        private const decimal precoCartaUncommon = 2.5m;
+        private const decimal precoCartaRare = 5m;
+        private const decimal precoCartaMythic = 7.5m;
 
-        public ServicoCarta(ICartaRepository cartaRepository)
+        public ServicoCarta(ICartaRepository cartaRepository, ValidadorCarta validadorCarta)
         {
             _ICartaRepository = cartaRepository;
+            _validadorCarta = validadorCarta;
         }
 
-        public void Inserir(Carta carta)
+        private void Inserir(Carta carta)
         {
             _ICartaRepository.Inserir(carta);
         }
@@ -33,9 +35,9 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return _ICartaRepository.ObterTodos();
         }
 
-        public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
+        public int GerarIdCarta()
         {
-            return quantidadeDeCartasNoBancoDeDados + 1;
+            return _ICartaRepository.ObterTodos().Count + 1;
         }
 
         public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
@@ -88,6 +90,33 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
                 }
             }
             return cores.Distinct().ToList();
+        }
+
+        public void CriarCarta(string nomeCarta, int custoDeManaConvertidoCarta,
+            TipoDeCartaEnum tipoDeCarta, RaridadeEnum raridadeCarta, List<CoresEnum> corCarta)
+        {
+            Carta carta = new Carta()
+            {
+                IdCarta = GerarIdCarta(),
+                NomeCarta = nomeCarta,
+                CustoDeManaConvertidoCarta = custoDeManaConvertidoCarta,
+                TipoDeCarta = tipoDeCarta,
+                RaridadeCarta = raridadeCarta,
+                PrecoCarta = GerarPrecoCarta(raridadeCarta),
+                CorCarta = corCarta
+            };
+
+            var validador = _validadorCarta.Validate(carta);
+
+            if (validador.IsValid)
+            {
+                _ICartaRepository.Inserir(carta);
+            }
+            else
+            {
+                var erro = string.Join(Environment.NewLine, validador.Errors.Select(e=> e.ErrorMessage));
+                throw new Exception(erro);
+            }
         }
     }
 }

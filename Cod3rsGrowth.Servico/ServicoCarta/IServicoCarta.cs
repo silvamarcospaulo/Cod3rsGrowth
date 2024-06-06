@@ -5,11 +5,12 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 {
     public interface IServicoCarta
     {
-        void Inserir(Carta carta);
         Carta ObterPorId(int idCarta);
         List<Carta> ObterTodos();
-        int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados);
+        int GerarIdCarta();
         decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta);
         List<CoresEnum> AdicionarCoresDaCarta(string cor);
+        void CriarCarta(string nomeCarta, int custoDeManaConvertidoCarta,
+            TipoDeCartaEnum tipoDeCarta, RaridadeEnum raridadeCarta, List<CoresEnum> corCarta);
     }
 }
