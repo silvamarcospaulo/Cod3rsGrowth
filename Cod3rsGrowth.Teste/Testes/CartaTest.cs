@@ -1,4 +1,4 @@
-﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Dominio.Modelos;
 using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Servico.ServicoCarta;

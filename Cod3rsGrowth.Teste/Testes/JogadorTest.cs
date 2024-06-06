@@ -1,4 +1,4 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using Cod3rsGrowth.Servicos.ServicoJogador;
 using Microsoft.Extensions.DependencyInjection;
