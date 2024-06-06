@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Carta ObterPorId(int idCarta)
         {
-            return new Carta();
+            return tabelasCartas.FirstOrDefault(carta => carta.IdCarta == idCarta) ?? throw new Exception($"Carta {idCarta} Nao Encontrada");
         }
 
         public List<Carta> ObterTodos()

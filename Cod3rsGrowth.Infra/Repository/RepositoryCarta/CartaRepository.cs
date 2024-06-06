@@ -7,7 +7,6 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
     {
         public void Inserir (Carta carta)
         {
-
         }
         public void Excluir(int idCarta)
         {

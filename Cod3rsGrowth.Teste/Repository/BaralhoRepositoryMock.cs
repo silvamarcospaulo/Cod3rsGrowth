@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Baralho ObterPorId(int idBaralho)
         {
-            return new Baralho();
+            return tabelasBaralhos.FirstOrDefault(carta => carta.IdBaralho == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 
         public List<Baralho> ObterTodos()

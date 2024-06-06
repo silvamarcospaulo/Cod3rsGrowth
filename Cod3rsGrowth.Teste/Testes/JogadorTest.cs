@@ -1,4 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using Cod3rsGrowth.Servicos.ServicoJogador;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -50,13 +51,13 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            ObterServico.ObterTodos().Clear(); 
-            
+            ObterServico.ObterTodos().Clear();
+
             listaJogadoresMock.ForEach(jogador => ObterServico.Inserir(jogador));
         }
 
         [Fact]
-        public void ao_ObterTodos_verifica_se_a_lista_de_nao_esta_vazia()
+        public void verifica_se_a_lista_de_nao_esta_vazia()
         {
             var jogadores = ObterServico.ObterTodos();
 
@@ -66,10 +67,38 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_deve_retornar_uma_lista_com_tres_jogadores()
         {
-            var quantidadeDeJogadoresMock = ObterServico.ObterTodos().Count();
-            var quantidadeDeJogadores = 3;
+            const int quantidadeDeJogadoresEsperados = 3;
 
-            Assert.Equal(quantidadeDeJogadores, quantidadeDeJogadoresMock);
+            var quantidadeDeJogadores = ObterServico.ObterTodos().Count();
+
+            Assert.Equal(quantidadeDeJogadoresEsperados, quantidadeDeJogadores);
+        }
+
+        [Fact]
+        public void ao_ObterPorId_um_retornar_jogador_Marcos()
+        {
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = 1,
+                NomeJogador = "Marcos",
+                DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
+                CustoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = null
+            };
+
+            var jogadorMock = ObterServico.ObterPorId(jogadorTeste.IdJogador);
+
+            Assert.Equivalent(jogadorTeste, jogadorMock);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(5)]
+        public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idJogadorTeste)
+        {
+            Assert.Throws<Exception>(() => ObterServico.ObterPorId(idJogadorTeste));
         }
     }
 }

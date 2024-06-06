@@ -7,11 +7,11 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class JogadorRepositoryMock : IJogadorRepository
     {
-        public List<Jogador> listaDeJogadores = SingletonTabelas.InstanciaJogadores;
+        public List<Jogador> tabelasJogadores = SingletonTabelas.InstanciaJogadores;
 
         public void Inserir(Jogador jogador)
         {
-            listaDeJogadores.Add(jogador);
+            tabelasJogadores.Add(jogador);
         }
 
         public void Excluir(int idJogador)
@@ -20,12 +20,12 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Jogador ObterPorId(int idJogador)
         {
-            return new Jogador();
+            return tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
         }
 
         public List<Jogador> ObterTodos()
         {
-            return listaDeJogadores;
+            return tabelasJogadores;
         }
     }
 }
