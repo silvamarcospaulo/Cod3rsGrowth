@@ -7,19 +7,19 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class ServicoBaralho : IServicoBaralho
     {
-        public IBaralhoRepository _IBaralhoRepository;
-        public const int quantidadeBaralhoCommander = 100;
-        public const int quantidadeBaralhoPauper = 60;
-        public const int quantidadeBaralhoStandard = 60;
-        public const int quantidadeMaximaDeCopiaDeCartasCommander = 1;
-        public const int quantidadeMaximaDeCopiaDeCartasPauper = 4;
-        public const int quantidadeMaximaDeCopiaDeCartasStandard = 4;
+        private IBaralhoRepository _IBaralhoRepository;
+        private const int quantidadeBaralhoCommander = 100;
+        private const int quantidadeBaralhoPauper = 60;
+        private const int quantidadeBaralhoStandard = 60;
+        private const int quantidadeMaximaDeCopiaDeCartasCommander = 1;
+        private const int quantidadeMaximaDeCopiaDeCartasPauper = 4;
+        private const int quantidadeMaximaDeCopiaDeCartasStandard = 4;
 
         public ServicoBaralho(IBaralhoRepository baralhoRepository)
         {
             _IBaralhoRepository = baralhoRepository;
         }
-        public void Inserir(Baralho baralho)
+        private void Inserir(Baralho baralho)
         {
             _IBaralhoRepository.Inserir(baralho);
         }
@@ -33,7 +33,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         }
         public int GerarIdBaralho(int quantidadeDeBaralhosDoJogadorNoBancoDeDados)
         {
-            return quantidadeDeBaralhosDoJogadorNoBancoDeDados + 1;
+            return _IBaralhoRepository.ObterTodos().Count + 1;
         }
         public decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {

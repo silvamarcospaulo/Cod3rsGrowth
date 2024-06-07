@@ -3,6 +3,7 @@ using System.Data;
 using Cod3rsGrowth.Dominio.Modelos;
 using FluentValidation;
 using FluentValidation.TestHelper;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
@@ -40,15 +41,9 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
                 .NotNull().WithMessage("Campo PrecoCarta nao pode ser nulo")
                 .GreaterThan(valorMinimo).WithMessage("Campo PrecoCarta deve se maior que 0");
 
-            RuleFor(carta => carta.PrecoCarta)
+            RuleFor(carta => carta.CorCarta.ToList())
                 .Cascade(CascadeMode.Stop)
-                .NotNull().WithMessage("Campo PrecoCarta nao pode ser nulo")
-                .GreaterThan(valorMinimo).WithMessage("Campo PrecoCarta deve se maior que 0");
-
-            RuleFor(carta => carta.CorCarta)
-                .Cascade(CascadeMode.Stop)
-                .NotNull().WithMessage("Campo CorCarta nao pode ser nulo")
-                .IsInEnum().WithMessage("Campo CorCarta valor inválido");
+                .NotNull().WithMessage("Campo CorCarta nao pode ser nulo");
         }
     }
 }

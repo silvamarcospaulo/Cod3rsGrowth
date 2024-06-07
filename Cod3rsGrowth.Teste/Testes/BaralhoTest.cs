@@ -8,11 +8,11 @@ namespace Cod3rsGrowth.Teste.Testes
 {
     public class BaralhoTest : TesteBase
     {
-        private readonly IServicoBaralho ObterServico;
+        private readonly ServicoBaralho ObterServico;
 
         public BaralhoTest()
         {
-            ObterServico = ServiceProvider.GetService<IServicoBaralho>() ?? throw new Exception($"Erro ao obter servico");
+            ObterServico = ServiceProvider.GetService<ServicoBaralho>() ?? throw new Exception($"Erro ao obter servico");
             IniciarListaMock();
         }
 

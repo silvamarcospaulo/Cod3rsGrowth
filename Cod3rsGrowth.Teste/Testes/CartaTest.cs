@@ -7,11 +7,11 @@ namespace Cod3rsGrowth.Teste.Testes
 {
     public class CartaTest : TesteBase
     {
-        private readonly IServicoCarta ObterServico;
+        private readonly ServicoCarta ObterServico;
 
         public CartaTest()
         {
-            ObterServico = ServiceProvider.GetService<IServicoCarta>() ?? throw new Exception("Erro ao obter servico");
+            ObterServico = ServiceProvider.GetService<ServicoCarta>() ?? throw new Exception("Erro ao obter servico");
 
             IniciarListaMock();
         }
