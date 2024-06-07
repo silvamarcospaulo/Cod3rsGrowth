@@ -35,12 +35,12 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return _ICartaRepository.ObterTodos();
         }
 
-        public int GerarIdCarta()
+        private int GerarIdCarta()
         {
             return _ICartaRepository.ObterTodos().Count + 1;
         }
 
-        public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
+        private decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
         {
             decimal valorCarta = 0;
 
@@ -62,7 +62,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return valorCarta;
         }
 
-        public List<CoresEnum> AdicionarCoresDaCarta(string cor)
+        private List<CoresEnum> AdicionarCoresDaCarta(string cor)
         {
             List<CoresEnum> cores = new();
 

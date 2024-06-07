@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Teste.Testes
             IniciarListaMock();
         }
 
-        public void IniciarListaMock()
+        private void IniciarListaMock()
         {
             List<Baralho> listaBaralhosMock = new List<Baralho>()
             {
@@ -59,7 +59,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     },
                     QuantidadeDeCartasNoBaralho = 100,
                     PrecoDoBaralho = 54.5m,
-                    CustoDeManaConvertidoDoBaralho = 12,
+                    CustoDeManaConvertidoDoBaralho = 0,
                     CorBaralho = new List<CoresEnum>() {CoresEnum.Verde}
                 },
                 new Baralho()
@@ -115,14 +115,15 @@ namespace Cod3rsGrowth.Teste.Testes
                     },
                     QuantidadeDeCartasNoBaralho = 100,
                     PrecoDoBaralho = 54.5m,
-                    CustoDeManaConvertidoDoBaralho = 6,
+                    CustoDeManaConvertidoDoBaralho = 0,
                     CorBaralho = new List<CoresEnum>() {CoresEnum.Azul, CoresEnum.Vermelho}
                 }
             };
 
-            ObterServico.ObterTodos().Clear(); 
-            
-            listaBaralhosMock.ForEach(baralho => ObterServico.Inserir(baralho));
+            ObterServico.ObterTodos().Clear();
+
+            listaBaralhosMock.ForEach(baralho => ObterServico.CriarBaralho(baralho.IdJogador, baralho.NomeBaralho,
+                baralho.FormatoDeJogoBaralho, baralho.CartasDoBaralho));
         }
 
         [Fact]
@@ -154,7 +155,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
                 CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
                 {
-                    new CopiaDeCartasNoBaralho()
+                    new CopiaDeCartasNoBaralho ()
                     {
                         Carta = new Carta()
                         {
@@ -168,7 +169,7 @@ namespace Cod3rsGrowth.Teste.Testes
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 49
                     },
-                    new CopiaDeCartasNoBaralho()
+                    new CopiaDeCartasNoBaralho ()
                     {
                         Carta = new Carta()
                         {
@@ -182,7 +183,7 @@ namespace Cod3rsGrowth.Teste.Testes
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 50
                     },
-                    new CopiaDeCartasNoBaralho()
+                    new CopiaDeCartasNoBaralho ()
                     {
                         Carta = new Carta()
                         {
@@ -199,8 +200,8 @@ namespace Cod3rsGrowth.Teste.Testes
                 },
                 QuantidadeDeCartasNoBaralho = 100,
                 PrecoDoBaralho = 54.5m,
-                CustoDeManaConvertidoDoBaralho = 6,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
+                CustoDeManaConvertidoDoBaralho = 0,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor, CoresEnum.Azul, CoresEnum.Vermelho }
             };
 
             var baralhoMock = ObterServico.ObterPorId(baralhoTeste.IdBaralho);

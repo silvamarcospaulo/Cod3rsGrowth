@@ -24,7 +24,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     IdJogador = 1,
                     NomeJogador = "Marcos",
                     DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
-                    CustoDasCartasJogador = 0,
+                    PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
                     BaralhosJogador = null
@@ -34,7 +34,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     IdJogador = 2,
                     NomeJogador = "Paulo",
                     DataNascimentoJodador = Convert.ToDateTime("09/03/1999"),
-                    CustoDasCartasJogador = 0,
+                    PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
                     BaralhosJogador = null
@@ -44,7 +44,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     IdJogador = 3,
                     NomeJogador = "Silva",
                     DataNascimentoJodador = Convert.ToDateTime("10/03/1999"),
-                    CustoDasCartasJogador = 0,
+                    PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
                     BaralhosJogador = null
@@ -53,7 +53,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.ObterTodos().Clear();
 
-            listaJogadoresMock.ForEach(jogador => ObterServico.Inserir(jogador));
+            listaJogadoresMock.ForEach(jogador => ObterServico.CriarJogador(jogador.NomeJogador, jogador.DataNascimentoJodador, jogador.BaralhosJogador));
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdJogador = 1,
                 NomeJogador = "Marcos",
                 DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
-                CustoDasCartasJogador = 0,
+                PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
                 BaralhosJogador = null

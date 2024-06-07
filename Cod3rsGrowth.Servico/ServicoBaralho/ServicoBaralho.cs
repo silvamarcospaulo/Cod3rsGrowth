@@ -2,22 +2,19 @@
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
+using Cod3rsGrowth.Servico.ServicoCarta;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class ServicoBaralho : IServicoBaralho
     {
         private IBaralhoRepository _IBaralhoRepository;
-        private const int quantidadeBaralhoCommander = 100;
-        private const int quantidadeBaralhoPauper = 60;
-        private const int quantidadeBaralhoStandard = 60;
-        private const int quantidadeMaximaDeCopiaDeCartasCommander = 1;
-        private const int quantidadeMaximaDeCopiaDeCartasPauper = 4;
-        private const int quantidadeMaximaDeCopiaDeCartasStandard = 4;
+        private ValidadorBaralho _validadorBaralho;
 
-        public ServicoBaralho(IBaralhoRepository baralhoRepository)
+        public ServicoBaralho(IBaralhoRepository baralhoRepository, ValidadorBaralho validadorBaralho)
         {
             _IBaralhoRepository = baralhoRepository;
+            _validadorBaralho = validadorBaralho;
         }
         private void Inserir(Baralho baralho)
         {
@@ -31,51 +28,56 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             return _IBaralhoRepository.ObterTodos();
         }
-        public int GerarIdBaralho(int quantidadeDeBaralhosDoJogadorNoBancoDeDados)
+        private int GerarIdBaralho(int quantidadeDeBaralhosDoJogadorNoBancoDeDados)
         {
             return _IBaralhoRepository.ObterTodos().Count + 1;
         }
-        public decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        private decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             return baralho.Sum(carta => carta.Carta.PrecoCarta *
             carta.QuantidadeCopiasDaCartaNoBaralho);
         }
-        public int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        private int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             return baralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho);
         }
-        public int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        private int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             return Convert.ToInt32(baralho.Sum(cartas => cartas.Carta.CustoDeManaConvertidoCarta)
                 /SomarQuantidadeDeCartasDoBaralho(baralho));
         }
-        public List<CoresEnum> ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        private List<CoresEnum> ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             return baralho.SelectMany(carta => carta.Carta.CorCarta).Distinct().ToList();
         }
-        public bool ValidacaoTipoDeBaralho(List<CopiaDeCartasNoBaralho> cartas, FormatoDeJogoEnum formatoDeJogo)
-        {
-            switch (formatoDeJogo)
-            {
-                case FormatoDeJogoEnum.Commander:
-                    if (SomarQuantidadeDeCartasDoBaralho(cartas) != quantidadeBaralhoCommander) return false;
-                    if (cartas.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasCommander))) return false;
-                    break;
 
-                case FormatoDeJogoEnum.Pauper:
-                    if (SomarQuantidadeDeCartasDoBaralho(cartas) < quantidadeBaralhoPauper) return false;
-                    if (cartas.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasPauper))) return false;
-                    if (cartas.All(c => c.Carta.RaridadeCarta != RaridadeEnum.Common)) return false;
-                    break;
-                case FormatoDeJogoEnum.Standard:
-                    if (SomarQuantidadeDeCartasDoBaralho(cartas) < quantidadeBaralhoStandard) return false;
-                    if (cartas.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasStandard))) return false;
-                    break;
+        public void CriarBaralho(int idJogador, string nomeBaralho, FormatoDeJogoEnum formatoDeJogoDoBaralho,
+            List<CopiaDeCartasNoBaralho> cartasDoBaralho)
+        {
+            Baralho baralho = new Baralho()
+            {
+                IdBaralho = _IBaralhoRepository.ObterTodos().Count() + 1,
+                IdJogador = idJogador,
+                NomeBaralho = nomeBaralho,
+                FormatoDeJogoBaralho = formatoDeJogoDoBaralho,
+                CartasDoBaralho = cartasDoBaralho,
+                QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(cartasDoBaralho),
+                PrecoDoBaralho = SomarPrecoDoBaralho(cartasDoBaralho),
+                CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(cartasDoBaralho),
+                CorBaralho = ConferirCoresDoBaralho(cartasDoBaralho)
+            };
+
+            var validador = _validadorBaralho.Validate(baralho);
+
+            if (validador.IsValid)
+            {
+                _IBaralhoRepository.Inserir(baralho);
             }
-            return true;
+            else
+            {
+                var erro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
+                throw new Exception(erro);
+            }
         }
     }
 }
