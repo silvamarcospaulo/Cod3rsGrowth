@@ -62,49 +62,10 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return valorCarta;
         }
 
-        private List<CoresEnum> AdicionarCoresDaCarta(string cor)
+        public void CriarCarta(Carta carta)
         {
-            List<CoresEnum> cores = new();
-
-            foreach (char c in cor)
-            {
-                switch (c)
-                {
-                    case 'W':
-                        cores.Add(CoresEnum.Branco);
-                        break;
-                    case 'B':
-                        cores.Add(CoresEnum.Preto);
-                        break;
-                    case 'G':
-                        cores.Add(CoresEnum.Verde);
-                        break;
-                    case 'R':
-                        cores.Add(CoresEnum.Vermelho);
-                        break;
-                    case 'U':
-                        cores.Add(CoresEnum.Azul);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            return cores.Distinct().ToList();
-        }
-
-        public void CriarCarta(string nomeCarta, int custoDeManaConvertidoCarta,
-            TipoDeCartaEnum tipoDeCarta, RaridadeEnum raridadeCarta, List<CoresEnum> corCarta)
-        {
-            Carta carta = new Carta()
-            {
-                IdCarta = GerarIdCarta(),
-                NomeCarta = nomeCarta,
-                CustoDeManaConvertidoCarta = custoDeManaConvertidoCarta,
-                TipoDeCarta = tipoDeCarta,
-                RaridadeCarta = raridadeCarta,
-                PrecoCarta = GerarPrecoCarta(raridadeCarta),
-                CorCarta = corCarta
-            };
+            carta.IdCarta = GerarIdCarta();
+            carta.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
 
             var validador = _validadorCarta.Validate(carta);
 

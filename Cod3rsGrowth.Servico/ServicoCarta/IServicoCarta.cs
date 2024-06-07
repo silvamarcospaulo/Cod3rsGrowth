@@ -7,7 +7,6 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
     {
         Carta ObterPorId(int idCarta);
         List<Carta> ObterTodos();
-        void CriarCarta(string nomeCarta, int custoDeManaConvertidoCarta,
-            TipoDeCartaEnum tipoDeCarta, RaridadeEnum raridadeCarta, List<CoresEnum> corCarta);
+        void CriarCarta(Carta carta);
     }
 }

@@ -94,8 +94,14 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.ObterTodos().Clear();
 
-            listaCartasMock.ForEach(carta => ObterServico.CriarCarta(carta.NomeCarta, carta.CustoDeManaConvertidoCarta,
-                carta.TipoDeCarta, carta.RaridadeCarta, carta.CorCarta));
+            listaCartasMock.ForEach(carta => ObterServico.CriarCarta(new Carta()
+            {
+                NomeCarta = carta.NomeCarta,
+                CustoDeManaConvertidoCarta = carta.CustoDeManaConvertidoCarta,
+                TipoDeCarta = carta.TipoDeCarta,
+                RaridadeCarta = carta.RaridadeCarta,
+                CorCarta = carta.CorCarta
+            }));
         }
 
         [Fact]

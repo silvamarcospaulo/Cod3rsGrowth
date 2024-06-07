@@ -23,7 +23,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     IdJogador = 1,
                     NomeJogador = "Marcos",
-                    DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
+                    DataNascimentoJogador = Convert.ToDateTime("08/03/1999"),
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
@@ -33,7 +33,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     IdJogador = 2,
                     NomeJogador = "Paulo",
-                    DataNascimentoJodador = Convert.ToDateTime("09/03/1999"),
+                    DataNascimentoJogador = Convert.ToDateTime("09/03/1999"),
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
@@ -43,7 +43,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     IdJogador = 3,
                     NomeJogador = "Silva",
-                    DataNascimentoJodador = Convert.ToDateTime("10/03/1999"),
+                    DataNascimentoJogador = Convert.ToDateTime("10/03/1999"),
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
@@ -53,7 +53,13 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.ObterTodos().Clear();
 
-            listaJogadoresMock.ForEach(jogador => ObterServico.CriarJogador(jogador.NomeJogador, jogador.DataNascimentoJodador, jogador.BaralhosJogador));
+            listaJogadoresMock.ForEach(jogador => ObterServico.CriarJogador(new Jogador()
+            {
+                NomeJogador = jogador.NomeJogador,
+                DataNascimentoJogador = jogador.DataNascimentoJogador,
+                BaralhosJogador = jogador.BaralhosJogador,
+                ContaAtivaJogador = jogador.ContaAtivaJogador
+            }));
         }
 
         [Fact]
@@ -81,7 +87,7 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 IdJogador = 1,
                 NomeJogador = "Marcos",
-                DataNascimentoJodador = Convert.ToDateTime("08/03/1999"),
+                DataNascimentoJogador = Convert.ToDateTime("08/03/1999"),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
@@ -99,6 +105,22 @@ namespace Cod3rsGrowth.Teste.Testes
         public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idJogadorTeste)
         {
             Assert.Throws<Exception>(() => ObterServico.ObterPorId(idJogadorTeste));
+        }
+
+        [Fact]
+        public void ao_CriarJogador_com_campos_nulos_deve_retornar_Exception_do_fluentvalidation()
+        {
+            var jogadorTeste = new Jogador();
+
+            Assert.Throws<Exception>(() => ObterServico.CriarJogador(jogadorTeste));
+        }
+
+        [Fact]
+        public void ao_CriarJogador_com_campos_validos_deve_criar_jogador_com_sucesso()
+        {
+            var jogadorTeste = new Jogador();
+
+            Assert.Throws<Exception>(() => ObterServico.CriarJogador(jogadorTeste));
         }
     }
 }

@@ -7,6 +7,6 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
     {
         Jogador ObterPorId(int idJogador);
         List<Jogador> ObterTodos();
-        void CriarJogador(string nomeJogador, DateTime DataNascimentoJogador, List<Baralho> baralhosJogador);
+        void CriarJogador(Jogador jogador);
     }
 }

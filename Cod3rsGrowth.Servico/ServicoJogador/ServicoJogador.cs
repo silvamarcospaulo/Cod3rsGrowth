@@ -48,18 +48,11 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             return baralhosJogador.Count;
         }
 
-        public void CriarJogador(string nomeJogador, DateTime DataNascimentoJogador, List<Baralho> baralhosJogador)
+        public void CriarJogador(Jogador jogador)
         {
-            Jogador jogador = new Jogador()
-            {
-                IdJogador = GerarIdJogador(),
-                NomeJogador = nomeJogador,
-                DataNascimentoJodador = DataNascimentoJogador,
-                PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(baralhosJogador),
-                QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(baralhosJogador),
-                ContaAtivaJogador = true,
-                BaralhosJogador = baralhosJogador
-            };
+            jogador.IdJogador = GerarIdJogador();
+            jogador.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogador.BaralhosJogador);
+            jogador.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogador.BaralhosJogador);
 
             var validador = _validadorJogador.Validate(jogador);
 
