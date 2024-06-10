@@ -2,24 +2,26 @@
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
+using Cod3rsGrowth.Servico.ServicoBaralho;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
     public class ServicoCarta : IServicoCarta
     {
         private ICartaRepository _ICartaRepository;
-        private ValidadorCarta _validadorCarta;
+        private IValidator<Carta> _validadorCarta;
         private const decimal precoCartaCommon = 0.5m;
         private const decimal precoCartaUncommon = 2.5m;
         private const decimal precoCartaRare = 5m;
         private const decimal precoCartaMythic = 7.5m;
 
-        public ServicoCarta(ICartaRepository cartaRepository, ValidadorCarta validadorCarta)
+        public ServicoCarta(ICartaRepository cartaRepository, IValidator<Carta> validadorCarta)
         {
             _ICartaRepository = cartaRepository;
             _validadorCarta = validadorCarta;
         }
-
         private void Inserir(Carta carta)
         {
             _ICartaRepository.Inserir(carta);
@@ -37,7 +39,8 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         private int GerarIdCarta()
         {
-            return _ICartaRepository.ObterTodos().Any() ? _ICartaRepository.ObterTodos().Max(carta => carta.IdCarta) + 1 : 1;
+            int valorUm = 1;
+            return _ICartaRepository.ObterTodos().Any() ? _ICartaRepository.ObterTodos().Max(carta => carta.IdCarta) + valorUm : valorUm;
         }
 
         private decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
@@ -62,21 +65,20 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return valorCarta;
         }
 
-        public void CriarCarta(Carta carta)
+        public ValidationResult CriarCarta(Carta carta)
         {
             carta.IdCarta = GerarIdCarta();
             carta.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
 
-            var validador = _validadorCarta.Validate(carta);
-
-            if (validador.IsValid)
+            try
             {
-                _ICartaRepository.Inserir(carta);
+                _validadorCarta.ValidateAndThrow(carta);
+                Inserir(carta);
+                return new ValidationResult();
             }
-            else
+            catch (ValidationException e)
             {
-                var erro = string.Join(Environment.NewLine, validador.Errors.Select(e=> e.ErrorMessage));
-                throw new Exception(erro);
+                return new ValidationResult(e.Errors);
             }
         }
     }

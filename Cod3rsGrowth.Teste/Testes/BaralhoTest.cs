@@ -3,6 +3,7 @@ using Cod3rsGrowth.Dominio.Modelos;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using Cod3rsGrowth.Servico.ServicoBaralho;
+using Newtonsoft.Json.Serialization;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
@@ -18,6 +19,8 @@ namespace Cod3rsGrowth.Teste.Testes
 
         private void IniciarListaMock()
         {
+            DateTime dataDeHoje = DateTime.Now;
+
             List<Baralho> listaBaralhosMock = new List<Baralho>()
             {
                 new Baralho()
@@ -58,6 +61,7 @@ namespace Cod3rsGrowth.Teste.Testes
                         }
                     },
                     QuantidadeDeCartasNoBaralho = 100,
+                    DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                     PrecoDoBaralho = 54.5m,
                     CustoDeManaConvertidoDoBaralho = 0,
                     CorBaralho = new List<CoresEnum>() {CoresEnum.Verde}
@@ -114,6 +118,7 @@ namespace Cod3rsGrowth.Teste.Testes
                         }
                     },
                     QuantidadeDeCartasNoBaralho = 100,
+                    DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                     PrecoDoBaralho = 54.5m,
                     CustoDeManaConvertidoDoBaralho = 0,
                     CorBaralho = new List<CoresEnum>() {CoresEnum.Azul, CoresEnum.Vermelho}
@@ -157,6 +162,8 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterPorId_com_id_dois_retorna_baralho_niv_mizzet_combo()
         {
+            var dataDeHoje = DateTime.Now;
+
             var baralhoTeste = new Baralho()
             {
                 IdBaralho = 2,
@@ -209,6 +216,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     }
                 },
                 QuantidadeDeCartasNoBaralho = 100,
+                DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                 PrecoDoBaralho = 54.5m,
                 CustoDeManaConvertidoDoBaralho = 0,
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor, CoresEnum.Azul, CoresEnum.Vermelho }
@@ -227,16 +235,16 @@ namespace Cod3rsGrowth.Teste.Testes
             Assert.Throws<Exception>(() => ObterServico.ObterPorId(idBaralhoTeste));
         }
 
-        [Theory]
-        [InlineData("")]
-        [InlineData(null)]
-        public void ao_CriarBaralho_com_nome_nulo_ou_vazio_deve_retornar_Exception(string nomeBaralhoTeste)
+        [Fact]
+        public void ao_CriarBaralho_com_nome_vazio_deve_retornar_Exception()
         {
+            const string mensagemEsperada = "Campo nome de baralho não pode ser vazio";
+
             var baralhoTeste = new Baralho()
             {
                 IdBaralho = 3,
                 IdJogador = 1,
-                NomeBaralho = nomeBaralhoTeste,
+                NomeBaralho = "",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
                 CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
                 {
@@ -261,12 +269,19 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            Assert.Throws<Exception>(() => ObterServico.CriarBaralho(baralhoTeste));
+            var resultado = ObterServico.CriarBaralho(baralhoTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "NomeBaralho")?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
         }
+
 
         [Fact]
         public void ao_CriarBaralho_com_dados_validos_deve_adicionar_ao_banco_de_dados()
         {
+            var dataDeHoje = DateTime.Now;
+
             var baralhoTeste = new Baralho()
             {
                 IdBaralho = 3,
@@ -291,6 +306,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     }
                 },
                 QuantidadeDeCartasNoBaralho = 60,
+                DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }

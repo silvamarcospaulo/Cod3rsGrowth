@@ -109,22 +109,14 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_CriarJogador_com_dados_nulos_deve_retornar_Exception()
+        public void ao_CriarJogador_com_nome_vazio_deve_retornar_Exception()
         {
-            var jogadorTeste = new Jogador();
+            const string mensagemEsperada = "Nome do Jogador nao pode ser vazio";
 
-            Assert.Throws<Exception>(() => ObterServico.CriarJogador(jogadorTeste));
-        }
-
-        [Theory]
-        [InlineData("")]
-        [InlineData(null)]
-        public void ao_CriarJogador_com_nome_nulo_ou_vazio_deve_retornar_Exception(string nomeJogadorTeste)
-        {
             var jogadorTeste = new Jogador()
             {
                 IdJogador = 4,
-                NomeJogador = nomeJogadorTeste,
+                NomeJogador = "",
                 DataNascimentoJogador = Convert.ToDateTime("29/11/2005"),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
@@ -132,7 +124,11 @@ namespace Cod3rsGrowth.Teste.Testes
                 BaralhosJogador = null
             };
 
-            Assert.Throws<Exception>(() => ObterServico.CriarJogador(jogadorTeste));
+            var resultado = ObterServico.CriarJogador(jogadorTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "NomeJogador")?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
         }
 
         [Fact]

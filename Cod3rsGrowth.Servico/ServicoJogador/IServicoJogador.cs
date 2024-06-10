@@ -1,5 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
+using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servicos.ServicoJogador
 {
@@ -7,6 +7,6 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
     {
         Jogador ObterPorId(int idJogador);
         List<Jogador> ObterTodos();
-        void CriarJogador(Jogador jogador);
+        ValidationResult CriarJogador(Jogador jogador);
     }
 }

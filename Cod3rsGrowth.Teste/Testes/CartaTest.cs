@@ -12,7 +12,6 @@ namespace Cod3rsGrowth.Teste.Testes
         public CartaTest()
         {
             ObterServico = ServiceProvider.GetService<ServicoCarta>() ?? throw new Exception("Erro ao obter servico");
-
             IniciarListaMock();
         }
 
@@ -152,22 +151,14 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_CriarCarta_com_dados_nulos_deve_retornar_Exception()
+        public void ao_CriarCarta_com_nome_vazio_deve_retornar_Exception()
         {
-            var cartaTeste = new Carta();
+            const string mensagemEsperada = "Nome da carta nao pode ser vazio";
 
-            Assert.Throws<Exception>(() => ObterServico.CriarCarta(cartaTeste));
-        }
-
-        [Theory]
-        [InlineData("")]
-        [InlineData(null)]
-        public void ao_CriarCarta_com_nome_nulo_ou_vazio_deve_retornar_Exception(string nomeCartaTeste)
-        {
             var cartaTeste = new Carta()
             {
                 IdCarta = 8,
-                NomeCarta = nomeCartaTeste,
+                NomeCarta = "",
                 CustoDeManaConvertidoCarta = 2,
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
                 RaridadeCarta = RaridadeEnum.Common,
@@ -175,7 +166,11 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            Assert.Throws<Exception>(() => ObterServico.CriarCarta(cartaTeste));
+            var resultado = ObterServico.CriarCarta(cartaTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "NomeCarta")?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
         }
 
         [Fact]

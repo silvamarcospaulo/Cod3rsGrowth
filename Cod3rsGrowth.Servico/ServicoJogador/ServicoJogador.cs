@@ -1,16 +1,15 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
-using Cod3rsGrowth.Servico.ServicoCarta;
-using Cod3rsGrowth.Servico.ServicoJogador;
-using Microsoft.Extensions.Options;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servicos.ServicoJogador
 {
     public class ServicoJogador : IServicoJogador
     {
         private readonly IJogadorRepository _IJogadorRepository;
-        private readonly ValidadorJogador _validadorJogador;
-        public ServicoJogador(IJogadorRepository jogadorRepository, ValidadorJogador validadorJogador)
+        private readonly IValidator<Jogador> _validadorJogador;
+        public ServicoJogador(IJogadorRepository jogadorRepository, IValidator<Jogador> validadorJogador)
         {
             _IJogadorRepository = jogadorRepository;
             _validadorJogador = validadorJogador;
@@ -48,22 +47,22 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             return baralhosJogador.Count;
         }
 
-        public void CriarJogador(Jogador jogador)
+        public ValidationResult CriarJogador(Jogador jogador)
         {
             jogador.IdJogador = GerarIdJogador();
             jogador.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogador.BaralhosJogador);
             jogador.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogador.BaralhosJogador);
 
-            var validador = _validadorJogador.Validate(jogador);
-
-            if (validador.IsValid)
+            try
             {
-                _IJogadorRepository.Inserir(jogador);
-            }else
+                _validadorJogador.ValidateAndThrow(jogador);
+                Inserir(jogador);
+                return new ValidationResult();
+            }
+            catch (ValidationException e)
             {
-                var erro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
-                throw new Exception(erro);
-            };
+                return new ValidationResult(e.Errors);
+            }
         }
     }
 }

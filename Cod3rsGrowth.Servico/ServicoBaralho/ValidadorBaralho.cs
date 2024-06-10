@@ -2,11 +2,6 @@
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
@@ -19,38 +14,29 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         private const int quantidadeMaximaDeCopiaDeCartasPauper = 4;
         private const int quantidadeBaralhoCommander = 100;
         private const int valorMinimoIdJogador = 1;
+        private readonly DateTime dataDeCriacaoMinima = new DateTime(06/05/2024);
 
         public ValidadorBaralho()
-        {
-            RuleFor(baralho => baralho.IdBaralho)
-                .NotNull().WithMessage("Campo IdBaralho não pode ser nulo");
-            
+        {   
             RuleFor(baralho => baralho.IdJogador)
-                .NotNull().WithMessage("Campo IdJogado não pode ser nulo")
-                .GreaterThanOrEqualTo(1).WithMessage("Campo IdJogado invalido");
+                .NotNull()
+                .WithMessage("Campo Id do jogador não pode ser nulo")
+                .GreaterThanOrEqualTo(valorMinimoIdJogador)
+                .WithMessage("Campo Id do jogador tem quer ser maior do que Um");
             
             RuleFor(baralho => baralho.NomeBaralho)
-                .NotNull().WithMessage("Campo NomeBaralho não pode ser nulo")
-                .NotEmpty().WithMessage("Campo NomeBaralho não pode ser vazio");
+                .NotNull()
+                .WithMessage("Campo nome de baralho não pode ser nulo")
+                .NotEmpty()
+                .WithMessage("Campo nome de baralho não pode ser vazio");
 
             RuleFor(baralho => baralho.FormatoDeJogoBaralho)
-                .Cascade(CascadeMode.Stop)
-                .NotNull().WithMessage("Campo FormatoDeJogoBaralho não pode ser nulo")
-                .IsInEnum().WithMessage("Campo FormatoDeJogoBaralho valor invalido");
+                .IsInEnum()
+                .WithMessage("Campo FormatoDeJogoBaralho valor invalido");
 
-            RuleFor(baralho => baralho.CartasDoBaralho)
-                .Cascade(CascadeMode.Stop)
-                .NotNull().WithMessage("Campo CartasDoBaralho não pode ser nulo")
-                .NotEmpty().WithMessage("Campo CartasDoBaralho não pode ser vazio");
-
-            RuleFor(baralho => baralho.QuantidadeDeCartasNoBaralho)
-                .NotNull().WithMessage("Campo QuantidadeDeCartasNoBaralho não pode ser nulo");
-
-            RuleFor(baralho => baralho).Must(ValidacaoTipoDeBaralho)
-                .WithMessage("Quantidade de CartasDoBaralho não condiz com o FormatoDeJogoBaralho");
-
-            RuleFor(baralho => baralho.CorBaralho)
-                .NotEmpty().WithMessage("Campo CorBaralho não pode ser vazio");
+            RuleFor(baralho => baralho)
+                .Must(ValidacaoTipoDeBaralho)
+                .WithMessage("Quantidade de cartas do baralho não condiz com o formato de jogo selecionado");
         }
 
         private static bool ValidacaoTipoDeBaralho(Baralho baralho)
@@ -59,21 +45,21 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             {
                 case FormatoDeJogoEnum.Commander:
                     if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) != quantidadeBaralhoCommander) return false;
-                    if (baralho.CartasDoBaralho.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasCommander))) return false;
+                    if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
+                    (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasCommander))) return false;
                     break;
 
                 case FormatoDeJogoEnum.Pauper:
                     if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) < quantidadeBaralhoPauper) return false;
-                    if (baralho.CartasDoBaralho.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasPauper))) return false;
-                    if (baralho.CartasDoBaralho.All(c => c.Carta.RaridadeCarta != RaridadeEnum.Common)) return false;
+                    if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
+                    (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasPauper))) return false;
+                    if (baralho.CartasDoBaralho.All(cartas => cartas.Carta.RaridadeCarta != RaridadeEnum.Common)) return false;
                     break;
 
                 case FormatoDeJogoEnum.Standard:
                     if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) < quantidadeBaralhoStandard) return false;
-                    if (baralho.CartasDoBaralho.All(c => (c.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
-                    (c.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasStandard))) return false;
+                    if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) &&
+                    (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasStandard))) return false;
                     break;
             }
             return true;

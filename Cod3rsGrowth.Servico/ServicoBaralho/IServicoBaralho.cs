@@ -1,5 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
+using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
@@ -7,6 +7,6 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
     {
         public Baralho ObterPorId(int idBaralho);
         public List<Baralho> ObterTodos();
-        void CriarBaralho(Baralho baralho);
+        ValidationResult CriarBaralho(Baralho baralho);
     }
 }

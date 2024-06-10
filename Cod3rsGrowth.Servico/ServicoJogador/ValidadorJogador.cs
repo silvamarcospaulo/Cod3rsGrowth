@@ -14,23 +14,11 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         {
             const int valorMinimo = 0;
 
-            RuleFor(jogador => jogador.IdJogador)
-                .NotNull().WithMessage("Campo IdJogador nao pode ser nulo");
-
             RuleFor(jogador => jogador.NomeJogador)
-                .NotNull().WithMessage("Campo NomeJogador nao pode ser nulo")
-                .NotEmpty().WithMessage("Campo NomeJogador nao pode ser nulo");
+                .NotEmpty().WithMessage("Nome do Jogador nao pode ser vazio");
 
             RuleFor(jogador => jogador.DataNascimentoJogador)
-                .NotNull().WithMessage("Campo DataNascimentoJogador nao pode ser nulo");
-
-            RuleFor(jogador => jogador.PrecoDasCartasJogador)
-                .NotNull().WithMessage("Campo PrecoDasCartasJogador nao pode ser nulo")
-                .GreaterThanOrEqualTo(Convert.ToDecimal(valorMinimo)).WithMessage("Valor PrecoDasCartasJogador na pode ser negativo");
-
-            RuleFor(jogador => jogador.QuantidadeDeBaralhosJogador)
-                .NotNull().WithMessage("Campo QuantidadeDeBaralhosJogador nao pode ser nulo")
-                .GreaterThanOrEqualTo(valorMinimo).WithMessage("Valor PrecoDasCartasJogador na pode ser negativo");
+                .NotNull().WithMessage("Campo data de nascimento do jogador nao pode ser nulo");
         }
     }
 }

@@ -1,15 +1,17 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class ServicoBaralho : IServicoBaralho
     {
         private IBaralhoRepository _IBaralhoRepository;
-        private ValidadorBaralho _validadorBaralho;
+        private IValidator<Baralho> _validadorBaralho;
 
-        public ServicoBaralho(IBaralhoRepository baralhoRepository, ValidadorBaralho validadorBaralho)
+        public ServicoBaralho(IBaralhoRepository baralhoRepository, IValidator<Baralho> validadorBaralho)
         {
             _IBaralhoRepository = baralhoRepository;
             _validadorBaralho = validadorBaralho;
@@ -18,17 +20,10 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             _IBaralhoRepository.Inserir(baralho);
         }
-        public Baralho ObterPorId(int idBaralho)
-        {
-            return _IBaralhoRepository.ObterPorId(idBaralho);
-        }
-        public List<Baralho> ObterTodos()
-        {
-            return _IBaralhoRepository.ObterTodos();
-        }
         private int GerarIdBaralho()
         {
-            return _IBaralhoRepository.ObterTodos().Any() ? _IBaralhoRepository.ObterTodos().Max(baralho => baralho.IdBaralho) + 1 : 1;
+            int valorUm = 1;
+            return _IBaralhoRepository.ObterTodos().Any() ? _IBaralhoRepository.ObterTodos().Max(baralho => baralho.IdBaralho) + valorUm : valorUm;
         }
         private decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
@@ -49,24 +44,39 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return baralho.SelectMany(carta => carta.Carta.CorCarta).Distinct().ToList();
         }
 
-        public void CriarBaralho(Baralho baralho)
+        private DateTime GerarDataDeCriacaoBaralho()
+        {
+            DateTime dataAtual = DateTime.Now;
+            return new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day);
+        }
+
+        public Baralho ObterPorId(int idBaralho)
+        {
+            return _IBaralhoRepository.ObterPorId(idBaralho);
+        }
+        public List<Baralho> ObterTodos()
+        {
+            return _IBaralhoRepository.ObterTodos();
+        }
+
+        public ValidationResult CriarBaralho(Baralho baralho)
         {
             baralho.IdBaralho = GerarIdBaralho();
             baralho.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
+            baralho.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
             baralho.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
             baralho.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
             baralho.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
 
-            var validador = _validadorBaralho.Validate(baralho);
-
-            if (validador.IsValid)
+            try
             {
-                _IBaralhoRepository.Inserir(baralho);
+                _validadorBaralho.ValidateAndThrow(baralho);
+                Inserir(baralho);
+                return new ValidationResult();
             }
-            else
+            catch (ValidationException e)
             {
-                var erro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
-                throw new Exception(erro);
+                return new ValidationResult(e.Errors);
             }
         }
     }
