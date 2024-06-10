@@ -1,8 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
-using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
-using Cod3rsGrowth.Servico.ServicoCarta;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
@@ -28,9 +26,9 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             return _IBaralhoRepository.ObterTodos();
         }
-        private int GerarIdBaralho(int quantidadeDeBaralhosDoJogadorNoBancoDeDados)
+        private int GerarIdBaralho()
         {
-            return _IBaralhoRepository.ObterTodos().Count + 1;
+            return _IBaralhoRepository.ObterTodos().Any() ? _IBaralhoRepository.ObterTodos().Max(baralho => baralho.IdBaralho) + 1 : 1;
         }
         private decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
@@ -51,21 +49,13 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return baralho.SelectMany(carta => carta.Carta.CorCarta).Distinct().ToList();
         }
 
-        public void CriarBaralho(int idJogador, string nomeBaralho, FormatoDeJogoEnum formatoDeJogoDoBaralho,
-            List<CopiaDeCartasNoBaralho> cartasDoBaralho)
+        public void CriarBaralho(Baralho baralho)
         {
-            Baralho baralho = new Baralho()
-            {
-                IdBaralho = _IBaralhoRepository.ObterTodos().Count() + 1,
-                IdJogador = idJogador,
-                NomeBaralho = nomeBaralho,
-                FormatoDeJogoBaralho = formatoDeJogoDoBaralho,
-                CartasDoBaralho = cartasDoBaralho,
-                QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(cartasDoBaralho),
-                PrecoDoBaralho = SomarPrecoDoBaralho(cartasDoBaralho),
-                CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(cartasDoBaralho),
-                CorBaralho = ConferirCoresDoBaralho(cartasDoBaralho)
-            };
+            baralho.IdBaralho = GerarIdBaralho();
+            baralho.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
+            baralho.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
+            baralho.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
+            baralho.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
 
             var validador = _validadorBaralho.Validate(baralho);
 

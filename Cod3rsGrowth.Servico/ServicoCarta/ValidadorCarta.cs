@@ -24,7 +24,8 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
                 .GreaterThan(valorMinimo).WithMessage("Campo idCarta deve ser maior que 0");
 
             RuleFor(carta => carta.NomeCarta)
-                .NotNull().WithMessage("Campo NomeCarta nao pode ser nulo");
+                .NotNull().WithMessage("Campo NomeCarta nao pode ser nulo")
+                .NotEmpty().WithMessage("Campo NomeCarta nao pode ser vazio");
 
             RuleFor(carta => carta.CustoDeManaConvertidoCarta)
                 .Cascade(CascadeMode.Stop)
@@ -48,18 +49,18 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
             RuleFor(carta => carta)
                 .Cascade(CascadeMode.Stop)
-                .Must(validarPrecoCarta).WithMessage("Valor do preço da carta nao condiz com a raridade da carta");
+                .Must(ValidarPrecoCarta).WithMessage("Valor do preço da carta nao condiz com a raridade da carta");
 
             RuleFor(carta => carta.CorCarta)
                 .Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage("Campo CorCarta nao pode ser vazio")
-                .Must(validarListaDeCores).WithMessage("Campo CorCarta com valores inválidos");
+                .Must(ValidarListaDeCores).WithMessage("Campo CorCarta com valores inválidos");
 
             RuleFor(carta => carta.RaridadeCarta)
                 .NotNull().WithMessage("Campo CorCarta nao pode ser nulo");
         }
 
-        private static bool validarPrecoCarta(Carta carta)
+        private static bool ValidarPrecoCarta(Carta carta)
         {
             switch (carta.RaridadeCarta)
             {
@@ -79,7 +80,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return false;
         }
 
-        private static bool validarListaDeCores(List<CoresEnum> CorCarta)
+        private static bool ValidarListaDeCores(List<CoresEnum> CorCarta)
         {
             return CorCarta.All(e => Enum.IsDefined(typeof(CoresEnum), e));
         }

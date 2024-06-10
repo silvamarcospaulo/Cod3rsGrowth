@@ -8,8 +8,8 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
 {
     public class ServicoJogador : IServicoJogador
     {
-        private IJogadorRepository _IJogadorRepository;
-        private ValidadorJogador _validadorJogador;
+        private readonly IJogadorRepository _IJogadorRepository;
+        private readonly ValidadorJogador _validadorJogador;
         public ServicoJogador(IJogadorRepository jogadorRepository, ValidadorJogador validadorJogador)
         {
             _IJogadorRepository = jogadorRepository;
@@ -32,7 +32,7 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
 
         private int GerarIdJogador()
         {
-            return _IJogadorRepository.ObterTodos().Count + 1;
+            return _IJogadorRepository.ObterTodos().Any() ? _IJogadorRepository.ObterTodos().Max(jogador => jogador.IdJogador) + 1 : 1;
         }
 
         private decimal SomarPrecoDeTodasAsCartasDoJogador(List<Baralho> baralhosJogador)

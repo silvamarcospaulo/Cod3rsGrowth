@@ -18,6 +18,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         private const int quantidadeMaximaDeCopiaDeCartasCommander = 1;
         private const int quantidadeMaximaDeCopiaDeCartasPauper = 4;
         private const int quantidadeBaralhoCommander = 100;
+        private const int valorMinimoIdJogador = 1;
 
         public ValidadorBaralho()
         {
@@ -25,15 +26,17 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
                 .NotNull().WithMessage("Campo IdBaralho não pode ser nulo");
             
             RuleFor(baralho => baralho.IdJogador)
-                .NotNull().WithMessage("Campo IdJogado não pode ser nulo");
+                .NotNull().WithMessage("Campo IdJogado não pode ser nulo")
+                .GreaterThanOrEqualTo(1).WithMessage("Campo IdJogado invalido");
             
             RuleFor(baralho => baralho.NomeBaralho)
-                .NotNull().WithMessage("Campo IdNome não pode ser nulo");
+                .NotNull().WithMessage("Campo NomeBaralho não pode ser nulo")
+                .NotEmpty().WithMessage("Campo NomeBaralho não pode ser vazio");
 
             RuleFor(baralho => baralho.FormatoDeJogoBaralho)
                 .Cascade(CascadeMode.Stop)
-                .NotNull().WithMessage("Campo IdFormatoDeJogoBaralho não pode ser nulo")
-                .IsInEnum().WithMessage("Campo IdFormatoDeJogoBaralho valor invalido");
+                .NotNull().WithMessage("Campo FormatoDeJogoBaralho não pode ser nulo")
+                .IsInEnum().WithMessage("Campo FormatoDeJogoBaralho valor invalido");
 
             RuleFor(baralho => baralho.CartasDoBaralho)
                 .Cascade(CascadeMode.Stop)

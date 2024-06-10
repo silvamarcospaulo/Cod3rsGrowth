@@ -18,7 +18,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 .NotNull().WithMessage("Campo IdJogador nao pode ser nulo");
 
             RuleFor(jogador => jogador.NomeJogador)
-                .NotNull().WithMessage("Campo NomeJogador nao pode ser nulo");
+                .NotNull().WithMessage("Campo NomeJogador nao pode ser nulo")
+                .NotEmpty().WithMessage("Campo NomeJogador nao pode ser nulo");
 
             RuleFor(jogador => jogador.DataNascimentoJogador)
                 .NotNull().WithMessage("Campo DataNascimentoJogador nao pode ser nulo");

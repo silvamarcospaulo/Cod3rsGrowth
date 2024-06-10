@@ -122,12 +122,22 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.ObterTodos().Clear();
 
-            listaBaralhosMock.ForEach(baralho => ObterServico.CriarBaralho(baralho.IdJogador, baralho.NomeBaralho,
-                baralho.FormatoDeJogoBaralho, baralho.CartasDoBaralho));
+            listaBaralhosMock.ForEach(baralho => ObterServico.CriarBaralho(new Baralho()
+            {
+                IdBaralho = baralho.IdBaralho,
+                IdJogador = baralho.IdJogador,
+                NomeBaralho = baralho.NomeBaralho,
+                FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
+                CartasDoBaralho = baralho.CartasDoBaralho,
+                QuantidadeDeCartasNoBaralho = baralho.QuantidadeDeCartasNoBaralho,
+                PrecoDoBaralho = baralho.PrecoDoBaralho,
+                CustoDeManaConvertidoDoBaralho = baralho.CustoDeManaConvertidoDoBaralho,
+                CorBaralho = baralho.CorBaralho
+            }));
         }
 
         [Fact]
-        public void verifica_se_a_lista_nao_esta_vazia()
+        public void ao_ObterTodos_verifica_se_a_lista_nao_esta_vazia()
         {
             var baralhos = ObterServico.ObterTodos();
 
@@ -215,6 +225,80 @@ namespace Cod3rsGrowth.Teste.Testes
         public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idBaralhoTeste)
         {
             Assert.Throws<Exception>(() => ObterServico.ObterPorId(idBaralhoTeste));
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void ao_CriarBaralho_com_nome_nulo_ou_vazio_deve_retornar_Exception(string nomeBaralhoTeste)
+        {
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = 3,
+                IdJogador = 1,
+                NomeBaralho = nomeBaralhoTeste,
+                FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
+                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                {
+                    new CopiaDeCartasNoBaralho
+                    {
+                        Carta = new Carta()
+                        {
+                            IdCarta = 3,
+                            NomeCarta = "Floresta",
+                            CustoDeManaConvertidoCarta = 0,
+                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            RaridadeCarta = RaridadeEnum.Common,
+                            PrecoCarta = Convert.ToDecimal(0.5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                        },
+                        QuantidadeCopiasDaCartaNoBaralho = 60
+                    }
+                },
+                QuantidadeDeCartasNoBaralho = 60,
+                PrecoDoBaralho = 30,
+                CustoDeManaConvertidoDoBaralho = 0,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            Assert.Throws<Exception>(() => ObterServico.CriarBaralho(baralhoTeste));
+        }
+
+        [Fact]
+        public void ao_CriarBaralho_com_dados_validos_deve_adicionar_ao_banco_de_dados()
+        {
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = 3,
+                IdJogador = 1,
+                NomeBaralho = "Mono Green Pauper",
+                FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
+                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                {
+                    new CopiaDeCartasNoBaralho
+                    {
+                        Carta = new Carta()
+                        {
+                            IdCarta = 3,
+                            NomeCarta = "Floresta",
+                            CustoDeManaConvertidoCarta = 0,
+                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            RaridadeCarta = RaridadeEnum.Common,
+                            PrecoCarta = Convert.ToDecimal(0.5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                        },
+                        QuantidadeCopiasDaCartaNoBaralho = 60
+                    }
+                },
+                QuantidadeDeCartasNoBaralho = 60,
+                PrecoDoBaralho = 30,
+                CustoDeManaConvertidoDoBaralho = 0,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            ObterServico.CriarBaralho(baralhoTeste);
+
+            Assert.Equivalent(baralhoTeste, ObterServico.ObterPorId(ObterServico.ObterTodos().Count()));
         }
     }
 }

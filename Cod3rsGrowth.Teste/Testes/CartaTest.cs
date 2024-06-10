@@ -150,5 +150,51 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             Assert.Throws<Exception>(() => ObterServico.ObterPorId(idCartaTeste));
         }
+
+        [Fact]
+        public void ao_CriarCarta_com_dados_nulos_deve_retornar_Exception()
+        {
+            var cartaTeste = new Carta();
+
+            Assert.Throws<Exception>(() => ObterServico.CriarCarta(cartaTeste));
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void ao_CriarCarta_com_nome_nulo_ou_vazio_deve_retornar_Exception(string nomeCartaTeste)
+        {
+            var cartaTeste = new Carta()
+            {
+                IdCarta = 8,
+                NomeCarta = nomeCartaTeste,
+                CustoDeManaConvertidoCarta = 2,
+                TipoDeCarta = TipoDeCartaEnum.Artefato,
+                RaridadeCarta = RaridadeEnum.Common,
+                PrecoCarta = 0.5m,
+                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            Assert.Throws<Exception>(() => ObterServico.CriarCarta(cartaTeste));
+        }
+
+        [Fact]
+        public void ao_CriarCarta_com_dados_validos_deve_adicionar_ao_banco_de_dados()
+        {
+            var cartaTeste = new Carta()
+            {
+                IdCarta = 8,
+                NomeCarta = "Sol Ring",
+                CustoDeManaConvertidoCarta = 2,
+                TipoDeCarta = TipoDeCartaEnum.Artefato,
+                RaridadeCarta = RaridadeEnum.Common,
+                PrecoCarta = 0.5m,
+                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            ObterServico.CriarCarta(cartaTeste);
+
+            Assert.Equivalent(cartaTeste, ObterServico.ObterPorId(ObterServico.ObterTodos().Count()));
+        }
     }
 }

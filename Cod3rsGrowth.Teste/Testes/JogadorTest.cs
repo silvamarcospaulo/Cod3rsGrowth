@@ -1,4 +1,5 @@
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using Cod3rsGrowth.Servicos.ServicoJogador;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,7 +64,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void verifica_se_a_lista_de_nao_esta_vazia()
+        public void ao_ObterTodos_verifica_se_a_lista_de_nao_esta_vazia()
         {
             var jogadores = ObterServico.ObterTodos();
 
@@ -108,19 +109,49 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_CriarJogador_com_campos_nulos_deve_retornar_Exception_do_fluentvalidation()
+        public void ao_CriarJogador_com_dados_nulos_deve_retornar_Exception()
         {
             var jogadorTeste = new Jogador();
 
             Assert.Throws<Exception>(() => ObterServico.CriarJogador(jogadorTeste));
         }
 
-        [Fact]
-        public void ao_CriarJogador_com_campos_validos_deve_criar_jogador_com_sucesso()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void ao_CriarJogador_com_nome_nulo_ou_vazio_deve_retornar_Exception(string nomeJogadorTeste)
         {
-            var jogadorTeste = new Jogador();
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = 4,
+                NomeJogador = nomeJogadorTeste,
+                DataNascimentoJogador = Convert.ToDateTime("29/11/2005"),
+                PrecoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = null
+            };
 
             Assert.Throws<Exception>(() => ObterServico.CriarJogador(jogadorTeste));
+        }
+
+        [Fact]
+        public void ao_CriarJogador_com_dados_validos_deve_adicionar_ao_banco_de_dados()
+        {
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = 4,
+                NomeJogador = "Detofol",
+                DataNascimentoJogador = Convert.ToDateTime("29/11/2005"),
+                PrecoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = null
+            };
+
+            ObterServico.CriarJogador(jogadorTeste);
+
+            Assert.Equivalent(jogadorTeste, ObterServico.ObterPorId(ObterServico.ObterTodos().Count()));
         }
     }
 }

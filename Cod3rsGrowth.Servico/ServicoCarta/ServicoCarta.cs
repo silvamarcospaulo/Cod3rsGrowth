@@ -37,7 +37,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         private int GerarIdCarta()
         {
-            return _ICartaRepository.ObterTodos().Count + 1;
+            return _ICartaRepository.ObterTodos().Any() ? _ICartaRepository.ObterTodos().Max(carta => carta.IdCarta) + 1 : 1;
         }
 
         private decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
