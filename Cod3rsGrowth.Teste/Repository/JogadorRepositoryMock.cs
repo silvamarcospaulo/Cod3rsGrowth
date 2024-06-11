@@ -8,21 +8,17 @@ namespace Cod3rsGrowth.Teste.Repository
     public class JogadorRepositoryMock : IJogadorRepository
     {
         public List<Jogador> tabelasJogadores = SingletonTabelas.InstanciaJogadores;
-
         public void Inserir(Jogador jogador)
         {
             tabelasJogadores.Add(jogador);
         }
-
-        public void Excluir(int idJogador)
+        public void Excluir(Jogador jogador)
         {
         }
-
         public Jogador ObterPorId(int idJogador)
         {
             return tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
         }
-
         public List<Jogador> ObterTodos()
         {
             return tabelasJogadores;

@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Newtonsoft.Json.Serialization;
+using System.ComponentModel;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
@@ -236,6 +237,47 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
+        public void ao_CriarBaralho_com_idJogador_negativo_deve_retornar_Exception()
+        {
+            const string mensagemEsperada = "Campo Id do jogador tem quer ser maior do que Um";
+
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = 3,
+                IdJogador = -1,
+                NomeBaralho = "Mono Green Stomp Pauper",
+                FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
+                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                {
+                    new CopiaDeCartasNoBaralho
+                    {
+                        Carta = new Carta()
+                        {
+                            IdCarta = 3,
+                            NomeCarta = "Floresta",
+                            CustoDeManaConvertidoCarta = 0,
+                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            RaridadeCarta = RaridadeEnum.Common,
+                            PrecoCarta = Convert.ToDecimal(0.5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                        },
+                        QuantidadeCopiasDaCartaNoBaralho = 60
+                    }
+                },
+                QuantidadeDeCartasNoBaralho = 60,
+                PrecoDoBaralho = 30,
+                CustoDeManaConvertidoDoBaralho = 0,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            var resultado = ObterServico.CriarBaralho(baralhoTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "IdJogador")?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
+        }
+
+        [Fact]
         public void ao_CriarBaralho_com_nome_vazio_deve_retornar_Exception()
         {
             const string mensagemEsperada = "Campo nome de baralho não pode ser vazio";
@@ -276,6 +318,116 @@ namespace Cod3rsGrowth.Teste.Testes
             Assert.Equal(mensagemEsperada, mensagemDeErro);
         }
 
+        [Fact]
+        public void ao_CriarBaralho_com_cartas_do_baralho_vazia_deve_retornar_Exception()
+        {
+            const string mensagemEsperada = "O baralho deve possuir uma lista de cartas não vazia";
+
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = 3,
+                IdJogador = -1,
+                NomeBaralho = "Mono Green Stomp Pauper",
+                FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
+                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>(),
+                QuantidadeDeCartasNoBaralho = 60,
+                PrecoDoBaralho = 30,
+                CustoDeManaConvertidoDoBaralho = 0,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            var resultado = ObterServico.CriarBaralho(baralhoTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "CartasDoBaralho")?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
+        }
+
+        [Theory]
+        [InlineData(99)]
+        [InlineData(101)]
+        public void ao_CriarBaralho_com_quantidade_de_cartas_nao_compativel_com_o_tipo_de_jogo_commander_deve_retornar_Exception(int quantidadeDeCartasTeste)
+        {
+            const string mensagemEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
+
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = 3,
+                IdJogador = 1,
+                NomeBaralho = "Mono Green Stomp Commander",
+                FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
+                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                {
+                    new CopiaDeCartasNoBaralho
+                    {
+                        Carta = new Carta()
+                        {
+                            IdCarta = 3,
+                            NomeCarta = "Floresta",
+                            CustoDeManaConvertidoCarta = 0,
+                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            RaridadeCarta = RaridadeEnum.Common,
+                            PrecoCarta = Convert.ToDecimal(0.5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                        },
+                        QuantidadeCopiasDaCartaNoBaralho = quantidadeDeCartasTeste
+                    }
+                },
+                QuantidadeDeCartasNoBaralho = 60,
+                PrecoDoBaralho = 30,
+                CustoDeManaConvertidoDoBaralho = 0,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            var resultado = ObterServico.CriarBaralho(baralhoTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault()?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
+        }
+
+        [Theory]
+        [InlineData(FormatoDeJogoEnum.Pauper)]
+        [InlineData(FormatoDeJogoEnum.Standard)]
+        public void ao_CriarBaralho_com_quantidade_de_cartas_nao_compativel_com_o_tipo_de_jogo_pauper_ou_standard_deve_retornar_Exception(FormatoDeJogoEnum formatoDeJogoTeste)
+        {
+            const string mensagemEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
+
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = 3,
+                IdJogador = 1,
+                NomeBaralho = "Mono Green Stomp",
+                FormatoDeJogoBaralho = formatoDeJogoTeste,
+                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                {
+                    new CopiaDeCartasNoBaralho
+                    {
+                        Carta = new Carta()
+                        {
+                            IdCarta = 3,
+                            NomeCarta = "Floresta",
+                            CustoDeManaConvertidoCarta = 0,
+                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            RaridadeCarta = RaridadeEnum.Common,
+                            PrecoCarta = Convert.ToDecimal(0.5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                        },
+                        QuantidadeCopiasDaCartaNoBaralho = 59
+                    }
+                },
+                QuantidadeDeCartasNoBaralho = 60,
+                PrecoDoBaralho = 30,
+                CustoDeManaConvertidoDoBaralho = 0,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            var resultado = ObterServico.CriarBaralho(baralhoTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault()?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
+        }
 
         [Fact]
         public void ao_CriarBaralho_com_dados_validos_deve_adicionar_ao_banco_de_dados()

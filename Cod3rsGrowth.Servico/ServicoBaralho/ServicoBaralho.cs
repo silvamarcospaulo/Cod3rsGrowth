@@ -6,57 +6,101 @@ using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
-    public class ServicoBaralho : IServicoBaralho
+    public class ServicoBaralho : IBaralhoRepository
     {
-        private IBaralhoRepository _IBaralhoRepository;
-        private IValidator<Baralho> _validadorBaralho;
+        private readonly IBaralhoRepository _IBaralhoRepository;
+        private readonly IValidator<Baralho> _validadorBaralho;
 
         public ServicoBaralho(IBaralhoRepository baralhoRepository, IValidator<Baralho> validadorBaralho)
         {
             _IBaralhoRepository = baralhoRepository;
             _validadorBaralho = validadorBaralho;
         }
-        private void Inserir(Baralho baralho)
-        {
-            _IBaralhoRepository.Inserir(baralho);
-        }
+        
         private int GerarIdBaralho()
         {
-            int valorUm = 1;
-            return _IBaralhoRepository.ObterTodos().Any() ? _IBaralhoRepository.ObterTodos().Max(baralho => baralho.IdBaralho) + valorUm : valorUm;
-        }
-        private decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
-        {
-            return baralho.Sum(carta => carta.Carta.PrecoCarta *
-            carta.QuantidadeCopiasDaCartaNoBaralho);
-        }
-        private int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
-        {
-            return baralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho);
-        }
-        private int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
-        {
-            return Convert.ToInt32(baralho.Sum(cartas => cartas.Carta.CustoDeManaConvertidoCarta)
-                /SomarQuantidadeDeCartasDoBaralho(baralho));
-        }
-        private List<CoresEnum> ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
-        {
-            return baralho.SelectMany(carta => carta.Carta.CorCarta).Distinct().ToList();
+            const int ValorInicial = 1;
+            const int Incremento = 1;
+
+            var baralhos = _IBaralhoRepository.ObterTodos();
+            var ultimoId = baralhos.Any() ? baralhos.Max(baralho => baralho.IdBaralho) : ValorInicial - Incremento;
+
+            return ultimoId + Incremento;
         }
 
-        private DateTime GerarDataDeCriacaoBaralho()
+        private static decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        {
+            try
+            {
+                return baralho.Sum(carta => carta.Carta.PrecoCarta *
+                carta.QuantidadeCopiasDaCartaNoBaralho);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        private static int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        {
+            try
+            {
+                return baralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
+        private static int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        {
+            try
+            {
+                return Convert.ToInt32(baralho.Sum(cartas => cartas.Carta.CustoDeManaConvertidoCarta)
+                / SomarQuantidadeDeCartasDoBaralho(baralho));
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
+        }
+
+        private static List<CoresEnum> ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        {
+            try
+            {
+                return baralho.SelectMany(carta => carta.Carta.CorCarta).Distinct().ToList();
+            }
+            catch (Exception e)
+            {
+                return new List<CoresEnum>();
+            }
+        }
+
+        private static DateTime GerarDataDeCriacaoBaralho()
         {
             DateTime dataAtual = DateTime.Now;
             return new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day);
         }
 
-        public Baralho ObterPorId(int idBaralho)
+        public void Inserir(Baralho baralho)
         {
-            return _IBaralhoRepository.ObterPorId(idBaralho);
+            _IBaralhoRepository.Inserir(baralho);
         }
+
+        public void Excluir(Baralho baralho)
+        {
+        }
+
         public List<Baralho> ObterTodos()
         {
             return _IBaralhoRepository.ObterTodos();
+        }
+
+        public Baralho ObterPorId(int idBaralho)
+        {
+            return _IBaralhoRepository.ObterPorId(idBaralho);
         }
 
         public ValidationResult CriarBaralho(Baralho baralho)

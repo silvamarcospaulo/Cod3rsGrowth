@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
         public void Inserir(Jogador jogador)
         {
         }
-        public void Excluir(int idJogador)
+        public void Excluir(Jogador jogador)
         {
             throw new NotImplementedException();
         }

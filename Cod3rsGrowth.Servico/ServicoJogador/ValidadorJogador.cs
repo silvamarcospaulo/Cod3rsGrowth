@@ -12,8 +12,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
     {
         public ValidadorJogador()
         {
-            const int valorMinimo = 0;
-
             RuleFor(jogador => jogador.NomeJogador)
                 .NotEmpty().WithMessage("Nome do Jogador nao pode ser vazio");
 

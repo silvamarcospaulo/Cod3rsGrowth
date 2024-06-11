@@ -8,13 +8,11 @@ namespace Cod3rsGrowth.Teste.Testes
     public class CartaTest : TesteBase
     {
         private readonly ServicoCarta ObterServico;
-
         public CartaTest()
         {
             ObterServico = ServiceProvider.GetService<ServicoCarta>() ?? throw new Exception("Erro ao obter servico");
             IniciarListaMock();
         }
-
         public void IniciarListaMock()
         {
             var listaCartasMock = new List<Carta>()
@@ -102,7 +100,6 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorCarta = carta.CorCarta
             }));
         }
-
         [Fact]
         public void ao_ObterTodos_verifica_se_a_lista_nao_esta_vazia()
         {
@@ -112,7 +109,6 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.NotEmpty(cartas);
         }
-
         [Fact]
         public void ao_ObterTodos_deve_retornar_uma_lista_com_sete_cartas()
         {
@@ -122,7 +118,6 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }
-
         [Fact]
         public void ao_ObterPorId_com_id_seis_retornar_baralho_niv_mizzet_parum()
         {
@@ -141,7 +136,6 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equivalent(cartaTeste, cartaMock);
         }
-
         [Theory]
         [InlineData(-10)]
         [InlineData(8)]
@@ -149,7 +143,6 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             Assert.Throws<Exception>(() => ObterServico.ObterPorId(idCartaTeste));
         }
-
         [Fact]
         public void ao_CriarCarta_com_nome_vazio_deve_retornar_Exception()
         {
@@ -172,7 +165,27 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(mensagemEsperada, mensagemDeErro);
         }
+        [Fact]
+        public void ao_CriarCarta_com_custo_de_mana_convertido_negativo_deve_retornar_Exception()
+        {
+            const string mensagemEsperada = "Custo de Mana Convertido da Carta deve ser igual ou maior que 0";
+            var cartaTeste = new Carta()
+            {
+                IdCarta = 8,
+                NomeCarta = "Sol Ring",
+                CustoDeManaConvertidoCarta = -1,
+                TipoDeCarta = TipoDeCartaEnum.Artefato,
+                RaridadeCarta = RaridadeEnum.Common,
+                PrecoCarta = 0.5m,
+                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
 
+            var resultado = ObterServico.CriarCarta(cartaTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "CustoDeManaConvertidoCarta")?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
+        }
         [Fact]
         public void ao_CriarCarta_com_dados_validos_deve_adicionar_ao_banco_de_dados()
         {
@@ -189,7 +202,9 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.CriarCarta(cartaTeste);
 
-            Assert.Equivalent(cartaTeste, ObterServico.ObterPorId(ObterServico.ObterTodos().Count()));
+            var cartas = ObterServico.ObterTodos();
+
+            Assert.Contains(cartas, c => c == cartaTeste);
         }
     }
 }

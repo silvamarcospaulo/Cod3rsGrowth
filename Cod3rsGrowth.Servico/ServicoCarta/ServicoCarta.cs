@@ -8,10 +8,10 @@ using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
-    public class ServicoCarta : IServicoCarta
+    public class ServicoCarta : ICartaRepository
     {
-        private ICartaRepository _ICartaRepository;
-        private IValidator<Carta> _validadorCarta;
+        private readonly ICartaRepository _ICartaRepository;
+        private readonly IValidator<Carta> _validadorCarta;
         private const decimal precoCartaCommon = 0.5m;
         private const decimal precoCartaUncommon = 2.5m;
         private const decimal precoCartaRare = 5m;
@@ -22,28 +22,33 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             _ICartaRepository = cartaRepository;
             _validadorCarta = validadorCarta;
         }
-        private void Inserir(Carta carta)
+        public void Inserir(Carta carta)
         {
             _ICartaRepository.Inserir(carta);
         }
-
         public Carta ObterPorId(int idCarta)
         {
             return _ICartaRepository.ObterPorId(idCarta);
         }
-
         public List<Carta> ObterTodos()
         {
             return _ICartaRepository.ObterTodos();
         }
-
+        public void Excluir(Carta carta)
+        {
+            _ICartaRepository.Excluir(carta);
+        }
         private int GerarIdCarta()
         {
-            int valorUm = 1;
-            return _ICartaRepository.ObterTodos().Any() ? _ICartaRepository.ObterTodos().Max(carta => carta.IdCarta) + valorUm : valorUm;
-        }
+            const int ValorInicial = 1;
+            const int Incremento = 1;
 
-        private decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
+            var cartas = _ICartaRepository.ObterTodos();
+            var ultimoId = cartas.Any() ? cartas.Max(carta => carta.IdCarta) : ValorInicial - Incremento;
+
+            return ultimoId + Incremento;
+        }
+        private static decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
         {
             decimal valorCarta = 0;
 
@@ -64,7 +69,6 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             }
             return valorCarta;
         }
-
         public ValidationResult CriarCarta(Carta carta)
         {
             carta.IdCarta = GerarIdCarta();
