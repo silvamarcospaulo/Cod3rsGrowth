@@ -13,7 +13,7 @@ namespace Cod3rsGrowth.Teste.Repository
         {
             tabelasBaralhos.Add(baralho);
         }
-        public void Excluir(int idBaralho)
+        public void Excluir(Baralho baralho)
         {
         }
 

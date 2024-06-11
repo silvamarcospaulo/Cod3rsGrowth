@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryBaralho
         public void Inserir(Baralho baralho)
         {
         }
-        public void Excluir(int idBaralho)
+        public void Excluir(Baralho baralho)
         {
             throw new NotImplementedException();
         }

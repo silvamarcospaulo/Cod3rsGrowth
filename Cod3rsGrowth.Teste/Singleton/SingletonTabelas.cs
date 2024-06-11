@@ -5,9 +5,9 @@ namespace Cod3rsGrowth.Teste.Singleton
 {
     public class SingletonTabelas
     {
-        private static Lazy<List<Carta>> instanciaCartas = new Lazy<List<Carta>>(() => new List<Carta>());
-        private static Lazy<List<Baralho>> instanciaBaralhos = new Lazy<List<Baralho>>(() => new List<Baralho>());
-        private static Lazy<List<Jogador>> instanciaJogadores = new Lazy<List<Jogador>>(() => new List<Jogador>());
+        private static readonly Lazy<List<Carta>> instanciaCartas = new Lazy<List<Carta>>(() => new List<Carta>());
+        private static readonly Lazy<List<Baralho>> instanciaBaralhos = new Lazy<List<Baralho>>(() => new List<Baralho>());
+        private static readonly Lazy<List<Jogador>> instanciaJogadores = new Lazy<List<Jogador>>(() => new List<Jogador>());
 
         private SingletonTabelas()
         {

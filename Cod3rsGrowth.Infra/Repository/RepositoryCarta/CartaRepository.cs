@@ -7,8 +7,9 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
     {
         public void Inserir (Carta carta)
         {
+            throw new NotImplementedException();
         }
-        public void Excluir(int idCarta)
+        public void Excluir(Carta carta)
         {
             throw new NotImplementedException();
         }

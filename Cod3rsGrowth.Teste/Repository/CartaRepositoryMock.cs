@@ -13,7 +13,7 @@ namespace Cod3rsGrowth.Teste.Repository
             tabelasCartas.Add(carta);
         }
 
-        public void Excluir(int idCarta)
+        public void Excluir(Carta carta)
         {
         }
 

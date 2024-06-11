@@ -2,43 +2,53 @@
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
+using Cod3rsGrowth.Servico.ServicoBaralho;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
-    public class ServicoCarta : IServicoCarta
+    public class ServicoCarta : ICartaRepository
     {
-        public ICartaRepository _ICartaRepository;
-        public const decimal precoCartaCommon = 0.5m;
-        public const decimal precoCartaUncommon = 2.5m;
-        public const decimal precoCartaRare = 5m;
-        public const decimal precoCartaMythic = 7.5m;
+        private readonly ICartaRepository _ICartaRepository;
+        private readonly IValidator<Carta> _validadorCarta;
+        private const decimal precoCartaCommon = 0.5m;
+        private const decimal precoCartaUncommon = 2.5m;
+        private const decimal precoCartaRare = 5m;
+        private const decimal precoCartaMythic = 7.5m;
 
-        public ServicoCarta(ICartaRepository cartaRepository)
+        public ServicoCarta(ICartaRepository cartaRepository, IValidator<Carta> validadorCarta)
         {
             _ICartaRepository = cartaRepository;
+            _validadorCarta = validadorCarta;
         }
-
         public void Inserir(Carta carta)
         {
             _ICartaRepository.Inserir(carta);
         }
-
         public Carta ObterPorId(int idCarta)
         {
             return _ICartaRepository.ObterPorId(idCarta);
         }
-
         public List<Carta> ObterTodos()
         {
             return _ICartaRepository.ObterTodos();
         }
-
-        public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
+        public void Excluir(Carta carta)
         {
-            return quantidadeDeCartasNoBancoDeDados + 1;
+            _ICartaRepository.Excluir(carta);
         }
+        private int GerarIdCarta()
+        {
+            const int ValorInicial = 1;
+            const int Incremento = 1;
 
-        public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
+            var cartas = _ICartaRepository.ObterTodos();
+            var ultimoId = cartas.Any() ? cartas.Max(carta => carta.IdCarta) : ValorInicial - Incremento;
+
+            return ultimoId + Incremento;
+        }
+        private static decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
         {
             decimal valorCarta = 0;
 
@@ -59,35 +69,21 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             }
             return valorCarta;
         }
-
-        public List<CoresEnum> AdicionarCoresDaCarta(string cor)
+        public ValidationResult CriarCarta(Carta carta)
         {
-            List<CoresEnum> cores = new();
+            carta.IdCarta = GerarIdCarta();
+            carta.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
 
-            foreach (char c in cor)
+            try
             {
-                switch (c)
-                {
-                    case 'W':
-                        cores.Add(CoresEnum.Branco);
-                        break;
-                    case 'B':
-                        cores.Add(CoresEnum.Preto);
-                        break;
-                    case 'G':
-                        cores.Add(CoresEnum.Verde);
-                        break;
-                    case 'R':
-                        cores.Add(CoresEnum.Vermelho);
-                        break;
-                    case 'U':
-                        cores.Add(CoresEnum.Azul);
-                        break;
-                    default:
-                        break;
-                }
+                _validadorCarta.ValidateAndThrow(carta);
+                Inserir(carta);
+                return new ValidationResult();
             }
-            return cores.Distinct().ToList();
+            catch (ValidationException e)
+            {
+                return new ValidationResult(e.Errors);
+            }
         }
     }
 }
