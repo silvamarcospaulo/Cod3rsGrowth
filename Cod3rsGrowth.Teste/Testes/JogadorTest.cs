@@ -2,6 +2,7 @@ using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using Cod3rsGrowth.Servicos.ServicoJogador;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -193,7 +194,45 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.CriarJogador(jogadorTeste);
 
-            Assert.Equivalent(jogadorTeste, ObterServico.ObterPorId(jogadorTeste.IdJogador));
+            Assert.Equal(jogadorTeste, ObterServico.ObterPorId(jogadorTeste.IdJogador));
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void ao_AtualizarJogador_com_dados_validos_deve_adicionar_um_novo_jogador(int idJogadorTeste)
+        {
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = idJogadorTeste,
+                NomeJogador = "Marcos Paulo Silva",
+                DataNascimentoJogador = new DateTime(day: 10, month: 3, year: 2000),
+                PrecoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = null
+            };
+
+            ObterServico.Atualizar(jogadorTeste);
+
+            Assert.Equal(jogadorTeste, ObterServico.ObterPorId(jogadorTeste.IdJogador));
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(5)]
+        public void ao_AtualizarJogador_com_id_nao_invalido_ou_existente_deve_retornar_Exception(int idJogadorTeste)
+        {
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = idJogadorTeste,
+            };
+
+            var resultado = Assert.Throws<ValidationException>(() => ObterServico.Atualizar(jogadorTeste));
+
+            var mensagemDeErro = ($"Jogador {idJogadorTeste} Nao Encontrado");
+
+            Assert.Equal(mensagemDeErro, (IEnumerable<char>)resultado);
         }
     }
 }

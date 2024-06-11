@@ -22,5 +22,10 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
         {
             throw new NotImplementedException();
         }
+
+        public void Atualizar(Jogador jogador)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

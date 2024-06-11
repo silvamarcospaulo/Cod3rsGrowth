@@ -9,5 +9,6 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
         void Excluir(Jogador jogador);
         Jogador ObterPorId(int idJogador);
         List<Jogador> ObterTodos();
+        void Atualizar(Jogador jogador);
     }
 }

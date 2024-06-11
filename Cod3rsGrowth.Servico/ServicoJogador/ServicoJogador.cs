@@ -42,14 +42,6 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
         public void Excluir(Jogador jogador)
         {
         }
-        public Jogador ObterPorId(int idJogador)
-        {
-            return _IJogadorRepository.ObterPorId(idJogador);
-        }
-        public List<Jogador> ObterTodos()
-        {
-            return _IJogadorRepository.ObterTodos();
-        }
         public ValidationResult CriarJogador(Jogador jogador)
         {
             jogador.IdJogador = GerarIdJogador();
@@ -66,6 +58,32 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             {
                 return new ValidationResult(e.Errors);
             }
+        }
+        public void Atualizar(Jogador jogador)
+        {
+            
+            jogador.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogador.BaralhosJogador);
+            jogador.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogador.BaralhosJogador);
+
+            try
+            {
+                ObterPorId(jogador.IdJogador);
+                _validadorJogador.ValidateAndThrow(jogador);
+                _IJogadorRepository.Atualizar(jogador);
+                throw new Exception();
+            }
+            catch (ValidationException e)
+            {
+                throw new Exception($"{e.Errors}");
+            }
+        }
+        public Jogador ObterPorId(int idJogador)
+        {
+            return _IJogadorRepository.ObterPorId(idJogador);
+        }
+        public List<Jogador> ObterTodos()
+        {
+            return _IJogadorRepository.ObterTodos();
         }
     }
 }
