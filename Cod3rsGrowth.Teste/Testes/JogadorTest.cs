@@ -155,7 +155,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_CriarJogador_com_idade_menor_que_treze_anos_deve_retornar_Excepion()
+        public void ao_CriarJogador_com_idade_menor_que_treze_anos_deve_retornar_Exception()
         {
             const string mensagemEsperada = "O jogador deve possuir mais de 13 anos para criar conta";
 
@@ -178,7 +178,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_CriarJogador_com_dados_validos_deve_adicionar_ao_banco_de_dados()
+        public void ao_CriarJogador_com_dados_validos_deve_adicionar_um_novo_jogador()
         {
             var jogadorTeste = new Jogador()
             {
@@ -193,7 +193,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.CriarJogador(jogadorTeste);
 
-            Assert.Equivalent(jogadorTeste, ObterServico.ObterPorId(ObterServico.ObterTodos().Count()));
+            Assert.Equivalent(jogadorTeste, ObterServico.ObterPorId(jogadorTeste.IdJogador));
         }
     }
 }

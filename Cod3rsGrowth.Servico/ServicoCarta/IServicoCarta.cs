@@ -9,6 +9,5 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
     {
         Carta ObterPorId(int idCarta);
         List<Carta> ObterTodos();
-        ValidationResult CriarCarta(Carta carta);
     }
 }

@@ -7,6 +7,5 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
     {
         Jogador ObterPorId(int idJogador);
         List<Jogador> ObterTodos();
-        ValidationResult CriarJogador(Jogador jogador);
     }
 }

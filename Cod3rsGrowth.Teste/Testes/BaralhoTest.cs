@@ -473,7 +473,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_CriarBaralho_com_dados_validos_deve_adicionar_ao_banco_de_dados()
+        public void ao_CriarBaralho_com_dados_validos_deve_adicionar_um_novo_baralho()
         {
             var dataDeHoje = DateTime.Now;
 
@@ -509,7 +509,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.CriarBaralho(baralhoTeste);
 
-            Assert.Equivalent(baralhoTeste, ObterServico.ObterPorId(ObterServico.ObterTodos().Count()));
+            Assert.Equivalent(baralhoTeste, ObterServico.ObterPorId(baralhoTeste.IdBaralho));
         }
     }
 }

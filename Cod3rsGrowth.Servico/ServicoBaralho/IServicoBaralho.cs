@@ -7,6 +7,5 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
     {
         public Baralho ObterPorId(int idBaralho);
         public List<Baralho> ObterTodos();
-        ValidationResult CriarBaralho(Baralho baralho);
     }
 }

@@ -187,7 +187,7 @@ namespace Cod3rsGrowth.Teste.Testes
             Assert.Equal(mensagemEsperada, mensagemDeErro);
         }
         [Fact]
-        public void ao_CriarCarta_com_dados_validos_deve_adicionar_ao_banco_de_dados()
+        public void ao_CriarCarta_com_dados_validos_deve_adicionar_uma_nova_carta()
         {
             var cartaTeste = new Carta()
             {
@@ -202,9 +202,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.CriarCarta(cartaTeste);
 
-            var cartas = ObterServico.ObterTodos();
-
-            Assert.Contains(cartas, c => c == cartaTeste);
+            Assert.Equivalent(cartaTeste, ObterServico.ObterPorId(cartaTeste.IdCarta));
         }
     }
 }
