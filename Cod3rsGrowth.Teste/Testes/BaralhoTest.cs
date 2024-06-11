@@ -342,11 +342,54 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(mensagemEsperada, mensagemDeErro);
         }
+        
+        [Theory]
+        [InlineData(2)]
+        [InlineData(0)]
+        public void ao_CriarBaralho_commmander_com_mais_de_uma_copia_de_carta_nao_terreno_deve_retornar_Exception(int quantidadeDeCartasTeste)
+        {
+            const string mensagemEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
+
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = 3,
+                IdJogador = 1,
+                NomeBaralho = "Mono Green Stomp Commander",
+                FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
+                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                {
+                    new CopiaDeCartasNoBaralho
+                    {
+                        Carta = new Carta()
+                        {
+                            IdCarta = 10,
+                            NomeCarta = "Sol Ring",
+                            CustoDeManaConvertidoCarta = 0,
+                            TipoDeCarta = TipoDeCartaEnum.Artefato,
+                            RaridadeCarta = RaridadeEnum.Common,
+                            PrecoCarta = Convert.ToDecimal(0.5),
+                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                        },
+                        QuantidadeCopiasDaCartaNoBaralho = 100
+                    }
+                },
+                QuantidadeDeCartasNoBaralho = 60,
+                PrecoDoBaralho = 30,
+                CustoDeManaConvertidoDoBaralho = 0,
+                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            var resultado = ObterServico.CriarBaralho(baralhoTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault()?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
+        }
 
         [Theory]
         [InlineData(99)]
         [InlineData(101)]
-        public void ao_CriarBaralho_com_quantidade_de_cartas_nao_compativel_com_o_tipo_de_jogo_commander_deve_retornar_Exception(int quantidadeDeCartasTeste)
+        public void ao_CriarBaralho_commmander_com_quantidade_de_cartas_no_baralho_diferente_de_cem_cartas_deve_retornar_Exception(int quantidadeDeCartasTeste)
         {
             const string mensagemEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
 

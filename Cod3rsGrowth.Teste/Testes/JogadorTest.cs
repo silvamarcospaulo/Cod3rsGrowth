@@ -24,7 +24,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     IdJogador = 1,
                     NomeJogador = "Marcos",
-                    DataNascimentoJogador = Convert.ToDateTime("08/03/1999"),
+                    DataNascimentoJogador = new DateTime(day: 8, month: 3, year: 1999),
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
@@ -34,7 +34,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     IdJogador = 2,
                     NomeJogador = "Paulo",
-                    DataNascimentoJogador = Convert.ToDateTime("09/03/1999"),
+                    DataNascimentoJogador = new DateTime(day: 9, month: 3, year: 1999),
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
@@ -44,7 +44,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     IdJogador = 3,
                     NomeJogador = "Silva",
-                    DataNascimentoJogador = Convert.ToDateTime("10/03/1999"),
+                    DataNascimentoJogador = new DateTime(day: 10, month: 3, year: 1999),
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
@@ -88,7 +88,7 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 IdJogador = 1,
                 NomeJogador = "Marcos",
-                DataNascimentoJogador = Convert.ToDateTime("08/03/1999"),
+                DataNascimentoJogador = new DateTime(day: 8, month: 3, year: 1999),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
@@ -111,13 +111,13 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_CriarJogador_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemEsperada = "Nome do Jogador nao pode ser vazio";
+            const string mensagemEsperada = "Nome do Jogador nao preenchido";
 
             var jogadorTeste = new Jogador()
             {
                 IdJogador = 4,
                 NomeJogador = "",
-                DataNascimentoJogador = Convert.ToDateTime("29/11/2005"),
+                DataNascimentoJogador = new DateTime(day: 29, month: 11, year: 2005),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
@@ -130,6 +130,52 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(mensagemEsperada, mensagemDeErro);
         }
+        
+        [Fact]
+        public void ao_CriarJogador_com_data_de_nascimento_vazia_deve_retornar_Excepion()
+        {
+            const string mensagemEsperada = "Data de nascimente nao preenchida";
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = 4,
+                NomeJogador = "Detofol",
+                DataNascimentoJogador = new DateTime(),
+                PrecoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = null
+            };
+
+            var resultado = ObterServico.CriarJogador(jogadorTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "DataNascimentoJogador")?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
+        }
+
+        [Fact]
+        public void ao_CriarJogador_com_idade_menor_que_treze_anos_deve_retornar_Excepion()
+        {
+            const string mensagemEsperada = "O jogador deve possuir mais de 13 anos para criar conta";
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = 4,
+                NomeJogador = "Detofol",
+                DataNascimentoJogador = new DateTime(day: 12, month: 06, year: 2011),
+                PrecoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = null
+            };
+
+            var resultado = ObterServico.CriarJogador(jogadorTeste);
+
+            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "DataNascimentoJogador")?.ErrorMessage;
+
+            Assert.Equal(mensagemEsperada, mensagemDeErro);
+        }
 
         [Fact]
         public void ao_CriarJogador_com_dados_validos_deve_adicionar_ao_banco_de_dados()
@@ -138,7 +184,7 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 IdJogador = 4,
                 NomeJogador = "Detofol",
-                DataNascimentoJogador = Convert.ToDateTime("29/11/2005"),
+                DataNascimentoJogador = new DateTime(day: 29, month: 11, year: 2005),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
