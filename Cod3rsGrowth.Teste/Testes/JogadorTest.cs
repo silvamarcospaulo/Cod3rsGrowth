@@ -29,7 +29,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
-                    BaralhosJogador = null
+                    BaralhosJogador = new List<Baralho>()
                 },
                 new Jogador()
                 {
@@ -39,7 +39,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
-                    BaralhosJogador = null
+                    BaralhosJogador = new List < Baralho >()
                 },
                 new Jogador()
                 {
@@ -49,13 +49,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     PrecoDasCartasJogador = 0,
                     QuantidadeDeBaralhosJogador = 0,
                     ContaAtivaJogador = true,
-                    BaralhosJogador = null
+                    BaralhosJogador = new List<Baralho>()
                 }
             };
 
             ObterServico.ObterTodos().Clear();
 
-            listaJogadoresMock.ForEach(jogador => ObterServico.CriarJogador(new Jogador()
+            listaJogadoresMock.ForEach(jogador => ObterServico.Criar(new Jogador()
             {
                 NomeJogador = jogador.NomeJogador,
                 DataNascimentoJogador = jogador.DataNascimentoJogador,
@@ -93,7 +93,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
-                BaralhosJogador = null
+                BaralhosJogador = new List<Baralho>()
             };
 
             var jogadorMock = ObterServico.ObterPorId(jogadorTeste.IdJogador);
@@ -110,9 +110,9 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_CriarJogador_com_nome_vazio_deve_retornar_Exception()
+        public void ao_Criar_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemEsperada = "Nome do Jogador nao preenchido";
+            const string mensagemDeErroEsperada = "Nome do Jogador nao preenchido";
 
             var jogadorTeste = new Jogador()
             {
@@ -122,20 +122,18 @@ namespace Cod3rsGrowth.Teste.Testes
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
-                BaralhosJogador = null
+                BaralhosJogador = new List<Baralho>()
             };
 
-            var resultado = ObterServico.CriarJogador(jogadorTeste);
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(jogadorTeste));
 
-            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "NomeJogador")?.ErrorMessage;
-
-            Assert.Equal(mensagemEsperada, mensagemDeErro);
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
         
         [Fact]
-        public void ao_CriarJogador_com_data_de_nascimento_vazia_deve_retornar_Excepion()
+        public void ao_Criar_com_data_de_nascimento_vazia_deve_retornar_Excepion()
         {
-            const string mensagemEsperada = "Data de nascimente nao preenchida";
+            const string mensagemDeErroEsperada = "Data de nascimente nao preenchida";
 
             var jogadorTeste = new Jogador()
             {
@@ -145,41 +143,37 @@ namespace Cod3rsGrowth.Teste.Testes
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
-                BaralhosJogador = null
+                BaralhosJogador = new List<Baralho>()
             };
 
-            var resultado = ObterServico.CriarJogador(jogadorTeste);
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(jogadorTeste));
 
-            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "DataNascimentoJogador")?.ErrorMessage;
-
-            Assert.Equal(mensagemEsperada, mensagemDeErro);
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
 
         [Fact]
-        public void ao_CriarJogador_com_idade_menor_que_treze_anos_deve_retornar_Exception()
+        public void ao_Criar_com_idade_menor_que_treze_anos_deve_retornar_Exception()
         {
-            const string mensagemEsperada = "O jogador deve possuir mais de 13 anos para criar conta";
+            const string mensagemDeErroEsperada = "O jogador deve possuir mais de 13 anos para criar conta";
 
             var jogadorTeste = new Jogador()
             {
                 IdJogador = 4,
                 NomeJogador = "Detofol",
-                DataNascimentoJogador = new DateTime(day: 12, month: 06, year: 2011),
+                DataNascimentoJogador = new DateTime(day: 12, month: 06, year: 2024),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
-                BaralhosJogador = null
+                BaralhosJogador = new List<Baralho>()
             };
 
-            var resultado = ObterServico.CriarJogador(jogadorTeste);
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(jogadorTeste));
 
-            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "DataNascimentoJogador")?.ErrorMessage;
-
-            Assert.Equal(mensagemEsperada, mensagemDeErro);
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
 
         [Fact]
-        public void ao_CriarJogador_com_dados_validos_deve_adicionar_um_novo_jogador()
+        public void ao_Criar_com_dados_validos_deve_adicionar_um_novo_jogador()
         {
             var jogadorTeste = new Jogador()
             {
@@ -189,10 +183,10 @@ namespace Cod3rsGrowth.Teste.Testes
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
-                BaralhosJogador = null
+                BaralhosJogador = new List<Baralho>()
             };
 
-            ObterServico.CriarJogador(jogadorTeste);
+            ObterServico.Criar(jogadorTeste);
 
             Assert.Equal(jogadorTeste, ObterServico.ObterPorId(jogadorTeste.IdJogador));
         }
@@ -200,39 +194,123 @@ namespace Cod3rsGrowth.Teste.Testes
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
-        public void ao_AtualizarJogador_com_dados_validos_deve_adicionar_um_novo_jogador(int idJogadorTeste)
+        public void ao_Atualizar_com_dados_validos_deve_adicionar_um_novo_jogador(int idJogadorTeste)
         {
-            var jogadorTeste = new Jogador()
+            var dataDeHoje = DateTime.Now; 
+
+            var baralhoTesteJogador = new List<Baralho>()
             {
-                IdJogador = idJogadorTeste,
-                NomeJogador = "Marcos Paulo Silva",
-                DataNascimentoJogador = new DateTime(day: 10, month: 3, year: 2000),
-                PrecoDasCartasJogador = 0,
-                QuantidadeDeBaralhosJogador = 0,
-                ContaAtivaJogador = true,
-                BaralhosJogador = null
+                new Baralho()
+                {
+                    IdBaralho = 1,
+                    IdJogador = 1,
+                    NomeBaralho = "Mono Green Stomp",
+                    FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
+                    CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                    {
+                        new CopiaDeCartasNoBaralho
+                        {
+                            Carta = new Carta()
+                            {
+                                IdCarta = 7,
+                                NomeCarta = "Ghalta, Fome Primordial",
+                                CustoDeManaConvertidoCarta = 12,
+                                TipoDeCarta = TipoDeCartaEnum.Criatura,
+                                RaridadeCarta = RaridadeEnum.Rare,
+                                PrecoCarta = Convert.ToDecimal(5),
+                                CorCarta = new List<CoresEnum>() { CoresEnum.Verde }
+                            },
+                            QuantidadeCopiasDaCartaNoBaralho = 1
+                        },
+                        new CopiaDeCartasNoBaralho
+                        {
+                            Carta = new Carta()
+                            {
+                                IdCarta = 3,
+                                NomeCarta = "Floresta",
+                                CustoDeManaConvertidoCarta = 0,
+                                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                                RaridadeCarta = RaridadeEnum.Common,
+                                PrecoCarta = Convert.ToDecimal(0.5),
+                                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            },
+                            QuantidadeCopiasDaCartaNoBaralho = 99
+                        }
+                    },
+                    QuantidadeDeCartasNoBaralho = 100,
+                    DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
+                    PrecoDoBaralho = 54.5m,
+                    CustoDeManaConvertidoDoBaralho = 0,
+                    CorBaralho = new List<CoresEnum>() {CoresEnum.Verde}
+                }
             };
+
+            var jogadorTeste = ObterServico.ObterPorId(idJogadorTeste);
+
+            jogadorTeste.BaralhosJogador = baralhoTesteJogador;
 
             ObterServico.Atualizar(jogadorTeste);
 
-            Assert.Equal(jogadorTeste, ObterServico.ObterPorId(jogadorTeste.IdJogador));
+            Assert.Equivalent(jogadorTeste, ObterServico.ObterPorId(jogadorTeste.IdJogador));
         }
 
         [Theory]
         [InlineData(0)]
         [InlineData(5)]
-        public void ao_AtualizarJogador_com_id_nao_invalido_ou_existente_deve_retornar_Exception(int idJogadorTeste)
+        public void ao_Atualizar_com_id_invalido_ou_inexistente_deve_retornar_Exception(int idJogadorTeste)
         {
             var jogadorTeste = new Jogador()
             {
                 IdJogador = idJogadorTeste,
             };
 
-            var resultado = Assert.Throws<ValidationException>(() => ObterServico.Atualizar(jogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(jogadorTeste));
 
             var mensagemDeErro = ($"Jogador {idJogadorTeste} Nao Encontrado");
 
-            Assert.Equal(mensagemDeErro, (IEnumerable<char>)resultado);
+            Assert.Equal(mensagemDeErro, resultado.Message);
+        }
+
+        [Fact]
+        public void ao_Atualizar_com_nome_vazio_deve_retornar_Exception()
+        {
+            const string mensagemDeErroEsperada = ("Nome do Jogador nao preenchido");
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = 2,
+                NomeJogador = "",
+                DataNascimentoJogador = new DateTime(day: 10, month: 3, year: 2000),
+                PrecoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = new List<Baralho>()
+            };
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(jogadorTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
+
+        [Fact]
+        public void ao_Atualizar_com_data_vazio_deve_retornar_Exception()
+        {
+            const string mensagemDeErroEsperada = ("Data de nascimente nao preenchida");
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = 2,
+                NomeJogador = "Marcos Paulo Silva",
+                DataNascimentoJogador = new DateTime(),
+                PrecoDasCartasJogador = 0,
+                QuantidadeDeBaralhosJogador = 0,
+                ContaAtivaJogador = true,
+                BaralhosJogador = new List<Baralho>()
+            };
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(jogadorTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
     }
 }
