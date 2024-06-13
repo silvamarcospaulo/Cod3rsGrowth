@@ -8,10 +8,6 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryBaralho
         public void Inserir(Baralho baralho)
         {
         }
-        public void Excluir(Baralho baralho)
-        {
-            throw new NotImplementedException();
-        }
 
         public Baralho ObterPorId(int idBaralho)
         {
@@ -19,6 +15,20 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryBaralho
         }
 
         public List<Baralho> ObterTodos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Criar(Baralho baralho)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Atualizar(Baralho baralho)
+        {
+            throw new NotImplementedException();
+        }
+        public void Excluir(Baralho baralho)
         {
             throw new NotImplementedException();
         }

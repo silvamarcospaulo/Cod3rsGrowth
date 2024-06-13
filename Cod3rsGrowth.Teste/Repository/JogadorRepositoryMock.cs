@@ -18,9 +18,7 @@ namespace Cod3rsGrowth.Teste.Repository
         public void Atualizar(Jogador jogador)
         {
             var jogadorBanco = ObterPorId(jogador.IdJogador);
-            jogadorBanco.PrecoDasCartasJogador = jogador.PrecoDasCartasJogador;
-            jogadorBanco.QuantidadeDeBaralhosJogador = jogador.QuantidadeDeBaralhosJogador;
-            jogadorBanco.BaralhosJogador = jogador.BaralhosJogador;
+            jogadorBanco = jogador;
         }
         public Jogador ObterPorId(int idJogador)
         {

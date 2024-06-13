@@ -2,6 +2,7 @@ using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Dominio.Modelos;
 using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Servico.ServicoCarta;
+using System.Diagnostics.Metrics;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
@@ -13,6 +14,7 @@ namespace Cod3rsGrowth.Teste.Testes
             ObterServico = ServiceProvider.GetService<ServicoCarta>() ?? throw new Exception("Erro ao obter servico");
             IniciarListaMock();
         }
+
         public void IniciarListaMock()
         {
             var listaCartasMock = new List<Carta>()
@@ -91,15 +93,17 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.ObterTodos().Clear();
 
-            listaCartasMock.ForEach(carta => ObterServico.CriarCarta(new Carta()
-            {
-                NomeCarta = carta.NomeCarta,
-                CustoDeManaConvertidoCarta = carta.CustoDeManaConvertidoCarta,
-                TipoDeCarta = carta.TipoDeCarta,
-                RaridadeCarta = carta.RaridadeCarta,
-                CorCarta = carta.CorCarta
-            }));
+            listaCartasMock.ForEach(carta => ObterServico.Criar(
+                new Carta()
+                {
+                    NomeCarta = carta.NomeCarta,
+                    CustoDeManaConvertidoCarta = carta.CustoDeManaConvertidoCarta,
+                    TipoDeCarta = carta.TipoDeCarta,
+                    RaridadeCarta = carta.RaridadeCarta,
+                    CorCarta = carta.CorCarta
+                }));
         }
+
         [Fact]
         public void ao_ObterTodos_verifica_se_a_lista_nao_esta_vazia()
         {
@@ -109,6 +113,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.NotEmpty(cartas);
         }
+
         [Fact]
         public void ao_ObterTodos_deve_retornar_uma_lista_com_sete_cartas()
         {
@@ -118,6 +123,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }
+
         [Fact]
         public void ao_ObterPorId_com_id_seis_retornar_baralho_niv_mizzet_parum()
         {
@@ -136,6 +142,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equivalent(cartaTeste, cartaMock);
         }
+
         [Theory]
         [InlineData(-10)]
         [InlineData(8)]
@@ -143,10 +150,11 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             Assert.Throws<Exception>(() => ObterServico.ObterPorId(idCartaTeste));
         }
+
         [Fact]
-        public void ao_CriarCarta_com_nome_vazio_deve_retornar_Exception()
+        public void ao_Criar_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemEsperada = "Nome da carta nao pode ser vazio";
+            const string mensagemDeErroEsperada = "Nome da carta nao pode ser vazio";
 
             var cartaTeste = new Carta()
             {
@@ -159,16 +167,16 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            var resultado = ObterServico.CriarCarta(cartaTeste);
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(cartaTeste));
 
-            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "NomeCarta")?.ErrorMessage;
-
-            Assert.Equal(mensagemEsperada, mensagemDeErro);
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
+
         [Fact]
-        public void ao_CriarCarta_com_custo_de_mana_convertido_negativo_deve_retornar_Exception()
+        public void ao_Criar_com_custo_de_mana_convertido_negativo_deve_retornar_Exception()
         {
-            const string mensagemEsperada = "Custo de Mana Convertido da Carta deve ser igual ou maior que 0";
+            const string mensagemDeErroEsperada = "Custo de Mana Convertido da Carta deve ser igual ou maior que 0";
+
             var cartaTeste = new Carta()
             {
                 IdCarta = 8,
@@ -180,14 +188,13 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            var resultado = ObterServico.CriarCarta(cartaTeste);
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(cartaTeste));
 
-            var mensagemDeErro = resultado.Errors.FirstOrDefault(e => e.PropertyName == "CustoDeManaConvertidoCarta")?.ErrorMessage;
-
-            Assert.Equal(mensagemEsperada, mensagemDeErro);
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
+
         [Fact]
-        public void ao_CriarCarta_com_dados_validos_deve_adicionar_uma_nova_carta()
+        public void ao_Criar_com_dados_validos_deve_adicionar_uma_nova_carta()
         {
             var cartaTeste = new Carta()
             {
@@ -200,9 +207,64 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            ObterServico.CriarCarta(cartaTeste);
+            ObterServico.Criar(cartaTeste);
 
             Assert.Equivalent(cartaTeste, ObterServico.ObterPorId(cartaTeste.IdCarta));
+        }
+
+        [Fact]
+        public void ao_Atualizar_com_dados_validos_deve_adicionar_uma_nova_carta()
+        {
+            var cartaTeste = new Carta()
+            {
+                IdCarta = 7,
+                RaridadeCarta = RaridadeEnum.Uncommon,
+            };
+
+            var precoCartaEsperado = 2.5m;
+
+            ObterServico.Atualizar(cartaTeste);
+
+            Assert.Equal(precoCartaEsperado, ObterServico.ObterPorId(cartaTeste.IdCarta).PrecoCarta);
+            Assert.Equal(cartaTeste.RaridadeCarta, ObterServico.ObterPorId(cartaTeste.IdCarta).RaridadeCarta);
+        }
+
+        [Fact]
+        public void ao_Atualizar_com_nome_vazio_deve_retornar_Exception()
+        {
+            const string mensagemDeErroEsperada = "Nome da carta nao pode ser vazio";
+
+            var cartaTeste = new Carta()
+            {
+                IdCarta = 8,
+                NomeCarta = "",
+                CustoDeManaConvertidoCarta = 2,
+                TipoDeCarta = TipoDeCartaEnum.Artefato,
+                RaridadeCarta = RaridadeEnum.Common,
+                PrecoCarta = 0.5m,
+                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+            };
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(cartaTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
+
+        [Theory]
+        [InlineData(-10)]
+        [InlineData(8)]
+        public void ao_Atualizar_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
+        {
+            var mensagemDeErroEsperada = ($"Carta {idCartaTeste} Nao Encontrada");
+
+            var cartaTeste = new Carta()
+            {
+                IdCarta = idCartaTeste,
+            };
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(cartaTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
     }
 }

@@ -5,14 +5,6 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
 {
     public class JogadorRepository : IJogadorRepository
     {
-        public void Inserir(Jogador jogador)
-        {
-        }
-        public void Excluir(Jogador jogador)
-        {
-            throw new NotImplementedException();
-        }
-
         public Jogador ObterPorId(int idJogador)
         {
             throw new NotImplementedException();
@@ -29,6 +21,10 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
         }
 
         public void Atualizar(Jogador jogador)
+        {
+            throw new NotImplementedException();
+        }
+        public void Excluir(Jogador jogador)
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
+using Cod3rsGrowth.Servico.ServicoJogador;
 using FluentValidation;
 using FluentValidation.Results;
 
@@ -84,11 +85,6 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day);
         }
 
-        public void Inserir(Baralho baralho)
-        {
-            _IBaralhoRepository.Inserir(baralho);
-        }
-
         public void Excluir(Baralho baralho)
         {
         }
@@ -103,7 +99,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return _IBaralhoRepository.ObterPorId(idBaralho);
         }
 
-        public ValidationResult CriarBaralho(Baralho baralho)
+        public void Criar(Baralho baralho)
         {
             baralho.IdBaralho = GerarIdBaralho();
             baralho.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
@@ -115,12 +111,37 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             try
             {
                 _validadorBaralho.ValidateAndThrow(baralho);
-                Inserir(baralho);
-                return new ValidationResult();
+                _IBaralhoRepository.Criar(baralho);
             }
             catch (ValidationException e)
             {
-                return new ValidationResult(e.Errors);
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
+            }
+        }
+
+        public void Atualizar(Baralho baralho)
+        {
+            var baralhoAtualizado = ObterPorId(baralho.IdBaralho);
+
+            baralhoAtualizado.NomeBaralho = baralho.NomeBaralho;
+            baralhoAtualizado.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
+            baralhoAtualizado.CartasDoBaralho = baralho.CartasDoBaralho;
+            baralhoAtualizado.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralhoAtualizado.CartasDoBaralho);
+            baralhoAtualizado.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
+            baralhoAtualizado.PrecoDoBaralho = SomarPrecoDoBaralho(baralhoAtualizado.CartasDoBaralho);
+            baralhoAtualizado.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralhoAtualizado.CartasDoBaralho);
+            baralhoAtualizado.CorBaralho = ConferirCoresDoBaralho(baralhoAtualizado.CartasDoBaralho);
+
+            try
+            {
+                _validadorBaralho.ValidateAndThrow(baralhoAtualizado);
+                _IBaralhoRepository.Atualizar(baralhoAtualizado);
+            }
+            catch (ValidationException e)
+            {
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
             }
         }
     }

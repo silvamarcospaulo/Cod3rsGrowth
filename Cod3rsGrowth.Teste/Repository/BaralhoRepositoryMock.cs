@@ -9,9 +9,15 @@ namespace Cod3rsGrowth.Teste.Repository
     {
         public List<Baralho> tabelasBaralhos = SingletonTabelas.InstanciaBaralhos;
 
-        public void Inserir(Baralho baralho)
+        public void Criar(Baralho baralho)
         {
             tabelasBaralhos.Add(baralho);
+        }
+
+        public void Atualizar(Baralho baralho)
+        {
+            var baralhoBanco = ObterPorId(baralho.IdJogador);
+            baralhoBanco = baralho;
         }
         public void Excluir(Baralho baralho)
         {

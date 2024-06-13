@@ -8,9 +8,15 @@ namespace Cod3rsGrowth.Teste.Repository
     {
         public List<Carta> tabelasCartas = SingletonTabelas.InstanciaCartas;
 
-        public void Inserir(Carta carta)
+        public void Criar(Carta carta)
         {
             tabelasCartas.Add(carta);
+        }
+
+        public void Atualizar(Carta carta)
+        {
+            var cartaBanco = ObterPorId(carta.IdCarta);
+            cartaBanco = carta;
         }
 
         public void Excluir(Carta carta)

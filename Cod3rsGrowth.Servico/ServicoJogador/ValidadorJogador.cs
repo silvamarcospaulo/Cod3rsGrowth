@@ -39,6 +39,15 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             {
                 RuleFor(jogador => jogador.BaralhosJogador)
                 .Must(ValidacaoTipoDeBaralho).WithMessage("Quantidade de cartas do baralho não compativel com o formato de jogo selecionado");
+                
+                RuleFor(jogador => jogador.NomeJogador)
+                .NotEmpty().WithMessage("Nome do Jogador nao preenchido")
+                .NotNull().WithMessage("Nome do Jogador nao preenchido2");
+
+                RuleFor(jogador => jogador.DataNascimentoJogador)
+                .NotNull().WithMessage("Data de nascimente nao pode ser nula")
+                .NotEmpty().WithMessage("Data de nascimente nao preenchida")
+                .LessThanOrEqualTo(valorDataNascimentoMinima).WithMessage("O jogador deve possuir mais de 13 anos para criar conta");
             });
         }
 

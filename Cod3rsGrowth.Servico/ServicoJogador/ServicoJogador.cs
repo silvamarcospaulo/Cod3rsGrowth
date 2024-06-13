@@ -8,7 +8,6 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
     public class ServicoJogador : IJogadorRepository
     {
         private readonly IJogadorRepository _IJogadorRepository;
-        private readonly IBaralhoRepository _IBaralhoRepository;
         private readonly IValidator<Jogador> _validadorJogador;
         public ServicoJogador(IJogadorRepository jogadorRepository, IValidator<Jogador> validadorJogador)
         {
@@ -36,13 +35,6 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             if (baralhosJogador == null) return 0;
             return baralhosJogador.Count;
         }
-        public void Inserir(Jogador jogador)
-        {
-            _IJogadorRepository.Inserir(jogador);
-        }
-        public void Excluir(Jogador jogador)
-        {
-        }
         public void Criar(Jogador jogador)
         {
             jogador.IdJogador = GerarIdJogador();
@@ -62,23 +54,22 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
         }
         public void Atualizar(Jogador jogador)
         {
-            jogador.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogador.BaralhosJogador);
-            jogador.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogador.BaralhosJogador);
+            Jogador jogadorAtualizado = ObterPorId(jogador.IdJogador);
+            jogadorAtualizado.BaralhosJogador = jogador.BaralhosJogador;
+            jogadorAtualizado.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizado.BaralhosJogador);
+            jogadorAtualizado.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogadorAtualizado.BaralhosJogador);
 
-
-            ObterPorId(jogador.IdJogador);
-            var validador = _validadorJogador.Validate(jogador, options => options.IncludeRuleSets("Atualizar"));            
+            var validador = _validadorJogador.Validate(jogadorAtualizado, options => options.IncludeRuleSets("Atualizar"));            
 
             if (validador.IsValid)
             {
-                _IJogadorRepository.Atualizar(jogador);
+                _IJogadorRepository.Atualizar(jogadorAtualizado);
             }
             else
             {
                 var mensagemDeErro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
-                throw new ValidationException(mensagemDeErro); 
+                throw new Exception(mensagemDeErro); 
             }
-            
         }
 
         public Jogador ObterPorId(int idJogador)
@@ -88,6 +79,9 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
         public List<Jogador> ObterTodos()
         {
             return _IJogadorRepository.ObterTodos();
+        }
+        public void Excluir(Jogador jogador)
+        {
         }
     }
 }
