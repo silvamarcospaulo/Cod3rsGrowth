@@ -24,19 +24,21 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             DateTime valorDataHoje = DateTime.Now;
             const int valorMinimoDeIdadeParaCriarConta = 13;
             int valorAnoDeNascimentoMinimo = Convert.ToInt32(valorDataHoje.Year) - valorMinimoDeIdadeParaCriarConta;
-            DateTime valorDataNascimentoMinima = new DateTime(day: valorDataHoje.Day, month: valorDataHoje.Month, year: valorAnoDeNascimentoMinimo);
+            DateTime valorDataNascimentoMinima = new DateTime(valorAnoDeNascimentoMinimo, valorDataHoje.Month, valorDataHoje.Day);
+
 
             RuleFor(jogador => jogador.NomeJogador)
             .NotEmpty().WithMessage("Nome do Jogador nao preenchido");
 
             RuleFor(jogador => jogador.DataNascimentoJogador)
+            .NotNull().WithMessage("Data de nascimente nao pode ser nula")
             .NotEmpty().WithMessage("Data de nascimente nao preenchida")
-            .LessThanOrEqualTo(valorDataNascimentoMinima).WithErrorCode("O jogador deve possuir mais de 13 anos para criar conta");
+            .LessThanOrEqualTo(valorDataNascimentoMinima).WithMessage("O jogador deve possuir mais de 13 anos para criar conta");
 
             RuleSet("Atualizar", () =>
             {
                 RuleFor(jogador => jogador.BaralhosJogador)
-                .Must(ValidacaoTipoDeBaralho).WithErrorCode("Quantidade de cartas do baralho não compativel com o formato de jogo selecionado");
+                .Must(ValidacaoTipoDeBaralho).WithMessage("Quantidade de cartas do baralho não compativel com o formato de jogo selecionado");
             });
         }
 

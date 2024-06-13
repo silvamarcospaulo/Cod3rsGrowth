@@ -2,8 +2,6 @@
 using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using FluentValidation;
-using FluentValidation.Results;
-using System.Security.Principal;
 
 namespace Cod3rsGrowth.Servicos.ServicoJogador
 {
@@ -64,22 +62,25 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
         }
         public void Atualizar(Jogador jogador)
         {
-            
             jogador.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogador.BaralhosJogador);
             jogador.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogador.BaralhosJogador);
 
 
             ObterPorId(jogador.IdJogador);
-            var mensagemDeErro = _validadorJogador.Validate(jogador, options => options.IncludeRuleSets("Atualizar")).Errors;
-            //var mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+            var validador = _validadorJogador.Validate(jogador, options => options.IncludeRuleSets("Atualizar"));            
 
-
-            if (mensagemDeErro.Count() > 0 )
+            if (validador.IsValid)
             {
-                throw new Exception($"{mensagemDeErro}");
+                _IJogadorRepository.Atualizar(jogador);
             }
-            _IJogadorRepository.Atualizar(jogador);
+            else
+            {
+                var mensagemDeErro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
+                throw new ValidationException(mensagemDeErro); 
+            }
+            
         }
+
         public Jogador ObterPorId(int idJogador)
         {
             return _IJogadorRepository.ObterPorId(idJogador);

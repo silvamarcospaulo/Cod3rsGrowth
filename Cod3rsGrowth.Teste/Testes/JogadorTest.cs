@@ -158,9 +158,8 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
-                IdJogador = 4,
                 NomeJogador = "Detofol",
-                DataNascimentoJogador = new DateTime(day: 12, month: 06, year: 2024),
+                DataNascimentoJogador = new DateTime(day: 1, month: 06, year: 2023),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
                 ContaAtivaJogador = true,
@@ -293,7 +292,7 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_Atualizar_com_data_vazio_deve_retornar_Exception()
+        public void ao_Atualizar_com_data_de_nascimento_vazio_deve_retornar_Exception()
         {
             const string mensagemDeErroEsperada = ("Data de nascimente nao preenchida");
 
@@ -308,7 +307,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 BaralhosJogador = new List<Baralho>()
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(jogadorTeste));
+            var resultado = Assert.Throws<ValidationException>(() => ObterServico.Atualizar(jogadorTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
