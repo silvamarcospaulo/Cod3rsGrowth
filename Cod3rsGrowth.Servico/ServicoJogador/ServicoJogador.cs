@@ -78,14 +78,16 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
 
         public void Excluir(Jogador jogador)
         {
-            try
+            var validador = _validadorJogador.Validate(ObterPorId(jogador.IdJogador), options => options.IncludeRuleSets("Excluir"));
+
+            if (validador.IsValid)
             {
                 _IJogadorRepository.Excluir(ObterPorId(jogador.IdJogador));
             }
-            catch (ValidationException e)
+            else
             {
-                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
-                throw new Exception($"{mensagemDeErro}");
+                var mensagemDeErro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
+                throw new Exception(mensagemDeErro);
             }
         }
 

@@ -49,6 +49,12 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 .NotEmpty().WithMessage("Data de nascimente nao preenchida")
                 .LessThanOrEqualTo(valorDataNascimentoMinima).WithMessage("O jogador deve possuir mais de 13 anos para criar conta");
             });
+
+            RuleSet("Excluir", () =>
+            {
+                RuleFor(jogador => jogador.BaralhosJogador)
+                .Must(ValidacaoExclusaoDeJogador).WithMessage("Não e possivel excluir a conta, pois o jogador possui baralhos ativos");
+            });
         }
 
         private static bool ValidacaoTipoDeBaralho(List<Baralho> baralhosJogador)
@@ -86,6 +92,16 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 }
             }
             return true;
+        }
+
+        private static bool ValidacaoExclusaoDeJogador(List<Baralho> baralhosJogador)
+        {
+            const int quantidadeDeBaralhosParaExclusao = 0;
+            int quantidadeDeBralho = baralhosJogador.Count();
+
+            if (baralhosJogador.Count() == quantidadeDeBaralhosParaExclusao) return true;
+
+            return false;
         }
     }
 }
