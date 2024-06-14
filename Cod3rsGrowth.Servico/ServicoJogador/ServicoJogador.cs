@@ -59,16 +59,15 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             jogadorAtualizado.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizado.BaralhosJogador);
             jogadorAtualizado.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogadorAtualizado.BaralhosJogador);
 
-            var validador = _validadorJogador.Validate(jogadorAtualizado, options => options.IncludeRuleSets("Atualizar"));            
-
-            if (validador.IsValid)
+            try
             {
-                _IJogadorRepository.Atualizar(jogadorAtualizado);
+                _validadorJogador.ValidateAndThrow(jogador);
+                _IJogadorRepository.Criar(jogador);
             }
-            else
+            catch (ValidationException e)
             {
-                var mensagemDeErro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
-                throw new Exception(mensagemDeErro); 
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
             }
         }
 

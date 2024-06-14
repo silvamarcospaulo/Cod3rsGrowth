@@ -16,7 +16,8 @@ namespace Cod3rsGrowth.Teste.Repository
         public void Atualizar(Carta carta)
         {
             var cartaBanco = ObterPorId(carta.IdCarta);
-            cartaBanco = carta;
+            cartaBanco.RaridadeCarta = carta.RaridadeCarta;
+            cartaBanco.PrecoCarta = carta.PrecoCarta;
         }
 
         public void Excluir(Carta carta)

@@ -235,10 +235,25 @@ namespace Cod3rsGrowth.Teste.Testes
             var cartaTeste = new Carta()
             {
                 IdCarta = 1,
-                RaridadeCarta = RaridadeEnum.Rare,
+                NomeCarta = "Ilha",
+                CustoDeManaConvertidoCarta = 0,
+                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                RaridadeCarta = RaridadeEnum.Uncommon,
+                PrecoCarta = Convert.ToDecimal(2.5),
+                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
             };
-            
-            var cartaTesteExistente = ObterServico.ObterPorId(cartaTeste.IdCarta);
+
+
+            var cartaTesteExistente = new Carta()
+            {
+                IdCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).IdCarta,
+                NomeCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).NomeCarta,
+                CustoDeManaConvertidoCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).CustoDeManaConvertidoCarta,
+                TipoDeCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).TipoDeCarta,
+                RaridadeCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).RaridadeCarta,
+                PrecoCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).PrecoCarta,
+                CorCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).CorCarta,
+            };
 
             ObterServico.Atualizar(cartaTeste);
 
@@ -248,6 +263,8 @@ namespace Cod3rsGrowth.Teste.Testes
             Assert.Equal(cartaTesteExistente.NomeCarta, cartaTesteAtualizada.NomeCarta);
             Assert.Equal(cartaTesteExistente.CustoDeManaConvertidoCarta, cartaTesteAtualizada.CustoDeManaConvertidoCarta);
             Assert.Equal(cartaTesteExistente.TipoDeCarta, cartaTesteAtualizada.TipoDeCarta);
+            Assert.NotEqual(cartaTesteExistente.RaridadeCarta, cartaTesteAtualizada.RaridadeCarta);
+            Assert.NotEqual(cartaTesteExistente.PrecoCarta, cartaTesteAtualizada.PrecoCarta);
             Assert.Equal(cartaTesteExistente.CorCarta, cartaTesteAtualizada.CorCarta);
         }
 
