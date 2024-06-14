@@ -783,5 +783,42 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void ao_Excluir_com_id_valido_deve_remover_o_baralho_correspondente(int idBaralhoTeste)
+        {
+            var mensagemDeErroEsperada = ($"Baralho {idBaralhoTeste} Nao Encontrado");
+
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = idBaralhoTeste,
+            };
+
+            ObterServico.Excluir(baralhoTeste);
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(idBaralhoTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(10)]
+        public void ao_Excluir_com_um_id_invalido_ou_inexistente_deve_retornar_Exception(int idBaralhoTeste)
+        {
+            var mensagemDeErroEsperada = ($"Baralho {idBaralhoTeste} Nao Encontrado");
+
+            var baralhoTeste = new Baralho()
+            {
+                IdBaralho = idBaralhoTeste,
+            };
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(baralhoTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
     }
 }

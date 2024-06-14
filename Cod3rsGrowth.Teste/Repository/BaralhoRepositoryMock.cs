@@ -21,6 +21,7 @@ namespace Cod3rsGrowth.Teste.Repository
         }
         public void Excluir(Baralho baralho)
         {
+            tabelasBaralhos.Remove(baralho);
         }
 
         public Baralho ObterPorId(int idBaralho)

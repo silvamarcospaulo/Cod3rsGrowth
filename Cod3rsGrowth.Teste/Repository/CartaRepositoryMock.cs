@@ -20,10 +20,6 @@ namespace Cod3rsGrowth.Teste.Repository
             cartaBanco.PrecoCarta = carta.PrecoCarta;
         }
 
-        public void Excluir(Carta carta)
-        {
-        }
-
         public Carta ObterPorId(int idCarta)
         {
             return tabelasCartas.FirstOrDefault(carta => carta.IdCarta == idCarta) ?? throw new Exception($"Carta {idCarta} Nao Encontrada");

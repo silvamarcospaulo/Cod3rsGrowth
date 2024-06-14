@@ -409,5 +409,42 @@ namespace Cod3rsGrowth.Teste.Testes
             Assert.Equal(jogadorTesteExistente.NomeJogador, ObterServico.ObterPorId(jogadorTeste.IdJogador).NomeJogador);
             Assert.Equal(jogadorTesteExistente.DataNascimentoJogador, ObterServico.ObterPorId(jogadorTeste.IdJogador).DataNascimentoJogador);
         }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void ao_Excluir_com_id_valido_deve_remover_o_jogador_correspondente(int idJogadorTeste)
+        {
+            var mensagemDeErroEsperada = ($"Jogador {idJogadorTeste} Nao Encontrado");
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = idJogadorTeste,
+            };
+
+            ObterServico.Excluir(jogadorTeste);
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(jogadorTeste.IdJogador));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(10)]
+        public void ao_Excluir_com_um_id_invalido_ou_inexistente_deve_retornar_Exception(int idJogadorTeste)
+        {
+            var mensagemDeErroEsperada = ($"Jogador {idJogadorTeste} Nao Encontrado");
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = idJogadorTeste,
+            };
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
     }
 }

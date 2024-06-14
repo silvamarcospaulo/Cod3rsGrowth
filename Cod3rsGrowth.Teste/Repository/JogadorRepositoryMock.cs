@@ -14,6 +14,7 @@ namespace Cod3rsGrowth.Teste.Repository
         }
         public void Excluir(Jogador jogador)
         {
+            tabelasJogadores.Remove(jogador);
         }
         public void Atualizar(Jogador jogador)
         {

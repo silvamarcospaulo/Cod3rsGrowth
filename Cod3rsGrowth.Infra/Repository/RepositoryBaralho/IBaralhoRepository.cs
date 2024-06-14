@@ -5,10 +5,10 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryBaralho
 {
     public interface IBaralhoRepository
     {
-        void Excluir(Baralho baralho);
-        Baralho ObterPorId(int idBaralho);
         void Criar(Baralho baralho);
         void Atualizar(Baralho baralho);
+        void Excluir(Baralho baralho);
         List<Baralho> ObterTodos();
+        Baralho ObterPorId(int idBaralho);
     }
 }
