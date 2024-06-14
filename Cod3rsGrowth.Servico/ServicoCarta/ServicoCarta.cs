@@ -87,12 +87,12 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
         {
             var cartaAtualizada = ObterPorId(carta.IdCarta);
             cartaAtualizada.RaridadeCarta = carta.RaridadeCarta;
-            cartaAtualizada.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
+            cartaAtualizada.PrecoCarta = GerarPrecoCarta(cartaAtualizada.RaridadeCarta);
 
             try
             {
-                _validadorCarta.ValidateAndThrow(carta);
-                _ICartaRepository.Criar(carta);
+                _validadorCarta.ValidateAndThrow(cartaAtualizada);
+                _ICartaRepository.Atualizar(cartaAtualizada);
             }
             catch (ValidationException e)
             {

@@ -230,24 +230,25 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_Atualizar_com_nome_vazio_deve_retornar_Exception()
+        public void ao_Atualizar_com_nao_deve_ser_alterar_nome_custo_de_mana_convertido_tipo_de_carta_e_cor_carta()
         {
-            const string mensagemDeErroEsperada = "Nome da carta nao pode ser vazio";
-
             var cartaTeste = new Carta()
             {
-                IdCarta = 8,
-                NomeCarta = "",
-                CustoDeManaConvertidoCarta = 2,
-                TipoDeCarta = TipoDeCartaEnum.Artefato,
-                RaridadeCarta = RaridadeEnum.Common,
-                PrecoCarta = 0.5m,
-                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                IdCarta = 1,
+                RaridadeCarta = RaridadeEnum.Rare,
             };
+            
+            var cartaTesteExistente = ObterServico.ObterPorId(cartaTeste.IdCarta);
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(cartaTeste));
+            ObterServico.Atualizar(cartaTeste);
 
-            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+            var cartaTesteAtualizada = ObterServico.ObterPorId(cartaTeste.IdCarta);
+
+            Assert.Equal(cartaTesteExistente.IdCarta, cartaTesteAtualizada.IdCarta);
+            Assert.Equal(cartaTesteExistente.NomeCarta, cartaTesteAtualizada.NomeCarta);
+            Assert.Equal(cartaTesteExistente.CustoDeManaConvertidoCarta, cartaTesteAtualizada.CustoDeManaConvertidoCarta);
+            Assert.Equal(cartaTesteExistente.TipoDeCarta, cartaTesteAtualizada.TipoDeCarta);
+            Assert.Equal(cartaTesteExistente.CorCarta, cartaTesteAtualizada.CorCarta);
         }
 
         [Theory]
