@@ -5,10 +5,16 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
 {
     public class CartaRepository : ICartaRepository
     {
-        public void Inserir (Carta carta)
+        public void Criar(Carta carta)
         {
             throw new NotImplementedException();
         }
+
+        public void Atualizar(Carta carta)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Excluir(Carta carta)
         {
             throw new NotImplementedException();

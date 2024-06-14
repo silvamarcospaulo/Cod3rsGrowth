@@ -1,7 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servicos.ServicoJogador
 {
@@ -35,22 +35,7 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             if (baralhosJogador == null) return 0;
             return baralhosJogador.Count;
         }
-        public void Inserir(Jogador jogador)
-        {
-            _IJogadorRepository.Inserir(jogador);
-        }
-        public void Excluir(Jogador jogador)
-        {
-        }
-        public Jogador ObterPorId(int idJogador)
-        {
-            return _IJogadorRepository.ObterPorId(idJogador);
-        }
-        public List<Jogador> ObterTodos()
-        {
-            return _IJogadorRepository.ObterTodos();
-        }
-        public ValidationResult CriarJogador(Jogador jogador)
+        public void Criar(Jogador jogador)
         {
             jogador.IdJogador = GerarIdJogador();
             jogador.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogador.BaralhosJogador);
@@ -59,13 +44,44 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             try
             {
                 _validadorJogador.ValidateAndThrow(jogador);
-                Inserir(jogador);
-                return new ValidationResult();
+                _IJogadorRepository.Criar(jogador);
             }
             catch (ValidationException e)
             {
-                return new ValidationResult(e.Errors);
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
             }
+        }
+        public void Atualizar(Jogador jogador)
+        {
+            Jogador jogadorAtualizado = ObterPorId(jogador.IdJogador);
+            jogadorAtualizado.BaralhosJogador = jogador.BaralhosJogador;
+            jogadorAtualizado.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizado.BaralhosJogador);
+            jogadorAtualizado.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogadorAtualizado.BaralhosJogador);
+
+            var validador = _validadorJogador.Validate(jogadorAtualizado, options => options.IncludeRuleSets("Atualizar"));            
+
+            if (validador.IsValid)
+            {
+                _IJogadorRepository.Atualizar(jogadorAtualizado);
+            }
+            else
+            {
+                var mensagemDeErro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
+                throw new Exception(mensagemDeErro); 
+            }
+        }
+
+        public Jogador ObterPorId(int idJogador)
+        {
+            return _IJogadorRepository.ObterPorId(idJogador);
+        }
+        public List<Jogador> ObterTodos()
+        {
+            return _IJogadorRepository.ObterTodos();
+        }
+        public void Excluir(Jogador jogador)
+        {
         }
     }
 }

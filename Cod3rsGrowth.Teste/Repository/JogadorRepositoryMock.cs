@@ -15,9 +15,19 @@ namespace Cod3rsGrowth.Teste.Repository
         public void Excluir(Jogador jogador)
         {
         }
+        public void Atualizar(Jogador jogador)
+        {
+            var jogadorBanco = ObterPorId(jogador.IdJogador);
+            jogadorBanco = jogador;
+        }
         public Jogador ObterPorId(int idJogador)
         {
             return tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
+        }
+
+        public void Criar(Jogador jogador)
+        {
+            Inserir(jogador);
         }
         public List<Jogador> ObterTodos()
         {

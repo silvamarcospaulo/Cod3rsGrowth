@@ -3,6 +3,7 @@ using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
 using Cod3rsGrowth.Servico.ServicoBaralho;
+using Cod3rsGrowth.Servico.ServicoJogador;
 using FluentValidation;
 using FluentValidation.Results;
 
@@ -21,10 +22,6 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
         {
             _ICartaRepository = cartaRepository;
             _validadorCarta = validadorCarta;
-        }
-        public void Inserir(Carta carta)
-        {
-            _ICartaRepository.Inserir(carta);
         }
         public Carta ObterPorId(int idCarta)
         {
@@ -69,7 +66,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             }
             return valorCarta;
         }
-        public ValidationResult CriarCarta(Carta carta)
+        public void Criar(Carta carta)
         {
             carta.IdCarta = GerarIdCarta();
             carta.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
@@ -77,12 +74,30 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             try
             {
                 _validadorCarta.ValidateAndThrow(carta);
-                Inserir(carta);
-                return new ValidationResult();
+                _ICartaRepository.Criar(carta);
             }
             catch (ValidationException e)
             {
-                return new ValidationResult(e.Errors);
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
+            }
+        }
+
+        public void Atualizar(Carta carta)
+        {
+            var cartaAtualizada = ObterPorId(carta.IdCarta);
+            cartaAtualizada.RaridadeCarta = carta.RaridadeCarta;
+            cartaAtualizada.PrecoCarta = GerarPrecoCarta(cartaAtualizada.RaridadeCarta);
+
+            try
+            {
+                _validadorCarta.ValidateAndThrow(cartaAtualizada);
+                _ICartaRepository.Atualizar(cartaAtualizada);
+            }
+            catch (ValidationException e)
+            {
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
             }
         }
     }
