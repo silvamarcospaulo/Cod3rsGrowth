@@ -97,11 +97,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         private static bool ValidacaoExclusaoDeJogador(List<Baralho> baralhosJogador)
         {
             const int quantidadeDeBaralhosParaExclusao = 0;
-            int quantidadeDeBralho = baralhosJogador.Count();
 
-            if (baralhosJogador.Count() == quantidadeDeBaralhosParaExclusao) return true;
-
-            return false;
+            return baralhosJogador.Count == quantidadeDeBaralhosParaExclusao;
         }
     }
 }
