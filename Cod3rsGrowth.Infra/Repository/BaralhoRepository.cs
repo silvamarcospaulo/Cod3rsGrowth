@@ -1,7 +1,8 @@
 ﻿using System;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
 
-namespace Cod3rsGrowth.Infra.Repository.RepositoryBaralho
+namespace Cod3rsGrowth.Infra.Repository
 {
     public class BaralhoRepository : IBaralhoRepository
     {

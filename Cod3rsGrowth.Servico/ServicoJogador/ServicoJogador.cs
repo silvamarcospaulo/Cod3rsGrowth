@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using FluentValidation;
+using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servicos.ServicoJogador
 {
@@ -58,36 +59,46 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
 
         public void Atualizar(Jogador jogador)
         {
-            Jogador jogadorAtualizado = ObterPorId(jogador.IdJogador);
+            var jogadorAtualizado = ObterPorId(jogador.IdJogador);
             jogadorAtualizado.BaralhosJogador = jogador.BaralhosJogador;
             jogadorAtualizado.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizado.BaralhosJogador);
             jogadorAtualizado.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogadorAtualizado.BaralhosJogador);
 
-            var validador = _validadorJogador.Validate(jogadorAtualizado, options => options.IncludeRuleSets("Atualizar"));            
-
-            if (validador.IsValid)
+            try
             {
+                _validadorJogador.Validate(jogadorAtualizado, options =>
+                {
+                    options.ThrowOnFailures();
+                    options.IncludeRuleSets("Atualizar");
+
+                });
                 _IJogadorRepository.Atualizar(jogadorAtualizado);
             }
-            else
+            catch (ValidationException e)
             {
-                var mensagemDeErro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
-                throw new Exception(mensagemDeErro); 
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
             }
         }
 
         public void Excluir(Jogador jogador)
         {
-            var validador = _validadorJogador.Validate(ObterPorId(jogador.IdJogador), options => options.IncludeRuleSets("Excluir"));
+            var jogadorExcluir = ObterPorId(jogador.IdJogador);
 
-            if (validador.IsValid)
+            try
             {
-                _IJogadorRepository.Excluir(ObterPorId(jogador.IdJogador));
+                _validadorJogador.Validate(jogadorExcluir, options =>
+                {
+                    options.ThrowOnFailures();
+                    options.IncludeRuleSets("Excluir");
+                    
+                });
+                _IJogadorRepository.Excluir(jogadorExcluir);
             }
-            else
+            catch(ValidationException e)
             {
-                var mensagemDeErro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
-                throw new Exception(mensagemDeErro);
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
             }
         }
 

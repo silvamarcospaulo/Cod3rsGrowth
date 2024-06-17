@@ -306,7 +306,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(FormatoDeJogoEnum.Commander)]
         public void ao_Atualizar_com_baralho_invalido_deve_retornar_Exception(FormatoDeJogoEnum formatoDeJogoBaralhoJogadorTeste)
         {
-            const string mensagemDeErroEsperada = ("Quantidade de cartas do baralho não compativel com o formato de jogo selecionado");
+            const string mensagemDeErroEsperada = ("Quantidade de cartas do baralho nao compativel com o formato de jogo selecionado");
 
             var dataDeHoje = DateTime.Now;
 
@@ -380,7 +380,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
-                IdJogador = idJogadorTeste,
+                IdJogador = idJogadorTeste
             };
 
             var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(jogadorTeste));
@@ -471,7 +471,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             ObterServico.Excluir(jogadorTeste);
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(jogadorTeste.IdJogador));
+            var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(idJogadorTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
