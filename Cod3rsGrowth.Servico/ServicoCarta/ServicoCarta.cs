@@ -1,20 +1,48 @@
-﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
+﻿using System;
+using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
+using Cod3rsGrowth.Servico.ServicoBaralho;
+using Cod3rsGrowth.Servico.ServicoJogador;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
-    public class ServicoCarta : IServicoCarta
+    public class ServicoCarta : ICartaRepository
     {
-        public const decimal precoCartaCommon = 0.5m;
-        public const decimal precoCartaUncommon = 2.5m;
-        public const decimal precoCartaRare = 5m;
-        public const decimal precoCartaMythic = 7.5m;
+        private readonly ICartaRepository _ICartaRepository;
+        private readonly IValidator<Carta> _validadorCarta;
+        private const decimal precoCartaCommon = 0.5m;
+        private const decimal precoCartaUncommon = 2.5m;
+        private const decimal precoCartaRare = 5m;
+        private const decimal precoCartaMythic = 7.5m;
 
-        public int GerarIdCarta(int quantidadeDeCartasNoBancoDeDados)
+        public ServicoCarta(ICartaRepository cartaRepository, IValidator<Carta> validadorCarta)
         {
-            return quantidadeDeCartasNoBancoDeDados + 1;
+            _ICartaRepository = cartaRepository;
+            _validadorCarta = validadorCarta;
+        }
+        public Carta ObterPorId(int idCarta)
+        {
+            return _ICartaRepository.ObterPorId(idCarta);
+        }
+        public List<Carta> ObterTodos()
+        {
+            return _ICartaRepository.ObterTodos();
         }
 
-        public decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
+        private int GerarIdCarta()
+        {
+            const int ValorInicial = 1;
+            const int Incremento = 1;
+
+            var cartas = _ICartaRepository.ObterTodos();
+            var ultimoId = cartas.Any() ? cartas.Max(carta => carta.IdCarta) : ValorInicial - Incremento;
+
+            return ultimoId + Incremento;
+        }
+        private static decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
         {
             decimal valorCarta = 0;
 
@@ -35,35 +63,39 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             }
             return valorCarta;
         }
-
-        public List<CoresEnum> AdicionarCoresDaCarta(string cor)
+        public void Criar(Carta carta)
         {
-            List<CoresEnum> cores = new List<CoresEnum>();
+            carta.IdCarta = GerarIdCarta();
+            carta.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
 
-            foreach (char c in cor)
+            try
             {
-                switch (c)
-                {
-                    case 'W':
-                        cores.Add(CoresEnum.Branco);
-                        break;
-                    case 'B':
-                        cores.Add(CoresEnum.Preto);
-                        break;
-                    case 'G':
-                        cores.Add(CoresEnum.Verde);
-                        break;
-                    case 'R':
-                        cores.Add(CoresEnum.Vermelho);
-                        break;
-                    case 'U':
-                        cores.Add(CoresEnum.Azul);
-                        break;
-                    default:
-                        break;
-                }
+                _validadorCarta.ValidateAndThrow(carta);
+                _ICartaRepository.Criar(carta);
             }
-            return cores.Distinct().ToList();
+            catch (ValidationException e)
+            {
+                var mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
+            }
+        }
+
+        public void Atualizar(Carta carta)
+        {
+            var cartaAtualizada = ObterPorId(carta.IdCarta);
+            cartaAtualizada.RaridadeCarta = carta.RaridadeCarta;
+            cartaAtualizada.PrecoCarta = GerarPrecoCarta(cartaAtualizada.RaridadeCarta);
+
+            try
+            {
+                _validadorCarta.ValidateAndThrow(cartaAtualizada);
+                _ICartaRepository.Atualizar(cartaAtualizada);
+            }
+            catch (ValidationException e)
+            {
+                var mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
+            }
         }
     }
 }

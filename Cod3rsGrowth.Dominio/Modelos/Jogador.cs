@@ -1,5 +1,4 @@
-﻿using Cod3rsGrowth.Dominio.Servicos;
-using System.Collections;
+﻿using System;
 
 namespace Cod3rsGrowth.Dominio.Modelos
 {
@@ -7,10 +6,10 @@ namespace Cod3rsGrowth.Dominio.Modelos
     {
         public int IdJogador { get; set; }
         public string NomeJogador { get; set; }
-        public DateTime DataNascimentoJodador { get; set; }
-        public decimal CustoDasCartasJogador { get; set; }
+        public DateTime DataNascimentoJogador { get; set; }
+        public decimal PrecoDasCartasJogador { get; set; }
         public int QuantidadeDeBaralhosJogador { get; set; }
         public bool ContaAtivaJogador { get; set; }
-        public List<Baralho> BaralhosJogador { get; set; }
+        public List<Baralho>? BaralhosJogador { get; set; }
     }
 }
