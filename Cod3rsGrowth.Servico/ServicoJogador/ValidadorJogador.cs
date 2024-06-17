@@ -38,7 +38,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             RuleSet("Atualizar", () =>
             {
                 RuleFor(jogador => jogador.BaralhosJogador)
-                .Must(ValidacaoTipoDeBaralho).WithMessage("Quantidade de cartas do baralho não compativel com o formato de jogo selecionado");
+                .Must(ValidacaoTipoDeBaralho).WithMessage("Quantidade de cartas do baralho nao compativel com o formato de jogo selecionado");
                 
                 RuleFor(jogador => jogador.NomeJogador)
                 .NotEmpty().WithMessage("Nome do Jogador nao preenchido")

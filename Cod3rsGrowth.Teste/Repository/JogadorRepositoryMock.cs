@@ -23,7 +23,16 @@ namespace Cod3rsGrowth.Teste.Repository
         }
         public Jogador ObterPorId(int idJogador)
         {
-            return tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
+            Jogador jogador;
+            try
+            {
+               jogador = tabelasJogadores.First(jogador => jogador.IdJogador == idJogador);
+
+            }catch (Exception e)
+            {
+                throw new Exception($"Jogador {idJogador} Nao Encontrado");
+            }
+            return jogador;
         }
 
         public void Criar(Jogador jogador)

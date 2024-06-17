@@ -126,7 +126,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
             catch (ValidationException e)
             {
-                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                var mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
                 throw new Exception($"{mensagemDeErro}");
             }
         }
@@ -139,7 +139,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
             catch (ValidationException e)
             {
-                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                var mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
                 throw new Exception($"{mensagemDeErro}");
             }
         }
