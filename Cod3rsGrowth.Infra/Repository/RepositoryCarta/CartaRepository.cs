@@ -15,11 +15,6 @@ namespace Cod3rsGrowth.Infra.Repository.RepositoryCarta
             throw new NotImplementedException();
         }
 
-        public void Excluir(Carta carta)
-        {
-            throw new NotImplementedException();
-        }
-
         public Carta ObterPorId(int idCarta)
         {
             throw new NotImplementedException();

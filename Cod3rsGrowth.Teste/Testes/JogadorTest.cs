@@ -19,6 +19,8 @@ namespace Cod3rsGrowth.Teste.Testes
 
         public void IniciarListaMock()
         {
+            DateTime dataDeHoje = DateTime.Now;
+
             List<Jogador> listaJogadoresMock = new List<Jogador>()
             {
                 new Jogador()
@@ -46,10 +48,55 @@ namespace Cod3rsGrowth.Teste.Testes
                     IdJogador = 3,
                     NomeJogador = "Silva",
                     DataNascimentoJogador = new DateTime(day: 10, month: 3, year: 1999),
-                    PrecoDasCartasJogador = 0,
-                    QuantidadeDeBaralhosJogador = 0,
+                    PrecoDasCartasJogador = 54.5m,
+                    QuantidadeDeBaralhosJogador = 100,
                     ContaAtivaJogador = true,
-                    BaralhosJogador = new List<Baralho>()
+                    BaralhosJogador = new List <Baralho>()
+                    {
+                        new Baralho()
+                        {
+                        IdBaralho = 1,
+                        IdJogador = 1,
+                        NomeBaralho = "Mono Green Stomp",
+                        FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
+                        CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
+                        {
+                            new CopiaDeCartasNoBaralho
+                            {
+                                Carta = new Carta()
+                                {
+                                    IdCarta = 7,
+                                    NomeCarta = "Ghalta, Fome Primordial",
+                                    CustoDeManaConvertidoCarta = 12,
+                                    TipoDeCarta = TipoDeCartaEnum.Criatura,
+                                    RaridadeCarta = RaridadeEnum.Rare,
+                                    PrecoCarta = Convert.ToDecimal(5),
+                                    CorCarta = new List<CoresEnum>() { CoresEnum.Verde }
+                                },
+                                QuantidadeCopiasDaCartaNoBaralho = 1
+                            },
+                            new CopiaDeCartasNoBaralho
+                            {
+                                Carta = new Carta()
+                                {
+                                    IdCarta = 3,
+                                    NomeCarta = "Floresta",
+                                    CustoDeManaConvertidoCarta = 0,
+                                    TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                                    RaridadeCarta = RaridadeEnum.Common,
+                                    PrecoCarta = Convert.ToDecimal(0.5),
+                                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                                },
+                                QuantidadeCopiasDaCartaNoBaralho = 99
+                            }
+                        },
+                        QuantidadeDeCartasNoBaralho = 100,
+                        DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
+                        PrecoDoBaralho = 54.5m,
+                        CustoDeManaConvertidoDoBaralho = 0,
+                        CorBaralho = new List<CoresEnum>() { CoresEnum.Verde }
+                        }
+                    }
                 }
             };
 
@@ -129,7 +176,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
-        
+
         [Fact]
         public void ao_Criar_com_data_de_nascimento_vazia_deve_retornar_Excepion()
         {
@@ -408,6 +455,58 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(jogadorTesteExistente.NomeJogador, ObterServico.ObterPorId(jogadorTeste.IdJogador).NomeJogador);
             Assert.Equal(jogadorTesteExistente.DataNascimentoJogador, ObterServico.ObterPorId(jogadorTeste.IdJogador).DataNascimentoJogador);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void ao_Excluir_com_id_valido_deve_remover_o_jogador_correspondente(int idJogadorTeste)
+        {
+            var mensagemDeErroEsperada = ($"Jogador {idJogadorTeste} Nao Encontrado");
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = idJogadorTeste,
+            };
+
+            ObterServico.Excluir(jogadorTeste);
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(jogadorTeste.IdJogador));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(0)]
+        [InlineData(10)]
+        public void ao_Excluir_com_um_id_invalido_ou_inexistente_deve_retornar_Exception(int idJogadorTeste)
+        {
+            var mensagemDeErroEsperada = ($"Jogador {idJogadorTeste} Nao Encontrado");
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = idJogadorTeste,
+            };
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
+
+        [Fact]
+        public void ao_Excluir_jogador_com_baralho_ativo_deve_retornar_Exception()
+        {
+            var mensagemDeErroEsperada = ("Não e possivel excluir a conta, pois o jogador possui baralhos ativos");
+
+            var jogadorTeste = new Jogador()
+            {
+                IdJogador = 3
+            };
+
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste));
+
+            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
     }
 }

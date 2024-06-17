@@ -31,10 +31,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
         {
             return _ICartaRepository.ObterTodos();
         }
-        public void Excluir(Carta carta)
-        {
-            _ICartaRepository.Excluir(carta);
-        }
+
         private int GerarIdCarta()
         {
             const int ValorInicial = 1;

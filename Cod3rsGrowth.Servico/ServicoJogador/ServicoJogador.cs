@@ -1,5 +1,4 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
 using FluentValidation;
 
@@ -14,6 +13,7 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             _IJogadorRepository = jogadorRepository;
             _validadorJogador = validadorJogador;
         }
+
         private int GerarIdJogador()
         {
             const int ValorInicial = 1;
@@ -24,17 +24,20 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
 
             return ultimoId + Incremento;
         }
+
         private static decimal SomarPrecoDeTodasAsCartasDoJogador(List<Baralho> baralhosJogador)
         {
             if (baralhosJogador == null) return 0;
             return baralhosJogador.SelectMany(baralhos => baralhos.CartasDoBaralho)
                 .Sum(carta => carta.QuantidadeCopiasDaCartaNoBaralho * carta.Carta.PrecoCarta);
         }
+
         private static int SomarQuantidadeDeBaralhosDoJogador(List<Baralho> baralhosJogador)
         {
             if (baralhosJogador == null) return 0;
             return baralhosJogador.Count;
         }
+
         public void Criar(Jogador jogador)
         {
             jogador.IdJogador = GerarIdJogador();
@@ -52,6 +55,7 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
                 throw new Exception($"{mensagemDeErro}");
             }
         }
+
         public void Atualizar(Jogador jogador)
         {
             Jogador jogadorAtualizado = ObterPorId(jogador.IdJogador);
@@ -72,6 +76,21 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
             }
         }
 
+        public void Excluir(Jogador jogador)
+        {
+            var validador = _validadorJogador.Validate(ObterPorId(jogador.IdJogador), options => options.IncludeRuleSets("Excluir"));
+
+            if (validador.IsValid)
+            {
+                _IJogadorRepository.Excluir(ObterPorId(jogador.IdJogador));
+            }
+            else
+            {
+                var mensagemDeErro = string.Join(Environment.NewLine, validador.Errors.Select(e => e.ErrorMessage));
+                throw new Exception(mensagemDeErro);
+            }
+        }
+
         public Jogador ObterPorId(int idJogador)
         {
             return _IJogadorRepository.ObterPorId(idJogador);
@@ -79,9 +98,6 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
         public List<Jogador> ObterTodos()
         {
             return _IJogadorRepository.ObterTodos();
-        }
-        public void Excluir(Jogador jogador)
-        {
         }
     }
 }

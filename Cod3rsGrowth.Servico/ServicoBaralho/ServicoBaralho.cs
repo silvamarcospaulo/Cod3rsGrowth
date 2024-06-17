@@ -85,20 +85,6 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day);
         }
 
-        public void Excluir(Baralho baralho)
-        {
-        }
-
-        public List<Baralho> ObterTodos()
-        {
-            return _IBaralhoRepository.ObterTodos();
-        }
-
-        public Baralho ObterPorId(int idBaralho)
-        {
-            return _IBaralhoRepository.ObterPorId(idBaralho);
-        }
-
         public void Criar(Baralho baralho)
         {
             baralho.IdBaralho = GerarIdBaralho();
@@ -143,6 +129,29 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
                 throw new Exception($"{mensagemDeErro}");
             }
+        }
+
+        public void Excluir(Baralho baralho)
+        {
+            try
+            {
+                _IBaralhoRepository.Excluir(ObterPorId(baralho.IdBaralho));
+            }
+            catch (ValidationException e)
+            {
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
+            }
+        }
+
+        public List<Baralho> ObterTodos()
+        {
+            return _IBaralhoRepository.ObterTodos();
+        }
+
+        public Baralho ObterPorId(int idBaralho)
+        {
+            return _IBaralhoRepository.ObterPorId(idBaralho);
         }
     }
 }
