@@ -1,9 +1,9 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
+﻿using Cod3rsGrowth.Dominio.Interfaces;
+using Cod3rsGrowth.Dominio.Modelos;
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace Cod3rsGrowth.Servicos.ServicoJogador
+namespace Cod3rsGrowth.Servico.ServicoJogador
 {
     public class ServicoJogador : IJogadorRepository
     {
@@ -91,11 +91,11 @@ namespace Cod3rsGrowth.Servicos.ServicoJogador
                 {
                     options.ThrowOnFailures();
                     options.IncludeRuleSets("Excluir");
-                    
+
                 });
                 _IJogadorRepository.Excluir(jogadorExcluir);
             }
-            catch(ValidationException e)
+            catch (ValidationException e)
             {
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
                 throw new Exception($"{mensagemDeErro}");

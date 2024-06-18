@@ -1,5 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
+﻿using Cod3rsGrowth.Dominio.Interfaces;
+using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Teste.Singleton;
 
 namespace Cod3rsGrowth.Teste.Repository

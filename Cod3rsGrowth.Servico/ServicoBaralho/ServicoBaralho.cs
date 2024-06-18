@@ -1,6 +1,6 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
+﻿using Cod3rsGrowth.Dominio.Interfaces;
+using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using FluentValidation;
 using FluentValidation.Results;
