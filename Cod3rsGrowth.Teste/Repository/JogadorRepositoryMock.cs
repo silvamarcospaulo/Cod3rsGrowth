@@ -1,5 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
+﻿using Cod3rsGrowth.Dominio.Interfaces;
+using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Teste.Singleton;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,16 +23,7 @@ namespace Cod3rsGrowth.Teste.Repository
         }
         public Jogador ObterPorId(int idJogador)
         {
-            Jogador jogador;
-            try
-            {
-               jogador = tabelasJogadores.First(jogador => jogador.IdJogador == idJogador);
-
-            }catch (Exception e)
-            {
-                throw new Exception($"Jogador {idJogador} Nao Encontrado");
-            }
-            return jogador;
+            return tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
         }
 
         public void Criar(Jogador jogador)

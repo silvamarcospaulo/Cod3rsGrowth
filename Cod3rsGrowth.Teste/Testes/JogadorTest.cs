@@ -1,7 +1,7 @@
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra.Repository.RepositoryJogador;
-using Cod3rsGrowth.Servicos.ServicoJogador;
+using Cod3rsGrowth.Servico.ServicoJogador;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;

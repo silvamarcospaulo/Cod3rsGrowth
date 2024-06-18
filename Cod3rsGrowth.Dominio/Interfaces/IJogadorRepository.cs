@@ -1,7 +1,7 @@
 ﻿using System;
 using Cod3rsGrowth.Dominio.Modelos;
 
-namespace Cod3rsGrowth.Infra.Repository.RepositoryJogador
+namespace Cod3rsGrowth.Dominio.Interfaces
 {
     public interface IJogadorRepository
     {
