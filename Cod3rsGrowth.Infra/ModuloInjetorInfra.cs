@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Infra
     {
         public static void ModuloInjetorTeste(ServiceCollection serviceProvider)
         {
-            const string stringDeConexao = "contextoPadrao";
+            const string stringDeConexao = "DeckBuilderDb";
 
             serviceProvider.AddLinqToDBContext<ConexaoDados>((provider, options)
                 => options
