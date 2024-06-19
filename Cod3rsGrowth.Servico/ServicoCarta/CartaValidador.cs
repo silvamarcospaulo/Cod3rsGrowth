@@ -7,9 +7,9 @@ using FluentValidation.TestHelper;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
-    public class ValidadorCarta : AbstractValidator<Carta>
+    public class CartaValidador : AbstractValidator<Carta>
     {
-        public ValidadorCarta()
+        public CartaValidador()
         {
             const int valorMinimo = -1;
 

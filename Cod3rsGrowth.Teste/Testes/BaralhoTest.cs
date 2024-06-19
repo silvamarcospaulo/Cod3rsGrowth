@@ -1,20 +1,17 @@
-using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Dominio.Modelos;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoBaralho;
-using Newtonsoft.Json.Serialization;
-using System.ComponentModel;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
     public class BaralhoTest : TesteBase
     {
-        private readonly ServicoBaralho ObterServico;
+        private readonly BaralhoServico ObterServico;
 
         public BaralhoTest()
         {
-            ObterServico = ServiceProvider.GetService<ServicoBaralho>() ?? throw new Exception($"Erro ao obter servico");
+            ObterServico = ServiceProvider.GetService<BaralhoServico>() ?? throw new Exception($"Erro ao obter servico");
             IniciarListaMock();
         }
 
@@ -155,7 +152,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            ObterServico.ObterTodos().Clear();
+            ObterServico.ObterTodos(null).Clear();
 
             listaBaralhosMock.ForEach(baralho => ObterServico.Criar(new Baralho()
             {
@@ -174,7 +171,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_verifica_se_a_lista_nao_esta_vazia()
         {
-            var baralhos = ObterServico.ObterTodos();
+            var baralhos = ObterServico.ObterTodos(null);
 
             Assert.NotEmpty(baralhos);
         }
@@ -184,7 +181,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             const int quantidadeDeBaralhosEsperados = 3;
 
-            var quantidadeDeBaralhos = ObterServico.ObterTodos().Count();
+            var quantidadeDeBaralhos = ObterServico.ObterTodos(null).Count();
 
             Assert.Equal(quantidadeDeBaralhosEsperados, quantidadeDeBaralhos);
         }

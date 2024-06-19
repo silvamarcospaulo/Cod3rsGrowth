@@ -1,4 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Interfaces;
+﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -7,12 +8,12 @@ using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
-    public class ServicoBaralho : IBaralhoRepository
+    public class BaralhoServico : IBaralhoRepository
     {
         private readonly IBaralhoRepository _IBaralhoRepository;
         private readonly IValidator<Baralho> _validadorBaralho;
 
-        public ServicoBaralho(IBaralhoRepository baralhoRepository, IValidator<Baralho> validadorBaralho)
+        public BaralhoServico(IBaralhoRepository baralhoRepository, IValidator<Baralho> validadorBaralho)
         {
             _IBaralhoRepository = baralhoRepository;
             _validadorBaralho = validadorBaralho;
@@ -23,7 +24,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             const int ValorInicial = 1;
             const int Incremento = 1;
 
-            var baralhos = _IBaralhoRepository.ObterTodos();
+            var baralhos = _IBaralhoRepository.ObterTodos(null);
             var ultimoId = baralhos.Any() ? baralhos.Max(baralho => baralho.IdBaralho) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
@@ -144,9 +145,9 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
         }
 
-        public List<Baralho> ObterTodos()
+        public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            return _IBaralhoRepository.ObterTodos();
+            return _IBaralhoRepository.ObterTodos(null);
         }
 
         public Baralho ObterPorId(int idBaralho)

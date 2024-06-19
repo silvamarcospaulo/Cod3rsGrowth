@@ -1,15 +1,15 @@
-﻿using Cod3rsGrowth.Dominio.Interfaces;
+﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoJogador
 {
-    public class ServicoJogador : IJogadorRepository
+    public class JogadorServico : IJogadorRepository
     {
         private readonly IJogadorRepository _IJogadorRepository;
         private readonly IValidator<Jogador> _validadorJogador;
-        public ServicoJogador(IJogadorRepository jogadorRepository, IValidator<Jogador> validadorJogador)
+        public JogadorServico(IJogadorRepository jogadorRepository, IValidator<Jogador> validadorJogador)
         {
             _IJogadorRepository = jogadorRepository;
             _validadorJogador = validadorJogador;
@@ -20,7 +20,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             const int ValorInicial = 1;
             const int Incremento = 1;
 
-            var jogadores = _IJogadorRepository.ObterTodos();
+            var jogadores = _IJogadorRepository.ObterTodos(null);
             var ultimoId = jogadores.Any() ? jogadores.Max(carta => carta.IdJogador) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
@@ -106,9 +106,9 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         {
             return _IJogadorRepository.ObterPorId(idJogador);
         }
-        public List<Jogador> ObterTodos()
+        public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
-            return _IJogadorRepository.ObterTodos();
+            return _IJogadorRepository.ObterTodos(null);
         }
     }
 }

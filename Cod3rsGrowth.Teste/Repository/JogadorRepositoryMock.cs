@@ -1,4 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Interfaces;
+﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Teste.Singleton;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +31,7 @@ namespace Cod3rsGrowth.Teste.Repository
         {
             Inserir(jogador);
         }
-        public List<Jogador> ObterTodos()
+        public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
             return tabelasJogadores;
         }

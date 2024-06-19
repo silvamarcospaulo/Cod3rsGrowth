@@ -5,7 +5,7 @@ using System;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
-    public class ValidadorBaralho : AbstractValidator<Baralho>
+    public class BaralhoValidador : AbstractValidator<Baralho>
     {
         private const int quantidadeBaralhoPauper = 60;
         private const int quantidadeMaximaDeCopiaDeCartasStandard = 4;
@@ -15,7 +15,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         private const int quantidadeBaralhoCommander = 100;
         private const int valorMinimoIdJogador = -1;
 
-        public ValidadorBaralho()
+        public BaralhoValidador()
         {   
             RuleFor(baralho => baralho.IdJogador)
                 .GreaterThan(valorMinimoIdJogador).WithMessage("Campo Id do jogador tem quer ser maior do que Um");

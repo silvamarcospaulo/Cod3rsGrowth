@@ -8,10 +8,10 @@ namespace Cod3rsGrowth.Teste.Testes
 {
     public class CartaTest : TesteBase
     {
-        private readonly ServicoCarta ObterServico;
+        private readonly CartaServico ObterServico;
         public CartaTest()
         {
-            ObterServico = ServiceProvider.GetService<ServicoCarta>() ?? throw new Exception("Erro ao obter servico");
+            ObterServico = ServiceProvider.GetService<CartaServico>() ?? throw new Exception("Erro ao obter servico");
             IniciarListaMock();
         }
 
@@ -91,7 +91,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            ObterServico.ObterTodos().Clear();
+            ObterServico.ObterTodos(null).Clear();
 
             listaCartasMock.ForEach(carta => ObterServico.Criar(
                 new Carta()
@@ -109,7 +109,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             IniciarListaMock();
 
-            var cartas = ObterServico.ObterTodos();
+            var cartas = ObterServico.ObterTodos(null);
 
             Assert.NotEmpty(cartas);
         }
@@ -119,7 +119,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             const int quantidadeDeCartasEsperadas = 7;
 
-            var quantidadeDeCartasMock = ObterServico.ObterTodos().Count();
+            var quantidadeDeCartasMock = ObterServico.ObterTodos(null).Count();
 
             Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }
