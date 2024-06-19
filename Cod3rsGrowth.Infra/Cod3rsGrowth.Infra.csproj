@@ -11,6 +11,7 @@
     <PackageReference Include="linq2db" Version="5.4.1" />
     <PackageReference Include="linq2db.AspNet" Version="5.4.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="Xunit.Microsoft.DependencyInjection" Version="7.0.10" />
   </ItemGroup>
 
