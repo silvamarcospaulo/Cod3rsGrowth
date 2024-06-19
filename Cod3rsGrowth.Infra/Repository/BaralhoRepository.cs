@@ -2,11 +2,30 @@
 using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using LinqToDB;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
     public class BaralhoRepository : IBaralhoRepository
     {
+        public void Criar(Baralho baralho)
+        {
+            using (var contextoBaralho = new ConexaoDados())
+            {
+                contextoBaralho.Insert(baralho);
+            }
+        }
+
+        public void Atualizar(Baralho baralho)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Excluir(Baralho baralho)
+        {
+            throw new NotImplementedException();
+        }
+
         public Baralho ObterPorId(int idBaralho)
         {
             throw new NotImplementedException();
@@ -26,7 +45,8 @@ namespace Cod3rsGrowth.Infra.Repository
 
                 if (filtro.PrecoDoBaralhoMaximo.HasValue) query = query.Where(q => q.PrecoDoBaralho >= filtro.PrecoDoBaralhoMaximo);
 
-                if (filtro.CorBaralho != null) {
+                if (filtro.CorBaralho != null)
+                {
                     foreach (var cor in filtro.CorBaralho)
                     {
                         query = query.Where(q => q.CorBaralho.All(corBaralho => corBaralho == cor));
@@ -35,20 +55,6 @@ namespace Cod3rsGrowth.Infra.Repository
 
                 return query.ToList();
             };
-        }
-
-        public void Criar(Baralho baralho)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Atualizar(Baralho baralho)
-        {
-            throw new NotImplementedException();
-        }
-        public void Excluir(Baralho baralho)
-        {
-            throw new NotImplementedException();
         }
     }
 }
