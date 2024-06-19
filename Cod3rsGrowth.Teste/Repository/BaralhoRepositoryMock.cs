@@ -1,4 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Interfaces;
+﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Teste.Singleton;
 using System;
@@ -29,7 +30,7 @@ namespace Cod3rsGrowth.Teste.Repository
             return tabelasBaralhos.FirstOrDefault(carta => carta.IdBaralho == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 
-        public List<Baralho> ObterTodos()
+        public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
             return tabelasBaralhos;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 
@@ -11,9 +12,29 @@ namespace Cod3rsGrowth.Infra.Repository
             throw new NotImplementedException();
         }
 
-        public List<Baralho> ObterTodos()
+        public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            throw new NotImplementedException();
+            using (var contextoBaralho = new ConexaoDados())
+            {
+                if (filtro == null) return contextoBaralho.TabelaBaralhos.ToList();
+
+                IQueryable<Baralho> query = contextoBaralho.TabelaBaralhos.AsQueryable();
+
+                if (filtro.FormatoDeJogoBaralho.HasValue) query = query.Where(q => q.FormatoDeJogoBaralho == filtro.FormatoDeJogoBaralho);
+
+                if (filtro.PrecoDoBaralhoMinimo.HasValue) query = query.Where(q => q.PrecoDoBaralho >= filtro.PrecoDoBaralhoMinimo);
+
+                if (filtro.PrecoDoBaralhoMaximo.HasValue) query = query.Where(q => q.PrecoDoBaralho >= filtro.PrecoDoBaralhoMaximo);
+
+                if (filtro.CorBaralho != null) {
+                    foreach (var cor in filtro.CorBaralho)
+                    {
+                        query = query.Where(q => q.CorBaralho.All(corBaralho => corBaralho == cor));
+                    }
+                }
+
+                return query.ToList();
+            };
         }
 
         public void Criar(Baralho baralho)

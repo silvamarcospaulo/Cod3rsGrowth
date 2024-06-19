@@ -1,4 +1,5 @@
 ﻿using System;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 
 namespace Cod3rsGrowth.Dominio.Interfaces
@@ -8,7 +9,7 @@ namespace Cod3rsGrowth.Dominio.Interfaces
         void Criar(Baralho baralho);
         void Atualizar(Baralho baralho);
         void Excluir(Baralho baralho);
-        List<Baralho> ObterTodos();
         Baralho ObterPorId(int idBaralho);
+        List<Baralho> ObterTodos(BaralhoFiltro? filtro);
     }
 }
