@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Linq;
 using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
+using LinqToDB.Common;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
     public class CartaRepository : ICartaRepository
     {
-        private ConexaoDados conexaoDados = new ConexaoDados();
-
         public void Criar(Carta carta)
         {
-            conexaoDados.Insert(carta);
+            using (var conexaoDados = new ConexaoDados())
+            {
+                conexaoDados.Insert(carta);
+            }
         }
 
         public void Atualizar(Carta carta)
@@ -27,25 +30,63 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
-            if (filtro == null) return conexaoDados.TabelaCartas.ToList();
+            using (var conexaoDados = new ConexaoDados())
+            {
+                IQueryable<Carta> query = from q in conexaoDados.TabelaCartas
+                                            select q;
 
-            IQueryable<Carta> query = conexaoDados.TabelaCartas.AsQueryable();
+                if (filtro.NomeCarta != null)
+                {
+                    query = from q in query
+                            where q.NomeCarta.Contains(filtro.NomeCarta)
+                            select q;
+                }
 
-            if (filtro.NomeCarta != null) query = query.Where(q => q.NomeCarta.Contains(filtro.NomeCarta));
+                if (filtro.CustoDeManaConvertidoCarta != null)
+                {
+                    query = from q in query
+                            where q.CustoDeManaConvertidoCarta == filtro.CustoDeManaConvertidoCarta
+                            select q;
+                }
 
-            if (filtro.CustoDeManaConvertidoCarta.HasValue) query = query.Where(q => q.CustoDeManaConvertidoCarta == filtro.CustoDeManaConvertidoCarta);
+                if (filtro.TipoDeCarta != null)
+                {
+                    query = from q in query
+                            where q.TipoDeCarta == filtro.TipoDeCarta
+                            select q;
+                }
 
-            if (filtro.TipoDeCarta.HasValue) query = query.Where(q => q.TipoDeCarta >= filtro.TipoDeCarta);
+                if (filtro.RaridadeCarta != null)
+                {
+                    query = from q in query
+                            where q.RaridadeCarta == filtro.RaridadeCarta
+                            select q;
+                }
 
-            if (filtro.RaridadeCarta.HasValue) query = query.Where(q => q.RaridadeCarta <= filtro.RaridadeCarta);
 
-            if (filtro.PrecoCartaMinimo.HasValue) query = query.Where(q => q.PrecoCarta >= filtro.PrecoCartaMinimo);
+                if (filtro.PrecoCartaMinimo != null)
+                {
+                    query = from q in query
+                            where q.PrecoCarta >= filtro.PrecoCartaMinimo
+                            select q;
+                }
 
-            if (filtro.PrecoCartaMaximo.HasValue) query = query.Where(q => q.PrecoCarta <= filtro.PrecoCartaMaximo);
+                if (filtro.PrecoCartaMaximo != null)
+                {
+                    query = from q in query
+                            where q.PrecoCarta >= filtro.PrecoCartaMaximo
+                            select q;
+                }
 
-            if (filtro.CorCarta.HasValue) query = query.Where(q => q.CorCarta.All(corCarta => corCarta == filtro.CorCarta));
+                if (!filtro.CorCarta.IsNullOrEmpty())
+                {
+                    query = from q in query
+                            where q.CorCarta.All(corCarta => filtro.CorCarta.All(cor => cor == corCarta))
+                            select q;
+                }
 
-            return query.ToList();
+                return query.ToList();
+            }
         }
     }
 }

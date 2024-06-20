@@ -2,16 +2,19 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
+using System;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
     public class JogadorRepository : IJogadorRepository
     {
-        private ConexaoDados conexaoDados = new ConexaoDados();
 
         public void Criar(Jogador jogador)
         {
-            conexaoDados.Insert(jogador);
+            using (var conexaoDados = new ConexaoDados())
+            {
+                conexaoDados.Insert(jogador);
+            }
         }
 
         public void Atualizar(Jogador jogador)
@@ -31,27 +34,69 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
-            if (filtro == null) return conexaoDados.TabelaJogadores.ToList();
+            using (var conexaoDados = new ConexaoDados())
+            {
+                IQueryable<Jogador> query = from q in conexaoDados.TabelaJogadores
+                                             select q;
 
-            IQueryable<Jogador> query = conexaoDados.TabelaJogadores.AsQueryable();
+                if (filtro.NomeJogador != null)
+                {
+                    query = from q in query
+                            where q.NomeJogador.Contains(filtro.NomeJogador)
+                            select q;
+                }
 
-            if (filtro.NomeJogador != null) query = query.Where(q => q.NomeJogador.Contains(filtro.NomeJogador));
+                if (filtro.ContaAtivaJogador != null)
+                {
+                    query = from q in query
+                            where q.ContaAtivaJogador == filtro.ContaAtivaJogador
+                            select q;
+                }
 
-            if (filtro.ContaAtivaJogador.HasValue) query = query.Where(q => q.ContaAtivaJogador == filtro.ContaAtivaJogador);
+                if (filtro.DataNascimentoJogadorMinimo != null)
+                {
+                    query = from q in query
+                            where q.DataNascimentoJogador >= filtro.DataNascimentoJogadorMinimo
+                            select q;
+                }
 
-            if (filtro.DataNascimentoJogadorMinimo.HasValue) query = query.Where(q => q.DataNascimentoJogador >= filtro.DataNascimentoJogadorMinimo);
+                if (filtro.DataNascimentoJogadorMaximo != null)
+                {
+                    query = from q in query
+                            where q.DataNascimentoJogador <= filtro.DataNascimentoJogadorMaximo
+                            select q;
+                }
 
-            if (filtro.DataNascimentoJogadorMaximo.HasValue) query = query.Where(q => q.DataNascimentoJogador <= filtro.DataNascimentoJogadorMaximo);
+                if (filtro.PrecoDasCartasJogadorMinimo != null)
+                {
+                    query = from q in query
+                            where q.PrecoDasCartasJogador >= filtro.PrecoDasCartasJogadorMinimo
+                            select q;
+                }
 
-            if (filtro.PrecoDasCartasJogadorMinimo.HasValue) query = query.Where(q => q.PrecoDasCartasJogador >= filtro.PrecoDasCartasJogadorMinimo);
+                if (filtro.DataNascimentoJogadorMaximo != null)
+                {
+                    query = from q in query
+                            where q.PrecoDasCartasJogador <= filtro.PrecoDasCartasJogadorMaximo
+                            select q;
+                }
 
-            if (filtro.PrecoDasCartasJogadorMaximo.HasValue) query = query.Where(q => q.PrecoDasCartasJogador <= filtro.PrecoDasCartasJogadorMaximo);
+                if (filtro.QuantidadeDeBaralhosJogadorMinimo != null)
+                {
+                    query = from q in query
+                            where q.QuantidadeDeBaralhosJogador >= filtro.QuantidadeDeBaralhosJogadorMinimo
+                            select q;
+                }
 
-            if (filtro.QuantidadeDeBaralhosJogadorMinimo.HasValue) query = query.Where(q => q.QuantidadeDeBaralhosJogador >= filtro.QuantidadeDeBaralhosJogadorMinimo);
+                if (filtro.QuantidadeDeBaralhosJogadorMaximo != null)
+                {
+                    query = from q in query
+                            where q.QuantidadeDeBaralhosJogador <= filtro.QuantidadeDeBaralhosJogadorMaximo
+                            select q;
+                }
 
-            if (filtro.QuantidadeDeBaralhosJogadorMaximo.HasValue) query = query.Where(q => q.QuantidadeDeBaralhosJogador >= filtro.QuantidadeDeBaralhosJogadorMaximo);
-
-            return query.ToList();
+                return query.ToList();
+            }
         }
     }
 }
