@@ -13,18 +13,22 @@ namespace Cod3rsGrowth.Infra.Repository
         {
             conexaoDados.Insert(jogador);
         }
+
         public void Atualizar(Jogador jogador)
         {
             throw new NotImplementedException();
         }
+
         public void Excluir(Jogador jogador)
         {
             throw new NotImplementedException();
         }
+
         public Jogador ObterPorId(int idJogador)
         {
             throw new NotImplementedException();
         }
+
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
             if (filtro == null) return conexaoDados.TabelaJogadores.ToList();
