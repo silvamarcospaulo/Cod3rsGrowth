@@ -1,12 +1,32 @@
-﻿using System;
-using Cod3rsGrowth.Dominio.Filtros;
+﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using LinqToDB;
+using LinqToDB.Common;
+using System.Data;
+using System.Runtime.ConstrainedExecution;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
     public class BaralhoRepository : IBaralhoRepository
     {
+        ConexaoDados conexaoDados = new();
+
+        public void Criar(Baralho baralho)
+        {
+            conexaoDados.Insert(baralho);
+        }
+
+        public void Atualizar(Baralho baralho)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Excluir(Baralho baralho)
+        {
+            throw new NotImplementedException();
+        }
+
         public Baralho ObterPorId(int idBaralho)
         {
             throw new NotImplementedException();
@@ -14,41 +34,40 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            using (var contextoBaralho = new ConexaoDados())
+            const int valorMinimoListaCorCartas = 1;
+
+            IQueryable<Baralho> query = from q in conexaoDados.TabelaBaralhos
+                                        select q;
+
+            if (filtro?.FormatoDeJogoBaralho != null)
             {
-                if (filtro == null) return contextoBaralho.TabelaBaralhos.ToList();
+                query = from q in query
+                        where q.FormatoDeJogoBaralho == filtro.FormatoDeJogoBaralho
+                        select q;
+            }
 
-                IQueryable<Baralho> query = contextoBaralho.TabelaBaralhos.AsQueryable();
+            if (filtro?.PrecoDoBaralhoMinimo != null)
+            {
+                query = from q in query
+                        where q.PrecoDoBaralho == filtro.PrecoDoBaralhoMinimo
+                        select q;
+            }
 
-                if (filtro.FormatoDeJogoBaralho.HasValue) query = query.Where(q => q.FormatoDeJogoBaralho == filtro.FormatoDeJogoBaralho);
+            if (filtro?.PrecoDoBaralhoMaximo != null)
+            {
+                query = from q in query
+                        where q.PrecoDoBaralho == filtro.PrecoDoBaralhoMaximo
+                        select q;
+            }
 
-                if (filtro.PrecoDoBaralhoMinimo.HasValue) query = query.Where(q => q.PrecoDoBaralho >= filtro.PrecoDoBaralhoMinimo);
-
-                if (filtro.PrecoDoBaralhoMaximo.HasValue) query = query.Where(q => q.PrecoDoBaralho >= filtro.PrecoDoBaralhoMaximo);
-
-                if (filtro.CorBaralho != null) {
-                    foreach (var cor in filtro.CorBaralho)
-                    {
-                        query = query.Where(q => q.CorBaralho.All(corBaralho => corBaralho == cor));
-                    }
-                }
-
-                return query.ToList();
-            };
-        }
-
-        public void Criar(Baralho baralho)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Atualizar(Baralho baralho)
-        {
-            throw new NotImplementedException();
-        }
-        public void Excluir(Baralho baralho)
-        {
-            throw new NotImplementedException();
+            if (filtro?.CorBaralho.Count() > valorMinimoListaCorCartas)
+            {
+                query = from q in query
+                        where q.CorBaralho.All(corBaralho => filtro.CorBaralho.All(cor => cor == corBaralho))
+                        select q;
+            }
+                
+            return query.ToList();
         }
     }
 }

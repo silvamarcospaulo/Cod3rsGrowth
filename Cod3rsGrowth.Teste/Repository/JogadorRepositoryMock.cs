@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class JogadorRepositoryMock : IJogadorRepository
     {
-        public List<Jogador> tabelasJogadores = SingletonTabelas.InstanciaJogadores;
+        public List<Jogador> tabelasJogadores = SingletonTabelasTeste.InstanciaJogadores;
         public void Inserir(Jogador jogador)
         {
             tabelasJogadores.Add(jogador);

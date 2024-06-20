@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class BaralhoRepositoryMock : IBaralhoRepository
     {
-        public List<Baralho> tabelasBaralhos = SingletonTabelas.InstanciaBaralhos;
+        private List<Baralho> tabelasBaralhos = SingletonTabelasTeste.InstanciaBaralhos;
 
         public void Criar(Baralho baralho)
         {
@@ -20,6 +20,7 @@ namespace Cod3rsGrowth.Teste.Repository
             var baralhoBanco = ObterPorId(baralho.IdJogador);
             baralhoBanco = baralho;
         }
+
         public void Excluir(Baralho baralho)
         {
             tabelasBaralhos.Remove(baralho);

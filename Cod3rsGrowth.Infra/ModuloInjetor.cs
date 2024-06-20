@@ -6,9 +6,9 @@ using System.Configuration;
 
 namespace Cod3rsGrowth.Infra
 {
-    public static class ModuloInjetorInfra
+    public static class ModuloInjetor
     {
-        public static void ModuloInjetorTeste(ServiceCollection serviceProvider)
+        public static void ModuloInjetorInfra(ServiceCollection serviceProvider)
         {
             const string stringDeConexao = "DeckBuilderDb";
 
