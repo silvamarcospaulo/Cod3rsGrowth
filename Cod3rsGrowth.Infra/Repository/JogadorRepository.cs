@@ -22,7 +22,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void Excluir(Jogador jogador)
         {
-            throw new NotImplementedException();
+            conexaoDados.Delete(jogador);
         }
 
         public Jogador ObterPorId(int idJogador)

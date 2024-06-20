@@ -24,7 +24,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void Excluir(Baralho baralho)
         {
-            throw new NotImplementedException();
+            conexaoDados.Delete(baralho);
         }
 
         public Baralho ObterPorId(int idBaralho)
