@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class BaralhoRepository : IBaralhoRepository
     {
-        ConexaoDados conexaoDados = new();
+        private readonly ConexaoDados conexaoDados = new();
 
         public void Criar(Baralho baralho)
         {
@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void Atualizar(Baralho baralho)
         {
-            throw new NotImplementedException();
+            conexaoDados.Update(baralho);
         }
 
         public void Excluir(Baralho baralho)
