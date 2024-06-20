@@ -22,9 +22,10 @@ namespace Cod3rsGrowth.Infra.Repository
             conexaoDados.Update(baralho);
         }
 
-        public void Excluir(Baralho baralho)
+        public void Excluir(int idBaralho)
         {
-            throw new NotImplementedException();
+            var baralhoExcluir = ObterPorId(idBaralho);
+            conexaoDados.Delete(baralhoExcluir);
         }
 
         public Baralho ObterPorId(int idBaralho)

@@ -132,11 +132,12 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
         }
 
-        public void Excluir(Baralho baralho)
+        public void Excluir(int idBaralho)
         {
             try
             {
-                _IBaralhoRepository.Excluir(ObterPorId(baralho.IdBaralho));
+                ObterPorId(idBaralho);
+                _IBaralhoRepository.Excluir(idBaralho);
             }
             catch (ValidationException e)
             {

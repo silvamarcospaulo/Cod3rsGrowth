@@ -81,9 +81,9 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             }
         }
 
-        public void Excluir(Jogador jogador)
+        public void Excluir(int idJogador)
         {
-            var jogadorExcluir = ObterPorId(jogador.IdJogador);
+            var jogadorExcluir = ObterPorId(idJogador);
 
             try
             {
@@ -93,7 +93,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     options.IncludeRuleSets("Excluir");
 
                 });
-                _IJogadorRepository.Excluir(jogadorExcluir);
+                _IJogadorRepository.Excluir(jogadorExcluir.IdJogador);
             }
             catch (ValidationException e)
             {

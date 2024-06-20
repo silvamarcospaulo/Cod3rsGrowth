@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Dominio.Interfaces
     {
         void Criar(Baralho baralho);
         void Atualizar(Baralho baralho);
-        void Excluir(Baralho baralho);
+        void Excluir(int idBaralho);
         Baralho ObterPorId(int idBaralho);
         List<Baralho> ObterTodos(BaralhoFiltro? filtro);
     }
