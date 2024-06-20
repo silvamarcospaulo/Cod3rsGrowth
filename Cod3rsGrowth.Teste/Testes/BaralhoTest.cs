@@ -793,7 +793,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdBaralho = idBaralhoTeste,
             };
 
-            ObterServico.Excluir(baralhoTeste);
+            ObterServico.Excluir(baralhoTeste.IdBaralho);
 
             var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(idBaralhoTeste));
 
@@ -813,7 +813,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdBaralho = idBaralhoTeste,
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(baralhoTeste.IdBaralho));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }

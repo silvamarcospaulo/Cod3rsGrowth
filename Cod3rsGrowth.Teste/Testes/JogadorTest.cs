@@ -466,7 +466,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdJogador = idJogadorTeste,
             };
 
-            ObterServico.Excluir(jogadorTeste);
+            ObterServico.Excluir(jogadorTeste.IdJogador);
 
             var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(idJogadorTeste));
 
@@ -486,7 +486,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdJogador = idJogadorTeste,
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste.IdJogador));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -501,7 +501,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdJogador = 3
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste.IdJogador));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
