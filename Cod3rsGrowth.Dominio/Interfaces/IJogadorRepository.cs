@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Dominio.Interfaces
     {
         void Criar(Jogador jogador);
         void Atualizar(Jogador jogador);
-        void Excluir(Jogador jogador);
+        void Excluir(int idJogador);
         Jogador ObterPorId(int idJogador);
         List<Jogador> ObterTodos(JogadorFiltro? filtro);
     }

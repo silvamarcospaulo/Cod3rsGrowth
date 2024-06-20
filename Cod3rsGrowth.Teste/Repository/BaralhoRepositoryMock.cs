@@ -21,9 +21,10 @@ namespace Cod3rsGrowth.Teste.Repository
             baralhoBanco = baralho;
         }
 
-        public void Excluir(Baralho baralho)
+        public void Excluir(int idBaralho)
         {
-            tabelasBaralhos.Remove(baralho);
+            var baralhoExcluir = ObterPorId(idBaralho);
+            tabelasBaralhos.Remove(baralhoExcluir);
         }
 
         public Baralho ObterPorId(int idBaralho)

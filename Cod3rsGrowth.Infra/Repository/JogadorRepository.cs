@@ -20,9 +20,10 @@ namespace Cod3rsGrowth.Infra.Repository
             conexaoDados.Update(jogador);
         }
 
-        public void Excluir(Jogador jogador)
+        public void Excluir(int idJogador)
         {
-            conexaoDados.Delete(jogador);
+            var jogadorExcluir = ObterPorId(idJogador);
+            conexaoDados.Delete(jogadorExcluir);
         }
 
         public Jogador ObterPorId(int idJogador)

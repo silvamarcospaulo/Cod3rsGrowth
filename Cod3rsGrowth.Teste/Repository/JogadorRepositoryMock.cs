@@ -13,9 +13,10 @@ namespace Cod3rsGrowth.Teste.Repository
         {
             tabelasJogadores.Add(jogador);
         }
-        public void Excluir(Jogador jogador)
+        public void Excluir(int idJogador)
         {
-            tabelasJogadores.Remove(jogador);
+            var jogadorExcluir = ObterPorId(idJogador);
+            tabelasJogadores.Remove(jogadorExcluir);
         }
         public void Atualizar(Jogador jogador)
         {
