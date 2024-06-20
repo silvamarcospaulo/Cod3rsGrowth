@@ -2,7 +2,6 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
-using System;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
@@ -28,7 +27,8 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Jogador ObterPorId(int idJogador)
         {
-            throw new NotImplementedException();
+            return conexaoDados.GetTable<Jogador>().FirstOrDefault(jogador => jogador.IdJogador == idJogador) ??
+                throw new Exception($"Jogador {idJogador} Nao Encontrada");
         }
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)

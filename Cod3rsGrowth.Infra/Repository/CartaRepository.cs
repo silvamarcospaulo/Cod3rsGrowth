@@ -21,7 +21,8 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Carta ObterPorId(int idCarta)
         {
-            throw new NotImplementedException();
+            return conexaoDados.GetTable<Carta>().FirstOrDefault(carta => carta.IdCarta == idCarta) ??
+                throw new Exception($"Carta {idCarta} Nao Encontrada");
         }
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
