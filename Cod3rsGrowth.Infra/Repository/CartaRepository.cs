@@ -7,7 +7,7 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class CartaRepository : ICartaRepository
     {
-        ConexaoDados conexaoDados = new();
+        private readonly ConexaoDados conexaoDados = new();
 
         public void Criar(Carta carta)
         {
@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void Atualizar(Carta carta)
         {
-            throw new NotImplementedException();
+            conexaoDados.Update(carta);
         }
 
         public Carta ObterPorId(int idCarta)

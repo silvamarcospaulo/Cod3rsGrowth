@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class JogadorRepository : IJogadorRepository
     {
-        ConexaoDados conexaoDados = new();
+        private readonly ConexaoDados conexaoDados = new();
 
         public void Criar(Jogador jogador)
         {
@@ -17,7 +17,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void Atualizar(Jogador jogador)
         {
-            throw new NotImplementedException();
+            conexaoDados.Update(jogador);
         }
 
         public void Excluir(Jogador jogador)
