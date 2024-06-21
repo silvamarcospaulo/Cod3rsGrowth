@@ -22,7 +22,8 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void Excluir(int idBaralho)
         {
-            conexaoDados.GetTable<Baralho>().Delete(baralho => baralho.IdBaralho == idBaralho);
+            var baralhoExcluir = ObterPorId(idBaralho);
+            conexaoDados.Delete(baralhoExcluir);
         }
 
         public Baralho ObterPorId(int idBaralho)
