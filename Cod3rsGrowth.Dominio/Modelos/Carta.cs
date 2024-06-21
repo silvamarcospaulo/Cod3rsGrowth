@@ -1,5 +1,4 @@
-﻿using System;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
+﻿using Cod3rsGrowth.Dominio.Modelos.Enums;
 
 namespace Cod3rsGrowth.Dominio.Modelos
 {
