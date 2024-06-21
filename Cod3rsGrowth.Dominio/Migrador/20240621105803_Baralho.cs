@@ -1,10 +1,4 @@
 ﻿using FluentMigrator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static LinqToDB.Reflection.Methods.LinqToDB;
 
 namespace Cod3rsGrowth.Dominio.Migrador
 {

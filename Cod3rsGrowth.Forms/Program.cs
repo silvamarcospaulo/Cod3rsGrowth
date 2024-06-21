@@ -4,6 +4,7 @@ using System.Configuration;
 using FluentValidation;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Interfaces;
+using Cod3rsGrowth.Dominio.Migrador;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -17,7 +18,8 @@ namespace Cod3rsGrowth.Forms
 {
     class Program
     {
-        const string chaveDeConexao = "DeckBuilderDb";
+        private static string _stringDeConexao = "DeckBuilderDb";
+        
         static void Main(string[] args)
         {
             using (var serviceProvider = CreateServices())
@@ -29,14 +31,14 @@ namespace Cod3rsGrowth.Forms
 
         private static ServiceProvider CreateServices()
         {
-            string stringDeConexao = ConfigurationManager.ConnectionStrings[chaveDeConexao].ToString();
+            string stringDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ToString();
 
             return new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
                     .AddSqlServer()
                     .WithGlobalConnectionString(stringDeConexao)
-                    .ScanIn(typeof().Assembly).For.Migrations())
+                    .ScanIn(typeof(_20240621105800).Assembly).For.Migrations())
                     .AddScoped<CartaServico>()
                     .AddScoped<BaralhoServico>()
                     .AddScoped<JogadorServico>()
@@ -49,7 +51,7 @@ namespace Cod3rsGrowth.Forms
                     .AddLinqToDBContext<ConexaoDados>((provider, options)
                         => options
                         .UseSqlServer(ConfigurationManager
-                        .ConnectionStrings[chaveDeConexao].ConnectionString)
+                        .ConnectionStrings[_stringDeConexao].ConnectionString)
                         .UseDefaultLogging(provider))
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
 
