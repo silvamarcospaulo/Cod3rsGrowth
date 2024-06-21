@@ -1,16 +1,10 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Servico.ServicoJogador
 {
-    public class ValidadorJogador : AbstractValidator<Jogador>
+    public class JogadorValidador : AbstractValidator<Jogador>
     {
         private const int quantidadeBaralhoPauper = 60;
         private const int quantidadeMaximaDeCopiaDeCartasStandard = 4;
@@ -19,7 +13,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         private const int quantidadeMaximaDeCopiaDeCartasPauper = 4;
         private const int quantidadeBaralhoCommander = 100;
 
-        public ValidadorJogador()
+        public JogadorValidador()
         {
             DateTime valorDataHoje = DateTime.Now;
             const int valorMinimoDeIdadeParaCriarConta = 13;

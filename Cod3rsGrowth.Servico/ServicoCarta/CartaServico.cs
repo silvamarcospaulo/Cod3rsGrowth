@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Infra.Repository.RepositoryCarta;
-using Cod3rsGrowth.Servico.ServicoBaralho;
-using Cod3rsGrowth.Servico.ServicoJogador;
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
-    public class ServicoCarta : ICartaRepository
+    public class CartaServico : ICartaRepository
     {
         private readonly ICartaRepository _ICartaRepository;
         private readonly IValidator<Carta> _validadorCarta;
@@ -18,18 +15,10 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
         private const decimal precoCartaRare = 5m;
         private const decimal precoCartaMythic = 7.5m;
 
-        public ServicoCarta(ICartaRepository cartaRepository, IValidator<Carta> validadorCarta)
+        public CartaServico(ICartaRepository cartaRepository, IValidator<Carta> validadorCarta)
         {
             _ICartaRepository = cartaRepository;
             _validadorCarta = validadorCarta;
-        }
-        public Carta ObterPorId(int idCarta)
-        {
-            return _ICartaRepository.ObterPorId(idCarta);
-        }
-        public List<Carta> ObterTodos()
-        {
-            return _ICartaRepository.ObterTodos();
         }
 
         private int GerarIdCarta()
@@ -37,11 +26,12 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             const int ValorInicial = 1;
             const int Incremento = 1;
 
-            var cartas = _ICartaRepository.ObterTodos();
+            var cartas = _ICartaRepository.ObterTodos(null);
             var ultimoId = cartas.Any() ? cartas.Max(carta => carta.IdCarta) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
         }
+
         private static decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
         {
             decimal valorCarta = 0;
@@ -63,6 +53,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             }
             return valorCarta;
         }
+
         public void Criar(Carta carta)
         {
             carta.IdCarta = GerarIdCarta();
@@ -96,6 +87,15 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
                 var mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
                 throw new Exception($"{mensagemDeErro}");
             }
+        }
+
+        public Carta ObterPorId(int idCarta)
+        {
+            return _ICartaRepository.ObterPorId(idCarta);
+        }
+        public List<Carta> ObterTodos(CartaFiltro? filtro)
+        {
+            return _ICartaRepository.ObterTodos(null);
         }
     }
 }

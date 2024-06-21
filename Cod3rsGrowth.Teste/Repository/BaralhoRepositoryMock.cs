@@ -1,5 +1,6 @@
-﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra.Repository.RepositoryBaralho;
+﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Interfaces;
+using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Teste.Singleton;
 using System;
 
@@ -7,7 +8,7 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class BaralhoRepositoryMock : IBaralhoRepository
     {
-        public List<Baralho> tabelasBaralhos = SingletonTabelas.InstanciaBaralhos;
+        private List<Baralho> tabelasBaralhos = SingletonTabelasTeste.InstanciaBaralhos;
 
         public void Criar(Baralho baralho)
         {
@@ -19,9 +20,11 @@ namespace Cod3rsGrowth.Teste.Repository
             var baralhoBanco = ObterPorId(baralho.IdJogador);
             baralhoBanco = baralho;
         }
-        public void Excluir(Baralho baralho)
+
+        public void Excluir(int idBaralho)
         {
-            tabelasBaralhos.Remove(baralho);
+            var baralhoExcluir = ObterPorId(idBaralho);
+            tabelasBaralhos.Remove(baralhoExcluir);
         }
 
         public Baralho ObterPorId(int idBaralho)
@@ -29,7 +32,7 @@ namespace Cod3rsGrowth.Teste.Repository
             return tabelasBaralhos.FirstOrDefault(carta => carta.IdBaralho == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 
-        public List<Baralho> ObterTodos()
+        public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
             return tabelasBaralhos;
         }
