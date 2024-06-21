@@ -7,7 +7,12 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class CartaRepository : ICartaRepository
     {
-        private readonly ConexaoDados conexaoDados = new();
+        private readonly ConexaoDados conexaoDados;
+
+        public CartaRepository(ConexaoDados _conexaoDados)
+        {
+            conexaoDados = _conexaoDados;
+        }
 
         public void Criar(Carta carta)
         {

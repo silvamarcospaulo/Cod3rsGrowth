@@ -8,7 +8,12 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class BaralhoRepository : IBaralhoRepository
     {
-        private readonly ConexaoDados conexaoDados = new();
+        private readonly ConexaoDados conexaoDados;
+
+        public BaralhoRepository(ConexaoDados _conexaoDados)
+        {
+            conexaoDados = _conexaoDados;
+        }
 
         public void Criar(Baralho baralho)
         {

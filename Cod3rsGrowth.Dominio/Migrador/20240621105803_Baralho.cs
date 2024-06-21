@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
         {
             Create.Table("Baralho")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
-                .WithColumn("IdJogador").AsInt64().NotNullable().ForeignKey("Jogador", "Id").Identity()
+                .WithColumn("IdJogador").AsInt64().NotNullable().ForeignKey("Jogador", "Id")
                 .WithColumn("Nome").AsString(255).NotNullable()
                 .WithColumn("DataDeCriacao").AsTime().NotNullable()
                 .WithColumn("FomatoDeJogo").AsString(255).NotNullable()

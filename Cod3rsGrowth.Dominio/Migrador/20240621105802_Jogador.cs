@@ -6,7 +6,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
     public class _20240621105802_Jogador : Migration
     {
         const int valorPadraoZero = 0;
-        public override void Down()
+        public override void Up()
         {
             Create.Table("Jogador")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
@@ -17,7 +17,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 .WithColumn("ContaAtiva").AsBoolean().WithDefaultValue(false).NotNullable();
         }
 
-        public override void Up()
+        public override void Down()
         {
             Delete.Table("Jogador");
         }

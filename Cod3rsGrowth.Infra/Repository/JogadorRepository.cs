@@ -7,7 +7,12 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class JogadorRepository : IJogadorRepository
     {
-        private readonly ConexaoDados conexaoDados = new();
+        private readonly ConexaoDados conexaoDados;
+
+        public JogadorRepository(ConexaoDados _conexaoDados)
+        {
+            conexaoDados = _conexaoDados;
+        }
 
         public void Criar(Jogador jogador)
         {
