@@ -2,9 +2,7 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
-using LinqToDB.Common;
 using System.Data;
-using System.Runtime.ConstrainedExecution;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
@@ -30,7 +28,8 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Baralho ObterPorId(int idBaralho)
         {
-            throw new NotImplementedException();
+            return conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.IdBaralho == idBaralho) ??
+                throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
