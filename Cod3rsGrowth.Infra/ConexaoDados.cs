@@ -6,7 +6,6 @@ namespace Cod3rsGrowth.Infra
 {
     public class ConexaoDados : DataConnection
     {
-        const string stringDeConexao = "DeckBuilderDb";
         public ConexaoDados(DataOptions<ConexaoDados> options) : base(options.Options) { }
         public ITable<Carta> TabelaCartas => this.GetTable<Carta>();
         public ITable<CopiaDeCartasNoBaralho> TabelaCartasDoBaralhos => this.GetTable<CopiaDeCartasNoBaralho>();

@@ -2,6 +2,7 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using FluentValidation;
 using FluentValidation.Results;
@@ -11,11 +12,14 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
     public class BaralhoServico : IBaralhoRepository
     {
         private readonly IBaralhoRepository _IBaralhoRepository;
+        private readonly CartaServico _cartaServico;
         private readonly IValidator<Baralho> _validadorBaralho;
 
-        public BaralhoServico(IBaralhoRepository baralhoRepository, IValidator<Baralho> validadorBaralho)
+        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
+            IValidator<Baralho> validadorBaralho)
         {
             _IBaralhoRepository = baralhoRepository;
+            _cartaServico = cartaServico;
             _validadorBaralho = validadorBaralho;
         }
         
@@ -72,7 +76,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             try
             {
-                return baralho.SelectMany(carta => carta.Carta.CorCarta).Distinct().ToList();
+                return baralho.All(cartas => _cartaServico.ObterPorId(cartas.Carta.IdCarta));
             }
             catch (Exception e)
             {

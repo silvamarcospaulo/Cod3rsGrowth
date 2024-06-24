@@ -1,16 +1,29 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra.Repository;
 using Cod3rsGrowth.Teste.Singleton;
 
 namespace Cod3rsGrowth.Teste.Repository
 {
     public class CartaRepositoryMock : ICartaRepository
     {
-        public List<Carta> tabelasCartas = SingletonTabelasTeste.InstanciaCartas;
+        private List<Carta> tabelasCartas = SingletonTabelasTeste.InstanciaCartas;
+
+        private int GerarIdCarta()
+        {
+            const int ValorInicial = 1;
+            const int Incremento = 1;
+
+            var cartas = ObterTodos(null);
+            var ultimoId = cartas.Any() ? cartas.Max(carta => carta.IdCarta) : ValorInicial - Incremento;
+
+            return ultimoId + Incremento;
+        }
 
         public void Criar(Carta carta)
         {
+            carta.IdCarta = GerarIdCarta();
             tabelasCartas.Add(carta);
         }
 

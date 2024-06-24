@@ -7,7 +7,7 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class CartaRepository : ICartaRepository
     {
-        private readonly ConexaoDados conexaoDados;
+        private ConexaoDados conexaoDados;
 
         public CartaRepository(ConexaoDados _conexaoDados)
         {
@@ -64,7 +64,6 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-
             if (filtro?.PrecoCartaMinimo != null)
             {
                 query = from q in query
@@ -82,7 +81,7 @@ namespace Cod3rsGrowth.Infra.Repository
             if (filtro?.CorCarta.Count() >= valorMinimoCoresCarta)
             {
                 query = from q in query
-                        where q.CorCarta.All(corCarta => filtro.CorCarta.All(cor => cor == corCarta))
+                        where q.CorCarta.All(corCarta => filtro.CorCarta.All(cor => cor == corCarta.Cor))
                         select q;
             }
 

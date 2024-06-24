@@ -44,6 +44,13 @@ namespace Cod3rsGrowth.Infra.Repository
             IQueryable<Baralho> query = from q in conexaoDados.TabelaBaralhos
                                         select q;
 
+            if (filtro?.IdJogador != null)
+            {
+                query = from q in query
+                        where q.IdJogador == filtro.IdJogador
+                        select q;
+            }
+
             if (filtro?.FormatoDeJogoBaralho != null)
             {
                 query = from q in query

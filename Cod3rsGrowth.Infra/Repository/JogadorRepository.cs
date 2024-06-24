@@ -7,7 +7,7 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class JogadorRepository : IJogadorRepository
     {
-        private readonly ConexaoDados conexaoDados;
+        private ConexaoDados conexaoDados;
 
         public JogadorRepository(ConexaoDados _conexaoDados)
         {
@@ -80,20 +80,6 @@ namespace Cod3rsGrowth.Infra.Repository
             {
                 query = from q in query
                         where q.PrecoDasCartasJogador <= filtro.PrecoDasCartasJogadorMaximo
-                        select q;
-            }
-
-            if (filtro?.QuantidadeDeBaralhosJogadorMinimo != null)
-            {
-                query = from q in query
-                        where q.QuantidadeDeBaralhosJogador >= filtro.QuantidadeDeBaralhosJogadorMinimo
-                        select q;
-            }
-
-            if (filtro?.QuantidadeDeBaralhosJogadorMaximo != null)
-            {
-                query = from q in query
-                        where q.QuantidadeDeBaralhosJogador <= filtro.QuantidadeDeBaralhosJogadorMaximo
                         select q;
             }
 

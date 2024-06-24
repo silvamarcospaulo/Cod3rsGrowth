@@ -5,6 +5,7 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Teste.Repository;
+using Cod3rsGrowth.Teste.Singleton;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +21,7 @@ namespace Cod3rsGrowth.Teste
             serviceProvider.AddScoped<JogadorServico>();
 
             serviceProvider.AddScoped<ICartaRepository, CartaRepositoryMock>();
+            serviceProvider.AddScoped<ICorCartaRepository, CorCartaRepositoryMock>();
             serviceProvider.AddScoped<IBaralhoRepository, BaralhoRepositoryMock>();
             serviceProvider.AddScoped<IJogadorRepository, JogadorRepositoryMock>();
 

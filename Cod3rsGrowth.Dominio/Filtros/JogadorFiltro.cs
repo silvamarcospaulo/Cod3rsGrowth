@@ -9,8 +9,6 @@ namespace Cod3rsGrowth.Dominio.Filtros
         public DateTime? DataNascimentoJogadorMaximo { get; set; }
         public decimal? PrecoDasCartasJogadorMinimo { get; set; }
         public decimal? PrecoDasCartasJogadorMaximo { get; set; }
-        public int? QuantidadeDeBaralhosJogadorMinimo { get; set; }
-        public int? QuantidadeDeBaralhosJogadorMaximo { get; set; }
         public bool? ContaAtivaJogador { get; set; }
     }
 }

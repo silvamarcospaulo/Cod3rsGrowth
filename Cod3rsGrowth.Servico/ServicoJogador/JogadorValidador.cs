@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using FluentValidation;
+using LinqToDB.Common;
 
 namespace Cod3rsGrowth.Servico.ServicoJogador
 {
@@ -53,8 +54,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         private static bool ValidacaoTipoDeBaralho(List<Baralho> baralhosJogador)
         {
-            const int quantidadeDeBaralhosParaValidacao = 1;
-            if (baralhosJogador.Count() >= quantidadeDeBaralhosParaValidacao)
+            if (!baralhosJogador.IsNullOrEmpty())
             {
                 foreach(var baralho in  baralhosJogador)
                 {
