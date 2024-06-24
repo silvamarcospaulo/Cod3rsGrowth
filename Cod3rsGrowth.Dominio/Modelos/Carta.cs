@@ -18,6 +18,6 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public RaridadeEnum RaridadeCarta { get; set; }
         [Column("Preco")]
         public decimal PrecoCarta { get; set; }
-        public List<CorCarta> CorCarta { get; set; }
+        public List<CoresEnum> CorCarta { get; set; }
     }
 }

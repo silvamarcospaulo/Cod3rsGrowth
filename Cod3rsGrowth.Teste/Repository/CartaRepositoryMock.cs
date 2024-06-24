@@ -8,7 +8,8 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class CartaRepositoryMock : ICartaRepository
     {
-        private List<Carta> tabelasCartas = SingletonTabelasTeste.InstanciaCartas;
+        private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
+        private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
 
         private int GerarIdCarta()
         {
@@ -21,10 +22,23 @@ namespace Cod3rsGrowth.Teste.Repository
             return ultimoId + Incremento;
         }
 
-        public void Criar(Carta carta)
+        private int GerarIdCorCarta()
+        {
+            const int ValorInicial = 1;
+            const int Incremento = 1;
+
+            var CoresCarta = tabelaCorCarta;
+            var ultimoId = CoresCarta.Any() ? CoresCarta.Max(corCarta => corCarta.IdCarta) : ValorInicial - Incremento;
+
+            return ultimoId + Incremento;
+        }
+
+        public Carta Criar(Carta carta)
         {
             carta.IdCarta = GerarIdCarta();
-            tabelasCartas.Add(carta);
+            tabelaCarta.Add(carta);
+
+            return tabelaCarta.Last();
         }
 
         public void Atualizar(Carta carta)
@@ -36,12 +50,24 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Carta ObterPorId(int idCarta)
         {
-            return tabelasCartas.FirstOrDefault(carta => carta.IdCarta == idCarta) ?? throw new Exception($"Carta {idCarta} Nao Encontrada");
+            return tabelaCarta.FirstOrDefault(carta => carta.IdCarta == idCarta) ?? throw new Exception($"Carta {idCarta} Nao Encontrada");
         }
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
-            return tabelasCartas;
+            return tabelaCarta;
+        }
+
+        public void CriarCorCarta(CorCarta corCarta)
+        {
+            corCarta.IdCorCarta = GerarIdCorCarta();
+            tabelaCorCarta.Add(corCarta);
+        }
+
+        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
+        {
+            if (filtro?.idCarta != null) return tabelaCorCarta.FindAll(corCarta => corCarta.IdCarta == filtro.idCarta);
+            return tabelaCorCarta;
         }
     }
 }

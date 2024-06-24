@@ -2,6 +2,7 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
+using static LinqToDB.Reflection.Methods.LinqToDB;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
@@ -14,9 +15,10 @@ namespace Cod3rsGrowth.Infra.Repository
             conexaoDados = _conexaoDados;
         }
 
-        public void Criar(Carta carta)
+        public Carta Criar(Carta carta)
         {
             conexaoDados.Insert(carta);
+            return IQueryable <Carta> query = from  in conexaoDados.TabelaCartas select ;
         }
 
         public void Atualizar(Carta carta)

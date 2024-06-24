@@ -24,6 +24,6 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public decimal PrecoDoBaralho { get; set; }
         [Column("CustoDeManaConvertido")]
         public int CustoDeManaConvertidoDoBaralho { get; set; }
-        public List<CorBaralho> CorBaralho { get; set; }
+        public List<CoresEnum> CorBaralho { get; set; }
     }
 }
