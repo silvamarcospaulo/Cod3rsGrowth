@@ -44,24 +44,19 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return valorCarta;
         }
 
-        public void Criar(Carta carta)
+        public Carta Criar(Carta carta)
         {
             carta.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
 
             try
             {
                 _validadorCarta.ValidateAndThrow(carta);
-                var idCartaCrida = _ICartaRepository.Criar(carta);
+                var cartaCriada = _ICartaRepository.Criar(carta);
 
-                foreach (var cor in carta.CorCarta)
-                {
-                    CorCarta corDaCarta = new CorCarta()
-                    {
-                        IdCarta = carta.IdCarta,
-                        Cor = cor
-                    };
-                    _ICartaRepository.CriarCorCarta(corDaCarta);
-                }
+                carta.CorCarta.ForEach(cor => _ICartaRepository.CriarCorCarta(
+                    new CorCarta() { IdCarta = cartaCriada.IdCarta, Cor = cor }));
+
+                return cartaCriada;
             }
             catch (ValidationException e)
             {
@@ -110,9 +105,10 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             _ICartaRepository.CriarCorCarta(corCarta);
         }
 
-        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
+        public List<CoresEnum> ObterTodosCorCarta(CorCartaFiltro? filtro)
         {
-            return _ICartaRepository.ObterTodosCorCarta(filtro);
+            if (filtro?.idCarta != null) return _ICartaRepository.ObterTodosCorCarta(filtro);
+            return _ICartaRepository.ObterTodosCorCarta(null);
         }
     }
 }

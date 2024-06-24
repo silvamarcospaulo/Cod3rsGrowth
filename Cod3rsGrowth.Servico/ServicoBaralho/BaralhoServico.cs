@@ -3,19 +3,25 @@ using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Infra;
+using Cod3rsGrowth.Infra.Repository;
+using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
 using System.Runtime.InteropServices;
+using static LinqToDB.Common.Configuration;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class BaralhoServico : IBaralhoRepository
     {
-        private readonly IBaralhoRepository _IBaralhoRepository;        
+        private readonly IBaralhoRepository _IBaralhoRepository;
+        private readonly CartaServico _cartaServico;
         private readonly IValidator<Baralho> _validadorBaralho;
 
-        public BaralhoServico(IBaralhoRepository baralhoRepository, IValidator<Baralho> validadorBaralho)
+        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
+            IValidator<Baralho> validadorBaralho)
         {
             _IBaralhoRepository = baralhoRepository;
+            _cartaServico = cartaServico;
             _validadorBaralho = validadorBaralho;
         }
 
@@ -62,14 +68,9 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             try
             {
                 var cores = new List<CoresEnum>();
+                baralho.ForEach(carta => cores.AddRange(carta.Carta.CorCarta));
 
-                foreach (var item in baralho)
-                {
-                    foreach (var i in item.Carta.CorCarta)
-                    {
-                        cores.Add(i.Cor);
-                    }
-                }
+                return cores.Distinct().ToList();
             }
             catch (Exception e)
             {
@@ -83,7 +84,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day);
         }
 
-        public void Criar(Baralho baralho)
+        public int Criar(Baralho baralho)
         {
             baralho.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
             baralho.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
@@ -94,18 +95,12 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             try
             {
                 _validadorBaralho.ValidateAndThrow(baralho);
-                _IBaralhoRepository.Criar(baralho);
+                var idBaralhoCriado = _IBaralhoRepository.Criar(baralho);
 
-                foreach (var cor in baralho.CorBaralho)
-                {
-                    var corDoBaralho = new CorBaralho()
-                    {
-                        IdCorBaralho = baralho.IdBaralho,
-                        Cor = cor
-                    };
+                baralho.CorBaralho.ForEach(cor => _IBaralhoRepository.CriarCorBaralho(
+                    new CorBaralho() { IdBaralho = idBaralhoCriado, Cor = cor }));
 
-                    _IBaralhoRepository.CriarCorBaralho(corDoBaralho);
-                }
+                return idBaralhoCriado;
             }
             catch (ValidationException e)
             {
@@ -180,7 +175,6 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public List<CorBaralho> ObterTodosCorBaralho(CorBaralhoFiltro? filtro)
         {
-            if (filtro?.idBaralho != null) return _IBaralhoRepository.ObterTodosCorBaralho(filtro);
             return _IBaralhoRepository.ObterTodosCorBaralho(filtro);
         }
 
@@ -209,8 +203,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
-            if (filtro?.IdBaralho != null) return _IBaralhoRepository.ObterTodosCopiaDeCartas(filtro);
-            return _IBaralhoRepository.ObterTodosCopiaDeCartas(null);
+            return _IBaralhoRepository.ObterTodosCopiaDeCartas(filtro);
         }
     }
 }

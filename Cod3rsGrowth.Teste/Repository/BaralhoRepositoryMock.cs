@@ -47,9 +47,12 @@ namespace Cod3rsGrowth.Teste.Repository
             return ultimoId + Incremento;
         }
 
-        public void Criar(Baralho baralho)
+        public int Criar(Baralho baralho)
         {
+            baralho.IdBaralho = GerarIdBaralho();
             tabelaBaralho.Add(baralho);
+
+            return baralho.IdBaralho;
         }
 
         public void Atualizar(Baralho baralho)

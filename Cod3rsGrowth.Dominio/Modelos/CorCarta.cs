@@ -11,6 +11,6 @@ namespace Cod3rsGrowth.Dominio.Modelos
         [Column("IdCarta")]
         public int IdCarta { get; set; }
         [Column("Cor")]
-        public List<CoresEnum> Cor { get; set; }
+        public CoresEnum Cor { get; set; }
     }
 }
