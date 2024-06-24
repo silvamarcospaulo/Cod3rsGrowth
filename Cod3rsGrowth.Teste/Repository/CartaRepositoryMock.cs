@@ -33,12 +33,12 @@ namespace Cod3rsGrowth.Teste.Repository
             return ultimoId + Incremento;
         }
 
-        public Carta Criar(Carta carta)
+        public int Criar(Carta carta)
         {
             carta.IdCarta = GerarIdCarta();
             tabelaCarta.Add(carta);
 
-            return tabelaCarta.Last();
+            return carta.IdCarta;
         }
 
         public void Atualizar(Carta carta)

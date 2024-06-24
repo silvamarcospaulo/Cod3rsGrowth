@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Teste.Singleton;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,7 +9,13 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class JogadorRepositoryMock : IJogadorRepository
     {
-        public List<Jogador> tabelasJogadores = SingletonTabelasTeste.InstanciaJogadores;
+        private List<Jogador> tabelasJogadores = SingletonTabelasTeste.InstanciaJogador;
+        private BaralhoServico _baralhoServico;
+
+        public JogadorRepositoryMock(BaralhoServico baralhoServico)
+        {
+            _baralhoServico = baralhoServico;
+        }
 
         private int GerarId()
         {
@@ -41,7 +48,9 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Jogador ObterPorId(int idJogador)
         {
-            return tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
+            var jogador = tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
+            jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
+            return jogador;
         }
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)

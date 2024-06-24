@@ -104,12 +104,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public Jogador ObterPorId(int idJogador)
         {
-            var jogador = new Jogador();
-            jogador = _IJogadorRepository.ObterPorId(idJogador);
-            var filtro = new BaralhoFiltro() { IdJogador = idJogador };
-            jogador.BaralhosJogador.AddRange(_IBaralhoRepository.ObterTodos(filtro));
-            jogador.BaralhosJogador.ForEach(o => o.CartasDoBaralho.ForEach();
-            return jogador;
+            return _IJogadorRepository.ObterPorId(idJogador);
         }
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)

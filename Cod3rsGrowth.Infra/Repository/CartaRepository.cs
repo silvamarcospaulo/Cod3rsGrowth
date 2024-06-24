@@ -15,10 +15,9 @@ namespace Cod3rsGrowth.Infra.Repository
             conexaoDados = _conexaoDados;
         }
 
-        public Carta Criar(Carta carta)
+        public int Criar(Carta carta)
         {
-            conexaoDados.Insert(carta);
-            return IQueryable <Carta> query = from  in conexaoDados.TabelaCartas select ;
+            return conexaoDados.InsertWithInt32Identity(carta);
         }
 
         public void Atualizar(Carta carta)
@@ -34,8 +33,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
-            const int valorMinimoCoresCarta = 1;
-            IQueryable<Carta> query = from q in conexaoDados.TabelaCartas
+            IQueryable<Carta> query = from q in conexaoDados.TabelaCarta
                                         select q;
 
             if (filtro?.NomeCarta != null)
@@ -80,10 +78,30 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.CorCarta.Count() >= valorMinimoCoresCarta)
+            if (filtro?.PrecoCartaMaximo != null)
             {
                 query = from q in query
-                        where q.CorCarta.All(corCarta => filtro.CorCarta.All(cor => cor == corCarta.Cor))
+                        where q.PrecoCarta >= filtro.PrecoCartaMaximo
+                        select q;
+            }
+
+            return query.ToList();
+        }
+
+        public void CriarCorCarta(CorCarta corCarta)
+        {
+            conexaoDados.Insert(corCarta);
+        }
+
+        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
+        {
+            IQueryable<CorCarta> query = from q in conexaoDados.TabelaCorCarta
+                select q;
+
+            if (filtro?.idCarta != null)
+            {
+                query = from q in query
+                        where q.IdCarta == filtro.idCarta
                         select q;
             }
 

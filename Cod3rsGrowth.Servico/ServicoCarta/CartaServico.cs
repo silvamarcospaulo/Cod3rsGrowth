@@ -44,7 +44,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return valorCarta;
         }
 
-        public Carta Criar(Carta carta)
+        public int Criar(Carta carta)
         {
             carta.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
 
@@ -54,7 +54,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
                 var cartaCriada = _ICartaRepository.Criar(carta);
 
                 carta.CorCarta.ForEach(cor => _ICartaRepository.CriarCorCarta(
-                    new CorCarta() { IdCarta = cartaCriada.IdCarta, Cor = cor }));
+                    new CorCarta() { IdCarta = cartaCriada, Cor = cor }));
 
                 return cartaCriada;
             }
@@ -105,7 +105,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             _ICartaRepository.CriarCorCarta(corCarta);
         }
 
-        public List<CoresEnum> ObterTodosCorCarta(CorCartaFiltro? filtro)
+        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
         {
             if (filtro?.idCarta != null) return _ICartaRepository.ObterTodosCorCarta(filtro);
             return _ICartaRepository.ObterTodosCorCarta(null);
