@@ -142,7 +142,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
                 var oi = _IBaralhoRepository.ObterTodosCorBaralho(new CorBaralhoFiltro() { idBaralho = idBaralho });
                 oi?.ForEach(cor => ExcluirCorBaralho(cor.IdCorBaralho));
                 var oioi = _IBaralhoRepository.ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = idBaralho });
-
+                oioi?.ForEach(cor => ExcluirCopiaDeCartas(cor.IdCopiaDeCartasNoBaralho));
                 _IBaralhoRepository.Excluir(idBaralho);
             }
             catch (ValidationException e)
@@ -189,8 +189,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public void AtualizarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            var copiaDeCartasNoBaralhoAtualizar = new CopiaDeCartasNoBaralho();
-            copiaDeCartasNoBaralhoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho);
+            var copiaDeCartasNoBaralhoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho);
             copiaDeCartasNoBaralhoAtualizar.QuantidadeCopiasDaCartaNoBaralho = copiaDeCartasNoBaralho.QuantidadeCopiasDaCartaNoBaralho;
             _IBaralhoRepository.AtualizarCopiaDeCartas(copiaDeCartasNoBaralhoAtualizar);
         }

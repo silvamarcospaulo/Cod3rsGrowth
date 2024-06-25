@@ -1,22 +1,16 @@
-using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Dominio.Modelos;
-using Microsoft.Extensions.DependencyInjection;
-using Cod3rsGrowth.Servico.ServicoCarta;
-using System.Diagnostics.Metrics;
 using Cod3rsGrowth.Dominio.Filtros;
-using static LinqToDB.Common.Configuration;
-using Cod3rsGrowth.Servico.ServicoBaralho;
-using Cod3rsGrowth.Servico.ServicoJogador;
-using LinqToDB.Common;
+using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Teste.Singleton;
+using LinqToDB.Common;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
     public class CartaTest : TesteBase
     {
         private readonly CartaServico servicoCarta;
-        private readonly BaralhoServico servicoBaralho;
-        private readonly JogadorServico servicoJogador;
 
         private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
         private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
@@ -39,7 +33,7 @@ namespace Cod3rsGrowth.Teste.Testes
             IniciarListaMock();
         }
 
-        public void IniciarListaMock()
+        private void IniciarListaMock()
         {
             var listaCartasMock = new List<Carta>()
             {

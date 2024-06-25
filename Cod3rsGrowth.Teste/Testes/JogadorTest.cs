@@ -13,8 +13,6 @@ namespace Cod3rsGrowth.Teste.Testes
     public class JogadorTest : TesteBase
     {
         private readonly JogadorServico servicoJogador;
-        private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
-        private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
         private List<CorBaralho> tabelaCorBaralho = SingletonTabelasTeste.InstanciaCorBaralho;
         private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
         private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
@@ -24,8 +22,6 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             servicoJogador = ServiceProvider.GetService<JogadorServico>() ?? throw new Exception("Erro ao obter servico Jogador");
 
-            tabelaCorCarta.Clear();
-            tabelaCarta.Clear();
             tabelaCorBaralho.Clear();
             tabelaCopiaDeCartasNoBaralho.Clear();
             tabelaBaralho.Clear();

@@ -1,18 +1,18 @@
-using FluentMigrator.Runner;
-using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using FluentValidation;
-using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Migrador;
-using Cod3rsGrowth.Servico.ServicoCarta;
-using Cod3rsGrowth.Servico.ServicoBaralho;
-using Cod3rsGrowth.Servico.ServicoJogador;
-using Cod3rsGrowth.Infra.Repository;
+using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra;
-using LinqToDB.AspNet;
+using Cod3rsGrowth.Infra.Repository;
+using Cod3rsGrowth.Servico.ServicoBaralho;
+using Cod3rsGrowth.Servico.ServicoCarta;
+using Cod3rsGrowth.Servico.ServicoJogador;
+using FluentMigrator.Runner;
+using FluentValidation;
 using LinqToDB;
+using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 
 namespace Cod3rsGrowth.Forms
 {

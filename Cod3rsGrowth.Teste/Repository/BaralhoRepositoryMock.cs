@@ -11,8 +11,6 @@ namespace Cod3rsGrowth.Teste.Repository
         private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
         private List<CorBaralho> tabelaCorBaralho = SingletonTabelasTeste.InstanciaCorBaralho;
         private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
-        private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
-        private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
 
         private int GerarIdBaralho()
         {
@@ -41,7 +39,7 @@ namespace Cod3rsGrowth.Teste.Repository
             const int ValorInicial = 1;
             const int Incremento = 1;
 
-            var copiaDeCartasBanco = ObterTodosCopiaDeCartas(null);
+            var copiaDeCartasBanco = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro());
             var ultimoId = copiaDeCartasBanco.Any() ? copiaDeCartasBanco.Max(corBaralho => corBaralho.IdCopiaDeCartasNoBaralho) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
@@ -69,7 +67,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Baralho ObterPorId(int idBaralho)
         {
-            return tabelaBaralho.FirstOrDefault(carta => carta.IdBaralho == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
+            return tabelaBaralho.FirstOrDefault(baralho => baralho.IdBaralho == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)

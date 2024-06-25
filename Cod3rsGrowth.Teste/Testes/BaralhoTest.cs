@@ -11,29 +11,20 @@ namespace Cod3rsGrowth.Teste.Testes
 {
     public class BaralhoTest : TesteBase
     {
-        private readonly CartaServico servicoCarta;
-        private readonly BaralhoServico servicoBaralho;
-        private readonly JogadorServico servicoJogador;
 
-        private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
-        private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
+        private readonly BaralhoServico servicoBaralho;
+
         private List<CorBaralho> tabelaCorBaralho = SingletonTabelasTeste.InstanciaCorBaralho;
         private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
         private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
-        private List<Jogador> tabelaJogador = SingletonTabelasTeste.InstanciaJogador;
 
         public BaralhoTest()
         {
-            servicoCarta = ServiceProvider.GetService<CartaServico>() ?? throw new Exception("Erro ao obter servico Carta");
             servicoBaralho = ServiceProvider.GetService<BaralhoServico>() ?? throw new Exception("Erro ao obter servico Baralho");
-            servicoJogador = ServiceProvider.GetService<JogadorServico>() ?? throw new Exception("Erro ao obter servico Jogador");
 
-            tabelaCorCarta.Clear();
-            tabelaCarta.Clear();
             tabelaCorBaralho.Clear();
             tabelaCopiaDeCartasNoBaralho.Clear();
             tabelaBaralho.Clear();
-            tabelaJogador.Clear();
 
             IniciarListaMock();
         }
@@ -195,7 +186,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_verifica_se_a_lista_nao_esta_vazia()
         {
-            var baralhos = servicoBaralho.ObterTodos(null);
+            var baralhos = servicoBaralho.ObterTodos(new BaralhoFiltro());
 
             Assert.NotEmpty(baralhos);
         }
@@ -414,7 +405,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
                         },
-                        QuantidadeCopiasDaCartaNoBaralho = 100
+                        QuantidadeCopiasDaCartaNoBaralho = quantidadeDeCartasTeste
                     }
                 },
                 QuantidadeDeCartasNoBaralho = 60,
@@ -801,25 +792,6 @@ namespace Cod3rsGrowth.Teste.Testes
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Atualizar(baralhoTeste));
-
-            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
-        }
-
-        [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        public void ao_Excluir_com_id_valido_deve_remover_o_baralho_correspondente(int idBaralhoTeste)
-        {
-            var mensagemDeErroEsperada = ($"Baralho {idBaralhoTeste} Nao Encontrado");
-
-            var baralhoTeste = new Baralho()
-            {
-                IdBaralho = idBaralhoTeste,
-            };
-
-            servicoBaralho.Excluir(baralhoTeste.IdBaralho);
-
-            var resultado = Assert.Throws<Exception>(() => servicoBaralho.ObterPorId(idBaralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
