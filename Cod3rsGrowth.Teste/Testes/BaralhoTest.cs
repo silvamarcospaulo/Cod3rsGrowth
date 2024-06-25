@@ -813,5 +813,16 @@ namespace Cod3rsGrowth.Teste.Testes
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
+
+        [Fact]
+        public void ao_ObterTodos_com_filtro_deve_retornar_lista_filtrada_por_FormatoDeJogo()
+        {
+            var listaFiltroFormatoDeJogo = servicoBaralho.ObterTodos(new BaralhoFiltro()
+            { FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander });
+
+            const FormatoDeJogoEnum formatoDeJogoEsperado = FormatoDeJogoEnum.Commander;
+
+            listaFiltroFormatoDeJogo.ForEach(baralho => Assert.Equal(formatoDeJogoEsperado, baralho.FormatoDeJogoBaralho));
+        }
     }
 }

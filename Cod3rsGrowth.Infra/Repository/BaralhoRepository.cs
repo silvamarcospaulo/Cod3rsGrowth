@@ -39,7 +39,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            const int valorMinimoListaCorCartas = 1;
+            const int valorMinimo = 1;
 
             IQueryable<Baralho> query = from q in conexaoDados.TabelaBaralho
                                         select q;
@@ -72,7 +72,7 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho.Count() > valorMinimoListaCorCartas)
+            if (filtro?.CorBaralho.Count() > valorMinimo)
             {
                 query = from q in query
                         where q.CorBaralho.All(corBaralho => filtro.CorBaralho.All(cor => cor == corBaralho))
