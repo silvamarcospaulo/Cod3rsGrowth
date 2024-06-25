@@ -138,7 +138,11 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             try
             {
-                ObterPorId(idBaralho);
+                var baralhoExcluir = ObterPorId(idBaralho);
+                var oi = _IBaralhoRepository.ObterTodosCorBaralho(new CorBaralhoFiltro() { idBaralho = idBaralho });
+                oi?.ForEach(cor => ExcluirCorBaralho(cor.IdCorBaralho));
+                var oioi = _IBaralhoRepository.ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = idBaralho });
+
                 _IBaralhoRepository.Excluir(idBaralho);
             }
             catch (ValidationException e)

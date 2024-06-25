@@ -23,20 +23,20 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             _validadorJogador = validadorJogador;
         }
 
-        private static decimal SomarPrecoDeTodasAsCartasDoJogador(List<Baralho> baralhosJogador)
+        private static decimal SomarPrecoDeTodasAsCartasDoJogador(List<Baralho>? baralhosJogador)
         {
             if (baralhosJogador == null) return 0;
             return baralhosJogador.SelectMany(baralhos => baralhos.CartasDoBaralho)
                 .Sum(carta => carta.QuantidadeCopiasDaCartaNoBaralho * carta.Carta.PrecoCarta);
         }
 
-        private static int SomarQuantidadeDeBaralhosDoJogador(List<Baralho> baralhosJogador)
+        private static int SomarQuantidadeDeBaralhosDoJogador(List<Baralho>? baralhosJogador)
         {
             if (baralhosJogador == null) return 0;
             return baralhosJogador.Count;
         }
 
-        private static bool VerificaJogadorAtivoOuDesavado(List<Baralho> baralhosJogador)
+        private static bool VerificaJogadorAtivoOuDesavado(List<Baralho>? baralhosJogador)
         {
             if (baralhosJogador.IsNullOrEmpty()) return false;
             return true;
@@ -44,10 +44,11 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public void Criar(Jogador jogador)
         {
+            const int valorNulo = 0;
             jogador.BaralhosJogador = null;
-            jogador.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogador.BaralhosJogador);
-            jogador.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogador.BaralhosJogador);
-            jogador.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogador.BaralhosJogador);
+            jogador.QuantidadeDeBaralhosJogador = valorNulo;
+            jogador.PrecoDasCartasJogador = valorNulo;
+            jogador.ContaAtivaJogador = false;
 
             try
             {
@@ -92,6 +93,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             try
             {
+                _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador =  idJogador })?.ForEach(baralho => _baralhoServico.Excluir(baralho.IdBaralho));
                 _validadorJogador.Validate(jogadorExcluir, options =>
                 {
                     options.ThrowOnFailures();
@@ -115,8 +117,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
-            var jogadores = new List<Jogador>();
-            jogadores.AddRange(_IJogadorRepository.ObterTodos(filtro));
+            var jogadores = _IJogadorRepository.ObterTodos(filtro);
+            jogadores.ForEach(jogador => jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.IdJogador }));
             return jogadores;
         }
     }

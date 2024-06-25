@@ -3,19 +3,38 @@ using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
+using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Teste.Singleton;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
     public class BaralhoTest : TesteBase
     {
-        private readonly BaralhoServico servicoBaralho;
         private readonly CartaServico servicoCarta;
+        private readonly BaralhoServico servicoBaralho;
+        private readonly JogadorServico servicoJogador;
+
+        private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
+        private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
+        private List<CorBaralho> tabelaCorBaralho = SingletonTabelasTeste.InstanciaCorBaralho;
+        private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
+        private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
+        private List<Jogador> tabelaJogador = SingletonTabelasTeste.InstanciaJogador;
 
         public BaralhoTest()
         {
-            servicoBaralho = ServiceProvider.GetService<BaralhoServico>() ?? throw new Exception($"Erro ao obter servico baralho");
-            servicoCarta = ServiceProvider.GetService<CartaServico>() ?? throw new Exception($"Erro ao obter servico carta");
+            servicoCarta = ServiceProvider.GetService<CartaServico>() ?? throw new Exception("Erro ao obter servico Carta");
+            servicoBaralho = ServiceProvider.GetService<BaralhoServico>() ?? throw new Exception("Erro ao obter servico Baralho");
+            servicoJogador = ServiceProvider.GetService<JogadorServico>() ?? throw new Exception("Erro ao obter servico Jogador");
+
+            tabelaCorCarta.Clear();
+            tabelaCarta.Clear();
+            tabelaCorBaralho.Clear();
+            tabelaCopiaDeCartasNoBaralho.Clear();
+            tabelaBaralho.Clear();
+            tabelaJogador.Clear();
+
             IniciarListaMock();
         }
 
@@ -156,21 +175,21 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            servicoBaralho.ObterTodos(new BaralhoFiltro()).Clear();
-            servicoCarta.ObterTodos(new CartaFiltro()).Clear();
-
-            listaBaralhosMock.ForEach(baralho => servicoBaralho.Criar(new Baralho()
-            {
-                IdBaralho = baralho.IdBaralho,
-                IdJogador = baralho.IdJogador,
-                NomeBaralho = baralho.NomeBaralho,
-                FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
-                CartasDoBaralho = baralho.CartasDoBaralho,
-                QuantidadeDeCartasNoBaralho = baralho.QuantidadeDeCartasNoBaralho,
-                PrecoDoBaralho = baralho.PrecoDoBaralho,
-                CustoDeManaConvertidoDoBaralho = baralho.CustoDeManaConvertidoDoBaralho,
-                CorBaralho = baralho.CorBaralho
-            }));
+            listaBaralhosMock.ForEach(baralho => servicoBaralho.Criar(
+                new Baralho()
+                {
+                    IdBaralho = baralho.IdBaralho,
+                    IdJogador = baralho.IdJogador,
+                    NomeBaralho = baralho.NomeBaralho,
+                    FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
+                    DataDeCriacaoBaralho = baralho.DataDeCriacaoBaralho,
+                    QuantidadeDeCartasNoBaralho = baralho.QuantidadeDeCartasNoBaralho,
+                    PrecoDoBaralho = baralho.PrecoDoBaralho,
+                    CorBaralho = baralho.CorBaralho,
+                    CustoDeManaConvertidoDoBaralho = baralho.CustoDeManaConvertidoDoBaralho,
+                    CartasDoBaralho = baralho.CartasDoBaralho
+                }
+            ));
         }
 
         [Fact]
@@ -198,7 +217,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 4,
+                IdBaralho = 2,
                 IdJogador = 1,
                 NomeBaralho = "Niv-Mizzet Combo",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
@@ -726,7 +745,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                IdBaralho = 1,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Pauper",
                 CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()

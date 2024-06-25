@@ -74,6 +74,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
+            if (filtro?.IdJogador != null) return tabelaBaralho.Where(baralho => baralho.IdJogador == filtro.IdJogador).ToList();
             return tabelaBaralho;
         }
 

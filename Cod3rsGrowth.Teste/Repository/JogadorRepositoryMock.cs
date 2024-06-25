@@ -4,6 +4,8 @@ using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Teste.Singleton;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Linq;
 
 namespace Cod3rsGrowth.Teste.Repository
 {
@@ -55,6 +57,16 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
+            if (filtro?.ContaAtivaJogador != null)
+            {
+                return tabelasJogadores.Where(jogador => jogador.ContaAtivaJogador == filtro.ContaAtivaJogador).ToList();
+            }
+
+            if (filtro?.NomeJogador != null)
+            {
+                return tabelasJogadores.Where(jogador => jogador.NomeJogador.Contains(filtro.NomeJogador)).ToList();
+            }
+
             return tabelasJogadores;
         }
     }
