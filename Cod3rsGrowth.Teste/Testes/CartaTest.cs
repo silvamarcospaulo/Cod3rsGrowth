@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using System.Diagnostics.Metrics;
 using Cod3rsGrowth.Dominio.Filtros;
+using static LinqToDB.Common.Configuration;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
@@ -28,10 +29,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CorCarta>()
-                    {
-                        new CorCarta() { IdCorCarta = 1, Cor = CoresEnum.Incolor }
-                    }
+                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
                 },
                 new Carta()
                 {
@@ -41,10 +39,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CorCarta>()
-                    {
-                        new CorCarta() { IdCorCarta = 2, Cor = CoresEnum.Incolor }
-                    }
+                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
                 },
                 new Carta()
                 {
@@ -54,10 +49,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CorCarta>()
-                    {
-                        new CorCarta() { IdCorCarta = 3, Cor = CoresEnum.Incolor }
-                    }
+                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
                 },
                 new Carta()
                 {
@@ -67,10 +59,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CorCarta>()
-                    {
-                        new CorCarta() { IdCorCarta = 4, Cor = CoresEnum.Incolor }
-                    }
+                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
                 },
                 new Carta()
                 {
@@ -80,10 +69,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
                     RaridadeCarta = RaridadeEnum.Common,
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CorCarta>()
-                    {
-                        new CorCarta() { IdCorCarta = 5, Cor = CoresEnum.Incolor }
-                    }
+                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
                 },
                 new Carta()
                 {
@@ -93,11 +79,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = TipoDeCartaEnum.Criatura,
                     RaridadeCarta = RaridadeEnum.Rare,
                     PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CorCarta>()
-                    {
-                        new CorCarta() { IdCorCarta = 6, Cor = CoresEnum.Azul },
-                        new CorCarta() { IdCorCarta = 7, Cor = CoresEnum.Vermelho }
-                    }
+                    CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
                 },
                 new Carta()
                 {
@@ -107,25 +89,28 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = TipoDeCartaEnum.Criatura,
                     RaridadeCarta = RaridadeEnum.Rare,
                     PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = new List<CorCarta>()
-                    {
-                        new CorCarta() { IdCorCarta = 8, Cor = CoresEnum.Vermelho }
-                    }
+                    CorCarta = new List<CoresEnum>() { CoresEnum.Vermelho }
                 }
             };
 
-            servico.ObterTodos(null).Clear();
+            servico.ObterTodos(new CartaFiltro()).Clear();
+            servico.ObterTodosCorCarta(new CorCartaFiltro()).Clear();
 
-            listaCartasMock.ForEach(carta => servico.Criar(
-                new Carta()
-                {
-                    NomeCarta = carta.NomeCarta,
-                    CustoDeManaConvertidoCarta = carta.CustoDeManaConvertidoCarta,
-                    TipoDeCarta = carta.TipoDeCarta,
-                    RaridadeCarta = carta.RaridadeCarta,
-                    CorCarta = carta.CorCarta
-                })
-            );
+            int cartaCriada;
+
+            foreach(var carta in listaCartasMock)
+            {
+                cartaCriada = servico.Criar(
+                    new Carta()
+                    {
+                        NomeCarta = carta.NomeCarta,
+                        CustoDeManaConvertidoCarta = carta.CustoDeManaConvertidoCarta,
+                        TipoDeCarta = carta.TipoDeCarta,
+                        RaridadeCarta = carta.RaridadeCarta,
+                        CorCarta = carta.CorCarta
+                    }
+                );
+            }
         }
 
         [Fact]
@@ -133,7 +118,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             IniciarListaMock();
 
-            var cartas = servico.ObterTodos(null);
+            var cartas = servico.ObterTodos(new CartaFiltro());
 
             Assert.NotEmpty(cartas);
         }
@@ -159,10 +144,10 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.Criatura,
                 RaridadeCarta = RaridadeEnum.Rare,
                 PrecoCarta = Convert.ToDecimal(5),
-                CorCarta = new List<CorCarta>()
+                CorCarta = new List<CoresEnum>()
                     {
-                        new CorCarta() { IdCorCarta = 6, Cor = CoresEnum.Azul },
-                        new CorCarta() { IdCorCarta = 7, Cor = CoresEnum.Vermelho }
+                        CoresEnum.Azul,
+                        CoresEnum.Vermelho
                     }
             };
 
@@ -192,9 +177,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
                 RaridadeCarta = RaridadeEnum.Common,
                 PrecoCarta = 0.5m,
-                CorCarta = new List<CorCarta>()
+                CorCarta = new List<CoresEnum>()
                 {
-                    new CorCarta() { IdCorCarta = 8, Cor = CoresEnum.Incolor },
+                    CoresEnum.Incolor
                 }
             };
 
@@ -216,9 +201,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
                 RaridadeCarta = RaridadeEnum.Common,
                 PrecoCarta = 0.5m,
-                CorCarta = new List<CorCarta>()
+                CorCarta = new List<CoresEnum>()
                 {
-                    new CorCarta() { IdCorCarta = 8, Cor = CoresEnum.Incolor },
+                    CoresEnum.Incolor
                 }
             };
 
@@ -238,9 +223,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
                 RaridadeCarta = RaridadeEnum.Common,
                 PrecoCarta = 0.5m,
-                CorCarta = new List<CorCarta>()
+                CorCarta = new List<CoresEnum>()
                 {
-                    new CorCarta() { IdCorCarta = 8, Cor = CoresEnum.Incolor },
+                    CoresEnum.Incolor
                 }
             };
 
@@ -277,9 +262,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
                 RaridadeCarta = RaridadeEnum.Uncommon,
                 PrecoCarta = Convert.ToDecimal(2.5),
-                CorCarta = new List<CorCarta>()
+                CorCarta = new List<CoresEnum>()
                 {
-                    new CorCarta() { IdCorCarta = 1, Cor = CoresEnum.Incolor }
+                    CoresEnum.Incolor
                 }
             };
 
@@ -309,7 +294,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
         [Theory]
         [InlineData(-10)]
-        [InlineData(8)]
+        [InlineData(292788)]
         public void ao_Atualizar_com_id_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
         {
             var mensagemDeErroEsperada = ($"Carta {idCartaTeste} Nao Encontrada");
@@ -317,6 +302,12 @@ namespace Cod3rsGrowth.Teste.Testes
             var cartaTeste = new Carta()
             {
                 IdCarta = idCartaTeste,
+                NomeCarta = "Sol Ring",
+                TipoDeCarta = TipoDeCartaEnum.Artefato,
+                CustoDeManaConvertidoCarta = 1,
+                RaridadeCarta = RaridadeEnum.Common,
+                PrecoCarta = 0.5m,
+                CorCarta = new List<CoresEnum>() {CoresEnum.Incolor},
             };
 
             var resultado = Assert.Throws<Exception>(() => servico.Atualizar(cartaTeste));

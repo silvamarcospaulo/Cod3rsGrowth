@@ -1,5 +1,8 @@
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Servico.ServicoBaralho;
+using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -7,10 +10,15 @@ namespace Cod3rsGrowth.Teste.Testes
 {
     public class JogadorTest : TesteBase
     {
-        private readonly JogadorServico ObterServico;
+        private readonly JogadorServico servico;
+        private readonly BaralhoServico servicoBaralho;
+        private readonly CartaServico servicoCarta;
+
         public JogadorTest()
         {
-            ObterServico = ServiceProvider.GetService<JogadorServico>() ?? throw new Exception("Erro ao obter servico");
+            servico = ServiceProvider.GetService<JogadorServico>() ?? throw new Exception("Erro ao obter servico jogador");
+            servicoBaralho = ServiceProvider.GetService<BaralhoServico>() ?? throw new Exception("Erro ao obter servico jogador");
+            servicoCarta = ServiceProvider.GetService<CartaServico>() ?? throw new Exception("Erro ao obter servico jogador");
             IniciarListaMock();
         }
 
@@ -18,7 +26,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             DateTime dataDeHoje = DateTime.Now;
 
-            List<Jogador> listaJogadoresMock = new List<Jogador>()
+            var listaJogadoresMock = new List<Jogador>()
             {
                 new Jogador()
                 {
@@ -97,9 +105,11 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            ObterServico.ObterTodos(null).Clear();
+            servico.ObterTodos(new JogadorFiltro()).Clear();
+            servicoBaralho.ObterTodos(new BaralhoFiltro()).Clear();
+            servicoCarta.ObterTodos(new CartaFiltro()).Clear();
 
-            listaJogadoresMock.ForEach(jogador => ObterServico.Criar(new Jogador()
+            listaJogadoresMock.ForEach(jogador => servico.Criar(new Jogador()
             {
                 NomeJogador = jogador.NomeJogador,
                 DataNascimentoJogador = jogador.DataNascimentoJogador,
@@ -111,7 +121,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_verifica_se_a_lista_de_nao_esta_vazia()
         {
-            var jogadores = ObterServico.ObterTodos(null);
+            var jogadores = servico.ObterTodos(null);
 
             Assert.NotEmpty(jogadores);
         }
@@ -121,7 +131,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             const int quantidadeDeJogadoresEsperados = 3;
 
-            var quantidadeDeJogadores = ObterServico.ObterTodos(null).Count();
+            var quantidadeDeJogadores = servico.ObterTodos(null).Count();
 
             Assert.Equal(quantidadeDeJogadoresEsperados, quantidadeDeJogadores);
         }
@@ -140,7 +150,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 BaralhosJogador = new List<Baralho>()
             };
 
-            var jogadorMock = ObterServico.ObterPorId(jogadorTeste.IdJogador);
+            var jogadorMock = servico.ObterPorId(jogadorTeste.IdJogador);
 
             Assert.Equivalent(jogadorTeste, jogadorMock);
         }
@@ -150,7 +160,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(5)]
         public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idJogadorTeste)
         {
-            Assert.Throws<Exception>(() => ObterServico.ObterPorId(idJogadorTeste));
+            Assert.Throws<Exception>(() => servico.ObterPorId(idJogadorTeste));
         }
 
         [Fact]
@@ -169,7 +179,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 BaralhosJogador = new List<Baralho>()
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(jogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => servico.Criar(jogadorTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -190,7 +200,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 BaralhosJogador = new List<Baralho>()
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(jogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => servico.Criar(jogadorTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -210,7 +220,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 BaralhosJogador = new List<Baralho>()
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(jogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => servico.Criar(jogadorTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -229,9 +239,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 BaralhosJogador = new List<Baralho>()
             };
 
-            ObterServico.Criar(jogadorTeste);
+            servico.Criar(jogadorTeste);
 
-            Assert.Equal(jogadorTeste, ObterServico.ObterPorId(jogadorTeste.IdJogador));
+            Assert.Equal(jogadorTeste, servico.ObterPorId(jogadorTeste.IdJogador));
         }
 
         [Theory]
@@ -288,13 +298,13 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            var jogadorTeste = ObterServico.ObterPorId(idJogadorTeste);
+            var jogadorTeste = servico.ObterPorId(idJogadorTeste);
 
             jogadorTeste.BaralhosJogador = baralhoTesteJogador;
 
-            ObterServico.Atualizar(jogadorTeste);
+            servico.Atualizar(jogadorTeste);
 
-            Assert.Equivalent(jogadorTeste, ObterServico.ObterPorId(idJogadorTeste));
+            Assert.Equivalent(jogadorTeste, servico.ObterPorId(idJogadorTeste));
         }
 
         [Theory]
@@ -363,7 +373,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(jogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => servico.Atualizar(jogadorTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -380,7 +390,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdJogador = idJogadorTeste
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(jogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => servico.Atualizar(jogadorTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -446,12 +456,12 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            var jogadorTesteExistente = ObterServico.ObterPorId(jogadorTeste.IdJogador);
+            var jogadorTesteExistente = servico.ObterPorId(jogadorTeste.IdJogador);
 
-            ObterServico.Atualizar(jogadorTeste);
+            servico.Atualizar(jogadorTeste);
 
-            Assert.Equal(jogadorTesteExistente.NomeJogador, ObterServico.ObterPorId(jogadorTeste.IdJogador).NomeJogador);
-            Assert.Equal(jogadorTesteExistente.DataNascimentoJogador, ObterServico.ObterPorId(jogadorTeste.IdJogador).DataNascimentoJogador);
+            Assert.Equal(jogadorTesteExistente.NomeJogador, servico.ObterPorId(jogadorTeste.IdJogador).NomeJogador);
+            Assert.Equal(jogadorTesteExistente.DataNascimentoJogador, servico.ObterPorId(jogadorTeste.IdJogador).DataNascimentoJogador);
         }
 
         [Theory]
@@ -466,9 +476,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdJogador = idJogadorTeste,
             };
 
-            ObterServico.Excluir(jogadorTeste.IdJogador);
+            servico.Excluir(jogadorTeste.IdJogador);
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(idJogadorTeste));
+            var resultado = Assert.Throws<Exception>(() => servico.ObterPorId(idJogadorTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -486,7 +496,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdJogador = idJogadorTeste,
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste.IdJogador));
+            var resultado = Assert.Throws<Exception>(() => servico.Excluir(jogadorTeste.IdJogador));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -501,7 +511,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdJogador = 3
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(jogadorTeste.IdJogador));
+            var resultado = Assert.Throws<Exception>(() => servico.Excluir(jogadorTeste.IdJogador));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }

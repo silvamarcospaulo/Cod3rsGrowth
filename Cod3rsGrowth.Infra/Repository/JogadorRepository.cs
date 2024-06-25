@@ -38,7 +38,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
-            IQueryable<Jogador> query = from q in conexaoDados.TabelaJogadores
+            IQueryable<Jogador> query = from q in conexaoDados.TabelaJogador
                                             select q;
 
             if (filtro?.NomeJogador != null)

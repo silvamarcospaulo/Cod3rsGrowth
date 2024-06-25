@@ -1,6 +1,8 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Servico.ServicoBaralho;
+using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
 using Microsoft.IdentityModel.Tokens;
 
@@ -9,13 +11,15 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
     public class JogadorServico : IJogadorRepository
     {
         private readonly IJogadorRepository _IJogadorRepository;
-        private readonly IBaralhoRepository _IBaralhoRepository;
+        private readonly BaralhoServico _baralhoServico;
+        private readonly CartaServico _cartaServico;
         private readonly IValidator<Jogador> _validadorJogador;
-        public JogadorServico(IJogadorRepository jogadorRepository, IBaralhoRepository baralhoRepository,
-            IValidator<Jogador> validadorJogador)
+        public JogadorServico(IJogadorRepository jogadorRepository, BaralhoServico baralhoServico,
+            CartaServico cartaServico, IValidator<Jogador> validadorJogador)
         {
             _IJogadorRepository = jogadorRepository;
-            _IBaralhoRepository = baralhoRepository;
+            _baralhoServico = baralhoServico;
+            _cartaServico = cartaServico;
             _validadorJogador = validadorJogador;
         }
 
@@ -104,7 +108,9 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public Jogador ObterPorId(int idJogador)
         {
-            return _IJogadorRepository.ObterPorId(idJogador);
+            var jogador = _IJogadorRepository.ObterPorId(idJogador);
+            jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
+            return jogador;
         }
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)

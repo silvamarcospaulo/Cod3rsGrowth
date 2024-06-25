@@ -87,7 +87,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
         {
             var carta = _ICartaRepository.ObterPorId(idCarta);
             var filtro = new CorCartaFiltro() { idCarta = idCarta };
-            carta.CorCarta.AddRange(_ICartaRepository.ObterTodosCorCarta(filtro));
+            carta.CorCarta.AddRange(_ICartaRepository.ObterTodosCorCarta(filtro).Select(cor => cor.Cor));
             return carta;
         }
 
@@ -95,8 +95,8 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
         {
             var todasAsCartas = new List<Carta>();
             todasAsCartas.AddRange(_ICartaRepository.ObterTodos(filtro));
-            todasAsCartas.ForEach(carta => carta.CorCarta =
-                _ICartaRepository.ObterTodosCorCarta(new CorCartaFiltro() { idCarta = carta.IdCarta }));
+            todasAsCartas.ForEach(carta => carta.CorCarta.AddRange(_ICartaRepository.ObterTodosCorCarta(
+                new CorCartaFiltro() { idCarta = carta.IdCarta }).Select(cor => cor.Cor)));
             return todasAsCartas;
         }
 
