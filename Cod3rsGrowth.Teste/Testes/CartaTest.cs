@@ -1,21 +1,31 @@
-using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
-using Microsoft.Extensions.DependencyInjection;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoCarta;
-using System.Diagnostics.Metrics;
+using Cod3rsGrowth.Teste.Singleton;
+using LinqToDB.Common;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
     public class CartaTest : TesteBase
     {
-        private readonly ServicoCarta ObterServico;
+        private readonly CartaServico servicoCarta;
+
+        private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
+        private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
+
         public CartaTest()
         {
-            ObterServico = ServiceProvider.GetService<ServicoCarta>() ?? throw new Exception("Erro ao obter servico");
+            servicoCarta = ServiceProvider.GetService<CartaServico>() ?? throw new Exception("Erro ao obter servico Carta");
+
+            tabelaCorCarta.Clear();
+            tabelaCarta.Clear();
+
             IniciarListaMock();
         }
 
-        public void IniciarListaMock()
+        private void IniciarListaMock()
         {
             var listaCartasMock = new List<Carta>()
             {
@@ -91,17 +101,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            ObterServico.ObterTodos().Clear();
-
-            listaCartasMock.ForEach(carta => ObterServico.Criar(
-                new Carta()
-                {
-                    NomeCarta = carta.NomeCarta,
-                    CustoDeManaConvertidoCarta = carta.CustoDeManaConvertidoCarta,
-                    TipoDeCarta = carta.TipoDeCarta,
-                    RaridadeCarta = carta.RaridadeCarta,
-                    CorCarta = carta.CorCarta
-                }));
+            listaCartasMock.ForEach(carta => servicoCarta.Criar(carta));
         }
 
         [Fact]
@@ -109,7 +109,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             IniciarListaMock();
 
-            var cartas = ObterServico.ObterTodos();
+            var cartas = servicoCarta.ObterTodos(new CartaFiltro());
 
             Assert.NotEmpty(cartas);
         }
@@ -119,7 +119,29 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             const int quantidadeDeCartasEsperadas = 7;
 
-            var quantidadeDeCartasMock = ObterServico.ObterTodos().Count();
+            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro()).Count();
+
+            Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_com_filtro_raridade_carta_rara_deve_retornar_uma_lista_com_duas_cartas()
+        {
+            const int quantidadeDeCartasEsperadas = 2;
+            const RaridadeEnum raridadeFiltro = RaridadeEnum.Rare;
+
+            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { RaridadeCarta = raridadeFiltro }).Count();
+
+            Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_com_filtro_tipo_de_carta_terreno_deve_retornar_uma_lista_com_cinco_cartas()
+        {
+            const int quantidadeDeCartasEsperadas = 5;
+            const TipoDeCartaEnum tipoDeCartaFiltro = TipoDeCartaEnum.TerrenoBasico;
+
+            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { TipoDeCarta = tipoDeCartaFiltro }).Count();
 
             Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }
@@ -135,10 +157,14 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.Criatura,
                 RaridadeCarta = RaridadeEnum.Rare,
                 PrecoCarta = Convert.ToDecimal(5),
-                CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
+                CorCarta = new List<CoresEnum>()
+                    {
+                        CoresEnum.Azul,
+                        CoresEnum.Vermelho
+                    }
             };
 
-            var cartaMock = ObterServico.ObterPorId(cartaTeste.IdCarta);
+            var cartaMock = servicoCarta.ObterPorId(cartaTeste.IdCarta);
 
             Assert.Equivalent(cartaTeste, cartaMock);
         }
@@ -146,9 +172,9 @@ namespace Cod3rsGrowth.Teste.Testes
         [Theory]
         [InlineData(-10)]
         [InlineData(8)]
-        public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
+        public void ao_ObterPorId_com_id_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
         {
-            Assert.Throws<Exception>(() => ObterServico.ObterPorId(idCartaTeste));
+            Assert.Throws<Exception>(() => servicoCarta.ObterPorId(idCartaTeste));
         }
 
         [Fact]
@@ -164,10 +190,13 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
                 RaridadeCarta = RaridadeEnum.Common,
                 PrecoCarta = 0.5m,
-                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorCarta = new List<CoresEnum>()
+                {
+                    CoresEnum.Incolor
+                }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(cartaTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoCarta.Criar(cartaTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -185,10 +214,13 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
                 RaridadeCarta = RaridadeEnum.Common,
                 PrecoCarta = 0.5m,
-                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorCarta = new List<CoresEnum>()
+                {
+                    CoresEnum.Incolor
+                }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(cartaTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoCarta.Criar(cartaTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -204,16 +236,19 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
                 RaridadeCarta = RaridadeEnum.Common,
                 PrecoCarta = 0.5m,
-                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorCarta = new List<CoresEnum>()
+                {
+                    CoresEnum.Incolor
+                }
             };
 
-            ObterServico.Criar(cartaTeste);
+            servicoCarta.Criar(cartaTeste);
 
-            Assert.Equivalent(cartaTeste, ObterServico.ObterPorId(cartaTeste.IdCarta));
+            Assert.Equivalent(cartaTeste, servicoCarta.ObterPorId(cartaTeste.IdCarta));
         }
 
         [Fact]
-        public void ao_Atualizar_com_dados_validos_deve_adicionar_uma_nova_carta()
+        public void ao_Atualizar_com_dados_validos_deve_atualizar_carta_existente()
         {
             var cartaTeste = new Carta()
             {
@@ -223,14 +258,14 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var precoCartaEsperado = 2.5m;
 
-            ObterServico.Atualizar(cartaTeste);
+            servicoCarta.Atualizar(cartaTeste);
 
-            Assert.Equal(precoCartaEsperado, ObterServico.ObterPorId(cartaTeste.IdCarta).PrecoCarta);
-            Assert.Equal(cartaTeste.RaridadeCarta, ObterServico.ObterPorId(cartaTeste.IdCarta).RaridadeCarta);
+            Assert.Equal(precoCartaEsperado, servicoCarta.ObterPorId(cartaTeste.IdCarta).PrecoCarta);
+            Assert.Equal(cartaTeste.RaridadeCarta, servicoCarta.ObterPorId(cartaTeste.IdCarta).RaridadeCarta);
         }
 
         [Fact]
-        public void ao_Atualizar_com_nao_deve_ser_alterar_nome_custo_de_mana_convertido_tipo_de_carta_e_cor_carta()
+        public void ao_Atualizar_com_dados_validos_nao_deve_alterar_nome_custo_de_mana_convertido_tipo_de_carta_e_cor_carta()
         {
             var cartaTeste = new Carta()
             {
@@ -240,24 +275,26 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
                 RaridadeCarta = RaridadeEnum.Uncommon,
                 PrecoCarta = Convert.ToDecimal(2.5),
-                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorCarta = new List<CoresEnum>()
+                {
+                    CoresEnum.Incolor
+                }
             };
-
 
             var cartaTesteExistente = new Carta()
             {
-                IdCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).IdCarta,
-                NomeCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).NomeCarta,
-                CustoDeManaConvertidoCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).CustoDeManaConvertidoCarta,
-                TipoDeCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).TipoDeCarta,
-                RaridadeCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).RaridadeCarta,
-                PrecoCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).PrecoCarta,
-                CorCarta = ObterServico.ObterPorId(cartaTeste.IdCarta).CorCarta,
+                IdCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).IdCarta,
+                NomeCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).NomeCarta,
+                CustoDeManaConvertidoCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).CustoDeManaConvertidoCarta,
+                TipoDeCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).TipoDeCarta,
+                RaridadeCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).RaridadeCarta,
+                PrecoCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).PrecoCarta,
+                CorCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).CorCarta,
             };
 
-            ObterServico.Atualizar(cartaTeste);
+            servicoCarta.Atualizar(cartaTeste);
 
-            var cartaTesteAtualizada = ObterServico.ObterPorId(cartaTeste.IdCarta);
+            var cartaTesteAtualizada = servicoCarta.ObterPorId(cartaTeste.IdCarta);
 
             Assert.Equal(cartaTesteExistente.IdCarta, cartaTesteAtualizada.IdCarta);
             Assert.Equal(cartaTesteExistente.NomeCarta, cartaTesteAtualizada.NomeCarta);
@@ -270,17 +307,23 @@ namespace Cod3rsGrowth.Teste.Testes
 
         [Theory]
         [InlineData(-10)]
-        [InlineData(8)]
-        public void ao_Atualizar_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
+        [InlineData(292788)]
+        public void ao_Atualizar_com_id_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
         {
             var mensagemDeErroEsperada = ($"Carta {idCartaTeste} Nao Encontrada");
 
             var cartaTeste = new Carta()
             {
                 IdCarta = idCartaTeste,
+                NomeCarta = "Sol Ring",
+                TipoDeCarta = TipoDeCartaEnum.Artefato,
+                CustoDeManaConvertidoCarta = 1,
+                RaridadeCarta = RaridadeEnum.Common,
+                PrecoCarta = 0.5m,
+                CorCarta = new List<CoresEnum>() {CoresEnum.Incolor},
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(cartaTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoCarta.Atualizar(cartaTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }

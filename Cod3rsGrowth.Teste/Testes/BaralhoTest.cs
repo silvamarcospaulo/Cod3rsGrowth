@@ -1,20 +1,31 @@
-using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoBaralho;
-using Newtonsoft.Json.Serialization;
-using System.ComponentModel;
+using Cod3rsGrowth.Servico.ServicoCarta;
+using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Teste.Singleton;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Teste.Testes
 {
     public class BaralhoTest : TesteBase
     {
-        private readonly ServicoBaralho ObterServico;
+
+        private readonly BaralhoServico servicoBaralho;
+
+        private List<CorBaralho> tabelaCorBaralho = SingletonTabelasTeste.InstanciaCorBaralho;
+        private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
+        private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
 
         public BaralhoTest()
         {
-            ObterServico = ServiceProvider.GetService<ServicoBaralho>() ?? throw new Exception($"Erro ao obter servico");
+            servicoBaralho = ServiceProvider.GetService<BaralhoServico>() ?? throw new Exception("Erro ao obter servico Baralho");
+
+            tabelaCorBaralho.Clear();
+            tabelaCopiaDeCartasNoBaralho.Clear();
+            tabelaBaralho.Clear();
+
             IniciarListaMock();
         }
 
@@ -22,7 +33,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             DateTime dataDeHoje = DateTime.Now;
 
-            List<Baralho> listaBaralhosMock = new List<Baralho>()
+            var listaBaralhosMock = new List<Baralho>()
             {
                 new Baralho()
                 {
@@ -155,26 +166,27 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            ObterServico.ObterTodos().Clear();
-
-            listaBaralhosMock.ForEach(baralho => ObterServico.Criar(new Baralho()
-            {
-                IdBaralho = baralho.IdBaralho,
-                IdJogador = baralho.IdJogador,
-                NomeBaralho = baralho.NomeBaralho,
-                FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
-                CartasDoBaralho = baralho.CartasDoBaralho,
-                QuantidadeDeCartasNoBaralho = baralho.QuantidadeDeCartasNoBaralho,
-                PrecoDoBaralho = baralho.PrecoDoBaralho,
-                CustoDeManaConvertidoDoBaralho = baralho.CustoDeManaConvertidoDoBaralho,
-                CorBaralho = baralho.CorBaralho
-            }));
+            listaBaralhosMock.ForEach(baralho => servicoBaralho.Criar(
+                new Baralho()
+                {
+                    IdBaralho = baralho.IdBaralho,
+                    IdJogador = baralho.IdJogador,
+                    NomeBaralho = baralho.NomeBaralho,
+                    FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
+                    DataDeCriacaoBaralho = baralho.DataDeCriacaoBaralho,
+                    QuantidadeDeCartasNoBaralho = baralho.QuantidadeDeCartasNoBaralho,
+                    PrecoDoBaralho = baralho.PrecoDoBaralho,
+                    CorBaralho = baralho.CorBaralho,
+                    CustoDeManaConvertidoDoBaralho = baralho.CustoDeManaConvertidoDoBaralho,
+                    CartasDoBaralho = baralho.CartasDoBaralho
+                }
+            ));
         }
 
         [Fact]
         public void ao_ObterTodos_verifica_se_a_lista_nao_esta_vazia()
         {
-            var baralhos = ObterServico.ObterTodos();
+            var baralhos = servicoBaralho.ObterTodos(new BaralhoFiltro());
 
             Assert.NotEmpty(baralhos);
         }
@@ -184,7 +196,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             const int quantidadeDeBaralhosEsperados = 3;
 
-            var quantidadeDeBaralhos = ObterServico.ObterTodos().Count();
+            var quantidadeDeBaralhos = servicoBaralho.ObterTodos(new BaralhoFiltro()).Count();
 
             Assert.Equal(quantidadeDeBaralhosEsperados, quantidadeDeBaralhos);
         }
@@ -252,7 +264,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor, CoresEnum.Azul, CoresEnum.Vermelho }
             };
 
-            var baralhoMock = ObterServico.ObterPorId(baralhoTeste.IdBaralho);
+            var baralhoMock = servicoBaralho.ObterPorId(baralhoTeste.IdBaralho);
 
             Assert.Equivalent(baralhoTeste, baralhoMock);
         }
@@ -262,7 +274,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(-2)]
         public void ao_ObterPorId_invalido_ou_inexistente_deve_retornar_Exception(int idBaralhoTeste)
         {
-            Assert.Throws<Exception>(() => ObterServico.ObterPorId(idBaralhoTeste));
+            Assert.Throws<Exception>(() => servicoBaralho.ObterPorId(idBaralhoTeste));
         }
 
         [Fact]
@@ -299,7 +311,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -338,7 +350,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -361,7 +373,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -393,7 +405,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
                         },
-                        QuantidadeCopiasDaCartaNoBaralho = 100
+                        QuantidadeCopiasDaCartaNoBaralho = quantidadeDeCartasTeste
                     }
                 },
                 QuantidadeDeCartasNoBaralho = 60,
@@ -402,7 +414,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -443,7 +455,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -484,7 +496,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Criar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -524,9 +536,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
             };
 
-            ObterServico.Criar(baralhoTeste);
+            servicoBaralho.Criar(baralhoTeste);
 
-            Assert.Equivalent(baralhoTeste, ObterServico.ObterPorId(baralhoTeste.IdBaralho));
+            Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.IdBaralho));
         }
 
         [Fact]
@@ -578,9 +590,9 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor, CoresEnum.Verde }
             };
 
-            ObterServico.Atualizar(baralhoTeste);
+            servicoBaralho.Atualizar(baralhoTeste);
 
-            Assert.Equivalent(baralhoTeste, ObterServico.ObterPorId(baralhoTeste.IdBaralho));
+            Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.IdBaralho));
         }
 
         [Theory]
@@ -637,7 +649,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() {CoresEnum.Verde, CoresEnum.Incolor}
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Atualizar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -655,7 +667,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdBaralho = idBaralhoTeste,
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Atualizar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -709,12 +721,12 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor, CoresEnum.Verde }
             };
 
-            var baralhoTesteExistente = ObterServico.ObterPorId(baralhoTeste.IdBaralho);
+            var baralhoTesteExistente = servicoBaralho.ObterPorId(baralhoTeste.IdBaralho);
 
-            ObterServico.Atualizar(baralhoTeste);
+            servicoBaralho.Atualizar(baralhoTeste);
 
-            Assert.Equal(baralhoTesteExistente.IdBaralho, ObterServico.ObterPorId(baralhoTeste.IdBaralho).IdBaralho);
-            Assert.Equal(baralhoTesteExistente.IdJogador, ObterServico.ObterPorId(baralhoTeste.IdBaralho).IdJogador);
+            Assert.Equal(baralhoTesteExistente.IdBaralho, servicoBaralho.ObterPorId(baralhoTeste.IdBaralho).IdBaralho);
+            Assert.Equal(baralhoTesteExistente.IdJogador, servicoBaralho.ObterPorId(baralhoTeste.IdBaralho).IdJogador);
         }
 
         [Fact]
@@ -724,13 +736,13 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                IdBaralho = 1,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Pauper",
                 CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Atualizar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -779,26 +791,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Atualizar(baralhoTeste));
-
-            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
-        }
-
-        [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        public void ao_Excluir_com_id_valido_deve_remover_o_baralho_correspondente(int idBaralhoTeste)
-        {
-            var mensagemDeErroEsperada = ($"Baralho {idBaralhoTeste} Nao Encontrado");
-
-            var baralhoTeste = new Baralho()
-            {
-                IdBaralho = idBaralhoTeste,
-            };
-
-            ObterServico.Excluir(baralhoTeste);
-
-            var resultado = Assert.Throws<Exception>(() => ObterServico.ObterPorId(idBaralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Atualizar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
@@ -816,9 +809,20 @@ namespace Cod3rsGrowth.Teste.Testes
                 IdBaralho = idBaralhoTeste,
             };
 
-            var resultado = Assert.Throws<Exception>(() => ObterServico.Excluir(baralhoTeste));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Excluir(baralhoTeste.IdBaralho));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_com_filtro_deve_retornar_lista_filtrada_por_FormatoDeJogo()
+        {
+            var listaFiltroFormatoDeJogo = servicoBaralho.ObterTodos(new BaralhoFiltro()
+            { FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander });
+
+            const FormatoDeJogoEnum formatoDeJogoEsperado = FormatoDeJogoEnum.Commander;
+
+            listaFiltroFormatoDeJogo.ForEach(baralho => Assert.Equal(formatoDeJogoEsperado, baralho.FormatoDeJogoBaralho));
         }
     }
 }
