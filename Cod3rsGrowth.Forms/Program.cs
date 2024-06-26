@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Forms
     class Program
     {
         private static string _stringDeConexao = "DeckBuilderDb";
-        
+
         static void Main(string[] args)
         {
             using (var serviceProvider = CreateServices())
