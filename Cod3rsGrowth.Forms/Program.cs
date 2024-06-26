@@ -12,6 +12,7 @@ using LinqToDB;
 using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.Configuration;
 
 namespace Cod3rsGrowth.Forms
@@ -20,13 +21,33 @@ namespace Cod3rsGrowth.Forms
     {
         private static string _stringDeConexao = "DeckBuilderDb";
 
+        [STAThread]
         static void Main(string[] args)
         {
-            using (var serviceProvider = CreateServices())
-            using (var scope = serviceProvider.CreateScope())
-            {
-                UpdateDatabase(scope.ServiceProvider);
-            }
+            ApplicationConfiguration.Initialize();
+            var host = CreateHostBuilder().Build();
+            var ServiceProvider = host.Services;
+
+            Application.Run(ServiceProvider.GetRequiredService<Form1>());
+        }
+
+        private static IHostBuilder CreateHostBuilder()
+        {
+            return Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddScoped<CartaServico>()
+                    .AddScoped<CartaServico>()
+                    .AddScoped<BaralhoServico>()
+                    .AddScoped<JogadorServico>()
+                    .AddScoped<ICartaRepository, CartaRepository>()
+                    .AddScoped<IBaralhoRepository, BaralhoRepository>()
+                    .AddScoped<IJogadorRepository, JogadorRepository>()
+                    .AddScoped<IValidator<Carta>, CartaValidador>()
+                    .AddScoped<IValidator<Baralho>, BaralhoValidador>()
+                    .AddScoped<IValidator<Jogador>, JogadorValidador>()
+                    .AddScoped<Form1>();
+                });
         }
 
         private static ServiceProvider CreateServices()
@@ -39,15 +60,6 @@ namespace Cod3rsGrowth.Forms
                     .AddSqlServer()
                     .WithGlobalConnectionString(stringDeConexao)
                     .ScanIn(typeof(_20240621105800).Assembly).For.Migrations())
-                    .AddScoped<CartaServico>()
-                    .AddScoped<BaralhoServico>()
-                    .AddScoped<JogadorServico>()
-                    .AddScoped<ICartaRepository, CartaRepository>()
-                    .AddScoped<IBaralhoRepository, BaralhoRepository>()
-                    .AddScoped<IJogadorRepository, JogadorRepository>()
-                    .AddScoped<IValidator<Carta>, CartaValidador>()
-                    .AddScoped<IValidator<Baralho>, BaralhoValidador>()
-                    .AddScoped<IValidator<Jogador>, JogadorValidador>()
                     .AddLinqToDBContext<ConexaoDados>((provider, options)
                         => options
                         .UseSqlServer(ConfigurationManager
