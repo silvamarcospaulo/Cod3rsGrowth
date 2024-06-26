@@ -24,6 +24,12 @@ namespace Cod3rsGrowth.Forms
         [STAThread]
         static void Main(string[] args)
         {
+            using (var serviceProvider = CreateServices())
+            using (var scope = serviceProvider.CreateScope())
+            {
+                UpdateDatabase(scope.ServiceProvider);
+            }
+
             ApplicationConfiguration.Initialize();
             var host = CreateHostBuilder().Build();
             var ServiceProvider = host.Services;
