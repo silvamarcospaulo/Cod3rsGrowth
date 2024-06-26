@@ -125,12 +125,12 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_ObterTodos_com_filtro_cor_carta_verde_deve_retornar_uma_lista_com_uma_cartas()
+        public void ao_ObterTodos_com_filtro_raridade_carta_rara_deve_retornar_uma_lista_com_duas_cartas()
         {
-            const int quantidadeDeCartasEsperadas = 1;
-            List<CoresEnum> corDaCartaFiltro = new List<CoresEnum>() { CoresEnum.Verde };
+            const int quantidadeDeCartasEsperadas = 2;
+            const RaridadeEnum raridadeFiltro = RaridadeEnum.Rare;
 
-            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { CorCarta = corDaCartaFiltro }).Count();
+            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { RaridadeCarta = raridadeFiltro }).Count();
 
             Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }
@@ -139,7 +139,7 @@ namespace Cod3rsGrowth.Teste.Testes
         public void ao_ObterTodos_com_filtro_tipo_de_carta_terreno_deve_retornar_uma_lista_com_cinco_cartas()
         {
             const int quantidadeDeCartasEsperadas = 5;
-            const TipoDeCartaEnum tipoDeCartaFiltro = TipoDeCartaEnum.Terreno;
+            const TipoDeCartaEnum tipoDeCartaFiltro = TipoDeCartaEnum.TerrenoBasico;
 
             var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { TipoDeCarta = tipoDeCartaFiltro }).Count();
 

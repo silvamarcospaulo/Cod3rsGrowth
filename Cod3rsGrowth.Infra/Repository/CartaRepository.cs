@@ -2,7 +2,6 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
-using static LinqToDB.Reflection.Methods.LinqToDB;
 
 namespace Cod3rsGrowth.Infra.Repository
 {

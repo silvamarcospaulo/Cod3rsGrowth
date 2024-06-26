@@ -93,8 +93,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
-            var todasAsCartas = new List<Carta>();
-            todasAsCartas.AddRange(_ICartaRepository.ObterTodos(filtro));
+            var todasAsCartas = _ICartaRepository.ObterTodos(filtro);
             todasAsCartas?.ForEach(carta => carta.CorCarta.AddRange(_ICartaRepository.ObterTodosCorCarta(
                 new CorCartaFiltro() { idCarta = carta.IdCarta }).Select(cor => cor.Cor)));
             return todasAsCartas;
