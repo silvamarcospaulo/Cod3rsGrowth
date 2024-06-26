@@ -8,6 +8,6 @@ namespace Cod3rsGrowth.Dominio.Filtros
 {
     public class CorBaralhoFiltro
     {
-        public int idBaralho {  get; set; }
+        public int? idBaralho {  get; set; }
     }
 }

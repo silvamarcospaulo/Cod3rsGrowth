@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Infra.Repository;
 using Cod3rsGrowth.Teste.Singleton;
 
@@ -55,7 +56,59 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
-            return tabelaCarta;
+            IQueryable<Carta> query = from q in tabelaCarta.AsQueryable()
+                                      select q;
+
+            if (filtro?.NomeCarta != null)
+            {
+                query = from q in query
+                        where q.NomeCarta.Contains(filtro.NomeCarta)
+                        select q;
+            }
+
+            if (filtro?.CustoDeManaConvertidoCarta != null)
+            {
+                query = from q in query
+                        where q.CustoDeManaConvertidoCarta == filtro.CustoDeManaConvertidoCarta
+                        select q;
+            }
+
+            if (filtro?.TipoDeCarta != null)
+            {
+                query = from q in query
+                        where q.TipoDeCarta == filtro.TipoDeCarta
+                        select q;
+            }
+
+            if (filtro?.RaridadeCarta != null)
+            {
+                query = from q in query
+                        where q.RaridadeCarta == filtro.RaridadeCarta
+                        select q;
+            }
+
+            if (filtro?.PrecoCartaMinimo != null)
+            {
+                query = from q in query
+                        where q.PrecoCarta >= filtro.PrecoCartaMinimo
+                        select q;
+            }
+
+            if (filtro?.PrecoCartaMaximo != null)
+            {
+                query = from q in query
+                        where q.PrecoCarta >= filtro.PrecoCartaMaximo
+                        select q;
+            }
+
+            if (filtro?.PrecoCartaMaximo != null)
+            {
+                query = from q in query
+                        where q.PrecoCarta >= filtro.PrecoCartaMaximo
+                        select q;
+            }
+
+            return query.ToList();
         }
 
         public void CriarCorCarta(CorCarta corCarta)

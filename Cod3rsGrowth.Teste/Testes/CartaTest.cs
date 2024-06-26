@@ -14,10 +14,6 @@ namespace Cod3rsGrowth.Teste.Testes
 
         private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
         private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
-        private List<CorBaralho> tabelaCorBaralho = SingletonTabelasTeste.InstanciaCorBaralho;
-        private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
-        private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
-        private List<Jogador> tabelaJogador = SingletonTabelasTeste.InstanciaJogador;
 
         public CartaTest()
         {
@@ -25,10 +21,6 @@ namespace Cod3rsGrowth.Teste.Testes
 
             tabelaCorCarta.Clear();
             tabelaCarta.Clear();
-            tabelaCorBaralho.Clear();
-            tabelaCopiaDeCartasNoBaralho.Clear();
-            tabelaBaralho.Clear();
-            tabelaJogador.Clear();
 
             IniciarListaMock();
         }
@@ -109,9 +101,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            var cartas = servicoCarta.ObterTodos(new CartaFiltro());
-
-            if (cartas.IsNullOrEmpty()) listaCartasMock.ForEach(carta => servicoCarta.Criar(carta));
+            listaCartasMock.ForEach(carta => servicoCarta.Criar(carta));
         }
 
         [Fact]
@@ -130,6 +120,28 @@ namespace Cod3rsGrowth.Teste.Testes
             const int quantidadeDeCartasEsperadas = 7;
 
             var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro()).Count();
+
+            Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_com_filtro_cor_carta_verde_deve_retornar_uma_lista_com_uma_cartas()
+        {
+            const int quantidadeDeCartasEsperadas = 1;
+            List<CoresEnum> corDaCartaFiltro = new List<CoresEnum>() { CoresEnum.Verde };
+
+            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { CorCarta = corDaCartaFiltro }).Count();
+
+            Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_com_filtro_tipo_de_carta_terreno_deve_retornar_uma_lista_com_cinco_cartas()
+        {
+            const int quantidadeDeCartasEsperadas = 5;
+            const TipoDeCartaEnum tipoDeCartaFiltro = TipoDeCartaEnum.Terreno;
+
+            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { TipoDeCarta = tipoDeCartaFiltro }).Count();
 
             Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }

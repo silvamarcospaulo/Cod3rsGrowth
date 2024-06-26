@@ -71,6 +71,27 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
+        public void ao_ObterTodos_com_filtro_conta_ativa_true_deve_retornar_uma_lista_com_zero_jogadores()
+        {
+            const int quantidadeDeJogadoresEsperados = 0;
+
+            var quantidadeDeJogadores = servicoJogador.ObterTodos(new JogadorFiltro() { ContaAtivaJogador = true }).Count();
+
+            Assert.Equal(quantidadeDeJogadoresEsperados, quantidadeDeJogadores);
+        }
+
+        [Fact]
+        public void ao_ObterTodos_com_filtro_nome_marcos_deve_retornar_uma_lista_com_um_jogador()
+        {
+            const int quantidadeDeJogadoresEsperados = 1;
+            const string nomeJogador = "Marcos";
+
+            var quantidadeDeJogadores = servicoJogador.ObterTodos(new JogadorFiltro() { NomeJogador = nomeJogador }).Count();
+
+            Assert.Equal(quantidadeDeJogadoresEsperados, quantidadeDeJogadores);
+        }
+
+        [Fact]
         public void ao_ObterPorId_um_retornar_jogador_Marcos()
         {
             var jogadorTeste = new Jogador()

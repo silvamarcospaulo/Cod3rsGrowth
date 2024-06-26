@@ -92,6 +92,7 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
+
             if (filtro?.PrecoDoBaralhoMinimo != null)
             {
                 query = from q in query
@@ -106,7 +107,7 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho.Count() > valorMinimoListaCorCartas)
+            if (filtro?.CorBaralho?.Count() > valorMinimoListaCorCartas)
             {
                 query = from q in query
                         where q.CorBaralho.All(corBaralho => filtro.CorBaralho.All(cor => cor == corBaralho))

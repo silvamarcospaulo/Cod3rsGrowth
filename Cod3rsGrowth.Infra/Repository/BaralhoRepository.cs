@@ -72,7 +72,7 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho.Count() > valorMinimo)
+            if (filtro?.CorBaralho?.Count() > valorMinimo)
             {
                 query = from q in query
                         where q.CorBaralho.All(corBaralho => filtro.CorBaralho.All(cor => cor == corBaralho))

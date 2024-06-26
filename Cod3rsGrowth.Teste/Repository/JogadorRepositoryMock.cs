@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Teste.Singleton;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,7 @@ namespace Cod3rsGrowth.Teste.Repository
 {
     public class JogadorRepositoryMock : IJogadorRepository
     {
-        private List<Jogador> tabelasJogadores = SingletonTabelasTeste.InstanciaJogador;
+        private List<Jogador> tabelaJogador = SingletonTabelasTeste.InstanciaJogador;
         private BaralhoServico _baralhoServico;
 
         public JogadorRepositoryMock(BaralhoServico baralhoServico)
@@ -33,7 +34,7 @@ namespace Cod3rsGrowth.Teste.Repository
         public void Criar(Jogador jogador)
         {
             jogador.IdJogador = GerarId();
-            tabelasJogadores.Add(jogador);
+            tabelaJogador.Add(jogador);
         }
 
         public void Atualizar(Jogador jogador)
@@ -45,29 +46,64 @@ namespace Cod3rsGrowth.Teste.Repository
         public void Excluir(int idJogador)
         {
             var jogadorExcluir = ObterPorId(idJogador);
-            tabelasJogadores.Remove(jogadorExcluir);
+            tabelaJogador.Remove(jogadorExcluir);
         }
 
         public Jogador ObterPorId(int idJogador)
         {
-            var jogador = tabelasJogadores.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
+            var jogador = tabelaJogador.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
             jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
             return jogador;
         }
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
-            if (filtro?.ContaAtivaJogador != null)
-            {
-                return tabelasJogadores.Where(jogador => jogador.ContaAtivaJogador == filtro.ContaAtivaJogador).ToList();
-            }
+            IQueryable<Jogador> query = from q in tabelaJogador.AsQueryable()
+                                        select q;
 
             if (filtro?.NomeJogador != null)
             {
-                return tabelasJogadores.Where(jogador => jogador.NomeJogador.Contains(filtro.NomeJogador)).ToList();
+                query = from q in query
+                        where q.NomeJogador.Contains(filtro.NomeJogador)
+                        select q;
             }
 
-            return tabelasJogadores;
+            if (filtro?.ContaAtivaJogador != null)
+            {
+                query = from q in query
+                        where q.ContaAtivaJogador == filtro.ContaAtivaJogador
+                        select q;
+            }
+
+            if (filtro?.DataNascimentoJogadorMinimo != null)
+            {
+                query = from q in query
+                        where q.DataNascimentoJogador >= filtro.DataNascimentoJogadorMinimo
+                        select q;
+            }
+
+            if (filtro?.DataNascimentoJogadorMaximo != null)
+            {
+                query = from q in query
+                        where q.DataNascimentoJogador <= filtro.DataNascimentoJogadorMaximo
+                        select q;
+            }
+
+            if (filtro?.PrecoDasCartasJogadorMinimo != null)
+            {
+                query = from q in query
+                        where q.PrecoDasCartasJogador >= filtro.PrecoDasCartasJogadorMinimo
+                        select q;
+            }
+
+            if (filtro?.DataNascimentoJogadorMaximo != null)
+            {
+                query = from q in query
+                        where q.PrecoDasCartasJogador <= filtro.PrecoDasCartasJogadorMaximo
+                        select q;
+            }
+
+            return query.ToList();
         }
     }
 }

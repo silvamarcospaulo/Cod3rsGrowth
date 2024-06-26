@@ -2,12 +2,8 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Infra;
-using Cod3rsGrowth.Infra.Repository;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
-using System.Runtime.InteropServices;
-using static LinqToDB.Common.Configuration;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
@@ -154,7 +150,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            return _IBaralhoRepository.ObterTodos(null);
+            return _IBaralhoRepository.ObterTodos(filtro);
         }
 
         public Baralho ObterPorId(int idBaralho)
