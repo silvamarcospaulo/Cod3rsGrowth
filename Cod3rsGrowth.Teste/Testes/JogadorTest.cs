@@ -22,9 +22,6 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             servicoJogador = ServiceProvider.GetService<JogadorServico>() ?? throw new Exception("Erro ao obter servico Jogador");
 
-            tabelaCorBaralho.Clear();
-            tabelaCopiaDeCartasNoBaralho.Clear();
-            tabelaBaralho.Clear();
             tabelaJogador.Clear();
 
             IniciarListaMock();
