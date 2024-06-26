@@ -7,7 +7,12 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class JogadorRepository : IJogadorRepository
     {
-        private readonly ConexaoDados conexaoDados = new();
+        private ConexaoDados conexaoDados;
+
+        public JogadorRepository(ConexaoDados _conexaoDados)
+        {
+            conexaoDados = _conexaoDados;
+        }
 
         public void Criar(Jogador jogador)
         {
@@ -33,7 +38,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
-            IQueryable<Jogador> query = from q in conexaoDados.TabelaJogadores
+            IQueryable<Jogador> query = from q in conexaoDados.TabelaJogador
                                             select q;
 
             if (filtro?.NomeJogador != null)
@@ -75,20 +80,6 @@ namespace Cod3rsGrowth.Infra.Repository
             {
                 query = from q in query
                         where q.PrecoDasCartasJogador <= filtro.PrecoDasCartasJogadorMaximo
-                        select q;
-            }
-
-            if (filtro?.QuantidadeDeBaralhosJogadorMinimo != null)
-            {
-                query = from q in query
-                        where q.QuantidadeDeBaralhosJogador >= filtro.QuantidadeDeBaralhosJogadorMinimo
-                        select q;
-            }
-
-            if (filtro?.QuantidadeDeBaralhosJogadorMaximo != null)
-            {
-                query = from q in query
-                        where q.QuantidadeDeBaralhosJogador <= filtro.QuantidadeDeBaralhosJogadorMaximo
                         select q;
             }
 

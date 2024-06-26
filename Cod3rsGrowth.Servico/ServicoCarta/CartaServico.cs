@@ -2,6 +2,7 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
+using Cod3rsGrowth.Infra.Repository;
 using FluentValidation;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
@@ -19,17 +20,6 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
         {
             _ICartaRepository = cartaRepository;
             _validadorCarta = validadorCarta;
-        }
-
-        private int GerarIdCarta()
-        {
-            const int ValorInicial = 1;
-            const int Incremento = 1;
-
-            var cartas = _ICartaRepository.ObterTodos(null);
-            var ultimoId = cartas.Any() ? cartas.Max(carta => carta.IdCarta) : ValorInicial - Incremento;
-
-            return ultimoId + Incremento;
         }
 
         private static decimal GerarPrecoCarta(RaridadeEnum raridadeDaCarta)
@@ -54,15 +44,19 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             return valorCarta;
         }
 
-        public void Criar(Carta carta)
+        public int Criar(Carta carta)
         {
-            carta.IdCarta = GerarIdCarta();
             carta.PrecoCarta = GerarPrecoCarta(carta.RaridadeCarta);
 
             try
             {
                 _validadorCarta.ValidateAndThrow(carta);
-                _ICartaRepository.Criar(carta);
+                var cartaCriada = _ICartaRepository.Criar(carta);
+
+                carta.CorCarta.ForEach(cor => _ICartaRepository.CriarCorCarta(
+                    new CorCarta() { IdCarta = cartaCriada, Cor = cor }));
+
+                return cartaCriada;
             }
             catch (ValidationException e)
             {
@@ -91,11 +85,29 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
         public Carta ObterPorId(int idCarta)
         {
-            return _ICartaRepository.ObterPorId(idCarta);
+            var carta = _ICartaRepository.ObterPorId(idCarta);
+            var filtro = new CorCartaFiltro() { idCarta = idCarta };
+            carta.CorCarta.AddRange(_ICartaRepository.ObterTodosCorCarta(filtro).Select(cor => cor.Cor));
+            return carta;
         }
+
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
-            return _ICartaRepository.ObterTodos(null);
+            var todasAsCartas = _ICartaRepository.ObterTodos(filtro);
+            todasAsCartas?.ForEach(carta => carta.CorCarta.AddRange(_ICartaRepository.ObterTodosCorCarta(
+                new CorCartaFiltro() { idCarta = carta.IdCarta }).Select(cor => cor.Cor)));
+            return todasAsCartas;
+        }
+
+        public void CriarCorCarta(CorCarta corCarta)
+        {
+            _ICartaRepository.CriarCorCarta(corCarta);
+        }
+
+        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
+        {
+            if (filtro?.idCarta != null) return _ICartaRepository.ObterTodosCorCarta(filtro);
+            return _ICartaRepository.ObterTodosCorCarta(null);
         }
     }
 }

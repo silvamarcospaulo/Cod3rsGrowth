@@ -2,32 +2,23 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class BaralhoServico : IBaralhoRepository
     {
         private readonly IBaralhoRepository _IBaralhoRepository;
+        private readonly CartaServico _cartaServico;
         private readonly IValidator<Baralho> _validadorBaralho;
 
-        public BaralhoServico(IBaralhoRepository baralhoRepository, IValidator<Baralho> validadorBaralho)
+        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
+            IValidator<Baralho> validadorBaralho)
         {
             _IBaralhoRepository = baralhoRepository;
+            _cartaServico = cartaServico;
             _validadorBaralho = validadorBaralho;
-        }
-        
-        private int GerarIdBaralho()
-        {
-            const int ValorInicial = 1;
-            const int Incremento = 1;
-
-            var baralhos = _IBaralhoRepository.ObterTodos(null);
-            var ultimoId = baralhos.Any() ? baralhos.Max(baralho => baralho.IdBaralho) : ValorInicial - Incremento;
-
-            return ultimoId + Incremento;
         }
 
         private static decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
@@ -35,7 +26,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             try
             {
                 return baralho.Sum(carta => carta.Carta.PrecoCarta *
-                carta.QuantidadeCopiasDaCartaNoBaralho);
+                    carta.QuantidadeCopiasDaCartaNoBaralho);
             }
             catch (Exception e)
             {
@@ -72,7 +63,10 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             try
             {
-                return baralho.SelectMany(carta => carta.Carta.CorCarta).Distinct().ToList();
+                var cores = new List<CoresEnum>();
+                baralho.ForEach(carta => cores.AddRange(carta.Carta.CorCarta));
+
+                return cores.Distinct().ToList();
             }
             catch (Exception e)
             {
@@ -86,9 +80,8 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day);
         }
 
-        public void Criar(Baralho baralho)
+        public int Criar(Baralho baralho)
         {
-            baralho.IdBaralho = GerarIdBaralho();
             baralho.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
             baralho.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
             baralho.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
@@ -98,7 +91,12 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             try
             {
                 _validadorBaralho.ValidateAndThrow(baralho);
-                _IBaralhoRepository.Criar(baralho);
+                var idBaralhoCriado = _IBaralhoRepository.Criar(baralho);
+
+                baralho.CorBaralho.ForEach(cor => _IBaralhoRepository.CriarCorBaralho(
+                    new CorBaralho() { IdBaralho = idBaralhoCriado, Cor = cor }));
+
+                return idBaralhoCriado;
             }
             catch (ValidationException e)
             {
@@ -136,7 +134,11 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             try
             {
-                ObterPorId(idBaralho);
+                var baralhoExcluir = ObterPorId(idBaralho);
+                var oi = _IBaralhoRepository.ObterTodosCorBaralho(new CorBaralhoFiltro() { idBaralho = idBaralho });
+                oi?.ForEach(cor => ExcluirCorBaralho(cor.IdCorBaralho));
+                var oioi = _IBaralhoRepository.ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = idBaralho });
+                oioi?.ForEach(cor => ExcluirCopiaDeCartas(cor.IdCopiaDeCartasNoBaralho));
                 _IBaralhoRepository.Excluir(idBaralho);
             }
             catch (ValidationException e)
@@ -148,12 +150,59 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            return _IBaralhoRepository.ObterTodos(null);
+            return _IBaralhoRepository.ObterTodos(filtro);
         }
 
         public Baralho ObterPorId(int idBaralho)
         {
             return _IBaralhoRepository.ObterPorId(idBaralho);
+        }
+
+        public void CriarCorBaralho(CorBaralho corBaralho)
+        {
+            _IBaralhoRepository.CriarCorBaralho(corBaralho);
+        }
+
+        public void ExcluirCorBaralho(int idCorBaralho)
+        {
+            _IBaralhoRepository.Excluir(idCorBaralho);
+        }
+
+        public CorBaralho ObterPorIdCorBaralho(int idCorBaralho)
+        {
+            return _IBaralhoRepository.ObterPorIdCorBaralho(idCorBaralho);
+        }
+
+        public List<CorBaralho> ObterTodosCorBaralho(CorBaralhoFiltro? filtro)
+        {
+            return _IBaralhoRepository.ObterTodosCorBaralho(filtro);
+        }
+
+        public void CriarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
+        {
+            _IBaralhoRepository.CriarCopiaDeCartas(copiaDeCartasNoBaralho);
+        }
+
+        public void AtualizarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
+        {
+            var copiaDeCartasNoBaralhoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho);
+            copiaDeCartasNoBaralhoAtualizar.QuantidadeCopiasDaCartaNoBaralho = copiaDeCartasNoBaralho.QuantidadeCopiasDaCartaNoBaralho;
+            _IBaralhoRepository.AtualizarCopiaDeCartas(copiaDeCartasNoBaralhoAtualizar);
+        }
+
+        public void ExcluirCopiaDeCartas(int idCopiaDeCartasNoBaralho)
+        {
+            _IBaralhoRepository.ExcluirCopiaDeCartas(idCopiaDeCartasNoBaralho);
+        }
+
+        public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)
+        {
+            return _IBaralhoRepository.ObterPorIdCopiaDeCartas(idCopiaDeCartasNoBaralho);
+        }
+
+        public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
+        {
+            return _IBaralhoRepository.ObterTodosCopiaDeCartas(filtro);
         }
     }
 }

@@ -6,11 +6,12 @@ namespace Cod3rsGrowth.Infra
 {
     public class ConexaoDados : DataConnection
     {
-        const string stringDeConexao = "DeckBuilderDb";
-        public ConexaoDados() : base(stringDeConexao) {}
-        public ITable<Carta> TabelaCartas => this.GetTable<Carta>();
-        public ITable<CopiaDeCartasNoBaralho> TabelaCartasDoBaralhos => this.GetTable<CopiaDeCartasNoBaralho>();
-        public ITable<Baralho> TabelaBaralhos => this.GetTable<Baralho>();
-        public ITable<Jogador> TabelaJogadores => this.GetTable<Jogador>();
+        public ConexaoDados(DataOptions<ConexaoDados> options) : base(options.Options) { }
+        public ITable<Carta> TabelaCarta => this.GetTable<Carta>();
+        public ITable<CorCarta> TabelaCorCarta => this.GetTable<CorCarta>();
+        public ITable<CopiaDeCartasNoBaralho> TabelaCartasDoBaralho => this.GetTable<CopiaDeCartasNoBaralho>();
+        public ITable<Baralho> TabelaBaralho => this.GetTable<Baralho>();
+        public ITable<CorBaralho> TabelaCorBaralho => this.GetTable<CorBaralho>();
+        public ITable<Jogador> TabelaJogador => this.GetTable<Jogador>();
     }
 }

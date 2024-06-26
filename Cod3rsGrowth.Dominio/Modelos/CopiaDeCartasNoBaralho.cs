@@ -1,10 +1,18 @@
 ﻿using System;
+using LinqToDB.Mapping;
 
 namespace Cod3rsGrowth.Dominio.Modelos
 {
+    [Table("CopiaDeCartas")]
     public class CopiaDeCartasNoBaralho
     {
-        public Carta Carta { get; set; } = new Carta();
+        [PrimaryKey, Identity]
+        public int IdCopiaDeCartasNoBaralho { get; set; }
+        [Column("IdBaralho")]
+        public int IdBaralho { get; set; }
+        [Column("IdCarta")]
+        public Carta Carta { get; set; }
+        [Column("Quantidade")]
         public int QuantidadeCopiasDaCartaNoBaralho { get; set; }
     }
 }
