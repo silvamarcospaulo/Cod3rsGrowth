@@ -14,6 +14,7 @@ using LinqToDB.AspNet.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -33,7 +34,6 @@ namespace Cod3rsGrowth.Forms
             ApplicationConfiguration.Initialize();
             var host = CreateHostBuilder().Build();
             var ServiceProvider = host.Services;
-
             Application.Run(ServiceProvider.GetRequiredService<Form1>());
         }
 
@@ -42,7 +42,8 @@ namespace Cod3rsGrowth.Forms
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddScoped<CartaServico>()
+                    services
+                    .AddScoped<ConexaoDados>()
                     .AddScoped<CartaServico>()
                     .AddScoped<BaralhoServico>()
                     .AddScoped<JogadorServico>()
@@ -66,15 +67,6 @@ namespace Cod3rsGrowth.Forms
                     .AddSqlServer()
                     .WithGlobalConnectionString(stringDeConexao)
                     .ScanIn(typeof(_20240621105800).Assembly).For.Migrations())
-                    .AddScoped<CartaServico>()
-                    .AddScoped<BaralhoServico>()
-                    .AddScoped<JogadorServico>()
-                    .AddScoped<ICartaRepository, CartaRepository>()
-                    .AddScoped<IBaralhoRepository, BaralhoRepository>()
-                    .AddScoped<IJogadorRepository, JogadorRepository>()
-                    .AddScoped<IValidator<Carta>, CartaValidador>()
-                    .AddScoped<IValidator<Baralho>, BaralhoValidador>()
-                    .AddScoped<IValidator<Jogador>, JogadorValidador>()
                     .AddLinqToDBContext<ConexaoDados>((provider, options)
                         => options
                         .UseSqlServer(ConfigurationManager

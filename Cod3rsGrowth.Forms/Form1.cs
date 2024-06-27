@@ -1,5 +1,6 @@
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra;
+using Cod3rsGrowth.Infra.Repository;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -16,16 +17,14 @@ namespace Cod3rsGrowth.Forms
         private CartaServico servicoCarta;
         private BaralhoServico servicoBaralho;
         private JogadorServico servicoJogador;
-        private ConexaoDados conexaoDados;
 
         public Form1(CartaServico _servicoCarta, BaralhoServico _servicoBaralho,
-            JogadorServico _servicoJogador, ConexaoDados _conexaoDados)
+            JogadorServico _servicoJogador)
         {
-            this.Load += new EventHandler(Form1_Load);
-            conexaoDados = _conexaoDados;
             servicoCarta = _servicoCarta;
             servicoBaralho = _servicoBaralho;
             servicoJogador = _servicoJogador;
+            InitializeComponent();
         }
 
         private void Form1_Load(System.Object sender, System.EventArgs e)
