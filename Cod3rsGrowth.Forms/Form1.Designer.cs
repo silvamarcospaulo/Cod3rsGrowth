@@ -28,12 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            components = new System.ComponentModel.Container();
+            dataGridView1 = new DataGridView();
+            cartaServicoBindingSource = new BindingSource(components);
+            Nome = new DataGridViewTextBoxColumn();
+            TipoDeCarta = new DataGridViewTextBoxColumn();
+            CustoDeManaConvertido = new DataGridViewTextBoxColumn();
+            Preco = new DataGridViewTextBoxColumn();
+            Raridade = new DataGridViewTextBoxColumn();
+            Cor = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cartaServicoBindingSource).BeginInit();
+            SuspendLayout();
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Nome, TipoDeCarta, CustoDeManaConvertido, Preco, Raridade, Cor });
+            dataGridView1.DataSource = cartaServicoBindingSource;
+            dataGridView1.Location = new Point(12, 125);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(776, 313);
+            dataGridView1.TabIndex = 0;
+            // 
+            // cartaServicoBindingSource
+            // 
+            cartaServicoBindingSource.DataSource = typeof(Servico.ServicoCarta.CartaServico);
+            // 
+            // Nome
+            // 
+            Nome.HeaderText = "Nome";
+            Nome.Name = "Nome";
+            Nome.ReadOnly = true;
+            // 
+            // TipoDeCarta
+            // 
+            TipoDeCarta.HeaderText = "Tipo de Carta";
+            TipoDeCarta.Name = "TipoDeCarta";
+            TipoDeCarta.ReadOnly = true;
+            // 
+            // CustoDeManaConvertido
+            // 
+            CustoDeManaConvertido.HeaderText = "CMC";
+            CustoDeManaConvertido.Name = "CustoDeManaConvertido";
+            CustoDeManaConvertido.ReadOnly = true;
+            // 
+            // Preco
+            // 
+            Preco.HeaderText = "Preco";
+            Preco.Name = "Preco";
+            Preco.ReadOnly = true;
+            // 
+            // Raridade
+            // 
+            Raridade.HeaderText = "Raridade";
+            Raridade.Name = "Raridade";
+            Raridade.ReadOnly = true;
+            // 
+            // Cor
+            // 
+            Cor.HeaderText = "Cor";
+            Cor.Name = "Cor";
+            Cor.ReadOnly = true;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(dataGridView1);
+            Name = "Form1";
+            Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cartaServicoBindingSource).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn Nome;
+        private DataGridViewTextBoxColumn TipoDeCarta;
+        private DataGridViewTextBoxColumn CustoDeManaConvertido;
+        private DataGridViewTextBoxColumn Preco;
+        private DataGridViewTextBoxColumn Raridade;
+        private DataGridViewTextBoxColumn Cor;
+        private BindingSource cartaServicoBindingSource;
     }
 }
