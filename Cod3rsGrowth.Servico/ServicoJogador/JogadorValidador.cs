@@ -63,23 +63,23 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                         case FormatoDeJogoEnum.Commander:
                             if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) != quantidadeBaralhoCommander) return false;
 
-                            if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasCommander))) return false;
+                            if (baralho.CartasDoBaralho.All(cartas => (!cartas.Carta.TipoDeCarta.Contains("Basic Land")) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasCommander))) return false;
 
                             break;
 
                         case FormatoDeJogoEnum.Pauper:
                             if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) < quantidadeBaralhoPauper) return false;
 
-                            if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasPauper))) return false;
+                            if (baralho.CartasDoBaralho.All(cartas => (!cartas.Carta.TipoDeCarta.Contains("Basic Land")) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasPauper))) return false;
 
-                            if (baralho.CartasDoBaralho.All(cartas => cartas.Carta.RaridadeCarta != RaridadeEnum.Common)) return false;
+                            if (baralho.CartasDoBaralho.All(cartas => !cartas.Carta.RaridadeCarta.Contains("common"))) return false;
 
                             break;
 
                         case FormatoDeJogoEnum.Standard:
                             if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) < quantidadeBaralhoStandard) return false;
 
-                            if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasStandard))) return false;
+                            if (baralho.CartasDoBaralho.All(cartas => (!cartas.Carta.TipoDeCarta.Contains("Basic Land")) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasStandard))) return false;
 
                             break;
                     }

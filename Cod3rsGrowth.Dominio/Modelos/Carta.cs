@@ -7,17 +7,18 @@ namespace Cod3rsGrowth.Dominio.Modelos
     public class Carta
     {
         [PrimaryKey, Identity]
-        public int IdCarta { get; set; }
+        public int Id { get; set; }
         [Column("Nome")]
         public string NomeCarta { get; set; }
         [Column("CustoDeManaConvertido")]
         public int CustoDeManaConvertidoCarta { get; set; }
         [Column("TipoDeCarta")]
-        public TipoDeCartaEnum TipoDeCarta {  get; set; }
+        public string TipoDeCarta {  get; set; }
         [Column("Raridade")]
-        public RaridadeEnum RaridadeCarta { get; set; }
+        public string RaridadeCarta { get; set; }
         [Column("Preco")]
         public decimal PrecoCarta { get; set; }
-        public List<CoresEnum> CorCarta { get; set; }
+        [Column("Cor")]
+        public string CorCarta { get; set; }
     }
 }

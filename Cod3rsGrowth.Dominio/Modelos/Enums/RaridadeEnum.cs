@@ -9,13 +9,13 @@ namespace Cod3rsGrowth.Dominio.Modelos.Enums
 {
     public enum RaridadeEnum
     {
-        [Description("Common")]
-        Common = 'C',
-        [Description("Uncommon")]
-        Uncommon = 'U',
-        [Description("Rare")]
-        Rare = 'R',
-        [Description("Mythic")]
-        Mythic = 'M'
+        [Description("common")]
+        Common = 'c',
+        [Description("uncommon")]
+        Uncommon = 'u',
+        [Description("rare")]
+        Rare = 'r',
+        [Description("mythic")]
+        Mythic = 'm'
     }
 }

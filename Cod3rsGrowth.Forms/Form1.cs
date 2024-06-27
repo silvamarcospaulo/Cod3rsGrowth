@@ -1,3 +1,4 @@
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Infra.Repository;
@@ -165,6 +166,16 @@ namespace Cod3rsGrowth.Forms
             songsDataGridView.Columns[2].DisplayIndex = 0;
             songsDataGridView.Columns[3].DisplayIndex = 1;
             songsDataGridView.Columns[4].DisplayIndex = 2;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = servicoCarta.ObterTodos(null);
         }
     }
 }

@@ -30,13 +30,13 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            cartaServicoBindingSource = new BindingSource(components);
             Nome = new DataGridViewTextBoxColumn();
             TipoDeCarta = new DataGridViewTextBoxColumn();
             CustoDeManaConvertido = new DataGridViewTextBoxColumn();
             Preco = new DataGridViewTextBoxColumn();
             Raridade = new DataGridViewTextBoxColumn();
             Cor = new DataGridViewTextBoxColumn();
+            cartaServicoBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cartaServicoBindingSource).BeginInit();
             SuspendLayout();
@@ -56,10 +56,7 @@
             dataGridView1.RowTemplate.Height = 25;
             dataGridView1.Size = new Size(776, 313);
             dataGridView1.TabIndex = 0;
-            // 
-            // cartaServicoBindingSource
-            // 
-            cartaServicoBindingSource.DataSource = typeof(Servico.ServicoCarta.CartaServico);
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Nome
             // 
@@ -97,6 +94,10 @@
             Cor.Name = "Cor";
             Cor.ReadOnly = true;
             // 
+            // cartaServicoBindingSource
+            // 
+            cartaServicoBindingSource.DataSource = typeof(Servico.ServicoCarta.CartaServico);
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -105,6 +106,7 @@
             Controls.Add(dataGridView1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)cartaServicoBindingSource).EndInit();
             ResumeLayout(false);

@@ -242,7 +242,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             {
                                 Carta = new Carta()
                                 {
-                                    IdCarta = 7,
+                                    Id = 7,
                                     NomeCarta = "Ghalta, Fome Primordial",
                                     CustoDeManaConvertidoCarta = 12,
                                     TipoDeCarta = TipoDeCartaEnum.Criatura,
@@ -256,7 +256,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             {
                                 Carta = new Carta()
                                 {
-                                    IdCarta = 3,
+                                    Id = 3,
                                     NomeCarta = "Floresta",
                                     CustoDeManaConvertidoCarta = 0,
                                     TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
@@ -325,7 +325,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             {
                                 Carta = new Carta()
                                 {
-                                    IdCarta = 7,
+                                    Id = 7,
                                     NomeCarta = "Ghalta, Fome Primordial",
                                     CustoDeManaConvertidoCarta = 12,
                                     TipoDeCarta = TipoDeCartaEnum.Criatura,
@@ -339,7 +339,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             {
                                 Carta = new Carta()
                                 {
-                                    IdCarta = 3,
+                                    Id = 3,
                                     NomeCarta = "Floresta",
                                     CustoDeManaConvertidoCarta = 0,
                                     TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,

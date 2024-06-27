@@ -14,7 +14,6 @@ using LinqToDB.AspNet.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -31,10 +30,18 @@ namespace Cod3rsGrowth.Forms
                 UpdateDatabase(scope.ServiceProvider);
             }
 
-            ApplicationConfiguration.Initialize();
             var host = CreateHostBuilder().Build();
             var ServiceProvider = host.Services;
-            Application.Run(ServiceProvider.GetRequiredService<Form1>());
+            ApplicationConfiguration.Initialize();
+
+
+
+
+            Application.Run(new Form1(
+                ServiceProvider.GetRequiredService<CartaServico>(),
+                ServiceProvider.GetRequiredService<BaralhoServico>(),
+                ServiceProvider.GetRequiredService<JogadorServico>()
+            ));
         }
 
         private static IHostBuilder CreateHostBuilder()
@@ -43,7 +50,6 @@ namespace Cod3rsGrowth.Forms
                 .ConfigureServices((context, services) =>
                 {
                     services
-                    .AddScoped<ConexaoDados>()
                     .AddScoped<CartaServico>()
                     .AddScoped<BaralhoServico>()
                     .AddScoped<JogadorServico>()
@@ -53,28 +59,32 @@ namespace Cod3rsGrowth.Forms
                     .AddScoped<IValidator<Carta>, CartaValidador>()
                     .AddScoped<IValidator<Baralho>, BaralhoValidador>()
                     .AddScoped<IValidator<Jogador>, JogadorValidador>()
-                    .AddScoped<Form1>();
+                    .AddLinqToDBContext<ConexaoDados>((provider, options)
+                        => options
+                        .UseSqlServer(ConfigurationManager
+                        .ConnectionStrings[_stringDeConexao].ConnectionString)
+                        .UseDefaultLogging(provider));
                 });
         }
 
         private static ServiceProvider CreateServices()
         {
-            string stringDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ToString();
+            string stringDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ConnectionString;
+            var colecao = new ServiceCollection();
 
-            return new ServiceCollection()
-                .AddFluentMigratorCore()
+            colecao.AddLinqToDBContext<ConexaoDados>((provider, options)
+                        => options
+                        .UseSqlServer(ConfigurationManager
+                        .ConnectionStrings[_stringDeConexao].ConnectionString)
+                        .UseDefaultLogging(provider));
+            colecao.AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
                     .AddSqlServer()
                     .WithGlobalConnectionString(stringDeConexao)
                     .ScanIn(typeof(_20240621105800).Assembly).For.Migrations())
-                    .AddLinqToDBContext<ConexaoDados>((provider, options)
-                        => options
-                        .UseSqlServer(ConfigurationManager
-                        .ConnectionStrings[_stringDeConexao].ConnectionString)
-                        .UseDefaultLogging(provider))
-                .AddLogging(lb => lb.AddFluentMigratorConsole())
+                .AddLogging(lb => lb.AddFluentMigratorConsole());
 
-                .BuildServiceProvider(false);
+            return colecao.BuildServiceProvider(false);
         }
 
         private static void UpdateDatabase(IServiceProvider serviceProvider)

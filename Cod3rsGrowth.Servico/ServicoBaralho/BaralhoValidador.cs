@@ -50,7 +50,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
                         if (copiaDeCartasNoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasCommander))) return false;
 
-                        break;
+                        //break;
 
                     case FormatoDeJogoEnum.Pauper:
                         if (copiaDeCartasNoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) < quantidadeBaralhoPauper) return false;

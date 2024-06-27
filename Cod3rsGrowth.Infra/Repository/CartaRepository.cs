@@ -26,7 +26,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Carta ObterPorId(int idCarta)
         {
-            return conexaoDados.GetTable<Carta>().FirstOrDefault(carta => carta.IdCarta == idCarta) ??
+            return conexaoDados.GetTable<Carta>().FirstOrDefault(carta => carta.Id == idCarta) ??
                 throw new Exception($"Carta {idCarta} Nao Encontrada");
         }
 

@@ -9,17 +9,17 @@ namespace Cod3rsGrowth.Dominio.Modelos.Enums
 {
     public enum TipoDeCartaEnum
     {
-        [Description("Terreno Basico")]
+        [Description("Basic Land")]
         TerrenoBasico = 'B',
-        [Description("Terreno")]
+        [Description("Land")]
         Terreno = 'L',
-        [Description("Criatura")]
+        [Description("Creature")]
         Criatura = 'C',
-        [Description("Feitico")]
+        [Description("Socery")]
         Feitico = 'S',
-        [Description("Magica Instantanea")]
+        [Description("Instant")]
         Instantanea = 'I',
-        [Description("Artefato")]
+        [Description("Artifact")]
         Artefato = 'A'
     }
 }

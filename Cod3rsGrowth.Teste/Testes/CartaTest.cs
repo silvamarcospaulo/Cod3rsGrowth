@@ -31,57 +31,57 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 new Carta()
                 {
-                    IdCarta = 1,
+                    Id = 1,
                     NomeCarta = "Ilha",
                     CustoDeManaConvertidoCarta = 0,
-                    TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                    RaridadeCarta = RaridadeEnum.Common,
+                    TipoDeCarta = "Basic Land",
+                    RaridadeCarta = "common",
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                    CorCarta = ""
                 },
                 new Carta()
                 {
-                    IdCarta = 2,
+                    Id = 2,
                     NomeCarta = "Pantano",
                     CustoDeManaConvertidoCarta = 0,
-                    TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                    RaridadeCarta = RaridadeEnum.Common,
+                    TipoDeCarta = "Basic Land",
+                    RaridadeCarta = "common",
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                    CorCarta = ""
                 },
                 new Carta()
                 {
-                    IdCarta = 3,
+                    Id = 3,
                     NomeCarta = "Floresta",
                     CustoDeManaConvertidoCarta = 0,
-                    TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                    RaridadeCarta = RaridadeEnum.Common,
+                    TipoDeCarta = "Basic Land",
+                    RaridadeCarta = "common",
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                    CorCarta = ""
                 },
                 new Carta()
                 {
-                    IdCarta = 4,
+                    Id = 4,
                     NomeCarta = "Planice",
                     CustoDeManaConvertidoCarta = 0,
-                    TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                    RaridadeCarta = RaridadeEnum.Common,
+                    TipoDeCarta = "Basic Land",
+                    RaridadeCarta = "common",
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                    CorCarta = ""
                 },
                 new Carta()
                 {
-                    IdCarta = 5,
+                    Id = 5,
                     NomeCarta = "Montanha",
                     CustoDeManaConvertidoCarta = 0,
-                    TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                    RaridadeCarta = RaridadeEnum.Common,
+                    TipoDeCarta = "Basic Land",
+                    RaridadeCarta = "common",
                     PrecoCarta = Convert.ToDecimal(0.5),
-                    CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                    CorCarta = ""
                 },
                 new Carta()
                 {
-                    IdCarta = 6,
+                    Id = 6,
                     NomeCarta = "Niv-Mizzet, Parum",
                     CustoDeManaConvertidoCarta = 6,
                     TipoDeCarta = TipoDeCartaEnum.Criatura,
@@ -91,7 +91,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 },
                 new Carta()
                 {
-                    IdCarta = 7,
+                    Id = 7,
                     NomeCarta = "Ghalta, Fome Primordial",
                     CustoDeManaConvertidoCarta = 12,
                     TipoDeCarta = TipoDeCartaEnum.Criatura,
@@ -128,7 +128,7 @@ namespace Cod3rsGrowth.Teste.Testes
         public void ao_ObterTodos_com_filtro_raridade_carta_rara_deve_retornar_uma_lista_com_duas_cartas()
         {
             const int quantidadeDeCartasEsperadas = 2;
-            const RaridadeEnum raridadeFiltro = RaridadeEnum.Rare;
+            const string raridadeFiltro = "rare";
 
             var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { RaridadeCarta = raridadeFiltro }).Count();
 
@@ -139,7 +139,7 @@ namespace Cod3rsGrowth.Teste.Testes
         public void ao_ObterTodos_com_filtro_tipo_de_carta_terreno_deve_retornar_uma_lista_com_cinco_cartas()
         {
             const int quantidadeDeCartasEsperadas = 5;
-            const TipoDeCartaEnum tipoDeCartaFiltro = TipoDeCartaEnum.TerrenoBasico;
+            const string tipoDeCartaFiltro = "Basic Land";
 
             var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { TipoDeCarta = tipoDeCartaFiltro }).Count();
 
@@ -151,7 +151,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             var cartaTeste = new Carta()
             {
-                IdCarta = 6,
+                Id = 6,
                 NomeCarta = "Niv-Mizzet, Parum",
                 CustoDeManaConvertidoCarta = 6,
                 TipoDeCarta = TipoDeCartaEnum.Criatura,
@@ -164,7 +164,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     }
             };
 
-            var cartaMock = servicoCarta.ObterPorId(cartaTeste.IdCarta);
+            var cartaMock = servicoCarta.ObterPorId(cartaTeste.Id);
 
             Assert.Equivalent(cartaTeste, cartaMock);
         }
@@ -184,7 +184,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var cartaTeste = new Carta()
             {
-                IdCarta = 8,
+                Id = 8,
                 NomeCarta = "",
                 CustoDeManaConvertidoCarta = 2,
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
@@ -208,7 +208,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var cartaTeste = new Carta()
             {
-                IdCarta = 8,
+                Id = 8,
                 NomeCarta = "Sol Ring",
                 CustoDeManaConvertidoCarta = -1,
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
@@ -230,7 +230,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             var cartaTeste = new Carta()
             {
-                IdCarta = 8,
+                Id = 8,
                 NomeCarta = "Sol Ring",
                 CustoDeManaConvertidoCarta = 2,
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
@@ -244,7 +244,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             servicoCarta.Criar(cartaTeste);
 
-            Assert.Equivalent(cartaTeste, servicoCarta.ObterPorId(cartaTeste.IdCarta));
+            Assert.Equivalent(cartaTeste, servicoCarta.ObterPorId(cartaTeste.Id));
         }
 
         [Fact]
@@ -252,7 +252,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             var cartaTeste = new Carta()
             {
-                IdCarta = 7,
+                Id = 7,
                 RaridadeCarta = RaridadeEnum.Uncommon,
             };
 
@@ -260,8 +260,8 @@ namespace Cod3rsGrowth.Teste.Testes
 
             servicoCarta.Atualizar(cartaTeste);
 
-            Assert.Equal(precoCartaEsperado, servicoCarta.ObterPorId(cartaTeste.IdCarta).PrecoCarta);
-            Assert.Equal(cartaTeste.RaridadeCarta, servicoCarta.ObterPorId(cartaTeste.IdCarta).RaridadeCarta);
+            Assert.Equal(precoCartaEsperado, servicoCarta.ObterPorId(cartaTeste.Id).PrecoCarta);
+            Assert.Equal(cartaTeste.RaridadeCarta, servicoCarta.ObterPorId(cartaTeste.Id).RaridadeCarta);
         }
 
         [Fact]
@@ -269,7 +269,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             var cartaTeste = new Carta()
             {
-                IdCarta = 1,
+                Id = 1,
                 NomeCarta = "Ilha",
                 CustoDeManaConvertidoCarta = 0,
                 TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
@@ -283,20 +283,20 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var cartaTesteExistente = new Carta()
             {
-                IdCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).IdCarta,
-                NomeCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).NomeCarta,
-                CustoDeManaConvertidoCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).CustoDeManaConvertidoCarta,
-                TipoDeCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).TipoDeCarta,
-                RaridadeCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).RaridadeCarta,
-                PrecoCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).PrecoCarta,
-                CorCarta = servicoCarta.ObterPorId(cartaTeste.IdCarta).CorCarta,
+                Id = servicoCarta.ObterPorId(cartaTeste.Id).Id,
+                NomeCarta = servicoCarta.ObterPorId(cartaTeste.Id).NomeCarta,
+                CustoDeManaConvertidoCarta = servicoCarta.ObterPorId(cartaTeste.Id).CustoDeManaConvertidoCarta,
+                TipoDeCarta = servicoCarta.ObterPorId(cartaTeste.Id).TipoDeCarta,
+                RaridadeCarta = servicoCarta.ObterPorId(cartaTeste.Id).RaridadeCarta,
+                PrecoCarta = servicoCarta.ObterPorId(cartaTeste.Id).PrecoCarta,
+                CorCarta = servicoCarta.ObterPorId(cartaTeste.Id).CorCarta,
             };
 
             servicoCarta.Atualizar(cartaTeste);
 
-            var cartaTesteAtualizada = servicoCarta.ObterPorId(cartaTeste.IdCarta);
+            var cartaTesteAtualizada = servicoCarta.ObterPorId(cartaTeste.Id);
 
-            Assert.Equal(cartaTesteExistente.IdCarta, cartaTesteAtualizada.IdCarta);
+            Assert.Equal(cartaTesteExistente.Id, cartaTesteAtualizada.Id);
             Assert.Equal(cartaTesteExistente.NomeCarta, cartaTesteAtualizada.NomeCarta);
             Assert.Equal(cartaTesteExistente.CustoDeManaConvertidoCarta, cartaTesteAtualizada.CustoDeManaConvertidoCarta);
             Assert.Equal(cartaTesteExistente.TipoDeCarta, cartaTesteAtualizada.TipoDeCarta);
@@ -314,7 +314,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var cartaTeste = new Carta()
             {
-                IdCarta = idCartaTeste,
+                Id = idCartaTeste,
                 NomeCarta = "Sol Ring",
                 TipoDeCarta = TipoDeCartaEnum.Artefato,
                 CustoDeManaConvertidoCarta = 1,
