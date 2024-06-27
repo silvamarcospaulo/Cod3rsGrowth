@@ -66,6 +66,15 @@ namespace Cod3rsGrowth.Forms
                     .AddSqlServer()
                     .WithGlobalConnectionString(stringDeConexao)
                     .ScanIn(typeof(_20240621105800).Assembly).For.Migrations())
+                    .AddScoped<CartaServico>()
+                    .AddScoped<BaralhoServico>()
+                    .AddScoped<JogadorServico>()
+                    .AddScoped<ICartaRepository, CartaRepository>()
+                    .AddScoped<IBaralhoRepository, BaralhoRepository>()
+                    .AddScoped<IJogadorRepository, JogadorRepository>()
+                    .AddScoped<IValidator<Carta>, CartaValidador>()
+                    .AddScoped<IValidator<Baralho>, BaralhoValidador>()
+                    .AddScoped<IValidator<Jogador>, JogadorValidador>()
                     .AddLinqToDBContext<ConexaoDados>((provider, options)
                         => options
                         .UseSqlServer(ConfigurationManager
