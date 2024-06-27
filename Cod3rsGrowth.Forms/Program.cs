@@ -19,8 +19,6 @@ namespace Cod3rsGrowth.Forms
 {
     class Program
     {
-        private static string _stringDeConexao = "DeckBuilderDb";
-
         [STAThread]
         static void Main(string[] args)
         {
@@ -52,21 +50,14 @@ namespace Cod3rsGrowth.Forms
 
         private static ServiceProvider CreateServices()
         {
-            string stringDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ToString();
 
             return new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
                     .AddSqlServer()
-                    .WithGlobalConnectionString(stringDeConexao)
+                    .WithGlobalConnectionString("\"Data Source=DESKTOP-OFQ6R8J\\SQLEXPRESS;Initial Catalog=Cod3rsGrowth;Persist Security Info=True;User ID=sa;Password=sap@123;Encrypt=False;Trust Server Certificate=True\" providerName=\"System.Data.Client\"/>")
                     .ScanIn(typeof(_20240621105800).Assembly).For.Migrations())
-                    .AddLinqToDBContext<ConexaoDados>((provider, options)
-                        => options
-                        .UseSqlServer(ConfigurationManager
-                        .ConnectionStrings[_stringDeConexao].ConnectionString)
-                        .UseDefaultLogging(provider))
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
-
                 .BuildServiceProvider(false);
         }
 
