@@ -29,49 +29,107 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            dataGridCartas = new DataGridView();
             cartaServicoBindingSource = new BindingSource(components);
-            dataGridView1 = new DataGridView();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            dataGridJogador = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridCartas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cartaServicoBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridJogador).BeginInit();
             SuspendLayout();
+            // 
+            // dataGridCartas
+            // 
+            dataGridCartas.AllowUserToAddRows = false;
+            dataGridCartas.AllowUserToDeleteRows = false;
+            dataGridCartas.AutoGenerateColumns = false;
+            dataGridCartas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridCartas.DataSource = cartaServicoBindingSource;
+            dataGridCartas.Location = new Point(6, 6);
+            dataGridCartas.Name = "dataGridCartas";
+            dataGridCartas.ReadOnly = true;
+            dataGridCartas.RowTemplate.Height = 25;
+            dataGridCartas.Size = new Size(756, 386);
+            dataGridCartas.TabIndex = 0;
+            dataGridCartas.CellContentClick += dataGridCartas_CellContentClick;
             // 
             // cartaServicoBindingSource
             // 
             cartaServicoBindingSource.DataSource = typeof(Servico.ServicoCarta.CartaServico);
             // 
-            // dataGridView1
+            // tabControl1
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.DataSource = cartaServicoBindingSource;
-            dataGridView1.Location = new Point(12, 86);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(776, 313);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Location = new Point(12, 12);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(776, 426);
+            tabControl1.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(dataGridCartas);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(768, 398);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Cartas";
+            tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(dataGridJogador);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(768, 398);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Jogadores";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridJogador
+            // 
+            dataGridJogador.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridJogador.Location = new Point(6, 6);
+            dataGridJogador.Name = "dataGridJogador";
+            dataGridJogador.RowTemplate.Height = 25;
+            dataGridJogador.Size = new Size(756, 386);
+            dataGridJogador.TabIndex = 0;
+            dataGridJogador.CellContentClick += dataGridJogador_CellContentClick;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load_1;
+            ((System.ComponentModel.ISupportInitialize)dataGridCartas).EndInit();
             ((System.ComponentModel.ISupportInitialize)cartaServicoBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridJogador).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView dataGridCartas;
         private BindingSource cartaServicoBindingSource;
-        private DataGridView dataGridView1;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private DataGridView dataGridJogador;
     }
 }

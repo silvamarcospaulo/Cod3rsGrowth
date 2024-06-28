@@ -30,25 +30,33 @@ namespace Cod3rsGrowth.Forms
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-
-
-            //dataGridView1.Columns["Nome"].HeaderText = "Nome";
-            //dataGridView1.Columns["Id"].HeaderText = "Id";
-            //dataGridView1.Columns["TipoDeCarta"].HeaderText = "TipoDeCarta";
-            //dataGridView1.Columns["Cor"].HeaderText = "Cor";
-            //dataGridView1.Columns["CustoDeManaConvertido"].HeaderText = "CustoDeManaConvertido";
-            //dataGridView1.Columns["Raridade"].HeaderText = "Raridade";
-            //dataGridView1.Columns["Preco"].HeaderText = "Preco";
-
             var listaDeCartas = servicoCarta.ObterTodos(null);
 
-                dataGridView1.AutoGenerateColumns = true;
-                dataGridView1.DataSource = listaDeCartas;
+            dataGridCartas.AutoGenerateColumns = true;
+            dataGridCartas.DataSource = listaDeCartas;
 
-                dataGridView1.Columns.Add(new DataGridViewTextBoxColumn());
+            dataGridCartas.Columns.Add(new DataGridViewTextBoxColumn());
+
+
+            var listaDeJogadores = servicoJogador.ObterTodos(null);
+
+            dataGridJogador.AutoGenerateColumns = true;
+            dataGridJogador.DataSource = listaDeJogadores;
+
+            dataGridJogador.Columns.Add(new DataGridViewTextBoxColumn());
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridCartas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridJogador_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
