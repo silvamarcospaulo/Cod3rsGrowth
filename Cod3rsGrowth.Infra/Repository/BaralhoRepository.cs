@@ -2,6 +2,7 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 
 namespace Cod3rsGrowth.Infra.Repository
@@ -72,44 +73,13 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho?.Count() > valorMinimo)
+            if (filtro?.CorBaralho.Length > valorMinimo)
             {
                 query = from q in query
-                        where q.CorBaralho.All(corBaralho => filtro.CorBaralho.All(cor => cor == corBaralho))
+                        where q.CorBaralho.Contains(filtro.CorBaralho)
                         select q;
             }
                 
-            return query.ToList();
-        }
-
-        public void CriarCorBaralho(CorBaralho corBaralho)
-        {
-            conexaoDados.Insert(corBaralho);
-        }
-
-        public void ExcluirCorBaralho(int idCorBaralho)
-        {
-            conexaoDados.Delete(idCorBaralho);
-        }
-
-        public CorBaralho ObterPorIdCorBaralho(int idCorBaralho)
-        {
-            return conexaoDados.GetTable<CorBaralho>().FirstOrDefault(corBaralho => corBaralho.IdCorBaralho == idCorBaralho) ??
-                throw new Exception($"Registro nao encontrado");
-        }
-
-        public List<CorBaralho> ObterTodosCorBaralho(CorBaralhoFiltro? filtro)
-        {
-            IQueryable<CorBaralho> query = from q in conexaoDados.TabelaCorBaralho
-                                        select q;
-
-            if (filtro?.idBaralho != null)
-            {
-                query = from q in query
-                        where q.IdBaralho == filtro.idBaralho
-                        select q;
-            }
-
             return query.ToList();
         }
 

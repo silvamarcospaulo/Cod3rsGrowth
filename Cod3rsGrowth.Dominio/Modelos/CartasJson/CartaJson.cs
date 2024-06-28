@@ -20,6 +20,9 @@ namespace Cod3rsGrowth.Dominio.Modelos.CartasJson
         [Column("TcgplayerId")]
         public int? TcgplayerId { get; set; }
 
+        [Column("mana_cost")]
+        public string? mana_cost { get; set; }
+
         [Column("CardmarketId")]
         public int? CardmarketId { get; set; }
 
@@ -50,14 +53,11 @@ namespace Cod3rsGrowth.Dominio.Modelos.CartasJson
         [Column("Png")]
         public string? Png { get; set; }
 
-        [Column("ManaCost")]
-        public int? ManaCost { get; set; }
-
         [Column("Cmc")]
         public double? Cmc { get; set; }
 
         [Column("TypeLine")]
-        public string? TypeLine { get; set; }
+        public string? type_line { get; set; }
 
         [Column("OracleText")]
         public string? OracleText { get; set; }

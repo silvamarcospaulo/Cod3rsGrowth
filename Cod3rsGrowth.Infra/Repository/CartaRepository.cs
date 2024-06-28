@@ -86,25 +86,5 @@ namespace Cod3rsGrowth.Infra.Repository
 
             return query.ToList();
         }
-
-        public void CriarCorCarta(CorCarta corCarta)
-        {
-            conexaoDados.Insert(corCarta);
-        }
-
-        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
-        {
-            IQueryable<CorCarta> query = from q in conexaoDados.TabelaCorCarta
-                select q;
-
-            if (filtro?.idCarta != null)
-            {
-                query = from q in query
-                        where q.IdCarta == filtro.idCarta
-                        select q;
-            }
-
-            return query.ToList();
-        }
     }
 }

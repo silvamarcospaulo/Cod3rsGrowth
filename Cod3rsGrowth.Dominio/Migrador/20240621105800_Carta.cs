@@ -11,10 +11,10 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
                 .WithColumn("Nome").AsString(255).NotNullable()
                 .WithColumn("CustoDeManaConvertido").AsInt64().NotNullable()
-                .WithColumn("TipoDeCarta").AsInt32().NotNullable()
+                .WithColumn("TipoDeCarta").AsString(255).NotNullable()
                 .WithColumn("Raridade").AsString(255).NotNullable()
                 .WithColumn("Preco").AsDecimal().NotNullable()
-                .WithColumn("Cor").AsString().NotNullable();
+                .WithColumn("Cor").AsString(255).NotNullable();
         }
 
         public override void Down()

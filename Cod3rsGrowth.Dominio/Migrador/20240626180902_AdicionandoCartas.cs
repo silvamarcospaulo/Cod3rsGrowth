@@ -14,7 +14,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
         {
             const int valorNulo = 0;
             const string caractereNulo = "0";
-            const string diretorioCartasJson = "..\\cartas20240624211029.json";
+            const string diretorioCartasJson = "C:\\Users\\smpma\\OneDrive\\Área de Trabalho\\Estágio\\Cod3rsGrowth\\Cod3rsGrowth.Dominio\\Migrador\\.cartas20240624211029.json";
             string json = File.ReadAllText(diretorioCartasJson);
             List<CartaJson> cartas = JsonConvert.DeserializeObject<List<CartaJson>>(json);
 
@@ -24,9 +24,10 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 {
                     Nome = card.Name,
                     CustoDeManaConvertido = card?.Cmc ?? valorNulo,
-                    TipoDeCarta = card?.TypeLine ?? string.Empty,
+                    TipoDeCarta = card?.type_line ?? string.Empty,
                     Raridade = card?.Rarity ?? string.Empty,
-                    Preco = Convert.ToDecimal(card?.Prices?.Usd ?? caractereNulo)
+                    Preco = Convert.ToDecimal(card?.Prices?.Usd ?? caractereNulo),
+                    Cor = card.mana_cost ?? ""
                 });
             };
         }

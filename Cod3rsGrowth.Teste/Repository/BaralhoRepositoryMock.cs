@@ -10,7 +10,6 @@ namespace Cod3rsGrowth.Teste.Repository
     public class BaralhoRepositoryMock : IBaralhoRepository
     {
         private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
-        private List<CorBaralho> tabelaCorBaralho = SingletonTabelasTeste.InstanciaCorBaralho;
         private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
 
         private int GerarIdBaralho()
@@ -20,17 +19,6 @@ namespace Cod3rsGrowth.Teste.Repository
 
             var baralhoBanco = ObterTodos(null);
             var ultimoId = baralhoBanco.Any() ? baralhoBanco.Max(baralho => baralho.IdBaralho) : ValorInicial - Incremento;
-
-            return ultimoId + Incremento;
-        }
-
-        private int GerarIdCorBaralho()
-        {
-            const int ValorInicial = 1;
-            const int Incremento = 1;
-
-            var corBaralhoBanco = ObterTodosCorBaralho(null);
-            var ultimoId = corBaralhoBanco.Any() ? corBaralhoBanco.Max(corBaralho => corBaralho.IdCorBaralho) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
         }
@@ -56,7 +44,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public void Atualizar(Baralho baralho)
         {
-            var baralhoBanco = ObterPorId(baralho.IdJogador);
+            var baralhoBanco = ObterPorId(baralho.IdBaralho);
             baralhoBanco = baralho;
         }
 
@@ -110,35 +98,11 @@ namespace Cod3rsGrowth.Teste.Repository
             if (filtro?.CorBaralho?.Count() > valorMinimoListaCorCartas)
             {
                 query = from q in query
-                        where q.CorBaralho.All(corBaralho => filtro.CorBaralho.All(cor => cor == corBaralho))
+                        where q.CorBaralho.Contains(filtro.CorBaralho)
                         select q;
             }
 
             return query.ToList();
-        }
-
-        public void CriarCorBaralho(CorBaralho corBaralho)
-        {
-            corBaralho.IdCorBaralho = GerarIdCorBaralho();
-            tabelaCorBaralho.Add(corBaralho);
-        }
-
-        public void ExcluirCorBaralho(int idCorBaralho)
-        {
-            var corBaralhoExcluir = ObterPorIdCorBaralho(idCorBaralho);
-            tabelaCorBaralho.Remove(corBaralhoExcluir);
-        }
-
-        public CorBaralho ObterPorIdCorBaralho(int idCorBaralho)
-        {
-            return tabelaCorBaralho.FirstOrDefault(corBaralho => corBaralho.IdCorBaralho == idCorBaralho) ??
-                throw new Exception($"Registro nao encontrado");
-        }
-
-        public List<CorBaralho> ObterTodosCorBaralho(CorBaralhoFiltro? filtro)
-        {
-            if (filtro?.idBaralho != null) return tabelaCorBaralho.FindAll(corBaralho => corBaralho.IdBaralho == filtro?.idBaralho);
-            return tabelaCorBaralho;
         }
 
         public void CriarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)

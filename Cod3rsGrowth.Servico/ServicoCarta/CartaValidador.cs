@@ -25,13 +25,10 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
 
             RuleFor(carta => carta.TipoDeCarta)
                 .NotNull()
-                .WithMessage("Campo TipoDeCarta nao pode ser nulo")
-                .IsInEnum()
-                .WithMessage("Valor inválido");
+                .WithMessage("Campo TipoDeCarta nao pode ser nulo");
 
             RuleFor(carta => carta.RaridadeCarta)
-                .NotNull().WithMessage("Campo RaridadeCarta nao pode ser nulo")
-                .IsInEnum().WithMessage("Campo RaridadeCarta valor inválido");
+                .NotNull().WithMessage("Campo RaridadeCarta nao pode ser nulo");
         }
     }
 }
