@@ -15,17 +15,17 @@ namespace Cod3rsGrowth.Dominio.Migrador
             const string caractereNulo = "0";
             const string custoDeManaNulo = "{0}";
 
-            const string diretorioCartas202406242110291 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Dominio\\Migrador\\cartas202406242110291.json";
+            const string diretorioCartas202406242110291 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110291.json";
             string json202406242110291 = File.ReadAllText(diretorioCartas202406242110291);
-            const string diretorioCartas202406242110292 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Dominio\\Migrador\\cartas202406242110292.json";
+            const string diretorioCartas202406242110292 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110292.json";
             string json202406242110292 = File.ReadAllText(diretorioCartas202406242110292);
-            const string diretorioCartas202406242110293 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Dominio\\Migrador\\cartas202406242110293.json";
+            const string diretorioCartas202406242110293 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110293.json";
             string json202406242110293 = File.ReadAllText(diretorioCartas202406242110293);
-            const string diretorioCartas202406242110294 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Dominio\\Migrador\\cartas202406242110294.json";
+            const string diretorioCartas202406242110294 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110294.json";
             string json202406242110294 = File.ReadAllText(diretorioCartas202406242110294);
-            const string diretorioCartas202406242110295 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Dominio\\Migrador\\cartas202406242110295.json";
+            const string diretorioCartas202406242110295 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110295.json";
             string json202406242110295 = File.ReadAllText(diretorioCartas202406242110295);
-            const string diretorioCartas202406242110296 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Dominio\\Migrador\\cartas202406242110296.json";
+            const string diretorioCartas202406242110296 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110296.json";
             string json202406242110296 = File.ReadAllText(diretorioCartas202406242110296);
 
             var cartas = new List<CartaJson>();
