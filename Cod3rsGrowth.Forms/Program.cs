@@ -34,7 +34,7 @@ namespace Cod3rsGrowth.Forms
             var ServiceProvider = host.Services;
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new Form1(
+            Application.Run(new FormListaCartaEJogador(
                 ServiceProvider.GetRequiredService<CartaServico>(),
                 ServiceProvider.GetRequiredService<BaralhoServico>(),
                 ServiceProvider.GetRequiredService<JogadorServico>()
@@ -78,7 +78,7 @@ namespace Cod3rsGrowth.Forms
                 .ConfigureRunner(rb => rb
                     .AddSqlServer()
                     .WithGlobalConnectionString(stringDeConexao)
-                    .ScanIn(typeof(_20240621105800).Assembly).For.Migrations())
+                    .ScanIn(typeof(_20240621105800_Carta).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole());
 
             return colecao.BuildServiceProvider(false);

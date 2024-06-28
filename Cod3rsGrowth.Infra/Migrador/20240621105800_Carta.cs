@@ -3,7 +3,7 @@
 namespace Cod3rsGrowth.Dominio.Migrador
 {
     [Migration(20240621105800)]
-    public class _20240621105800 : Migration
+    public class _20240621105800_Carta : Migration
     {
         public override void Up()
         {

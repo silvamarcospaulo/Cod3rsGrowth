@@ -8,7 +8,7 @@ using Cod3rsGrowth.Servico.ServicoJogador;
 
 namespace Cod3rsGrowth.Forms
 {
-    public partial class Form1 : Form
+    public partial class FormListaCartaEJogador : Form
     {
         private Panel buttonPanel = new Panel();
         private DataGridView songsDataGridView = new DataGridView();
@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico servicoBaralho;
         private JogadorServico servicoJogador;
 
-        public Form1(CartaServico _servicoCarta, BaralhoServico _servicoBaralho,
+        public FormListaCartaEJogador(CartaServico _servicoCarta, BaralhoServico _servicoBaralho,
             JogadorServico _servicoJogador)
         {
             servicoCarta = _servicoCarta;
@@ -30,33 +30,26 @@ namespace Cod3rsGrowth.Forms
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            var listaDeCartas = servicoCarta.ObterTodos(null);
+            var listaDeCartas = servicoCarta.ObterTodos(new CartaFiltro());
 
-            dataGridCartas.AutoGenerateColumns = true;
-            dataGridCartas.DataSource = listaDeCartas;
+            dataGridViewCarta.DataSource = listaDeCartas;
 
-            dataGridCartas.Columns.Add(new DataGridViewTextBoxColumn());
+            dataGridViewCarta.Columns.Add(new DataGridViewTextBoxColumn());
 
 
-            var listaDeJogadores = servicoJogador.ObterTodos(null);
+            var listaDeJogadores = servicoJogador.ObterTodos(new JogadorFiltro());
 
-            dataGridJogador.AutoGenerateColumns = true;
-            dataGridJogador.DataSource = listaDeJogadores;
+            dataGridViewJogador.DataSource = listaDeJogadores;
 
-            dataGridJogador.Columns.Add(new DataGridViewTextBoxColumn());
+            dataGridViewJogador.Columns.Add(new DataGridViewTextBoxColumn());
         }
 
-        private void dataGridCartas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewJogador_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void dataGridJogador_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void dataGridViewCarta_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
