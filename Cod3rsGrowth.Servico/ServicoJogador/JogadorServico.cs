@@ -64,7 +64,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public void Atualizar(Jogador jogador)
         {
-            var jogadorAtualizado = ObterPorId(jogador.IdJogador);
+            var jogadorAtualizado = ObterPorId(jogador.Id);
             jogadorAtualizado.BaralhosJogador = jogador.BaralhosJogador;
             jogadorAtualizado.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogadorAtualizado.BaralhosJogador);
             jogadorAtualizado.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizado.BaralhosJogador);
@@ -99,7 +99,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     options.ThrowOnFailures();
                     options.IncludeRuleSets("Excluir");
                 });
-                _IJogadorRepository.Excluir(jogadorExcluir.IdJogador);
+                _IJogadorRepository.Excluir(jogadorExcluir.Id);
             }
             catch (ValidationException e)
             {
@@ -118,7 +118,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
             var jogadores = _IJogadorRepository.ObterTodos(filtro);
-            jogadores.ForEach(jogador => jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.IdJogador }));
+            jogadores.ForEach(jogador => jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id }));
             return jogadores;
         }
     }
