@@ -33,7 +33,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Baralho ObterPorId(int idBaralho)
         {
-            return conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.IdBaralho == idBaralho) ??
+            return conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.Id == idBaralho) ??
                 throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 

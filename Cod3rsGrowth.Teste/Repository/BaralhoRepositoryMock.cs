@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Teste.Repository
             const int Incremento = 1;
 
             var baralhoBanco = ObterTodos(null);
-            var ultimoId = baralhoBanco.Any() ? baralhoBanco.Max(baralho => baralho.IdBaralho) : ValorInicial - Incremento;
+            var ultimoId = baralhoBanco.Any() ? baralhoBanco.Max(baralho => baralho.Id) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
         }
@@ -48,10 +48,10 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public int Criar(Baralho baralho)
         {
-            baralho.IdBaralho = GerarIdBaralho();
+            baralho.Id = GerarIdBaralho();
             tabelaBaralho.Add(baralho);
 
-            return baralho.IdBaralho;
+            return baralho.Id;
         }
 
         public void Atualizar(Baralho baralho)
@@ -68,7 +68,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Baralho ObterPorId(int idBaralho)
         {
-            return tabelaBaralho.FirstOrDefault(baralho => baralho.IdBaralho == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
+            return tabelaBaralho.FirstOrDefault(baralho => baralho.Id == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)

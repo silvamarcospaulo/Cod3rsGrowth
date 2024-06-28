@@ -1,8 +1,8 @@
 namespace Cod3rsGrowth.Forms
 {
-    public partial class Form1 : Form
+    public partial class FormListaCartaEJogador : Form
     {
-        public Form1()
+        public FormListaCartaEJogador()
         {
             InitializeComponent();
         }

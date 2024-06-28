@@ -8,9 +8,9 @@ namespace Cod3rsGrowth.Dominio.Modelos
     public class Baralho
     {
         [PrimaryKey, Identity]
-        public int IdBaralho { get; set; }
-        [Column("IdJogador")]
-        public int IdJogador { get; set; }
+        public int Id { get; set; }
+        [Column("Id")]
+        public int IdJogador { get; set; }  
         [Column("Nome")]
         public string NomeBaralho { get; set; }
         [Column("DataDeCriacao")]
