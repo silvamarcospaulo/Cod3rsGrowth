@@ -28,7 +28,7 @@ namespace Cod3rsGrowth.Forms
             var host = CreateHostBuilder().Build();
             var ServiceProvider = host.Services;
 
-            Application.Run(ServiceProvider.GetRequiredService<Form1>());
+            Application.Run(ServiceProvider.GetRequiredService<FormListaCartaEJogador>());
         }
 
         private static IHostBuilder CreateHostBuilder()
@@ -46,7 +46,7 @@ namespace Cod3rsGrowth.Forms
                     .AddScoped<IValidator<Carta>, CartaValidador>()
                     .AddScoped<IValidator<Baralho>, BaralhoValidador>()
                     .AddScoped<IValidator<Jogador>, JogadorValidador>()
-                    .AddScoped<Form1>();
+                    .AddScoped<FormListaCartaEJogador>();
                 });
         }
 

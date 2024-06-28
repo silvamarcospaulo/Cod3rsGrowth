@@ -1,6 +1,6 @@
 ﻿namespace Cod3rsGrowth.Forms
 {
-    partial class Form1
+    partial class FormListaCartaEJogador
     {
         /// <summary>
         ///  Required designer variable.

@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Dominio.Modelos
         [PrimaryKey, Identity]
         public int Id { get; set; }
         [Column("Id")]
-        public int IdJogador { get; set; }
+        public int IdJogador { get; set; }  
         [Column("Nome")]
         public string NomeBaralho { get; set; }
         [Column("DataDeCriacao")]
