@@ -26,20 +26,20 @@ namespace Cod3rsGrowth.Teste.Repository
             const int Incremento = 1;
 
             var JogadoresBanco = ObterTodos(null);
-            var ultimoId = JogadoresBanco.Any() ? JogadoresBanco.Max(jogador => jogador.IdJogador) : ValorInicial - Incremento;
+            var ultimoId = JogadoresBanco.Any() ? JogadoresBanco.Max(jogador => jogador.Id) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
         }
 
         public void Criar(Jogador jogador)
         {
-            jogador.IdJogador = GerarId();
+            jogador.Id = GerarId();
             tabelaJogador.Add(jogador);
         }
 
         public void Atualizar(Jogador jogador)
         {
-            var jogadorBanco = ObterPorId(jogador.IdJogador);
+            var jogadorBanco = ObterPorId(jogador.Id);
             jogadorBanco = jogador;
         }
 
@@ -51,7 +51,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Jogador ObterPorId(int idJogador)
         {
-            var jogador = tabelaJogador.FirstOrDefault(jogador => jogador.IdJogador == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
+            var jogador = tabelaJogador.FirstOrDefault(jogador => jogador.Id == idJogador) ?? throw new Exception($"Jogador {idJogador} Nao Encontrado");
             jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
             return jogador;
         }

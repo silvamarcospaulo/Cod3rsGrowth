@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Dominio.Modelos
     {
         [PrimaryKey, Identity]
         public int IdCopiaDeCartasNoBaralho { get; set; }
-        [Column("IdBaralho")]
+        [Column("Id")]
         public int IdBaralho { get; set; }
         [Column("IdCarta")]
         public Carta Carta { get; set; }

@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Dominio.Modelos
     {
         [PrimaryKey, Identity]
         public int IdCorBaralho { get; set; }
-        [Column("IdBaralho")]
+        [Column("Id")]
         public int IdBaralho { get; set; }
         [Column("Cor")]
         public CoresEnum Cor { get; set; }

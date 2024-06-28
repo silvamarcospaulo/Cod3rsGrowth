@@ -93,7 +93,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             var jogadorTeste = new Jogador()
             {
-                IdJogador = 1,
+                Id = 1,
                 NomeJogador = "Marcos",
                 DataNascimentoJogador = new DateTime(day: 8, month: 3, year: 1999),
                 PrecoDasCartasJogador = 0,
@@ -102,7 +102,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 BaralhosJogador = new List<Baralho>()
             };
 
-            var jogadorMock = servicoJogador.ObterPorId(jogadorTeste.IdJogador);
+            var jogadorMock = servicoJogador.ObterPorId(jogadorTeste.Id);
 
             Assert.Equivalent(jogadorTeste, jogadorMock);
         }
@@ -122,7 +122,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
-                IdJogador = 4,
+                Id = 4,
                 NomeJogador = "",
                 DataNascimentoJogador = new DateTime(day: 29, month: 11, year: 2005),
                 PrecoDasCartasJogador = 0,
@@ -143,7 +143,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
-                IdJogador = 4,
+                Id = 4,
                 NomeJogador = "Detofol",
                 DataNascimentoJogador = new DateTime(),
                 PrecoDasCartasJogador = 0,
@@ -182,7 +182,7 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             var jogadorTeste = new Jogador()
             {
-                IdJogador = 4,
+                Id = 4,
                 NomeJogador = "Detofol",
                 DataNascimentoJogador = new DateTime(day: 29, month: 11, year: 2005),
                 PrecoDasCartasJogador = 0,
@@ -193,7 +193,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             servicoJogador.Criar(jogadorTeste);
 
-            Assert.Equal(jogadorTeste, servicoJogador.ObterPorId(jogadorTeste.IdJogador));
+            Assert.Equal(jogadorTeste, servicoJogador.ObterPorId(jogadorTeste.Id));
         }
 
         [Theory]
@@ -222,7 +222,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
-                IdJogador = 1,
+                Id = 1,
                 NomeJogador = "Marcos",
                 DataNascimentoJogador = new DateTime(day: 8, month: 3, year: 1999),
                 PrecoDasCartasJogador = 0,
@@ -232,7 +232,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     new Baralho()
                     {
-                        IdBaralho = 1,
+                        Id = 1,
                         IdJogador = 1,
                         NomeBaralho = "Mono Green Stomp",
                         FormatoDeJogoBaralho = formatoDeJogoBaralhoJogadorTeste,
@@ -290,7 +290,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
-                IdJogador = idJogadorTeste
+                Id = idJogadorTeste
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoJogador.Atualizar(jogadorTeste));
@@ -305,7 +305,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
-                IdJogador = 1,
+                Id = 1,
                 NomeJogador = "SIlv Silva",
                 DataNascimentoJogador = new DateTime(day: 10, month: 3, year: 1999),
                 PrecoDasCartasJogador = 0,
@@ -315,7 +315,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     new Baralho()
                     {
-                        IdBaralho = 1,
+                        Id = 1,
                         IdJogador = 1,
                         NomeBaralho = "Mono Green Stomp",
                         FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
@@ -359,12 +359,12 @@ namespace Cod3rsGrowth.Teste.Testes
                 }
             };
 
-            var jogadorTesteExistente = servicoJogador.ObterPorId(jogadorTeste.IdJogador);
+            var jogadorTesteExistente = servicoJogador.ObterPorId(jogadorTeste.Id);
 
             servicoJogador.Atualizar(jogadorTeste);
 
-            Assert.Equal(jogadorTesteExistente.NomeJogador, servicoJogador.ObterPorId(jogadorTeste.IdJogador).NomeJogador);
-            Assert.Equal(jogadorTesteExistente.DataNascimentoJogador, servicoJogador.ObterPorId(jogadorTeste.IdJogador).DataNascimentoJogador);
+            Assert.Equal(jogadorTesteExistente.NomeJogador, servicoJogador.ObterPorId(jogadorTeste.Id).NomeJogador);
+            Assert.Equal(jogadorTesteExistente.DataNascimentoJogador, servicoJogador.ObterPorId(jogadorTeste.Id).DataNascimentoJogador);
         }
 
         [Theory]
@@ -391,10 +391,10 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
-                IdJogador = idJogadorTeste,
+                Id = idJogadorTeste,
             };
 
-            var resultado = Assert.Throws<Exception>(() => servicoJogador.Excluir(jogadorTeste.IdJogador));
+            var resultado = Assert.Throws<Exception>(() => servicoJogador.Excluir(jogadorTeste.Id));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }

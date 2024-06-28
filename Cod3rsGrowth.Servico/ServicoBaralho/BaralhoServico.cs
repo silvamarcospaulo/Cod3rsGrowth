@@ -107,7 +107,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public void Atualizar(Baralho baralho)
         {
-            var baralhoAtualizado = ObterPorId(baralho.IdBaralho);
+            var baralhoAtualizado = ObterPorId(baralho.Id);
 
             baralhoAtualizado.NomeBaralho = baralho.NomeBaralho;
             baralhoAtualizado.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
