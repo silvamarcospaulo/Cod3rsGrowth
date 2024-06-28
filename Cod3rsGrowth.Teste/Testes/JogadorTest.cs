@@ -231,7 +231,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     new Baralho()
                     {
-                        IdBaralho = 1,
+                        Id = 1,
                         IdJogador = 1,
                         NomeBaralho = "Mono Green Stomp",
                         FormatoDeJogoBaralho = formatoDeJogoBaralhoJogadorTeste,
@@ -314,7 +314,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     new Baralho()
                     {
-                        IdBaralho = 1,
+                        Id = 1,
                         IdJogador = 1,
                         NomeBaralho = "Mono Green Stomp",
                         FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,

@@ -1,41 +1,43 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos.CartasJson;
 using FluentMigrator;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System.IO;
 
 namespace Cod3rsGrowth.Dominio.Migrador
 {
     [Migration(20240626180902)]
     public class _20240626180902_AdicionandoCartas : Migration
     {
+        private const int valorNulo = 0;
+        private const string caractereNulo = "0";
+        private const string custoDeManaNulo = "{0}";
+
         public override void Up()
         {
-            const int valorNulo = 0;
-            const string caractereNulo = "0";
-            const string custoDeManaNulo = "{0}";
+            var diretorioLocal = AppDomain.CurrentDomain.BaseDirectory;
 
-            const string diretorioCartas202406242110291 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110291.json";
-            string json202406242110291 = File.ReadAllText(diretorioCartas202406242110291);
-            const string diretorioCartas202406242110292 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110292.json";
-            string json202406242110292 = File.ReadAllText(diretorioCartas202406242110292);
-            const string diretorioCartas202406242110293 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110293.json";
-            string json202406242110293 = File.ReadAllText(diretorioCartas202406242110293);
-            const string diretorioCartas202406242110294 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110294.json";
-            string json202406242110294 = File.ReadAllText(diretorioCartas202406242110294);
-            const string diretorioCartas202406242110295 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110295.json";
-            string json202406242110295 = File.ReadAllText(diretorioCartas202406242110295);
-            const string diretorioCartas202406242110296 = "C:\\Users\\Usuario\\Desktop\\Projetos\\Cod3rsGrowth\\Cod3rsGrowth.Infra\\Migrador\\Api Scryfall\\cartas202406242110296.json";
-            string json202406242110296 = File.ReadAllText(diretorioCartas202406242110296);
+            string diretorioRaiz = Path.Combine(diretorioLocal, @"..\..\..\..\Cod3rsGrowth.Infra\Migrador\Api Scryfall");
+
+            var arquivosJson = new List<string>
+            {
+                "cartas202406242110291.json",
+                "cartas202406242110292.json",
+                "cartas202406242110293.json",
+                "cartas202406242110294.json",
+                "cartas202406242110295.json",
+                "cartas202406242110296.json"
+            };
 
             var cartas = new List<CartaJson>();
 
-            cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json202406242110291));
-            cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json202406242110292));
-            cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json202406242110293));
-            cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json202406242110294));
-            cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json202406242110295));
-            cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json202406242110296));
+            foreach (var arquivo in arquivosJson)
+            {
+                string caminhoArquivo = Path.Combine(diretorioRaiz, arquivo);
+                string json = File.ReadAllText(caminhoArquivo);
+                cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json));
+            }
 
             foreach (var card in cartas)
             {
@@ -48,7 +50,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
                     Preco = Convert.ToDecimal(card?.Prices?.Usd ?? caractereNulo),
                     Cor = card.mana_cost ?? custoDeManaNulo
                 });
-            };
+            }
         }
 
         public override void Down()

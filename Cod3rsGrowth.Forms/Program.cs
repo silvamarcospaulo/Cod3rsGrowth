@@ -34,10 +34,11 @@ namespace Cod3rsGrowth.Forms
             var ServiceProvider = host.Services;
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new FormListaCartaEJogador(
+            Application.Run(new Main(
                 ServiceProvider.GetRequiredService<CartaServico>(),
                 ServiceProvider.GetRequiredService<BaralhoServico>(),
-                ServiceProvider.GetRequiredService<JogadorServico>()
+                ServiceProvider.GetRequiredService<JogadorServico>(),
+                ServiceProvider.GetRequiredService<ConexaoDados>()
             ));
         }
 

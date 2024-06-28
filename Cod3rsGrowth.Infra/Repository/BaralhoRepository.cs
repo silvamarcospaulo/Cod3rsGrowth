@@ -1,9 +1,11 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 using LinqToDB;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
+using static LinqToDB.Reflection.Methods.LinqToDB.Insert;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
@@ -34,7 +36,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Baralho ObterPorId(int idBaralho)
         {
-            return conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.IdBaralho == idBaralho) ??
+            return conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.Id == idBaralho) ??
                 throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 
@@ -52,12 +54,12 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.FormatoDeJogoBaralho != null)
-            {
-                query = from q in query
-                        where q.FormatoDeJogoBaralho == filtro.FormatoDeJogoBaralho
-                        select q;
-            }
+            //if ((int)filtro?.FormatoDeJogoBaralho > valorMinimo)
+            //{
+            //    query = from q in query
+            //            where q.FormatoDeJogoBaralho == filtro.FormatoDeJogoBaralho
+            //            select q;
+            //}
 
             if (filtro?.PrecoDoBaralhoMinimo != null)
             {
@@ -73,13 +75,13 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho.Count() > valorMinimo)
+            if (filtro?.CorBaralho?.Count() > valorMinimo)
             {
                 query = from q in query
                         where q.CorBaralho.Contains(filtro.CorBaralho)
                         select q;
             }
-                
+
             return query.ToList();
         }
 

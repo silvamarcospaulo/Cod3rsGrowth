@@ -8,8 +8,8 @@ namespace Cod3rsGrowth.Dominio.Modelos
     public class Baralho
     {
         [PrimaryKey, Identity]
-        public int IdBaralho { get; set; }
-        [Column("Id")]
+        public int Id { get; set; }
+        [Column("IdJogador")]
         public int IdJogador { get; set; }
         [Column("Nome")]
         public string NomeBaralho { get; set; }
@@ -17,8 +17,7 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public DateTime DataDeCriacaoBaralho { get; set; }
         [Column("FormatoDeJogo")]
         public FormatoDeJogoEnum FormatoDeJogoBaralho { get; set; }
-        public List<CopiaDeCartasNoBaralho> CartasDoBaralho { get; set; }
-        [Column("QuantiadeDeCartas")]
+        [Column("QuantidadeDeCartas")]
         public int QuantidadeDeCartasNoBaralho { get; set; }
         [Column("Preco")]
         public decimal PrecoDoBaralho { get; set; }
@@ -26,5 +25,6 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public int CustoDeManaConvertidoDoBaralho { get; set; }
         [Column("Cor")]
         public string? CorBaralho { get; set; }
+        public List<CopiaDeCartasNoBaralho> CartasDoBaralho { get; set; }
     }
 }

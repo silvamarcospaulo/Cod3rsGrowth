@@ -162,7 +162,7 @@ namespace Cod3rsGrowth.Teste.Testes
             listaBaralhosMock.ForEach(baralho => servicoBaralho.Criar(
                 new Baralho()
                 {
-                    IdBaralho = baralho.IdBaralho,
+                    Id = baralho.Id,
                     IdJogador = baralho.IdJogador,
                     NomeBaralho = baralho.NomeBaralho,
                     FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
@@ -201,7 +201,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 2,
+                Id = 2,
                 IdJogador = 6,
                 NomeBaralho = "Niv-Mizzet Combo",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
@@ -257,7 +257,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = "{U, R}"
             };
 
-            var baralhoMock = servicoBaralho.ObterPorId(baralhoTeste.IdBaralho);
+            var baralhoMock = servicoBaralho.ObterPorId(baralhoTeste.Id);
 
             Assert.Equivalent(baralhoTeste, baralhoMock);
         }
@@ -277,7 +277,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = -1,
                 NomeBaralho = "Mono Green Stomp Pauper",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
@@ -316,7 +316,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
@@ -355,7 +355,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Pauper",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
@@ -380,7 +380,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Commander",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
@@ -421,7 +421,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Commander",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
@@ -462,7 +462,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp",
                 FormatoDeJogoBaralho = formatoDeJogoTeste,
@@ -501,7 +501,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Pauper",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
@@ -531,7 +531,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             servicoBaralho.Criar(baralhoTeste);
 
-            Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.IdBaralho));
+            Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.Id));
         }
 
         [Fact]
@@ -541,7 +541,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = 7,
                 NomeBaralho = "Mono Green Stomp",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
@@ -571,7 +571,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             servicoBaralho.Atualizar(baralhoTeste);
 
-            Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.IdBaralho));
+            Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.Id));
         }
 
         [Theory]
@@ -586,7 +586,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 1,
+                Id = 1,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp",
                 FormatoDeJogoBaralho = formatoDeJogoBaralhoTeste,
@@ -643,7 +643,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = idBaralhoTeste,
+                Id = idBaralhoTeste,
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Atualizar(baralhoTeste));
@@ -656,9 +656,9 @@ namespace Cod3rsGrowth.Teste.Testes
         {
             var dataDeHoje = DateTime.Now;
 
-            var baralhoTeste = new Baralho()
+            var baralhoTeste = new Baralho()        
             {
-                IdBaralho = 3,
+                Id = 3,
                 IdJogador = 7,
                 NomeBaralho = "Mono Green Stomp",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
@@ -700,12 +700,12 @@ namespace Cod3rsGrowth.Teste.Testes
                 CorBaralho = "{G}"
             };
 
-            var baralhoTesteExistente = servicoBaralho.ObterPorId(baralhoTeste.IdBaralho);
+            var baralhoTesteExistente = servicoBaralho.ObterPorId(baralhoTeste.Id);
 
             servicoBaralho.Atualizar(baralhoTeste);
 
-            Assert.Equal(baralhoTesteExistente.IdBaralho, servicoBaralho.ObterPorId(baralhoTeste.IdBaralho).IdBaralho);
-            Assert.Equal(baralhoTesteExistente.IdJogador, servicoBaralho.ObterPorId(baralhoTeste.IdBaralho).IdJogador);
+            Assert.Equal(baralhoTesteExistente.Id, servicoBaralho.ObterPorId(baralhoTeste.Id).Id);
+            Assert.Equal(baralhoTesteExistente.IdJogador, servicoBaralho.ObterPorId(baralhoTeste.Id).IdJogador);
         }
 
         [Fact]
@@ -715,7 +715,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 1,
+                Id = 1,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Pauper",
                 CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
@@ -733,7 +733,7 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = 1,
+                Id = 1,
                 IdJogador = 1,
                 NomeBaralho = "",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
@@ -785,10 +785,10 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                IdBaralho = idBaralhoTeste,
+                Id = idBaralhoTeste,
             };
 
-            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Excluir(baralhoTeste.IdBaralho));
+            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Excluir(baralhoTeste.Id));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
