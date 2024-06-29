@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormJogador));
             dataGridViewJogador = new DataGridView();
             jogadorBindingSource1 = new BindingSource(components);
             Nome = new Label();
@@ -40,18 +41,15 @@
             // 
             // dataGridViewJogador
             // 
+            resources.ApplyResources(dataGridViewJogador, "dataGridViewJogador");
             dataGridViewJogador.AllowUserToAddRows = false;
             dataGridViewJogador.AllowUserToDeleteRows = false;
-            dataGridViewJogador.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewJogador.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewJogador.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewJogador.DataBindings.Add(new Binding("DataContext", jogadorBindingSource1, "Id", true));
-            dataGridViewJogador.Location = new Point(12, 119);
             dataGridViewJogador.Name = "dataGridViewJogador";
             dataGridViewJogador.ReadOnly = true;
             dataGridViewJogador.RowTemplate.Height = 25;
-            dataGridViewJogador.Size = new Size(776, 319);
-            dataGridViewJogador.TabIndex = 1;
             dataGridViewJogador.CellContentClick += dataGridViewJogador_CellContentClick;
             // 
             // jogadorBindingSource1
@@ -60,15 +58,9 @@
             // 
             // Nome
             // 
-            Nome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            resources.ApplyResources(Nome, "Nome");
             Nome.AutoEllipsis = true;
-            Nome.AutoSize = true;
-            Nome.Font = new Font("Impact", 30F, FontStyle.Bold, GraphicsUnit.Point);
-            Nome.Location = new Point(246, 39);
             Nome.Name = "Nome";
-            Nome.Size = new Size(312, 48);
-            Nome.TabIndex = 2;
-            Nome.Text = "MTG DeckBuilder";
             // 
             // jogadorBindingSource
             // 
@@ -76,13 +68,13 @@
             // 
             // FormJogador
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
             Controls.Add(Nome);
             Controls.Add(dataGridViewJogador);
             Name = "FormJogador";
-            Text = "FormJogador";
+            WindowState = FormWindowState.Maximized;
+            FormClosed += FormJogador_FormClosed;
             Load += FormJogador_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewJogador).EndInit();
             ((System.ComponentModel.ISupportInitialize)jogadorBindingSource1).EndInit();

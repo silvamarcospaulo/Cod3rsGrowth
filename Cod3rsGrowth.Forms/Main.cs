@@ -6,6 +6,7 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -16,29 +17,26 @@ namespace Cod3rsGrowth.Forms
         private Button addNewRowButton = new Button();
         private Button deleteRowButton = new Button();
         private FormJogador formJogador;
+        private Thread threadMain;
 
-        private CartaServico servicoCarta;
-        private BaralhoServico servicoBaralho;
-        private JogadorServico servicoJogador;
+        private CartaServico cartaServico;
+        private BaralhoServico baralhoServico;
+        private JogadorServico jogadorServico;
         private ConexaoDados conexaoDados;
 
-        public Main(CartaServico _servicoCarta, BaralhoServico _servicoBaralho,
-            JogadorServico _servicoJogador, ConexaoDados _conexaoDados)
+        public Main(CartaServico _cartaServico, BaralhoServico _baralhoServico,
+            JogadorServico _jogadorServico, ConexaoDados _conexaoDados)
         {
-            servicoCarta = _servicoCarta;
-            servicoBaralho = _servicoBaralho;
-            servicoJogador = _servicoJogador;
+            cartaServico = _cartaServico;
+            baralhoServico = _baralhoServico;
+            jogadorServico = _jogadorServico;
             conexaoDados = _conexaoDados;
             InitializeComponent();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-            var listaDeCartas = servicoCarta.ObterTodos(new CartaFiltro());
-
-            dataGridViewCarta.DataSource = listaDeCartas;
-
-            dataGridViewCarta.Columns.Add(new DataGridViewTextBoxColumn());
+            CarregarPaginaInicial();
         }
 
         private void dataGridViewCarta_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -46,27 +44,26 @@ namespace Cod3rsGrowth.Forms
 
         }
 
-        private void dataGridViewJogador_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void Nome_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonJogador_Click(object sender, EventArgs e)
         {
-            formJogador.ShowDialog();
+            this.Close();
+            threadMain = new Thread(AoClicarListarJogadoresEmNovaJanela);
+            threadMain.SetApartmentState(ApartmentState.STA);
+            threadMain.Start();
         }
 
-        private void AoClicarListaJogadores(object sender, EventArgs e)
+        private void AoClicarListarJogadoresEmNovaJanela(object obj)
         {
-            var listaJogadores = new FormJogador(servicoJogador, conexaoDados);
-            buttonJogador.Click += (sender, e) => AoClicarListaJogadores(sender, e);
-            listaJogadores.ShowDialog();
-            
+            Application.Run(new FormJogador(cartaServico, baralhoServico, jogadorServico, conexaoDados));
+        }
+
+        public void CarregarPaginaInicial()
+        {
+            var listaDeCartas = cartaServico.ObterTodos(new CartaFiltro());
+
+            dataGridViewCarta.DataSource = listaDeCartas;
+
+            dataGridViewCarta.Columns.Add(new DataGridViewTextBoxColumn());
         }
     }
 }

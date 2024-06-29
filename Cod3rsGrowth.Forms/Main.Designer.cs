@@ -55,6 +55,7 @@
             dataGridViewCarta.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewCarta.AutoGenerateColumns = false;
             dataGridViewCarta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCarta.BorderStyle = BorderStyle.None;
             dataGridViewCarta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCarta.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomeCartaDataGridViewTextBoxColumn, custoDeManaConvertidoCartaDataGridViewTextBoxColumn, tipoDeCartaDataGridViewTextBoxColumn, raridadeCartaDataGridViewTextBoxColumn, precoCartaDataGridViewTextBoxColumn, corCartaDataGridViewTextBoxColumn });
             dataGridViewCarta.DataSource = cartaBindingSource;
@@ -63,8 +64,10 @@
             dataGridViewCarta.Location = new Point(12, 119);
             dataGridViewCarta.Name = "dataGridViewCarta";
             dataGridViewCarta.RowTemplate.Height = 25;
-            dataGridViewCarta.Size = new Size(776, 319);
+            dataGridViewCarta.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dataGridViewCarta.Size = new Size(1428, 627);
             dataGridViewCarta.TabIndex = 0;
+            dataGridViewCarta.UseWaitCursor = true;
             dataGridViewCarta.CellContentClick += dataGridViewCarta_CellContentClick;
             // 
             // idDataGridViewTextBoxColumn
@@ -120,11 +123,12 @@
             Nome.Size = new Size(312, 48);
             Nome.TabIndex = 1;
             Nome.Text = "MTG DeckBuilder";
-            Nome.Click += Nome_Click;
+            Nome.UseWaitCursor = true;
             // 
             // buttonJogador
             // 
             buttonJogador.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonJogador.Cursor = Cursors.Hand;
             buttonJogador.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
             buttonJogador.FlatStyle = FlatStyle.System;
             buttonJogador.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -136,18 +140,20 @@
             buttonJogador.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonJogador.UseCompatibleTextRendering = true;
             buttonJogador.UseVisualStyleBackColor = true;
-            buttonJogador.Click += AoClicarListaJogadores;
+            buttonJogador.UseWaitCursor = true;
+            buttonJogador.Click += buttonJogador_Click;
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1452, 758);
             Controls.Add(buttonJogador);
             Controls.Add(Nome);
             Controls.Add(dataGridViewCarta);
             Name = "Main";
             Text = "DeckBuilder";
+            WindowState = FormWindowState.Maximized;
             Load += Main_Load;
             ((System.ComponentModel.ISupportInitialize)cartaBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCarta).EndInit();
