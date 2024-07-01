@@ -48,10 +48,12 @@ namespace Cod3rsGrowth.Dominio.Migrador
                     TipoDeCarta = card?.type_line ?? string.Empty,
                     Raridade = card?.Rarity ?? string.Empty,
                     Preco = Convert.ToDecimal(card?.Prices?.Usd ?? caractereNulo),
-                    Cor = card.mana_cost ?? custoDeManaNulo
+                    Cor = card?.mana_cost ?? custoDeManaNulo,
+                    Imagem = card?.Image_uris?.png ?? string.Empty
                 });
             }
         }
+        
 
         public override void Down()
         {
