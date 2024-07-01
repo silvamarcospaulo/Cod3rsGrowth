@@ -11,6 +11,8 @@ namespace Cod3rsGrowth.Dominio.Migrador
             Create.Table("Jogador")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
                 .WithColumn("Nome").AsString(255).NotNullable()
+                .WithColumn("Usuario").AsString(255).NotNullable()
+                .WithColumn("Senha").AsString(255).NotNullable()
                 .WithColumn("DataDeNascimento").AsTime().NotNullable()
                 .WithColumn("PrecoDasCartas").AsDecimal().WithDefaultValue(Convert.ToDecimal(valorPadraoZero)).NotNullable()
                 .WithColumn("QuantidadeDeBaralhos").AsInt64().WithDefaultValue(valorPadraoZero).NotNullable()

@@ -10,6 +10,10 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public int Id { get; set; }
         [Column("Nome")]
         public string NomeJogador { get; set; }
+        [Column("Usuario")]
+        public string UsuarioJogador { get; set; }
+        [Column("Senha")]
+        public string SenhaJogador { get; set; }
         [Column("DataDeNascimento")]
         public DateTime DataNascimentoJogador { get; set; }
         [Column("PrecoDasCartas")]

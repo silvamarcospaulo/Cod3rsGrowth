@@ -30,31 +30,19 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormJogador));
-            dataGridViewJogador = new DataGridView();
-            jogadorBindingSource1 = new BindingSource(components);
             Nome = new Label();
-            jogadorBindingSource = new BindingSource(components);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewJogador).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)jogadorBindingSource1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)jogadorBindingSource).BeginInit();
+            baralhoBindingSource = new BindingSource(components);
+            dataGridViewBaralho = new DataGridView();
+            nomeBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            DataDeCriacaoBaralho = new DataGridViewTextBoxColumn();
+            QuantidadeDeCartasNoBaralho = new DataGridViewTextBoxColumn();
+            PrecoDoBaralho = new DataGridViewTextBoxColumn();
+            CustoDeManaConvertidoDoBaralho = new DataGridViewTextBoxColumn();
+            formatoDeJogoBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            corBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBaralho).BeginInit();
             SuspendLayout();
-            // 
-            // dataGridViewJogador
-            // 
-            resources.ApplyResources(dataGridViewJogador, "dataGridViewJogador");
-            dataGridViewJogador.AllowUserToAddRows = false;
-            dataGridViewJogador.AllowUserToDeleteRows = false;
-            dataGridViewJogador.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewJogador.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewJogador.DataBindings.Add(new Binding("DataContext", jogadorBindingSource1, "Id", true));
-            dataGridViewJogador.Name = "dataGridViewJogador";
-            dataGridViewJogador.ReadOnly = true;
-            dataGridViewJogador.RowTemplate.Height = 25;
-            dataGridViewJogador.CellContentClick += dataGridViewJogador_CellContentClick;
-            // 
-            // jogadorBindingSource1
-            // 
-            jogadorBindingSource1.DataSource = typeof(Dominio.Modelos.Jogador);
             // 
             // Nome
             // 
@@ -62,32 +50,99 @@
             Nome.AutoEllipsis = true;
             Nome.Name = "Nome";
             // 
-            // jogadorBindingSource
+            // baralhoBindingSource
             // 
-            jogadorBindingSource.DataSource = typeof(Dominio.Modelos.Jogador);
+            baralhoBindingSource.DataSource = typeof(Dominio.Modelos.Baralho);
+            // 
+            // dataGridViewBaralho
+            // 
+            resources.ApplyResources(dataGridViewBaralho, "dataGridViewBaralho");
+            dataGridViewBaralho.AllowUserToAddRows = false;
+            dataGridViewBaralho.AllowUserToDeleteRows = false;
+            dataGridViewBaralho.AutoGenerateColumns = false;
+            dataGridViewBaralho.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewBaralho.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewBaralho.Columns.AddRange(new DataGridViewColumn[] { nomeBaralhoDataGridViewTextBoxColumn, DataDeCriacaoBaralho, QuantidadeDeCartasNoBaralho, PrecoDoBaralho, CustoDeManaConvertidoDoBaralho, formatoDeJogoBaralhoDataGridViewTextBoxColumn, corBaralhoDataGridViewTextBoxColumn });
+            dataGridViewBaralho.DataSource = baralhoBindingSource;
+            dataGridViewBaralho.Name = "dataGridViewBaralho";
+            dataGridViewBaralho.ReadOnly = true;
+            dataGridViewBaralho.RowTemplate.Height = 25;
+            dataGridViewBaralho.CellContentClick += dataGridViewBaralho_CellContentClick;
+            // 
+            // nomeBaralhoDataGridViewTextBoxColumn
+            // 
+            nomeBaralhoDataGridViewTextBoxColumn.DataPropertyName = "NomeBaralho";
+            resources.ApplyResources(nomeBaralhoDataGridViewTextBoxColumn, "nomeBaralhoDataGridViewTextBoxColumn");
+            nomeBaralhoDataGridViewTextBoxColumn.Name = "nomeBaralhoDataGridViewTextBoxColumn";
+            nomeBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // DataDeCriacaoBaralho
+            // 
+            DataDeCriacaoBaralho.DataPropertyName = "DataDeCriacaoBaralho";
+            resources.ApplyResources(DataDeCriacaoBaralho, "DataDeCriacaoBaralho");
+            DataDeCriacaoBaralho.Name = "DataDeCriacaoBaralho";
+            DataDeCriacaoBaralho.ReadOnly = true;
+            // 
+            // QuantidadeDeCartasNoBaralho
+            // 
+            QuantidadeDeCartasNoBaralho.DataPropertyName = "QuantidadeDeCartasNoBaralho";
+            resources.ApplyResources(QuantidadeDeCartasNoBaralho, "QuantidadeDeCartasNoBaralho");
+            QuantidadeDeCartasNoBaralho.Name = "QuantidadeDeCartasNoBaralho";
+            QuantidadeDeCartasNoBaralho.ReadOnly = true;
+            // 
+            // PrecoDoBaralho
+            // 
+            PrecoDoBaralho.DataPropertyName = "PrecoDoBaralho";
+            resources.ApplyResources(PrecoDoBaralho, "PrecoDoBaralho");
+            PrecoDoBaralho.Name = "PrecoDoBaralho";
+            PrecoDoBaralho.ReadOnly = true;
+            // 
+            // CustoDeManaConvertidoDoBaralho
+            // 
+            CustoDeManaConvertidoDoBaralho.DataPropertyName = "CustoDeManaConvertidoDoBaralho";
+            resources.ApplyResources(CustoDeManaConvertidoDoBaralho, "CustoDeManaConvertidoDoBaralho");
+            CustoDeManaConvertidoDoBaralho.Name = "CustoDeManaConvertidoDoBaralho";
+            CustoDeManaConvertidoDoBaralho.ReadOnly = true;
+            // 
+            // formatoDeJogoBaralhoDataGridViewTextBoxColumn
+            // 
+            formatoDeJogoBaralhoDataGridViewTextBoxColumn.DataPropertyName = "FormatoDeJogoBaralho";
+            resources.ApplyResources(formatoDeJogoBaralhoDataGridViewTextBoxColumn, "formatoDeJogoBaralhoDataGridViewTextBoxColumn");
+            formatoDeJogoBaralhoDataGridViewTextBoxColumn.Name = "formatoDeJogoBaralhoDataGridViewTextBoxColumn";
+            formatoDeJogoBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // corBaralhoDataGridViewTextBoxColumn
+            // 
+            corBaralhoDataGridViewTextBoxColumn.DataPropertyName = "CorBaralho";
+            resources.ApplyResources(corBaralhoDataGridViewTextBoxColumn, "corBaralhoDataGridViewTextBoxColumn");
+            corBaralhoDataGridViewTextBoxColumn.Name = "corBaralhoDataGridViewTextBoxColumn";
+            corBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // FormJogador
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(dataGridViewBaralho);
             Controls.Add(Nome);
-            Controls.Add(dataGridViewJogador);
             Name = "FormJogador";
             WindowState = FormWindowState.Maximized;
-            FormClosed += FormJogador_FormClosed;
             Load += FormJogador_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridViewJogador).EndInit();
-            ((System.ComponentModel.ISupportInitialize)jogadorBindingSource1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)jogadorBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBaralho).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private DataGridView dataGridViewJogador;
         private Label Nome;
-        private BindingSource jogadorBindingSource;
-        private BindingSource jogadorBindingSource1;
+        private BindingSource baralhoBindingSource;
+        private DataGridView dataGridViewBaralho;
+        private DataGridViewTextBoxColumn nomeBaralhoDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn DataDeCriacaoBaralho;
+        private DataGridViewTextBoxColumn QuantidadeDeCartasNoBaralho;
+        private DataGridViewTextBoxColumn PrecoDoBaralho;
+        private DataGridViewTextBoxColumn CustoDeManaConvertidoDoBaralho;
+        private DataGridViewTextBoxColumn formatoDeJogoBaralhoDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn corBaralhoDataGridViewTextBoxColumn;
     }
 }

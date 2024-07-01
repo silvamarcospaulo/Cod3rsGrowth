@@ -21,16 +21,17 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
         private ConexaoDados conexaoDados;
-        private Main main;
-        private Thread threadMain;
+        private JogadorFiltro jogadorFiltro;
 
         public FormJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-                JogadorServico _jogadorServico, ConexaoDados _conexaoDados)
+                JogadorServico _jogadorServico, ConexaoDados _conexaoDados, JogadorFiltro filtro)
         {
+            jogadorFiltro = filtro;
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
             conexaoDados = _conexaoDados;
+
             InitializeComponent();
         }
 
@@ -38,9 +39,9 @@ namespace Cod3rsGrowth.Forms
         {
             var listaDeJogadores = jogadorServico.ObterTodos(new JogadorFiltro());
 
-            dataGridViewJogador.DataSource = listaDeJogadores;
+            dataGridViewBaralho.DataSource = listaDeJogadores;
 
-            dataGridViewJogador.Columns.Add(new DataGridViewTextBoxColumn());
+            dataGridViewBaralho.Columns.Add(new DataGridViewTextBoxColumn());
         }
 
         private void dataGridViewJogador_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -48,10 +49,19 @@ namespace Cod3rsGrowth.Forms
 
         }
 
-        private void FormJogador_FormClosed(object sender, FormClosedEventArgs e)
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            main = new Main(cartaServico, baralhoServico, jogadorServico, conexaoDados);
-            main.ShowDialog();
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewBaralho_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

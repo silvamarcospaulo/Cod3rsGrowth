@@ -41,10 +41,11 @@ namespace Cod3rsGrowth.Infra.Repository
             IQueryable<Jogador> query = from q in conexaoDados.TabelaJogador
                                             select q;
 
-            if (filtro?.NomeJogador != null)
+            if ((filtro?.UsuarioJogador != null) && (filtro?.SenhaJogador != null))
             {
                 query = from q in query
-                        where q.NomeJogador.Contains(filtro.NomeJogador)
+                        where q.UsuarioJogador == filtro.UsuarioJogador
+                        where q.SenhaJogador == filtro.SenhaJogador
                         select q;
             }
 

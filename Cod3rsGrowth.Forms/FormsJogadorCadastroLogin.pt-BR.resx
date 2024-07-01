@@ -117,18 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Nome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="dataGridViewBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelEntrarNome.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="dataGridViewBaralho.Size" type="System.Drawing.Size, System.Drawing">
-    <value>790, 296</value>
+  <data name="labelEntrarNome.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>814, 424</value>
+  <data name="labelEntrarNome.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="labelEntrarNome.Text" xml:space="preserve">
+    <value>Nome:</value>
+  </data>
+  <data name="textBoxEntrarSenha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="textBoxEntrarNome.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="labelEntrarSenha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelEntrarSenha.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="labelEntrarSenha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 21</value>
+  </data>
+  <data name="labelEntrarSenha.Text" xml:space="preserve">
+    <value>Senha:</value>
+  </data>
+  <data name="textBoxCadastroNome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>194, 160</value>
+  </data>
+  <data name="textBoxCadastroNome.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 23</value>
+  </data>
+  <data name="textBoxCadastroNome.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="dateTimePickerCadastro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 23</value>
+  </data>
+  <data name="textBoxCadastroSenha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>194, 227</value>
+  </data>
+  <data name="textBoxCadastroSenha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 23</value>
+  </data>
+  <data name="labelCadastroSenha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 227</value>
+  </data>
+  <data name="labelCadastroDataDeNascimento.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 297</value>
+  </data>
+  <data name="labelCadastroNome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>132, 160</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>MTG DeckBuilder</value>
   </data>
 </root>
