@@ -14,9 +14,9 @@ namespace Cod3rsGrowth.Infra.Repository
             conexaoDados = _conexaoDados;
         }
 
-        public void Criar(Jogador jogador)
+        public int Criar(Jogador jogador)
         {
-            conexaoDados.Insert(jogador);
+            return conexaoDados.InsertWithInt32Identity(jogador);
         }
 
         public void Atualizar(Jogador jogador)

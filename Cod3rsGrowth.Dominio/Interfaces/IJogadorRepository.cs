@@ -6,7 +6,7 @@ namespace Cod3rsGrowth.Dominio.Interfaces
 {
     public interface IJogadorRepository
     {
-        void Criar(Jogador jogador);
+        int Criar(Jogador jogador);
         void Atualizar(Jogador jogador);
         void Excluir(int idJogador);
         Jogador ObterPorId(int idJogador);

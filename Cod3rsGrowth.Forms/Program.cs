@@ -1,3 +1,4 @@
+using Cod3rsGrowth.Dominio.Auth;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Migrador;
 using Cod3rsGrowth.Dominio.Modelos;
@@ -11,15 +12,21 @@ using FluentValidation;
 using LinqToDB;
 using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
+using System.Text;
 
 namespace Cod3rsGrowth.Forms
 {
     class Program
     {
         private static string _stringDeConexao = "DeckBuilderDb";
+        private static byte[] chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
 
         [STAThread]
         static void Main(string[] args)
@@ -34,7 +41,7 @@ namespace Cod3rsGrowth.Forms
             var ServiceProvider = host.Services;
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new FormsJogadorCadastroLogin(
+            Application.Run(new FormsJogadorEntrar(
                 ServiceProvider.GetRequiredService<CartaServico>(),
                 ServiceProvider.GetRequiredService<BaralhoServico>(),
                 ServiceProvider.GetRequiredService<JogadorServico>(),
@@ -61,7 +68,24 @@ namespace Cod3rsGrowth.Forms
                         => options
                         .UseSqlServer(ConfigurationManager
                         .ConnectionStrings[_stringDeConexao].ConnectionString)
-                        .UseDefaultLogging(provider));
+                        .UseDefaultLogging(provider))
+                    .AddAuthentication(x =>
+                    {
+                        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                    .AddJwtBearer(x =>
+                    {
+                        x.RequireHttpsMetadata = false;
+                        x.SaveToken = true;
+                        x.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(chave),
+                            ValidateIssuer = false,
+                            ValidateAudience = false
+                        };
+                    });
                 });
         }
 
@@ -82,7 +106,40 @@ namespace Cod3rsGrowth.Forms
                     .ScanIn(typeof(_20240621105800_Carta).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole());
 
+            colecao.AddCors();
+            colecao.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            colecao
+                .AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                }).AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(chave),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
             return colecao.BuildServiceProvider(false);
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseAuthentication();
+
+            app.UseMvc();
         }
 
         private static void UpdateDatabase(IServiceProvider serviceProvider)

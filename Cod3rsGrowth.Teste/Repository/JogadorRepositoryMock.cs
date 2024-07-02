@@ -31,10 +31,12 @@ namespace Cod3rsGrowth.Teste.Repository
             return ultimoId + Incremento;
         }
 
-        public void Criar(Jogador jogador)
+        public int Criar(Jogador jogador)
         {
             jogador.Id = GerarId();
             tabelaJogador.Add(jogador);
+
+            return jogador.Id;
         }
 
         public void Atualizar(Jogador jogador)

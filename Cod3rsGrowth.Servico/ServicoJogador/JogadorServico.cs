@@ -1,10 +1,15 @@
-﻿using Cod3rsGrowth.Dominio.Filtros;
+﻿using Cod3rsGrowth.Dominio.Auth;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Cod3rsGrowth.Servico.ServicoJogador
 {
@@ -21,6 +26,33 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             _baralhoServico = baralhoServico;
             _cartaServico = cartaServico;
             _validadorJogador = validadorJogador;
+        }
+
+        public Jogador Autenticacao(Jogador jogador)
+        {
+            var jogadorBanco = ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador, SenhaJogador = jogador.SenhaJogador}).FirstOrDefault();
+
+            if (jogadorBanco == null)
+                return null;
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, jogadorBanco.UsuarioJogador),
+                    new Claim("Jogador", jogadorBanco.SenhaJogador)
+                }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            jogadorBanco.Token = tokenHandler.WriteToken(token);
+
+            jogadorBanco.Password = null;
+
+            return jogadorBanco;
         }
 
         private static decimal SomarPrecoDeTodasAsCartasDoJogador(List<Baralho>? baralhosJogador)
@@ -42,7 +74,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             return true;
         }
 
-        public void Criar(Jogador jogador)
+        public int Criar(Jogador jogador)
         {
             const int valorNulo = 0;
             jogador.BaralhosJogador = null;
@@ -52,8 +84,10 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             try
             {
+                
                 _validadorJogador.ValidateAndThrow(jogador);
-                _IJogadorRepository.Criar(jogador);
+                var idJogadorCriado = _IJogadorRepository.Criar(jogador);
+                return idJogadorCriado;
             }
             catch (ValidationException e)
             {
