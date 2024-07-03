@@ -60,7 +60,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     "Somente letras minúsculas [a-z];" +
                     "Conter ao menos 6 dígitos.");
 
-                RuleFor(jogador => jogador.SenhaJogador)
+                RuleFor(jogador => jogador.SenhaHashJogador)
                 .NotNull().WithMessage("Campo SENHA obrigatório.")
                 .NotEmpty().WithMessage("Campo SENHA obrigatório.")
                 .Must(ValidacaoJogadorSenha).WithMessage("A Senha deve conter:" +

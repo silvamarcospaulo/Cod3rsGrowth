@@ -12,6 +12,9 @@ using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository;
 using FluentValidation;
+using static System.Formats.Asn1.AsnWriter;
+using FluentMigrator.Runner;
+using Cod3rsGrowth.Dominio.Migrador;
 
 namespace Cod3rsGrowth.Infra
 {
@@ -19,7 +22,7 @@ namespace Cod3rsGrowth.Infra
     {
         public class ModuloDeInjecaoInfra
         {
-            private static string _chaveDeConexao = "DeckBuilderDb";
+            private static string _chaveDeConexao = "DefaultConnection";
             public static void BindServices(IServiceCollection servicos)
             {
                 var chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
@@ -47,7 +50,20 @@ namespace Cod3rsGrowth.Infra
                             ValidateAudience = false
                         };
                     });
+
+                servicos.AddFluentMigratorCore()
+                    .ConfigureRunner(rb => rb
+                        .AddSqlServer()
+                        .WithGlobalConnectionString(_chaveDeConexao)
+                        .ScanIn(typeof(_20240621105800_Carta).Assembly).For.Migrations())
+                    .AddLogging(lb => lb.AddFluentMigratorConsole());
             }
+        }
+
+        public static void AtualizarBancoDeDados(IServiceProvider serviceProvider)
+        {
+            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+            runner.MigrateUp();
         }
     }
 }

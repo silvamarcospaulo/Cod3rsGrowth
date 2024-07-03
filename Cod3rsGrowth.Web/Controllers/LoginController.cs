@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cod3rsGrowth.Web.Controllers
@@ -17,11 +18,11 @@ namespace Cod3rsGrowth.Web.Controllers
 
         [HttpPost]
         [Route("login")]
-        public IActionResult Autenticacao([FromBody] Jogador modelo)
+        public async Task<ActionResult> Autenticacao([FromBody] Jogador modelo)
         {
             var jogador = jogadorServico.ObterPorLogin(modelo);
 
-            if (jogador is null) return NotFound(new {message = "Credenciais inválidas."});
+            if (jogador is null) return BadRequest(new { BadRequest = "Credenciais inválidas." });
 
             var token = TokenServico.GeradorDeToken(jogador);
 

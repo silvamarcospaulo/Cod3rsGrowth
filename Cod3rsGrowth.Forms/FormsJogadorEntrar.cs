@@ -1,9 +1,11 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos.CartasJson;
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Web.Controllers;
+using Newtonsoft.Json;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -35,12 +37,11 @@ namespace Cod3rsGrowth.Forms
             try
             {
                 var jogadorAutenticar = new Jogador() { NomeJogador = textBoxNome.Text, SenhaHashJogador = textBoxSenha.Text };
-                var po = loginController.Autenticacao(jogadorAutenticar);
+                var jogadorEntrar = loginController.Autenticacao(jogadorAutenticar);
 
-                var jogadorEntrar = new Jogador()
-                {
-                };
-                AoClicarCarregarJogadorEmNovaJanela(jogadorEntrar);
+                var oo = jogadorEntrar.AsyncState.ToString;
+                var oi = JsonConvert.DeserializeObject<Jogador>(jogadorEntrar);
+                //AoClicarCarregarJogadorEmNovaJanela(oo);
             }
             catch (Exception ex)
             {
@@ -57,7 +58,7 @@ namespace Cod3rsGrowth.Forms
         private void linkLabelCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            new FormsJogadorCadastro(cartaServico, baralhoServico, jogadorServico, conexaoDados).Show();
+            new FormsJogadorCadastro(cartaServico, baralhoServico, jogadorServico, conexaoDados, loginController).Show();
         }
 
         private void textBoxNome_TextChanged(object sender, EventArgs e)

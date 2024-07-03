@@ -3,6 +3,7 @@ using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Web.Controllers;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -12,14 +13,16 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
         private ConexaoDados conexaoDados;
+        private LoginController loginController;
 
         public FormsJogadorCadastro(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, ConexaoDados _conexaoDados)
+            JogadorServico _jogadorServico, ConexaoDados _conexaoDados, LoginController _loginController)
         {
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
             conexaoDados = _conexaoDados;
+            loginController = _loginController;
             InitializeComponent();
         }
 
@@ -58,7 +61,7 @@ namespace Cod3rsGrowth.Forms
         private void linkLabelJaPossuoConta_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, conexaoDados).Show();
+            new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, conexaoDados, loginController).Show();
         }
     }
 }
