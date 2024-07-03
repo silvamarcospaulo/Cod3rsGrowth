@@ -35,11 +35,10 @@ namespace Cod3rsGrowth.Forms
             try
             {
                 var jogadorAutenticar = new Jogador() { NomeJogador = textBoxNome.Text, SenhaHashJogador = textBoxSenha.Text };
-                var oi = loginController.Autenticacao(jogadorAutenticar);
+                var po = loginController.Autenticacao(jogadorAutenticar);
 
                 var jogadorEntrar = new Jogador()
                 {
-                    SenhaHashJogador = oi.
                 };
                 AoClicarCarregarJogadorEmNovaJanela(jogadorEntrar);
             }

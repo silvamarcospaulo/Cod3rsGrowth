@@ -36,7 +36,7 @@ namespace Cod3rsGrowth.Forms
                 {
                     NomeJogador = textBoxNome.Text,
                     UsuarioJogador = textBoxUsername.Text,
-                    SenhaJogador = textBoxSenha.Text,
+                    SenhaHashJogador = textBoxSenha.Text,
                     DataNascimentoJogador = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text)
                 };
                 var idJogador = jogadorServico.Criar(jogadorCriar);

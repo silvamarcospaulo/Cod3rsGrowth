@@ -60,6 +60,7 @@ namespace Cod3rsGrowth.Forms
                     .AddScoped<CartaServico>()
                     .AddScoped<BaralhoServico>()
                     .AddScoped<JogadorServico>()
+                    .AddScoped<LoginController>()
                     .AddScoped<ICartaRepository, CartaRepository>()
                     .AddScoped<IBaralhoRepository, BaralhoRepository>()
                     .AddScoped<IJogadorRepository, JogadorRepository>()
@@ -128,6 +129,8 @@ namespace Cod3rsGrowth.Forms
                         ValidateAudience = false
                     };
                 });
+
+            colecao.AddScoped<LoginController>();
 
             return colecao.BuildServiceProvider(false);
         }

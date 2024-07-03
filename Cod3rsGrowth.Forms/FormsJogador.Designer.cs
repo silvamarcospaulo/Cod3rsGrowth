@@ -166,8 +166,9 @@
             Controls.Add(Nome);
             Name = "FormsJogador";
             WindowState = FormWindowState.Maximized;
+            FormClosing += FormsJogador_FormClosing;
             Load += FormJogador_Load;
-            Leave += this.FormsJogador_Leave;
+            Leave += FormsJogador_Leave;
             ((System.ComponentModel.ISupportInitialize)dataGridViewBaralhoDoJogador).EndInit();
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
             ResumeLayout(false);

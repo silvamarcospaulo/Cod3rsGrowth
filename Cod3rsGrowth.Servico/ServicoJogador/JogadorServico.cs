@@ -117,15 +117,18 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public Jogador ObterPorId(int idJogador)
         {
             var jogador = _IJogadorRepository.ObterPorId(idJogador);
-            jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
+            jogador.BaralhosJogador = ObterTodosBaralhoJogador(idJogador);
             return jogador;
         }
 
         public Jogador ObterPorLogin(Jogador jogador)
         {
-            var jogadorBanco = _IJogadorRepository.ObterPorLogin(jogador);
-            jogadorBanco.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogadorBanco.Id });
-            return jogadorBanco;
+            return _IJogadorRepository.ObterPorLogin(jogador);
+        }
+
+        public List<Baralho> ObterTodosBaralhoJogador(int idJogador)
+        {
+            return _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
         }
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)

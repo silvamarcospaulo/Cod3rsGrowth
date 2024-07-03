@@ -17,7 +17,7 @@ namespace Cod3rsGrowth.Web.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<ActionResult<dynamic>> Autenticacao([FromBody] Jogador modelo)
+        public IActionResult Autenticacao([FromBody] Jogador modelo)
         {
             var jogador = jogadorServico.ObterPorLogin(modelo);
 
@@ -29,10 +29,7 @@ namespace Cod3rsGrowth.Web.Controllers
 
             jogador.TokenJogador = token;
 
-            return jogador;
+            return Ok(jogador);
         }
-
-
-
     }
 }

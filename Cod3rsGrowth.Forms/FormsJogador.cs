@@ -52,5 +52,9 @@ namespace Cod3rsGrowth.Forms
         {
             this.Close();
         }
+
+        private void FormsJogador_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
     }
 }

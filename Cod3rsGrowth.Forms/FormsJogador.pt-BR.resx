@@ -131,14 +131,14 @@
   <data name="dataGridViewBaralhoDoJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="precoDoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Preço</value>
+  </data>
   <data name="dataGridViewBaralhoDoJogador.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 116</value>
   </data>
   <data name="dataGridViewBaralhoDoJogador.Size" type="System.Drawing.Size, System.Drawing">
     <value>790, 296</value>
-  </data>
-  <data name="precoDoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Preço</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelNome.AutoSize" type="System.Boolean, mscorlib">
