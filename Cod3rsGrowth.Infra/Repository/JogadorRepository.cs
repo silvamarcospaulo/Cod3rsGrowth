@@ -36,16 +36,37 @@ namespace Cod3rsGrowth.Infra.Repository
                 throw new Exception($"Jogador {idJogador} Nao Encontrada");
         }
 
+        public Jogador ObterPorLogin(Jogador jogador)
+        {
+            IQueryable<Jogador> query = from q in conexaoDados.TabelaJogador
+                                        select q;
+
+            if (jogador?.UsuarioJogador is not null)
+            {
+                query = from q in query
+                        where (q.UsuarioJogador == jogador.UsuarioJogador) && (q.SenhaHashJogador == jogador.SenhaHashJogador)
+                        select q;
+            }
+
+            if (jogador?.CpfJogador is not null)
+            {
+                query = from q in query
+                        where (q.CpfJogador == jogador.CpfJogador) && (q.SenhaHashJogador == jogador.SenhaHashJogador)
+                        select q;
+            }
+
+            return query.FirstOrDefault() ?? throw new Exception("Conta não existente. Verifique os dados inseridos ou crie uma conta");
+        }
+
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
             IQueryable<Jogador> query = from q in conexaoDados.TabelaJogador
-                                            select q;
+                                        select q;
 
-            if ((filtro?.UsuarioJogador != null) && (filtro?.SenhaJogador != null))
+            if (filtro?.UsuarioJogador != null)
             {
                 query = from q in query
                         where q.UsuarioJogador == filtro.UsuarioJogador
-                        where q.SenhaJogador == filtro.SenhaJogador
                         select q;
             }
 

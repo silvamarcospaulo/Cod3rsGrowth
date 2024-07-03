@@ -7,6 +7,7 @@ using Cod3rsGrowth.Infra.Repository;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Web.Controllers;
 using FluentMigrator.Runner;
 using FluentValidation;
 using LinqToDB;
@@ -45,7 +46,8 @@ namespace Cod3rsGrowth.Forms
                 ServiceProvider.GetRequiredService<CartaServico>(),
                 ServiceProvider.GetRequiredService<BaralhoServico>(),
                 ServiceProvider.GetRequiredService<JogadorServico>(),
-                ServiceProvider.GetRequiredService<ConexaoDados>()
+                ServiceProvider.GetRequiredService<ConexaoDados>(),
+                ServiceProvider.GetRequiredService<LoginController>()
             ));
         }
 
@@ -109,12 +111,12 @@ namespace Cod3rsGrowth.Forms
             colecao.AddCors();
             colecao.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            colecao
-                .AddAuthentication(x =>
+            colecao.AddAuthentication(x =>
                 {
                     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                }).AddJwtBearer(x =>
+                })
+                .AddJwtBearer(x =>
                 {
                     x.RequireHttpsMetadata = false;
                     x.SaveToken = true;

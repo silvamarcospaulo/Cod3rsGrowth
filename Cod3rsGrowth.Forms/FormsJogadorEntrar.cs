@@ -1,9 +1,9 @@
-﻿using Cod3rsGrowth.Dominio.Filtros;
-using Cod3rsGrowth.Dominio.Modelos;
+﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Web.Controllers;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -13,14 +13,16 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
         private ConexaoDados conexaoDados;
+        private LoginController loginController;
 
         public FormsJogadorEntrar(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, ConexaoDados _conexaoDados)
+            JogadorServico _jogadorServico, ConexaoDados _conexaoDados, LoginController _loginController)
         {
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
             conexaoDados = _conexaoDados;
+            loginController = _loginController;
             InitializeComponent();
         }
 
@@ -32,8 +34,13 @@ namespace Cod3rsGrowth.Forms
         {
             try
             {
-                var jogadorAutenticar = new Jogador() { NomeJogador = textBoxNome.Text, SenhaJogador = textBoxSenha.Text };
-                var jogadorEntrar = new Jogador();
+                var jogadorAutenticar = new Jogador() { NomeJogador = textBoxNome.Text, SenhaHashJogador = textBoxSenha.Text };
+                var oi = loginController.Autenticacao(jogadorAutenticar);
+
+                var jogadorEntrar = new Jogador()
+                {
+                    SenhaHashJogador = oi.
+                };
                 AoClicarCarregarJogadorEmNovaJanela(jogadorEntrar);
             }
             catch (Exception ex)

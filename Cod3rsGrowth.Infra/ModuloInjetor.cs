@@ -8,18 +8,25 @@ using Cod3rsGrowth.Dominio.Auth;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Cod3rsGrowth.Dominio.Interfaces;
+using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra.Repository;
+using FluentValidation;
 
 namespace Cod3rsGrowth.Infra
 {
-    public class ModuloDeInjecao
+    public class ModuloInjetor
     {
         public class ModuloDeInjecaoInfra
         {
             private static string _chaveDeConexao = "DeckBuilderDb";
-            public static void BindServices(ServiceCollection servicos)
+            public static void BindServices(IServiceCollection servicos)
             {
                 var chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
                 servicos
+                    .AddScoped<ICartaRepository, CartaRepository>()
+                    .AddScoped<IBaralhoRepository, BaralhoRepository>()
+                    .AddScoped<IJogadorRepository, JogadorRepository>()
                     .AddLinqToDBContext<ConexaoDados>((provider, options) => options
                         .UseSqlServer(ConfigurationManager.ConnectionStrings[_chaveDeConexao].ConnectionString)
                         .UseDefaultLogging(provider))

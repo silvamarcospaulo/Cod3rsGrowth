@@ -22,7 +22,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             int valorAnoDeNascimentoMinimo = Convert.ToInt32(valorDataHoje.Year) - valorMinimoDeIdadeParaCriarConta;
             DateTime valorDataNascimentoMinima = new DateTime(valorAnoDeNascimentoMinimo, valorDataHoje.Month, valorDataHoje.Day);
 
-            RuleSet("Cadastrar", () => {
+            RuleSet("Criar", () => {
                 RuleFor(jogador => jogador.NomeJogador)
                 .NotNull().WithMessage("Campo NOME obrigatório.")
                 .NotEmpty().WithMessage("Campo NOME obrigatório.");
@@ -39,7 +39,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     "Somente letras minúsculas [a-z];" +
                     "Conter mais de 8 dígitos.");
 
-                RuleFor(jogador => jogador.SenhaJogador)
+                RuleFor(jogador => jogador.SenhaHashJogador)
                 .NotNull().WithMessage("Campo SENHA obrigatório.")
                 .NotEmpty().WithMessage("Campo SENHA obrigatório.")
                 .Must(ValidacaoJogadorSenha).WithMessage("A Senha deve conter:" +
