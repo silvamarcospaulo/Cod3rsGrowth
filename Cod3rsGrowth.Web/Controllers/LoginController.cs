@@ -18,19 +18,19 @@ namespace Cod3rsGrowth.Web.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<ActionResult> Autenticacao([FromBody] Jogador modelo)
+        public IActionResult Autenticacao([FromServices] Jogador modelo)
         {
             var jogador = jogadorServico.ObterPorLogin(modelo);
 
             if (jogador is null) return BadRequest(new { BadRequest = "Credenciais inválidas." });
 
             var token = TokenServico.GeradorDeToken(jogador);
-
+            
             jogador.SenhaHashJogador = "";
 
             jogador.TokenJogador = token;
 
-            return Ok(jogador);
+            return new OkObjectResult(jogador);
         }
     }
 }

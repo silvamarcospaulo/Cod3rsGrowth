@@ -12,8 +12,6 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public string NomeJogador { get; set; }
         [Column("Sobrenome")]
         public string SobrenomeJogador { get; set; }
-        [Column("Cpf")]
-        public string CpfJogador { get; set; }
         [Column("Usuario")]
         public string UsuarioJogador { get; set; }
         [Column("SenhaHash")]

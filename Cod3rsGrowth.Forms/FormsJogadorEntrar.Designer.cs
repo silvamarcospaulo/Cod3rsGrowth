@@ -71,16 +71,14 @@
             // 
             resources.ApplyResources(linkLabelEsqueciSenha, "linkLabelEsqueciSenha");
             linkLabelEsqueciSenha.Name = "linkLabelEsqueciSenha";
-            linkLabelEsqueciSenha.TabStop = true;
             // 
             // linkLabelCadastrar
             // 
             resources.ApplyResources(linkLabelCadastrar, "linkLabelCadastrar");
             linkLabelCadastrar.Name = "linkLabelCadastrar";
-            linkLabelCadastrar.TabStop = true;
             linkLabelCadastrar.LinkClicked += linkLabelCadastrar_LinkClicked;
             // 
-            // FormsJogadorLogin
+            // FormsJogadorEntrar
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
@@ -91,7 +89,7 @@
             Controls.Add(buttonEntrar);
             Controls.Add(textBoxNome);
             Controls.Add(labelSenha);
-            Name = "FormsJogadorLogin";
+            Name = "FormsJogadorEntrar";
             ShowIcon = false;
             ShowInTaskbar = false;
             Load += FormsJogadorCadastroLogin_Load;

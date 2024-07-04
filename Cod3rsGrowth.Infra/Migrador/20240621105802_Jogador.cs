@@ -17,7 +17,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 .WithColumn("Usuario").AsString(255).Unique().NotNullable()
                 .WithColumn("SenhaHash").AsString(255).NotNullable()
                 .WithColumn("Token").AsString(255)
-                .WithColumn("Token").AsString(255).NotNullable().WithDefaultValue(roleJogador)
+                .WithColumn("Role").AsString(255).NotNullable().WithDefaultValue(roleJogador)
                 .WithColumn("DataDeCriacaoConta").AsDateTime().WithDefaultValue(DateTime.Now).NotNullable()
                 .WithColumn("DataDeNascimento").AsDateTime().NotNullable()
                 .WithColumn("PrecoDasCartas").AsDecimal().WithDefaultValue(Convert.ToDecimal(valorPadraoZero)).NotNullable()

@@ -4,6 +4,7 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -35,14 +36,22 @@ namespace Cod3rsGrowth.Forms
         {
             try
             {
-                var jogadorCriar = new Jogador()
+                var jogadorAutenticar = new Jogador()
                 {
                     NomeJogador = textBoxNome.Text,
+                    SobrenomeJogador = textBoxNome.Text,
                     UsuarioJogador = textBoxUsername.Text,
                     SenhaHashJogador = textBoxSenha.Text,
                     DataNascimentoJogador = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text)
                 };
-                var idJogador = jogadorServico.Criar(jogadorCriar);
+
+                var autenticacao = loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
+                Jogador jogadorAutenticado = (Jogador)autenticacao.Value;
+
+                jogadorAutenticar.SenhaHashJogador = jogadorAutenticado.SenhaHashJogador;
+                jogadorAutenticar.TokenJogador = jogadorAutenticado.TokenJogador;
+
+                var idJogador = jogadorServico.Criar(jogadorAutenticar);
                 var jogador = jogadorServico.ObterPorId(idJogador);
                 AoClicarCarregarJogadorEmNovaJanela(jogador);
             }

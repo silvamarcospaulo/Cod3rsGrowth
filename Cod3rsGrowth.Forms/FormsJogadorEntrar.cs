@@ -5,6 +5,7 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace Cod3rsGrowth.Forms
@@ -37,11 +38,9 @@ namespace Cod3rsGrowth.Forms
             try
             {
                 var jogadorAutenticar = new Jogador() { NomeJogador = textBoxNome.Text, SenhaHashJogador = textBoxSenha.Text };
-                var jogadorEntrar = loginController.Autenticacao(jogadorAutenticar);
-
-                var oo = jogadorEntrar.AsyncState.ToString;
-                var oi = JsonConvert.DeserializeObject<Jogador>(jogadorEntrar);
-                //AoClicarCarregarJogadorEmNovaJanela(oo);
+                var jogadorAutenticado = loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
+                Jogador jogadorEntrar = (Jogador)jogadorAutenticado.Value;
+                AoClicarCarregarJogadorEmNovaJanela(jogadorServico.ObterPorId(jogadorEntrar.Id));
             }
             catch (Exception ex)
             {
