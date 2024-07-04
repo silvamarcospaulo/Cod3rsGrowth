@@ -71,11 +71,14 @@
             // 
             resources.ApplyResources(linkLabelEsqueciSenha, "linkLabelEsqueciSenha");
             linkLabelEsqueciSenha.Name = "linkLabelEsqueciSenha";
+            linkLabelEsqueciSenha.TabStop = true;
+            linkLabelEsqueciSenha.LinkClicked += linkLabelEsqueciSenha_LinkClicked;
             // 
             // linkLabelCadastrar
             // 
             resources.ApplyResources(linkLabelCadastrar, "linkLabelCadastrar");
             linkLabelCadastrar.Name = "linkLabelCadastrar";
+            linkLabelCadastrar.TabStop = true;
             linkLabelCadastrar.LinkClicked += linkLabelCadastrar_LinkClicked;
             // 
             // FormsJogadorEntrar

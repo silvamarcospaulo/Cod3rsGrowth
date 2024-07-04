@@ -104,7 +104,7 @@ namespace Cod3rsGrowth.Teste.Repository
             return query.ToList();
         }
 
-        public Jogador ObterPorLogin(Jogador jogador)
+        public Jogador AutenticaLogin(Jogador jogador)
         {
             IQueryable<Jogador> query = from q in tabelaJogador.AsQueryable()
                                         select q;
@@ -113,13 +113,6 @@ namespace Cod3rsGrowth.Teste.Repository
             {
                 query = from q in query
                         where (q.UsuarioJogador == jogador.UsuarioJogador) && (q.SenhaHashJogador == jogador.SenhaHashJogador)
-                        select q;
-            }
-
-            if (jogador?.CpfJogador is not null)
-            {
-                query = from q in query
-                        where (q.CpfJogador == jogador.CpfJogador) && (q.SenhaHashJogador == jogador.SenhaHashJogador)
                         select q;
             }
 

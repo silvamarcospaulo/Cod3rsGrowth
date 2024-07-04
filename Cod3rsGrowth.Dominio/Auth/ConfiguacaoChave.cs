@@ -2,6 +2,6 @@
 {
     public static class ConfiguracaoChave
     {
-        public static string Segredo = "43e4dbf0-52ed-4203-895d-42b586497125273-gasbvcd-6bd4";
+        public static string Segredo = "fedaf7d8863b48e197b9287d492b708e";
     }
 }

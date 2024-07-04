@@ -20,15 +20,13 @@ namespace Cod3rsGrowth.Web.Controllers
         [Route("login")]
         public IActionResult Autenticacao([FromServices] Jogador modelo)
         {
-            var jogador = jogadorServico.ObterPorLogin(modelo);
+            var jogador = jogadorServico.AutenticaLogin(modelo);
 
             if (jogador is null) return BadRequest(new { BadRequest = "Credenciais inválidas." });
 
-            var token = TokenServico.GeradorDeToken(jogador);
-            
-            jogador.SenhaHashJogador = "";
+            var token = JwtServico.GeradorDeToken(jogador);
 
-            jogador.TokenJogador = token;
+            jogador.SenhaHashJogador = token;
 
             return new OkObjectResult(jogador);
         }

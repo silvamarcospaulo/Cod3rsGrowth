@@ -3,6 +3,7 @@ using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,15 +14,17 @@ namespace Cod3rsGrowth.Forms
         private CartaServico cartaServico;
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
+        private JwtServico tokenServico;
         private ConexaoDados conexaoDados;
         private LoginController loginController;
 
         public FormsJogadorCadastro(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, ConexaoDados _conexaoDados, LoginController _loginController)
+            JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
         {
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
+            tokenServico = _tokenServico;
             conexaoDados = _conexaoDados;
             loginController = _loginController;
             InitializeComponent();
@@ -42,14 +45,9 @@ namespace Cod3rsGrowth.Forms
                     SobrenomeJogador = textBoxNome.Text,
                     UsuarioJogador = textBoxUsername.Text,
                     SenhaHashJogador = textBoxSenha.Text,
-                    DataNascimentoJogador = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text)
+                    DataNascimentoJogador = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text),
+                    DataDeCriacaoContaJogador = DateTime.Now
                 };
-
-                var autenticacao = loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
-                Jogador jogadorAutenticado = (Jogador)autenticacao.Value;
-
-                jogadorAutenticar.SenhaHashJogador = jogadorAutenticado.SenhaHashJogador;
-                jogadorAutenticar.TokenJogador = jogadorAutenticado.TokenJogador;
 
                 var idJogador = jogadorServico.Criar(jogadorAutenticar);
                 var jogador = jogadorServico.ObterPorId(idJogador);
@@ -70,7 +68,12 @@ namespace Cod3rsGrowth.Forms
         private void linkLabelJaPossuoConta_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, conexaoDados, loginController).Show();
+            new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
+        }
+
+        private void textBoxSobrenome_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

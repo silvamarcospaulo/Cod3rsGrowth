@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Dominio.Interfaces
         void Atualizar(Jogador jogador);
         void Excluir(int idJogador);
         Jogador ObterPorId(int idJogador);
-        Jogador ObterPorLogin(Jogador jogador);
+        Jogador AutenticaLogin(Jogador jogador);
         List<Jogador> ObterTodos(JogadorFiltro? filtro);
     }
 }

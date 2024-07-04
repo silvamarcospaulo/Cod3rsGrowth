@@ -4,6 +4,7 @@ using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -15,15 +16,17 @@ namespace Cod3rsGrowth.Forms
         private CartaServico cartaServico;
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
+        private JwtServico tokenServico;
         private ConexaoDados conexaoDados;
         private LoginController loginController;
 
         public FormsJogadorEntrar(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, ConexaoDados _conexaoDados, LoginController _loginController)
+            JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
         {
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
+            tokenServico = _tokenServico;
             conexaoDados = _conexaoDados;
             loginController = _loginController;
             InitializeComponent();
@@ -37,10 +40,15 @@ namespace Cod3rsGrowth.Forms
         {
             try
             {
-                var jogadorAutenticar = new Jogador() { NomeJogador = textBoxNome.Text, SenhaHashJogador = textBoxSenha.Text };
-                var jogadorAutenticado = loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
-                Jogador jogadorEntrar = (Jogador)jogadorAutenticado.Value;
-                AoClicarCarregarJogadorEmNovaJanela(jogadorServico.ObterPorId(jogadorEntrar.Id));
+                var jogadorAutenticar = new Jogador()
+                {
+                    UsuarioJogador = textBoxNome.Text,
+                    SenhaHashJogador = textBoxSenha.Text
+                };
+
+                var jogadorAutenticado = jogadorServico.AutenticaLogin(jogadorAutenticar);
+
+                AoClicarCarregarJogadorEmNovaJanela(jogadorAutenticado);
             }
             catch (Exception ex)
             {
@@ -57,12 +65,18 @@ namespace Cod3rsGrowth.Forms
         private void linkLabelCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            new FormsJogadorCadastro(cartaServico, baralhoServico, jogadorServico, conexaoDados, loginController).Show();
+            new FormsJogadorCadastro(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
         }
 
         private void textBoxNome_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabelEsqueciSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            new FormsEsqueciSenha(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
         }
     }
 }

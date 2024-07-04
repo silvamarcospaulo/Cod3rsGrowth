@@ -10,8 +10,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 ModuloInjetor.ModuloDeInjecaoInfra.BindServices(builder.Services);
-//var serviceProvider = builder.Services.BuildServiceProvider();
-//ModuloInjetor.AtualizarBancoDeDados(serviceProvider);
 
 var app = builder.Build();
 

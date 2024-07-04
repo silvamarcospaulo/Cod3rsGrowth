@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
 {
-    public class TokenServico
+    public class JwtServico
     {
         public static string GeradorDeToken(Jogador jogador)
         {
@@ -22,13 +22,19 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
                     new Claim(ClaimTypes.Name, jogador.UsuarioJogador),
                     new Claim(ClaimTypes.Role, jogador.Role)
                 }),
-                Expires = DateTime.UtcNow.AddHours(numeroDeHorasParaExpirarToken),
+                Expires = DateTime.MaxValue,
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(chave), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = tokenHandler.CreateToken(tokenDescritor);
             return tokenHandler.WriteToken(token);
+        }
+
+        public static string GeradorDeHash(Jogador jogador)
+        {
+
+            return "";
         }
     }
 }

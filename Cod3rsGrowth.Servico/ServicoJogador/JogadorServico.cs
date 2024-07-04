@@ -3,6 +3,8 @@ using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using FluentValidation;
 using Microsoft.IdentityModel.Tokens;
 
@@ -44,22 +46,25 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public int Criar(Jogador jogador)
         {
+            const string roleJogador = "Jogador";
             const int valorNulo = 0;
+
             jogador.BaralhosJogador = null;
             jogador.QuantidadeDeBaralhosJogador = valorNulo;
             jogador.PrecoDasCartasJogador = valorNulo;
             jogador.ContaAtivaJogador = false;
+            jogador.Role = roleJogador;
 
             try
             {
-                _validadorJogador.Validate(jogador, options =>
-                {
-                    options.ThrowOnFailures();
-                    options.IncludeRuleSets("Criar");
-                });
+                //_validadorJogador.Validate(jogador, options =>
+                //{
+                //    options.ThrowOnFailures();
+                //    options.IncludeRuleSets("Criar");
+                //});
 
-                var idJogadorCriado = _IJogadorRepository.Criar(jogador);
-                return idJogadorCriado;
+                jogador.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
+                return _IJogadorRepository.Criar(jogador);
             }
             catch (ValidationException e)
             {
@@ -71,6 +76,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public void Atualizar(Jogador jogador)
         {
             var jogadorAtualizado = ObterPorId(jogador.Id);
+
             jogadorAtualizado.BaralhosJogador = jogador.BaralhosJogador;
             jogadorAtualizado.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogadorAtualizado.BaralhosJogador);
             jogadorAtualizado.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizado.BaralhosJogador);
@@ -85,6 +91,25 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
                 });
                 _IJogadorRepository.Atualizar(jogadorAtualizado);
+            }
+            catch (ValidationException e)
+            {
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new Exception($"{mensagemDeErro}");
+            }
+        }
+
+        public void RestaurarSenha(Jogador jogador)
+        {
+            try
+            {
+                var jogadorBanco = ObterTodos(new JogadorFiltro()
+                {
+                    NomeJogador = jogador.NomeJogador,
+                    SobrenomeJogador = jogador.SobrenomeJogador,
+                    UsuarioJogador = jogador.UsuarioJogador
+                }).FirstOrDefault();
+                
             }
             catch (ValidationException e)
             {
@@ -121,9 +146,11 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             return jogador;
         }
 
-        public Jogador ObterPorLogin(Jogador jogador)
+        public Jogador? AutenticaLogin(Jogador jogador)
         {
-            return _IJogadorRepository.ObterPorLogin(jogador);
+            var jogadorExistente = ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador}).First();
+            if (HashServico.Comparar(jogadorExistente.SenhaHashJogador, jogador.SenhaHashJogador)) return jogadorExistente;
+            else return null;
         }
 
         public List<Baralho> ObterTodosBaralhoJogador(int idJogador)

@@ -15,7 +15,8 @@ namespace Cod3rsGrowth.Forms
         private JogadorServico jogadorServico;
         private ConexaoDados conexaoDados;
 
-        public FormsJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico, ConexaoDados _conexaoDados, Jogador _jogador)
+        public FormsJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico,
+            JogadorServico _jogadorServico, ConexaoDados _conexaoDados, Jogador _jogador)
         {
             jogador = _jogador;
             cartaServico = _cartaServico;
@@ -28,8 +29,8 @@ namespace Cod3rsGrowth.Forms
 
         public void FormJogador_Load(object sender, EventArgs e)
         {
+            jogador.BaralhosJogador = new List<Baralho>();
             var listaDeBaralho = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
-            var eu = jogador.NomeJogador;
             dataGridViewBaralhoDoJogador.DataSource = listaDeBaralho;
         }
 
