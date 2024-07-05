@@ -107,9 +107,13 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 {
                     NomeJogador = jogador.NomeJogador,
                     SobrenomeJogador = jogador.SobrenomeJogador,
-                    UsuarioJogador = jogador.UsuarioJogador
-                }).FirstOrDefault();
-                
+                    UsuarioJogador = jogador.UsuarioJogador,
+                    DataNascimentoJogador = jogador.DataNascimentoJogador
+                }).FirstOrDefault() ?? throw new Exception("Nenhum resultado para os dados inseridos. Tente novamente com outras informações.");
+
+                jogadorBanco.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
+
+                _IJogadorRepository.Atualizar(jogadorBanco);
             }
             catch (ValidationException e)
             {
@@ -146,10 +150,10 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             return jogador;
         }
 
-        public Jogador? AutenticaLogin(Jogador jogador)
+        public Jogador AutenticaLogin(Jogador jogador)
         {
             var jogadorExistente = ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador}).First();
-            if (HashServico.Comparar(jogadorExistente.SenhaHashJogador, jogador.SenhaHashJogador)) return jogadorExistente;
+            if (HashServico.Comparar(jogador.SenhaHashJogador, jogadorExistente.SenhaHashJogador)) return jogadorExistente;
             else return null;
         }
 

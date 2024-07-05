@@ -131,9 +131,6 @@
   <data name="dataGridViewBaralhoDoJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="precoDoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Preço</value>
-  </data>
   <data name="dataGridViewBaralhoDoJogador.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 116</value>
   </data>

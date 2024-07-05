@@ -42,7 +42,7 @@ namespace Cod3rsGrowth.Forms
             {
                 var jogadorAutenticar = new Jogador()
                 {
-                    UsuarioJogador = textBoxNome.Text,
+                    UsuarioJogador = textBoxUsuario.Text,
                     SenhaHashJogador = textBoxSenha.Text
                 };
 
@@ -77,6 +77,11 @@ namespace Cod3rsGrowth.Forms
         {
             this.Hide();
             new FormsEsqueciSenha(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
+        }
+
+        private void labelMtgDeckBuilder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

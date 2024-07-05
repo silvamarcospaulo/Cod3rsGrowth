@@ -39,13 +39,15 @@ namespace Cod3rsGrowth.Forms
         {
             try
             {
+                var data = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text);
+
                 var jogadorAutenticar = new Jogador()
                 {
                     NomeJogador = textBoxNome.Text,
-                    SobrenomeJogador = textBoxNome.Text,
-                    UsuarioJogador = textBoxUsername.Text,
+                    SobrenomeJogador = textBoxSobrenome.Text,
+                    UsuarioJogador = textBoxUsuario.Text,
                     SenhaHashJogador = textBoxSenha.Text,
-                    DataNascimentoJogador = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text),
+                    DataNascimentoJogador = new DateTime(day: data.Day, month: data.Month, year: data.Year),
                     DataDeCriacaoContaJogador = DateTime.Now
                 };
 
@@ -69,11 +71,6 @@ namespace Cod3rsGrowth.Forms
         {
             this.Hide();
             new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
-        }
-
-        private void textBoxSobrenome_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

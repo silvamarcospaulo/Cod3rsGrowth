@@ -32,13 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormsJogador));
             Nome = new Label();
             dataGridViewBaralhoDoJogador = new DataGridView();
-            nomeBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            formatoDeJogoBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            corBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            precoDoBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataDeCriacaoBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             baralhoBindingSource = new BindingSource(components);
             labelNome = new Label();
             labelUsername = new Label();
@@ -64,65 +57,14 @@
             dataGridViewBaralhoDoJogador.AutoGenerateColumns = false;
             dataGridViewBaralhoDoJogador.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewBaralhoDoJogador.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewBaralhoDoJogador.Columns.AddRange(new DataGridViewColumn[] { nomeBaralhoDataGridViewTextBoxColumn, formatoDeJogoBaralhoDataGridViewTextBoxColumn, corBaralhoDataGridViewTextBoxColumn, precoDoBaralhoDataGridViewTextBoxColumn, custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn, quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn, dataDeCriacaoBaralhoDataGridViewTextBoxColumn });
             dataGridViewBaralhoDoJogador.DataSource = baralhoBindingSource;
             dataGridViewBaralhoDoJogador.Name = "dataGridViewBaralhoDoJogador";
             dataGridViewBaralhoDoJogador.ReadOnly = true;
             dataGridViewBaralhoDoJogador.RowTemplate.Height = 25;
             dataGridViewBaralhoDoJogador.CellContentClick += dataGridViewBaralhoDoJogador_CellContentClick;
             // 
-            // nomeBaralhoDataGridViewTextBoxColumn
-            // 
-            nomeBaralhoDataGridViewTextBoxColumn.DataPropertyName = "NomeBaralho";
-            resources.ApplyResources(nomeBaralhoDataGridViewTextBoxColumn, "nomeBaralhoDataGridViewTextBoxColumn");
-            nomeBaralhoDataGridViewTextBoxColumn.Name = "nomeBaralhoDataGridViewTextBoxColumn";
-            nomeBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // formatoDeJogoBaralhoDataGridViewTextBoxColumn
-            // 
-            formatoDeJogoBaralhoDataGridViewTextBoxColumn.DataPropertyName = "FormatoDeJogoBaralho";
-            resources.ApplyResources(formatoDeJogoBaralhoDataGridViewTextBoxColumn, "formatoDeJogoBaralhoDataGridViewTextBoxColumn");
-            formatoDeJogoBaralhoDataGridViewTextBoxColumn.Name = "formatoDeJogoBaralhoDataGridViewTextBoxColumn";
-            formatoDeJogoBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // corBaralhoDataGridViewTextBoxColumn
-            // 
-            corBaralhoDataGridViewTextBoxColumn.DataPropertyName = "CorBaralho";
-            resources.ApplyResources(corBaralhoDataGridViewTextBoxColumn, "corBaralhoDataGridViewTextBoxColumn");
-            corBaralhoDataGridViewTextBoxColumn.Name = "corBaralhoDataGridViewTextBoxColumn";
-            corBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // precoDoBaralhoDataGridViewTextBoxColumn
-            // 
-            precoDoBaralhoDataGridViewTextBoxColumn.DataPropertyName = "PrecoDoBaralho";
-            resources.ApplyResources(precoDoBaralhoDataGridViewTextBoxColumn, "precoDoBaralhoDataGridViewTextBoxColumn");
-            precoDoBaralhoDataGridViewTextBoxColumn.Name = "precoDoBaralhoDataGridViewTextBoxColumn";
-            precoDoBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn
-            // 
-            custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.DataPropertyName = "CustoDeManaConvertidoDoBaralho";
-            resources.ApplyResources(custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn, "custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn");
-            custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.Name = "custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn";
-            custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn
-            // 
-            quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.DataPropertyName = "QuantidadeDeCartasNoBaralho";
-            resources.ApplyResources(quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn, "quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn");
-            quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.Name = "quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn";
-            quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataDeCriacaoBaralhoDataGridViewTextBoxColumn
-            // 
-            dataDeCriacaoBaralhoDataGridViewTextBoxColumn.DataPropertyName = "DataDeCriacaoBaralho";
-            resources.ApplyResources(dataDeCriacaoBaralhoDataGridViewTextBoxColumn, "dataDeCriacaoBaralhoDataGridViewTextBoxColumn");
-            dataDeCriacaoBaralhoDataGridViewTextBoxColumn.Name = "dataDeCriacaoBaralhoDataGridViewTextBoxColumn";
-            dataDeCriacaoBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // baralhoBindingSource
             // 
-            baralhoBindingSource.DataSource = typeof(Dominio.Modelos.Baralho);
             baralhoBindingSource.CurrentChanged += baralhoBindingSource_CurrentChanged;
             // 
             // labelNome

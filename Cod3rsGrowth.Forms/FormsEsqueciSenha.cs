@@ -43,7 +43,7 @@ namespace Cod3rsGrowth.Forms
             conexaoDados = _conexaoDados;
             loginController = _loginController;
             InitializeComponent();
-        }   
+        }
 
         private void FormsEsqueciSenha_Load(object sender, EventArgs e)
         {
@@ -56,9 +56,10 @@ namespace Cod3rsGrowth.Forms
             new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
         }
 
-        private void dateTimePickerDataDeNascimento_ValueChanged(object sender, EventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            this.Hide();
+            AoClicarCarregarJogadorEntrarEmNovaJanela();
         }
 
         private void buttonAtualizarSenha_Click(object sender, EventArgs e)
@@ -70,9 +71,35 @@ namespace Cod3rsGrowth.Forms
                     NomeJogador = textBoxNome.Text,
                     SobrenomeJogador = textBoxSobrenome.Text,
                     UsuarioJogador = textBoxUsuario.Text,
+                    SenhaHashJogador = textBoxNovasenha.Text,
                     DataNascimentoJogador = Convert.ToDateTime(dateTimePickerDataDeNascimento)
                 };
 
+                jogadorServico.RestaurarSenha(jogadorRestaurarSenha);
+
+                AoClicarCarregarJogadorEntrarEmNovaJanela();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void buttonAtualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var data = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text);
+
+                var jogadorRestaurarSenha = new Jogador()
+                {
+                    NomeJogador = textBoxNome.Text,
+                    SobrenomeJogador = textBoxSobrenome.Text,
+                    UsuarioJogador = textBoxUsuario.Text,
+                    SenhaHashJogador = textBoxNovasenha.Text,
+                    DataNascimentoJogador = new DateTime(day: data.Day, month: data.Month, year: data.Year)
+                };
+                
                 jogadorServico.RestaurarSenha(jogadorRestaurarSenha);
 
                 AoClicarCarregarJogadorEntrarEmNovaJanela();

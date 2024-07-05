@@ -29,7 +29,6 @@ namespace Cod3rsGrowth.Forms
 
         public void FormJogador_Load(object sender, EventArgs e)
         {
-            jogador.BaralhosJogador = new List<Baralho>();
             var listaDeBaralho = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
             dataGridViewBaralhoDoJogador.DataSource = listaDeBaralho;
         }

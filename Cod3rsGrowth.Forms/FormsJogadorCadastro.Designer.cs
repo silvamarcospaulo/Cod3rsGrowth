@@ -32,7 +32,7 @@
             labelUsername = new Label();
             labelSenha = new Label();
             labelDataDeNascimento = new Label();
-            textBoxUsername = new TextBox();
+            textBoxUsuario = new TextBox();
             textBoxSenha = new TextBox();
             textBoxNome = new TextBox();
             dateTimePickerDataDeNascimento = new DateTimePicker();
@@ -40,14 +40,16 @@
             linkLabelJaPossuoConta = new LinkLabel();
             labelSobrenome = new Label();
             textBoxSobrenome = new TextBox();
+            labelCadastro = new Label();
+            label1 = new Label();
             SuspendLayout();
             // 
             // labelNome
             // 
-            labelNome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelNome.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelNome.AutoSize = true;
             labelNome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelNome.Location = new Point(38, 73);
+            labelNome.Location = new Point(12, 82);
             labelNome.Name = "labelNome";
             labelNome.Size = new Size(56, 21);
             labelNome.TabIndex = 0;
@@ -55,21 +57,23 @@
             // 
             // labelUsername
             // 
-            labelUsername.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelUsername.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelUsername.AutoSize = true;
+            labelUsername.FlatStyle = FlatStyle.System;
             labelUsername.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelUsername.Location = new Point(38, 189);
+            labelUsername.Location = new Point(12, 196);
             labelUsername.Name = "labelUsername";
-            labelUsername.Size = new Size(84, 21);
+            labelUsername.Size = new Size(67, 21);
             labelUsername.TabIndex = 0;
-            labelUsername.Text = "Username:";
+            labelUsername.Text = "Usuário:";
             // 
             // labelSenha
             // 
-            labelSenha.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelSenha.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelSenha.AutoSize = true;
+            labelSenha.FlatStyle = FlatStyle.System;
             labelSenha.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSenha.Location = new Point(38, 247);
+            labelSenha.Location = new Point(12, 253);
             labelSenha.Name = "labelSenha";
             labelSenha.Size = new Size(56, 21);
             labelSenha.TabIndex = 0;
@@ -77,52 +81,56 @@
             // 
             // labelDataDeNascimento
             // 
-            labelDataDeNascimento.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelDataDeNascimento.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelDataDeNascimento.AutoSize = true;
+            labelDataDeNascimento.FlatStyle = FlatStyle.System;
             labelDataDeNascimento.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelDataDeNascimento.Location = new Point(38, 309);
+            labelDataDeNascimento.Location = new Point(12, 310);
             labelDataDeNascimento.Name = "labelDataDeNascimento";
             labelDataDeNascimento.Size = new Size(153, 21);
             labelDataDeNascimento.TabIndex = 0;
             labelDataDeNascimento.Text = "Data de Nascimento:";
+            labelDataDeNascimento.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBoxUsername
+            // textBoxUsuario
             // 
-            textBoxUsername.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxUsername.Location = new Point(38, 213);
-            textBoxUsername.Name = "textBoxUsername";
-            textBoxUsername.Size = new Size(290, 23);
-            textBoxUsername.TabIndex = 3;
+            textBoxUsuario.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxUsuario.Location = new Point(12, 226);
+            textBoxUsuario.Name = "textBoxUsuario";
+            textBoxUsuario.Size = new Size(351, 23);
+            textBoxUsuario.TabIndex = 3;
             // 
             // textBoxSenha
             // 
-            textBoxSenha.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxSenha.Location = new Point(38, 273);
+            textBoxSenha.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxSenha.Location = new Point(12, 283);
             textBoxSenha.Name = "textBoxSenha";
-            textBoxSenha.Size = new Size(290, 23);
+            textBoxSenha.Size = new Size(351, 23);
             textBoxSenha.TabIndex = 4;
             textBoxSenha.UseSystemPasswordChar = true;
             // 
             // textBoxNome
             // 
-            textBoxNome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxNome.Location = new Point(38, 98);
+            textBoxNome.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxNome.Location = new Point(12, 112);
             textBoxNome.Name = "textBoxNome";
-            textBoxNome.Size = new Size(290, 23);
+            textBoxNome.Size = new Size(351, 23);
             textBoxNome.TabIndex = 1;
             // 
             // dateTimePickerDataDeNascimento
             // 
-            dateTimePickerDataDeNascimento.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dateTimePickerDataDeNascimento.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dateTimePickerDataDeNascimento.DropDownAlign = LeftRightAlignment.Right;
             dateTimePickerDataDeNascimento.Format = DateTimePickerFormat.Short;
-            dateTimePickerDataDeNascimento.Location = new Point(38, 333);
+            dateTimePickerDataDeNascimento.Location = new Point(12, 337);
+            dateTimePickerDataDeNascimento.MinDate = new DateTime(1924, 1, 1, 0, 0, 0, 0);
             dateTimePickerDataDeNascimento.Name = "dateTimePickerDataDeNascimento";
-            dateTimePickerDataDeNascimento.Size = new Size(111, 23);
+            dateTimePickerDataDeNascimento.Size = new Size(351, 23);
             dateTimePickerDataDeNascimento.TabIndex = 5;
             // 
             // buttonCadastrar
             // 
-            buttonCadastrar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonCadastrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             buttonCadastrar.Location = new Point(12, 377);
             buttonCadastrar.Name = "buttonCadastrar";
             buttonCadastrar.Size = new Size(351, 36);
@@ -133,9 +141,10 @@
             // 
             // linkLabelJaPossuoConta
             // 
-            linkLabelJaPossuoConta.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            linkLabelJaPossuoConta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             linkLabelJaPossuoConta.AutoSize = true;
-            linkLabelJaPossuoConta.Location = new Point(142, 426);
+            linkLabelJaPossuoConta.LinkBehavior = LinkBehavior.NeverUnderline;
+            linkLabelJaPossuoConta.Location = new Point(142, 423);
             linkLabelJaPossuoConta.Name = "linkLabelJaPossuoConta";
             linkLabelJaPossuoConta.Size = new Size(91, 15);
             linkLabelJaPossuoConta.TabIndex = 7;
@@ -146,10 +155,11 @@
             // 
             // labelSobrenome
             // 
-            labelSobrenome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelSobrenome.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelSobrenome.AutoSize = true;
+            labelSobrenome.FlatStyle = FlatStyle.System;
             labelSobrenome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSobrenome.Location = new Point(38, 127);
+            labelSobrenome.Location = new Point(12, 139);
             labelSobrenome.Name = "labelSobrenome";
             labelSobrenome.Size = new Size(94, 21);
             labelSobrenome.TabIndex = 0;
@@ -157,31 +167,56 @@
             // 
             // textBoxSobrenome
             // 
-            textBoxSobrenome.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxSobrenome.Location = new Point(38, 153);
+            textBoxSobrenome.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxSobrenome.Location = new Point(12, 166);
             textBoxSobrenome.Name = "textBoxSobrenome";
-            textBoxSobrenome.Size = new Size(290, 23);
+            textBoxSobrenome.Size = new Size(351, 23);
             textBoxSobrenome.TabIndex = 2;
-            textBoxSobrenome.TextChanged += textBoxSobrenome_TextChanged;
+            // 
+            // labelCadastro
+            // 
+            labelCadastro.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelCadastro.AutoSize = true;
+            labelCadastro.FlatStyle = FlatStyle.System;
+            labelCadastro.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            labelCadastro.Location = new Point(12, 9);
+            labelCadastro.Name = "labelCadastro";
+            labelCadastro.Size = new Size(157, 37);
+            labelCadastro.TabIndex = 8;
+            labelCadastro.Text = "Cadastre-se";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.FlatStyle = FlatStyle.System;
+            label1.ForeColor = SystemColors.ControlDarkDark;
+            label1.Location = new Point(12, 46);
+            label1.Name = "label1";
+            label1.Size = new Size(87, 15);
+            label1.TabIndex = 9;
+            label1.Text = "É rápido e fácil!";
             // 
             // FormsJogadorCadastro
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(375, 450);
+            Controls.Add(label1);
+            Controls.Add(labelCadastro);
+            Controls.Add(textBoxSobrenome);
             Controls.Add(linkLabelJaPossuoConta);
             Controls.Add(buttonCadastrar);
             Controls.Add(dateTimePickerDataDeNascimento);
             Controls.Add(textBoxNome);
             Controls.Add(textBoxSenha);
-            Controls.Add(textBoxUsername);
+            Controls.Add(textBoxUsuario);
             Controls.Add(labelDataDeNascimento);
             Controls.Add(labelSenha);
             Controls.Add(labelUsername);
             Controls.Add(labelNome);
             Controls.Add(labelSobrenome);
-            Controls.Add(textBoxSobrenome);
             Name = "FormsJogadorCadastro";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MTG DeckBuilder - Cadastro";
             Load += FormsJogadorCadastro_Load;
             ResumeLayout(false);
@@ -194,7 +229,7 @@
         private Label labelUsername;
         private Label labelSenha;
         private Label labelDataDeNascimento;
-        private TextBox textBoxUsername;
+        private TextBox textBoxUsuario;
         private TextBox textBoxSenha;
         private TextBox textBoxNome;
         private DateTimePicker dateTimePickerDataDeNascimento;
@@ -202,5 +237,7 @@
         private LinkLabel linkLabelJaPossuoConta;
         private Label labelSobrenome;
         private TextBox textBoxSobrenome;
+        private Label labelCadastro;
+        private Label label1;
     }
 }
