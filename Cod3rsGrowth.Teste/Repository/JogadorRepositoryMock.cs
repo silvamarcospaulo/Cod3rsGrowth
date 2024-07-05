@@ -73,34 +73,6 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.DataNascimentoJogadorMinimo != null)
-            {
-                query = from q in query
-                        where q.DataNascimentoJogador >= filtro.DataNascimentoJogadorMinimo
-                        select q;
-            }
-
-            if (filtro?.DataNascimentoJogadorMaximo != null)
-            {
-                query = from q in query
-                        where q.DataNascimentoJogador <= filtro.DataNascimentoJogadorMaximo
-                        select q;
-            }
-
-            if (filtro?.PrecoDasCartasJogadorMinimo != null)
-            {
-                query = from q in query
-                        where q.PrecoDasCartasJogador >= filtro.PrecoDasCartasJogadorMinimo
-                        select q;
-            }
-
-            if (filtro?.DataNascimentoJogadorMaximo != null)
-            {
-                query = from q in query
-                        where q.PrecoDasCartasJogador <= filtro.PrecoDasCartasJogadorMaximo
-                        select q;
-            }
-
             return query.ToList();
         }
 

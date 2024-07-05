@@ -22,7 +22,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
                     new Claim(ClaimTypes.Name, jogador.UsuarioJogador),
                     new Claim(ClaimTypes.Role, jogador.Role)
                 }),
-                Expires = DateTime.MaxValue,
+                Expires = DateTime.Now.AddHours(numeroDeHorasParaExpirarToken),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(chave), SecurityAlgorithms.HmacSha256Signature)
             };

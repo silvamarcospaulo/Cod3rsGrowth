@@ -47,6 +47,7 @@ namespace Cod3rsGrowth.Forms
                     SobrenomeJogador = textBoxSobrenome.Text,
                     UsuarioJogador = textBoxUsuario.Text,
                     SenhaHashJogador = textBoxSenha.Text,
+                    SenhaHashConfirmacaoJogador = textBoxConfirmarSenha.Text,
                     DataNascimentoJogador = new DateTime(day: data.Day, month: data.Month, year: data.Year),
                     DataDeCriacaoContaJogador = DateTime.Now
                 };
@@ -71,6 +72,16 @@ namespace Cod3rsGrowth.Forms
         {
             this.Hide();
             new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
+        }
+
+        private void labelDataDeNascimento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePickerDataDeNascimento_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

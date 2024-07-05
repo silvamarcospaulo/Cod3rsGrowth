@@ -29,6 +29,10 @@ namespace Cod3rsGrowth.Forms
 
         public void FormJogador_Load(object sender, EventArgs e)
         {
+            labelNomeJogador.Text = jogador.NomeJogador + " " + jogador.SobrenomeJogador;
+            labelUsuarioJogador.Text = jogador.UsuarioJogador;
+            labelQuantidadeDeBaralhosJogador.Text = jogador.QuantidadeDeBaralhosJogador.ToString();
+            labelPrecoCartasTotalJogador.Text = jogador.PrecoDasCartasJogador.ToString();
             var listaDeBaralho = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
             dataGridViewBaralhoDoJogador.DataSource = listaDeBaralho;
         }
@@ -48,13 +52,19 @@ namespace Cod3rsGrowth.Forms
 
         }
 
-        public void FormsJogador_Leave(object sender, EventArgs e)
+        private void labelQuantidadeDeBaralhosJogador_Click(object sender, EventArgs e)
         {
-            this.Close();
+
         }
 
-        private void FormsJogador_FormClosing(object sender, FormClosingEventArgs e)
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void labelFormatoDeJogo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

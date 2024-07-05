@@ -48,12 +48,14 @@
             // textBoxSenha
             // 
             resources.ApplyResources(textBoxSenha, "textBoxSenha");
+            textBoxSenha.Cursor = Cursors.Hand;
             textBoxSenha.Name = "textBoxSenha";
             textBoxSenha.UseSystemPasswordChar = true;
             // 
             // textBoxUsuario
             // 
             resources.ApplyResources(textBoxUsuario, "textBoxUsuario");
+            textBoxUsuario.Cursor = Cursors.Hand;
             textBoxUsuario.Name = "textBoxUsuario";
             textBoxUsuario.TextChanged += textBoxNome_TextChanged;
             // 
@@ -66,6 +68,7 @@
             // buttonEntrar
             // 
             resources.ApplyResources(buttonEntrar, "buttonEntrar");
+            buttonEntrar.Cursor = Cursors.Hand;
             buttonEntrar.Name = "buttonEntrar";
             buttonEntrar.UseVisualStyleBackColor = true;
             buttonEntrar.Click += buttonEntrar_Click;
@@ -73,6 +76,7 @@
             // linkLabelEsqueciSenha
             // 
             resources.ApplyResources(linkLabelEsqueciSenha, "linkLabelEsqueciSenha");
+            linkLabelEsqueciSenha.Cursor = Cursors.Hand;
             linkLabelEsqueciSenha.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabelEsqueciSenha.Name = "linkLabelEsqueciSenha";
             linkLabelEsqueciSenha.TabStop = true;
@@ -81,6 +85,7 @@
             // linkLabelCadastrar
             // 
             resources.ApplyResources(linkLabelCadastrar, "linkLabelCadastrar");
+            linkLabelCadastrar.Cursor = Cursors.Hand;
             linkLabelCadastrar.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabelCadastrar.Name = "linkLabelCadastrar";
             linkLabelCadastrar.TabStop = true;

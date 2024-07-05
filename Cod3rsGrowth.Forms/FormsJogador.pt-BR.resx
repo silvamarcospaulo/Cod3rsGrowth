@@ -119,75 +119,471 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Nome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left</value>
-  </data>
-  <data name="Nome.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+    <value>Top, Left, Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Nome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="dataGridViewBaralhoDoJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="dataGridViewBaralhoDoJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 116</value>
-  </data>
-  <data name="dataGridViewBaralhoDoJogador.Size" type="System.Drawing.Size, System.Drawing">
-    <value>790, 296</value>
+    <value>3, 8</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Nome.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="dataGridViewBaralhoDoJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="dataGridViewBaralhoDoJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 100</value>
+  </data>
+  <data name="dataGridViewBaralhoDoJogador.Size" type="System.Drawing.Size, System.Drawing">
+    <value>600, 312</value>
+  </data>
+  <data name="labelNome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="labelNome.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="labelNome.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="labelNome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, 18</value>
+  </data>
   <data name="labelNome.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 15</value>
+  </data>
+  <data name="labelNome.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="labelNome.Text" xml:space="preserve">
     <value>Nome:</value>
   </data>
+  <data name="labelUsername.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="labelUsername.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelUsername.Location" type="System.Drawing.Point, System.Drawing">
+    <value>321, 37</value>
+  </data>
   <data name="labelUsername.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 15</value>
+    <value>50, 15</value>
+  </data>
+  <data name="labelUsername.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="labelUsername.Text" xml:space="preserve">
-    <value>Username:</value>
+    <value>Usuário:</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhos.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="labelQuantidadeDeBaralhos.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="labelQuantidadeDeBaralhos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>526, 18</value>
+  </data>
   <data name="labelQuantidadeDeBaralhos.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 15</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhos.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="labelQuantidadeDeBaralhos.Text" xml:space="preserve">
     <value>Quantidade de Baralhos:</value>
   </data>
+  <data name="labelPrecoTotalDeCartas.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="labelPrecoTotalDeCartas.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="labelPrecoTotalDeCartas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>526, 37</value>
   </data>
   <data name="labelPrecoTotalDeCartas.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 15</value>
   </data>
-  <data name="labelPrecoTotalDeCartas.Text" xml:space="preserve">
-    <value>Preco das Cartas Total:</value>
+  <data name="labelPrecoTotalDeCartas.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="labelPrecoTotalDeCartas.Text" xml:space="preserve">
+    <value>Preço das Cartas Total:</value>
+  </data>
+  <data name="labelNomeJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelNomeJogador.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="labelNomeJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>370, 18</value>
+  </data>
+  <data name="labelNomeJogador.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 15</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="labelNomeJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelNomeJogador.Text" xml:space="preserve">
     <value>label1</value>
   </data>
+  <data name="buttonSair.Location" type="System.Drawing.Point, System.Drawing">
+    <value>712, 18</value>
+  </data>
+  <data name="buttonSair.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 34</value>
+  </data>
+  <data name="buttonSair.Text" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="labelUsuarioJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelUsuarioJogador.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelUsuarioJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>377, 37</value>
+  </data>
+  <data name="labelUsuarioJogador.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 15</value>
+  </data>
+  <data name="labelUsuarioJogador.Text" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>668, 18</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 15</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Text" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>657, 37</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 15</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Text" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="groupFiltrar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="numericUpDownMax.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="numericUpDownMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="labelPrecoMax.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="labelPrecoMax.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelPrecoMax.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelPrecoMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 15</value>
+  </data>
+  <data name="labelPrecoMax.Text" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="buttonAplicarFiltro.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="buttonAplicarFiltro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 24</value>
+  </data>
+  <data name="buttonAplicarFiltro.Text" xml:space="preserve">
+    <value>Aplicar filtro</value>
+  </data>
+  <data name="labelPrecoMin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="labelPrecoMin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelPrecoMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 15</value>
+  </data>
+  <data name="labelPrecoMin.Text" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="labelPrecoBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="labelPrecoBaralho.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelPrecoBaralho.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 15</value>
+  </data>
+  <data name="labelPrecoBaralho.Text" xml:space="preserve">
+    <value>Preço do baralho</value>
+  </data>
+  <data name="checkBoxIncolor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxIncolor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxIncolor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 251</value>
+  </data>
+  <data name="checkBoxIncolor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 19</value>
+  </data>
+  <data name="checkBoxIncolor.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="checkBoxIncolor.Text" xml:space="preserve">
+    <value>Incolor</value>
+  </data>
+  <data name="checkBoxVermelho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxVermelho.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxVermelho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 227</value>
+  </data>
+  <data name="checkBoxVermelho.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 19</value>
+  </data>
+  <data name="checkBoxVermelho.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="checkBoxVermelho.Text" xml:space="preserve">
+    <value>Vermelho</value>
+  </data>
+  <data name="labelCor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="labelCor.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelCor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 111</value>
+  </data>
+  <data name="labelCor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 15</value>
+  </data>
+  <data name="labelCor.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelCor.Text" xml:space="preserve">
+    <value>Cor</value>
+  </data>
+  <data name="labelFormatoDeJogo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="labelFormatoDeJogo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelFormatoDeJogo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="labelFormatoDeJogo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 15</value>
+  </data>
+  <data name="labelFormatoDeJogo.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelFormatoDeJogo.Text" xml:space="preserve">
+    <value>Formato de Jogo</value>
+  </data>
+  <data name="checkBoxVerde.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxVerde.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxVerde.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 203</value>
+  </data>
+  <data name="checkBoxVerde.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 19</value>
+  </data>
+  <data name="checkBoxVerde.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="checkBoxVerde.Text" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="checkBoxPreto.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxPreto.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxPreto.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 179</value>
+  </data>
+  <data name="checkBoxPreto.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 19</value>
+  </data>
+  <data name="checkBoxPreto.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="checkBoxPreto.Text" xml:space="preserve">
+    <value>Preto</value>
+  </data>
+  <data name="checkBoxBranco.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxBranco.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxBranco.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 155</value>
+  </data>
+  <data name="checkBoxBranco.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 19</value>
+  </data>
+  <data name="checkBoxBranco.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="checkBoxBranco.Text" xml:space="preserve">
+    <value>Branco</value>
+  </data>
+  <data name="checkBoxAzul.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxAzul.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxAzul.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 131</value>
+  </data>
+  <data name="checkBoxAzul.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 19</value>
+  </data>
+  <data name="checkBoxAzul.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="checkBoxAzul.Text" xml:space="preserve">
+    <value>Azul</value>
+  </data>
+  <data name="checkBoxFormatoPauper.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxFormatoPauper.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxFormatoPauper.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 87</value>
+  </data>
+  <data name="checkBoxFormatoPauper.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 19</value>
+  </data>
+  <data name="checkBoxFormatoPauper.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="checkBoxFormatoPauper.Text" xml:space="preserve">
+    <value>Pauper</value>
+  </data>
+  <data name="checkBoxFormatoStandard.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxFormatoStandard.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxFormatoStandard.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 63</value>
+  </data>
+  <data name="checkBoxFormatoStandard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 19</value>
+  </data>
+  <data name="checkBoxFormatoStandard.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="checkBoxFormatoStandard.Text" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="checkBoxFormatoCommander.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="checkBoxFormatoCommander.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxFormatoCommander.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 39</value>
+  </data>
+  <data name="checkBoxFormatoCommander.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 19</value>
+  </data>
+  <data name="checkBoxFormatoCommander.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="checkBoxFormatoCommander.Text" xml:space="preserve">
+    <value>Commander</value>
+  </data>
+  <data name="numericUpDown1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="numericUpDown1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="numericUpDown1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="groupFiltrar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>638, 61</value>
+  </data>
+  <data name="groupFiltrar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 353</value>
+  </data>
+  <data name="groupFiltrar.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupFiltrar.Text" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="labelFiltroNome.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelFiltroNome.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 15</value>
+  </data>
+  <data name="labelFiltroNome.Text" xml:space="preserve">
+    <value>Nome do Baralho:</value>
+  </data>
+  <data name="textBoxFiltrarNome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="textBoxFiltrarNome.Size" type="System.Drawing.Size, System.Drawing">
+    <value>491, 23</value>
+  </data>
+  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>814, 63</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>814, 424</value>
+    <value>814, 441</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>MTG DeckBuilder - Home</value>

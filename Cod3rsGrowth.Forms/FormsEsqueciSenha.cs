@@ -1,21 +1,10 @@
-﻿using Cod3rsGrowth.Dominio.Filtros;
-using Cod3rsGrowth.Dominio.Modelos;
+﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -27,11 +16,6 @@ namespace Cod3rsGrowth.Forms
         private JwtServico tokenServico;
         private ConexaoDados conexaoDados;
         private LoginController loginController;
-
-        public FormsEsqueciSenha()
-        {
-            InitializeComponent();
-        }
 
         public FormsEsqueciSenha(CartaServico _cartaServico, BaralhoServico _baralhoServico,
             JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
@@ -62,27 +46,14 @@ namespace Cod3rsGrowth.Forms
             AoClicarCarregarJogadorEntrarEmNovaJanela();
         }
 
-        private void buttonAtualizarSenha_Click(object sender, EventArgs e)
+        private void textBoxConfirmarNovaSenha_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                var jogadorRestaurarSenha = new Jogador()
-                {
-                    NomeJogador = textBoxNome.Text,
-                    SobrenomeJogador = textBoxSobrenome.Text,
-                    UsuarioJogador = textBoxUsuario.Text,
-                    SenhaHashJogador = textBoxNovasenha.Text,
-                    DataNascimentoJogador = Convert.ToDateTime(dateTimePickerDataDeNascimento)
-                };
 
-                jogadorServico.RestaurarSenha(jogadorRestaurarSenha);
+        }
 
-                AoClicarCarregarJogadorEntrarEmNovaJanela();
-            }
-            catch (Exception ex)
-            {
+        private void buttonRedefinir_Click(object sender, EventArgs e)
+        {
 
-            }
         }
 
         private void buttonAtualizar_Click(object sender, EventArgs e)
@@ -90,17 +61,19 @@ namespace Cod3rsGrowth.Forms
             try
             {
                 var data = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text);
-
                 var jogadorRestaurarSenha = new Jogador()
                 {
                     NomeJogador = textBoxNome.Text,
                     SobrenomeJogador = textBoxSobrenome.Text,
                     UsuarioJogador = textBoxUsuario.Text,
                     SenhaHashJogador = textBoxNovasenha.Text,
+                    SenhaHashConfirmacaoJogador = textBoxConfirmarNovaSenha.Text,
                     DataNascimentoJogador = new DateTime(day: data.Day, month: data.Month, year: data.Year)
                 };
-                
-                jogadorServico.RestaurarSenha(jogadorRestaurarSenha);
+
+                var po = jogadorRestaurarSenha;
+
+                jogadorServico.AlterarSenha(jogadorRestaurarSenha);
 
                 AoClicarCarregarJogadorEntrarEmNovaJanela();
             }

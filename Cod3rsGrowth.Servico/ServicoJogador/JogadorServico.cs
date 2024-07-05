@@ -4,7 +4,6 @@ using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth;
-using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using FluentValidation;
 using Microsoft.IdentityModel.Tokens;
 
@@ -57,11 +56,11 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             try
             {
-                //_validadorJogador.Validate(jogador, options =>
-                //{
-                //    options.ThrowOnFailures();
-                //    options.IncludeRuleSets("Criar");
-                //});
+                _validadorJogador.Validate(jogador, options =>
+                {
+                    options.ThrowOnFailures();
+                    options.IncludeRuleSets("CriarAtualizar");
+                });
 
                 jogador.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
                 return _IJogadorRepository.Criar(jogador);
@@ -87,7 +86,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 _validadorJogador.Validate(jogadorAtualizado, options =>
                 {
                     options.ThrowOnFailures();
-                    options.IncludeRuleSets("Atualizar");
+                    options.IncludeRuleSets("CriarAtualizar");
 
                 });
                 _IJogadorRepository.Atualizar(jogadorAtualizado);
@@ -99,7 +98,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             }
         }
 
-        public void RestaurarSenha(Jogador jogador)
+        public void AlterarSenha(Jogador jogador)
         {
             try
             {
@@ -110,6 +109,12 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     UsuarioJogador = jogador.UsuarioJogador,
                     DataNascimentoJogador = jogador.DataNascimentoJogador
                 }).FirstOrDefault() ?? throw new Exception("Nenhum resultado para os dados inseridos. Tente novamente com outras informações.");
+
+                _validadorJogador.Validate(jogador, options =>
+                {
+                    options.ThrowOnFailures();
+                    options.IncludeRuleSets("AlterarSenha");
+                });
 
                 jogadorBanco.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
 
@@ -129,11 +134,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             try
             {
                 _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador })?.ForEach(baralho => _baralhoServico.Excluir(baralho.Id));
-                _validadorJogador.Validate(jogadorExcluir, options =>
-                {
-                    options.ThrowOnFailures();
-                    options.IncludeRuleSets("Excluir");
-                });
+
                 _IJogadorRepository.Excluir(jogadorExcluir.Id);
             }
             catch (ValidationException e)

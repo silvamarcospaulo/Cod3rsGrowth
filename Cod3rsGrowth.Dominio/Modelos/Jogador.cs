@@ -29,5 +29,6 @@ namespace Cod3rsGrowth.Dominio.Modelos
         [Column("ContaAtiva")]
         public bool ContaAtivaJogador { get; set; }
         public List<Baralho>? BaralhosJogador { get; set; }
+        public string? SenhaHashConfirmacaoJogador { get; set; }
     }
 }
