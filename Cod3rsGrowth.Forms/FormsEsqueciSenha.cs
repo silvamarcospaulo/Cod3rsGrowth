@@ -5,6 +5,7 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -16,6 +17,7 @@ namespace Cod3rsGrowth.Forms
         private JwtServico tokenServico;
         private ConexaoDados conexaoDados;
         private LoginController loginController;
+        private Thread threadFormsEntrar;
 
         public FormsEsqueciSenha(CartaServico _cartaServico, BaralhoServico _baralhoServico,
             JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
@@ -30,28 +32,6 @@ namespace Cod3rsGrowth.Forms
         }
 
         private void FormsEsqueciSenha_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AoClicarCarregarJogadorEntrarEmNovaJanela()
-        {
-            this.Hide();
-            new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.Hide();
-            AoClicarCarregarJogadorEntrarEmNovaJanela();
-        }
-
-        private void textBoxConfirmarNovaSenha_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonRedefinir_Click(object sender, EventArgs e)
         {
 
         }
@@ -75,12 +55,29 @@ namespace Cod3rsGrowth.Forms
 
                 jogadorServico.AlterarSenha(jogadorRestaurarSenha);
 
-                AoClicarCarregarJogadorEntrarEmNovaJanela();
+                this.Close();
+                threadFormsEntrar = new Thread(AoClicarCarregarJogadorEntrarEmNovaJanela);
+                threadFormsEntrar.SetApartmentState(ApartmentState.STA);
+                threadFormsEntrar.Start();
             }
             catch (Exception ex)
             {
 
             }
+        }
+
+        private void linkLabelCancelar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Close();
+            threadFormsEntrar = new Thread(AoClicarCarregarJogadorEntrarEmNovaJanela);
+            threadFormsEntrar.SetApartmentState(ApartmentState.STA);
+            threadFormsEntrar.Start();
+        }
+
+        private void AoClicarCarregarJogadorEntrarEmNovaJanela(object obj)
+        {
+
+            Application.Run(new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
     }
 }

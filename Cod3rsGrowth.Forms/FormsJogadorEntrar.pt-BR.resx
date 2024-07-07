@@ -187,7 +187,7 @@
     <value>Entrar</value>
   </data>
   <data name="linkLabelEsqueciSenha.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="linkLabelEsqueciSenha.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -208,7 +208,7 @@
     <value>BottomRight</value>
   </data>
   <data name="linkLabelCadastrar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+    <value>Bottom</value>
   </data>
   <data name="linkLabelCadastrar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -226,7 +226,7 @@
     <value>Criar nova conta</value>
   </data>
   <data name="labelMtgDeckBuilder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="labelMtgDeckBuilder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -242,6 +242,9 @@
   </data>
   <data name="labelMtgDeckBuilder.Text" xml:space="preserve">
     <value>MTG DeckBuilder</value>
+  </data>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>375, 352</value>

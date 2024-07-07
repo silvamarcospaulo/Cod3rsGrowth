@@ -164,7 +164,7 @@
             linkLabelCancelar.TabIndex = 8;
             linkLabelCancelar.TabStop = true;
             linkLabelCancelar.Text = "Cancelar";
-            linkLabelCancelar.LinkClicked += linkLabel1_LinkClicked;
+            linkLabelCancelar.LinkClicked += linkLabelCancelar_LinkClicked;
             // 
             // labelEsqueciSenha
             // 
@@ -207,7 +207,6 @@
             textBoxConfirmarNovaSenha.Name = "textBoxConfirmarNovaSenha";
             textBoxConfirmarNovaSenha.Size = new Size(351, 23);
             textBoxConfirmarNovaSenha.TabIndex = 6;
-            textBoxConfirmarNovaSenha.TextChanged += textBoxConfirmarNovaSenha_TextChanged;
             // 
             // buttonAtualizar
             // 
@@ -241,6 +240,8 @@
             Controls.Add(labelNome);
             Controls.Add(labelSobrenome);
             Controls.Add(labelDataDeNascimento);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormsEsqueciSenha";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MTG DeckBuilder - Esqueci Senha";

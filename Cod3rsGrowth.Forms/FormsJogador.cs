@@ -1,9 +1,13 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Migrador;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
+using Cod3rsGrowth.Web.Controllers;
+using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -13,16 +17,23 @@ namespace Cod3rsGrowth.Forms
         private CartaServico cartaServico;
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
+        private JwtServico tokenServico;
         private ConexaoDados conexaoDados;
+        private LoginController loginController;
+        private Thread threadFormsEntrar;
+        private Thread threadFormsEditarPerfil;
+        private Thread threadFormsNovoBaralho;
 
-        public FormsJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, ConexaoDados _conexaoDados, Jogador _jogador)
+        public FormsJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
+            JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController, Jogador _jogador)
         {
             jogador = _jogador;
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
+            tokenServico = _tokenServico;
             conexaoDados = _conexaoDados;
+            loginController = _loginController;
 
             InitializeComponent();
         }
@@ -37,32 +48,20 @@ namespace Cod3rsGrowth.Forms
             dataGridViewBaralhoDoJogador.DataSource = listaDeBaralho;
         }
 
-        private void dataGridViewBaralhoDoJogador_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void buttonSair_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            threadFormsEntrar = new Thread(AoClicarCarregarJogadorEntrarEmNovaJanela);
+            threadFormsEntrar.SetApartmentState(ApartmentState.STA);
+            threadFormsEntrar.Start();
         }
 
-        private void Nome_Click(object sender, EventArgs e)
+        private void AoClicarCarregarJogadorEntrarEmNovaJanela(object obj)
         {
-
+            Application.Run(new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
 
-        private void baralhoBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelQuantidadeDeBaralhosJogador_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelFormatoDeJogo_Click(object sender, EventArgs e)
+        private void buttonEditarPerfil_Click(object sender, EventArgs e)
         {
 
         }

@@ -6,6 +6,7 @@ using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -17,6 +18,8 @@ namespace Cod3rsGrowth.Forms
         private JwtServico tokenServico;
         private ConexaoDados conexaoDados;
         private LoginController loginController;
+        private Jogador jogador;
+        private Thread threadFormsJogador;
 
         public FormsJogadorCadastro(CartaServico _cartaServico, BaralhoServico _baralhoServico,
             JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
@@ -53,8 +56,12 @@ namespace Cod3rsGrowth.Forms
                 };
 
                 var idJogador = jogadorServico.Criar(jogadorAutenticar);
-                var jogador = jogadorServico.ObterPorId(idJogador);
-                AoClicarCarregarJogadorEmNovaJanela(jogador);
+                jogador = jogadorServico.ObterPorId(idJogador);
+
+                this.Close();
+                threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
+                threadFormsJogador.SetApartmentState(ApartmentState.STA);
+                threadFormsJogador.Start();
             }
             catch (Exception ex)
             {
@@ -62,26 +69,22 @@ namespace Cod3rsGrowth.Forms
             }
         }
 
-        private void AoClicarCarregarJogadorEmNovaJanela(Jogador jogador)
+        private void AoClicarCarregarJogadorEmNovaJanela(Object obj)
         {
-            this.Hide();
-            new FormsJogador(cartaServico, baralhoServico, jogadorServico, conexaoDados, jogador).Show();
+            Application.Run(new FormsJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
 
         private void linkLabelJaPossuoConta_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
+            this.Close();
+            threadFormsJogador = new Thread(AoClicarCarregarJogadorEntrarEmNovaJanela);
+            threadFormsJogador.SetApartmentState(ApartmentState.STA);
+            threadFormsJogador.Start();
         }
 
-        private void labelDataDeNascimento_Click(object sender, EventArgs e)
+        private void AoClicarCarregarJogadorEntrarEmNovaJanela(Object obj)
         {
-
-        }
-
-        private void dateTimePickerDataDeNascimento_ValueChanged(object sender, EventArgs e)
-        {
-
+            Application.Run(new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
     }
 }

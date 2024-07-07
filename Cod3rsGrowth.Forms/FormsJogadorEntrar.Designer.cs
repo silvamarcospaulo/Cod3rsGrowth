@@ -57,7 +57,6 @@
             resources.ApplyResources(textBoxUsuario, "textBoxUsuario");
             textBoxUsuario.Cursor = Cursors.Hand;
             textBoxUsuario.Name = "textBoxUsuario";
-            textBoxUsuario.TextChanged += textBoxNome_TextChanged;
             // 
             // labelSenha
             // 
@@ -95,7 +94,6 @@
             // 
             resources.ApplyResources(labelMtgDeckBuilder, "labelMtgDeckBuilder");
             labelMtgDeckBuilder.Name = "labelMtgDeckBuilder";
-            labelMtgDeckBuilder.Click += labelMtgDeckBuilder_Click;
             // 
             // FormsJogadorEntrar
             // 
@@ -109,6 +107,8 @@
             Controls.Add(buttonEntrar);
             Controls.Add(textBoxUsuario);
             Controls.Add(labelSenha);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormsJogadorEntrar";
             ShowIcon = false;
             ShowInTaskbar = false;

@@ -42,33 +42,38 @@
             labelUsuarioJogador = new Label();
             labelQuantidadeDeBaralhosJogador = new Label();
             labelPrecoCartasTotalJogador = new Label();
-            groupFiltrar = new GroupBox();
-            numericUpDownMax = new NumericUpDown();
-            labelPrecoMax = new Label();
-            buttonAplicarFiltro = new Button();
-            labelPrecoMin = new Label();
-            labelPrecoBaralho = new Label();
-            checkBoxIncolor = new CheckBox();
-            checkBoxVermelho = new CheckBox();
-            labelCor = new Label();
-            labelFormatoDeJogo = new Label();
-            checkBoxVerde = new CheckBox();
-            checkBoxPreto = new CheckBox();
-            checkBoxBranco = new CheckBox();
-            checkBoxAzul = new CheckBox();
-            checkBoxFormatoPauper = new CheckBox();
-            checkBoxFormatoStandard = new CheckBox();
-            checkBoxFormatoCommander = new CheckBox();
-            numericUpDown1 = new NumericUpDown();
             labelFiltroNome = new Label();
             textBoxFiltrarNome = new TextBox();
             panel1 = new Panel();
+            panel2 = new Panel();
+            buttonEditarPerfil = new Button();
+            buttonNovoBaralho = new Button();
+            labelFiltros = new Label();
+            numericUpDownMax = new NumericUpDown();
+            labelFormatoDeJogo = new Label();
+            labelPrecoMax = new Label();
+            checkBoxBranco = new CheckBox();
+            checkBoxAzul = new CheckBox();
+            buttonAplicarFiltro = new Button();
+            checkBoxPreto = new CheckBox();
+            checkBoxFormatoPauper = new CheckBox();
+            labelPrecoMin = new Label();
+            checkBoxVerde = new CheckBox();
+            checkBoxFormatoStandard = new CheckBox();
+            labelPrecoBaralho = new Label();
+            checkBoxFormatoCommander = new CheckBox();
+            labelCor = new Label();
+            checkBoxIncolor = new CheckBox();
+            numericUpDownMin = new NumericUpDown();
+            checkBoxVermelho = new CheckBox();
+            panel3 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBaralhoDoJogador).BeginInit();
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).BeginInit();
-            groupFiltrar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownMax).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownMax).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownMin).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // Nome
@@ -77,7 +82,6 @@
             Nome.AutoEllipsis = true;
             Nome.FlatStyle = FlatStyle.System;
             Nome.Name = "Nome";
-            Nome.Click += Nome_Click;
             // 
             // dataGridViewBaralhoDoJogador
             // 
@@ -91,11 +95,6 @@
             dataGridViewBaralhoDoJogador.Name = "dataGridViewBaralhoDoJogador";
             dataGridViewBaralhoDoJogador.ReadOnly = true;
             dataGridViewBaralhoDoJogador.RowTemplate.Height = 25;
-            dataGridViewBaralhoDoJogador.CellContentClick += dataGridViewBaralhoDoJogador_CellContentClick;
-            // 
-            // baralhoBindingSource
-            // 
-            baralhoBindingSource.CurrentChanged += baralhoBindingSource_CurrentChanged;
             // 
             // labelNome
             // 
@@ -112,11 +111,13 @@
             // labelQuantidadeDeBaralhos
             // 
             resources.ApplyResources(labelQuantidadeDeBaralhos, "labelQuantidadeDeBaralhos");
+            labelQuantidadeDeBaralhos.FlatStyle = FlatStyle.System;
             labelQuantidadeDeBaralhos.Name = "labelQuantidadeDeBaralhos";
             // 
             // labelPrecoTotalDeCartas
             // 
             resources.ApplyResources(labelPrecoTotalDeCartas, "labelPrecoTotalDeCartas");
+            labelPrecoTotalDeCartas.FlatStyle = FlatStyle.System;
             labelPrecoTotalDeCartas.Name = "labelPrecoTotalDeCartas";
             // 
             // labelNomeJogador
@@ -133,6 +134,7 @@
             resources.ApplyResources(buttonSair, "buttonSair");
             buttonSair.Name = "buttonSair";
             buttonSair.UseVisualStyleBackColor = true;
+            buttonSair.Click += buttonSair_Click;
             // 
             // labelUsuarioJogador
             // 
@@ -145,143 +147,12 @@
             resources.ApplyResources(labelQuantidadeDeBaralhosJogador, "labelQuantidadeDeBaralhosJogador");
             labelQuantidadeDeBaralhosJogador.FlatStyle = FlatStyle.System;
             labelQuantidadeDeBaralhosJogador.Name = "labelQuantidadeDeBaralhosJogador";
-            labelQuantidadeDeBaralhosJogador.Click += labelQuantidadeDeBaralhosJogador_Click;
             // 
             // labelPrecoCartasTotalJogador
             // 
             resources.ApplyResources(labelPrecoCartasTotalJogador, "labelPrecoCartasTotalJogador");
             labelPrecoCartasTotalJogador.FlatStyle = FlatStyle.System;
             labelPrecoCartasTotalJogador.Name = "labelPrecoCartasTotalJogador";
-            // 
-            // groupFiltrar
-            // 
-            resources.ApplyResources(groupFiltrar, "groupFiltrar");
-            groupFiltrar.Controls.Add(numericUpDownMax);
-            groupFiltrar.Controls.Add(labelPrecoMax);
-            groupFiltrar.Controls.Add(buttonAplicarFiltro);
-            groupFiltrar.Controls.Add(labelPrecoMin);
-            groupFiltrar.Controls.Add(labelPrecoBaralho);
-            groupFiltrar.Controls.Add(checkBoxIncolor);
-            groupFiltrar.Controls.Add(checkBoxVermelho);
-            groupFiltrar.Controls.Add(labelCor);
-            groupFiltrar.Controls.Add(labelFormatoDeJogo);
-            groupFiltrar.Controls.Add(checkBoxVerde);
-            groupFiltrar.Controls.Add(checkBoxPreto);
-            groupFiltrar.Controls.Add(checkBoxBranco);
-            groupFiltrar.Controls.Add(checkBoxAzul);
-            groupFiltrar.Controls.Add(checkBoxFormatoPauper);
-            groupFiltrar.Controls.Add(checkBoxFormatoStandard);
-            groupFiltrar.Controls.Add(checkBoxFormatoCommander);
-            groupFiltrar.Controls.Add(numericUpDown1);
-            groupFiltrar.FlatStyle = FlatStyle.System;
-            groupFiltrar.ForeColor = SystemColors.ControlDarkDark;
-            groupFiltrar.Name = "groupFiltrar";
-            groupFiltrar.TabStop = false;
-            // 
-            // numericUpDownMax
-            // 
-            resources.ApplyResources(numericUpDownMax, "numericUpDownMax");
-            numericUpDownMax.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDownMax.Name = "numericUpDownMax";
-            // 
-            // labelPrecoMax
-            // 
-            resources.ApplyResources(labelPrecoMax, "labelPrecoMax");
-            labelPrecoMax.Name = "labelPrecoMax";
-            // 
-            // buttonAplicarFiltro
-            // 
-            resources.ApplyResources(buttonAplicarFiltro, "buttonAplicarFiltro");
-            buttonAplicarFiltro.Name = "buttonAplicarFiltro";
-            buttonAplicarFiltro.UseVisualStyleBackColor = true;
-            // 
-            // labelPrecoMin
-            // 
-            resources.ApplyResources(labelPrecoMin, "labelPrecoMin");
-            labelPrecoMin.FlatStyle = FlatStyle.System;
-            labelPrecoMin.Name = "labelPrecoMin";
-            // 
-            // labelPrecoBaralho
-            // 
-            resources.ApplyResources(labelPrecoBaralho, "labelPrecoBaralho");
-            labelPrecoBaralho.FlatStyle = FlatStyle.System;
-            labelPrecoBaralho.Name = "labelPrecoBaralho";
-            // 
-            // checkBoxIncolor
-            // 
-            resources.ApplyResources(checkBoxIncolor, "checkBoxIncolor");
-            checkBoxIncolor.Name = "checkBoxIncolor";
-            checkBoxIncolor.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxVermelho
-            // 
-            resources.ApplyResources(checkBoxVermelho, "checkBoxVermelho");
-            checkBoxVermelho.Name = "checkBoxVermelho";
-            checkBoxVermelho.UseVisualStyleBackColor = true;
-            // 
-            // labelCor
-            // 
-            resources.ApplyResources(labelCor, "labelCor");
-            labelCor.FlatStyle = FlatStyle.System;
-            labelCor.Name = "labelCor";
-            // 
-            // labelFormatoDeJogo
-            // 
-            resources.ApplyResources(labelFormatoDeJogo, "labelFormatoDeJogo");
-            labelFormatoDeJogo.FlatStyle = FlatStyle.System;
-            labelFormatoDeJogo.Name = "labelFormatoDeJogo";
-            labelFormatoDeJogo.Click += labelFormatoDeJogo_Click;
-            // 
-            // checkBoxVerde
-            // 
-            resources.ApplyResources(checkBoxVerde, "checkBoxVerde");
-            checkBoxVerde.Name = "checkBoxVerde";
-            checkBoxVerde.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxPreto
-            // 
-            resources.ApplyResources(checkBoxPreto, "checkBoxPreto");
-            checkBoxPreto.Name = "checkBoxPreto";
-            checkBoxPreto.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxBranco
-            // 
-            resources.ApplyResources(checkBoxBranco, "checkBoxBranco");
-            checkBoxBranco.Name = "checkBoxBranco";
-            checkBoxBranco.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAzul
-            // 
-            resources.ApplyResources(checkBoxAzul, "checkBoxAzul");
-            checkBoxAzul.Name = "checkBoxAzul";
-            checkBoxAzul.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxFormatoPauper
-            // 
-            resources.ApplyResources(checkBoxFormatoPauper, "checkBoxFormatoPauper");
-            checkBoxFormatoPauper.Name = "checkBoxFormatoPauper";
-            checkBoxFormatoPauper.UseVisualStyleBackColor = true;
-            checkBoxFormatoPauper.CheckedChanged += checkBox3_CheckedChanged;
-            // 
-            // checkBoxFormatoStandard
-            // 
-            resources.ApplyResources(checkBoxFormatoStandard, "checkBoxFormatoStandard");
-            checkBoxFormatoStandard.Name = "checkBoxFormatoStandard";
-            checkBoxFormatoStandard.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxFormatoCommander
-            // 
-            resources.ApplyResources(checkBoxFormatoCommander, "checkBoxFormatoCommander");
-            checkBoxFormatoCommander.Name = "checkBoxFormatoCommander";
-            checkBoxFormatoCommander.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            resources.ApplyResources(numericUpDown1, "numericUpDown1");
-            numericUpDown1.BorderStyle = BorderStyle.FixedSingle;
-            numericUpDown1.Cursor = Cursors.Hand;
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Value = new decimal(new int[] { 100, 0, 0, 0 });
             // 
             // labelFiltroNome
             // 
@@ -298,40 +169,195 @@
             // panel1
             // 
             resources.ApplyResources(panel1, "panel1");
-            panel1.Controls.Add(Nome);
             panel1.Controls.Add(labelNome);
             panel1.Controls.Add(labelUsername);
             panel1.Controls.Add(labelPrecoCartasTotalJogador);
-            panel1.Controls.Add(labelQuantidadeDeBaralhos);
             panel1.Controls.Add(labelQuantidadeDeBaralhosJogador);
             panel1.Controls.Add(labelPrecoTotalDeCartas);
             panel1.Controls.Add(labelUsuarioJogador);
             panel1.Controls.Add(labelNomeJogador);
-            panel1.Controls.Add(buttonSair);
+            panel1.Controls.Add(Nome);
+            panel1.Controls.Add(labelQuantidadeDeBaralhos);
             panel1.Name = "panel1";
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(panel2, "panel2");
+            panel2.Controls.Add(buttonEditarPerfil);
+            panel2.Controls.Add(buttonNovoBaralho);
+            panel2.Controls.Add(labelFiltros);
+            panel2.Controls.Add(numericUpDownMax);
+            panel2.Controls.Add(labelFormatoDeJogo);
+            panel2.Controls.Add(labelPrecoMax);
+            panel2.Controls.Add(checkBoxBranco);
+            panel2.Controls.Add(checkBoxAzul);
+            panel2.Controls.Add(buttonSair);
+            panel2.Controls.Add(buttonAplicarFiltro);
+            panel2.Controls.Add(checkBoxPreto);
+            panel2.Controls.Add(checkBoxFormatoPauper);
+            panel2.Controls.Add(labelPrecoMin);
+            panel2.Controls.Add(checkBoxVerde);
+            panel2.Controls.Add(checkBoxFormatoStandard);
+            panel2.Controls.Add(labelPrecoBaralho);
+            panel2.Controls.Add(checkBoxFormatoCommander);
+            panel2.Controls.Add(labelCor);
+            panel2.Controls.Add(checkBoxIncolor);
+            panel2.Controls.Add(numericUpDownMin);
+            panel2.Controls.Add(checkBoxVermelho);
+            panel2.Name = "panel2";
+            // 
+            // buttonEditarPerfil
+            // 
+            resources.ApplyResources(buttonEditarPerfil, "buttonEditarPerfil");
+            buttonEditarPerfil.Name = "buttonEditarPerfil";
+            buttonEditarPerfil.UseVisualStyleBackColor = true;
+            buttonEditarPerfil.Click += buttonEditarPerfil_Click;
+            // 
+            // buttonNovoBaralho
+            // 
+            resources.ApplyResources(buttonNovoBaralho, "buttonNovoBaralho");
+            buttonNovoBaralho.Name = "buttonNovoBaralho";
+            buttonNovoBaralho.UseVisualStyleBackColor = true;
+            // 
+            // labelFiltros
+            // 
+            resources.ApplyResources(labelFiltros, "labelFiltros");
+            labelFiltros.FlatStyle = FlatStyle.System;
+            labelFiltros.Name = "labelFiltros";
+            // 
+            // numericUpDownMax
+            // 
+            resources.ApplyResources(numericUpDownMax, "numericUpDownMax");
+            numericUpDownMax.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+            numericUpDownMax.Name = "numericUpDownMax";
+            numericUpDownMax.Value = new decimal(new int[] { 99999999, 0, 0, 0 });
+            // 
+            // labelFormatoDeJogo
+            // 
+            resources.ApplyResources(labelFormatoDeJogo, "labelFormatoDeJogo");
+            labelFormatoDeJogo.FlatStyle = FlatStyle.System;
+            labelFormatoDeJogo.Name = "labelFormatoDeJogo";
+            // 
+            // labelPrecoMax
+            // 
+            resources.ApplyResources(labelPrecoMax, "labelPrecoMax");
+            labelPrecoMax.FlatStyle = FlatStyle.System;
+            labelPrecoMax.Name = "labelPrecoMax";
+            // 
+            // checkBoxBranco
+            // 
+            resources.ApplyResources(checkBoxBranco, "checkBoxBranco");
+            checkBoxBranco.Name = "checkBoxBranco";
+            checkBoxBranco.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAzul
+            // 
+            resources.ApplyResources(checkBoxAzul, "checkBoxAzul");
+            checkBoxAzul.Name = "checkBoxAzul";
+            checkBoxAzul.UseVisualStyleBackColor = true;
+            // 
+            // buttonAplicarFiltro
+            // 
+            resources.ApplyResources(buttonAplicarFiltro, "buttonAplicarFiltro");
+            buttonAplicarFiltro.Name = "buttonAplicarFiltro";
+            buttonAplicarFiltro.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPreto
+            // 
+            resources.ApplyResources(checkBoxPreto, "checkBoxPreto");
+            checkBoxPreto.Name = "checkBoxPreto";
+            checkBoxPreto.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxFormatoPauper
+            // 
+            resources.ApplyResources(checkBoxFormatoPauper, "checkBoxFormatoPauper");
+            checkBoxFormatoPauper.Name = "checkBoxFormatoPauper";
+            checkBoxFormatoPauper.UseVisualStyleBackColor = true;
+            // 
+            // labelPrecoMin
+            // 
+            resources.ApplyResources(labelPrecoMin, "labelPrecoMin");
+            labelPrecoMin.FlatStyle = FlatStyle.System;
+            labelPrecoMin.Name = "labelPrecoMin";
+            // 
+            // checkBoxVerde
+            // 
+            resources.ApplyResources(checkBoxVerde, "checkBoxVerde");
+            checkBoxVerde.Name = "checkBoxVerde";
+            checkBoxVerde.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxFormatoStandard
+            // 
+            resources.ApplyResources(checkBoxFormatoStandard, "checkBoxFormatoStandard");
+            checkBoxFormatoStandard.Name = "checkBoxFormatoStandard";
+            checkBoxFormatoStandard.UseVisualStyleBackColor = true;
+            // 
+            // labelPrecoBaralho
+            // 
+            resources.ApplyResources(labelPrecoBaralho, "labelPrecoBaralho");
+            labelPrecoBaralho.FlatStyle = FlatStyle.System;
+            labelPrecoBaralho.Name = "labelPrecoBaralho";
+            // 
+            // checkBoxFormatoCommander
+            // 
+            resources.ApplyResources(checkBoxFormatoCommander, "checkBoxFormatoCommander");
+            checkBoxFormatoCommander.Name = "checkBoxFormatoCommander";
+            checkBoxFormatoCommander.UseVisualStyleBackColor = true;
+            // 
+            // labelCor
+            // 
+            resources.ApplyResources(labelCor, "labelCor");
+            labelCor.FlatStyle = FlatStyle.System;
+            labelCor.Name = "labelCor";
+            // 
+            // checkBoxIncolor
+            // 
+            resources.ApplyResources(checkBoxIncolor, "checkBoxIncolor");
+            checkBoxIncolor.Name = "checkBoxIncolor";
+            checkBoxIncolor.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDownMin
+            // 
+            resources.ApplyResources(numericUpDownMin, "numericUpDownMin");
+            numericUpDownMin.Cursor = Cursors.Hand;
+            numericUpDownMin.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+            numericUpDownMin.Name = "numericUpDownMin";
+            // 
+            // checkBoxVermelho
+            // 
+            resources.ApplyResources(checkBoxVermelho, "checkBoxVermelho");
+            checkBoxVermelho.Name = "checkBoxVermelho";
+            checkBoxVermelho.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            resources.ApplyResources(panel3, "panel3");
+            panel3.Controls.Add(textBoxFiltrarNome);
+            panel3.Controls.Add(labelFiltroNome);
+            panel3.Controls.Add(dataGridViewBaralhoDoJogador);
+            panel3.Name = "panel3";
             // 
             // FormsJogador
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(textBoxFiltrarNome);
-            Controls.Add(labelFiltroNome);
-            Controls.Add(groupFiltrar);
-            Controls.Add(dataGridViewBaralhoDoJogador);
+            Controls.Add(panel3);
             Controls.Add(panel1);
+            Controls.Add(panel2);
             Name = "FormsJogador";
             WindowState = FormWindowState.Maximized;
             Load += FormJogador_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewBaralhoDoJogador).EndInit();
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
-            groupFiltrar.ResumeLayout(false);
-            groupFiltrar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDownMax).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownMax).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownMin).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -354,26 +380,30 @@
         private Label labelUsuarioJogador;
         private Label labelQuantidadeDeBaralhosJogador;
         private Label labelPrecoCartasTotalJogador;
-        private GroupBox groupFiltrar;
-        private CheckBox checkBoxVerde;
-        private CheckBox checkBoxPreto;
-        private CheckBox checkBoxBranco;
-        private CheckBox checkBoxAzul;
-        private CheckBox checkBoxFormatoPauper;
-        private CheckBox checkBoxFormatoStandard;
-        private CheckBox checkBoxFormatoCommander;
-        private Label labelFormatoDeJogo;
-        private Label labelCor;
-        private CheckBox checkBoxIncolor;
-        private CheckBox checkBoxVermelho;
-        private Label labelPrecoBaralho;
-        private Label labelPrecoMin;
-        private Button buttonAplicarFiltro;
-        private NumericUpDown numericUpDown1;
-        private Label labelPrecoMax;
-        private NumericUpDown numericUpDownMax;
         private Label labelFiltroNome;
         private TextBox textBoxFiltrarNome;
         private Panel panel1;
+        private Panel panel2;
+        private NumericUpDown numericUpDownMax;
+        private Label labelFormatoDeJogo;
+        private Label labelPrecoMax;
+        private CheckBox checkBoxBranco;
+        private CheckBox checkBoxAzul;
+        private Button buttonAplicarFiltro;
+        private CheckBox checkBoxPreto;
+        private CheckBox checkBoxFormatoPauper;
+        private Label labelPrecoMin;
+        private CheckBox checkBoxVerde;
+        private CheckBox checkBoxFormatoStandard;
+        private Label labelPrecoBaralho;
+        private CheckBox checkBoxFormatoCommander;
+        private Label labelCor;
+        private CheckBox checkBoxIncolor;
+        private NumericUpDown numericUpDownMin;
+        private CheckBox checkBoxVermelho;
+        private Label labelFiltros;
+        private Panel panel3;
+        private Button buttonNovoBaralho;
+        private Button buttonEditarPerfil;
     }
 }

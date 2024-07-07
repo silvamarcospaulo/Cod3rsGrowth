@@ -8,6 +8,7 @@ using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -19,6 +20,10 @@ namespace Cod3rsGrowth.Forms
         private JwtServico tokenServico;
         private ConexaoDados conexaoDados;
         private LoginController loginController;
+        private Jogador jogador;
+        private Thread threadFormsJogador;
+        private Thread threadFormsCadastro;
+        private Thread threadFormsEsqueciSenha;
 
         public FormsJogadorEntrar(CartaServico _cartaServico, BaralhoServico _baralhoServico,
             JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
@@ -46,9 +51,12 @@ namespace Cod3rsGrowth.Forms
                     SenhaHashJogador = textBoxSenha.Text
                 };
 
-                var jogadorAutenticado = jogadorServico.AutenticaLogin(jogadorAutenticar);
+                jogador = jogadorServico.AutenticaLogin(jogadorAutenticar);
 
-                AoClicarCarregarJogadorEmNovaJanela(jogadorAutenticado);
+                this.Close();
+                threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
+                threadFormsJogador.SetApartmentState(ApartmentState.STA);
+                threadFormsJogador.Start();
             }
             catch (Exception ex)
             {
@@ -56,32 +64,35 @@ namespace Cod3rsGrowth.Forms
             }
         }
 
-        private void AoClicarCarregarJogadorEmNovaJanela(Jogador jogador)
+        private void AoClicarCarregarJogadorEmNovaJanela(object obj)
         {
-            this.Hide();
-            new FormsJogador(cartaServico, baralhoServico, jogadorServico, conexaoDados, jogador).Show();
+            Application.Run(new FormsJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
 
         private void linkLabelCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            new FormsJogadorCadastro(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
+            this.Close();
+            threadFormsCadastro = new Thread(AoClicarAbrirTelaDeCadastroEmNovaJanela);
+            threadFormsCadastro.SetApartmentState(ApartmentState.STA);
+            threadFormsCadastro.Start();
         }
 
-        private void textBoxNome_TextChanged(object sender, EventArgs e)
+        private void AoClicarAbrirTelaDeCadastroEmNovaJanela(object obj)
         {
-
+            Application.Run(new FormsJogadorCadastro(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
 
         private void linkLabelEsqueciSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            new FormsEsqueciSenha(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController).Show();
+            this.Close();
+            threadFormsEsqueciSenha = new Thread(AoClicarAbrirTelaDeEsqueciSenhaEmNovaJanela);
+            threadFormsEsqueciSenha.SetApartmentState(ApartmentState.STA);
+            threadFormsEsqueciSenha.Start();
         }
 
-        private void labelMtgDeckBuilder_Click(object sender, EventArgs e)
+        private void AoClicarAbrirTelaDeEsqueciSenhaEmNovaJanela(object obj)
         {
-
+            Application.Run(new FormsEsqueciSenha(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
     }
 }

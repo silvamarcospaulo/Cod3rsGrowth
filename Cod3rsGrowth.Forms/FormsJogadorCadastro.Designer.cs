@@ -94,7 +94,6 @@
             labelDataDeNascimento.TabIndex = 0;
             labelDataDeNascimento.Text = "Data de Nascimento:";
             labelDataDeNascimento.TextAlign = ContentAlignment.MiddleLeft;
-            labelDataDeNascimento.Click += labelDataDeNascimento_Click;
             // 
             // textBoxUsuario
             // 
@@ -135,7 +134,6 @@
             dateTimePickerDataDeNascimento.Name = "dateTimePickerDataDeNascimento";
             dateTimePickerDataDeNascimento.Size = new Size(351, 23);
             dateTimePickerDataDeNascimento.TabIndex = 4;
-            dateTimePickerDataDeNascimento.ValueChanged += dateTimePickerDataDeNascimento_ValueChanged;
             // 
             // buttonCadastrar
             // 
@@ -249,6 +247,8 @@
             Controls.Add(labelNome);
             Controls.Add(labelSobrenome);
             Controls.Add(labelDataDeNascimento);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormsJogadorCadastro";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MTG DeckBuilder - Cadastro";
