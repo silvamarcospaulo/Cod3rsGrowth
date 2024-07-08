@@ -59,7 +59,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 _validadorJogador.Validate(jogador, options =>
                 {
                     options.ThrowOnFailures();
-                    options.IncludeRuleSets("CriarAtualizar");
+                    options.IncludeRuleSets("Criar");
                 });
 
                 jogador.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
@@ -80,14 +80,17 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             jogadorAtualizado.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogadorAtualizado.BaralhosJogador);
             jogadorAtualizado.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizado.BaralhosJogador);
             jogadorAtualizado.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogadorAtualizado.BaralhosJogador);
+            jogadorAtualizado.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
+            jogadorAtualizado.SenhaHashConfirmacaoJogador = HashServico.Gerar(jogador.SenhaHashConfirmacaoJogador);
+            jogadorAtualizado.UsuarioJogador = jogador.UsuarioJogador;
+            jogadorAtualizado.UsuarioConfirmacaoJogador = jogador.UsuarioConfirmacaoJogador;
 
             try
             {
                 _validadorJogador.Validate(jogadorAtualizado, options =>
                 {
                     options.ThrowOnFailures();
-                    options.IncludeRuleSets("CriarAtualizar");
-
+                    options.IncludeRuleSets("Atualizar");
                 });
                 _IJogadorRepository.Atualizar(jogadorAtualizado);
             }

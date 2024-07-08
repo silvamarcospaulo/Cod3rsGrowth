@@ -32,8 +32,8 @@
             labelConfirmarNovaSenha = new Label();
             textBoxNovaSenha = new TextBox();
             textBoxConfirmarNovoUsuario = new TextBox();
-            linkLabelJaPossuoConta = new LinkLabel();
-            buttonCadastrar = new Button();
+            linkLabelCancelar = new LinkLabel();
+            buttonEnviarAlteracoes = new Button();
             textBoxNovoUsuario = new TextBox();
             labelNovaSenha = new Label();
             labelNovoUsuario = new Label();
@@ -44,6 +44,10 @@
             labelSobrenome = new Label();
             labelUsuario = new Label();
             labelDataDeNascimento = new Label();
+            labelNomeJogador = new Label();
+            labelSobrenomeJogador = new Label();
+            labelUsuarioJogador = new Label();
+            labelDataDeNascimentoJogador = new Label();
             SuspendLayout();
             // 
             // textBoxConfirmarNovaSenha
@@ -85,30 +89,32 @@
             textBoxConfirmarNovoUsuario.Size = new Size(351, 23);
             textBoxConfirmarNovoUsuario.TabIndex = 17;
             // 
-            // linkLabelJaPossuoConta
+            // linkLabelCancelar
             // 
-            linkLabelJaPossuoConta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            linkLabelJaPossuoConta.AutoSize = true;
-            linkLabelJaPossuoConta.Cursor = Cursors.Hand;
-            linkLabelJaPossuoConta.LinkBehavior = LinkBehavior.NeverUnderline;
-            linkLabelJaPossuoConta.Location = new Point(142, 524);
-            linkLabelJaPossuoConta.Name = "linkLabelJaPossuoConta";
-            linkLabelJaPossuoConta.Size = new Size(91, 15);
-            linkLabelJaPossuoConta.TabIndex = 24;
-            linkLabelJaPossuoConta.TabStop = true;
-            linkLabelJaPossuoConta.Text = "Já possuo conta";
-            linkLabelJaPossuoConta.TextAlign = ContentAlignment.MiddleCenter;
+            linkLabelCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            linkLabelCancelar.AutoSize = true;
+            linkLabelCancelar.Cursor = Cursors.Hand;
+            linkLabelCancelar.LinkBehavior = LinkBehavior.NeverUnderline;
+            linkLabelCancelar.Location = new Point(161, 524);
+            linkLabelCancelar.Name = "linkLabelCancelar";
+            linkLabelCancelar.Size = new Size(53, 15);
+            linkLabelCancelar.TabIndex = 24;
+            linkLabelCancelar.TabStop = true;
+            linkLabelCancelar.Text = "Cancelar";
+            linkLabelCancelar.TextAlign = ContentAlignment.MiddleCenter;
+            linkLabelCancelar.LinkClicked += linkLabelCancelar_LinkClicked;
             // 
-            // buttonCadastrar
+            // buttonEnviarAlteracoes
             // 
-            buttonCadastrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonCadastrar.Cursor = Cursors.Hand;
-            buttonCadastrar.Location = new Point(12, 479);
-            buttonCadastrar.Name = "buttonCadastrar";
-            buttonCadastrar.Size = new Size(351, 36);
-            buttonCadastrar.TabIndex = 22;
-            buttonCadastrar.Text = "Cadastrar";
-            buttonCadastrar.UseVisualStyleBackColor = true;
+            buttonEnviarAlteracoes.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonEnviarAlteracoes.Cursor = Cursors.Hand;
+            buttonEnviarAlteracoes.Location = new Point(12, 479);
+            buttonEnviarAlteracoes.Name = "buttonEnviarAlteracoes";
+            buttonEnviarAlteracoes.Size = new Size(351, 36);
+            buttonEnviarAlteracoes.TabIndex = 22;
+            buttonEnviarAlteracoes.Text = "Enviar alterações";
+            buttonEnviarAlteracoes.UseVisualStyleBackColor = true;
+            buttonEnviarAlteracoes.Click += buttonEnviarAlteracoes_Click;
             // 
             // textBoxNovoUsuario
             // 
@@ -142,7 +148,6 @@
             labelNovoUsuario.Size = new Size(107, 21);
             labelNovoUsuario.TabIndex = 13;
             labelNovoUsuario.Text = "Novo usuário:";
-            labelNovoUsuario.Click += labelNovoUsuario_Click;
             // 
             // labelConfirmarNovoUsuario
             // 
@@ -199,7 +204,7 @@
             labelSobrenome.AutoSize = true;
             labelSobrenome.FlatStyle = FlatStyle.System;
             labelSobrenome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSobrenome.Location = new Point(12, 105);
+            labelSobrenome.Location = new Point(12, 106);
             labelSobrenome.Name = "labelSobrenome";
             labelSobrenome.Size = new Size(94, 21);
             labelSobrenome.TabIndex = 30;
@@ -211,7 +216,7 @@
             labelUsuario.AutoSize = true;
             labelUsuario.FlatStyle = FlatStyle.System;
             labelUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelUsuario.Location = new Point(12, 142);
+            labelUsuario.Location = new Point(12, 140);
             labelUsuario.Name = "labelUsuario";
             labelUsuario.Size = new Size(67, 21);
             labelUsuario.TabIndex = 31;
@@ -223,17 +228,73 @@
             labelDataDeNascimento.AutoSize = true;
             labelDataDeNascimento.FlatStyle = FlatStyle.System;
             labelDataDeNascimento.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelDataDeNascimento.Location = new Point(12, 175);
+            labelDataDeNascimento.Location = new Point(12, 174);
             labelDataDeNascimento.Name = "labelDataDeNascimento";
             labelDataDeNascimento.Size = new Size(153, 21);
             labelDataDeNascimento.TabIndex = 32;
             labelDataDeNascimento.Text = "Data de Nascimento:";
+            // 
+            // labelNomeJogador
+            // 
+            labelNomeJogador.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelNomeJogador.AutoSize = true;
+            labelNomeJogador.FlatStyle = FlatStyle.System;
+            labelNomeJogador.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelNomeJogador.ForeColor = SystemColors.ControlDarkDark;
+            labelNomeJogador.Location = new Point(74, 72);
+            labelNomeJogador.Name = "labelNomeJogador";
+            labelNomeJogador.Size = new Size(43, 21);
+            labelNomeJogador.TabIndex = 33;
+            labelNomeJogador.Text = "label";
+            // 
+            // labelSobrenomeJogador
+            // 
+            labelSobrenomeJogador.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelSobrenomeJogador.AutoSize = true;
+            labelSobrenomeJogador.FlatStyle = FlatStyle.System;
+            labelSobrenomeJogador.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelSobrenomeJogador.ForeColor = SystemColors.ControlDarkDark;
+            labelSobrenomeJogador.Location = new Point(112, 106);
+            labelSobrenomeJogador.Name = "labelSobrenomeJogador";
+            labelSobrenomeJogador.Size = new Size(43, 21);
+            labelSobrenomeJogador.TabIndex = 34;
+            labelSobrenomeJogador.Text = "label";
+            // 
+            // labelUsuarioJogador
+            // 
+            labelUsuarioJogador.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelUsuarioJogador.AutoSize = true;
+            labelUsuarioJogador.FlatStyle = FlatStyle.System;
+            labelUsuarioJogador.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelUsuarioJogador.ForeColor = SystemColors.ControlDarkDark;
+            labelUsuarioJogador.Location = new Point(85, 140);
+            labelUsuarioJogador.Name = "labelUsuarioJogador";
+            labelUsuarioJogador.Size = new Size(43, 21);
+            labelUsuarioJogador.TabIndex = 35;
+            labelUsuarioJogador.Text = "label";
+            // 
+            // labelDataDeNascimentoJogador
+            // 
+            labelDataDeNascimentoJogador.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelDataDeNascimentoJogador.AutoSize = true;
+            labelDataDeNascimentoJogador.FlatStyle = FlatStyle.System;
+            labelDataDeNascimentoJogador.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDataDeNascimentoJogador.ForeColor = SystemColors.ControlDarkDark;
+            labelDataDeNascimentoJogador.Location = new Point(171, 174);
+            labelDataDeNascimentoJogador.Name = "labelDataDeNascimentoJogador";
+            labelDataDeNascimentoJogador.Size = new Size(43, 21);
+            labelDataDeNascimentoJogador.TabIndex = 36;
+            labelDataDeNascimentoJogador.Text = "label";
             // 
             // FormsEditarPerfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(375, 552);
+            Controls.Add(labelDataDeNascimentoJogador);
+            Controls.Add(labelUsuarioJogador);
+            Controls.Add(labelSobrenomeJogador);
+            Controls.Add(labelNomeJogador);
             Controls.Add(labelDataDeNascimento);
             Controls.Add(labelUsuario);
             Controls.Add(labelSobrenome);
@@ -244,8 +305,8 @@
             Controls.Add(labelConfirmarNovaSenha);
             Controls.Add(textBoxNovaSenha);
             Controls.Add(textBoxConfirmarNovoUsuario);
-            Controls.Add(linkLabelJaPossuoConta);
-            Controls.Add(buttonCadastrar);
+            Controls.Add(linkLabelCancelar);
+            Controls.Add(buttonEnviarAlteracoes);
             Controls.Add(textBoxNovoUsuario);
             Controls.Add(labelNovaSenha);
             Controls.Add(labelNovoUsuario);
@@ -267,8 +328,8 @@
         private TextBox textBoxNovaSenha;
         private Label labelCadastro;
         private TextBox textBoxConfirmarNovoUsuario;
-        private LinkLabel linkLabelJaPossuoConta;
-        private Button buttonCadastrar;
+        private LinkLabel linkLabelCancelar;
+        private Button buttonEnviarAlteracoes;
         private TextBox textBoxNovoUsuario;
         private Label labelNovaSenha;
         private Label labelNovoUsuario;
@@ -279,5 +340,9 @@
         private Label labelSobrenome;
         private Label labelUsuario;
         private Label labelDataDeNascimento;
+        private Label labelNomeJogador;
+        private Label labelSobrenomeJogador;
+        private Label labelUsuarioJogador;
+        private Label labelDataDeNascimentoJogador;
     }
 }

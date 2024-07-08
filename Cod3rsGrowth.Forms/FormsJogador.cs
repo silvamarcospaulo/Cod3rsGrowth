@@ -63,7 +63,15 @@ namespace Cod3rsGrowth.Forms
 
         private void buttonEditarPerfil_Click(object sender, EventArgs e)
         {
+            this.Close();
+            threadFormsEditarPerfil = new Thread(AoClicarCarregarEditarPerfilEmNovaJanela);
+            threadFormsEditarPerfil.SetApartmentState(ApartmentState.STA);
+            threadFormsEditarPerfil.Start();
+        }
 
+        private void AoClicarCarregarEditarPerfilEmNovaJanela(object obj)
+        {
+            Application.Run(new FormsEditarPerfil(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
     }
 }

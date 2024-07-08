@@ -30,5 +30,6 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public bool ContaAtivaJogador { get; set; }
         public List<Baralho>? BaralhosJogador { get; set; }
         public string? SenhaHashConfirmacaoJogador { get; set; }
+        public string? UsuarioConfirmacaoJogador { get; set; }
     }
 }

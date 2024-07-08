@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             int valorAnoDeNascimentoMinimo = Convert.ToInt32(valorDataHoje.Year) - valorMinimoDeIdadeParaCriarConta;
             DateTime valorDataNascimentoMinima = new DateTime(valorAnoDeNascimentoMinimo, valorDataHoje.Month, valorDataHoje.Day);
 
-            RuleSet("CriarAtualizar", () => {
+            RuleSet("Criar", () => {
                 RuleFor(jogador => jogador.NomeJogador)
                 .NotNull().WithMessage("Campo NOME é obrigatório.")
                 .NotEmpty().WithMessage("Campo NOME é obrigatório.");
@@ -46,6 +46,32 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     "Ao menos um número [0123456789];\n" +
                     "Não deve conter caracteres especiais;\n" +
                     "Conter mais de 8 dígitos.\n");
+
+                RuleFor(jogador => jogador)
+                .Must(ValidacaoSenhaConfirmacaoSenha).WithMessage("A senha e a confirmação devem concidir!");
+            });
+
+            RuleSet("Atualizar", () => {
+
+                RuleFor(jogador => jogador.UsuarioJogador)
+                .NotNull().WithMessage("Campo USUÁRIO é obrigatório.")
+                .NotEmpty().WithMessage("Campo USUÁRIO é obrigatório.")
+                .Must(ValidacaoJogadorUsuario).WithMessage("O Nome deve conter:\n" +
+                    "Somente letras minúsculas [a-z];\n" +
+                    "Conter mais de 8 dígitos.");
+
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                .NotNull().WithMessage("Campo SENHA é obrigatório.")
+                .NotEmpty().WithMessage("Campo SENHA é obrigatório.")
+                .Must(ValidacaoJogadorSenha).WithMessage("A Senha deve conter:" +
+                    "Ao menos uma letra maiúscula [A-Z];\n" +
+                    "Ao menos uma letra minúscula [a-z];\n" +
+                    "Ao menos um número [0123456789];\n" +
+                    "Não deve conter caracteres especiais;\n" +
+                    "Conter mais de 8 dígitos.\n");
+
+                RuleFor(jogador => jogador)
+                .Must(ValidacaoUsuarioConfirmacaoUsuario).WithMessage("O usuário e a confirmação devem concidir!");
 
                 RuleFor(jogador => jogador)
                 .Must(ValidacaoSenhaConfirmacaoSenha).WithMessage("A senha e a confirmação devem concidir!");
@@ -89,8 +115,12 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         private static bool ValidacaoSenhaConfirmacaoSenha(Jogador jogador)
         {
-            var senha = jogador.SenhaHashJogador == jogador.SenhaHashConfirmacaoJogador;
-            return senha;
+            return jogador.SenhaHashJogador == jogador.SenhaHashConfirmacaoJogador;
+        }
+
+        private static bool ValidacaoUsuarioConfirmacaoUsuario(Jogador jogador)
+        {
+            return jogador.UsuarioJogador == jogador.UsuarioConfirmacaoJogador;
         }
     }
 }
