@@ -115,12 +115,16 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         private static bool ValidacaoSenhaConfirmacaoSenha(Jogador jogador)
         {
-            return jogador.SenhaHashJogador == jogador.SenhaHashConfirmacaoJogador;
+            if (jogador?.SenhaHashJogador is not null) return jogador.SenhaHashJogador == jogador.SenhaHashConfirmacaoJogador;
+
+            return true;
         }
 
         private static bool ValidacaoUsuarioConfirmacaoUsuario(Jogador jogador)
         {
-            return jogador.UsuarioJogador == jogador.UsuarioConfirmacaoJogador;
+            if(jogador?.UsuarioJogador is not null) return jogador.UsuarioJogador == jogador.UsuarioConfirmacaoJogador;
+
+            return true;
         }
     }
 }

@@ -31,7 +31,6 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormsJogador));
             Nome = new Label();
-            dataGridViewBaralhoDoJogador = new DataGridView();
             baralhoBindingSource = new BindingSource(components);
             labelNome = new Label();
             labelUsername = new Label();
@@ -40,40 +39,56 @@
             labelNomeJogador = new Label();
             buttonSair = new Button();
             labelUsuarioJogador = new Label();
-            labelQuantidadeDeBaralhosJogador = new Label();
-            labelPrecoCartasTotalJogador = new Label();
             labelFiltroNome = new Label();
             textBoxFiltrarNome = new TextBox();
             panel1 = new Panel();
+            labelMonteSeuBaralho = new Label();
+            labelPrecoCartasTotalJogador = new Label();
+            labelQuantidadeDeBaralhosJogador = new Label();
             panel2 = new Panel();
+            labelPrecoBaralho = new Label();
+            labelMax = new Label();
+            buttonLimparFiltro = new Button();
             buttonEditarPerfil = new Button();
-            buttonNovoBaralho = new Button();
             labelFiltros = new Label();
+            buttonAplicarFiltro = new Button();
             numericUpDownMax = new NumericUpDown();
             labelFormatoDeJogo = new Label();
             labelPrecoMax = new Label();
             checkBoxBranco = new CheckBox();
             checkBoxAzul = new CheckBox();
-            buttonAplicarFiltro = new Button();
             checkBoxPreto = new CheckBox();
             checkBoxFormatoPauper = new CheckBox();
+            labelMin = new Label();
             labelPrecoMin = new Label();
             checkBoxVerde = new CheckBox();
             checkBoxFormatoStandard = new CheckBox();
-            labelPrecoBaralho = new Label();
             checkBoxFormatoCommander = new CheckBox();
             labelCor = new Label();
             checkBoxIncolor = new CheckBox();
             numericUpDownMin = new NumericUpDown();
             checkBoxVermelho = new CheckBox();
             panel3 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewBaralhoDoJogador).BeginInit();
+            dataGridViewBaralhos = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            idJogadorDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            baralhoBindingSource1 = new BindingSource(components);
+            buttonNovoBaralho = new Button();
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMax).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMin).BeginInit();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBaralhos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)baralhoBindingSource1).BeginInit();
             SuspendLayout();
             // 
             // Nome
@@ -82,19 +97,6 @@
             Nome.AutoEllipsis = true;
             Nome.FlatStyle = FlatStyle.System;
             Nome.Name = "Nome";
-            // 
-            // dataGridViewBaralhoDoJogador
-            // 
-            resources.ApplyResources(dataGridViewBaralhoDoJogador, "dataGridViewBaralhoDoJogador");
-            dataGridViewBaralhoDoJogador.AllowUserToAddRows = false;
-            dataGridViewBaralhoDoJogador.AllowUserToDeleteRows = false;
-            dataGridViewBaralhoDoJogador.AutoGenerateColumns = false;
-            dataGridViewBaralhoDoJogador.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewBaralhoDoJogador.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewBaralhoDoJogador.DataSource = baralhoBindingSource;
-            dataGridViewBaralhoDoJogador.Name = "dataGridViewBaralhoDoJogador";
-            dataGridViewBaralhoDoJogador.ReadOnly = true;
-            dataGridViewBaralhoDoJogador.RowTemplate.Height = 25;
             // 
             // labelNome
             // 
@@ -142,18 +144,6 @@
             labelUsuarioJogador.FlatStyle = FlatStyle.System;
             labelUsuarioJogador.Name = "labelUsuarioJogador";
             // 
-            // labelQuantidadeDeBaralhosJogador
-            // 
-            resources.ApplyResources(labelQuantidadeDeBaralhosJogador, "labelQuantidadeDeBaralhosJogador");
-            labelQuantidadeDeBaralhosJogador.FlatStyle = FlatStyle.System;
-            labelQuantidadeDeBaralhosJogador.Name = "labelQuantidadeDeBaralhosJogador";
-            // 
-            // labelPrecoCartasTotalJogador
-            // 
-            resources.ApplyResources(labelPrecoCartasTotalJogador, "labelPrecoCartasTotalJogador");
-            labelPrecoCartasTotalJogador.FlatStyle = FlatStyle.System;
-            labelPrecoCartasTotalJogador.Name = "labelPrecoCartasTotalJogador";
-            // 
             // labelFiltroNome
             // 
             resources.ApplyResources(labelFiltroNome, "labelFiltroNome");
@@ -169,42 +159,83 @@
             // panel1
             // 
             resources.ApplyResources(panel1, "panel1");
-            panel1.Controls.Add(labelNome);
-            panel1.Controls.Add(labelUsername);
+            panel1.Controls.Add(labelMonteSeuBaralho);
             panel1.Controls.Add(labelPrecoCartasTotalJogador);
             panel1.Controls.Add(labelQuantidadeDeBaralhosJogador);
-            panel1.Controls.Add(labelPrecoTotalDeCartas);
             panel1.Controls.Add(labelUsuarioJogador);
             panel1.Controls.Add(labelNomeJogador);
+            panel1.Controls.Add(labelNome);
+            panel1.Controls.Add(labelUsername);
+            panel1.Controls.Add(labelPrecoTotalDeCartas);
             panel1.Controls.Add(Nome);
             panel1.Controls.Add(labelQuantidadeDeBaralhos);
             panel1.Name = "panel1";
             // 
+            // labelMonteSeuBaralho
+            // 
+            resources.ApplyResources(labelMonteSeuBaralho, "labelMonteSeuBaralho");
+            labelMonteSeuBaralho.FlatStyle = FlatStyle.System;
+            labelMonteSeuBaralho.ForeColor = SystemColors.ControlDarkDark;
+            labelMonteSeuBaralho.Name = "labelMonteSeuBaralho";
+            // 
+            // labelPrecoCartasTotalJogador
+            // 
+            resources.ApplyResources(labelPrecoCartasTotalJogador, "labelPrecoCartasTotalJogador");
+            labelPrecoCartasTotalJogador.FlatStyle = FlatStyle.System;
+            labelPrecoCartasTotalJogador.Name = "labelPrecoCartasTotalJogador";
+            // 
+            // labelQuantidadeDeBaralhosJogador
+            // 
+            resources.ApplyResources(labelQuantidadeDeBaralhosJogador, "labelQuantidadeDeBaralhosJogador");
+            labelQuantidadeDeBaralhosJogador.FlatStyle = FlatStyle.System;
+            labelQuantidadeDeBaralhosJogador.Name = "labelQuantidadeDeBaralhosJogador";
+            // 
             // panel2
             // 
             resources.ApplyResources(panel2, "panel2");
+            panel2.Controls.Add(labelPrecoBaralho);
+            panel2.Controls.Add(labelMax);
+            panel2.Controls.Add(buttonLimparFiltro);
             panel2.Controls.Add(buttonEditarPerfil);
-            panel2.Controls.Add(buttonNovoBaralho);
             panel2.Controls.Add(labelFiltros);
+            panel2.Controls.Add(buttonAplicarFiltro);
             panel2.Controls.Add(numericUpDownMax);
             panel2.Controls.Add(labelFormatoDeJogo);
             panel2.Controls.Add(labelPrecoMax);
             panel2.Controls.Add(checkBoxBranco);
             panel2.Controls.Add(checkBoxAzul);
             panel2.Controls.Add(buttonSair);
-            panel2.Controls.Add(buttonAplicarFiltro);
             panel2.Controls.Add(checkBoxPreto);
             panel2.Controls.Add(checkBoxFormatoPauper);
+            panel2.Controls.Add(labelMin);
             panel2.Controls.Add(labelPrecoMin);
             panel2.Controls.Add(checkBoxVerde);
             panel2.Controls.Add(checkBoxFormatoStandard);
-            panel2.Controls.Add(labelPrecoBaralho);
             panel2.Controls.Add(checkBoxFormatoCommander);
             panel2.Controls.Add(labelCor);
             panel2.Controls.Add(checkBoxIncolor);
             panel2.Controls.Add(numericUpDownMin);
             panel2.Controls.Add(checkBoxVermelho);
             panel2.Name = "panel2";
+            // 
+            // labelPrecoBaralho
+            // 
+            resources.ApplyResources(labelPrecoBaralho, "labelPrecoBaralho");
+            labelPrecoBaralho.FlatStyle = FlatStyle.System;
+            labelPrecoBaralho.Name = "labelPrecoBaralho";
+            // 
+            // labelMax
+            // 
+            resources.ApplyResources(labelMax, "labelMax");
+            labelMax.FlatStyle = FlatStyle.System;
+            labelMax.Name = "labelMax";
+            // 
+            // buttonLimparFiltro
+            // 
+            resources.ApplyResources(buttonLimparFiltro, "buttonLimparFiltro");
+            buttonLimparFiltro.Name = "buttonLimparFiltro";
+            buttonLimparFiltro.UseVisualStyleBackColor = true;
+            buttonLimparFiltro.Click += buttonLimparFiltro_Click;
             // 
             // buttonEditarPerfil
             // 
@@ -213,17 +244,18 @@
             buttonEditarPerfil.UseVisualStyleBackColor = true;
             buttonEditarPerfil.Click += buttonEditarPerfil_Click;
             // 
-            // buttonNovoBaralho
-            // 
-            resources.ApplyResources(buttonNovoBaralho, "buttonNovoBaralho");
-            buttonNovoBaralho.Name = "buttonNovoBaralho";
-            buttonNovoBaralho.UseVisualStyleBackColor = true;
-            // 
             // labelFiltros
             // 
             resources.ApplyResources(labelFiltros, "labelFiltros");
             labelFiltros.FlatStyle = FlatStyle.System;
             labelFiltros.Name = "labelFiltros";
+            // 
+            // buttonAplicarFiltro
+            // 
+            resources.ApplyResources(buttonAplicarFiltro, "buttonAplicarFiltro");
+            buttonAplicarFiltro.Name = "buttonAplicarFiltro";
+            buttonAplicarFiltro.UseVisualStyleBackColor = true;
+            buttonAplicarFiltro.Click += buttonAplicarFiltro_Click;
             // 
             // numericUpDownMax
             // 
@@ -256,12 +288,6 @@
             checkBoxAzul.Name = "checkBoxAzul";
             checkBoxAzul.UseVisualStyleBackColor = true;
             // 
-            // buttonAplicarFiltro
-            // 
-            resources.ApplyResources(buttonAplicarFiltro, "buttonAplicarFiltro");
-            buttonAplicarFiltro.Name = "buttonAplicarFiltro";
-            buttonAplicarFiltro.UseVisualStyleBackColor = true;
-            // 
             // checkBoxPreto
             // 
             resources.ApplyResources(checkBoxPreto, "checkBoxPreto");
@@ -273,6 +299,12 @@
             resources.ApplyResources(checkBoxFormatoPauper, "checkBoxFormatoPauper");
             checkBoxFormatoPauper.Name = "checkBoxFormatoPauper";
             checkBoxFormatoPauper.UseVisualStyleBackColor = true;
+            // 
+            // labelMin
+            // 
+            resources.ApplyResources(labelMin, "labelMin");
+            labelMin.FlatStyle = FlatStyle.System;
+            labelMin.Name = "labelMin";
             // 
             // labelPrecoMin
             // 
@@ -291,12 +323,6 @@
             resources.ApplyResources(checkBoxFormatoStandard, "checkBoxFormatoStandard");
             checkBoxFormatoStandard.Name = "checkBoxFormatoStandard";
             checkBoxFormatoStandard.UseVisualStyleBackColor = true;
-            // 
-            // labelPrecoBaralho
-            // 
-            resources.ApplyResources(labelPrecoBaralho, "labelPrecoBaralho");
-            labelPrecoBaralho.FlatStyle = FlatStyle.System;
-            labelPrecoBaralho.Name = "labelPrecoBaralho";
             // 
             // checkBoxFormatoCommander
             // 
@@ -332,10 +358,87 @@
             // panel3
             // 
             resources.ApplyResources(panel3, "panel3");
+            panel3.Controls.Add(dataGridViewBaralhos);
+            panel3.Controls.Add(buttonNovoBaralho);
             panel3.Controls.Add(textBoxFiltrarNome);
             panel3.Controls.Add(labelFiltroNome);
-            panel3.Controls.Add(dataGridViewBaralhoDoJogador);
             panel3.Name = "panel3";
+            // 
+            // dataGridViewBaralhos
+            // 
+            resources.ApplyResources(dataGridViewBaralhos, "dataGridViewBaralhos");
+            dataGridViewBaralhos.AutoGenerateColumns = false;
+            dataGridViewBaralhos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewBaralhos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewBaralhos.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, idJogadorDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7 });
+            dataGridViewBaralhos.DataSource = baralhoBindingSource1;
+            dataGridViewBaralhos.Name = "dataGridViewBaralhos";
+            dataGridViewBaralhos.RowTemplate.Height = 25;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            resources.ApplyResources(idDataGridViewTextBoxColumn, "idDataGridViewTextBoxColumn");
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // idJogadorDataGridViewTextBoxColumn
+            // 
+            idJogadorDataGridViewTextBoxColumn.DataPropertyName = "IdJogador";
+            resources.ApplyResources(idJogadorDataGridViewTextBoxColumn, "idJogadorDataGridViewTextBoxColumn");
+            idJogadorDataGridViewTextBoxColumn.Name = "idJogadorDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "NomeBaralho";
+            resources.ApplyResources(dataGridViewTextBoxColumn1, "dataGridViewTextBoxColumn1");
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "DataDeCriacaoBaralho";
+            resources.ApplyResources(dataGridViewTextBoxColumn2, "dataGridViewTextBoxColumn2");
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "FormatoDeJogoBaralho";
+            resources.ApplyResources(dataGridViewTextBoxColumn3, "dataGridViewTextBoxColumn3");
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.DataPropertyName = "QuantidadeDeCartasNoBaralho";
+            resources.ApplyResources(dataGridViewTextBoxColumn4, "dataGridViewTextBoxColumn4");
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.DataPropertyName = "PrecoDoBaralho";
+            resources.ApplyResources(dataGridViewTextBoxColumn5, "dataGridViewTextBoxColumn5");
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.DataPropertyName = "CustoDeManaConvertidoDoBaralho";
+            resources.ApplyResources(dataGridViewTextBoxColumn6, "dataGridViewTextBoxColumn6");
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.DataPropertyName = "CorBaralho";
+            resources.ApplyResources(dataGridViewTextBoxColumn7, "dataGridViewTextBoxColumn7");
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // baralhoBindingSource1
+            // 
+            baralhoBindingSource1.DataSource = typeof(Dominio.Modelos.Baralho);
+            // 
+            // buttonNovoBaralho
+            // 
+            resources.ApplyResources(buttonNovoBaralho, "buttonNovoBaralho");
+            buttonNovoBaralho.Name = "buttonNovoBaralho";
+            buttonNovoBaralho.UseVisualStyleBackColor = true;
+            buttonNovoBaralho.Click += buttonNovoBaralho_Click;
             // 
             // FormsJogador
             // 
@@ -344,10 +447,9 @@
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(panel2);
+            MaximizeBox = false;
             Name = "FormsJogador";
-            WindowState = FormWindowState.Maximized;
             Load += FormJogador_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridViewBaralhoDoJogador).EndInit();
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -357,6 +459,8 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDownMin).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewBaralhos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)baralhoBindingSource1).EndInit();
             ResumeLayout(false);
         }
 
@@ -364,46 +468,53 @@
         private Label Nome;
         private BindingSource baralhoBindingSource;
         private Label labelNome;
-        private DataGridView dataGridViewBaralhoDoJogador;
-        private DataGridViewTextBoxColumn nomeBaralhoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn formatoDeJogoBaralhoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn corBaralhoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn precoDoBaralhoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dataDeCriacaoBaralhoDataGridViewTextBoxColumn;
         private Label labelUsername;
         private Label labelQuantidadeDeBaralhos;
         private Label labelPrecoTotalDeCartas;
         private Label labelNomeJogador;
         private Button buttonSair;
         private Label labelUsuarioJogador;
-        private Label labelQuantidadeDeBaralhosJogador;
-        private Label labelPrecoCartasTotalJogador;
         private Label labelFiltroNome;
         private TextBox textBoxFiltrarNome;
         private Panel panel1;
         private Panel panel2;
-        private NumericUpDown numericUpDownMax;
-        private Label labelFormatoDeJogo;
-        private Label labelPrecoMax;
-        private CheckBox checkBoxBranco;
-        private CheckBox checkBoxAzul;
-        private Button buttonAplicarFiltro;
-        private CheckBox checkBoxPreto;
-        private CheckBox checkBoxFormatoPauper;
-        private Label labelPrecoMin;
-        private CheckBox checkBoxVerde;
-        private CheckBox checkBoxFormatoStandard;
-        private Label labelPrecoBaralho;
-        private CheckBox checkBoxFormatoCommander;
-        private Label labelCor;
-        private CheckBox checkBoxIncolor;
-        private NumericUpDown numericUpDownMin;
-        private CheckBox checkBoxVermelho;
-        private Label labelFiltros;
         private Panel panel3;
-        private Button buttonNovoBaralho;
+        private Label labelPrecoMax;
         private Button buttonEditarPerfil;
+        private Label labelFiltros;
+        private Label labelFormatoDeJogo;
+        private CheckBox checkBoxFormatoCommander;
+        private CheckBox checkBoxFormatoPauper;
+        private CheckBox checkBoxFormatoStandard;
+        private Label labelCor;
+        private CheckBox checkBoxAzul;
+        private CheckBox checkBoxBranco;
+        private CheckBox checkBoxIncolor;
+        private CheckBox checkBoxPreto;
+        private CheckBox checkBoxVerde;
+        private CheckBox checkBoxVermelho;
+        private Label labelPrecoBaralho;
+        private Label labelPrecoMin;
+        private Label labelMin;
+        private Label labelMax;
+        private NumericUpDown numericUpDownMin;
+        private NumericUpDown numericUpDownMax;
+        private Button buttonAplicarFiltro;
+        private Button buttonLimparFiltro;
+        private Label labelPrecoCartasTotalJogador;
+        private Label labelQuantidadeDeBaralhosJogador;
+        private Label labelMonteSeuBaralho;
+        private Button buttonNovoBaralho;
+        private DataGridView dataGridViewBaralhos;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn idJogadorDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private BindingSource baralhoBindingSource1;
     }
 }

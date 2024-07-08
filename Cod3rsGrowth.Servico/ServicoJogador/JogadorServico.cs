@@ -80,10 +80,18 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             jogadorAtualizado.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogadorAtualizado.BaralhosJogador);
             jogadorAtualizado.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizado.BaralhosJogador);
             jogadorAtualizado.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogadorAtualizado.BaralhosJogador);
-            jogadorAtualizado.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
-            jogadorAtualizado.SenhaHashConfirmacaoJogador = HashServico.Gerar(jogador.SenhaHashConfirmacaoJogador);
-            jogadorAtualizado.UsuarioJogador = jogador.UsuarioJogador;
-            jogadorAtualizado.UsuarioConfirmacaoJogador = jogador.UsuarioConfirmacaoJogador;
+
+            if (jogador?.SenhaHashJogador is not null)
+            {
+                jogadorAtualizado.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
+                jogadorAtualizado.SenhaHashConfirmacaoJogador = HashServico.Gerar(jogador.SenhaHashConfirmacaoJogador);
+            }
+
+            if(jogador?.UsuarioJogador is not null)
+            {
+                jogadorAtualizado.UsuarioJogador = jogador.UsuarioJogador;
+                jogadorAtualizado.UsuarioConfirmacaoJogador = jogador.UsuarioConfirmacaoJogador;
+            }
 
             try
             {

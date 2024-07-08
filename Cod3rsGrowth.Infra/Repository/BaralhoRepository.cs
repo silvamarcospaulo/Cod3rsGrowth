@@ -54,12 +54,15 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            //if ((int)filtro?.FormatoDeJogoBaralho > valorMinimo)
-            //{
-            //    query = from q in query
-            //            where q.FormatoDeJogoBaralho == filtro.FormatoDeJogoBaralho
-            //            select q;
-            //}
+            if (filtro?.FormatoDeJogoBaralho?.Count() >= valorMinimo)
+            {
+                foreach (var formatoDeJogo in filtro.FormatoDeJogoBaralho)
+                {
+                    query = from q in query
+                            where q.FormatoDeJogoBaralho == formatoDeJogo
+                            select q;
+                }
+            }
 
             if (filtro?.PrecoDoBaralhoMinimo != null)
             {
@@ -75,11 +78,14 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho?.Count() > valorMinimo)
+            if (filtro?.CorBaralho?.Count() >= valorMinimo)
             {
-                query = from q in query
-                        where q.CorBaralho.Contains(filtro.CorBaralho)
-                        select q;
+                foreach (var cor in filtro.CorBaralho)
+                {
+                    query = from q in query
+                            where q.CorBaralho.Contains(cor)
+                            select q;
+                }
             }
 
             return query.ToList();

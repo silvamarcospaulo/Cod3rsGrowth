@@ -123,41 +123,32 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Nome.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Impact, 75pt, style=Bold</value>
+    <value>Impact, 45pt, style=Bold</value>
   </data>
   <data name="Nome.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 9</value>
   </data>
   <data name="Nome.Size" type="System.Drawing.Size, System.Drawing">
-    <value>761, 122</value>
+    <value>464, 75</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Nome.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="dataGridViewBaralhoDoJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="dataGridViewBaralhoDoJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 57</value>
-  </data>
-  <data name="dataGridViewBaralhoDoJogador.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1721, 861</value>
-  </data>
   <data name="labelNome.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="labelNome.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
+    <value>Segoe UI, 15pt</value>
   </data>
   <data name="labelNome.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelNome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>754, 23</value>
+    <value>483, 14</value>
   </data>
   <data name="labelNome.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 37</value>
+    <value>70, 28</value>
   </data>
   <data name="labelNome.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -175,13 +166,13 @@
     <value>True</value>
   </data>
   <data name="labelUsername.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
+    <value>Segoe UI, 15pt</value>
   </data>
   <data name="labelUsername.Location" type="System.Drawing.Point, System.Drawing">
-    <value>754, 78</value>
+    <value>483, 42</value>
   </data>
   <data name="labelUsername.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 37</value>
+    <value>83, 28</value>
   </data>
   <data name="labelUsername.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -199,13 +190,13 @@
     <value>True</value>
   </data>
   <data name="labelQuantidadeDeBaralhos.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
+    <value>Segoe UI, 15pt</value>
   </data>
   <data name="labelQuantidadeDeBaralhos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1217, 23</value>
+    <value>483, 70</value>
   </data>
   <data name="labelQuantidadeDeBaralhos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 37</value>
+    <value>225, 28</value>
   </data>
   <data name="labelQuantidadeDeBaralhos.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -223,13 +214,13 @@
     <value>True</value>
   </data>
   <data name="labelPrecoTotalDeCartas.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
+    <value>Segoe UI, 15pt</value>
   </data>
   <data name="labelPrecoTotalDeCartas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1217, 78</value>
+    <value>483, 98</value>
   </data>
   <data name="labelPrecoTotalDeCartas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 37</value>
+    <value>206, 28</value>
   </data>
   <data name="labelPrecoTotalDeCartas.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -247,13 +238,13 @@
     <value>True</value>
   </data>
   <data name="labelNomeJogador.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
+    <value>Segoe UI, 15pt</value>
   </data>
   <data name="labelNomeJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>856, 23</value>
+    <value>559, 14</value>
   </data>
   <data name="labelNomeJogador.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 37</value>
+    <value>65, 28</value>
   </data>
   <data name="labelNomeJogador.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -274,10 +265,10 @@
     <value>Segoe UI, 15pt</value>
   </data>
   <data name="buttonSair.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 12</value>
+    <value>6, 9</value>
   </data>
   <data name="buttonSair.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 67</value>
+    <value>179, 40</value>
   </data>
   <data name="buttonSair.TabIndex" type="System.Int32, mscorlib">
     <value>2222</value>
@@ -292,60 +283,18 @@
     <value>True</value>
   </data>
   <data name="labelUsuarioJogador.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
+    <value>Segoe UI, 15pt</value>
   </data>
   <data name="labelUsuarioJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>874, 78</value>
+    <value>559, 42</value>
   </data>
   <data name="labelUsuarioJogador.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 37</value>
+    <value>65, 28</value>
   </data>
   <data name="labelUsuarioJogador.Text" xml:space="preserve">
     <value>label1</value>
   </data>
   <data name="labelUsuarioJogador.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1531, 23</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 37</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.Text" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="labelPrecoCartasTotalJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelPrecoCartasTotalJogador.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelPrecoCartasTotalJogador.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
-  </data>
-  <data name="labelPrecoCartasTotalJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1505, 78</value>
-  </data>
-  <data name="labelPrecoCartasTotalJogador.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 37</value>
-  </data>
-  <data name="labelPrecoCartasTotalJogador.Text" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="labelPrecoCartasTotalJogador.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="labelFiltroNome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -358,7 +307,7 @@
     <value>Segoe UI, 20pt</value>
   </data>
   <data name="labelFiltroNome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 11</value>
+    <value>12, 11</value>
   </data>
   <data name="labelFiltroNome.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 37</value>
@@ -376,16 +325,148 @@
     <value>Segoe UI, 20pt</value>
   </data>
   <data name="textBoxFiltrarNome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 8</value>
+    <value>231, 8</value>
   </data>
   <data name="textBoxFiltrarNome.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1483, 43</value>
+    <value>392, 43</value>
+  </data>
+  <data name="labelMonteSeuBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelMonteSeuBaralho.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelMonteSeuBaralho.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 20pt</value>
+  </data>
+  <data name="labelMonteSeuBaralho.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelMonteSeuBaralho.Size" type="System.Drawing.Size, System.Drawing">
+    <value>248, 37</value>
+  </data>
+  <data name="labelMonteSeuBaralho.Text" xml:space="preserve">
+    <value>Monte seu baralho!</value>
+  </data>
+  <data name="labelMonteSeuBaralho.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 15pt</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>714, 98</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 28</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Text" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 15pt</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>714, 70</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 28</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Text" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1730, 140</value>
+    <value>814, 140</value>
+  </data>
+  <data name="labelPrecoBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="labelPrecoBaralho.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelPrecoBaralho.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt</value>
+  </data>
+  <data name="labelPrecoBaralho.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelPrecoBaralho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 431</value>
+  </data>
+  <data name="labelPrecoBaralho.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 21</value>
+  </data>
+  <data name="labelPrecoBaralho.TabIndex" type="System.Int32, mscorlib">
+    <value>2225</value>
+  </data>
+  <data name="labelPrecoBaralho.Text" xml:space="preserve">
+    <value>Preço do baralho</value>
+  </data>
+  <data name="labelPrecoBaralho.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="labelMax.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="labelMax.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 486</value>
+  </data>
+  <data name="labelMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 15</value>
+  </data>
+  <data name="labelMax.Text" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="buttonLimparFiltro.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="buttonLimparFiltro.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 15pt</value>
+  </data>
+  <data name="buttonLimparFiltro.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 558</value>
+  </data>
+  <data name="buttonLimparFiltro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 40</value>
+  </data>
+  <data name="buttonLimparFiltro.Text" xml:space="preserve">
+    <value>Limpar filtro</value>
   </data>
   <data name="buttonEditarPerfil.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -397,37 +478,16 @@
     <value>Segoe UI, 15pt</value>
   </data>
   <data name="buttonEditarPerfil.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 95</value>
+    <value>6, 51</value>
   </data>
   <data name="buttonEditarPerfil.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 67</value>
+    <value>179, 40</value>
   </data>
   <data name="buttonEditarPerfil.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
   <data name="buttonEditarPerfil.Text" xml:space="preserve">
     <value>Editar perfil</value>
-  </data>
-  <data name="buttonNovoBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="buttonNovoBaralho.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="buttonNovoBaralho.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 15pt</value>
-  </data>
-  <data name="buttonNovoBaralho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 178</value>
-  </data>
-  <data name="buttonNovoBaralho.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 67</value>
-  </data>
-  <data name="buttonNovoBaralho.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="buttonNovoBaralho.Text" xml:space="preserve">
-    <value>Novo baralho</value>
   </data>
   <data name="labelFiltros.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -436,19 +496,40 @@
     <value>True</value>
   </data>
   <data name="labelFiltros.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt</value>
+    <value>Segoe UI, 18pt</value>
   </data>
   <data name="labelFiltros.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 281</value>
+    <value>6, 93</value>
   </data>
   <data name="labelFiltros.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 37</value>
+    <value>78, 32</value>
   </data>
   <data name="labelFiltros.Text" xml:space="preserve">
     <value>Filtros</value>
   </data>
   <data name="labelFiltros.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
+  </data>
+  <data name="buttonAplicarFiltro.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="buttonAplicarFiltro.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonAplicarFiltro.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 15pt</value>
+  </data>
+  <data name="buttonAplicarFiltro.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonAplicarFiltro.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 514</value>
+  </data>
+  <data name="buttonAplicarFiltro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 40</value>
+  </data>
+  <data name="buttonAplicarFiltro.Text" xml:space="preserve">
+    <value>Aplicar filtro</value>
   </data>
   <data name="numericUpDownMax.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -457,7 +538,7 @@
     <value>True</value>
   </data>
   <data name="numericUpDownMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 913</value>
+    <value>40, 482</value>
   </data>
   <data name="numericUpDownMax.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 23</value>
@@ -472,16 +553,16 @@
     <value>True</value>
   </data>
   <data name="labelFormatoDeJogo.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 15pt</value>
+    <value>Segoe UI, 12pt</value>
   </data>
   <data name="labelFormatoDeJogo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelFormatoDeJogo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 337</value>
+    <value>6, 129</value>
   </data>
   <data name="labelFormatoDeJogo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 28</value>
+    <value>127, 21</value>
   </data>
   <data name="labelFormatoDeJogo.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -523,16 +604,16 @@
     <value>System</value>
   </data>
   <data name="checkBoxBranco.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxBranco.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxBranco.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 611</value>
+    <value>21, 291</value>
   </data>
   <data name="checkBoxBranco.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 26</value>
+    <value>76, 24</value>
   </data>
   <data name="checkBoxBranco.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -550,43 +631,22 @@
     <value>System</value>
   </data>
   <data name="checkBoxAzul.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxAzul.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxAzul.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 566</value>
+    <value>21, 263</value>
   </data>
   <data name="checkBoxAzul.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 26</value>
+    <value>60, 24</value>
   </data>
   <data name="checkBoxAzul.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="checkBoxAzul.Text" xml:space="preserve">
     <value>Azul</value>
-  </data>
-  <data name="buttonAplicarFiltro.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="buttonAplicarFiltro.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="buttonAplicarFiltro.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 15pt</value>
-  </data>
-  <data name="buttonAplicarFiltro.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonAplicarFiltro.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 991</value>
-  </data>
-  <data name="buttonAplicarFiltro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 67</value>
-  </data>
-  <data name="buttonAplicarFiltro.Text" xml:space="preserve">
-    <value>Aplicar filtro</value>
   </data>
   <data name="checkBoxPreto.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -598,16 +658,16 @@
     <value>System</value>
   </data>
   <data name="checkBoxPreto.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxPreto.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxPreto.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 656</value>
+    <value>21, 347</value>
   </data>
   <data name="checkBoxPreto.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 26</value>
+    <value>67, 24</value>
   </data>
   <data name="checkBoxPreto.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -625,22 +685,43 @@
     <value>System</value>
   </data>
   <data name="checkBoxFormatoPauper.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxFormatoPauper.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxFormatoPauper.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 474</value>
+    <value>21, 182</value>
   </data>
   <data name="checkBoxFormatoPauper.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 26</value>
+    <value>77, 24</value>
   </data>
   <data name="checkBoxFormatoPauper.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="checkBoxFormatoPauper.Text" xml:space="preserve">
     <value>Pauper</value>
+  </data>
+  <data name="labelMin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="labelMin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelMin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 459</value>
+  </data>
+  <data name="labelMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 15</value>
+  </data>
+  <data name="labelMin.Text" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="labelMin.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="labelPrecoMin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -652,7 +733,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelPrecoMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 883</value>
+    <value>6, 843</value>
   </data>
   <data name="labelPrecoMin.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 15</value>
@@ -673,16 +754,16 @@
     <value>System</value>
   </data>
   <data name="checkBoxVerde.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxVerde.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxVerde.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 701</value>
+    <value>21, 375</value>
   </data>
   <data name="checkBoxVerde.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 26</value>
+    <value>69, 24</value>
   </data>
   <data name="checkBoxVerde.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -700,46 +781,22 @@
     <value>System</value>
   </data>
   <data name="checkBoxFormatoStandard.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxFormatoStandard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxFormatoStandard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 429</value>
+    <value>21, 210</value>
   </data>
   <data name="checkBoxFormatoStandard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 26</value>
+    <value>89, 24</value>
   </data>
   <data name="checkBoxFormatoStandard.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="checkBoxFormatoStandard.Text" xml:space="preserve">
     <value>Standard</value>
-  </data>
-  <data name="labelPrecoBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="labelPrecoBaralho.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelPrecoBaralho.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 15pt</value>
-  </data>
-  <data name="labelPrecoBaralho.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelPrecoBaralho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 836</value>
-  </data>
-  <data name="labelPrecoBaralho.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 28</value>
-  </data>
-  <data name="labelPrecoBaralho.Text" xml:space="preserve">
-    <value>Preço do baralho</value>
-  </data>
-  <data name="labelPrecoBaralho.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
   </data>
   <data name="checkBoxFormatoCommander.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -751,16 +808,16 @@
     <value>System</value>
   </data>
   <data name="checkBoxFormatoCommander.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxFormatoCommander.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxFormatoCommander.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 384</value>
+    <value>21, 154</value>
   </data>
   <data name="checkBoxFormatoCommander.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 26</value>
+    <value>110, 24</value>
   </data>
   <data name="checkBoxFormatoCommander.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -775,16 +832,16 @@
     <value>True</value>
   </data>
   <data name="labelCor.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 15pt</value>
+    <value>Segoe UI, 12pt</value>
   </data>
   <data name="labelCor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelCor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 519</value>
+    <value>6, 238</value>
   </data>
   <data name="labelCor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 28</value>
+    <value>35, 21</value>
   </data>
   <data name="labelCor.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -805,16 +862,16 @@
     <value>System</value>
   </data>
   <data name="checkBoxIncolor.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxIncolor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxIncolor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 791</value>
+    <value>21, 319</value>
   </data>
   <data name="checkBoxIncolor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 26</value>
+    <value>76, 24</value>
   </data>
   <data name="checkBoxIncolor.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -829,7 +886,7 @@
     <value>True</value>
   </data>
   <data name="numericUpDownMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 879</value>
+    <value>40, 455</value>
   </data>
   <data name="numericUpDownMin.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 23</value>
@@ -847,16 +904,16 @@
     <value>System</value>
   </data>
   <data name="checkBoxVermelho.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="checkBoxVermelho.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="checkBoxVermelho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 746</value>
+    <value>21, 403</value>
   </data>
   <data name="checkBoxVermelho.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 26</value>
+    <value>92, 24</value>
   </data>
   <data name="checkBoxVermelho.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -868,10 +925,43 @@
     <value>Right</value>
   </data>
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1730, 0</value>
+    <value>814, 0</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 1061</value>
+    <value>194, 601</value>
+  </data>
+  <data name="idDataGridViewTextBoxColumn.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="idJogadorDataGridViewTextBoxColumn.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="dataGridViewBaralhos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>796, 401</value>
+  </data>
+  <data name="buttonNovoBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="buttonNovoBaralho.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonNovoBaralho.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 15pt</value>
+  </data>
+  <data name="buttonNovoBaralho.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonNovoBaralho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>629, 8</value>
+  </data>
+  <data name="buttonNovoBaralho.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 43</value>
+  </data>
+  <data name="buttonNovoBaralho.TabIndex" type="System.Int32, mscorlib">
+    <value>2223</value>
+  </data>
+  <data name="buttonNovoBaralho.Text" xml:space="preserve">
+    <value>Novo baralho</value>
   </data>
   <data name="panel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -880,10 +970,10 @@
     <value>0, 140</value>
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1730, 921</value>
+    <value>814, 461</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1924, 1061</value>
+    <value>1008, 601</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
