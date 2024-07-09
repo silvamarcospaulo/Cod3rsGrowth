@@ -37,8 +37,10 @@ namespace Cod3rsGrowth.Teste.Repository
         public int Criar(Baralho baralho)
         {
             baralho.Id = GerarIdBaralho();
+            baralho.Id = GerarIdBaralho();
             tabelaBaralho.Add(baralho);
 
+            return baralho.Id;
             return baralho.Id;
         }
 
@@ -56,6 +58,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public Baralho ObterPorId(int idBaralho)
         {
+            return tabelaBaralho.FirstOrDefault(baralho => baralho.Id == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
             return tabelaBaralho.FirstOrDefault(baralho => baralho.Id == idBaralho) ?? throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 

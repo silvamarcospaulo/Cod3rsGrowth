@@ -2,21 +2,20 @@
 
 namespace Cod3rsGrowth.Dominio.Migrador
 {
-    [Migration(20240621105804)]
-    public class _20240621105804_CopiaDeCartas : Migration
+    [Migration(20240621105805)]
+    public class _20240621105805_CorBaralho : Migration
     {
         public override void Up()
         {
-            Create.Table("CopiaDeCartas")
+            Create.Table("CorBaralho")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
                 .WithColumn("Id").AsInt64().NotNullable().ForeignKey("Baralho", "Id")
-                .WithColumn("IdCarta").AsInt64().NotNullable().ForeignKey("Carta", "Id")
-                .WithColumn("Quantidade").AsInt64().NotNullable();
+                .WithColumn("Cor").AsString(255).NotNullable();
         }
 
         public override void Down()
         {
-            Delete.Table("CopiaDeCartas");
+            Delete.Table("CorBaralho");
         }
     }
 }
