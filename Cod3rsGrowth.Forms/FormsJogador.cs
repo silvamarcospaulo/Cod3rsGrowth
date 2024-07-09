@@ -59,27 +59,27 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
 
-        private void buttonEditarPerfil_Click(object sender, EventArgs e)
+        private void AoClicarAbrirTelaDeEdicaoDePerfil(object sender, EventArgs e)
         {
             this.Close();
-            threadFormsEditarPerfil = new Thread(AoClicarCarregarEditarPerfilEmNovaJanela);
+            threadFormsEditarPerfil = new Thread(IniciarFormsEditarPerfil);
             threadFormsEditarPerfil.SetApartmentState(ApartmentState.STA);
             threadFormsEditarPerfil.Start();
         }
 
-        private void AoClicarCarregarEditarPerfilEmNovaJanela(object obj)
+        private void IniciarFormsEditarPerfil(object obj)
         {
             Application.Run(new FormsEditarPerfil(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
 
-        private void buttonAplicarFiltro_Click(object sender, EventArgs e)
+        private void AoClicarAplicarSelecaoDeFiltros(object sender, EventArgs e)
         {
-            const string corAzul = "U";
-            const string corBranco = "W";
-            const string corIncolor = "C";
-            const string corVerde = "G";
-            const string corVermelho = "R";
-            const string corPreto = "B";
+            const string corAzul = "Azul";
+            const string corBranco = "Branco";
+            const string corIncolor = "Incolor";
+            const string corVerde = "Verde";
+            const string corVermelho = "Vermelho";
+            const string corPreto = "Preto";
             const int precoPadrao = 0;
             var dataPadrao = Convert.ToDateTime("01/01/2001");
 
@@ -120,43 +120,30 @@ namespace Cod3rsGrowth.Forms
             dataGridViewBaralhos.DataSource = baralhoServico.ObterTodos(filtro);
         }
 
-        private void buttonLimparFiltro_Click(object sender, EventArgs e)
+        private void AoClicarLimparSelecaoDeFiltros(object sender, EventArgs e)
         {
             const int precoPadrao = 0;
-            var dataPadrao = Convert.ToDateTime("01/01/2001");
 
-            dataGridViewBaralhos.DataSource = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
+            var dataPadrao = Convert.ToDateTime("01/01/2001");
             checkBoxAzul.Checked = false;
             checkBoxBranco.Checked = false;
             checkBoxIncolor.Checked = false;
             checkBoxVerde.Checked = false;
             checkBoxVermelho.Checked = false;
             checkBoxPreto.Checked = false;
-
             checkBoxFormatoCommander.Checked = false;
             checkBoxFormatoStandard.Checked = false;
             checkBoxFormatoPauper.Checked = false;
-
             numericUpDownMin.Value = Convert.ToDecimal(precoPadrao);
             numericUpDownMax.Value = Convert.ToDecimal(precoPadrao);
-
             dateTimePickerDataMinima.Value = dataPadrao;
             dateTimePickerDataMaxima.Value = dataPadrao;
-
             textBoxFiltrarNome.Text = "";
+            
+            dataGridViewBaralhos.DataSource = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
         }
 
-        private void buttonNovoBaralho_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxFiltrarNome_TextChanged(object sender, EventArgs e)
+        private void AoClicarAbrirJanelaDeCriacaoDeBaralho(object sender, EventArgs e)
         {
 
         }

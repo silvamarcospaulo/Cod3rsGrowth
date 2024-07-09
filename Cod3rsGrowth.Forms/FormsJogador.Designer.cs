@@ -120,7 +120,6 @@
             resources.ApplyResources(textBoxFiltrarNome, "textBoxFiltrarNome");
             textBoxFiltrarNome.Cursor = Cursors.Hand;
             textBoxFiltrarNome.Name = "textBoxFiltrarNome";
-            textBoxFiltrarNome.TextChanged += textBoxFiltrarNome_TextChanged;
             // 
             // panel1
             // 
@@ -219,14 +218,14 @@
             resources.ApplyResources(buttonLimparFiltro, "buttonLimparFiltro");
             buttonLimparFiltro.Name = "buttonLimparFiltro";
             buttonLimparFiltro.UseVisualStyleBackColor = true;
-            buttonLimparFiltro.Click += buttonLimparFiltro_Click;
+            buttonLimparFiltro.Click += AoClicarLimparSelecaoDeFiltros;
             // 
             // buttonEditarPerfil
             // 
             resources.ApplyResources(buttonEditarPerfil, "buttonEditarPerfil");
             buttonEditarPerfil.Name = "buttonEditarPerfil";
             buttonEditarPerfil.UseVisualStyleBackColor = true;
-            buttonEditarPerfil.Click += buttonEditarPerfil_Click;
+            buttonEditarPerfil.Click += AoClicarAbrirTelaDeEdicaoDePerfil;
             // 
             // labelFiltros
             // 
@@ -239,7 +238,7 @@
             resources.ApplyResources(buttonAplicarFiltro, "buttonAplicarFiltro");
             buttonAplicarFiltro.Name = "buttonAplicarFiltro";
             buttonAplicarFiltro.UseVisualStyleBackColor = true;
-            buttonAplicarFiltro.Click += buttonAplicarFiltro_Click;
+            buttonAplicarFiltro.Click += AoClicarAplicarSelecaoDeFiltros;
             // 
             // numericUpDownMax
             // 
@@ -409,7 +408,7 @@
             resources.ApplyResources(buttonNovoBaralho, "buttonNovoBaralho");
             buttonNovoBaralho.Name = "buttonNovoBaralho";
             buttonNovoBaralho.UseVisualStyleBackColor = true;
-            buttonNovoBaralho.Click += buttonNovoBaralho_Click;
+            buttonNovoBaralho.Click += AoClicarAbrirJanelaDeCriacaoDeBaralho;
             // 
             // notifyIcon1
             // 

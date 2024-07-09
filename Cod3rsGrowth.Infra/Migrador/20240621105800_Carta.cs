@@ -10,9 +10,9 @@ namespace Cod3rsGrowth.Dominio.Migrador
             Create.Table("Carta")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
                 .WithColumn("Nome").AsString(255).NotNullable()
-                .WithColumn("CustoDeManaConvertido").AsInt64().NotNullable()
+                .WithColumn("CustoDeManaConvertido").AsInt32().NotNullable()
                 .WithColumn("TipoDeCarta").AsString(255).NotNullable()
-                .WithColumn("Raridade").AsString(255).NotNullable()
+                .WithColumn("Raridade").AsInt32().NotNullable()
                 .WithColumn("Preco").AsDecimal().NotNullable()
                 .WithColumn("Cor").AsString(255).NotNullable()
                 .WithColumn("Imagem").AsString(255).Nullable();

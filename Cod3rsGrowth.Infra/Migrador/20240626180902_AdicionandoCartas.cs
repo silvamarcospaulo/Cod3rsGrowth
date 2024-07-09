@@ -1,4 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos.CartasJson;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 using FluentMigrator;
 using Newtonsoft.Json;
 using System;
@@ -46,18 +47,51 @@ namespace Cod3rsGrowth.Dominio.Migrador
                     Nome = card.Name,
                     CustoDeManaConvertido = card?.Cmc ?? valorNulo,
                     TipoDeCarta = card?.type_line ?? string.Empty,
-                    Raridade = card?.Rarity ?? string.Empty,
+                    Raridade = ConversorRaridadeEnum(card?.Rarity ?? string.Empty),
                     Preco = Convert.ToDecimal(card?.Prices?.Usd ?? caractereNulo),
                     Cor = card?.mana_cost ?? custoDeManaNulo,
                     Imagem = card?.Image_uris?.png ?? string.Empty
                 });
             }
         }
-        
 
         public override void Down()
         {
-            throw new NotImplementedException();
+            Delete.FromTable("Carta");
+        }
+
+        private int ConversorRaridadeEnum(string raridade)
+        {
+            const int valorInvalido = 4;
+            switch (raridade)
+            {
+                case "common": return Convert.ToInt32(RaridadeEnum.Common);
+                case "uncommon": return Convert.ToInt32(RaridadeEnum.Uncommon);
+                case "rare": return Convert.ToInt32(RaridadeEnum.Rare);
+                case "mythic": return Convert.ToInt32(RaridadeEnum.Mythic);
+                default: return valorInvalido;
+            };
+        }
+
+        private string ConversorCor(string mana_cost)
+        {
+            var cores = new List<string>();
+            var coresDoMagic = new Dictionary<char, string>
+            {
+                { 'U', "Azul" },
+                { 'W', "Branco" },
+                { 'B', "Preto" },
+                { 'G', "Verde" },
+                { 'R', "Vermelho" },
+            };
+            string incolor = "Incolor";
+
+            foreach (var cor in coresDoMagic)
+            {
+                if (mana_cost.Contains(cor.Key)) cores.Add(cor.Value);
+            }
+
+            return corDaCarta.Count > 0 ? string.Join(", ", colors) : "Incolor";
         }
     }
 }
