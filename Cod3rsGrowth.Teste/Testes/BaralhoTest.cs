@@ -163,7 +163,6 @@ namespace Cod3rsGrowth.Teste.Testes
                 new Baralho()
                 {
                     Id = baralho.Id,
-                    Id = baralho.Id,
                     IdJogador = baralho.IdJogador,
                     NomeBaralho = baralho.NomeBaralho,
                     FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
@@ -259,7 +258,6 @@ namespace Cod3rsGrowth.Teste.Testes
             };
 
             var baralhoMock = servicoBaralho.ObterPorId(baralhoTeste.Id);
-            var baralhoMock = servicoBaralho.ObterPorId(baralhoTeste.Id);
 
             Assert.Equivalent(baralhoTeste, baralhoMock);
         }
@@ -279,7 +277,6 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var baralhoTeste = new Baralho()
             {
-                Id = 3,
                 Id = 3,
                 IdJogador = -1,
                 NomeBaralho = "Mono Green Stomp Pauper",
@@ -315,11 +312,10 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "Campo nome de baralho nï¿½o pode ser vazio";
+            const string mensagemDeErroEsperada = "Campo nome de baralho não pode ser vazio";
 
             var baralhoTeste = new Baralho()
             {
-                Id = 3,
                 Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "",
@@ -355,11 +351,10 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_cartas_do_baralho_vazia_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "O baralho deve possuir uma lista de cartas nï¿½o vazia";
+            const string mensagemDeErroEsperada = "O baralho deve possuir uma lista de cartas não vazia";
 
             var baralhoTeste = new Baralho()
             {
-                Id = 3,
                 Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Pauper",
@@ -381,11 +376,10 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(0)]
         public void ao_Criar_commmander_com_mais_de_uma_copia_de_carta_nao_terreno_deve_retornar_Exception(int quantidadeDeCartasTeste)
         {
-            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho nï¿½o compativel com o formato de jogo selecionado";
+            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
 
             var baralhoTeste = new Baralho()
             {
-                Id = 3,
                 Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Commander",
@@ -423,11 +417,10 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(101)]
         public void ao_Criar_commmander_com_quantidade_de_cartas_no_baralho_diferente_de_cem_cartas_deve_retornar_Exception(int quantidadeDeCartasTeste)
         {
-            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho nï¿½o compativel com o formato de jogo selecionado";
+            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
 
             var baralhoTeste = new Baralho()
             {
-                Id = 3,
                 Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Commander",
@@ -465,11 +458,10 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(FormatoDeJogoEnum.Standard)]
         public void ao_Criar_com_quantidade_de_cartas_nao_compativel_com_o_tipo_de_jogo_pauper_ou_standard_deve_retornar_Exception(FormatoDeJogoEnum formatoDeJogoTeste)
         {
-            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho nï¿½o compativel com o formato de jogo selecionado";
+            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
 
             var baralhoTeste = new Baralho()
             {
-                Id = 3,
                 Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp",
@@ -510,7 +502,6 @@ namespace Cod3rsGrowth.Teste.Testes
             var baralhoTeste = new Baralho()
             {
                 Id = 3,
-                Id = 3,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Pauper",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
@@ -540,7 +531,6 @@ namespace Cod3rsGrowth.Teste.Testes
 
             servicoBaralho.Criar(baralhoTeste);
 
-            Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.Id));
             Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.Id));
         }
 
@@ -582,7 +572,6 @@ namespace Cod3rsGrowth.Teste.Testes
             servicoBaralho.Atualizar(baralhoTeste);
 
             Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.Id));
-            Assert.Equivalent(baralhoTeste, servicoBaralho.ObterPorId(baralhoTeste.Id));
         }
 
         [Theory]
@@ -591,13 +580,12 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(FormatoDeJogoEnum.Commander)]
         public void ao_Atualizar_com_baralho_invalido_deve_retornar_Exception(FormatoDeJogoEnum formatoDeJogoBaralhoTeste)
         {
-            const string mensagemDeErroEsperada = ("Quantidade de cartas do baralho nï¿½o compativel com o formato de jogo selecionado");
+            const string mensagemDeErroEsperada = ("Quantidade de cartas do baralho não compativel com o formato de jogo selecionado");
 
             var dataDeHoje = DateTime.Now;
 
             var baralhoTeste = new Baralho()
             {
-                Id = 1,
                 Id = 1,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp",
@@ -656,7 +644,6 @@ namespace Cod3rsGrowth.Teste.Testes
             var baralhoTeste = new Baralho()
             {
                 Id = idBaralhoTeste,
-                Id = idBaralhoTeste,
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Atualizar(baralhoTeste));
@@ -714,12 +701,9 @@ namespace Cod3rsGrowth.Teste.Testes
             };
 
             var baralhoTesteExistente = servicoBaralho.ObterPorId(baralhoTeste.Id);
-            var baralhoTesteExistente = servicoBaralho.ObterPorId(baralhoTeste.Id);
 
             servicoBaralho.Atualizar(baralhoTeste);
 
-            Assert.Equal(baralhoTesteExistente.Id, servicoBaralho.ObterPorId(baralhoTeste.Id).Id);
-            Assert.Equal(baralhoTesteExistente.IdJogador, servicoBaralho.ObterPorId(baralhoTeste.Id).IdJogador);
             Assert.Equal(baralhoTesteExistente.Id, servicoBaralho.ObterPorId(baralhoTeste.Id).Id);
             Assert.Equal(baralhoTesteExistente.IdJogador, servicoBaralho.ObterPorId(baralhoTeste.Id).IdJogador);
         }
@@ -727,11 +711,10 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Atualizar_com_cartas_do_baralho_vazia_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "O baralho deve possuir uma lista de cartas nï¿½o vazia";
+            const string mensagemDeErroEsperada = "O baralho deve possuir uma lista de cartas não vazia";
 
             var baralhoTeste = new Baralho()
             {
-                Id = 1,
                 Id = 1,
                 IdJogador = 1,
                 NomeBaralho = "Mono Green Stomp Pauper",
@@ -746,11 +729,10 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Atualizar_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "Campo nome de baralho nï¿½o pode ser vazio";
+            const string mensagemDeErroEsperada = "Campo nome de baralho não pode ser vazio";
 
             var baralhoTeste = new Baralho()
             {
-                Id = 1,
                 Id = 1,
                 IdJogador = 1,
                 NomeBaralho = "",
@@ -804,10 +786,8 @@ namespace Cod3rsGrowth.Teste.Testes
             var baralhoTeste = new Baralho()
             {
                 Id = idBaralhoTeste,
-                Id = idBaralhoTeste,
             };
 
-            var resultado = Assert.Throws<Exception>(() => servicoBaralho.Excluir(baralhoTeste.Id));
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Excluir(baralhoTeste.Id));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
