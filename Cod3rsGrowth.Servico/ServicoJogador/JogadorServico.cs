@@ -83,13 +83,13 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             jogadorAtualizar.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogadorAtualizar.BaralhosJogador);
             jogadorAtualizar.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogadorAtualizar.BaralhosJogador);
 
-            if (jogador?.SenhaHashJogador is not null)
+            if (jogador?.SenhaHashConfirmacaoJogador is not null)
             {
                 jogadorAtualizar.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
                 jogadorAtualizar.SenhaHashConfirmacaoJogador = HashServico.Gerar(jogador.SenhaHashConfirmacaoJogador);
             }
 
-            if(jogador?.UsuarioJogador is not null)
+            if(jogador?.UsuarioConfirmacaoJogador is not null)
             {
                 jogadorAtualizar.UsuarioJogador = jogador.UsuarioJogador;
                 jogadorAtualizar.UsuarioConfirmacaoJogador = jogador.UsuarioConfirmacaoJogador;
@@ -167,7 +167,10 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public Jogador AutenticaLogin(Jogador jogador)
         {
             var jogadorExistente = ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador}).First();
-            if (HashServico.Comparar(jogador.SenhaHashJogador, jogadorExistente.SenhaHashJogador)) return Atualizar(new Jogador() { Id = jogadorExistente.Id });
+            if (HashServico.Comparar(jogador.SenhaHashJogador, jogadorExistente.SenhaHashJogador))
+            {
+                return Atualizar(jogadorExistente);
+            }
             else return null;
         }
 
@@ -175,7 +178,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         {
             var jogadores = _IJogadorRepository.ObterTodos(filtro);
 
-            foreach(var jogador in jogadores) jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador?.Id });
+            foreach(var jogador in jogadores) if (jogador.BaralhosJogador?.Count > 0) jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador?.Id });
 
             return jogadores;
         }

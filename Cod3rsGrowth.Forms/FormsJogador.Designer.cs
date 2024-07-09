@@ -32,19 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormsJogador));
             Nome = new Label();
             baralhoBindingSource = new BindingSource(components);
-            labelNome = new Label();
-            labelUsername = new Label();
-            labelQuantidadeDeBaralhos = new Label();
-            labelPrecoTotalDeCartas = new Label();
-            labelNomeJogador = new Label();
+            labelDadosJogador = new Label();
             buttonSair = new Button();
-            labelUsuarioJogador = new Label();
             labelFiltroNome = new Label();
             textBoxFiltrarNome = new TextBox();
             panel1 = new Panel();
             labelMonteSeuBaralho = new Label();
-            labelPrecoCartasTotalJogador = new Label();
-            labelQuantidadeDeBaralhosJogador = new Label();
             panel2 = new Panel();
             dateTimePickerDataMaxima = new DateTimePicker();
             dateTimePickerDataMinima = new DateTimePicker();
@@ -102,38 +95,12 @@
             Nome.FlatStyle = FlatStyle.System;
             Nome.Name = "Nome";
             // 
-            // labelNome
+            // labelDadosJogador
             // 
-            resources.ApplyResources(labelNome, "labelNome");
-            labelNome.FlatStyle = FlatStyle.System;
-            labelNome.Name = "labelNome";
-            // 
-            // labelUsername
-            // 
-            resources.ApplyResources(labelUsername, "labelUsername");
-            labelUsername.FlatStyle = FlatStyle.System;
-            labelUsername.Name = "labelUsername";
-            // 
-            // labelQuantidadeDeBaralhos
-            // 
-            resources.ApplyResources(labelQuantidadeDeBaralhos, "labelQuantidadeDeBaralhos");
-            labelQuantidadeDeBaralhos.FlatStyle = FlatStyle.System;
-            labelQuantidadeDeBaralhos.Name = "labelQuantidadeDeBaralhos";
-            // 
-            // labelPrecoTotalDeCartas
-            // 
-            resources.ApplyResources(labelPrecoTotalDeCartas, "labelPrecoTotalDeCartas");
-            labelPrecoTotalDeCartas.FlatStyle = FlatStyle.System;
-            labelPrecoTotalDeCartas.Name = "labelPrecoTotalDeCartas";
-            // 
-            // labelNomeJogador
-            // 
-            resources.ApplyResources(labelNomeJogador, "labelNomeJogador");
-            labelNomeJogador.FlatStyle = FlatStyle.System;
-            labelNomeJogador.Name = "labelNomeJogador";
-            labelNomeJogador.BindingContextChanged += FormJogador_Load;
-            labelNomeJogador.TextChanged += FormJogador_Load;
-            labelNomeJogador.DataContextChanged += FormJogador_Load;
+            resources.ApplyResources(labelDadosJogador, "labelDadosJogador");
+            labelDadosJogador.FlatStyle = FlatStyle.System;
+            labelDadosJogador.ForeColor = SystemColors.ControlDarkDark;
+            labelDadosJogador.Name = "labelDadosJogador";
             // 
             // buttonSair
             // 
@@ -141,12 +108,6 @@
             buttonSair.Name = "buttonSair";
             buttonSair.UseVisualStyleBackColor = true;
             buttonSair.Click += buttonSair_Click;
-            // 
-            // labelUsuarioJogador
-            // 
-            resources.ApplyResources(labelUsuarioJogador, "labelUsuarioJogador");
-            labelUsuarioJogador.FlatStyle = FlatStyle.System;
-            labelUsuarioJogador.Name = "labelUsuarioJogador";
             // 
             // labelFiltroNome
             // 
@@ -159,20 +120,14 @@
             resources.ApplyResources(textBoxFiltrarNome, "textBoxFiltrarNome");
             textBoxFiltrarNome.Cursor = Cursors.Hand;
             textBoxFiltrarNome.Name = "textBoxFiltrarNome";
+            textBoxFiltrarNome.TextChanged += textBoxFiltrarNome_TextChanged;
             // 
             // panel1
             // 
             resources.ApplyResources(panel1, "panel1");
             panel1.Controls.Add(labelMonteSeuBaralho);
-            panel1.Controls.Add(labelPrecoCartasTotalJogador);
-            panel1.Controls.Add(labelQuantidadeDeBaralhosJogador);
-            panel1.Controls.Add(labelUsuarioJogador);
-            panel1.Controls.Add(labelNomeJogador);
-            panel1.Controls.Add(labelNome);
-            panel1.Controls.Add(labelUsername);
-            panel1.Controls.Add(labelPrecoTotalDeCartas);
+            panel1.Controls.Add(labelDadosJogador);
             panel1.Controls.Add(Nome);
-            panel1.Controls.Add(labelQuantidadeDeBaralhos);
             panel1.Name = "panel1";
             // 
             // labelMonteSeuBaralho
@@ -181,18 +136,6 @@
             labelMonteSeuBaralho.FlatStyle = FlatStyle.System;
             labelMonteSeuBaralho.ForeColor = SystemColors.ControlDarkDark;
             labelMonteSeuBaralho.Name = "labelMonteSeuBaralho";
-            // 
-            // labelPrecoCartasTotalJogador
-            // 
-            resources.ApplyResources(labelPrecoCartasTotalJogador, "labelPrecoCartasTotalJogador");
-            labelPrecoCartasTotalJogador.FlatStyle = FlatStyle.System;
-            labelPrecoCartasTotalJogador.Name = "labelPrecoCartasTotalJogador";
-            // 
-            // labelQuantidadeDeBaralhosJogador
-            // 
-            resources.ApplyResources(labelQuantidadeDeBaralhosJogador, "labelQuantidadeDeBaralhosJogador");
-            labelQuantidadeDeBaralhosJogador.FlatStyle = FlatStyle.System;
-            labelQuantidadeDeBaralhosJogador.Name = "labelQuantidadeDeBaralhosJogador";
             // 
             // panel2
             // 
@@ -499,13 +442,8 @@
         #endregion
         private Label Nome;
         private BindingSource baralhoBindingSource;
-        private Label labelNome;
-        private Label labelUsername;
-        private Label labelQuantidadeDeBaralhos;
-        private Label labelPrecoTotalDeCartas;
-        private Label labelNomeJogador;
+        private Label labelDadosJogador;
         private Button buttonSair;
-        private Label labelUsuarioJogador;
         private Label labelFiltroNome;
         private TextBox textBoxFiltrarNome;
         private Panel panel1;
@@ -533,8 +471,6 @@
         private NumericUpDown numericUpDownMax;
         private Button buttonAplicarFiltro;
         private Button buttonLimparFiltro;
-        private Label labelPrecoCartasTotalJogador;
-        private Label labelQuantidadeDeBaralhosJogador;
         private Label labelMonteSeuBaralho;
         private Button buttonNovoBaralho;
         private DataGridView dataGridViewBaralhos;

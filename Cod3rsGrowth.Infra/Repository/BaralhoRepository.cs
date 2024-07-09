@@ -47,10 +47,17 @@ namespace Cod3rsGrowth.Infra.Repository
             IQueryable<Baralho> query = from q in conexaoDados.TabelaBaralho
                                         select q;
 
-            if (filtro?.IdJogador != null)
+            if (filtro?.IdJogador is not null)
             {
                 query = from q in query
                         where q.IdJogador == filtro.IdJogador
+                        select q;
+            }
+
+            if (filtro?.Nome is not null)
+            {
+                query = from q in query
+                        where q.NomeBaralho.Contains(filtro.Nome)
                         select q;
             }
 
@@ -64,14 +71,14 @@ namespace Cod3rsGrowth.Infra.Repository
                 }
             }
 
-            if (filtro?.PrecoDoBaralhoMinimo != null)
+            if (filtro?.PrecoDoBaralhoMinimo is not null)
             {
                 query = from q in query
                         where q.PrecoDoBaralho >= filtro.PrecoDoBaralhoMinimo
                         select q;
             }
 
-            if (filtro?.PrecoDoBaralhoMaximo != null)
+            if (filtro?.PrecoDoBaralhoMaximo is not null)
             {
                 query = from q in query
                         where q.PrecoDoBaralho <= filtro.PrecoDoBaralhoMaximo

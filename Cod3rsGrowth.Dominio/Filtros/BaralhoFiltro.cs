@@ -10,6 +10,7 @@ namespace Cod3rsGrowth.Dominio.Filtros
 {
     public class BaralhoFiltro
     {
+        public string? Nome { get; set; }
         public int? IdJogador { get; set; }
         public List<FormatoDeJogoEnum>? FormatoDeJogoBaralho { get; set; }
         public decimal? PrecoDoBaralhoMinimo { get; set; }

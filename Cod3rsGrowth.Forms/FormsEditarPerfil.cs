@@ -15,6 +15,7 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Web.Controllers;
+using Microsoft.Extensions.Options;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -60,10 +61,12 @@ namespace Cod3rsGrowth.Forms
 
         private void buttonEnviarAlteracoes_Click(object sender, EventArgs e)
         {
-            jogador.UsuarioJogador = textBoxNovoUsuario.Text;
-            jogador.UsuarioConfirmacaoJogador = textBoxConfirmarNovoUsuario.Text;
-            jogador.SenhaHashJogador = textBoxNovaSenha.Text;
-            jogador.SenhaHashConfirmacaoJogador = textBoxConfirmarNovaSenha.Text;
+            var valorNulo = 0;
+
+            if (textBoxNovoUsuario.Text.Length > valorNulo) jogador.UsuarioJogador = textBoxNovoUsuario.Text;
+            if (textBoxConfirmarNovoUsuario.Text.Length > valorNulo) jogador.UsuarioConfirmacaoJogador = textBoxConfirmarNovoUsuario.Text;
+            if (textBoxNovaSenha.Text.Length > valorNulo) jogador.SenhaHashJogador = textBoxNovaSenha.Text;
+            if (textBoxConfirmarNovaSenha.Text.Length > valorNulo) jogador.SenhaHashConfirmacaoJogador = textBoxConfirmarNovaSenha.Text;
 
             jogadorServico.Atualizar(jogador);
 

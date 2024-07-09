@@ -40,10 +40,8 @@ namespace Cod3rsGrowth.Forms
 
         public void FormJogador_Load(object sender, EventArgs e)
         {
-            labelNomeJogador.Text = jogador.NomeJogador + " " + jogador.SobrenomeJogador;
-            labelUsuarioJogador.Text = jogador.UsuarioJogador;
-            labelQuantidadeDeBaralhosJogador.Text = jogador.QuantidadeDeBaralhosJogador.ToString();
-            labelPrecoCartasTotalJogador.Text = jogador.PrecoDasCartasJogador.ToString();
+            labelDadosJogador.Text = "Nome jogador: " + jogador.NomeJogador + " " + jogador.SobrenomeJogador + "   |   Usuário: " + jogador.UsuarioJogador +
+            "   |   Quantidade de baralho: " + jogador.QuantidadeDeBaralhosJogador.ToString() + "   |   Preco total das cartas: " + jogador.PrecoDasCartasJogador.ToString();
             var listaDeBaralho = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
             dataGridViewBaralhos.DataSource = listaDeBaralho;
         }
@@ -115,6 +113,8 @@ namespace Cod3rsGrowth.Forms
             if (dateTimePickerDataMaxima.Value != dataPadrao) filtro.DataCriacaoMaximo = new DateTime(
                 day: dateTimePickerDataMaxima.Value.Day, month: dateTimePickerDataMaxima.Value.Month, year: dateTimePickerDataMaxima.Value.Year);
 
+            if (textBoxFiltrarNome.Text.Length > 0) filtro.Nome = textBoxFiltrarNome.Text;
+
             filtro.IdJogador = jogador.Id;
 
             dataGridViewBaralhos.DataSource = baralhoServico.ObterTodos(filtro);
@@ -142,6 +142,8 @@ namespace Cod3rsGrowth.Forms
 
             dateTimePickerDataMinima.Value = dataPadrao;
             dateTimePickerDataMaxima.Value = dataPadrao;
+
+            textBoxFiltrarNome.Text = "";
         }
 
         private void buttonNovoBaralho_Click(object sender, EventArgs e)
@@ -151,7 +153,12 @@ namespace Cod3rsGrowth.Forms
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void textBoxFiltrarNome_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
