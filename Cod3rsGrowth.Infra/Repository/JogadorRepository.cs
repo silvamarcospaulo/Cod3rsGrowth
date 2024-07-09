@@ -19,9 +19,10 @@ namespace Cod3rsGrowth.Infra.Repository
             return conexaoDados.InsertWithInt32Identity(jogador);
         }
 
-        public void Atualizar(Jogador jogador)
+        public Jogador Atualizar(Jogador jogador)
         {
             conexaoDados.Update(jogador);
+            return jogador;
         }
 
         public void Excluir(int idJogador)

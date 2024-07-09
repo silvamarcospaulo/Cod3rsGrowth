@@ -78,6 +78,20 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
+            if (filtro?.DataCriacaoMinimo is not null)
+            {
+                query = from q in query
+                        where q.DataDeCriacaoBaralho >= filtro.DataCriacaoMinimo
+                        select q;
+            }
+
+            if (filtro?.DataCriacaoMaximo is not null)
+            {
+                query = from q in query
+                        where q.DataDeCriacaoBaralho <= filtro.DataCriacaoMaximo
+                        select q;
+            }
+
             if (filtro?.CorBaralho?.Count() >= valorMinimo)
             {
                 foreach (var cor in filtro.CorBaralho)
@@ -108,7 +122,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            return conexaoDados.GetTable<CopiaDeCartasNoBaralho>().FirstOrDefault(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho == idCopiaDeCartasNoBaralho) ??
+            return conexaoDados.GetTable<CopiaDeCartasNoBaralho>().FirstOrDefault(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.Id == idCopiaDeCartasNoBaralho) ??
                 throw new Exception($"Registro Nao Encontrado");
         }
 

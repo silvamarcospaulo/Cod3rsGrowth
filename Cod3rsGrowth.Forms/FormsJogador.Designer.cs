@@ -46,6 +46,11 @@
             labelPrecoCartasTotalJogador = new Label();
             labelQuantidadeDeBaralhosJogador = new Label();
             panel2 = new Panel();
+            dateTimePickerDataMaxima = new DateTimePicker();
+            dateTimePickerDataMinima = new DateTimePicker();
+            labelDataDeCriacao = new Label();
+            label2 = new Label();
+            label3 = new Label();
             labelPrecoBaralho = new Label();
             labelMax = new Label();
             buttonLimparFiltro = new Button();
@@ -70,8 +75,6 @@
             checkBoxVermelho = new CheckBox();
             panel3 = new Panel();
             dataGridViewBaralhos = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            idJogadorDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
@@ -81,6 +84,7 @@
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             baralhoBindingSource1 = new BindingSource(components);
             buttonNovoBaralho = new Button();
+            notifyIcon1 = new NotifyIcon(components);
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -193,6 +197,11 @@
             // panel2
             // 
             resources.ApplyResources(panel2, "panel2");
+            panel2.Controls.Add(dateTimePickerDataMaxima);
+            panel2.Controls.Add(dateTimePickerDataMinima);
+            panel2.Controls.Add(labelDataDeCriacao);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(label3);
             panel2.Controls.Add(labelPrecoBaralho);
             panel2.Controls.Add(labelMax);
             panel2.Controls.Add(buttonLimparFiltro);
@@ -217,6 +226,38 @@
             panel2.Controls.Add(numericUpDownMin);
             panel2.Controls.Add(checkBoxVermelho);
             panel2.Name = "panel2";
+            // 
+            // dateTimePickerDataMaxima
+            // 
+            resources.ApplyResources(dateTimePickerDataMaxima, "dateTimePickerDataMaxima");
+            dateTimePickerDataMaxima.Format = DateTimePickerFormat.Short;
+            dateTimePickerDataMaxima.Name = "dateTimePickerDataMaxima";
+            dateTimePickerDataMaxima.Value = new DateTime(2001, 1, 1, 0, 0, 0, 0);
+            // 
+            // dateTimePickerDataMinima
+            // 
+            resources.ApplyResources(dateTimePickerDataMinima, "dateTimePickerDataMinima");
+            dateTimePickerDataMinima.Format = DateTimePickerFormat.Short;
+            dateTimePickerDataMinima.Name = "dateTimePickerDataMinima";
+            dateTimePickerDataMinima.Value = new DateTime(2001, 1, 1, 0, 0, 0, 0);
+            // 
+            // labelDataDeCriacao
+            // 
+            resources.ApplyResources(labelDataDeCriacao, "labelDataDeCriacao");
+            labelDataDeCriacao.FlatStyle = FlatStyle.System;
+            labelDataDeCriacao.Name = "labelDataDeCriacao";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.FlatStyle = FlatStyle.System;
+            label2.Name = "label2";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(label3, "label3");
+            label3.FlatStyle = FlatStyle.System;
+            label3.Name = "label3";
             // 
             // labelPrecoBaralho
             // 
@@ -262,7 +303,6 @@
             resources.ApplyResources(numericUpDownMax, "numericUpDownMax");
             numericUpDownMax.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
             numericUpDownMax.Name = "numericUpDownMax";
-            numericUpDownMax.Value = new decimal(new int[] { 99999999, 0, 0, 0 });
             // 
             // labelFormatoDeJogo
             // 
@@ -370,22 +410,10 @@
             dataGridViewBaralhos.AutoGenerateColumns = false;
             dataGridViewBaralhos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewBaralhos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewBaralhos.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, idJogadorDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7 });
+            dataGridViewBaralhos.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7 });
             dataGridViewBaralhos.DataSource = baralhoBindingSource1;
             dataGridViewBaralhos.Name = "dataGridViewBaralhos";
             dataGridViewBaralhos.RowTemplate.Height = 25;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            resources.ApplyResources(idDataGridViewTextBoxColumn, "idDataGridViewTextBoxColumn");
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // idJogadorDataGridViewTextBoxColumn
-            // 
-            idJogadorDataGridViewTextBoxColumn.DataPropertyName = "IdJogador";
-            resources.ApplyResources(idJogadorDataGridViewTextBoxColumn, "idJogadorDataGridViewTextBoxColumn");
-            idJogadorDataGridViewTextBoxColumn.Name = "idJogadorDataGridViewTextBoxColumn";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -439,6 +467,10 @@
             buttonNovoBaralho.Name = "buttonNovoBaralho";
             buttonNovoBaralho.UseVisualStyleBackColor = true;
             buttonNovoBaralho.Click += buttonNovoBaralho_Click;
+            // 
+            // notifyIcon1
+            // 
+            resources.ApplyResources(notifyIcon1, "notifyIcon1");
             // 
             // FormsJogador
             // 
@@ -506,8 +538,7 @@
         private Label labelMonteSeuBaralho;
         private Button buttonNovoBaralho;
         private DataGridView dataGridViewBaralhos;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn idJogadorDataGridViewTextBoxColumn;
+        private BindingSource baralhoBindingSource1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -515,6 +546,11 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private BindingSource baralhoBindingSource1;
+        private Label labelDataDeCriacao;
+        private Label label2;
+        private Label label3;
+        private NotifyIcon notifyIcon1;
+        private DateTimePicker dateTimePickerDataMinima;
+        private DateTimePicker dateTimePickerDataMaxima;
     }
 }

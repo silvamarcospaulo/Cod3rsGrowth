@@ -141,7 +141,13 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            return _IBaralhoRepository.ObterTodos(filtro);
+            var baralhos = _IBaralhoRepository.ObterTodos(filtro);
+            foreach (var baralho in baralhos)
+            {
+                baralho.CartasDoBaralho = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id});
+            }
+
+            return baralhos;
         }
 
         public void CriarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
@@ -151,7 +157,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public void AtualizarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            var copiaDeCartasNoBaralhoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho);
+            var copiaDeCartasNoBaralhoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.Id);
             copiaDeCartasNoBaralhoAtualizar.QuantidadeCopiasDaCartaNoBaralho = copiaDeCartasNoBaralho.QuantidadeCopiasDaCartaNoBaralho;
             _IBaralhoRepository.AtualizarCopiaDeCartas(copiaDeCartasNoBaralhoAtualizar);
         }
@@ -168,7 +174,14 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
-            return _IBaralhoRepository.ObterTodosCopiaDeCartas(filtro);
+            var copiaDeCartas = _IBaralhoRepository.ObterTodosCopiaDeCartas(filtro);
+            
+            foreach (var copia in copiaDeCartas)
+            {
+                copia.Carta = _cartaServico.ObterPorId(copia.IdCarta);
+            }
+
+            return copiaDeCartas;
         }
     }
 }

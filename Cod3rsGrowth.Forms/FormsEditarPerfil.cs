@@ -53,7 +53,7 @@ namespace Cod3rsGrowth.Forms
         private void linkLabelCancelar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
-            threadFormsJogador = new Thread(AoClicarCarregarJogadorEntrarEmNovaJanela);
+            threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
             threadFormsJogador.SetApartmentState(ApartmentState.STA);
             threadFormsJogador.Start();
         }
@@ -68,14 +68,14 @@ namespace Cod3rsGrowth.Forms
             jogadorServico.Atualizar(jogador);
 
             this.Close();
-            threadFormsJogador = new Thread(AoClicarCarregarJogadorEntrarEmNovaJanela);
+            threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
             threadFormsJogador.SetApartmentState(ApartmentState.STA);
             threadFormsJogador.Start();
         }
 
-        private void AoClicarCarregarJogadorEntrarEmNovaJanela(object obj)
+        private void AoClicarCarregarJogadorEmNovaJanela(object obj)
         {
-            Application.Run(new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormsJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
     }
 }

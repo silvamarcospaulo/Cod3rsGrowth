@@ -61,7 +61,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            const int valorMinimoListaCorCartas = 1;
+            const int valorMinimo = 0;
 
             IQueryable<Baralho> query = from q in tabelaBaralho.AsQueryable()
                 select q;
@@ -73,13 +73,15 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.FormatoDeJogoBaralho != null)
+            if (filtro?.FormatoDeJogoBaralho?.Count() >= valorMinimo)
             {
-                query = from q in query
-                        where q.FormatoDeJogoBaralho == filtro.FormatoDeJogoBaralho
-                        select q;
+                foreach (var formatoDeJogo in filtro.FormatoDeJogoBaralho)
+                {
+                    query = from q in query
+                            where q.FormatoDeJogoBaralho == formatoDeJogo
+                            select q;
+                }
             }
-
 
             if (filtro?.PrecoDoBaralhoMinimo != null)
             {
@@ -95,11 +97,28 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho?.Count() > valorMinimoListaCorCartas)
+            if (filtro?.DataCriacaoMinimo is not null)
             {
                 query = from q in query
-                        where q.CorBaralho.Contains(filtro.CorBaralho)
+                        where q.DataDeCriacaoBaralho >= filtro.DataCriacaoMinimo
                         select q;
+            }
+
+            if (filtro?.DataCriacaoMaximo is not null)
+            {
+                query = from q in query
+                        where q.DataDeCriacaoBaralho <= filtro.DataCriacaoMaximo
+                        select q;
+            }
+
+            if (filtro?.CorBaralho?.Count() >= valorMinimo)
+            {
+                foreach (var cor in filtro.CorBaralho)
+                {
+                    query = from q in query
+                            where q.CorBaralho.Contains(cor)
+                            select q;
+                }
             }
 
             return query.ToList();

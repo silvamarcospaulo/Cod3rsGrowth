@@ -14,6 +14,6 @@ namespace Cod3rsGrowth.Dominio.Modelos.Enums
         [Description("Standard")]
         Standard = 1,
         [Description("Pauper")]
-        Pauper = 3
+        Pauper = 2
     }
 }

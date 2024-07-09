@@ -14,6 +14,8 @@ namespace Cod3rsGrowth.Dominio.Filtros
         public List<FormatoDeJogoEnum>? FormatoDeJogoBaralho { get; set; }
         public decimal? PrecoDoBaralhoMinimo { get; set; }
         public decimal? PrecoDoBaralhoMaximo { get; set; }
+        public DateTime? DataCriacaoMinimo { get; set; }
+        public DateTime? DataCriacaoMaximo { get; set; }
         public List<string>? CorBaralho { get; set; }
     }
 }

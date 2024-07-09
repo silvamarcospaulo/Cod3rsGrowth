@@ -7,6 +7,7 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using Microsoft.Extensions.Options;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -81,8 +82,8 @@ namespace Cod3rsGrowth.Forms
             const string corVerde = "G";
             const string corVermelho = "R";
             const string corPreto = "B";
-            const int tamanhoInvalidoMin = 0;
-            const int tamanhoInvalidoMax = 99999999;
+            const int precoPadrao = 0;
+            var dataPadrao = Convert.ToDateTime("01/01/2001");
 
             var filtro = new BaralhoFiltro();
             var corBaralho = new List<string>();
@@ -92,7 +93,7 @@ namespace Cod3rsGrowth.Forms
             if (checkBoxFormatoPauper.Checked is true) listaFormatoDeJogo.Add(FormatoDeJogoEnum.Pauper);
             if (checkBoxFormatoStandard.Checked is true) listaFormatoDeJogo.Add(FormatoDeJogoEnum.Standard);
 
-            if (listaFormatoDeJogo.Count > tamanhoInvalidoMin) filtro.FormatoDeJogoBaralho = listaFormatoDeJogo;
+            if (listaFormatoDeJogo.Count > precoPadrao) filtro.FormatoDeJogoBaralho = listaFormatoDeJogo;
 
             if (checkBoxAzul.Checked is true) corBaralho.Add(corAzul);
             if (checkBoxBranco.Checked is true) corBaralho.Add(corBranco);
@@ -101,10 +102,18 @@ namespace Cod3rsGrowth.Forms
             if (checkBoxVermelho.Checked is true) corBaralho.Add(corVermelho);
             if (checkBoxPreto.Checked is true) corBaralho.Add(corPreto);
 
-            if (corBaralho.Count > tamanhoInvalidoMin) filtro.CorBaralho = corBaralho;
+            if (corBaralho.Count > precoPadrao) filtro.CorBaralho = corBaralho;
 
-            if (numericUpDownMin.Value > tamanhoInvalidoMin) filtro.PrecoDoBaralhoMinimo = Convert.ToDecimal(numericUpDownMin.Text);
-            if (numericUpDownMax.Value < tamanhoInvalidoMax) filtro.PrecoDoBaralhoMaximo = Convert.ToDecimal(numericUpDownMax.Text);
+            if (numericUpDownMin.Value != precoPadrao) filtro.PrecoDoBaralhoMinimo = Convert.ToDecimal(numericUpDownMin.Text);
+            if (numericUpDownMax.Value != precoPadrao) filtro.PrecoDoBaralhoMaximo = Convert.ToDecimal(numericUpDownMax.Text);
+
+            var datinha = dateTimePickerDataMinima.Value;
+
+            if (dateTimePickerDataMinima.Value != dataPadrao) filtro.DataCriacaoMinimo = new DateTime(
+                day: dateTimePickerDataMinima.Value.Day, month: dateTimePickerDataMinima.Value.Month, year: dateTimePickerDataMinima.Value.Year);
+
+            if (dateTimePickerDataMaxima.Value != dataPadrao) filtro.DataCriacaoMaximo = new DateTime(
+                day: dateTimePickerDataMaxima.Value.Day, month: dateTimePickerDataMaxima.Value.Month, year: dateTimePickerDataMaxima.Value.Year);
 
             filtro.IdJogador = jogador.Id;
 
@@ -113,8 +122,8 @@ namespace Cod3rsGrowth.Forms
 
         private void buttonLimparFiltro_Click(object sender, EventArgs e)
         {
-            const int tamanhoInvalidoMin = 0;
-            const int tamanhoInvalidoMax = 99999999;
+            const int precoPadrao = 0;
+            var dataPadrao = Convert.ToDateTime("01/01/2001");
 
             dataGridViewBaralhos.DataSource = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
             checkBoxAzul.Checked = false;
@@ -128,13 +137,21 @@ namespace Cod3rsGrowth.Forms
             checkBoxFormatoStandard.Checked = false;
             checkBoxFormatoPauper.Checked = false;
 
-            numericUpDownMin.Value = Convert.ToDecimal(tamanhoInvalidoMin);
-            numericUpDownMax.Value = Convert.ToDecimal(tamanhoInvalidoMax);
+            numericUpDownMin.Value = Convert.ToDecimal(precoPadrao);
+            numericUpDownMax.Value = Convert.ToDecimal(precoPadrao);
+
+            dateTimePickerDataMinima.Value = dataPadrao;
+            dateTimePickerDataMaxima.Value = dataPadrao;
         }
 
         private void buttonNovoBaralho_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            
         }
     }
 }
