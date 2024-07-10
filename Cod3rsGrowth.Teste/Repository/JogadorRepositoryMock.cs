@@ -35,10 +35,12 @@ namespace Cod3rsGrowth.Teste.Repository
             return jogador.Id;
         }
 
-        public void Atualizar(Jogador jogador)
+        public Jogador Atualizar(Jogador jogador)
         {
             var jogadorBanco = ObterPorId(jogador.Id);
             jogadorBanco = jogador;
+
+            return jogador;
         }
 
         public void Excluir(int idJogador)

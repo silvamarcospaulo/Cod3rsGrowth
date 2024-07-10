@@ -15,7 +15,7 @@ namespace Cod3rsGrowth.Dominio.Modelos
         [Column("TipoDeCarta")]
         public string TipoDeCarta {  get; set; }
         [Column("Raridade")]
-        public string RaridadeCarta { get; set; }
+        public RaridadeEnum RaridadeCarta { get; set; }
         [Column("Preco")]
         public decimal PrecoCarta { get; set; }
         [Column("Cor")]

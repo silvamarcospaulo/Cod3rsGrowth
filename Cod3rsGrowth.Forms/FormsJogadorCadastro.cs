@@ -71,7 +71,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregarJogadorEmNovaJanela(Object obj)
         {
-            Application.Run(new FormsJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
+            Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
 
         private void linkLabelJaPossuoConta_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

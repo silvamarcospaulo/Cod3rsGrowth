@@ -8,14 +8,16 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth
     {
         public static string Gerar(string senhaUsuarioPura)
         {
+            const int valorInicialContador = 0;
+
             using (HMACSHA256 hmac = new HMACSHA256(Encoding.UTF8.GetBytes(ConfiguracaoChave.Segredo)))
             {
                 var hashBytes =  hmac.ComputeHash(Encoding.UTF8.GetBytes(senhaUsuarioPura));
 
                 StringBuilder senhaHash = new StringBuilder();
-                for (int i = 0; i < hashBytes.Length; i++)
+                for (int contador = valorInicialContador; contador < hashBytes.Length; contador++)
                 {
-                    senhaHash.Append(hashBytes[i].ToString("x2"));
+                    senhaHash.Append(hashBytes[contador].ToString("x2"));
                 }
 
                 return senhaHash.ToString();

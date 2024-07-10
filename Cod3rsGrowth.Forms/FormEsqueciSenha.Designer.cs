@@ -1,6 +1,6 @@
 ﻿namespace Cod3rsGrowth.Forms
 {
-    partial class FormsEsqueciSenha
+    partial class FormEsqueciSenha
     {
         /// <summary>
         /// Required designer variable.
@@ -164,7 +164,7 @@
             linkLabelCancelar.TabIndex = 8;
             linkLabelCancelar.TabStop = true;
             linkLabelCancelar.Text = "Cancelar";
-            linkLabelCancelar.LinkClicked += linkLabelCancelar_LinkClicked;
+            linkLabelCancelar.LinkClicked += AoClicarCancelaRestauracaoDeSenha;
             // 
             // labelEsqueciSenha
             // 
@@ -214,13 +214,14 @@
             buttonAtualizar.Location = new Point(12, 427);
             buttonAtualizar.Name = "buttonAtualizar";
             buttonAtualizar.Size = new Size(351, 36);
-            buttonAtualizar.TabIndex = 11;
+            buttonAtualizar.TabIndex = 7;
             buttonAtualizar.Text = "Redefinir senha";
             buttonAtualizar.UseVisualStyleBackColor = true;
-            buttonAtualizar.Click += buttonAtualizar_Click;
+            buttonAtualizar.Click += AoClicarRestauraSenhaDoJogador;
             // 
-            // FormsEsqueciSenha
+            // FormEsqueciSenha
             // 
+            AcceptButton = buttonAtualizar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(375, 500);
@@ -242,10 +243,9 @@
             Controls.Add(labelDataDeNascimento);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "FormsEsqueciSenha";
+            Name = "FormEsqueciSenha";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MTG DeckBuilder - Esqueci Senha";
-            Load += FormsEsqueciSenha_Load;
             ResumeLayout(false);
             PerformLayout();
         }

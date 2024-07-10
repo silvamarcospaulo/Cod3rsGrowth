@@ -46,7 +46,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Ghalta, Fome Primordial",
                                 CustoDeManaConvertidoCarta = 12,
                                 TipoDeCarta = "Creature",
-                                RaridadeCarta = "Rare",
+                                RaridadeCarta = RaridadeEnum.Rare,
                                 PrecoCarta = 5m,
                                 CorCarta = "{G}"
                             },
@@ -60,7 +60,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Floresta",
                                 CustoDeManaConvertidoCarta = 0,
                                 TipoDeCarta = "Basic Land",
-                                RaridadeCarta = "common",
+                                RaridadeCarta = RaridadeEnum.Common,
                                 PrecoCarta = 0.5m,
                                 CorCarta = ""
                             },
@@ -88,7 +88,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Ilha",
                                 CustoDeManaConvertidoCarta = 0,
                                 TipoDeCarta = "Basic Land",
-                                RaridadeCarta = "commom",
+                                RaridadeCarta = RaridadeEnum.Common,
                                 PrecoCarta = 0.5m,
                                 CorCarta = ""
                             },
@@ -102,7 +102,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Montanha",
                                 CustoDeManaConvertidoCarta = 0,
                                 TipoDeCarta = "Basic Land",
-                                RaridadeCarta = "common",
+                                RaridadeCarta = RaridadeEnum.Common,
                                 PrecoCarta = 0.5m,
                                 CorCarta = ""
                             },
@@ -116,7 +116,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Niv-Mizzet, Parum",
                                 CustoDeManaConvertidoCarta = 6,
                                 TipoDeCarta = "Creature",
-                                RaridadeCarta = "rare",
+                                RaridadeCarta = RaridadeEnum.Rare,
                                 PrecoCarta = 5m,
                                 CorCarta = "{U, R}"
                             },
@@ -144,7 +144,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Floresta",
                                 CustoDeManaConvertidoCarta = 0,
                                 TipoDeCarta = "Basic Land",
-                                RaridadeCarta = "common",
+                                RaridadeCarta = RaridadeEnum.Common,
                                 PrecoCarta = 0.5m,
                                 CorCarta = ""
                             },
@@ -215,7 +215,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Ilha",
                                 CustoDeManaConvertidoCarta = 0,
                                 TipoDeCarta = "Basic Land",
-                                RaridadeCarta = "commom",
+                                RaridadeCarta = RaridadeEnum.Common,
                                 PrecoCarta = 0.5m,
                                 CorCarta = ""
                             },
@@ -229,7 +229,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Montanha",
                                 CustoDeManaConvertidoCarta = 0,
                                 TipoDeCarta = "Basic Land",
-                                RaridadeCarta = "common",
+                                RaridadeCarta = RaridadeEnum.Common,
                                 PrecoCarta = 0.5m,
                                 CorCarta = ""
                             },
@@ -243,7 +243,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Niv-Mizzet, Parum",
                                 CustoDeManaConvertidoCarta = 6,
                                 TipoDeCarta = "Creature",
-                                RaridadeCarta = "rare",
+                                RaridadeCarta = RaridadeEnum.Rare,
                                 PrecoCarta = 5m,
                                 CorCarta = "{U, R}"
                             },
@@ -291,7 +291,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Basic Land",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -330,7 +330,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Basic Land",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -394,7 +394,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Sol Ring",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Artiact",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -435,7 +435,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Basic Land",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -476,7 +476,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Basic Land",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -515,7 +515,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Basic Land",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -555,7 +555,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                 NomeCarta = "Floresta",
                                 CustoDeManaConvertidoCarta = 0,
                                 TipoDeCarta = "Basic Land",
-                                RaridadeCarta = "common",
+                                RaridadeCarta = RaridadeEnum.Common,
                                 PrecoCarta = 0.5m,
                                 CorCarta = ""
                             },
@@ -600,7 +600,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Ghalta, Fome Primordial",
                             CustoDeManaConvertidoCarta = 12,
                             TipoDeCarta = "Creature",
-                            RaridadeCarta = "rare",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(5),
                             CorCarta = "{G}"
                         },
@@ -614,7 +614,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Basic Land",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -672,7 +672,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Basic Land",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -686,7 +686,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Elfos de Llanowar",
                             CustoDeManaConvertidoCarta = 1,
                             TipoDeCarta = "Creature",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = "{G}"
                         },
@@ -747,7 +747,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Ghalta, Fome Primordial",
                             CustoDeManaConvertidoCarta = 12,
                             TipoDeCarta = "Creature",
-                            RaridadeCarta = "rare",
+                            RaridadeCarta = RaridadeEnum.Rare,
                             PrecoCarta = Convert.ToDecimal(5),
                             CorCarta = "{G}"
                         },
@@ -761,7 +761,7 @@ namespace Cod3rsGrowth.Teste.Testes
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
                             TipoDeCarta = "Basic Land",
-                            RaridadeCarta = "common",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
                             CorCarta = ""
                         },
@@ -796,8 +796,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_com_filtro_deve_retornar_lista_filtrada_por_FormatoDeJogo()
         {
-            var listaFiltroFormatoDeJogo = servicoBaralho.ObterTodos(new BaralhoFiltro()
-            { FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander });
+            var listaFiltroFormatoDeJogo = servicoBaralho.ObterTodos(new BaralhoFiltro(){ FormatoDeJogoBaralho = new List<FormatoDeJogoEnum>() { FormatoDeJogoEnum.Commander } });
 
             const FormatoDeJogoEnum formatoDeJogoEsperado = FormatoDeJogoEnum.Commander;
 

@@ -66,7 +66,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregarJogadorEmNovaJanela(object obj)
         {
-            Application.Run(new FormsJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
+            Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
 
         private void linkLabelCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -92,7 +92,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAbrirTelaDeEsqueciSenhaEmNovaJanela(object obj)
         {
-            Application.Run(new FormsEsqueciSenha(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormEsqueciSenha(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
     }
 }

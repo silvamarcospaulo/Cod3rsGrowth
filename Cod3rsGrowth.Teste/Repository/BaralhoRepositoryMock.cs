@@ -29,7 +29,7 @@ namespace Cod3rsGrowth.Teste.Repository
             const int Incremento = 1;
 
             var copiaDeCartasBanco = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro());
-            var ultimoId = copiaDeCartasBanco.Any() ? copiaDeCartasBanco.Max(corBaralho => corBaralho.IdCopiaDeCartasNoBaralho) : ValorInicial - Incremento;
+            var ultimoId = copiaDeCartasBanco.Any() ? copiaDeCartasBanco.Max(copiaDeCarta => copiaDeCarta.Id) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
         }
@@ -126,13 +126,13 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public void CriarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho = GerarIdCopiaDeCartas();
+            copiaDeCartasNoBaralho.Id = GerarIdCopiaDeCartas();
             tabelaCopiaDeCartasNoBaralho.Add(copiaDeCartasNoBaralho);
         }
 
         public void AtualizarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            var copiaDeCartasNoBarahoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho);
+            var copiaDeCartasNoBarahoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.Id);
             copiaDeCartasNoBarahoAtualizar = copiaDeCartasNoBaralho;
         }
 
@@ -144,7 +144,7 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            return tabelaCopiaDeCartasNoBaralho.FirstOrDefault(corBaralho => corBaralho.IdCopiaDeCartasNoBaralho == idCopiaDeCartasNoBaralho) ??
+            return tabelaCopiaDeCartasNoBaralho.FirstOrDefault(corBaralho => corBaralho.Id == idCopiaDeCartasNoBaralho) ??
                 throw new Exception($"Registro nao encontrado");
         }
 

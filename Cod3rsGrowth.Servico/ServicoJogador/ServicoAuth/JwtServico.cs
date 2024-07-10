@@ -20,7 +20,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, jogador.UsuarioJogador),
-                    new Claim(ClaimTypes.Role, jogador.Role)
+                    new Claim(ClaimTypes.Role, jogador.Role),
+                    new Claim(ClaimTypes.Sid, jogador.Id.ToString())
                 }),
                 Expires = DateTime.Now.AddHours(numeroDeHorasParaExpirarToken),
                 SigningCredentials = new SigningCredentials(

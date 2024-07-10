@@ -245,7 +245,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                     NomeCarta = "Ghalta, Fome Primordial",
                                     CustoDeManaConvertidoCarta = 12,
                                     TipoDeCarta = "Creature",
-                                    RaridadeCarta = "rare",
+                                    RaridadeCarta = RaridadeEnum.Rare,
                                     PrecoCarta = Convert.ToDecimal(5),
                                     CorCarta = ""
                                 },
@@ -259,7 +259,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                     NomeCarta = "Floresta",
                                     CustoDeManaConvertidoCarta = 0,
                                     TipoDeCarta = "Basic Land",
-                                    RaridadeCarta = "common",
+                                    RaridadeCarta = RaridadeEnum.Common,
                                     PrecoCarta = Convert.ToDecimal(0.5),
                                     CorCarta = ""
                                 },
@@ -328,7 +328,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                     NomeCarta = "Ghalta, Fome Primordial",
                                     CustoDeManaConvertidoCarta = 12,
                                     TipoDeCarta = "Creature",
-                                    RaridadeCarta = "Rare",
+                                    RaridadeCarta = RaridadeEnum.Rare,
                                     PrecoCarta = Convert.ToDecimal(5),
                                     CorCarta = "{G}"
                                 },
@@ -343,7 +343,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                     NomeCarta = "Floresta",
                                     CustoDeManaConvertidoCarta = 0,
                                     TipoDeCarta = "Basic Land",
-                                    RaridadeCarta = "common",
+                                    RaridadeCarta = RaridadeEnum.Common,
                                     PrecoCarta = Convert.ToDecimal(0.5),
                                     CorCarta = ""
                                 },

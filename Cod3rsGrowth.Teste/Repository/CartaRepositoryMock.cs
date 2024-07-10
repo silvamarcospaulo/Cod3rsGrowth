@@ -71,7 +71,7 @@ namespace Cod3rsGrowth.Teste.Repository
             if (filtro?.RaridadeCarta != null)
             {
                 query = from q in query
-                        where q.RaridadeCarta.Contains(filtro.RaridadeCarta)
+                        where q.RaridadeCarta == filtro.RaridadeCarta
                         select q;
             }
 

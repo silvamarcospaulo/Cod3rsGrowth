@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos.CartasJson;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using FluentMigrator;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -40,17 +41,20 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json));
             }
 
-            foreach (var card in cartas)
+            foreach (var carta in cartas)
             {
+                var coresDaCarta = ConversorCor(carta?.mana_cost ?? custoDeManaNulo);
+                var raridadeCarta = ConversorRaridadeEnum(carta?.Rarity ?? string.Empty);
+
                 Insert.IntoTable("Carta").Row(new
                 {
-                    Nome = card.Name,
-                    CustoDeManaConvertido = card?.Cmc ?? valorNulo,
-                    TipoDeCarta = card?.type_line ?? string.Empty,
-                    Raridade = ConversorRaridadeEnum(card?.Rarity ?? string.Empty),
-                    Preco = Convert.ToDecimal(card?.Prices?.Usd ?? caractereNulo),
-                    Cor = card?.mana_cost ?? custoDeManaNulo,
-                    Imagem = card?.Image_uris?.png ?? string.Empty
+                    Nome = carta.Name,
+                    CustoDeManaConvertido = carta?.Cmc ?? valorNulo,
+                    TipoDeCarta = carta?.type_line ?? string.Empty,
+                    Raridade = raridadeCarta,
+                    Preco = Convert.ToDecimal(carta?.Prices?.Usd ?? caractereNulo),
+                    Cor = coresDaCarta,
+                    Imagem = carta?.Image_uris?.png ?? string.Empty
                 });
             }
         }
@@ -75,7 +79,9 @@ namespace Cod3rsGrowth.Dominio.Migrador
 
         private string ConversorCor(string mana_cost)
         {
-            var cores = new List<string>();
+            const string incolor = "Incolor";
+            string coresDaCarta = null;
+
             var coresDoMagic = new Dictionary<char, string>
             {
                 { 'U', "Azul" },
@@ -84,14 +90,25 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 { 'G', "Verde" },
                 { 'R', "Vermelho" },
             };
-            string incolor = "Incolor";
 
             foreach (var cor in coresDoMagic)
             {
-                if (mana_cost.Contains(cor.Key)) cores.Add(cor.Value);
+                if (mana_cost.Contains(cor.Key))
+                {
+                    if (coresDaCarta is null)
+                    {
+                        coresDaCarta = cor.Value;
+                    }
+                    else
+                    {
+                        coresDaCarta = coresDaCarta + $", {cor.Value}";
+                    }
+                }
             }
 
-            return corDaCarta.Count > 0 ? string.Join(", ", colors) : "Incolor";
+            if (coresDaCarta is null) return incolor;
+
+            return coresDaCarta;
         }
     }
 }

@@ -19,7 +19,7 @@ using Microsoft.Extensions.Options;
 
 namespace Cod3rsGrowth.Forms
 {
-    public partial class FormsEditarPerfil : Form
+    public partial class FormJogadorEditarPerfil : Form
     {
         private Jogador jogador;
         private CartaServico cartaServico;
@@ -30,7 +30,7 @@ namespace Cod3rsGrowth.Forms
         private LoginController loginController;
         private Thread threadFormsJogador;
 
-        public FormsEditarPerfil(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
+        public FormJogadorEditarPerfil(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
             JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController, Jogador _jogador)
         {
             jogador = _jogador;
@@ -51,15 +51,15 @@ namespace Cod3rsGrowth.Forms
             labelDataDeNascimentoJogador.Text = jogador.DataNascimentoJogador.ToShortDateString();
         }
 
-        private void linkLabelCancelar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void AoClicarCancelaEdicaoDePerfil(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
-            threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
+            threadFormsJogador = new Thread(CarregarJanelaJogador);
             threadFormsJogador.SetApartmentState(ApartmentState.STA);
             threadFormsJogador.Start();
         }
 
-        private void buttonEnviarAlteracoes_Click(object sender, EventArgs e)
+        private void AoClicarEnviaAlteracoesDePerfil(object sender, EventArgs e)
         {
             var valorNulo = 0;
 
@@ -71,14 +71,14 @@ namespace Cod3rsGrowth.Forms
             jogadorServico.Atualizar(jogador);
 
             this.Close();
-            threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
+            threadFormsJogador = new Thread(CarregarJanelaJogador);
             threadFormsJogador.SetApartmentState(ApartmentState.STA);
             threadFormsJogador.Start();
         }
 
-        private void AoClicarCarregarJogadorEmNovaJanela(object obj)
+        private void CarregarJanelaJogador(object obj)
         {
-            Application.Run(new FormsJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
+            Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
     }
 }

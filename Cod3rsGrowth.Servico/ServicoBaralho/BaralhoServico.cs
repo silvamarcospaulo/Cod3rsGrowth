@@ -51,7 +51,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
                 .SelectMany(carta => carta.Carta.CorCarta.Trim('{', '}').Split(',').Select(cor => cor.Trim()))
                 .Where(caractere => !string.IsNullOrWhiteSpace(caractere)).Distinct();
 
-            return "{" + string.Join(", ", cores) + "}";
+            return string.Join(", ", cores);
         }
 
         private static int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)

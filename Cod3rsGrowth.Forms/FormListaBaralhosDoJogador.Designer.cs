@@ -1,6 +1,6 @@
 ﻿namespace Cod3rsGrowth.Forms
 {
-    partial class FormsJogador
+    partial class FormListaBaralhosDoJogador
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormsJogador));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListaBaralhosDoJogador));
             Nome = new Label();
             baralhoBindingSource = new BindingSource(components);
             labelDadosJogador = new Label();
@@ -107,7 +107,7 @@
             resources.ApplyResources(buttonSair, "buttonSair");
             buttonSair.Name = "buttonSair";
             buttonSair.UseVisualStyleBackColor = true;
-            buttonSair.Click += buttonSair_Click;
+            buttonSair.Click += AoClicarFinalizaASessao;
             // 
             // labelFiltroNome
             // 
@@ -218,7 +218,7 @@
             resources.ApplyResources(buttonLimparFiltro, "buttonLimparFiltro");
             buttonLimparFiltro.Name = "buttonLimparFiltro";
             buttonLimparFiltro.UseVisualStyleBackColor = true;
-            buttonLimparFiltro.Click += AoClicarLimparSelecaoDeFiltros;
+            buttonLimparFiltro.Click += AoClicarLimpaSelecaoDeFiltros;
             // 
             // buttonEditarPerfil
             // 
@@ -238,7 +238,7 @@
             resources.ApplyResources(buttonAplicarFiltro, "buttonAplicarFiltro");
             buttonAplicarFiltro.Name = "buttonAplicarFiltro";
             buttonAplicarFiltro.UseVisualStyleBackColor = true;
-            buttonAplicarFiltro.Click += AoClicarAplicarSelecaoDeFiltros;
+            buttonAplicarFiltro.Click += AoClicarAplicaSelecaoDeFiltros;
             // 
             // numericUpDownMax
             // 
@@ -268,6 +268,7 @@
             // 
             resources.ApplyResources(checkBoxAzul, "checkBoxAzul");
             checkBoxAzul.Name = "checkBoxAzul";
+            checkBoxAzul.Tag = "Azul";
             checkBoxAzul.UseVisualStyleBackColor = true;
             // 
             // checkBoxPreto
@@ -280,6 +281,7 @@
             // 
             resources.ApplyResources(checkBoxFormatoPauper, "checkBoxFormatoPauper");
             checkBoxFormatoPauper.Name = "checkBoxFormatoPauper";
+            checkBoxFormatoPauper.Tag = "2";
             checkBoxFormatoPauper.UseVisualStyleBackColor = true;
             // 
             // labelMin
@@ -304,12 +306,14 @@
             // 
             resources.ApplyResources(checkBoxFormatoStandard, "checkBoxFormatoStandard");
             checkBoxFormatoStandard.Name = "checkBoxFormatoStandard";
+            checkBoxFormatoStandard.Tag = "1";
             checkBoxFormatoStandard.UseVisualStyleBackColor = true;
             // 
             // checkBoxFormatoCommander
             // 
             resources.ApplyResources(checkBoxFormatoCommander, "checkBoxFormatoCommander");
             checkBoxFormatoCommander.Name = "checkBoxFormatoCommander";
+            checkBoxFormatoCommander.Tag = "0";
             checkBoxFormatoCommander.UseVisualStyleBackColor = true;
             // 
             // labelCor
@@ -408,22 +412,23 @@
             resources.ApplyResources(buttonNovoBaralho, "buttonNovoBaralho");
             buttonNovoBaralho.Name = "buttonNovoBaralho";
             buttonNovoBaralho.UseVisualStyleBackColor = true;
-            buttonNovoBaralho.Click += AoClicarAbrirJanelaDeCriacaoDeBaralho;
             // 
             // notifyIcon1
             // 
             resources.ApplyResources(notifyIcon1, "notifyIcon1");
             // 
-            // FormsJogador
+            // FormListaBaralhosDoJogador
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(panel2);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "FormsJogador";
-            Load += FormJogador_Load;
+            Name = "FormListaBaralhosDoJogador";
+            SizeGripStyle = SizeGripStyle.Hide;
+            Load += FormListaBaralhosDoJogador_Load;
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
