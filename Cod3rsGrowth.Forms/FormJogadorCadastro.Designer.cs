@@ -1,6 +1,6 @@
 ﻿namespace Cod3rsGrowth.Forms
 {
-    partial class FormsJogadorCadastro
+    partial class FormJogadorCadastro
     {
         /// <summary>
         /// Required designer variable.
@@ -252,7 +252,6 @@
             Name = "FormsJogadorCadastro";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MTG DeckBuilder - Cadastro";
-            Load += FormsJogadorCadastro_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -1,6 +1,6 @@
 ﻿namespace Cod3rsGrowth.Forms
 {
-    partial class FormsNovoBaralho
+    partial class FormNovoBaralho
     {
         /// <summary>
         /// Required designer variable.

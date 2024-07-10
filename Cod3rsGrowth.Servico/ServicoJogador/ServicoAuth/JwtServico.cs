@@ -31,11 +31,5 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
             var token = tokenHandler.CreateToken(tokenDescritor);
             return tokenHandler.WriteToken(token);
         }
-
-        public static string GeradorDeHash(Jogador jogador)
-        {
-
-            return "";
-        }
     }
 }

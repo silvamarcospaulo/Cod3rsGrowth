@@ -428,7 +428,7 @@
             MaximizeBox = false;
             Name = "FormListaBaralhosDoJogador";
             SizeGripStyle = SizeGripStyle.Hide;
-            Load += FormListaBaralhosDoJogador_Load;
+            Load += CarregarFormListaBaralhosDoJogador;
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

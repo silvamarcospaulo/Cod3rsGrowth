@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
-    public partial class FormsJogadorCadastro : Form
+    public partial class FormJogadorCadastro : Form
     {
         private CartaServico cartaServico;
         private BaralhoServico baralhoServico;
@@ -21,7 +21,7 @@ namespace Cod3rsGrowth.Forms
         private Jogador jogador;
         private Thread threadFormsJogador;
 
-        public FormsJogadorCadastro(CartaServico _cartaServico, BaralhoServico _baralhoServico,
+        public FormJogadorCadastro(CartaServico _cartaServico, BaralhoServico _baralhoServico,
             JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
         {
             cartaServico = _cartaServico;
@@ -31,11 +31,6 @@ namespace Cod3rsGrowth.Forms
             conexaoDados = _conexaoDados;
             loginController = _loginController;
             InitializeComponent();
-        }
-
-        private void FormsJogadorCadastro_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
@@ -84,7 +79,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregarJogadorEntrarEmNovaJanela(Object obj)
         {
-            Application.Run(new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
     }
 }

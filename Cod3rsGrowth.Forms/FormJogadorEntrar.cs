@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
-    public partial class FormsJogadorEntrar : Form
+    public partial class FormJogadorEntrar : Form
     {
         private CartaServico cartaServico;
         private BaralhoServico baralhoServico;
@@ -25,7 +25,7 @@ namespace Cod3rsGrowth.Forms
         private Thread threadFormsCadastro;
         private Thread threadFormsEsqueciSenha;
 
-        public FormsJogadorEntrar(CartaServico _cartaServico, BaralhoServico _baralhoServico,
+        public FormJogadorEntrar(CartaServico _cartaServico, BaralhoServico _baralhoServico,
             JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
         {
             cartaServico = _cartaServico;
@@ -35,10 +35,6 @@ namespace Cod3rsGrowth.Forms
             conexaoDados = _conexaoDados;
             loginController = _loginController;
             InitializeComponent();
-        }
-
-        private void FormsJogadorCadastroLogin_Load(object sender, EventArgs e)
-        {
         }
 
         private void buttonEntrar_Click(object sender, EventArgs e)
@@ -79,7 +75,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAbrirTelaDeCadastroEmNovaJanela(object obj)
         {
-            Application.Run(new FormsJogadorCadastro(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormJogadorCadastro(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
 
         private void linkLabelEsqueciSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

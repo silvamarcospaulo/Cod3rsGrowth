@@ -43,7 +43,7 @@ namespace Cod3rsGrowth.Forms
             InitializeComponent();
         }
 
-        private void FormsEditarPerfil_Load(object sender, EventArgs e)
+        private void CarregarJogadorEditarPerfil(object sender, EventArgs e)
         {
             labelNomeJogador.Text = jogador.NomeJogador;
             labelSobrenomeJogador.Text = jogador.SobrenomeJogador;

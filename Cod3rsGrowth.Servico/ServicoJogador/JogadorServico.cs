@@ -169,13 +169,13 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public Jogador AutenticaLogin(Jogador jogador)
         {
-            var jogadorExistente = ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador}).First();
+            var jogadorExistente = ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador }).First();
 
             if (HashServico.Comparar(jogador.SenhaHashJogador, jogadorExistente.SenhaHashJogador))
             {
                 return Atualizar(jogadorExistente);
             }
-            
+
             return null;
         }
 

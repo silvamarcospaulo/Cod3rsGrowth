@@ -1,7 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cod3rsGrowth.Web.Controllers
@@ -20,6 +19,7 @@ namespace Cod3rsGrowth.Web.Controllers
         [Route("login")]
         public IActionResult Autenticacao([FromServices] Jogador modelo)
         {
+            
             var jogador = jogadorServico.AutenticaLogin(modelo);
 
             if (jogador is null) return BadRequest(new { BadRequest = "Credenciais inválidas." });
@@ -29,6 +29,13 @@ namespace Cod3rsGrowth.Web.Controllers
             jogador.SenhaHashJogador = token;
 
             return new OkObjectResult(jogador);
+        }
+
+        public static string ObterUrlArquivoToken()
+        {
+            var diretorioLocal = AppDomain.CurrentDomain.BaseDirectory;
+
+            return Path.Combine(diretorioLocal, @"..\..\..\..\Cod3rsGrowth.Infra\Token\token.txt");
         }
     }
 }

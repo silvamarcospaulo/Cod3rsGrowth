@@ -210,7 +210,6 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "FormJogadorEditarPerfil";
-            Load += FormsEditarPerfil_Load;
             ResumeLayout(false);
             PerformLayout();
         }

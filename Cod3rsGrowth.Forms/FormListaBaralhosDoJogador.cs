@@ -38,11 +38,11 @@ namespace Cod3rsGrowth.Forms
             InitializeComponent();
         }
 
-        public void FormListaBaralhosDoJogador_Load(object sender, EventArgs e)
+        public void CarregarFormListaBaralhosDoJogador(object sender, EventArgs e)
         {
             const int casasDecimais = 2;
 
-            this.Text = $"MTG DeckBuilder - Home | {jogador.NomeJogador} {jogador.SobrenomeJogador}";
+            Text = $"MTG DeckBuilder - Home | {jogador.NomeJogador} {jogador.SobrenomeJogador}";
 
             labelDadosJogador.Text = $"Nome jogador: {jogador.NomeJogador} {jogador.SobrenomeJogador}" +
                 $"   |   Usuário: {jogador.UsuarioJogador}" +
@@ -63,7 +63,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormJogadorEntrar(object obj)
         {
-            Application.Run(new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
 
         private void AoClicarAbrirTelaDeEdicaoDePerfil(object sender, EventArgs e)

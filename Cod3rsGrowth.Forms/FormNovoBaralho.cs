@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Cod3rsGrowth.Forms
 {
-    public partial class FormsNovoBaralho : Form
+    public partial class FormNovoBaralho : Form
     {
-        public FormsNovoBaralho()
+        public FormNovoBaralho()
         {
             InitializeComponent();
         }

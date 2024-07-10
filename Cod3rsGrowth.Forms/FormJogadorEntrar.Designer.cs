@@ -1,6 +1,6 @@
 ﻿namespace Cod3rsGrowth.Forms
 {
-    partial class FormsJogadorEntrar
+    partial class FormJogadorEntrar
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormsJogadorEntrar));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormJogadorEntrar));
             labelNome = new Label();
             textBoxSenha = new TextBox();
             textBoxUsuario = new TextBox();
@@ -112,7 +112,6 @@
             Name = "FormsJogadorEntrar";
             ShowIcon = false;
             ShowInTaskbar = false;
-            Load += FormsJogadorCadastroLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }

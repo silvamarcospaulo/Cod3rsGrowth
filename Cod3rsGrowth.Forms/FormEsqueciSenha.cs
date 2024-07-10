@@ -61,7 +61,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarJanelaJogadorEntrar(object obj)
         {
-            Application.Run(new FormsJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
         }
     }
 }
