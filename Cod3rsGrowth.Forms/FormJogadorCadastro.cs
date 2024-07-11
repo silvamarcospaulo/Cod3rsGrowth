@@ -33,35 +33,28 @@ namespace Cod3rsGrowth.Forms
             InitializeComponent();
         }
 
-        private void buttonCadastrar_Click(object sender, EventArgs e)
+        private void AoClicarCadastrarNovoUsuario(object sender, EventArgs e)
         {
-            try
+            var data = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text);
+
+            var jogadorAutenticar = new Jogador()
             {
-                var data = Convert.ToDateTime(dateTimePickerDataDeNascimento.Text);
+                NomeJogador = textBoxNome.Text,
+                SobrenomeJogador = textBoxSobrenome.Text,
+                UsuarioJogador = textBoxUsuario.Text,
+                SenhaHashJogador = textBoxSenha.Text,
+                SenhaHashConfirmacaoJogador = textBoxConfirmarSenha.Text,
+                DataNascimentoJogador = new DateTime(day: data.Day, month: data.Month, year: data.Year),
+                DataDeCriacaoContaJogador = DateTime.Now
+            };
 
-                var jogadorAutenticar = new Jogador()
-                {
-                    NomeJogador = textBoxNome.Text,
-                    SobrenomeJogador = textBoxSobrenome.Text,
-                    UsuarioJogador = textBoxUsuario.Text,
-                    SenhaHashJogador = textBoxSenha.Text,
-                    SenhaHashConfirmacaoJogador = textBoxConfirmarSenha.Text,
-                    DataNascimentoJogador = new DateTime(day: data.Day, month: data.Month, year: data.Year),
-                    DataDeCriacaoContaJogador = DateTime.Now
-                };
+            var idJogador = jogadorServico.Criar(jogadorAutenticar);
+            jogador = jogadorServico.ObterPorId(idJogador);
 
-                var idJogador = jogadorServico.Criar(jogadorAutenticar);
-                jogador = jogadorServico.ObterPorId(idJogador);
-
-                this.Close();
-                threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
-                threadFormsJogador.SetApartmentState(ApartmentState.STA);
-                threadFormsJogador.Start();
-            }
-            catch (Exception ex)
-            {
-
-            }
+            this.Close();
+            threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
+            threadFormsJogador.SetApartmentState(ApartmentState.STA);
+            threadFormsJogador.Start();
         }
 
         private void AoClicarCarregarJogadorEmNovaJanela(Object obj)
@@ -69,7 +62,7 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
 
-        private void linkLabelJaPossuoConta_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void AoClicarVoltarParaTelaDeLogin(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
             threadFormsJogador = new Thread(AoClicarCarregarJogadorEntrarEmNovaJanela);

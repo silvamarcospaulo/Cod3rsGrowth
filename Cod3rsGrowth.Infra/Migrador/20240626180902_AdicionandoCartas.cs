@@ -79,8 +79,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
 
         private string ConversorCor(string mana_cost)
         {
-            const string incolor = "Incolor";
-            string coresDaCarta = null;
+            string coresDaCarta = "Incolor";
 
             var coresDoMagic = new Dictionary<char, string>
             {
@@ -95,18 +94,9 @@ namespace Cod3rsGrowth.Dominio.Migrador
             {
                 if (mana_cost.Contains(cor.Key))
                 {
-                    if (coresDaCarta is null)
-                    {
-                        coresDaCarta = cor.Value;
-                    }
-                    else
-                    {
-                        coresDaCarta = coresDaCarta + $", {cor.Value}";
-                    }
+                    coresDaCarta += $", {cor.Value}";
                 }
             }
-
-            if (coresDaCarta is null) return incolor;
 
             return coresDaCarta;
         }

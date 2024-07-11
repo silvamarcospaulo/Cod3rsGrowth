@@ -22,6 +22,8 @@ namespace Cod3rsGrowth.Forms
         private Thread threadFormsEntrar;
         private Thread threadFormsEditarPerfil;
         private Thread threadFormsNovoBaralho;
+        const int precoPadrao = 0;
+        DateTime dataPadrao = Convert.ToDateTime("01/01/2001");
 
         public FormListaBaralhosDoJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
             JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController, Jogador _jogador)
@@ -87,7 +89,7 @@ namespace Cod3rsGrowth.Forms
         {
             var filtro = new BaralhoFiltro()
             {
-            IdJogador = jogador.Id
+                IdJogador = jogador.Id
             };
 
             filtro = VerificarFiltroFormatoDeJogo(filtro);
@@ -126,8 +128,7 @@ namespace Cod3rsGrowth.Forms
         }
 
         private BaralhoFiltro VerificarFiltroPrecoBaralhoMinimo(BaralhoFiltro filtro)
-        {
-            const int precoPadrao = 0;
+        {        
 
             if (numericUpDownMin.Value != precoPadrao) filtro.PrecoDoBaralhoMinimo =  Convert.ToDecimal(numericUpDownMin.Text);
 
@@ -136,8 +137,6 @@ namespace Cod3rsGrowth.Forms
 
         private BaralhoFiltro VerificarFiltroPrecoBaralhoMaximo(BaralhoFiltro filtro)
         {
-            const int precoPadrao = 0;
-
             if (numericUpDownMax.Value != precoPadrao) filtro.PrecoDoBaralhoMaximo = Convert.ToDecimal(numericUpDownMax.Text);
 
             return filtro;
@@ -145,8 +144,6 @@ namespace Cod3rsGrowth.Forms
 
         private BaralhoFiltro VerificarFiltroDataCriacaoMinimo(BaralhoFiltro filtro)
         {
-            var dataPadrao = Convert.ToDateTime("01/01/2001");
-
             if (dateTimePickerDataMinima.Value != dataPadrao) filtro.DataCriacaoMinimo = new DateTime (day: dateTimePickerDataMinima.Value.Day, month: dateTimePickerDataMinima.Value.Month, year: dateTimePickerDataMinima.Value.Year);
             
             return filtro;
@@ -154,8 +151,6 @@ namespace Cod3rsGrowth.Forms
 
         private BaralhoFiltro VerificarFiltroDataCriacaoMaximo(BaralhoFiltro filtro)
         {
-            var dataPadrao = Convert.ToDateTime("01/01/2001");
-
             if (dateTimePickerDataMaxima.Value != dataPadrao) filtro.DataCriacaoMaximo = new DateTime(day: dateTimePickerDataMaxima.Value.Day, month: dateTimePickerDataMaxima.Value.Month, year: dateTimePickerDataMaxima.Value.Year);
 
             return filtro;

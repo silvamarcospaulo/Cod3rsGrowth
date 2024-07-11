@@ -48,17 +48,17 @@ namespace Cod3rsGrowth.Forms
             _jogador = _jogadorServico.ObterPorId(jogador.Id);
 
             this.Close();
-            threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
+            threadFormsJogador = new Thread(CarregaFormJogador);
             threadFormsJogador.SetApartmentState(ApartmentState.STA);
             threadFormsJogador.Start();
         }
 
-        private void AoClicarCarregarJogadorEmNovaJanela(object obj)
+        private void CarregaFormJogador(object obj)
         {
             Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController, _jogador));
         }
 
-        private void linkLabelCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void AoClicarAbreTelaDeCadastroDeConta(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
             threadFormsCadastro = new Thread(AoClicarAbrirTelaDeCadastroEmNovaJanela);
@@ -71,7 +71,7 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormJogadorCadastro(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController));
         }
 
-        private void linkLabelEsqueciSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void AoClicarAbreTelaDeRestauracaoDeSenha(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
             threadFormsEsqueciSenha = new Thread(AoClicarAbrirTelaDeEsqueciSenhaEmNovaJanela);

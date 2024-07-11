@@ -1,4 +1,7 @@
-﻿using Cod3rsGrowth.Dominio.Filtros;
+﻿using Cod3rsGrowth.Dominio.Auth;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoBaralho;
@@ -179,6 +182,21 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 Atualizar(jogador);
             }
             return jogadores;
+        }
+
+        public static Jogador AutenticaUsuarioSenhaJogador(Jogador jogador, JogadorServico jogadorServico)
+        {
+            var jogadorBanco = jogadorServico.ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador }).First();
+
+            if (HashServico.Comparar(jogador.SenhaHashJogador, jogadorBanco?.SenhaHashJogador)) return jogadorBanco;
+
+            return null;
+        }
+
+        public static int ObtemIdJogador(Jogador jogador, JogadorServico jogadorServico)
+        {
+            var idJogador = jogadorServico.ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador }).First().Id;
+            return idJogador;
         }
     }
 }

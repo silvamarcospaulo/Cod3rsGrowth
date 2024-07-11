@@ -32,5 +32,36 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
             var token = tokenHandler.CreateToken(tokenDescritor);
             return tokenHandler.WriteToken(token);
         }
+
+        public static string ObterCaminhoArquivoToken()
+        {
+            var diretorioLocal = AppDomain.CurrentDomain.BaseDirectory;
+
+            var caminho = Path.Combine(diretorioLocal, @"..\..\..\..\Cod3rsGrowth.Infra\Auth\token.txt");
+
+            return Path.GetFullPath(caminho);
+        }
+
+        public static Jogador VerificarTokenTxt(string[] tokenTxt, string usuario)
+        {
+            var handler = new JwtSecurityTokenHandler();
+
+            var validations = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo)),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+
+            foreach (var token in tokenTxt)
+            {
+                var jogador = handler.ValidateToken(token, validations, out var tokenSecure);
+
+                if (jogador.Identity.Name == usuario) return new Jogador() { UsuarioJogador = usuario };
+            }
+
+            return null;
+        }
     }
 }
