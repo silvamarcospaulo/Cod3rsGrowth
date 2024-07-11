@@ -7,7 +7,6 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
-using Microsoft.Extensions.Options;
 
 namespace Cod3rsGrowth.Forms
 {

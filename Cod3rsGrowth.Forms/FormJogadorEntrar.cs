@@ -1,5 +1,4 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.CartasJson;
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
@@ -7,8 +6,6 @@ using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -47,9 +44,7 @@ namespace Cod3rsGrowth.Forms
             };
 
             var resultado = _loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
-
             var jogador = (Jogador)resultado.Value;
-
             _jogador = _jogadorServico.ObterPorId(jogador.Id);
 
             this.Close();
