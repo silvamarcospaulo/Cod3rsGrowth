@@ -167,18 +167,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             return jogador;
         }
 
-        public Jogador AutenticaLogin(Jogador jogador)
-        {
-            var jogadorExistente = ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador }).First();
-
-            if (HashServico.Comparar(jogador.SenhaHashJogador, jogadorExistente.SenhaHashJogador))
-            {
-                return Atualizar(jogadorExistente);
-            }
-
-            return null;
-        }
-
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
             const int valorNulo = 0;
@@ -187,10 +175,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             foreach (var jogador in jogadores)
             {
-                if (jogador?.BaralhosJogador?.Count > valorNulo)
-                {
-                    jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador?.Id });
-                }
+                jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador?.Id });
+                Atualizar(jogador);
             }
             return jogadores;
         }

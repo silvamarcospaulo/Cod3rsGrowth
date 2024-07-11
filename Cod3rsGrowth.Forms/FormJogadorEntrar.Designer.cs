@@ -70,7 +70,7 @@
             buttonEntrar.Cursor = Cursors.Hand;
             buttonEntrar.Name = "buttonEntrar";
             buttonEntrar.UseVisualStyleBackColor = true;
-            buttonEntrar.Click += buttonEntrar_Click;
+            buttonEntrar.Click += AoClicarAutenticaUsuarioSenha;
             // 
             // linkLabelEsqueciSenha
             // 
@@ -95,7 +95,7 @@
             resources.ApplyResources(labelMtgDeckBuilder, "labelMtgDeckBuilder");
             labelMtgDeckBuilder.Name = "labelMtgDeckBuilder";
             // 
-            // FormsJogadorEntrar
+            // FormJogadorEntrar
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
@@ -109,7 +109,7 @@
             Controls.Add(labelSenha);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "FormsJogadorEntrar";
+            Name = "FormJogadorEntrar";
             ShowIcon = false;
             ShowInTaskbar = false;
             ResumeLayout(false);

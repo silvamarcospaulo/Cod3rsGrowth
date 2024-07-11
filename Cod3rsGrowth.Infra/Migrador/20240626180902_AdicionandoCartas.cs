@@ -36,8 +36,8 @@ namespace Cod3rsGrowth.Dominio.Migrador
 
             foreach (var arquivo in arquivosJson)
             {
-                string caminhoArquivo = Path.Combine(diretorioRaiz, arquivo);
-                string json = File.ReadAllText(caminhoArquivo);
+                var diretorioArquivo = Path.Combine(diretorioRaiz, arquivo);
+                var json = File.ReadAllText(diretorioArquivo);
                 cartas.AddRange(JsonConvert.DeserializeObject<List<CartaJson>>(json));
             }
 

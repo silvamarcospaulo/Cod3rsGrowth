@@ -14,55 +14,53 @@ namespace Cod3rsGrowth.Forms
 {
     public partial class FormJogadorEntrar : Form
     {
-        private CartaServico cartaServico;
-        private BaralhoServico baralhoServico;
-        private JogadorServico jogadorServico;
-        private JwtServico tokenServico;
-        private ConexaoDados conexaoDados;
-        private LoginController loginController;
-        private Jogador jogador;
+        private CartaServico _cartaServico;
+        private BaralhoServico _baralhoServico;
+        private JogadorServico _jogadorServico;
+        private JwtServico _tokenServico;
+        private ConexaoDados _conexaoDados;
+        private LoginController _loginController;
+        private Jogador _jogador;
         private Thread threadFormsJogador;
         private Thread threadFormsCadastro;
         private Thread threadFormsEsqueciSenha;
 
-        public FormJogadorEntrar(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
+        public FormJogadorEntrar(CartaServico cartaServico, BaralhoServico baralhoServico,
+            JogadorServico jogadorServico, JwtServico tokenServico, ConexaoDados conexaoDados, LoginController loginController)
         {
-            cartaServico = _cartaServico;
-            baralhoServico = _baralhoServico;
-            jogadorServico = _jogadorServico;
-            tokenServico = _tokenServico;
-            conexaoDados = _conexaoDados;
-            loginController = _loginController;
+            _cartaServico = cartaServico;
+            _baralhoServico = baralhoServico;
+            _jogadorServico = jogadorServico;
+            _tokenServico = tokenServico;
+            _conexaoDados = conexaoDados;
+            _loginController = loginController;
             InitializeComponent();
         }
 
-        private void buttonEntrar_Click(object sender, EventArgs e)
+        private void AoClicarAutenticaUsuarioSenha(object sender, EventArgs e)
         {
-            try
+
+            var jogadorAutenticar = new Jogador()
             {
-                var jogadorAutenticar = new Jogador()
-                {
-                    UsuarioJogador = textBoxUsuario.Text,
-                    SenhaHashJogador = textBoxSenha.Text
-                };
+                UsuarioJogador = textBoxUsuario.Text,
+                SenhaHashJogador = textBoxSenha.Text
+            };
 
-                jogador = jogadorServico.AutenticaLogin(jogadorAutenticar);
+            var resultado = _loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
 
-                this.Close();
-                threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
-                threadFormsJogador.SetApartmentState(ApartmentState.STA);
-                threadFormsJogador.Start();
-            }
-            catch (Exception ex)
-            {
+            var jogador = (Jogador)resultado.Value;
 
-            }
+            _jogador = _jogadorServico.ObterPorId(jogador.Id);
+
+            this.Close();
+            threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
+            threadFormsJogador.SetApartmentState(ApartmentState.STA);
+            threadFormsJogador.Start();
         }
 
         private void AoClicarCarregarJogadorEmNovaJanela(object obj)
         {
-            Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
+            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController, _jogador));
         }
 
         private void linkLabelCadastrar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -75,7 +73,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAbrirTelaDeCadastroEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorCadastro(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormJogadorCadastro(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController));
         }
 
         private void linkLabelEsqueciSenha_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -88,7 +86,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAbrirTelaDeEsqueciSenhaEmNovaJanela(object obj)
         {
-            Application.Run(new FormEsqueciSenha(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormEsqueciSenha(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController));
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth
 
                 return senhaHash.ToString();
             }
-        }
+        } 
 
         public static bool Comparar(string senhaUsuarioPura, string senhaBanco)
         {
