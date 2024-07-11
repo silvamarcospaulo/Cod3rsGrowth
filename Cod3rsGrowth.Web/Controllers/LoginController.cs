@@ -26,7 +26,7 @@ namespace Cod3rsGrowth.Web.Controllers
         [Route("login")]
         public ActionResult Autenticacao([FromServices] Jogador modelo)
         {
-            var diretorioToken = ObterUrlArquivoToken();
+            var diretorioToken = ObterCaminhoArquivoToken();
 
             var lerTokenTxt = System.IO.File.ReadAllLines(diretorioToken);
 
@@ -65,7 +65,7 @@ namespace Cod3rsGrowth.Web.Controllers
             return null;
         }
 
-        private static string ObterUrlArquivoToken()
+        private static string ObterCaminhoArquivoToken()
         {
             var diretorioLocal = AppDomain.CurrentDomain.BaseDirectory;
 
