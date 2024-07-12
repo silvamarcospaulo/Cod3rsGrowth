@@ -38,6 +38,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
             var diretorioLocal = AppDomain.CurrentDomain.BaseDirectory;
 
             var caminho = Path.Combine(diretorioLocal, @"..\..\..\..\Cod3rsGrowth.Infra\Auth\token.txt");
+            if (!File.Exists(caminho)) File.Create(caminho);
 
             return Path.GetFullPath(caminho);
         }
