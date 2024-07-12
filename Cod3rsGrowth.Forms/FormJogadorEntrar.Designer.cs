@@ -79,7 +79,7 @@
             linkLabelEsqueciSenha.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabelEsqueciSenha.Name = "linkLabelEsqueciSenha";
             linkLabelEsqueciSenha.TabStop = true;
-            linkLabelEsqueciSenha.LinkClicked += linkLabelEsqueciSenha_LinkClicked;
+            linkLabelEsqueciSenha.LinkClicked += AoClicarAbreTelaDeRestauracaoDeSenha;
             // 
             // linkLabelCadastrar
             // 
@@ -88,7 +88,7 @@
             linkLabelCadastrar.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabelCadastrar.Name = "linkLabelCadastrar";
             linkLabelCadastrar.TabStop = true;
-            linkLabelCadastrar.LinkClicked += linkLabelCadastrar_LinkClicked;
+            linkLabelCadastrar.LinkClicked += AoClicarAbreTelaDeCadastroDeConta;
             // 
             // labelMtgDeckBuilder
             // 

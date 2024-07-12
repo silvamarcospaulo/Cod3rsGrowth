@@ -145,7 +145,7 @@
             buttonCadastrar.TabIndex = 7;
             buttonCadastrar.Text = "Cadastrar";
             buttonCadastrar.UseVisualStyleBackColor = true;
-            buttonCadastrar.Click += buttonCadastrar_Click;
+            buttonCadastrar.Click += AoClicarCadastrarNovoUsuario;
             // 
             // linkLabelJaPossuoConta
             // 
@@ -160,7 +160,7 @@
             linkLabelJaPossuoConta.TabStop = true;
             linkLabelJaPossuoConta.Text = "Já possuo conta";
             linkLabelJaPossuoConta.TextAlign = ContentAlignment.MiddleCenter;
-            linkLabelJaPossuoConta.LinkClicked += linkLabelJaPossuoConta_LinkClicked;
+            linkLabelJaPossuoConta.LinkClicked += AoClicarVoltarParaTelaDeLogin;
             // 
             // labelSobrenome
             // 
