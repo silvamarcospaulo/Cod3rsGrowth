@@ -42,26 +42,23 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
             return Path.GetFullPath(caminho);
         }
 
-        public static Jogador VerificarTokenTxt(string[] tokenTxt, string usuario)
+        public static bool VerificarTokenTxt(string token, string usuario, JwtSecurityTokenHandler handler)
         {
-            var handler = new JwtSecurityTokenHandler();
-
-            var validations = new TokenValidationParameters
+            var validacoes = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo)),
                 ValidateIssuer = false,
                 ValidateAudience = false
             };
-
-            foreach (var token in tokenTxt)
+            
+            if (handler.ReadToken(token).ValidTo > DateTime.Now)
             {
-                var jogador = handler.ValidateToken(token, validations, out var tokenSecure);
-
-                if (jogador.Identity.Name == usuario) return new Jogador() { UsuarioJogador = usuario };
+                var jogador = handler.ValidateToken(token, validacoes, out var tokenSecure);
+                if (jogador.Identity.Name == usuario) return true;
             }
 
-            return null;
+            return false;
         }
     }
 }

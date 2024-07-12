@@ -1,13 +1,8 @@
-﻿using Cod3rsGrowth.Dominio.Auth;
-using Cod3rsGrowth.Dominio.Filtros;
-using Cod3rsGrowth.Dominio.Modelos;
+﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoJogador;
-using Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 
 namespace Cod3rsGrowth.Web.Controllers
 {
@@ -28,15 +23,31 @@ namespace Cod3rsGrowth.Web.Controllers
         {
             var diretorioToken = JwtServico.ObterCaminhoArquivoToken();
 
-            var lerTokenTxt = System.IO.File.ReadAllLines(diretorioToken);
+            var lerTokenTxt = System.IO.File.ReadAllLines(diretorioToken).ToList();
 
-            var jogador = JwtServico.VerificarTokenTxt(lerTokenTxt, modelo.UsuarioJogador);
+            var handler = new JwtSecurityTokenHandler();
 
-            if (jogador is not null)
+            var jogador = new Jogador();
+
+            var _lerTokenTxt = new List<string>();
+
+            _lerTokenTxt.AddRange(lerTokenTxt);
+
+            for (int contador = 0; contador < lerTokenTxt?.Count(); contador++)
             {
-                jogador.Id = JogadorServico.ObtemIdJogador(jogador, _jogadorServico);
+                if (JwtServico.VerificarTokenTxt(lerTokenTxt[contador], modelo.UsuarioJogador, handler))
+                {
+                    jogador = JogadorServico.ObtemIdJogador(modelo.UsuarioJogador, _jogadorServico);
+                }
+                else
+                {
+                    _lerTokenTxt.Remove(lerTokenTxt[contador]);
+                }
             }
-            else
+            
+            System.IO.File.WriteAllLines(diretorioToken, _lerTokenTxt);
+
+            if (jogador?.NomeJogador is null)
             {
                 jogador = JogadorServico.AutenticaUsuarioSenhaJogador(modelo, _jogadorServico);
 

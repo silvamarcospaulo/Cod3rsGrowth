@@ -1,7 +1,4 @@
-﻿using Cod3rsGrowth.Dominio.Auth;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Cod3rsGrowth.Dominio.Filtros;
+﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoBaralho;
@@ -193,10 +190,10 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             return null;
         }
 
-        public static int ObtemIdJogador(Jogador jogador, JogadorServico jogadorServico)
+        public static Jogador ObtemIdJogador(string nomeJogador, JogadorServico jogadorServico)
         {
-            var idJogador = jogadorServico.ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador }).First().Id;
-            return idJogador;
+            var jogador = jogadorServico.ObterTodos(new JogadorFiltro() { UsuarioJogador = nomeJogador }).First();
+            return jogador;
         }
     }
 }
