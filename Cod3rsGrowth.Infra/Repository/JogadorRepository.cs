@@ -33,8 +33,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Jogador ObterPorId(int idJogador)
         {
-            return conexaoDados.GetTable<Jogador>().FirstOrDefault(jogador => jogador.Id == idJogador) ??
-                throw new Exception($"Jogador {idJogador} Nao Encontrada");
+            return conexaoDados.GetTable<Jogador>().FirstOrDefault(jogador => jogador.Id == idJogador);
         }
 
         public Jogador AutenticaLogin(Jogador jogador)

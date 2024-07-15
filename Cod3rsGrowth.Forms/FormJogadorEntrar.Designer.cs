@@ -38,6 +38,7 @@
             linkLabelCadastrar = new LinkLabel();
             labelMtgDeckBuilder = new Label();
             labelUsuarioMensagemDeErro = new Label();
+            labelSenhaMensagemDeErro = new Label();
             SuspendLayout();
             // 
             // labelNome
@@ -102,10 +103,17 @@
             labelUsuarioMensagemDeErro.ForeColor = Color.Red;
             labelUsuarioMensagemDeErro.Name = "labelUsuarioMensagemDeErro";
             // 
+            // labelSenhaMensagemDeErro
+            // 
+            resources.ApplyResources(labelSenhaMensagemDeErro, "labelSenhaMensagemDeErro");
+            labelSenhaMensagemDeErro.ForeColor = Color.Red;
+            labelSenhaMensagemDeErro.Name = "labelSenhaMensagemDeErro";
+            // 
             // FormJogadorEntrar
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(labelSenhaMensagemDeErro);
             Controls.Add(labelUsuarioMensagemDeErro);
             Controls.Add(labelMtgDeckBuilder);
             Controls.Add(linkLabelCadastrar);
@@ -134,5 +142,6 @@
         private LinkLabel linkLabelCadastrar;
         private Label labelMtgDeckBuilder;
         private Label labelUsuarioMensagemDeErro;
+        private Label labelSenhaMensagemDeErro;
     }
 }

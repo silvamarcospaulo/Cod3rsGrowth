@@ -36,6 +36,8 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAutenticaUsuarioSenha(object sender, EventArgs e)
         {
+            labelUsuarioMensagemDeErro.Text = "";
+            labelSenhaMensagemDeErro.Text = "";
 
             try
             {
@@ -47,28 +49,21 @@ namespace Cod3rsGrowth.Forms
 
                 var resultado = _loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
                 var jogador = (Jogador)resultado?.Value;
-                try
-                {
-                    _jogador = _jogadorServico.ObterPorId(jogador.Id);
-                }
-                catch (NullReferenceException ex)
-                {
-                    throw new NullReferenceException("Jogador, não encontrado.");
-                }
 
+                _jogador = _jogadorServico.ObterPorId(jogador.Id);
 
                 this.Close();
                 threadFormsJogador = new Thread(CarregaFormJogador);
                 threadFormsJogador.SetApartmentState(ApartmentState.STA);
                 threadFormsJogador.Start();
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
-                MessageBox.Show(ex.Message);
+                labelSenhaMensagemDeErro.Text = "A senha que você inseriu está incorreta.";
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
-                MessageBox.Show(ex.Message);
+                labelUsuarioMensagemDeErro.Text = "O usuário que você inseriu não está conectado a uma conta.";
             }
         }
 
@@ -102,5 +97,6 @@ namespace Cod3rsGrowth.Forms
         {
             Application.Run(new FormEsqueciSenha(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController));
         }
+
     }
 }

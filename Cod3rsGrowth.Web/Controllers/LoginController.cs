@@ -23,52 +23,45 @@ namespace Cod3rsGrowth.Web.Controllers
         {
             var jogador = new Jogador();
 
-            try
+            var diretorioToken = JwtServico.ObterCaminhoArquivoToken();
+
+            var lerTokenTxt = System.IO.File.ReadAllLines(diretorioToken).ToList();
+
+            var handler = new JwtSecurityTokenHandler();
+
+            var _lerTokenTxt = new List<string>();
+
+            _lerTokenTxt.AddRange(lerTokenTxt);
+
+            for (int contador = 0; contador < lerTokenTxt?.Count(); contador++)
             {
-                var diretorioToken = JwtServico.ObterCaminhoArquivoToken();
-
-                var lerTokenTxt = System.IO.File.ReadAllLines(diretorioToken).ToList();
-
-                var handler = new JwtSecurityTokenHandler();
-
-                var _lerTokenTxt = new List<string>();
-
-                _lerTokenTxt.AddRange(lerTokenTxt);
-
-                for (int contador = 0; contador < lerTokenTxt?.Count(); contador++)
+                if (JwtServico.VerificarTokenTxt(lerTokenTxt[contador], modelo.UsuarioJogador, handler))
                 {
-                    if (JwtServico.VerificarTokenTxt(lerTokenTxt[contador], modelo.UsuarioJogador, handler))
-                    {
-                        jogador = JogadorServico.ObtemIdJogador(modelo.UsuarioJogador, _jogadorServico);
-                    }
-                    else
-                    {
-                        _lerTokenTxt.Remove(lerTokenTxt[contador]);
-                    }
+                    jogador = JogadorServico.ObtemIdJogador(modelo.UsuarioJogador, _jogadorServico);
                 }
-
-                System.IO.File.WriteAllLines(diretorioToken, _lerTokenTxt);
-
-                if (jogador?.NomeJogador is null)
+                else
                 {
-                    jogador = JogadorServico.AutenticaUsuarioSenhaJogador(modelo, _jogadorServico);
-
-                    if (jogador is null) return NotFound(new { BadRequest = "Não foi possível encontrar uma conta que corresponda ao que você inseriu." });
-
-                    var token = JwtServico.GeradorDeToken(jogador);
-
-                    var escreverTokenTxt = new StreamWriter(diretorioToken, true);
-
-                    escreverTokenTxt.WriteLine(token);
-
-                    escreverTokenTxt.Dispose();
-
-                    jogador.SenhaHashJogador = "";
+                    _lerTokenTxt.Remove(lerTokenTxt[contador]);
                 }
             }
-            catch (Exception ex)
-            {
 
+            System.IO.File.WriteAllLines(diretorioToken, _lerTokenTxt);
+
+            if (jogador?.NomeJogador is null)
+            {
+                jogador = JogadorServico.AutenticaUsuarioSenhaJogador(modelo, _jogadorServico);
+
+                if (jogador is null) return NotFound(new { BadRequest = "Não foi possível encontrar uma conta que corresponda ao que você inseriu." });
+
+                var token = JwtServico.GeradorDeToken(jogador);
+
+                var escreverTokenTxt = new StreamWriter(diretorioToken, true);
+
+                escreverTokenTxt.WriteLine(token);
+
+                escreverTokenTxt.Dispose();
+
+                jogador.SenhaHashJogador = "";
             }
 
             return Ok(jogador);
