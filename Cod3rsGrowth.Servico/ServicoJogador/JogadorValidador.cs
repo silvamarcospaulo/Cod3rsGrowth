@@ -6,14 +6,15 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 {
     public class JogadorValidador : AbstractValidator<Jogador>
     {
-        private const int tamanhoMinimoSenha = 8;
-        private const int tamanhoMinimoUsuario = 6;
+        private const int TAMANHO_MINIMO_SENHA = 8;
+        private const int TAMANHO_MINIMO_USUARIO = 6;
+        private const int VALOR_NULO = 0;
 
         public JogadorValidador()
         {
             DateTime valorDataHoje = DateTime.Now;
-            const int valorMinimoDeIdadeParaCriarConta = 13;
-            int valorAnoDeNascimentoMinimo = Convert.ToInt32(valorDataHoje.Year) - valorMinimoDeIdadeParaCriarConta;
+            const int VALOR_MINIMO_DE_IDADE_PARA_CRIAR_CONTA = 13;
+            int valorAnoDeNascimentoMinimo = Convert.ToInt32(valorDataHoje.Year) - VALOR_MINIMO_DE_IDADE_PARA_CRIAR_CONTA;
             DateTime valorDataNascimentoMinima = new DateTime(valorAnoDeNascimentoMinimo, valorDataHoje.Month, valorDataHoje.Day);
 
             RuleSet("Criar", () => {
@@ -103,30 +104,26 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         private static bool ValidacaoJogadorUsuario(String usuario)
         {
-            if (usuario.Length < tamanhoMinimoUsuario) return false;
+            if (usuario.Length < TAMANHO_MINIMO_USUARIO) return false;
             return Regex.IsMatch(usuario, "^[a-z]+$");
         }
 
         private static bool ValidacaoJogadorSenha(String senha)
         {
-            if (senha.Length < tamanhoMinimoSenha) return false;
+            if (senha.Length < TAMANHO_MINIMO_SENHA) return false;
             return Regex.IsMatch(senha, "^[a-zA-Z0-9]+$");
         }
 
         private static bool ValidacaoSenhaConfirmacaoSenha(Jogador jogador)
         {
-            const int valorNulo = 0;
-
-            if (jogador?.SenhaHashJogador.Length == valorNulo) return jogador.SenhaHashJogador == jogador.SenhaHashConfirmacaoJogador;
+            if (jogador?.SenhaHashJogador.Length == VALOR_NULO) return jogador.SenhaHashJogador == jogador.SenhaHashConfirmacaoJogador;
 
             return true;
         }
 
         private static bool ValidacaoUsuarioConfirmacaoUsuario(Jogador jogador)
         {
-            const int valorNulo = 0;
-
-            if (jogador?.UsuarioJogador.Length == valorNulo) return jogador.UsuarioJogador == jogador.UsuarioConfirmacaoJogador;
+            if (jogador?.UsuarioJogador.Length == VALOR_NULO) return jogador.UsuarioJogador == jogador.UsuarioConfirmacaoJogador;
 
             return true;
         }

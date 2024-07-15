@@ -33,7 +33,7 @@ namespace Cod3rsGrowth.Infra.Repository
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
             IQueryable<Carta> query = from q in conexaoDados.TabelaCarta
-                                        select q;
+                                      select q;
 
             if (filtro?.NomeCarta != null)
             {

@@ -15,6 +15,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         private readonly BaralhoServico _baralhoServico;
         private readonly CartaServico _cartaServico;
         private readonly IValidator<Jogador> _validadorJogador;
+        private const int VALOR_NULO = 0;
+
         public JogadorServico(IJogadorRepository jogadorRepository, BaralhoServico baralhoServico,
             CartaServico cartaServico, IValidator<Jogador> validadorJogador)
         {
@@ -26,18 +28,14 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         private static decimal SomarPrecoDeTodasAsCartasDoJogador(List<Baralho>? baralhosJogador)
         {
-            const int valorNulo = 0;
-
-            if (baralhosJogador.IsNullOrEmpty()) return valorNulo;
+            if (baralhosJogador.IsNullOrEmpty()) return VALOR_NULO;
             return baralhosJogador.SelectMany(baralhos => baralhos.CartasDoBaralho)
                 .Sum(carta => carta.QuantidadeCopiasDaCartaNoBaralho * carta.Carta.PrecoCarta);
         }
 
         private static int SomarQuantidadeDeBaralhosDoJogador(List<Baralho>? baralhosJogador)
         {
-            const int valorNulo = 0;
-
-            if (baralhosJogador.IsNullOrEmpty()) return valorNulo;
+            if (baralhosJogador.IsNullOrEmpty()) return VALOR_NULO;
             return baralhosJogador.Count;
         }
 
@@ -50,11 +48,10 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public int Criar(Jogador jogador)
         {
             const string roleJogador = "Jogador";
-            const int valorNulo = 0;
 
             jogador.BaralhosJogador = null;
-            jogador.QuantidadeDeBaralhosJogador = valorNulo;
-            jogador.PrecoDasCartasJogador = valorNulo;
+            jogador.QuantidadeDeBaralhosJogador = VALOR_NULO;
+            jogador.PrecoDasCartasJogador = VALOR_NULO;
             jogador.ContaAtivaJogador = false;
             jogador.Role = roleJogador;
 
@@ -78,8 +75,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public Jogador? Atualizar(Jogador jogador)
         {
-            const int valorNulo = 0;
-
             var jogadorAtualizar = ObterPorId(jogador.Id);
 
             jogadorAtualizar.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogadorAtualizar.BaralhosJogador);
@@ -92,7 +87,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 jogadorAtualizar.SenhaHashConfirmacaoJogador = HashServico.Gerar(jogador.SenhaHashConfirmacaoJogador);
             }
 
-            if(jogador?.UsuarioConfirmacaoJogador is not null)
+            if (jogador?.UsuarioConfirmacaoJogador is not null)
             {
                 jogadorAtualizar.UsuarioJogador = jogador.UsuarioJogador;
                 jogadorAtualizar.UsuarioConfirmacaoJogador = jogador.UsuarioConfirmacaoJogador;
@@ -169,8 +164,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
-            const int valorNulo = 0;
-
             var jogadores = _IJogadorRepository.ObterTodos(filtro);
 
             foreach (var jogador in jogadores)

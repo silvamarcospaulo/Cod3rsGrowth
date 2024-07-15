@@ -1,7 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
 using FluentValidation;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
@@ -10,10 +9,6 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
     {
         private readonly ICartaRepository _ICartaRepository;
         private readonly IValidator<Carta> _validadorCarta;
-        private const decimal precoCartaCommon = 0.5m;
-        private const decimal precoCartaUncommon = 2.5m;
-        private const decimal precoCartaRare = 5m;
-        private const decimal precoCartaMythic = 7.5m;
 
         public CartaServico(ICartaRepository cartaRepository, IValidator<Carta> validadorCarta)
         {

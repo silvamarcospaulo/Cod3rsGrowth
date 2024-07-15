@@ -1,9 +1,5 @@
-﻿using System;
-using System.Data;
-using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
+﻿using Cod3rsGrowth.Dominio.Modelos;
 using FluentValidation;
-using FluentValidation.TestHelper;
 
 namespace Cod3rsGrowth.Servico.ServicoCarta
 {
@@ -11,7 +7,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
     {
         public CartaValidador()
         {
-            const int valorMinimo = -1;
+            const int CUSTO_DE_MANA_CONVERTIDO_MINIMO = -1;
 
             RuleFor(carta => carta.NomeCarta)
                 .NotEmpty()
@@ -20,7 +16,7 @@ namespace Cod3rsGrowth.Servico.ServicoCarta
             RuleFor(carta => carta.CustoDeManaConvertidoCarta)
                 .NotNull()
                 .WithMessage("Custo de Mana Convertido da Carta não pode ser nulo")
-                .GreaterThan(valorMinimo)
+                .GreaterThan(CUSTO_DE_MANA_CONVERTIDO_MINIMO)
                 .WithMessage("Custo de Mana Convertido da Carta deve ser igual ou maior que 0");
 
             RuleFor(carta => carta.TipoDeCarta)

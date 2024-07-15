@@ -1,11 +1,8 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
 using LinqToDB;
-using Microsoft.IdentityModel.Tokens;
 using System.Data;
-using static LinqToDB.Reflection.Methods.LinqToDB.Insert;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
@@ -136,7 +133,7 @@ namespace Cod3rsGrowth.Infra.Repository
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
             IQueryable<CopiaDeCartasNoBaralho> query = from q in conexaoDados.TabelaCartasDoBaralho
-                select q;
+                                                       select q;
 
             if (filtro?.IdBaralho != null)
             {

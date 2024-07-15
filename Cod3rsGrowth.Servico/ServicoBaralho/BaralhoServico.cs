@@ -11,6 +11,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         private readonly IBaralhoRepository _IBaralhoRepository;
         private readonly CartaServico _cartaServico;
         private readonly IValidator<Baralho> _validadorBaralho;
+        private const int VALOR_NULO = 0;
 
         public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
             IValidator<Baralho> validadorBaralho)
@@ -29,7 +30,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
             catch (Exception e)
             {
-                return 0;
+                return VALOR_NULO;
             }
         }
 
@@ -41,7 +42,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
             catch (Exception e)
             {
-                return 0;
+                return VALOR_NULO;
             }
         }
 
@@ -61,9 +62,9 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
                 return Convert.ToInt32(baralho.Sum(cartas => cartas.Carta.CustoDeManaConvertidoCarta)
                 / SomarQuantidadeDeCartasDoBaralho(baralho));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return 0;
+                return VALOR_NULO;
             }
         }
 
@@ -143,7 +144,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             var baralhos = _IBaralhoRepository.ObterTodos(filtro);
             foreach (var baralho in baralhos)
             {
-                baralho.CartasDoBaralho = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id});
+                baralho.CartasDoBaralho = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id });
                 Atualizar(baralho);
             }
 
@@ -175,7 +176,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
             var copiaDeCartas = _IBaralhoRepository.ObterTodosCopiaDeCartas(filtro);
-            
+
             foreach (var copia in copiaDeCartas)
             {
                 copia.Carta = _cartaServico.ObterPorId(copia.IdCarta);
