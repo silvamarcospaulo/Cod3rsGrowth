@@ -22,8 +22,9 @@ namespace Cod3rsGrowth.Forms
         private Thread threadFormsEntrar;
         private Thread threadFormsEditarPerfil;
         private Thread threadFormsNovoBaralho;
-        const int precoPadrao = 0;
-        DateTime dataPadrao = Convert.ToDateTime("01/01/2001");
+        const int QUANTIDADE_MINIMA = 0;
+        const int PRECO_PADRAO = 0;
+        DateTime DATA_PADRAO = Convert.ToDateTime("01/01/2001");
 
         public FormListaBaralhosDoJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
             JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController, Jogador _jogador)
@@ -114,7 +115,7 @@ namespace Cod3rsGrowth.Forms
 
         private BaralhoFiltro VerificarFiltroFormatoDeJogo(BaralhoFiltro filtro)
         {
-            const int quantidadeMinima = 0;
+            const int QUANTIDADE_MINIMA = 0;
 
             var listaFormatoDeJogo = new List<FormatoDeJogoEnum>();
 
@@ -122,7 +123,7 @@ namespace Cod3rsGrowth.Forms
             if (checkBoxFormatoPauper.Checked) listaFormatoDeJogo.Add(FormatoDeJogoEnum.Pauper);
             if (checkBoxFormatoStandard.Checked) listaFormatoDeJogo.Add(FormatoDeJogoEnum.Standard);
 
-            if (listaFormatoDeJogo.Count > quantidadeMinima) filtro.FormatoDeJogoBaralho = listaFormatoDeJogo;
+            if (listaFormatoDeJogo.Count > QUANTIDADE_MINIMA) filtro.FormatoDeJogoBaralho = listaFormatoDeJogo;
 
             return filtro;
         }
@@ -130,36 +131,34 @@ namespace Cod3rsGrowth.Forms
         private BaralhoFiltro VerificarFiltroPrecoBaralhoMinimo(BaralhoFiltro filtro)
         {        
 
-            if (numericUpDownMin.Value != precoPadrao) filtro.PrecoDoBaralhoMinimo =  Convert.ToDecimal(numericUpDownMin.Text);
+            if (numericUpDownMin.Value != PRECO_PADRAO) filtro.PrecoDoBaralhoMinimo =  Convert.ToDecimal(numericUpDownMin.Text);
 
             return filtro;
         }
 
         private BaralhoFiltro VerificarFiltroPrecoBaralhoMaximo(BaralhoFiltro filtro)
         {
-            if (numericUpDownMax.Value != precoPadrao) filtro.PrecoDoBaralhoMaximo = Convert.ToDecimal(numericUpDownMax.Text);
+            if (numericUpDownMax.Value != PRECO_PADRAO) filtro.PrecoDoBaralhoMaximo = Convert.ToDecimal(numericUpDownMax.Text);
 
             return filtro;
         }
 
         private BaralhoFiltro VerificarFiltroDataCriacaoMinimo(BaralhoFiltro filtro)
         {
-            if (dateTimePickerDataMinima.Value != dataPadrao) filtro.DataCriacaoMinimo = new DateTime (day: dateTimePickerDataMinima.Value.Day, month: dateTimePickerDataMinima.Value.Month, year: dateTimePickerDataMinima.Value.Year);
+            if (dateTimePickerDataMinima.Value != DATA_PADRAO) filtro.DataCriacaoMinimo = new DateTime (day: dateTimePickerDataMinima.Value.Day, month: dateTimePickerDataMinima.Value.Month, year: dateTimePickerDataMinima.Value.Year);
             
             return filtro;
         }
 
         private BaralhoFiltro VerificarFiltroDataCriacaoMaximo(BaralhoFiltro filtro)
         {
-            if (dateTimePickerDataMaxima.Value != dataPadrao) filtro.DataCriacaoMaximo = new DateTime(day: dateTimePickerDataMaxima.Value.Day, month: dateTimePickerDataMaxima.Value.Month, year: dateTimePickerDataMaxima.Value.Year);
+            if (dateTimePickerDataMaxima.Value != DATA_PADRAO) filtro.DataCriacaoMaximo = new DateTime(day: dateTimePickerDataMaxima.Value.Day, month: dateTimePickerDataMaxima.Value.Month, year: dateTimePickerDataMaxima.Value.Year);
 
             return filtro;
         }
 
         private BaralhoFiltro VerificarFiltroCorBaralho(BaralhoFiltro filtro)
         {
-            const int quantidadeMinima = 0;
-
             var corBaralho = new List<string>();
 
             if (checkBoxAzul.Checked) corBaralho.Add(checkBoxAzul.Text);
@@ -169,7 +168,7 @@ namespace Cod3rsGrowth.Forms
             if (checkBoxVermelho.Checked) corBaralho.Add(checkBoxVermelho.Text);
             if (checkBoxPreto.Checked) corBaralho.Add(checkBoxPreto.Text);
 
-            if (corBaralho.Count > quantidadeMinima) filtro.CorBaralho = corBaralho;
+            if (corBaralho.Count > QUANTIDADE_MINIMA) filtro.CorBaralho = corBaralho;
 
             return filtro;
         }
@@ -183,8 +182,6 @@ namespace Cod3rsGrowth.Forms
 
         private void LimparFiltro()
         {
-            const int precoPadrao = 0;
-
             var dataPadrao = Convert.ToDateTime("01/01/2001");
             checkBoxAzul.Checked = false;
             checkBoxBranco.Checked = false;
@@ -195,8 +192,8 @@ namespace Cod3rsGrowth.Forms
             checkBoxFormatoCommander.Checked = false;
             checkBoxFormatoStandard.Checked = false;
             checkBoxFormatoPauper.Checked = false;
-            numericUpDownMin.Value = Convert.ToDecimal(precoPadrao);
-            numericUpDownMax.Value = Convert.ToDecimal(precoPadrao);
+            numericUpDownMin.Value = Convert.ToDecimal(PRECO_PADRAO);
+            numericUpDownMax.Value = Convert.ToDecimal(PRECO_PADRAO);
             dateTimePickerDataMinima.Value = dataPadrao;
             dateTimePickerDataMaxima.Value = dataPadrao;
             textBoxFiltrarNome.Text = "";

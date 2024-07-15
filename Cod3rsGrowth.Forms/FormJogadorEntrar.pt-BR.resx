@@ -243,6 +243,12 @@
   <data name="labelMtgDeckBuilder.Text" xml:space="preserve">
     <value>MTG DeckBuilder</value>
   </data>
+  <data name="labelUsuarioMensagemDeErro.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelUsuarioMensagemDeErro.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 15</value>
+  </data>
   <data name="$this.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>

@@ -5,6 +5,7 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using FluentMigrator.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cod3rsGrowth.Forms
@@ -37,20 +38,39 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarAutenticaUsuarioSenha(object sender, EventArgs e)
         {
 
-            var jogadorAutenticar = new Jogador()
+            try
             {
-                UsuarioJogador = textBoxUsuario.Text,
-                SenhaHashJogador = textBoxSenha.Text
-            };
+                var jogadorAutenticar = new Jogador()
+                {
+                    UsuarioJogador = textBoxUsuario.Text,
+                    SenhaHashJogador = textBoxSenha.Text
+                };
 
-            var resultado = _loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
-            var jogador = (Jogador)resultado.Value;
-            _jogador = _jogadorServico.ObterPorId(jogador.Id);
+                var resultado = _loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
+                var jogador = (Jogador)resultado?.Value;
+                try
+                {
+                    _jogador = _jogadorServico.ObterPorId(jogador.Id);
+                }
+                catch (NullReferenceException ex)
+                {
+                    throw new NullReferenceException("Jogador, não encontrado.");
+                }
+                
 
-            this.Close();
-            threadFormsJogador = new Thread(CarregaFormJogador);
-            threadFormsJogador.SetApartmentState(ApartmentState.STA);
-            threadFormsJogador.Start();
+                this.Close();
+                threadFormsJogador = new Thread(CarregaFormJogador);
+                threadFormsJogador.SetApartmentState(ApartmentState.STA);
+                threadFormsJogador.Start();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void CarregaFormJogador(object obj)

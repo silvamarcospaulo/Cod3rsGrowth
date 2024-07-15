@@ -49,8 +49,6 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            var aa = query.FirstOrDefault();
-
             return query.FirstOrDefault() ?? throw new Exception("Conta não existente. Verifique os dados inseridos ou crie uma conta");
         }
 

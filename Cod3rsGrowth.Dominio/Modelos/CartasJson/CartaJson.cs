@@ -1,7 +1,4 @@
-﻿using LinqToDB.Mapping;
-using System.Diagnostics;
-
-namespace Cod3rsGrowth.Dominio.Modelos.CartasJson
+﻿namespace Cod3rsGrowth.Dominio.Modelos.CartasJson
 {
     public class CartaJson
     {
