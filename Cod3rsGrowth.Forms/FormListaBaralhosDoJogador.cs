@@ -115,8 +115,6 @@ namespace Cod3rsGrowth.Forms
 
         private BaralhoFiltro VerificarFiltroFormatoDeJogo(BaralhoFiltro filtro)
         {
-            const int QUANTIDADE_MINIMA = 0;
-
             var listaFormatoDeJogo = new List<FormatoDeJogoEnum>();
 
             if (checkBoxFormatoCommander.Checked) listaFormatoDeJogo.Add(FormatoDeJogoEnum.Commander);
