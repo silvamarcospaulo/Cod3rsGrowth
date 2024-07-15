@@ -5,7 +5,6 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
-using FluentMigrator.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cod3rsGrowth.Forms
@@ -56,7 +55,7 @@ namespace Cod3rsGrowth.Forms
                 {
                     throw new NullReferenceException("Jogador, não encontrado.");
                 }
-                
+
 
                 this.Close();
                 threadFormsJogador = new Thread(CarregaFormJogador);

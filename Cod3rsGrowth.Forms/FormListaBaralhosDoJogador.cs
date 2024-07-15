@@ -50,7 +50,7 @@ namespace Cod3rsGrowth.Forms
                 $"   |   Usuário: {jogador.UsuarioJogador}" +
                 $"   |   Quantidade de baralho: {jogador.QuantidadeDeBaralhosJogador}" +
                 $"   |   Preco total das cartas: R${Math.Round(jogador.PrecoDasCartasJogador, casasDecimais)}";
-            
+
             var listaDeBaralho = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
             dataGridViewBaralhos.DataSource = listaDeBaralho;
         }
@@ -129,9 +129,9 @@ namespace Cod3rsGrowth.Forms
         }
 
         private BaralhoFiltro VerificarFiltroPrecoBaralhoMinimo(BaralhoFiltro filtro)
-        {        
+        {
 
-            if (numericUpDownMin.Value != PRECO_PADRAO) filtro.PrecoDoBaralhoMinimo =  Convert.ToDecimal(numericUpDownMin.Text);
+            if (numericUpDownMin.Value != PRECO_PADRAO) filtro.PrecoDoBaralhoMinimo = Convert.ToDecimal(numericUpDownMin.Text);
 
             return filtro;
         }
@@ -145,8 +145,8 @@ namespace Cod3rsGrowth.Forms
 
         private BaralhoFiltro VerificarFiltroDataCriacaoMinimo(BaralhoFiltro filtro)
         {
-            if (dateTimePickerDataMinima.Value != DATA_PADRAO) filtro.DataCriacaoMinimo = new DateTime (day: dateTimePickerDataMinima.Value.Day, month: dateTimePickerDataMinima.Value.Month, year: dateTimePickerDataMinima.Value.Year);
-            
+            if (dateTimePickerDataMinima.Value != DATA_PADRAO) filtro.DataCriacaoMinimo = new DateTime(day: dateTimePickerDataMinima.Value.Day, month: dateTimePickerDataMinima.Value.Month, year: dateTimePickerDataMinima.Value.Year);
+
             return filtro;
         }
 
