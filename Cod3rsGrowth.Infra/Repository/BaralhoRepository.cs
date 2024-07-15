@@ -9,6 +9,7 @@ namespace Cod3rsGrowth.Infra.Repository
     public class BaralhoRepository : IBaralhoRepository
     {
         private readonly ConexaoDados conexaoDados;
+        private const int VALOR_NULO = 1;
 
         public BaralhoRepository(ConexaoDados _conexaoDados)
         {
@@ -39,7 +40,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            const int valorMinimo = 1;
+            
 
             IQueryable<Baralho> query = from q in conexaoDados.TabelaBaralho
                                         select q;
@@ -58,7 +59,7 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.FormatoDeJogoBaralho?.Count() >= valorMinimo)
+            if (filtro?.FormatoDeJogoBaralho?.Count() >= VALOR_NULO)
             {
                 foreach (var formatoDeJogo in filtro.FormatoDeJogoBaralho)
                 {
@@ -96,7 +97,7 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho?.Count() >= valorMinimo)
+            if (filtro?.CorBaralho?.Count() >= VALOR_NULO)
             {
                 foreach (var cor in filtro.CorBaralho)
                 {

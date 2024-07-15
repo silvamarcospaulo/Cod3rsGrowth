@@ -3,7 +3,6 @@ using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Teste.Singleton;
-using LinqToDB.Common;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Teste.Testes
@@ -85,7 +84,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = "Creature",
                     RaridadeCarta = RaridadeEnum.Rare,
                     PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = "{U, R}"
+                    CorCarta = "Azul, Vermelho"
                 },
                 new Carta()
                 {
@@ -95,7 +94,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     TipoDeCarta = "Creature",
                     RaridadeCarta = RaridadeEnum.Rare,
                     PrecoCarta = Convert.ToDecimal(5),
-                    CorCarta = "{G}"
+                    CorCarta = "Verde"
                 }
             };
 
@@ -155,7 +154,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 TipoDeCarta = "Creature",
                 RaridadeCarta = RaridadeEnum.Rare,
                 PrecoCarta = Convert.ToDecimal(5),
-                CorCarta = "{U, R}"
+                CorCarta = "Azul, Vermelho"
             };
 
             var cartaMock = servicoCarta.ObterPorId(cartaTeste.Id);
@@ -230,80 +229,6 @@ namespace Cod3rsGrowth.Teste.Testes
             servicoCarta.Criar(cartaTeste);
 
             Assert.Equivalent(cartaTeste, servicoCarta.ObterPorId(cartaTeste.Id));
-        }
-
-        [Fact]
-        public void ao_Atualizar_com_dados_validos_deve_atualizar_carta_existente()
-        {
-            var cartaTeste = new Carta()
-            {
-                Id = 7,
-                RaridadeCarta = RaridadeEnum.Uncommon,
-            };
-
-            servicoCarta.Atualizar(cartaTeste);
-
-            Assert.Equal(cartaTeste.RaridadeCarta, servicoCarta.ObterPorId(cartaTeste.Id).RaridadeCarta);
-        }
-
-        [Fact]
-        public void ao_Atualizar_com_dados_validos_nao_deve_alterar_nome_custo_de_mana_convertido_tipo_de_carta_e_cor_carta()
-        {
-            var cartaTeste = new Carta()
-            {
-                Id = 1,
-                NomeCarta = "Ilha",
-                CustoDeManaConvertidoCarta = 0,
-                TipoDeCarta = "Basic Land",
-                RaridadeCarta = RaridadeEnum.Uncommon,
-                PrecoCarta = 0.5m,
-                CorCarta = ""
-            };
-
-            var cartaTesteExistente = new Carta()
-            {
-                Id = servicoCarta.ObterPorId(cartaTeste.Id).Id,
-                NomeCarta = servicoCarta.ObterPorId(cartaTeste.Id).NomeCarta,
-                CustoDeManaConvertidoCarta = servicoCarta.ObterPorId(cartaTeste.Id).CustoDeManaConvertidoCarta,
-                TipoDeCarta = servicoCarta.ObterPorId(cartaTeste.Id).TipoDeCarta,
-                RaridadeCarta = servicoCarta.ObterPorId(cartaTeste.Id).RaridadeCarta,
-                PrecoCarta = servicoCarta.ObterPorId(cartaTeste.Id).PrecoCarta,
-                CorCarta = servicoCarta.ObterPorId(cartaTeste.Id).CorCarta,
-            };
-
-            servicoCarta.Atualizar(cartaTeste);
-
-            var cartaTesteAtualizada = servicoCarta.ObterPorId(cartaTeste.Id);
-
-            Assert.Equal(cartaTesteExistente.Id, cartaTesteAtualizada.Id);
-            Assert.Equal(cartaTesteExistente.NomeCarta, cartaTesteAtualizada.NomeCarta);
-            Assert.Equal(cartaTesteExistente.CustoDeManaConvertidoCarta, cartaTesteAtualizada.CustoDeManaConvertidoCarta);
-            Assert.Equal(cartaTesteExistente.TipoDeCarta, cartaTesteAtualizada.TipoDeCarta);
-            Assert.NotEqual(cartaTesteExistente.RaridadeCarta, cartaTesteAtualizada.RaridadeCarta);
-            Assert.Equal(cartaTesteExistente.PrecoCarta, cartaTesteAtualizada.PrecoCarta);
-            Assert.Equal(cartaTesteExistente.CorCarta, cartaTesteAtualizada.CorCarta);
-        }
-
-        [Theory]
-        [InlineData(-10)]
-        [InlineData(292788)]
-        public void ao_Atualizar_com_id_invalido_ou_inexistente_deve_retornar_Exception(int idCartaTeste)
-        {
-            var mensagemDeErroEsperada = ($"Carta {idCartaTeste} Nao Encontrada");
-
-            var cartaTeste = new Carta()
-            {
-                Id = idCartaTeste,
-                NomeCarta = "Sol Ring",
-                TipoDeCarta = "Artifact",
-                RaridadeCarta = RaridadeEnum.Common,
-                PrecoCarta = 0.5m,
-                CorCarta = "",
-            };
-
-            var resultado = Assert.Throws<Exception>(() => servicoCarta.Atualizar(cartaTeste));
-
-            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
     }
 }

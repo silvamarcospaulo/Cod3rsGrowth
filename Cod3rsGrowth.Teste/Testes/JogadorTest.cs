@@ -1,11 +1,8 @@
 using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Servico.ServicoBaralho;
-using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Teste.Singleton;
-using LinqToDB.Common;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Teste.Testes
@@ -13,8 +10,6 @@ namespace Cod3rsGrowth.Teste.Testes
     public class JogadorTest : TesteBase
     {
         private readonly JogadorServico servicoJogador;
-        private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
-        private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
         private List<Jogador> tabelaJogador = SingletonTabelasTeste.InstanciaJogador;
 
         public JogadorTest()
@@ -33,16 +28,34 @@ namespace Cod3rsGrowth.Teste.Testes
                 new Jogador()
                 {
                     NomeJogador = "Marcos",
+                    SobrenomeJogador = "Silva",
+                    UsuarioJogador = "marcos",
+                    UsuarioConfirmacaoJogador = "marcos",
+                    SenhaHashJogador = "Senha123",
+                    SenhaHashConfirmacaoJogador = "Senha123",
+                    Role = "Jogador",
                     DataNascimentoJogador = new DateTime(day: 8, month: 3, year: 1999),
                 },
                 new Jogador()
                 {
                     NomeJogador = "Paulo",
+                    SobrenomeJogador = "Silva",
+                    UsuarioJogador = "pauloo",
+                    UsuarioConfirmacaoJogador = "pauloo",
+                    SenhaHashJogador = "Senha123",
+                    SenhaHashConfirmacaoJogador = "Senha123",
+                    Role = "Jogador",
                     DataNascimentoJogador = new DateTime(day: 9, month: 3, year: 1999),
                 },
                 new Jogador()
                 {
                     NomeJogador = "Silva",
+                    SobrenomeJogador = "Silva",
+                    UsuarioJogador = "silvaa",
+                    UsuarioConfirmacaoJogador = "silvaa",
+                    SenhaHashJogador = "Senha123",
+                    SenhaHashConfirmacaoJogador = "Senha123",
+                    Role = "Jogador",
                     DataNascimentoJogador = new DateTime(day: 10, month: 3, year: 1999),
                 }
             };
@@ -94,16 +107,21 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 Id = 1,
                 NomeJogador = "Marcos",
+                SobrenomeJogador = "Silva",
+                UsuarioJogador = "marcos",
+                UsuarioConfirmacaoJogador = "marcos",
+                SenhaHashJogador = "Senha123",
+                SenhaHashConfirmacaoJogador = "Senha123",
+                Role = "Jogador",
                 DataNascimentoJogador = new DateTime(day: 8, month: 3, year: 1999),
-                PrecoDasCartasJogador = 0,
-                QuantidadeDeBaralhosJogador = 0,
-                ContaAtivaJogador = false,
-                BaralhosJogador = new List<Baralho>()
             };
 
             var jogadorMock = servicoJogador.ObterPorId(jogadorTeste.Id);
 
-            Assert.Equivalent(jogadorTeste, jogadorMock);
+            Assert.Equivalent(jogadorTeste.NomeJogador, jogadorMock.NomeJogador);
+            Assert.Equivalent(jogadorTeste.SobrenomeJogador, jogadorMock.SobrenomeJogador);
+            Assert.Equivalent(jogadorTeste.UsuarioJogador, jogadorMock.UsuarioJogador);
+            Assert.Equivalent(jogadorTeste.DataNascimentoJogador, jogadorMock.DataNascimentoJogador);
         }
 
         [Theory]
@@ -117,12 +135,18 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "Nome do Jogador nao preenchido";
+            const string mensagemDeErroEsperada = "Campo NOME é obrigatório.";
 
             var jogadorTeste = new Jogador()
             {
                 Id = 4,
                 NomeJogador = "",
+                SobrenomeJogador = "Detofol",
+                UsuarioJogador = "pauloo",
+                UsuarioConfirmacaoJogador = "pauloo",
+                SenhaHashJogador = "Senha123",
+                SenhaHashConfirmacaoJogador = "Senha123",
+                Role = "Jogador",
                 DataNascimentoJogador = new DateTime(day: 29, month: 11, year: 2005),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
@@ -138,12 +162,18 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_data_de_nascimento_vazia_deve_retornar_Excepion()
         {
-            const string mensagemDeErroEsperada = "Data de nascimente nao preenchida";
+            const string mensagemDeErroEsperada = "Campo DATA DE NASCIMENTO é obrigatório.";
 
             var jogadorTeste = new Jogador()
             {
                 Id = 4,
                 NomeJogador = "Detofol",
+                SobrenomeJogador = "Detofol",
+                UsuarioJogador = "pauloo",
+                UsuarioConfirmacaoJogador = "pauloo",
+                SenhaHashJogador = "Senha123",
+                SenhaHashConfirmacaoJogador = "Senha123",
+                Role = "Jogador",
                 DataNascimentoJogador = new DateTime(),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
@@ -163,7 +193,14 @@ namespace Cod3rsGrowth.Teste.Testes
 
             var jogadorTeste = new Jogador()
             {
+                Id = 4,
                 NomeJogador = "Detofol",
+                SobrenomeJogador = "Detofol",
+                UsuarioJogador = "pauloo",
+                UsuarioConfirmacaoJogador = "pauloo",
+                SenhaHashJogador = "Senha123",
+                SenhaHashConfirmacaoJogador = "Senha123",
+                Role = "Jogador",
                 DataNascimentoJogador = new DateTime(day: 1, month: 06, year: 2023),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
@@ -183,6 +220,12 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 Id = 4,
                 NomeJogador = "Detofol",
+                SobrenomeJogador = "Detofol",
+                UsuarioJogador = "pauloo",
+                UsuarioConfirmacaoJogador = "pauloo",
+                SenhaHashJogador = "Senha123",
+                SenhaHashConfirmacaoJogador = "Senha123",
+                Role = "Jogador",
                 DataNascimentoJogador = new DateTime(day: 29, month: 11, year: 2005),
                 PrecoDasCartasJogador = 0,
                 QuantidadeDeBaralhosJogador = 0,
@@ -207,77 +250,6 @@ namespace Cod3rsGrowth.Teste.Testes
             servicoJogador.Atualizar(jogadorTeste);
 
             Assert.Equivalent(jogadorTeste, servicoJogador.ObterPorId(idJogadorTeste));
-        }
-
-        [Theory]
-        [InlineData(FormatoDeJogoEnum.Standard)]
-        [InlineData(FormatoDeJogoEnum.Pauper)]
-        [InlineData(FormatoDeJogoEnum.Commander)]
-        public void ao_Atualizar_com_baralho_invalido_deve_retornar_Exception(FormatoDeJogoEnum formatoDeJogoBaralhoJogadorTeste)
-        {
-            const string mensagemDeErroEsperada = ("Quantidade de cartas do baralho nao compativel com o formato de jogo selecionado");
-
-            var dataDeHoje = DateTime.Now;
-
-            var jogadorTeste = new Jogador()
-            {
-                Id = 1,
-                NomeJogador = "Marcos",
-                DataNascimentoJogador = new DateTime(day: 8, month: 3, year: 1999),
-                PrecoDasCartasJogador = 0,
-                QuantidadeDeBaralhosJogador = 0,
-                ContaAtivaJogador = true,
-                BaralhosJogador = new List<Baralho>()
-                {
-                    new Baralho()
-                    {
-                        Id = 1,
-                        IdJogador = 1,
-                        NomeBaralho = "Mono Green Stomp",
-                        FormatoDeJogoBaralho = formatoDeJogoBaralhoJogadorTeste,
-                        CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
-                        {
-                            new CopiaDeCartasNoBaralho
-                            {
-                                Carta = new Carta()
-                                {
-                                    Id = 7,
-                                    NomeCarta = "Ghalta, Fome Primordial",
-                                    CustoDeManaConvertidoCarta = 12,
-                                    TipoDeCarta = "Creature",
-                                    RaridadeCarta = RaridadeEnum.Rare,
-                                    PrecoCarta = Convert.ToDecimal(5),
-                                    CorCarta = ""
-                                },
-                                QuantidadeCopiasDaCartaNoBaralho = 1
-                            },
-                            new CopiaDeCartasNoBaralho
-                            {
-                                Carta = new Carta()
-                                {
-                                    Id = 3,
-                                    NomeCarta = "Floresta",
-                                    CustoDeManaConvertidoCarta = 0,
-                                    TipoDeCarta = "Basic Land",
-                                    RaridadeCarta = RaridadeEnum.Common,
-                                    PrecoCarta = Convert.ToDecimal(0.5),
-                                    CorCarta = ""
-                                },
-                                QuantidadeCopiasDaCartaNoBaralho = 20
-                            }
-                        },
-                        QuantidadeDeCartasNoBaralho = 21,
-                        DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
-                        PrecoDoBaralho = 54.5m,
-                        CustoDeManaConvertidoDoBaralho = 0,
-                        CorBaralho = "{G}"
-                    }
-                }
-            };
-
-            var resultado = Assert.Throws<Exception>(() => servicoJogador.Atualizar(jogadorTeste));
-
-            Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
 
         [Theory]

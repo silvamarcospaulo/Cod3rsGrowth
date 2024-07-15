@@ -64,7 +64,28 @@ namespace Cod3rsGrowth.Teste.Repository
             if (filtro?.NomeJogador != null)
             {
                 query = from q in query
-                        where q.NomeJogador.Contains(filtro.NomeJogador)
+                        where q.NomeJogador == filtro.NomeJogador
+                        select q;
+            }
+
+            if (filtro?.SobrenomeJogador != null)
+            {
+                query = from q in query
+                        where q.SobrenomeJogador == filtro.SobrenomeJogador
+                        select q;
+            }
+
+            if (filtro?.UsuarioJogador != null)
+            {
+                query = from q in query
+                        where q.UsuarioJogador == filtro.UsuarioJogador
+                        select q;
+            }
+
+            if (filtro?.DataNascimentoJogador != null)
+            {
+                query = from q in query
+                        where q.DataNascimentoJogador == filtro.DataNascimentoJogador
                         select q;
             }
 
@@ -86,7 +107,7 @@ namespace Cod3rsGrowth.Teste.Repository
             if (jogador?.UsuarioJogador is not null)
             {
                 query = from q in query
-                        where (q.UsuarioJogador == jogador.UsuarioJogador) && (q.SenhaHashJogador == jogador.SenhaHashJogador)
+                        where q.UsuarioJogador == jogador.UsuarioJogador && q.SenhaHashJogador == jogador.SenhaHashJogador
                         select q;
             }
 

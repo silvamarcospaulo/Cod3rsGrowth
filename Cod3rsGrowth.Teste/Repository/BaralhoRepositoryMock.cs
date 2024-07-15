@@ -3,7 +3,6 @@ using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Teste.Singleton;
-using System;
 
 namespace Cod3rsGrowth.Teste.Repository
 {
@@ -11,27 +10,24 @@ namespace Cod3rsGrowth.Teste.Repository
     {
         private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
         private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
+        private const int VALOR_NULO = 0;
+        private const int VALOR_INICIAL = 1;
+        private const int INCREMENTO = 1;
 
         private int GerarIdBaralho()
         {
-            const int ValorInicial = 1;
-            const int Incremento = 1;
-
             var baralhoBanco = ObterTodos(null);
-            var ultimoId = baralhoBanco.Any() ? baralhoBanco.Max(baralho => baralho.Id) : ValorInicial - Incremento;
+            var ultimoId = baralhoBanco.Any() ? baralhoBanco.Max(baralho => baralho.Id) : VALOR_INICIAL - INCREMENTO;
 
-            return ultimoId + Incremento;
+            return ultimoId + INCREMENTO;
         }
 
         private int GerarIdCopiaDeCartas()
         {
-            const int ValorInicial = 1;
-            const int Incremento = 1;
-
             var copiaDeCartasBanco = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro());
-            var ultimoId = copiaDeCartasBanco.Any() ? copiaDeCartasBanco.Max(copiaDeCarta => copiaDeCarta.Id) : ValorInicial - Incremento;
+            var ultimoId = copiaDeCartasBanco.Any() ? copiaDeCartasBanco.Max(copiaDeCarta => copiaDeCarta.Id) : VALOR_INICIAL - INCREMENTO;
 
-            return ultimoId + Incremento;
+            return ultimoId + INCREMENTO;
         }
 
         public int Criar(Baralho baralho)
@@ -61,19 +57,24 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            const int valorMinimo = 0;
-
             IQueryable<Baralho> query = from q in tabelaBaralho.AsQueryable()
-                select q;
+                                        select q;
 
-            if (filtro?.IdJogador != null)
+            if (filtro?.IdJogador is not null)
             {
                 query = from q in query
                         where q.IdJogador == filtro.IdJogador
                         select q;
             }
 
-            if (filtro?.FormatoDeJogoBaralho?.Count() >= valorMinimo)
+            if (filtro?.Nome is not null)
+            {
+                query = from q in query
+                        where q.NomeBaralho.Contains(filtro.Nome)
+                        select q;
+            }
+
+            if (filtro?.FormatoDeJogoBaralho?.Count() >= VALOR_NULO)
             {
                 foreach (var formatoDeJogo in filtro.FormatoDeJogoBaralho)
                 {
@@ -83,14 +84,14 @@ namespace Cod3rsGrowth.Teste.Repository
                 }
             }
 
-            if (filtro?.PrecoDoBaralhoMinimo != null)
+            if (filtro?.PrecoDoBaralhoMinimo is not null)
             {
                 query = from q in query
                         where q.PrecoDoBaralho >= filtro.PrecoDoBaralhoMinimo
                         select q;
             }
 
-            if (filtro?.PrecoDoBaralhoMaximo != null)
+            if (filtro?.PrecoDoBaralhoMaximo is not null)
             {
                 query = from q in query
                         where q.PrecoDoBaralho <= filtro.PrecoDoBaralhoMaximo
@@ -111,7 +112,7 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.CorBaralho?.Count() >= valorMinimo)
+            if (filtro?.CorBaralho?.Count() >= VALOR_NULO)
             {
                 foreach (var cor in filtro.CorBaralho)
                 {
@@ -150,8 +151,17 @@ namespace Cod3rsGrowth.Teste.Repository
 
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
-            if (filtro?.IdBaralho != null) return tabelaCopiaDeCartasNoBaralho.FindAll(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.IdBaralho == filtro.IdBaralho);
-            return tabelaCopiaDeCartasNoBaralho;
+            IQueryable<CopiaDeCartasNoBaralho> query = from q in tabelaCopiaDeCartasNoBaralho.AsQueryable()
+                                                       select q;
+
+            if (filtro?.IdBaralho != null)
+            {
+                query = from q in query
+                        where q.IdBaralho == filtro.IdBaralho
+                        select q;
+            }
+
+            return query.ToList();
         }
     }
 }

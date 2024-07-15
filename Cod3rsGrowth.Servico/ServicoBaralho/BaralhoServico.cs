@@ -25,8 +25,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             try
             {
-                return baralho.Sum(carta => carta.Carta.PrecoCarta *
-                    carta.QuantidadeCopiasDaCartaNoBaralho);
+                return baralho.Sum(carta => carta.Carta.PrecoCarta * carta.QuantidadeCopiasDaCartaNoBaralho);
             }
             catch (Exception e)
             {
@@ -59,8 +58,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             try
             {
-                return Convert.ToInt32(baralho.Sum(cartas => cartas.Carta.CustoDeManaConvertidoCarta)
-                / SomarQuantidadeDeCartasDoBaralho(baralho));
+                return Convert.ToInt32(baralho.Sum(cartas => cartas.Carta.CustoDeManaConvertidoCarta) / SomarQuantidadeDeCartasDoBaralho(baralho));
             }
             catch (Exception e)
             {
@@ -76,11 +74,15 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public int Criar(Baralho baralho)
         {
-            baralho.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
-            baralho.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
-            baralho.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
-            baralho.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
-            baralho.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
+            var baralhoCriar = new Baralho();
+
+            baralhoCriar.NomeBaralho = baralho.NomeBaralho;
+            baralhoCriar.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
+            baralhoCriar.CartasDoBaralho = baralho.CartasDoBaralho;
+            baralhoCriar.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
+            baralhoCriar.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
+            baralhoCriar.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
+            baralhoCriar.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
 
             try
             {
