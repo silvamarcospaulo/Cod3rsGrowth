@@ -426,8 +426,7 @@
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormListaBaralhosDoJogador";
-            SizeGripStyle = SizeGripStyle.Hide;
-            WindowState = FormWindowState.Minimized;
+            SizeGripStyle = SizeGripStyle.Show;
             Load += CarregarFormListaBaralhosDoJogador;
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
             panel1.ResumeLayout(false);
