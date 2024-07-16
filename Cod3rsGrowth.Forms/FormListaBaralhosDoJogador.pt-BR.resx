@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Nome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="Nome.Font" type="System.Drawing.Font, System.Drawing">
@@ -157,10 +157,10 @@
     <value>MiddleLeft</value>
   </data>
   <data name="buttonSair.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
-  <data name="buttonSair.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="buttonSair.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
   <data name="buttonSair.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8pt</value>
@@ -176,12 +176,6 @@
   </data>
   <data name="buttonSair.Text" xml:space="preserve">
     <value>Sair</value>
-  </data>
-  <data name="labelFiltroNome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="labelFiltroNome.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="labelFiltroNome.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 10pt</value>
@@ -199,7 +193,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="textBoxFiltrarNome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="textBoxFiltrarNome.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 10pt</value>
@@ -211,7 +205,7 @@
     <value>566, 25</value>
   </data>
   <data name="labelMonteSeuBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+    <value>Top</value>
   </data>
   <data name="labelMonteSeuBaralho.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -240,11 +234,20 @@
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>814, 140</value>
   </data>
+  <data name="panel2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="dateTimePickerDataMaxima.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
   <data name="dateTimePickerDataMaxima.DropDownAlign" type="System.Windows.Forms.LeftRightAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="dateTimePickerDataMaxima.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 23</value>
+  </data>
+  <data name="dateTimePickerDataMinima.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="dateTimePickerDataMinima.DropDownAlign" type="System.Windows.Forms.LeftRightAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -253,10 +256,7 @@
     <value>145, 23</value>
   </data>
   <data name="labelDataDeCriacao.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="labelDataDeCriacao.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="labelDataDeCriacao.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 10pt, style=Bold</value>
@@ -274,10 +274,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -295,10 +292,7 @@
     <value>Max</value>
   </data>
   <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -319,10 +313,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="labelPrecoBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="labelPrecoBaralho.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="labelPrecoBaralho.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 10pt, style=Bold</value>
@@ -346,10 +337,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="labelMax.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="labelMax.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="labelMax.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 435</value>
@@ -362,6 +350,9 @@
   </data>
   <data name="buttonLimparFiltro.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="buttonLimparFiltro.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
   <data name="buttonLimparFiltro.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8pt</value>
@@ -376,10 +367,10 @@
     <value>Limpar filtro</value>
   </data>
   <data name="buttonEditarPerfil.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
-  <data name="buttonEditarPerfil.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="buttonEditarPerfil.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
   <data name="buttonEditarPerfil.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8pt</value>
@@ -397,10 +388,7 @@
     <value>Editar perfil</value>
   </data>
   <data name="labelFiltros.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="labelFiltros.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="labelFiltros.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 16pt</value>
@@ -420,8 +408,8 @@
   <data name="buttonAplicarFiltro.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="buttonAplicarFiltro.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="buttonAplicarFiltro.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
   <data name="buttonAplicarFiltro.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8pt</value>
@@ -433,16 +421,13 @@
     <value>6, 533</value>
   </data>
   <data name="buttonAplicarFiltro.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 25</value>
+    <value>179, 23</value>
   </data>
   <data name="buttonAplicarFiltro.Text" xml:space="preserve">
     <value>Aplicar filtro</value>
   </data>
   <data name="numericUpDownMax.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="numericUpDownMax.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="numericUpDownMax.Location" type="System.Drawing.Point, System.Drawing">
     <value>40, 431</value>
@@ -454,10 +439,7 @@
     <value>Right</value>
   </data>
   <data name="labelFormatoDeJogo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="labelFormatoDeJogo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="labelFormatoDeJogo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 10pt, style=Bold</value>
@@ -502,10 +484,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="checkBoxBranco.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxBranco.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxBranco.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -529,10 +508,7 @@
     <value>Branco</value>
   </data>
   <data name="checkBoxAzul.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxAzul.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxAzul.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -556,10 +532,7 @@
     <value>Azul</value>
   </data>
   <data name="checkBoxPreto.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxPreto.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxPreto.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -583,10 +556,7 @@
     <value>Preto</value>
   </data>
   <data name="checkBoxFormatoPauper.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxFormatoPauper.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxFormatoPauper.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -610,10 +580,7 @@
     <value>Pauper</value>
   </data>
   <data name="labelMin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="labelMin.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="labelMin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -652,10 +619,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="checkBoxVerde.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxVerde.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxVerde.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -679,10 +643,7 @@
     <value>Verde</value>
   </data>
   <data name="checkBoxFormatoStandard.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxFormatoStandard.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxFormatoStandard.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -706,10 +667,7 @@
     <value>Standard</value>
   </data>
   <data name="checkBoxFormatoCommander.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxFormatoCommander.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxFormatoCommander.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -733,10 +691,7 @@
     <value>Commander</value>
   </data>
   <data name="labelCor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="labelCor.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="labelCor.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 10pt, style=Bold</value>
@@ -760,10 +715,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="checkBoxIncolor.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxIncolor.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxIncolor.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -787,10 +739,7 @@
     <value>Incolor</value>
   </data>
   <data name="numericUpDownMin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="numericUpDownMin.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="numericUpDownMin.Location" type="System.Drawing.Point, System.Drawing">
     <value>40, 406</value>
@@ -802,10 +751,7 @@
     <value>Right</value>
   </data>
   <data name="checkBoxVermelho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="checkBoxVermelho.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>Bottom, Right</value>
   </data>
   <data name="checkBoxVermelho.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -837,6 +783,9 @@
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>194, 601</value>
   </data>
+  <data name="dataGridViewBaralhos.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="dataGridViewTextBoxColumn1.HeaderText" xml:space="preserve">
     <value>Nome</value>
   </data>
@@ -865,10 +814,10 @@
     <value>790, 410</value>
   </data>
   <data name="buttonNovoBaralho.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
-  <data name="buttonNovoBaralho.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="buttonNovoBaralho.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
   <data name="buttonNovoBaralho.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8pt</value>
@@ -896,6 +845,12 @@
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>814, 461</value>
+  </data>
+  <data name="$this.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1008, 601</value>
