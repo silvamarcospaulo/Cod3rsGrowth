@@ -6,6 +6,8 @@ using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Web.Controllers;
 using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
+using System.Linq;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -22,6 +24,7 @@ namespace Cod3rsGrowth.Forms
         private int PRECO_PADRAO = 0;
         private int QUANTIDADE_MINIMA = 0;
         private List<CopiaDeCartasNoBaralho> copiaParcialDeCartas;
+        private Carta cartaSelecionada;
 
         public FormNovoBaralho(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
             JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController, Jogador _jogador)
@@ -44,6 +47,7 @@ namespace Cod3rsGrowth.Forms
             labelCustoParcial.Text = "";
             labelPrecoParcial.Text = "";
             labelCorParcial.Text = "";
+            copiaParcialDeCartas = new List<CopiaDeCartasNoBaralho>();
         }
 
         private void AoClicarLimpaSelecaoDeFiltros(object sender, EventArgs e)
@@ -83,6 +87,7 @@ namespace Cod3rsGrowth.Forms
             filtro = VerificarFiltroCorCarta(filtro);
             filtro = VerificarFiltroNome(filtro);
             filtro = VerificarFiltroCustoDeManaConvertito(filtro);
+            filtro = VerificarFiltroRaridade(filtro);
 
             return filtro;
         }
@@ -99,9 +104,9 @@ namespace Cod3rsGrowth.Forms
             const string tipoDeCartaCriatura = "Creature";
             const string tipoDeCartaTerrenoBasico = "Basic Land";
             const string tipoDeCartaTerreno = "Land";
-            const string tipoDeCartaFeitico = "Socery";
+            const string tipoDeCartaFeitico = "Sorcery";
             const string tipoDeCartaInstantanea = "Instant";
-            const string tipoDeCartaEncantamento = "enchantment";
+            const string tipoDeCartaEncantamento = "Enchantment";
             var listaFormatoDeJogo = new List<string>();
 
             if (checkBoxTipoDeCartaCriatura.Checked) listaFormatoDeJogo.Add(tipoDeCartaCriatura);
@@ -111,7 +116,7 @@ namespace Cod3rsGrowth.Forms
             if (checkBoxTipoDeCartaMagicaInstantanea.Checked) listaFormatoDeJogo.Add(tipoDeCartaInstantanea);
             if (checkBoxTipoDeCartaEncantamento.Checked) listaFormatoDeJogo.Add(tipoDeCartaEncantamento);
 
-            if (listaFormatoDeJogo.Count > QUANTIDADE_MINIMA) filtro.CorCarta = listaFormatoDeJogo;
+            if (listaFormatoDeJogo.Count > QUANTIDADE_MINIMA) filtro.TipoDeCarta = listaFormatoDeJogo;
 
             return filtro;
         }
@@ -147,6 +152,20 @@ namespace Cod3rsGrowth.Forms
             return filtro;
         }
 
+        private CartaFiltro VerificarFiltroRaridade(CartaFiltro filtro)
+        {
+            var raridade = new List<RaridadeEnum>();
+
+            if (checkBoxRaridadeComum.Checked) raridade.Add(RaridadeEnum.Comum);
+            if (checkBoxRaridadeIncomum.Checked) raridade.Add(RaridadeEnum.Incomum);
+            if (checkBoxRaridadeRaro.Checked) raridade.Add(RaridadeEnum.Raro);
+            if (checkBoxRaridadeMitico.Checked) raridade.Add(RaridadeEnum.Mitico);
+
+            if (raridade.Count > QUANTIDADE_MINIMA) filtro.RaridadeCarta = raridade;
+
+            return filtro;
+        }
+
         private CartaFiltro VerificarFiltroCustoDeManaConvertito(CartaFiltro filtro)
         {
             if (numericUpDownCmc.Value != PRECO_PADRAO) filtro.CustoDeManaConvertidoCarta = Convert.ToInt32(numericUpDownMax.Value);
@@ -177,9 +196,84 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
         }
 
-        private void checkBoxVerde_CheckedChanged(object sender, EventArgs e)
+        private void AoClicarComumDesselecionaOutrasCheckBoxRaridade(object sender, EventArgs e)
         {
+            checkBoxRaridadeIncomum.Checked = false;
+            checkBoxRaridadeRaro.Checked = false;
+            checkBoxRaridadeMitico.Checked = false;
+        }
 
+        private void AoClicarIncomumDesselecionaOutrasCheckBoxRaridade(object sender, EventArgs e)
+        {
+            checkBoxRaridadeComum.Checked = false;
+            checkBoxRaridadeRaro.Checked = false;
+            checkBoxRaridadeMitico.Checked = false;
+        }
+
+        private void AoClicarRaroDesselecionaOutrasCheckBoxRaridade(object sender, EventArgs e)
+        {
+            checkBoxRaridadeIncomum.Checked = false;
+            checkBoxRaridadeComum.Checked = false;
+            checkBoxRaridadeMitico.Checked = false;
+        }
+
+        private void AoClicarMiticoDesselecionaOutrasCheckBoxRaridade(object sender, EventArgs e)
+        {
+            checkBoxRaridadeIncomum.Checked = false;
+            checkBoxRaridadeRaro.Checked = false;
+            checkBoxRaridadeComum.Checked = false;
+        }
+
+        private void AoClicarMostraImagemDaCarta(object sender, DataGridViewCellEventArgs e)
+        {
+            var carta = dataGridViewCartas.Rows[e.RowIndex];
+            cartaSelecionada = (Carta)carta.DataBoundItem;
+            CarregarImagemCarta(cartaSelecionada?.Imagem);
+        }
+
+        private void CarregarImagemCarta(string imagem)
+        {
+            if (imagem is not null)
+            {
+                pictureBoxCarta.Load(imagem);
+            }
+        }
+
+        private void AoClicarAdicionaCartaAoBaralho(object sender, EventArgs e)
+        {
+            if (numericUpDownQuantidadeDeCopiasDeCarta.Value > QUANTIDADE_MINIMA)
+            {
+                var quantidade = Convert.ToInt32(numericUpDownQuantidadeDeCopiasDeCarta.Value);
+                var copiaExistente = copiaParcialDeCartas.FirstOrDefault(copia => copia?.Carta?.Id == cartaSelecionada?.Id);
+
+                if (copiaExistente is not null)
+                {
+                    copiaExistente.QuantidadeCopiasDaCartaNoBaralho = quantidade;
+                }
+                else
+                {
+                    copiaParcialDeCartas.Add(new CopiaDeCartasNoBaralho()
+                    {
+                        Carta = cartaSelecionada,
+                        IdCarta = cartaSelecionada.Id,
+                        QuantidadeCopiasDaCartaNoBaralho = quantidade
+                    });
+                }
+                labelQuantidadeParcial.Text = Convert.ToString(BaralhoServico.SomarQuantidadeDeCartasDoBaralho(copiaParcialDeCartas));
+                labelCustoParcial.Text = Convert.ToString(BaralhoServico.SomarCustoDeManaConvertidoDoBaralho(copiaParcialDeCartas));
+                labelPrecoParcial.Text = Convert.ToString(BaralhoServico.SomarPrecoDoBaralho(copiaParcialDeCartas));
+                labelCorParcial.Text = Convert.ToString(BaralhoServico.ConferirCoresDoBaralho(copiaParcialDeCartas));
+                numericUpDownQuantidadeDeCopiasDeCarta.Value = Convert.ToDecimal(QUANTIDADE_MINIMA);
+            }
+        }
+
+        private void AoClicarCriaNovoBaralho(object sender, EventArgs e)
+        {
+            var baralho = new Baralho()
+            {
+                IdJogador = jogador.Id,
+                NomeBaralho = textBoxNomeBaralho.Text
+            };
         }
     }
 }

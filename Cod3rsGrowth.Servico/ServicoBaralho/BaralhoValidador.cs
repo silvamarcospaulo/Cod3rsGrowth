@@ -55,7 +55,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
                         if (copiaDeCartasNoBaralho.All(cartas => (!cartas.Carta.TipoDeCarta.Contains("Basic Land")) && (cartas.QuantidadeCopiasDaCartaNoBaralho > QUANTIDADE_MAXIMA_DE_COPIA_DE_CARTAS_STANDARD_E_PAUPER))) return false;
 
-                        if (copiaDeCartasNoBaralho.All(cartas => cartas.Carta.RaridadeCarta != RaridadeEnum.Common)) return false;
+                        if (copiaDeCartasNoBaralho.All(cartas => cartas.Carta.RaridadeCarta != RaridadeEnum.Comum)) return false;
 
                         break;
 

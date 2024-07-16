@@ -69,10 +69,10 @@ namespace Cod3rsGrowth.Dominio.Migrador
             const int valorInvalido = 4;
             switch (raridade)
             {
-                case "common": return Convert.ToInt32(RaridadeEnum.Common);
-                case "uncommon": return Convert.ToInt32(RaridadeEnum.Uncommon);
-                case "rare": return Convert.ToInt32(RaridadeEnum.Rare);
-                case "mythic": return Convert.ToInt32(RaridadeEnum.Mythic);
+                case "common": return Convert.ToInt32(RaridadeEnum.Comum);
+                case "uncommon": return Convert.ToInt32(RaridadeEnum.Incomum);
+                case "rare": return Convert.ToInt32(RaridadeEnum.Raro);
+                case "mythic": return Convert.ToInt32(RaridadeEnum.Mitico);
                 default: return valorInvalido;
             };
         }

@@ -54,7 +54,7 @@ namespace Cod3rsGrowth.Infra.Repository
                 foreach (var cor in filtro?.CorCarta)
                 {
                     query = from q in query
-                            where q.CorCarta == cor
+                            where q.CorCarta.Contains(cor)
                             select q;
                 }
             }

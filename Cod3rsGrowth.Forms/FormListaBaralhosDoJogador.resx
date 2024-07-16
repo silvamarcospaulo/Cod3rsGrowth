@@ -1355,8 +1355,6 @@
   </data>
   <data name="&gt;&gt;labelNomeJogador.Parent" xml:space="preserve">
     <value>panel1</value>
-  <data name="&gt;&gt;labelNomeJogador.Parent" xml:space="preserve">
-    <value>panel1</value>
   </data>
   <data name="&gt;&gt;checkBox3.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

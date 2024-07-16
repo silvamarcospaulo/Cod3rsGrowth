@@ -3,6 +3,7 @@ using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
+using static LinqToDB.Common.Configuration;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
@@ -21,7 +22,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             _validadorBaralho = validadorBaralho;
         }
 
-        private static decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        public static decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             try
             {
@@ -33,7 +34,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
         }
 
-        private static int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        public static int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             try
             {
@@ -45,7 +46,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
         }
 
-        private static string ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        public static string ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             var cores = baralho
                 .SelectMany(carta => carta.Carta.CorCarta.Trim('{', '}').Split(',').Select(cor => cor.Trim()))
@@ -54,11 +55,14 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return string.Join(", ", cores);
         }
 
-        private static int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        public static int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             try
             {
-                return Convert.ToInt32(baralho.Sum(cartas => cartas.Carta.CustoDeManaConvertidoCarta) / SomarQuantidadeDeCartasDoBaralho(baralho));
+                var custoDeManaConvertidoDoBaralho = 0;
+                baralho.ForEach(carta => custoDeManaConvertidoDoBaralho += (carta.Carta.CustoDeManaConvertidoCarta * carta.QuantidadeCopiasDaCartaNoBaralho));
+                custoDeManaConvertidoDoBaralho /= SomarQuantidadeDeCartasDoBaralho(baralho);
+                return custoDeManaConvertidoDoBaralho;
             }
             catch (Exception e)
             {

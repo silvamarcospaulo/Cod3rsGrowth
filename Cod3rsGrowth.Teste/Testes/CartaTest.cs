@@ -127,7 +127,7 @@ namespace Cod3rsGrowth.Teste.Testes
             const int quantidadeDeCartasEsperadas = 2;
             const RaridadeEnum raridadeFiltro = RaridadeEnum.Rare;
 
-            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { RaridadeCarta = raridadeFiltro }).Count();
+            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { RaridadeCarta = new List<RaridadeEnum>() { raridadeFiltro } }).Count();
 
             Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }
@@ -138,7 +138,7 @@ namespace Cod3rsGrowth.Teste.Testes
             const int quantidadeDeCartasEsperadas = 5;
             const string tipoDeCartaFiltro = "Basic Land";
 
-            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { TipoDeCarta = tipoDeCartaFiltro }).Count();
+            var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { TipoDeCarta = new List<string>() { tipoDeCartaFiltro } }).Count();
 
             Assert.Equal(quantidadeDeCartasEsperadas, quantidadeDeCartasMock);
         }
