@@ -1,12 +1,8 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Teste.Singleton;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using System.Linq;
 
 namespace Cod3rsGrowth.Teste.Repository
 {
@@ -31,16 +27,20 @@ namespace Cod3rsGrowth.Teste.Repository
             return ultimoId + Incremento;
         }
 
-        public void Criar(Jogador jogador)
+        public int Criar(Jogador jogador)
         {
             jogador.Id = GerarId();
             tabelaJogador.Add(jogador);
+
+            return jogador.Id;
         }
 
-        public void Atualizar(Jogador jogador)
+        public Jogador Atualizar(Jogador jogador)
         {
             var jogadorBanco = ObterPorId(jogador.Id);
             jogadorBanco = jogador;
+
+            return jogador;
         }
 
         public void Excluir(int idJogador)
@@ -64,7 +64,28 @@ namespace Cod3rsGrowth.Teste.Repository
             if (filtro?.NomeJogador != null)
             {
                 query = from q in query
-                        where q.NomeJogador.Contains(filtro.NomeJogador)
+                        where q.NomeJogador == filtro.NomeJogador
+                        select q;
+            }
+
+            if (filtro?.SobrenomeJogador != null)
+            {
+                query = from q in query
+                        where q.SobrenomeJogador == filtro.SobrenomeJogador
+                        select q;
+            }
+
+            if (filtro?.UsuarioJogador != null)
+            {
+                query = from q in query
+                        where q.UsuarioJogador == filtro.UsuarioJogador
+                        select q;
+            }
+
+            if (filtro?.DataNascimentoJogador != null)
+            {
+                query = from q in query
+                        where q.DataNascimentoJogador == filtro.DataNascimentoJogador
                         select q;
             }
 
@@ -75,35 +96,22 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.DataNascimentoJogadorMinimo != null)
-            {
-                query = from q in query
-                        where q.DataNascimentoJogador >= filtro.DataNascimentoJogadorMinimo
-                        select q;
-            }
-
-            if (filtro?.DataNascimentoJogadorMaximo != null)
-            {
-                query = from q in query
-                        where q.DataNascimentoJogador <= filtro.DataNascimentoJogadorMaximo
-                        select q;
-            }
-
-            if (filtro?.PrecoDasCartasJogadorMinimo != null)
-            {
-                query = from q in query
-                        where q.PrecoDasCartasJogador >= filtro.PrecoDasCartasJogadorMinimo
-                        select q;
-            }
-
-            if (filtro?.DataNascimentoJogadorMaximo != null)
-            {
-                query = from q in query
-                        where q.PrecoDasCartasJogador <= filtro.PrecoDasCartasJogadorMaximo
-                        select q;
-            }
-
             return query.ToList();
+        }
+
+        public Jogador AutenticaLogin(Jogador jogador)
+        {
+            IQueryable<Jogador> query = from q in tabelaJogador.AsQueryable()
+                                        select q;
+
+            if (jogador?.UsuarioJogador is not null)
+            {
+                query = from q in query
+                        where q.UsuarioJogador == jogador.UsuarioJogador && q.SenhaHashJogador == jogador.SenhaHashJogador
+                        select q;
+            }
+
+            return query.FirstOrDefault() ?? throw new Exception("Conta não existente. Verifique os dados inseridos ou crie uma conta");
         }
     }
 }

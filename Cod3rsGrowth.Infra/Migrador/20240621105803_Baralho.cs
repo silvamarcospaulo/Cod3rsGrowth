@@ -10,13 +10,14 @@ namespace Cod3rsGrowth.Dominio.Migrador
         {
             Create.Table("Baralho")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
-                .WithColumn("Id").AsInt64().NotNullable().ForeignKey("Jogador", "Id")
+                .WithColumn("IdJogador").AsInt64().NotNullable().ForeignKey("Jogador", "Id")
                 .WithColumn("Nome").AsString(255).NotNullable()
-                .WithColumn("DataDeCriacao").AsTime().NotNullable()
-                .WithColumn("FomatoDeJogo").AsString(255).NotNullable()
-                .WithColumn("QuantidadDeCartas").AsInt64().WithDefaultValue(valorPadraoZero).NotNullable()
+                .WithColumn("DataDeCriacao").AsDateTime().WithDefaultValue(DateTime.Now).NotNullable()
+                .WithColumn("FormatoDeJogo").AsInt32().NotNullable()
+                .WithColumn("QuantidadeDeCartas").AsInt64().WithDefaultValue(valorPadraoZero).NotNullable()
                 .WithColumn("Preco").AsDecimal().WithDefaultValue(Convert.ToDecimal(valorPadraoZero)).NotNullable()
-                .WithColumn("CustoDeManaConvertido").AsInt64().WithDefaultValue(valorPadraoZero).NotNullable();
+                .WithColumn("CustoDeManaConvertido").AsInt64().WithDefaultValue(valorPadraoZero).NotNullable()
+                .WithColumn("Cor").AsString(255).NotNullable();
         }
 
         public override void Down()

@@ -26,14 +26,14 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Carta ObterPorId(int idCarta)
         {
-            return conexaoDados.GetTable<Carta>().FirstOrDefault(carta => carta.IdCarta == idCarta) ??
+            return conexaoDados.GetTable<Carta>().FirstOrDefault(carta => carta.Id == idCarta) ??
                 throw new Exception($"Carta {idCarta} Nao Encontrada");
         }
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
             IQueryable<Carta> query = from q in conexaoDados.TabelaCarta
-                                        select q;
+                                      select q;
 
             if (filtro?.NomeCarta != null)
             {
@@ -81,26 +81,6 @@ namespace Cod3rsGrowth.Infra.Repository
             {
                 query = from q in query
                         where q.PrecoCarta >= filtro.PrecoCartaMaximo
-                        select q;
-            }
-
-            return query.ToList();
-        }
-
-        public void CriarCorCarta(CorCarta corCarta)
-        {
-            conexaoDados.Insert(corCarta);
-        }
-
-        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
-        {
-            IQueryable<CorCarta> query = from q in conexaoDados.TabelaCorCarta
-                select q;
-
-            if (filtro?.idCarta != null)
-            {
-                query = from q in query
-                        where q.IdCarta == filtro.idCarta
                         select q;
             }
 

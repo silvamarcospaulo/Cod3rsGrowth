@@ -10,8 +10,18 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public int Id { get; set; }
         [Column("Nome")]
         public string NomeJogador { get; set; }
+        [Column("Sobrenome")]
+        public string SobrenomeJogador { get; set; }
+        [Column("Usuario")]
+        public string UsuarioJogador { get; set; }
+        [Column("SenhaHash")]
+        public string SenhaHashJogador { get; set; }
+        [Column("Role")]
+        public string Role { get; set; }
         [Column("DataDeNascimento")]
         public DateTime DataNascimentoJogador { get; set; }
+        [Column("DataDeCriacaoConta")]
+        public DateTime DataDeCriacaoContaJogador { get; set; }
         [Column("PrecoDasCartas")]
         public decimal PrecoDasCartasJogador { get; set; }
         [Column("QuantidadeDeBaralhos")]
@@ -19,5 +29,7 @@ namespace Cod3rsGrowth.Dominio.Modelos
         [Column("ContaAtiva")]
         public bool ContaAtivaJogador { get; set; }
         public List<Baralho>? BaralhosJogador { get; set; }
+        public string? SenhaHashConfirmacaoJogador { get; set; }
+        public string? UsuarioConfirmacaoJogador { get; set; }
     }
 }

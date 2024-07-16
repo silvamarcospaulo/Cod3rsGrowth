@@ -9,6 +9,7 @@ namespace Cod3rsGrowth.Infra.Repository
     public class BaralhoRepository : IBaralhoRepository
     {
         private readonly ConexaoDados conexaoDados;
+        private const int VALOR_NULO = 1;
 
         public BaralhoRepository(ConexaoDados _conexaoDados)
         {
@@ -39,75 +40,71 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            const int valorMinimo = 1;
+            
 
             IQueryable<Baralho> query = from q in conexaoDados.TabelaBaralho
                                         select q;
 
-            if (filtro?.IdJogador != null)
+            if (filtro?.IdJogador is not null)
             {
                 query = from q in query
                         where q.IdJogador == filtro.IdJogador
                         select q;
             }
 
-            if (filtro?.FormatoDeJogoBaralho != null)
+            if (filtro?.Nome is not null)
             {
                 query = from q in query
-                        where q.FormatoDeJogoBaralho == filtro.FormatoDeJogoBaralho
+                        where q.NomeBaralho.Contains(filtro.Nome)
                         select q;
             }
 
-            if (filtro?.PrecoDoBaralhoMinimo != null)
+            if (filtro?.FormatoDeJogoBaralho?.Count() >= VALOR_NULO)
+            {
+                foreach (var formatoDeJogo in filtro.FormatoDeJogoBaralho)
+                {
+                    query = from q in query
+                            where q.FormatoDeJogoBaralho == formatoDeJogo
+                            select q;
+                }
+            }
+
+            if (filtro?.PrecoDoBaralhoMinimo is not null)
             {
                 query = from q in query
                         where q.PrecoDoBaralho >= filtro.PrecoDoBaralhoMinimo
                         select q;
             }
 
-            if (filtro?.PrecoDoBaralhoMaximo != null)
+            if (filtro?.PrecoDoBaralhoMaximo is not null)
             {
                 query = from q in query
                         where q.PrecoDoBaralho <= filtro.PrecoDoBaralhoMaximo
                         select q;
             }
 
-            if (filtro?.CorBaralho?.Count() > valorMinimo)
+            if (filtro?.DataCriacaoMinimo is not null)
             {
                 query = from q in query
-                        where q.CorBaralho.All(corBaralho => filtro.CorBaralho.All(cor => cor == corBaralho))
+                        where q.DataDeCriacaoBaralho >= filtro.DataCriacaoMinimo
                         select q;
             }
-                
-            return query.ToList();
-        }
 
-        public void CriarCorBaralho(CorBaralho corBaralho)
-        {
-            conexaoDados.Insert(corBaralho);
-        }
-
-        public void ExcluirCorBaralho(int idCorBaralho)
-        {
-            conexaoDados.Delete(idCorBaralho);
-        }
-
-        public CorBaralho ObterPorIdCorBaralho(int idCorBaralho)
-        {
-            return conexaoDados.GetTable<CorBaralho>().FirstOrDefault(corBaralho => corBaralho.IdCorBaralho == idCorBaralho) ??
-                throw new Exception($"Registro nao encontrado");
-        }
-
-        public List<CorBaralho> ObterTodosCorBaralho(CorBaralhoFiltro? filtro)
-        {
-            IQueryable<CorBaralho> query = from q in conexaoDados.TabelaCorBaralho
-                                        select q;
-
-            if (filtro?.idBaralho != null)
+            if (filtro?.DataCriacaoMaximo is not null)
             {
                 query = from q in query
-                        where q.IdBaralho == filtro.idBaralho
+                        where q.DataDeCriacaoBaralho <= filtro.DataCriacaoMaximo
                         select q;
+            }
+
+            if (filtro?.CorBaralho?.Count() >= VALOR_NULO)
+            {
+                foreach (var cor in filtro.CorBaralho)
+                {
+                    query = from q in query
+                            where q.CorBaralho.Contains(cor)
+                            select q;
+                }
             }
 
             return query.ToList();
@@ -130,14 +127,14 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            return conexaoDados.GetTable<CopiaDeCartasNoBaralho>().FirstOrDefault(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho == idCopiaDeCartasNoBaralho) ??
+            return conexaoDados.GetTable<CopiaDeCartasNoBaralho>().FirstOrDefault(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.Id == idCopiaDeCartasNoBaralho) ??
                 throw new Exception($"Registro Nao Encontrado");
         }
 
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
             IQueryable<CopiaDeCartasNoBaralho> query = from q in conexaoDados.TabelaCartasDoBaralho
-                select q;
+                                                       select q;
 
             if (filtro?.IdBaralho != null)
             {

@@ -10,10 +10,10 @@ namespace Cod3rsGrowth.Dominio.Modelos.Enums
     public enum FormatoDeJogoEnum
     {
         [Description("Commander")]
-        Commander = 'C',
+        Commander = 0,
         [Description("Standard")]
-        Standard = 'S',
+        Standard = 1,
         [Description("Pauper")]
-        Pauper = 'P'
+        Pauper = 2
     }
 }

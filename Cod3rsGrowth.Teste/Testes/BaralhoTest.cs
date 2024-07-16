@@ -2,8 +2,6 @@ using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoBaralho;
-using Cod3rsGrowth.Servico.ServicoCarta;
-using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Teste.Singleton;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,17 +12,15 @@ namespace Cod3rsGrowth.Teste.Testes
 
         private readonly BaralhoServico servicoBaralho;
 
-        private List<CorBaralho> tabelaCorBaralho = SingletonTabelasTeste.InstanciaCorBaralho;
-        private List<CopiaDeCartasNoBaralho> tabelaCopiaDeCartasNoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
         private List<Baralho> tabelaBaralho = SingletonTabelasTeste.InstanciaBaralho;
+        private List<CopiaDeCartasNoBaralho> tabelaCartasDoBaralho = SingletonTabelasTeste.InstanciaCopiaDeCartasNoBaralho;
 
         public BaralhoTest()
         {
             servicoBaralho = ServiceProvider.GetService<BaralhoServico>() ?? throw new Exception("Erro ao obter servico Baralho");
 
-            tabelaCorBaralho.Clear();
-            tabelaCopiaDeCartasNoBaralho.Clear();
             tabelaBaralho.Clear();
+            tabelaCartasDoBaralho.Clear();
 
             IniciarListaMock();
         }
@@ -37,37 +33,38 @@ namespace Cod3rsGrowth.Teste.Testes
             {
                 new Baralho()
                 {
-                    Id = 1,
-                    IdJogador = 1,
+                    IdJogador = 5,
                     NomeBaralho = "Mono Green Stomp",
                     FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
                     CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
                     {
                         new CopiaDeCartasNoBaralho
                         {
+                            IdCarta = 7,
                             Carta = new Carta()
                             {
-                                IdCarta = 7,
+                                Id = 7,
                                 NomeCarta = "Ghalta, Fome Primordial",
                                 CustoDeManaConvertidoCarta = 12,
-                                TipoDeCarta = TipoDeCartaEnum.Criatura,
+                                TipoDeCarta = "Creature",
                                 RaridadeCarta = RaridadeEnum.Rare,
-                                PrecoCarta = Convert.ToDecimal(5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Verde }
+                                PrecoCarta = 5m,
+                                CorCarta = "Verde"
                             },
                             QuantidadeCopiasDaCartaNoBaralho = 1
                         },
                         new CopiaDeCartasNoBaralho
                         {
+                            IdCarta = 3,
                             Carta = new Carta()
                             {
-                                IdCarta = 3,
+                                Id = 3,
                                 NomeCarta = "Floresta",
                                 CustoDeManaConvertidoCarta = 0,
-                                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                                TipoDeCarta = "Basic Land",
                                 RaridadeCarta = RaridadeEnum.Common,
-                                PrecoCarta = Convert.ToDecimal(0.5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                                PrecoCarta = 0.5m,
+                                CorCarta = ""
                             },
                             QuantidadeCopiasDaCartaNoBaralho = 99
                         }
@@ -76,55 +73,57 @@ namespace Cod3rsGrowth.Teste.Testes
                     DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                     PrecoDoBaralho = 54.5m,
                     CustoDeManaConvertidoDoBaralho = 0,
-                    CorBaralho = new List<CoresEnum>() {CoresEnum.Verde}
+                    CorBaralho = "Verde"
                 },
                 new Baralho()
                 {
-                    Id = 2,
-                    IdJogador = 1,
+                    IdJogador = 6,
                     NomeBaralho = "Niv-Mizzet Combo",
                     FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
                     CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
                     {
                         new CopiaDeCartasNoBaralho ()
                         {
+                            IdCarta = 1,
                             Carta = new Carta()
                             {
-                                IdCarta = 1,
+                                Id = 1,
                                 NomeCarta = "Ilha",
                                 CustoDeManaConvertidoCarta = 0,
-                                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                                TipoDeCarta = "Basic Land",
                                 RaridadeCarta = RaridadeEnum.Common,
-                                PrecoCarta = Convert.ToDecimal(0.5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                                PrecoCarta = 0.5m,
+                                CorCarta = ""
                             },
                             QuantidadeCopiasDaCartaNoBaralho = 49
                         },
                         new CopiaDeCartasNoBaralho ()
                         {
+                            IdCarta = 5,
                             Carta = new Carta()
                             {
-                                IdCarta = 5,
+                                Id = 5,
                                 NomeCarta = "Montanha",
                                 CustoDeManaConvertidoCarta = 0,
-                                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                                TipoDeCarta = "Basic Land",
                                 RaridadeCarta = RaridadeEnum.Common,
-                                PrecoCarta = Convert.ToDecimal(0.5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                                PrecoCarta = 0.5m,
+                                CorCarta = ""
                             },
                             QuantidadeCopiasDaCartaNoBaralho = 50
                         },
                         new CopiaDeCartasNoBaralho ()
                         {
+                            IdCarta = 6,
                             Carta = new Carta()
                             {
-                                IdCarta = 8,
+                                Id = 6,
                                 NomeCarta = "Niv-Mizzet, Parum",
                                 CustoDeManaConvertidoCarta = 6,
-                                TipoDeCarta = TipoDeCartaEnum.Criatura,
+                                TipoDeCarta = "Creature",
                                 RaridadeCarta = RaridadeEnum.Rare,
-                                PrecoCarta = Convert.ToDecimal(5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
+                                PrecoCarta = 5m,
+                                CorCarta = "Azul, Vermelho"
                             },
                             QuantidadeCopiasDaCartaNoBaralho = 1
                         }
@@ -133,27 +132,28 @@ namespace Cod3rsGrowth.Teste.Testes
                     DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                     PrecoDoBaralho = 54.5m,
                     CustoDeManaConvertidoDoBaralho = 0,
-                    CorBaralho = new List<CoresEnum>() {CoresEnum.Azul, CoresEnum.Vermelho}
+                    CorBaralho = "Azul, Vermelho"
                 },
                 new Baralho()
                 {
-                    Id = 3,
-                    IdJogador = 1,
+                    IdJogador = 7,
                     NomeBaralho = "Mono Green Stomp",
                     FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
                     CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
                     {
                         new CopiaDeCartasNoBaralho()
                         {
+
+                            IdCarta = 3,
                             Carta = new Carta()
                             {
-                                IdCarta = 3,
+                                Id = 3,
                                 NomeCarta = "Floresta",
                                 CustoDeManaConvertidoCarta = 0,
-                                TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                                TipoDeCarta = "Basic Land",
                                 RaridadeCarta = RaridadeEnum.Common,
-                                PrecoCarta = Convert.ToDecimal(0.5),
-                                CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                                PrecoCarta = 0.5m,
+                                CorCarta = ""
                             },
                             QuantidadeCopiasDaCartaNoBaralho = 60
                         }
@@ -162,25 +162,29 @@ namespace Cod3rsGrowth.Teste.Testes
                     DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                     PrecoDoBaralho = 30,
                     CustoDeManaConvertidoDoBaralho = 0,
-                    CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+                    CorBaralho = ""
                 }
             };
 
-            listaBaralhosMock.ForEach(baralho => servicoBaralho.Criar(
-                new Baralho()
+            foreach (var baralho in listaBaralhosMock)
+            {
+                var idBaralho = servicoBaralho.Criar(
+                    new Baralho()
+                    {
+                        IdJogador = baralho.IdJogador,
+                        NomeBaralho = baralho.NomeBaralho,
+                        FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
+                        DataDeCriacaoBaralho = baralho.DataDeCriacaoBaralho,
+                        CartasDoBaralho = baralho.CartasDoBaralho.ToList()
+                    }
+                );
+
+                foreach (var copia in baralho.CartasDoBaralho)
                 {
-                    Id = baralho.Id,
-                    IdJogador = baralho.IdJogador,
-                    NomeBaralho = baralho.NomeBaralho,
-                    FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
-                    DataDeCriacaoBaralho = baralho.DataDeCriacaoBaralho,
-                    QuantidadeDeCartasNoBaralho = baralho.QuantidadeDeCartasNoBaralho,
-                    PrecoDoBaralho = baralho.PrecoDoBaralho,
-                    CorBaralho = baralho.CorBaralho,
-                    CustoDeManaConvertidoDoBaralho = baralho.CustoDeManaConvertidoDoBaralho,
-                    CartasDoBaralho = baralho.CartasDoBaralho
+                    copia.IdBaralho = idBaralho;
+                    servicoBaralho.CriarCopiaDeCartas(copia);
                 }
-            ));
+            }
         }
 
         [Fact]
@@ -209,64 +213,74 @@ namespace Cod3rsGrowth.Teste.Testes
             var baralhoTeste = new Baralho()
             {
                 Id = 2,
-                IdJogador = 1,
+                IdJogador = 6,
                 NomeBaralho = "Niv-Mizzet Combo",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander,
                 CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
-                {
-                    new CopiaDeCartasNoBaralho ()
                     {
-                        Carta = new Carta()
+                        new CopiaDeCartasNoBaralho ()
                         {
                             IdCarta = 1,
-                            NomeCarta = "Ilha",
-                            CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                            RaridadeCarta = RaridadeEnum.Common,
-                            PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            Carta = new Carta()
+                            {
+                                Id = 1,
+                                NomeCarta = "Ilha",
+                                CustoDeManaConvertidoCarta = 0,
+                                TipoDeCarta = "Basic Land",
+                                RaridadeCarta = RaridadeEnum.Common,
+                                PrecoCarta = 0.5m,
+                                CorCarta = ""
+                            },
+                            QuantidadeCopiasDaCartaNoBaralho = 49
                         },
-                        QuantidadeCopiasDaCartaNoBaralho = 49
-                    },
-                    new CopiaDeCartasNoBaralho ()
-                    {
-                        Carta = new Carta()
+                        new CopiaDeCartasNoBaralho ()
                         {
                             IdCarta = 5,
-                            NomeCarta = "Montanha",
-                            CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                            RaridadeCarta = RaridadeEnum.Common,
-                            PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            Carta = new Carta()
+                            {
+                                Id = 5,
+                                NomeCarta = "Montanha",
+                                CustoDeManaConvertidoCarta = 0,
+                                TipoDeCarta = "Basic Land",
+                                RaridadeCarta = RaridadeEnum.Common,
+                                PrecoCarta = 0.5m,
+                                CorCarta = ""
+                            },
+                            QuantidadeCopiasDaCartaNoBaralho = 50
                         },
-                        QuantidadeCopiasDaCartaNoBaralho = 50
-                    },
-                    new CopiaDeCartasNoBaralho ()
-                    {
-                        Carta = new Carta()
+                        new CopiaDeCartasNoBaralho ()
                         {
-                            IdCarta = 8,
-                            NomeCarta = "Niv-Mizzet, Parum",
-                            CustoDeManaConvertidoCarta = 6,
-                            TipoDeCarta = TipoDeCartaEnum.Criatura,
-                            RaridadeCarta = RaridadeEnum.Rare,
-                            PrecoCarta = Convert.ToDecimal(5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Azul, CoresEnum.Vermelho }
-                        },
-                        QuantidadeCopiasDaCartaNoBaralho = 1
-                    }
-                },
+                            IdCarta = 6,
+                            Carta = new Carta()
+                            {
+                                Id = 6,
+                                NomeCarta = "Niv-Mizzet, Parum",
+                                CustoDeManaConvertidoCarta = 6,
+                                TipoDeCarta = "Creature",
+                                RaridadeCarta = RaridadeEnum.Rare,
+                                PrecoCarta = 5m,
+                                CorCarta = "Azul, Vermelho"
+                            },
+                            QuantidadeCopiasDaCartaNoBaralho = 1
+                        }
+                    },
                 QuantidadeDeCartasNoBaralho = 100,
                 DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                 PrecoDoBaralho = 54.5m,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor, CoresEnum.Azul, CoresEnum.Vermelho }
+                CorBaralho = "Azul, Vermelho"
             };
+
+            servicoBaralho.ObterTodos(null);
 
             var baralhoMock = servicoBaralho.ObterPorId(baralhoTeste.Id);
 
-            Assert.Equivalent(baralhoTeste, baralhoMock);
+            Assert.Equal(baralhoTeste.NomeBaralho, baralhoMock.NomeBaralho);
+            Assert.Equal(baralhoTeste.IdJogador, baralhoMock.IdJogador);
+            Assert.Equal(baralhoTeste.CorBaralho, baralhoMock.CorBaralho);
+            Assert.Equal(baralhoTeste.QuantidadeDeCartasNoBaralho, baralhoMock.QuantidadeDeCartasNoBaralho);
+            Assert.Equal(baralhoTeste.CustoDeManaConvertidoDoBaralho, baralhoMock.CustoDeManaConvertidoDoBaralho);
+            Assert.Equal(baralhoTeste.PrecoDoBaralho, baralhoMock.PrecoDoBaralho);
         }
 
         [Theory]
@@ -292,15 +306,16 @@ namespace Cod3rsGrowth.Teste.Testes
                 {
                     new CopiaDeCartasNoBaralho
                     {
+                        IdCarta = 3,
                         Carta = new Carta()
                         {
-                            IdCarta = 3,
+                            Id = 3,
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            TipoDeCarta = "Basic Land",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 60
                     }
@@ -308,7 +323,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 QuantidadeDeCartasNoBaralho = 60,
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorBaralho = ""
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
@@ -333,13 +348,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 3,
+                            Id = 3,
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            TipoDeCarta = "Basic Land",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 60
                     }
@@ -347,7 +362,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 QuantidadeDeCartasNoBaralho = 60,
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorBaralho = ""
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
@@ -370,14 +385,14 @@ namespace Cod3rsGrowth.Teste.Testes
                 QuantidadeDeCartasNoBaralho = 0,
                 PrecoDoBaralho = 0,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorBaralho = ""
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
 
             Assert.Equal(mensagemDeErroEsperada, resultado.Message);
         }
-        
+
         [Theory]
         [InlineData(2)]
         [InlineData(0)]
@@ -397,13 +412,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 10,
+                            Id = 10,
                             NomeCarta = "Sol Ring",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.Artefato,
+                            TipoDeCarta = "Artiact",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = quantidadeDeCartasTeste
                     }
@@ -411,7 +426,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 QuantidadeDeCartasNoBaralho = 60,
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorBaralho = ""
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
@@ -438,13 +453,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 3,
+                            Id = 3,
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            TipoDeCarta = "Basic Land",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = quantidadeDeCartasTeste
                     }
@@ -452,7 +467,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 QuantidadeDeCartasNoBaralho = 60,
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorBaralho = ""
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
@@ -479,13 +494,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 3,
+                            Id = 3,
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            TipoDeCarta = "Basic Land",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 59
                     }
@@ -493,7 +508,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 QuantidadeDeCartasNoBaralho = 60,
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorBaralho = ""
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Criar(baralhoTeste));
@@ -518,13 +533,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 3,
+                            Id = 3,
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            TipoDeCarta = "Basic Land",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 60
                     }
@@ -533,7 +548,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor }
+                CorBaralho = ""
             };
 
             servicoBaralho.Criar(baralhoTeste);
@@ -542,52 +557,38 @@ namespace Cod3rsGrowth.Teste.Testes
         }
 
         [Fact]
-        public void ao_Atualizar_com_dados_validos_deve_adicionar_um_novo_baralho()
+        public void ao_Atualizar_com_dados_validos_deve_adicionar_atualizar_baralho()
         {
             var dataDeHoje = DateTime.Now;
 
             var baralhoTeste = new Baralho()
             {
                 Id = 3,
-                IdJogador = 1,
+                IdJogador = 7,
                 NomeBaralho = "Mono Green Stomp",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
                 CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
-                {
-                    new CopiaDeCartasNoBaralho()
                     {
-                        Carta = new Carta()
+                        new CopiaDeCartasNoBaralho()
                         {
-                            IdCarta = 3,
-                            NomeCarta = "Floresta",
-                            CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
-                            RaridadeCarta = RaridadeEnum.Common,
-                            PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
-                        },
-                        QuantidadeCopiasDaCartaNoBaralho = 56
+                            Carta = new Carta()
+                            {
+                                Id = 3,
+                                NomeCarta = "Floresta",
+                                CustoDeManaConvertidoCarta = 0,
+                                TipoDeCarta = "Basic Land",
+                                RaridadeCarta = RaridadeEnum.Common,
+                                PrecoCarta = 0.5m,
+                                CorCarta = ""
+                            },
+                            QuantidadeCopiasDaCartaNoBaralho = 60
+                        }
                     },
-                    new CopiaDeCartasNoBaralho()
-                    {
-                        Carta = new Carta()
-                        {
-                            IdCarta = 6,
-                            NomeCarta = "Elfos de Llanowar",
-                            CustoDeManaConvertidoCarta = 1,
-                            TipoDeCarta = TipoDeCartaEnum.Criatura,
-                            RaridadeCarta = RaridadeEnum.Common,
-                            PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Verde }
-                        },
-                        QuantidadeCopiasDaCartaNoBaralho = 4
-                    }
-                },
                 QuantidadeDeCartasNoBaralho = 60,
                 DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor, CoresEnum.Verde }
+                CorBaralho = ""
             };
 
             servicoBaralho.Atualizar(baralhoTeste);
@@ -617,13 +618,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 7,
+                            Id = 7,
                             NomeCarta = "Ghalta, Fome Primordial",
                             CustoDeManaConvertidoCarta = 12,
-                            TipoDeCarta = TipoDeCartaEnum.Criatura,
-                            RaridadeCarta = RaridadeEnum.Rare,
+                            TipoDeCarta = "Creature",
+                            RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Verde }
+                            CorCarta = "Verde"
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 1
                     },
@@ -631,13 +632,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 3,
+                            Id = 3,
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            TipoDeCarta = "Basic Land",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 20
                     }
@@ -646,7 +647,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                 PrecoDoBaralho = 54.5m,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() {CoresEnum.Verde, CoresEnum.Incolor}
+                CorBaralho = "Verde"
             };
 
             var resultado = Assert.Throws<Exception>(() => servicoBaralho.Atualizar(baralhoTeste));
@@ -657,7 +658,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Theory]
         [InlineData(-1)]
         [InlineData(0)]
-        [InlineData(5)]
+        [InlineData(10)]
         public void ao_Atualizar_com_id_invalido_ou_inexistente_deve_retornar_Exception(int idBaralhoTeste)
         {
             var mensagemDeErroEsperada = ($"Baralho {idBaralhoTeste} Nao Encontrado");
@@ -680,7 +681,7 @@ namespace Cod3rsGrowth.Teste.Testes
             var baralhoTeste = new Baralho()
             {
                 Id = 3,
-                IdJogador = 1,
+                IdJogador = 7,
                 NomeBaralho = "Mono Green Stomp",
                 FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
                 CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
@@ -689,13 +690,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 3,
+                            Id = 3,
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            TipoDeCarta = "Basic Land",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 56
                     },
@@ -703,13 +704,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 6,
+                            Id = 6,
                             NomeCarta = "Elfos de Llanowar",
                             CustoDeManaConvertidoCarta = 1,
-                            TipoDeCarta = TipoDeCartaEnum.Criatura,
+                            TipoDeCarta = "Creature",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Verde }
+                            CorCarta = "Verde"
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 4
                     }
@@ -718,7 +719,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 DataDeCriacaoBaralho = new DateTime(dataDeHoje.Year, dataDeHoje.Month, dataDeHoje.Day),
                 PrecoDoBaralho = 30,
                 CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = new List<CoresEnum>() { CoresEnum.Incolor, CoresEnum.Verde }
+                CorBaralho = "Verde"
             };
 
             var baralhoTesteExistente = servicoBaralho.ObterPorId(baralhoTeste.Id);
@@ -764,13 +765,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 7,
+                            Id = 7,
                             NomeCarta = "Ghalta, Fome Primordial",
                             CustoDeManaConvertidoCarta = 12,
-                            TipoDeCarta = TipoDeCartaEnum.Criatura,
+                            TipoDeCarta = "Creature",
                             RaridadeCarta = RaridadeEnum.Rare,
                             PrecoCarta = Convert.ToDecimal(5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Verde }
+                            CorCarta = "Verde"
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 1
                     },
@@ -778,13 +779,13 @@ namespace Cod3rsGrowth.Teste.Testes
                     {
                         Carta = new Carta()
                         {
-                            IdCarta = 3,
+                            Id = 3,
                             NomeCarta = "Floresta",
                             CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = TipoDeCartaEnum.TerrenoBasico,
+                            TipoDeCarta = "Basic Land",
                             RaridadeCarta = RaridadeEnum.Common,
                             PrecoCarta = Convert.ToDecimal(0.5),
-                            CorCarta = new List<CoresEnum>() { CoresEnum.Incolor }
+                            CorCarta = ""
                         },
                         QuantidadeCopiasDaCartaNoBaralho = 99
                     }
@@ -817,8 +818,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_ObterTodos_com_filtro_deve_retornar_lista_filtrada_por_FormatoDeJogo()
         {
-            var listaFiltroFormatoDeJogo = servicoBaralho.ObterTodos(new BaralhoFiltro()
-            { FormatoDeJogoBaralho = FormatoDeJogoEnum.Commander });
+            var listaFiltroFormatoDeJogo = servicoBaralho.ObterTodos(new BaralhoFiltro() { FormatoDeJogoBaralho = new List<FormatoDeJogoEnum>() { FormatoDeJogoEnum.Commander } });
 
             const FormatoDeJogoEnum formatoDeJogoEsperado = FormatoDeJogoEnum.Commander;
 

@@ -10,6 +10,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+*token.txt
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -239,6 +240,7 @@ ClientBin/
 *.jfm
 *.pfx
 *.publishsettings
+.cartas20240624211029.json
 orleans.codegen.cs
 
 # Including strong name files can present a security risk

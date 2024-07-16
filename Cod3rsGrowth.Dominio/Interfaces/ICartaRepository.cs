@@ -11,7 +11,5 @@ namespace Cod3rsGrowth.Dominio.Interfaces
         void Atualizar(Carta carta);
         Carta ObterPorId(int idCarta);
         List<Carta> ObterTodos(CartaFiltro? filtro);
-        void CriarCorCarta(CorCarta corCarta);
-        List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro);
     }
 }
