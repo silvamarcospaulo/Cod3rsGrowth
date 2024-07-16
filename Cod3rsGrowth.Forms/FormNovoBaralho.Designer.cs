@@ -446,7 +446,6 @@
             checkBoxVermelho.TabIndex = 13;
             checkBoxVermelho.Text = "Vermelho";
             checkBoxVermelho.UseVisualStyleBackColor = true;
-            checkBoxVermelho.CheckedChanged += this.checkBoxVermelho_CheckedChanged;
             // 
             // panel2
             // 
