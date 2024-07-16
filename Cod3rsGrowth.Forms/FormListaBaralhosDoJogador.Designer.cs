@@ -412,6 +412,7 @@
             resources.ApplyResources(buttonNovoBaralho, "buttonNovoBaralho");
             buttonNovoBaralho.Name = "buttonNovoBaralho";
             buttonNovoBaralho.UseVisualStyleBackColor = true;
+            buttonNovoBaralho.Click += AoClicarAbreTelaDeCriacaoDeBaralho;
             // 
             // notifyIcon1
             // 
@@ -426,8 +427,8 @@
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormListaBaralhosDoJogador";
-            SizeGripStyle = SizeGripStyle.Hide;
-            WindowState = FormWindowState.Minimized;
+            SizeGripStyle = SizeGripStyle.Show;
+            WindowState = FormWindowState.Maximized;
             Load += CarregarFormListaBaralhosDoJogador;
             ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
             panel1.ResumeLayout(false);

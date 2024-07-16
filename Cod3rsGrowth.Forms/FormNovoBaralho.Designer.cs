@@ -30,16 +30,16 @@
         {
             SuspendLayout();
             // 
-            // FormsNovoBaralho
+            // FormNovoBaralho
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1924, 1061);
-            Name = "FormsNovoBaralho";
+            ClientSize = new Size(1008, 601);
+            MinimumSize = new Size(1024, 640);
+            Name = "FormNovoBaralho";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormsNovoBaralho";
-            TopMost = true;
-            WindowState = FormWindowState.Minimized;
+            Text = "MTG -DeckBuilder - Criação de baralho";
+            WindowState = FormWindowState.Maximized;
             ResumeLayout(false);
         }
 
