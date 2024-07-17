@@ -14,6 +14,7 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public int IdCarta { get; set; }
         [Column("Quantidade")]
         public int QuantidadeCopiasDaCartaNoBaralho { get; set; }
-        public Carta Carta { get; set; }
+        public Carta? Carta { get; set; }
+        public string? NomeCarta { get; set; }
     }
 }

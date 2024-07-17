@@ -14,8 +14,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 .WithColumn("TipoDeCarta").AsString(255).NotNullable()
                 .WithColumn("Raridade").AsInt32().NotNullable()
                 .WithColumn("Preco").AsDecimal().NotNullable()
-                .WithColumn("Cor").AsString(255).NotNullable()
-                .WithColumn("Imagem").AsString(255).Nullable();
+                .WithColumn("Cor").AsString(255).NotNullable();
         }
 
         public override void Down()

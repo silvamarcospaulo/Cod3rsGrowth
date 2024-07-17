@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             numericUpDownMax = new NumericUpDown();
             numericUpDownMin = new NumericUpDown();
             checkBoxRaridadeMitico = new CheckBox();
             checkBoxRaridadeRaro = new CheckBox();
-            buttonCandelar = new Button();
+            buttonCancelar = new Button();
             checkBoxRaridadeIncomum = new CheckBox();
             checkBoxRaridadeComum = new CheckBox();
             labelRaridade = new Label();
@@ -82,8 +83,8 @@
             buttonVisualizarBaralho = new Button();
             labelCustoParcial = new Label();
             labelQuantidadeParcial = new Label();
-            pictureBoxCarta = new PictureBox();
             comboBoxFormato = new ComboBox();
+            baralhoBindingSource = new BindingSource(components);
             labelNome = new Label();
             textBoxNomeBaralho = new TextBox();
             labelFormato = new Label();
@@ -100,7 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)cartaBindingSource).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownQuantidadeDeCopiasDeCarta).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxCarta).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -109,7 +110,7 @@
             panel1.Controls.Add(numericUpDownMin);
             panel1.Controls.Add(checkBoxRaridadeMitico);
             panel1.Controls.Add(checkBoxRaridadeRaro);
-            panel1.Controls.Add(buttonCandelar);
+            panel1.Controls.Add(buttonCancelar);
             panel1.Controls.Add(checkBoxRaridadeIncomum);
             panel1.Controls.Add(checkBoxRaridadeComum);
             panel1.Controls.Add(labelRaridade);
@@ -135,6 +136,7 @@
             panel1.Controls.Add(labelCor);
             panel1.Controls.Add(checkBoxIncolor);
             panel1.Controls.Add(checkBoxVermelho);
+            panel1.Dock = DockStyle.Right;
             panel1.Location = new Point(808, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 601);
@@ -191,19 +193,19 @@
             checkBoxRaridadeRaro.UseVisualStyleBackColor = true;
             checkBoxRaridadeRaro.CheckedChanged += AoClicarRaroDesselecionaOutrasCheckBoxRaridade;
             // 
-            // buttonCandelar
+            // buttonCancelar
             // 
-            buttonCandelar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonCandelar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            buttonCandelar.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCandelar.ImeMode = ImeMode.NoControl;
-            buttonCandelar.Location = new Point(8, 13);
-            buttonCandelar.Name = "buttonCandelar";
-            buttonCandelar.Size = new Size(185, 25);
-            buttonCandelar.TabIndex = 19;
-            buttonCandelar.Text = "Cancelar";
-            buttonCandelar.UseVisualStyleBackColor = true;
-            buttonCandelar.Click += AoClicarCancelaCriacaoDeNovoBaralho;
+            buttonCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonCancelar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonCancelar.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCancelar.ImeMode = ImeMode.NoControl;
+            buttonCancelar.Location = new Point(8, 13);
+            buttonCancelar.Name = "buttonCancelar";
+            buttonCancelar.Size = new Size(185, 25);
+            buttonCancelar.TabIndex = 19;
+            buttonCancelar.Text = "Cancelar";
+            buttonCancelar.UseVisualStyleBackColor = true;
+            buttonCancelar.Click += AoClicarCancelaCriacaoDeNovoBaralho;
             // 
             // checkBoxRaridadeIncomum
             // 
@@ -543,9 +545,10 @@
             panel2.Controls.Add(dataGridViewCartas);
             panel2.Controls.Add(textBoxFiltrarNome);
             panel2.Controls.Add(labelFiltroNome);
-            panel2.Location = new Point(199, 0);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(200, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(611, 601);
+            panel2.Size = new Size(608, 601);
             panel2.TabIndex = 1;
             // 
             // dataGridViewCartas
@@ -562,7 +565,7 @@
             dataGridViewCartas.Name = "dataGridViewCartas";
             dataGridViewCartas.ReadOnly = true;
             dataGridViewCartas.RowTemplate.Height = 25;
-            dataGridViewCartas.Size = new Size(605, 541);
+            dataGridViewCartas.Size = new Size(602, 541);
             dataGridViewCartas.TabIndex = 4;
             dataGridViewCartas.CellContentClick += AoClicarMostraImagemDaCarta;
             // 
@@ -605,6 +608,9 @@
             // precoCartaDataGridViewTextBoxColumn
             // 
             precoCartaDataGridViewTextBoxColumn.DataPropertyName = "PrecoCarta";
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = "0";
+            precoCartaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             precoCartaDataGridViewTextBoxColumn.HeaderText = "Preco";
             precoCartaDataGridViewTextBoxColumn.Name = "precoCartaDataGridViewTextBoxColumn";
             precoCartaDataGridViewTextBoxColumn.ReadOnly = true;
@@ -635,11 +641,12 @@
             textBoxFiltrarNome.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxFiltrarNome.Location = new Point(100, 13);
             textBoxFiltrarNome.Name = "textBoxFiltrarNome";
-            textBoxFiltrarNome.Size = new Size(508, 25);
+            textBoxFiltrarNome.Size = new Size(505, 25);
             textBoxFiltrarNome.TabIndex = 1;
             // 
             // labelFiltroNome
             // 
+            labelFiltroNome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelFiltroNome.FlatStyle = FlatStyle.System;
             labelFiltroNome.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             labelFiltroNome.ImeMode = ImeMode.NoControl;
@@ -660,7 +667,6 @@
             panel3.Controls.Add(buttonVisualizarBaralho);
             panel3.Controls.Add(labelCustoParcial);
             panel3.Controls.Add(labelQuantidadeParcial);
-            panel3.Controls.Add(pictureBoxCarta);
             panel3.Controls.Add(comboBoxFormato);
             panel3.Controls.Add(labelNome);
             panel3.Controls.Add(textBoxNomeBaralho);
@@ -771,23 +777,20 @@
             labelQuantidadeParcial.Text = "label1";
             labelQuantidadeParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // pictureBoxCarta
-            // 
-            pictureBoxCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            pictureBoxCarta.Location = new Point(8, 284);
-            pictureBoxCarta.Name = "pictureBoxCarta";
-            pictureBoxCarta.Size = new Size(185, 220);
-            pictureBoxCarta.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxCarta.TabIndex = 0;
-            pictureBoxCarta.TabStop = false;
-            // 
             // comboBoxFormato
             // 
+            comboBoxFormato.DataSource = baralhoBindingSource;
+            comboBoxFormato.DisplayMember = "FormatoDeJogoBaralho";
+            comboBoxFormato.FlatStyle = FlatStyle.System;
             comboBoxFormato.FormattingEnabled = true;
             comboBoxFormato.Location = new Point(8, 79);
             comboBoxFormato.Name = "comboBoxFormato";
             comboBoxFormato.Size = new Size(185, 23);
             comboBoxFormato.TabIndex = 7;
+            // 
+            // baralhoBindingSource
+            // 
+            baralhoBindingSource.DataSource = typeof(Dominio.Modelos.Baralho);
             // 
             // labelNome
             // 
@@ -796,9 +799,9 @@
             labelNome.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             labelNome.Location = new Point(8, 13);
             labelNome.Name = "labelNome";
-            labelNome.Size = new Size(54, 19);
+            labelNome.Size = new Size(132, 19);
             labelNome.TabIndex = 0;
-            labelNome.Text = "Nome:";
+            labelNome.Text = "Nome do baralho:";
             labelNome.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // textBoxNomeBaralho
@@ -817,9 +820,9 @@
             labelFormato.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             labelFormato.Location = new Point(8, 59);
             labelFormato.Name = "labelFormato";
-            labelFormato.Size = new Size(70, 19);
+            labelFormato.Size = new Size(148, 19);
             labelFormato.TabIndex = 1;
-            labelFormato.Text = "Formato:";
+            labelFormato.Text = "Formato do baralho:";
             labelFormato.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelCorBaralho
@@ -875,9 +878,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1008, 601);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(panel3);
-            Controls.Add(panel2);
             MinimumSize = new Size(1024, 640);
             Name = "FormNovoBaralho";
             StartPosition = FormStartPosition.CenterScreen;
@@ -895,7 +898,7 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownQuantidadeDeCopiasDeCarta).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxCarta).EndInit();
+            ((System.ComponentModel.ISupportInitialize)baralhoBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -931,8 +934,7 @@
         private CheckBox checkBoxTipoDeCartaEncantamento;
         private CheckBox checkBoxTipoDeCartaMagicaInstantanea;
         private NumericUpDown numericUpDownCmc;
-        private PictureBox pictureBoxCarta;
-        private Button buttonCandelar;
+        private Button buttonCancelar;
         private Button buttonVisualizarBaralho;
         private ComboBox comboBoxFormato;
         private TextBox textBoxNomeBaralho;
@@ -954,6 +956,8 @@
         private NumericUpDown numericUpDownQuantidadeDeCopiasDeCarta;
         private Label label1;
         private Button buttonAdicionarCarta;
+        private BindingSource cartaBindingSource;
+        private BindingSource baralhoBindingSource;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nomeCartaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn custoDeManaConvertidoCartaDataGridViewTextBoxColumn;
@@ -962,6 +966,5 @@
         private DataGridViewTextBoxColumn precoCartaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn corCartaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn imagemDataGridViewTextBoxColumn;
-        private BindingSource cartaBindingSource;
     }
 }

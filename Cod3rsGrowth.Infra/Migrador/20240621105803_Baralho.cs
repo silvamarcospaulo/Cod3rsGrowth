@@ -12,7 +12,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
                 .WithColumn("IdJogador").AsInt64().NotNullable().ForeignKey("Jogador", "Id")
                 .WithColumn("Nome").AsString(255).NotNullable()
-                .WithColumn("DataDeCriacao").AsDateTime().WithDefaultValue(DateTime.Now).NotNullable()
+                .WithColumn("DataDeCriacao").AsDateTime().NotNullable()
                 .WithColumn("FormatoDeJogo").AsInt32().NotNullable()
                 .WithColumn("QuantidadeDeCartas").AsInt64().WithDefaultValue(valorPadraoZero).NotNullable()
                 .WithColumn("Preco").AsDecimal().WithDefaultValue(Convert.ToDecimal(valorPadraoZero)).NotNullable()

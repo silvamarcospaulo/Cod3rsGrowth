@@ -20,7 +20,5 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public decimal PrecoCarta { get; set; }
         [Column("Cor")]
         public string CorCarta { get; set; }
-        [Column("Imagem")]
-        public string? Imagem { get; set; }
     }
 }

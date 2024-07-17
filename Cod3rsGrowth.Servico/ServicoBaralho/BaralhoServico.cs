@@ -3,7 +3,6 @@ using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
-using static LinqToDB.Common.Configuration;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
@@ -87,6 +86,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             baralhoCriar.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
             baralhoCriar.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
             baralhoCriar.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
+            baralhoCriar.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
 
             try
             {
@@ -186,6 +186,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             foreach (var copia in copiaDeCartas)
             {
                 copia.Carta = _cartaServico.ObterPorId(copia.IdCarta);
+                copia.NomeCarta = copia.Carta.NomeCarta;
             }
 
             return copiaDeCartas;

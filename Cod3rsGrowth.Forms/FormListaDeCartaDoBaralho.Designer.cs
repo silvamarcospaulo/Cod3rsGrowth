@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             labelCorParcial = new Label();
             labelPrecoParcial = new Label();
-            buttonVisualizarBaralho = new Button();
+            buttonCriarBaralhoBaralho = new Button();
             labelCustoParcial = new Label();
             labelQuantidadeParcial = new Label();
             labelNome = new Label();
@@ -41,6 +41,19 @@
             labelPreco = new Label();
             labelCmc = new Label();
             panel1 = new Panel();
+            buttonRemoverCarta = new Button();
+            labelCorCartaSelecionada = new Label();
+            labelCorCarta = new Label();
+            labelRariadeCartaSelecionada = new Label();
+            labelRaridadeCarta = new Label();
+            labelPrecoCartaSelecionada = new Label();
+            labelPrecoDaCarta = new Label();
+            labelCustoManaCartaSelecionada = new Label();
+            labelCustoMana = new Label();
+            labelTipoCartaSelecionada = new Label();
+            labelTipoCarta = new Label();
+            labelNomeCartaSelecionada = new Label();
+            labelNomeCarta = new Label();
             labelDadosCarta = new Label();
             numericUpDownMax = new NumericUpDown();
             numericUpDownMin = new NumericUpDown();
@@ -50,7 +63,6 @@
             checkBoxRaridadeComum = new CheckBox();
             labelRaridade = new Label();
             numericUpDownCmc = new NumericUpDown();
-            pictureBox1 = new PictureBox();
             checkBoxTipoDeCartaEncantamento = new CheckBox();
             checkBoxTipoDeCartaMagicaInstantanea = new CheckBox();
             checkBoxTipoDeCartaFeitico = new CheckBox();
@@ -70,6 +82,7 @@
             checkBoxIncolor = new CheckBox();
             checkBoxVermelho = new CheckBox();
             panel3 = new Panel();
+            buttonVoltar = new Button();
             labelNomeParcial = new Label();
             labelFormatoParcial = new Label();
             labelDadosBaralho = new Label();
@@ -88,24 +101,21 @@
             label12 = new Label();
             panel2 = new Panel();
             dataGridViewListaDeCartasDoBaralho = new DataGridView();
-            cartaBindingSource = new BindingSource(components);
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nomeCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            custoDeManaConvertidoCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            tipoDeCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            raridadeCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            precoCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            corCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            imagemDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            idBaralhoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            idCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            cartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            copiaDeCartasNoBaralhoBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMax).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCmc).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewListaDeCartasDoBaralho).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)cartaBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)copiaDeCartasNoBaralhoBindingSource).BeginInit();
             SuspendLayout();
             // 
             // labelCorParcial
@@ -114,10 +124,10 @@
             labelCorParcial.AutoSize = true;
             labelCorParcial.FlatStyle = FlatStyle.System;
             labelCorParcial.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-            labelCorParcial.Location = new Point(3, 336);
+            labelCorParcial.Location = new Point(3, 549);
             labelCorParcial.Name = "labelCorParcial";
             labelCorParcial.Size = new Size(198, 15);
-            labelCorParcial.TabIndex = 2272;
+            labelCorParcial.TabIndex = 0;
             labelCorParcial.Text = "Azul, Verde, Branco, Preto, Vermelho";
             labelCorParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -126,35 +136,36 @@
             labelPrecoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelPrecoParcial.AutoSize = true;
             labelPrecoParcial.FlatStyle = FlatStyle.System;
-            labelPrecoParcial.Location = new Point(3, 288);
+            labelPrecoParcial.Location = new Point(3, 501);
             labelPrecoParcial.Name = "labelPrecoParcial";
             labelPrecoParcial.Size = new Size(38, 15);
-            labelPrecoParcial.TabIndex = 2271;
+            labelPrecoParcial.TabIndex = 0;
             labelPrecoParcial.Text = "label1";
             labelPrecoParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // buttonVisualizarBaralho
+            // buttonCriarBaralhoBaralho
             // 
-            buttonVisualizarBaralho.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonVisualizarBaralho.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            buttonVisualizarBaralho.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonVisualizarBaralho.ImeMode = ImeMode.NoControl;
-            buttonVisualizarBaralho.Location = new Point(8, 564);
-            buttonVisualizarBaralho.Name = "buttonVisualizarBaralho";
-            buttonVisualizarBaralho.Size = new Size(185, 25);
-            buttonVisualizarBaralho.TabIndex = 2268;
-            buttonVisualizarBaralho.Text = "Confirmar baralho";
-            buttonVisualizarBaralho.UseVisualStyleBackColor = true;
+            buttonCriarBaralhoBaralho.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonCriarBaralhoBaralho.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonCriarBaralhoBaralho.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCriarBaralhoBaralho.ImeMode = ImeMode.NoControl;
+            buttonCriarBaralhoBaralho.Location = new Point(8, 570);
+            buttonCriarBaralhoBaralho.Name = "buttonCriarBaralhoBaralho";
+            buttonCriarBaralhoBaralho.Size = new Size(185, 25);
+            buttonCriarBaralhoBaralho.TabIndex = 1;
+            buttonCriarBaralhoBaralho.Text = "Confirmar lista e criar baralho";
+            buttonCriarBaralhoBaralho.UseVisualStyleBackColor = true;
+            buttonCriarBaralhoBaralho.Click += buttonCriarBaralhoBaralho_Click;
             // 
             // labelCustoParcial
             // 
             labelCustoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelCustoParcial.AutoSize = true;
             labelCustoParcial.FlatStyle = FlatStyle.System;
-            labelCustoParcial.Location = new Point(3, 240);
+            labelCustoParcial.Location = new Point(3, 453);
             labelCustoParcial.Name = "labelCustoParcial";
             labelCustoParcial.Size = new Size(38, 15);
-            labelCustoParcial.TabIndex = 2270;
+            labelCustoParcial.TabIndex = 0;
             labelCustoParcial.Text = "label1";
             labelCustoParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -163,10 +174,10 @@
             labelQuantidadeParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelQuantidadeParcial.AutoSize = true;
             labelQuantidadeParcial.FlatStyle = FlatStyle.System;
-            labelQuantidadeParcial.Location = new Point(3, 192);
+            labelQuantidadeParcial.Location = new Point(3, 405);
             labelQuantidadeParcial.Name = "labelQuantidadeParcial";
             labelQuantidadeParcial.Size = new Size(38, 15);
-            labelQuantidadeParcial.TabIndex = 2269;
+            labelQuantidadeParcial.TabIndex = 0;
             labelQuantidadeParcial.Text = "label1";
             labelQuantidadeParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -176,10 +187,10 @@
             labelNome.AutoSize = true;
             labelNome.FlatStyle = FlatStyle.System;
             labelNome.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelNome.Location = new Point(3, 70);
+            labelNome.Location = new Point(3, 283);
             labelNome.Name = "labelNome";
             labelNome.Size = new Size(54, 19);
-            labelNome.TabIndex = 2259;
+            labelNome.TabIndex = 0;
             labelNome.Text = "Nome:";
             labelNome.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -189,10 +200,10 @@
             labelFormato.AutoSize = true;
             labelFormato.FlatStyle = FlatStyle.System;
             labelFormato.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelFormato.Location = new Point(3, 118);
+            labelFormato.Location = new Point(3, 331);
             labelFormato.Name = "labelFormato";
             labelFormato.Size = new Size(70, 19);
-            labelFormato.TabIndex = 2260;
+            labelFormato.TabIndex = 0;
             labelFormato.Text = "Formato:";
             labelFormato.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -202,10 +213,10 @@
             labelCorBaralho.AutoSize = true;
             labelCorBaralho.FlatStyle = FlatStyle.System;
             labelCorBaralho.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCorBaralho.Location = new Point(3, 310);
+            labelCorBaralho.Location = new Point(3, 523);
             labelCorBaralho.Name = "labelCorBaralho";
             labelCorBaralho.Size = new Size(38, 19);
-            labelCorBaralho.TabIndex = 2265;
+            labelCorBaralho.TabIndex = 0;
             labelCorBaralho.Text = "Cor:";
             labelCorBaralho.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -215,10 +226,10 @@
             labelQuantidadeDeCartas.AutoSize = true;
             labelQuantidadeDeCartas.FlatStyle = FlatStyle.System;
             labelQuantidadeDeCartas.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelQuantidadeDeCartas.Location = new Point(3, 166);
+            labelQuantidadeDeCartas.Location = new Point(3, 379);
             labelQuantidadeDeCartas.Name = "labelQuantidadeDeCartas";
             labelQuantidadeDeCartas.Size = new Size(156, 19);
-            labelQuantidadeDeCartas.TabIndex = 2261;
+            labelQuantidadeDeCartas.TabIndex = 0;
             labelQuantidadeDeCartas.Text = "Quantidade de cartas:";
             labelQuantidadeDeCartas.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -228,10 +239,10 @@
             labelPreco.AutoSize = true;
             labelPreco.FlatStyle = FlatStyle.System;
             labelPreco.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelPreco.Location = new Point(3, 262);
+            labelPreco.Location = new Point(3, 475);
             labelPreco.Name = "labelPreco";
             labelPreco.Size = new Size(52, 19);
-            labelPreco.TabIndex = 2263;
+            labelPreco.TabIndex = 0;
             labelPreco.Text = "Preço:";
             labelPreco.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -241,15 +252,28 @@
             labelCmc.AutoSize = true;
             labelCmc.FlatStyle = FlatStyle.System;
             labelCmc.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCmc.Location = new Point(3, 214);
+            labelCmc.Location = new Point(3, 427);
             labelCmc.Name = "labelCmc";
             labelCmc.Size = new Size(189, 19);
-            labelCmc.TabIndex = 2262;
+            labelCmc.TabIndex = 0;
             labelCmc.Text = "Custo de mana convertido:";
             labelCmc.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // panel1
             // 
+            panel1.Controls.Add(buttonRemoverCarta);
+            panel1.Controls.Add(labelCorCartaSelecionada);
+            panel1.Controls.Add(labelCorCarta);
+            panel1.Controls.Add(labelRariadeCartaSelecionada);
+            panel1.Controls.Add(labelRaridadeCarta);
+            panel1.Controls.Add(labelPrecoCartaSelecionada);
+            panel1.Controls.Add(labelPrecoDaCarta);
+            panel1.Controls.Add(labelCustoManaCartaSelecionada);
+            panel1.Controls.Add(labelCustoMana);
+            panel1.Controls.Add(labelTipoCartaSelecionada);
+            panel1.Controls.Add(labelTipoCarta);
+            panel1.Controls.Add(labelNomeCartaSelecionada);
+            panel1.Controls.Add(labelNomeCarta);
             panel1.Controls.Add(labelDadosCarta);
             panel1.Controls.Add(numericUpDownMax);
             panel1.Controls.Add(numericUpDownMin);
@@ -259,7 +283,6 @@
             panel1.Controls.Add(checkBoxRaridadeComum);
             panel1.Controls.Add(labelRaridade);
             panel1.Controls.Add(numericUpDownCmc);
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(checkBoxTipoDeCartaEncantamento);
             panel1.Controls.Add(checkBoxTipoDeCartaMagicaInstantanea);
             panel1.Controls.Add(checkBoxTipoDeCartaFeitico);
@@ -284,16 +307,180 @@
             panel1.Size = new Size(200, 601);
             panel1.TabIndex = 2275;
             // 
+            // buttonRemoverCarta
+            // 
+            buttonRemoverCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonRemoverCarta.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonRemoverCarta.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonRemoverCarta.ImeMode = ImeMode.NoControl;
+            buttonRemoverCarta.Location = new Point(8, 570);
+            buttonRemoverCarta.Name = "buttonRemoverCarta";
+            buttonRemoverCarta.Size = new Size(185, 25);
+            buttonRemoverCarta.TabIndex = 2278;
+            buttonRemoverCarta.Text = "Remover carta da lista";
+            buttonRemoverCarta.UseVisualStyleBackColor = true;
+            buttonRemoverCarta.Click += AoClicarRemoveCartaDaListaDeCartasDoBaralho;
+            // 
+            // labelCorCartaSelecionada
+            // 
+            labelCorCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCorCartaSelecionada.AutoSize = true;
+            labelCorCartaSelecionada.FlatStyle = FlatStyle.System;
+            labelCorCartaSelecionada.Location = new Point(8, 527);
+            labelCorCartaSelecionada.Name = "labelCorCartaSelecionada";
+            labelCorCartaSelecionada.Size = new Size(38, 15);
+            labelCorCartaSelecionada.TabIndex = 0;
+            labelCorCartaSelecionada.Text = "label1";
+            labelCorCartaSelecionada.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelCorCarta
+            // 
+            labelCorCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCorCarta.AutoSize = true;
+            labelCorCarta.FlatStyle = FlatStyle.System;
+            labelCorCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCorCarta.Location = new Point(8, 503);
+            labelCorCarta.Name = "labelCorCarta";
+            labelCorCarta.Size = new Size(38, 19);
+            labelCorCarta.TabIndex = 0;
+            labelCorCarta.Text = "Cor:";
+            labelCorCarta.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelRariadeCartaSelecionada
+            // 
+            labelRariadeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelRariadeCartaSelecionada.AutoSize = true;
+            labelRariadeCartaSelecionada.FlatStyle = FlatStyle.System;
+            labelRariadeCartaSelecionada.Location = new Point(8, 483);
+            labelRariadeCartaSelecionada.Name = "labelRariadeCartaSelecionada";
+            labelRariadeCartaSelecionada.Size = new Size(44, 15);
+            labelRariadeCartaSelecionada.TabIndex = 0;
+            labelRariadeCartaSelecionada.Text = "label17";
+            labelRariadeCartaSelecionada.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelRaridadeCarta
+            // 
+            labelRaridadeCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelRaridadeCarta.AutoSize = true;
+            labelRaridadeCarta.FlatStyle = FlatStyle.System;
+            labelRaridadeCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            labelRaridadeCarta.Location = new Point(8, 459);
+            labelRaridadeCarta.Name = "labelRaridadeCarta";
+            labelRaridadeCarta.Size = new Size(74, 19);
+            labelRaridadeCarta.TabIndex = 0;
+            labelRaridadeCarta.Text = "Raridade:";
+            labelRaridadeCarta.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelPrecoCartaSelecionada
+            // 
+            labelPrecoCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelPrecoCartaSelecionada.AutoSize = true;
+            labelPrecoCartaSelecionada.FlatStyle = FlatStyle.System;
+            labelPrecoCartaSelecionada.Location = new Point(8, 439);
+            labelPrecoCartaSelecionada.Name = "labelPrecoCartaSelecionada";
+            labelPrecoCartaSelecionada.Size = new Size(38, 15);
+            labelPrecoCartaSelecionada.TabIndex = 0;
+            labelPrecoCartaSelecionada.Text = "label1";
+            labelPrecoCartaSelecionada.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelPrecoDaCarta
+            // 
+            labelPrecoDaCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelPrecoDaCarta.AutoSize = true;
+            labelPrecoDaCarta.FlatStyle = FlatStyle.System;
+            labelPrecoDaCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            labelPrecoDaCarta.Location = new Point(8, 415);
+            labelPrecoDaCarta.Name = "labelPrecoDaCarta";
+            labelPrecoDaCarta.Size = new Size(52, 19);
+            labelPrecoDaCarta.TabIndex = 0;
+            labelPrecoDaCarta.Text = "Preço:";
+            labelPrecoDaCarta.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelCustoManaCartaSelecionada
+            // 
+            labelCustoManaCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCustoManaCartaSelecionada.AutoSize = true;
+            labelCustoManaCartaSelecionada.FlatStyle = FlatStyle.System;
+            labelCustoManaCartaSelecionada.Location = new Point(8, 395);
+            labelCustoManaCartaSelecionada.Name = "labelCustoManaCartaSelecionada";
+            labelCustoManaCartaSelecionada.Size = new Size(38, 15);
+            labelCustoManaCartaSelecionada.TabIndex = 0;
+            labelCustoManaCartaSelecionada.Text = "label1";
+            labelCustoManaCartaSelecionada.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelCustoMana
+            // 
+            labelCustoMana.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCustoMana.AutoSize = true;
+            labelCustoMana.FlatStyle = FlatStyle.System;
+            labelCustoMana.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCustoMana.Location = new Point(8, 371);
+            labelCustoMana.Name = "labelCustoMana";
+            labelCustoMana.Size = new Size(44, 19);
+            labelCustoMana.TabIndex = 0;
+            labelCustoMana.Text = "CMC:";
+            labelCustoMana.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelTipoCartaSelecionada
+            // 
+            labelTipoCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelTipoCartaSelecionada.AutoSize = true;
+            labelTipoCartaSelecionada.FlatStyle = FlatStyle.System;
+            labelTipoCartaSelecionada.Location = new Point(8, 351);
+            labelTipoCartaSelecionada.Name = "labelTipoCartaSelecionada";
+            labelTipoCartaSelecionada.Size = new Size(38, 15);
+            labelTipoCartaSelecionada.TabIndex = 0;
+            labelTipoCartaSelecionada.Text = "label1";
+            labelTipoCartaSelecionada.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelTipoCarta
+            // 
+            labelTipoCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelTipoCarta.AutoSize = true;
+            labelTipoCarta.FlatStyle = FlatStyle.System;
+            labelTipoCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            labelTipoCarta.Location = new Point(8, 327);
+            labelTipoCarta.Name = "labelTipoCarta";
+            labelTipoCarta.Size = new Size(43, 19);
+            labelTipoCarta.TabIndex = 0;
+            labelTipoCarta.Text = "Tipo:";
+            labelTipoCarta.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelNomeCartaSelecionada
+            // 
+            labelNomeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelNomeCartaSelecionada.AutoSize = true;
+            labelNomeCartaSelecionada.FlatStyle = FlatStyle.System;
+            labelNomeCartaSelecionada.Location = new Point(8, 307);
+            labelNomeCartaSelecionada.Name = "labelNomeCartaSelecionada";
+            labelNomeCartaSelecionada.Size = new Size(38, 15);
+            labelNomeCartaSelecionada.TabIndex = 0;
+            labelNomeCartaSelecionada.Text = "label1";
+            labelNomeCartaSelecionada.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelNomeCarta
+            // 
+            labelNomeCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelNomeCarta.AutoSize = true;
+            labelNomeCarta.FlatStyle = FlatStyle.System;
+            labelNomeCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            labelNomeCarta.Location = new Point(8, 283);
+            labelNomeCarta.Name = "labelNomeCarta";
+            labelNomeCarta.Size = new Size(54, 19);
+            labelNomeCarta.TabIndex = 0;
+            labelNomeCarta.Text = "Nome:";
+            labelNomeCarta.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // labelDadosCarta
             // 
             labelDadosCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelDadosCarta.FlatStyle = FlatStyle.System;
             labelDadosCarta.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             labelDadosCarta.ImeMode = ImeMode.NoControl;
-            labelDadosCarta.Location = new Point(0, 28);
+            labelDadosCarta.Location = new Point(0, 251);
             labelDadosCarta.Name = "labelDadosCarta";
             labelDadosCarta.Size = new Size(200, 30);
-            labelDadosCarta.TabIndex = 2258;
+            labelDadosCarta.TabIndex = 0;
             labelDadosCarta.Text = "Dados carta";
             labelDadosCarta.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -396,15 +583,6 @@
             numericUpDownCmc.Size = new Size(185, 23);
             numericUpDownCmc.TabIndex = 16;
             numericUpDownCmc.TextAlign = HorizontalAlignment.Right;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(8, 61);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(185, 220);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // checkBoxTipoDeCartaEncantamento
             // 
@@ -646,6 +824,7 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(buttonVoltar);
             panel3.Controls.Add(labelNomeParcial);
             panel3.Controls.Add(labelFormatoParcial);
             panel3.Controls.Add(labelCorParcial);
@@ -678,15 +857,29 @@
             panel3.Size = new Size(200, 601);
             panel3.TabIndex = 2277;
             // 
+            // buttonVoltar
+            // 
+            buttonVoltar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonVoltar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonVoltar.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonVoltar.ImeMode = ImeMode.NoControl;
+            buttonVoltar.Location = new Point(8, 6);
+            buttonVoltar.Name = "buttonVoltar";
+            buttonVoltar.Size = new Size(185, 25);
+            buttonVoltar.TabIndex = 2279;
+            buttonVoltar.Text = "Voltar";
+            buttonVoltar.UseVisualStyleBackColor = true;
+            buttonVoltar.Click += AoClicarVoltaParaTelaDeNovoBaralho;
+            // 
             // labelNomeParcial
             // 
             labelNomeParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelNomeParcial.AutoSize = true;
             labelNomeParcial.FlatStyle = FlatStyle.System;
-            labelNomeParcial.Location = new Point(3, 96);
+            labelNomeParcial.Location = new Point(3, 309);
             labelNomeParcial.Name = "labelNomeParcial";
             labelNomeParcial.Size = new Size(38, 15);
-            labelNomeParcial.TabIndex = 2274;
+            labelNomeParcial.TabIndex = 0;
             labelNomeParcial.Text = "label1";
             labelNomeParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -695,10 +888,10 @@
             labelFormatoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelFormatoParcial.AutoSize = true;
             labelFormatoParcial.FlatStyle = FlatStyle.System;
-            labelFormatoParcial.Location = new Point(3, 144);
+            labelFormatoParcial.Location = new Point(3, 357);
             labelFormatoParcial.Name = "labelFormatoParcial";
             labelFormatoParcial.Size = new Size(38, 15);
-            labelFormatoParcial.TabIndex = 2273;
+            labelFormatoParcial.TabIndex = 0;
             labelFormatoParcial.Text = "label1";
             labelFormatoParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -708,10 +901,10 @@
             labelDadosBaralho.FlatStyle = FlatStyle.System;
             labelDadosBaralho.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             labelDadosBaralho.ImeMode = ImeMode.NoControl;
-            labelDadosBaralho.Location = new Point(0, 28);
+            labelDadosBaralho.Location = new Point(0, 251);
             labelDadosBaralho.Name = "labelDadosBaralho";
             labelDadosBaralho.Size = new Size(200, 30);
-            labelDadosBaralho.TabIndex = 2259;
+            labelDadosBaralho.TabIndex = 0;
             labelDadosBaralho.Text = "Dados baralho";
             labelDadosBaralho.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -889,19 +1082,30 @@
             dataGridViewListaDeCartasDoBaralho.AutoGenerateColumns = false;
             dataGridViewListaDeCartasDoBaralho.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewListaDeCartasDoBaralho.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewListaDeCartasDoBaralho.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomeCartaDataGridViewTextBoxColumn, custoDeManaConvertidoCartaDataGridViewTextBoxColumn, tipoDeCartaDataGridViewTextBoxColumn, raridadeCartaDataGridViewTextBoxColumn, precoCartaDataGridViewTextBoxColumn, corCartaDataGridViewTextBoxColumn, imagemDataGridViewTextBoxColumn });
-            dataGridViewListaDeCartasDoBaralho.DataSource = cartaBindingSource;
+            dataGridViewListaDeCartasDoBaralho.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn, idDataGridViewTextBoxColumn, idBaralhoDataGridViewTextBoxColumn, idCartaDataGridViewTextBoxColumn, cartaDataGridViewTextBoxColumn });
+            dataGridViewListaDeCartasDoBaralho.DataSource = copiaDeCartasNoBaralhoBindingSource;
             dataGridViewListaDeCartasDoBaralho.Dock = DockStyle.Fill;
             dataGridViewListaDeCartasDoBaralho.Location = new Point(0, 0);
             dataGridViewListaDeCartasDoBaralho.Name = "dataGridViewListaDeCartasDoBaralho";
             dataGridViewListaDeCartasDoBaralho.ReadOnly = true;
             dataGridViewListaDeCartasDoBaralho.RowTemplate.Height = 25;
             dataGridViewListaDeCartasDoBaralho.Size = new Size(611, 601);
-            dataGridViewListaDeCartasDoBaralho.TabIndex = 4;
+            dataGridViewListaDeCartasDoBaralho.TabIndex = 0;
+            dataGridViewListaDeCartasDoBaralho.CellClick += AoClicarCarregaDadosDaCarta;
             // 
-            // cartaBindingSource
+            // dataGridViewTextBoxColumn1
             // 
-            cartaBindingSource.DataSource = typeof(Dominio.Modelos.Carta);
+            dataGridViewTextBoxColumn1.DataPropertyName = "NomeCarta";
+            dataGridViewTextBoxColumn1.HeaderText = "Nome";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn
+            // 
+            quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn.DataPropertyName = "QuantidadeCopiasDaCartaNoBaralho";
+            quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn.HeaderText = "Quantidade";
+            quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn.Name = "quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn";
+            quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -911,62 +1115,40 @@
             idDataGridViewTextBoxColumn.ReadOnly = true;
             idDataGridViewTextBoxColumn.Visible = false;
             // 
-            // nomeCartaDataGridViewTextBoxColumn
+            // idBaralhoDataGridViewTextBoxColumn
             // 
-            nomeCartaDataGridViewTextBoxColumn.DataPropertyName = "NomeCarta";
-            nomeCartaDataGridViewTextBoxColumn.HeaderText = "Nome";
-            nomeCartaDataGridViewTextBoxColumn.Name = "nomeCartaDataGridViewTextBoxColumn";
-            nomeCartaDataGridViewTextBoxColumn.ReadOnly = true;
+            idBaralhoDataGridViewTextBoxColumn.DataPropertyName = "IdBaralho";
+            idBaralhoDataGridViewTextBoxColumn.HeaderText = "IdBaralho";
+            idBaralhoDataGridViewTextBoxColumn.Name = "idBaralhoDataGridViewTextBoxColumn";
+            idBaralhoDataGridViewTextBoxColumn.ReadOnly = true;
+            idBaralhoDataGridViewTextBoxColumn.Visible = false;
             // 
-            // custoDeManaConvertidoCartaDataGridViewTextBoxColumn
+            // idCartaDataGridViewTextBoxColumn
             // 
-            custoDeManaConvertidoCartaDataGridViewTextBoxColumn.DataPropertyName = "CustoDeManaConvertidoCarta";
-            custoDeManaConvertidoCartaDataGridViewTextBoxColumn.HeaderText = "CMC";
-            custoDeManaConvertidoCartaDataGridViewTextBoxColumn.Name = "custoDeManaConvertidoCartaDataGridViewTextBoxColumn";
-            custoDeManaConvertidoCartaDataGridViewTextBoxColumn.ReadOnly = true;
+            idCartaDataGridViewTextBoxColumn.DataPropertyName = "IdCarta";
+            idCartaDataGridViewTextBoxColumn.HeaderText = "IdCarta";
+            idCartaDataGridViewTextBoxColumn.Name = "idCartaDataGridViewTextBoxColumn";
+            idCartaDataGridViewTextBoxColumn.ReadOnly = true;
+            idCartaDataGridViewTextBoxColumn.Visible = false;
             // 
-            // tipoDeCartaDataGridViewTextBoxColumn
+            // cartaDataGridViewTextBoxColumn
             // 
-            tipoDeCartaDataGridViewTextBoxColumn.DataPropertyName = "TipoDeCarta";
-            tipoDeCartaDataGridViewTextBoxColumn.HeaderText = "Tipo";
-            tipoDeCartaDataGridViewTextBoxColumn.Name = "tipoDeCartaDataGridViewTextBoxColumn";
-            tipoDeCartaDataGridViewTextBoxColumn.ReadOnly = true;
+            cartaDataGridViewTextBoxColumn.DataPropertyName = "Carta";
+            cartaDataGridViewTextBoxColumn.HeaderText = "Carta";
+            cartaDataGridViewTextBoxColumn.Name = "cartaDataGridViewTextBoxColumn";
+            cartaDataGridViewTextBoxColumn.ReadOnly = true;
+            cartaDataGridViewTextBoxColumn.Visible = false;
             // 
-            // raridadeCartaDataGridViewTextBoxColumn
+            // copiaDeCartasNoBaralhoBindingSource
             // 
-            raridadeCartaDataGridViewTextBoxColumn.DataPropertyName = "RaridadeCarta";
-            raridadeCartaDataGridViewTextBoxColumn.HeaderText = "Raridade";
-            raridadeCartaDataGridViewTextBoxColumn.Name = "raridadeCartaDataGridViewTextBoxColumn";
-            raridadeCartaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // precoCartaDataGridViewTextBoxColumn
-            // 
-            precoCartaDataGridViewTextBoxColumn.DataPropertyName = "PrecoCarta";
-            precoCartaDataGridViewTextBoxColumn.HeaderText = "Preço";
-            precoCartaDataGridViewTextBoxColumn.Name = "precoCartaDataGridViewTextBoxColumn";
-            precoCartaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // corCartaDataGridViewTextBoxColumn
-            // 
-            corCartaDataGridViewTextBoxColumn.DataPropertyName = "CorCarta";
-            corCartaDataGridViewTextBoxColumn.HeaderText = "Cor";
-            corCartaDataGridViewTextBoxColumn.Name = "corCartaDataGridViewTextBoxColumn";
-            corCartaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // imagemDataGridViewTextBoxColumn
-            // 
-            imagemDataGridViewTextBoxColumn.DataPropertyName = "Imagem";
-            imagemDataGridViewTextBoxColumn.HeaderText = "Imagem";
-            imagemDataGridViewTextBoxColumn.Name = "imagemDataGridViewTextBoxColumn";
-            imagemDataGridViewTextBoxColumn.ReadOnly = true;
-            imagemDataGridViewTextBoxColumn.Visible = false;
+            copiaDeCartasNoBaralhoBindingSource.DataSource = typeof(Dominio.Modelos.CopiaDeCartasNoBaralho);
             // 
             // FormListaDeCartaDoBaralho
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1008, 601);
-            Controls.Add(buttonVisualizarBaralho);
+            Controls.Add(buttonCriarBaralhoBaralho);
             Controls.Add(panel1);
             Controls.Add(panel3);
             Controls.Add(panel2);
@@ -976,22 +1158,22 @@
             Text = "MTG - Deckbuilder | Confirmar lista do baralho";
             Load += CarregarFormListaDeCartasDoBaralho;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMax).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMin).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCmc).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewListaDeCartasDoBaralho).EndInit();
-            ((System.ComponentModel.ISupportInitialize)cartaBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)copiaDeCartasNoBaralhoBindingSource).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
         private Label labelCorParcial;
         private Label labelPrecoParcial;
-        private Button buttonVisualizarBaralho;
+        private Button buttonCriarBaralhoBaralho;
         private Label labelCustoParcial;
         private Label labelQuantidadeParcial;
         private Label labelNome;
@@ -1033,7 +1215,6 @@
         private Button button1;
         private Label label5;
         private Label label6;
-        private PictureBox pictureBox1;
         private ComboBox comboBox1;
         private Label label7;
         private TextBox textBox1;
@@ -1048,7 +1229,6 @@
         private Label labelDadosBaralho;
         private Label labelFormatoParcial;
         private Label labelNomeParcial;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nomeCartaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn custoDeManaConvertidoCartaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn tipoDeCartaDataGridViewTextBoxColumn;
@@ -1057,5 +1237,26 @@
         private DataGridViewTextBoxColumn corCartaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn imagemDataGridViewTextBoxColumn;
         private BindingSource cartaBindingSource;
+        private Label labelNomeCartaSelecionada;
+        private Label labelNomeCarta;
+        private Label labelCorCartaSelecionada;
+        private Label labelCorCarta;
+        private Label labelRariadeCartaSelecionada;
+        private Label labelRaridadeCarta;
+        private Label labelPrecoCartaSelecionada;
+        private Label labelPrecoDaCarta;
+        private Label labelCustoManaCartaSelecionada;
+        private Label labelCustoMana;
+        private Label labelTipoCartaSelecionada;
+        private Label labelTipoCarta;
+        private Button buttonVoltar;
+        private Button buttonRemoverCarta;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn quantidadeCopiasDaCartaNoBaralhoDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn idBaralhoDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn idCartaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cartaDataGridViewTextBoxColumn;
+        private BindingSource copiaDeCartasNoBaralhoBindingSource;
     }
 }

@@ -207,7 +207,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormNovoBaralho(object obj)
         {
-            Application.Run(new FormNovoBaralho(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
+            Application.Run(new FormNovoBaralho(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador, new Baralho()));
         }
     }
 }

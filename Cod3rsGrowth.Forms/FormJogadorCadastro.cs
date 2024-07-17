@@ -5,8 +5,6 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -48,13 +46,20 @@ namespace Cod3rsGrowth.Forms
                 DataDeCriacaoContaJogador = DateTime.Now
             };
 
-            var idJogador = jogadorServico.Criar(jogadorAutenticar);
-            jogador = jogadorServico.ObterPorId(idJogador);
+            try
+            {
+                var idJogador = jogadorServico.Criar(jogadorAutenticar);
+                jogador = jogadorServico.ObterPorId(idJogador);
 
-            this.Close();
-            threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
-            threadFormsJogador.SetApartmentState(ApartmentState.STA);
-            threadFormsJogador.Start();
+                this.Close();
+                threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
+                threadFormsJogador.SetApartmentState(ApartmentState.STA);
+                threadFormsJogador.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void AoClicarCarregarJogadorEmNovaJanela(Object obj)

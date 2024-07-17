@@ -48,13 +48,12 @@ namespace Cod3rsGrowth.Dominio.Migrador
 
                 Insert.IntoTable("Carta").Row(new
                 {
-                    Nome = carta.Name,
+                    Nome = carta?.Name,
                     CustoDeManaConvertido = carta?.Cmc ?? valorNulo,
                     TipoDeCarta = carta?.type_line ?? string.Empty,
                     Raridade = raridadeCarta,
                     Preco = Convert.ToDecimal(carta?.Prices?.Usd ?? caractereNulo),
-                    Cor = coresDaCarta,
-                    Imagem = carta?.Image_uris?.png ?? string.Empty
+                    Cor = coresDaCarta
                 });
             }
         }
