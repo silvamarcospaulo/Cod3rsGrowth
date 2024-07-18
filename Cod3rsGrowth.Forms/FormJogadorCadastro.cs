@@ -19,8 +19,8 @@ namespace Cod3rsGrowth.Forms
         private Jogador jogador;
         private Thread threadFormsJogador;
 
-        public FormJogadorCadastro(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
+        public FormJogadorCadastro(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
+            JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
         {
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;

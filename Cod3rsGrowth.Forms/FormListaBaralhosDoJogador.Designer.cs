@@ -353,12 +353,15 @@
             // dataGridViewBaralhos
             // 
             resources.ApplyResources(dataGridViewBaralhos, "dataGridViewBaralhos");
+            dataGridViewBaralhos.AllowUserToAddRows = false;
+            dataGridViewBaralhos.AllowUserToDeleteRows = false;
             dataGridViewBaralhos.AutoGenerateColumns = false;
             dataGridViewBaralhos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewBaralhos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewBaralhos.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7 });
             dataGridViewBaralhos.DataSource = baralhoBindingSource1;
             dataGridViewBaralhos.Name = "dataGridViewBaralhos";
+            dataGridViewBaralhos.ReadOnly = true;
             dataGridViewBaralhos.RowTemplate.Height = 25;
             // 
             // dataGridViewTextBoxColumn1
@@ -366,42 +369,49 @@
             dataGridViewTextBoxColumn1.DataPropertyName = "NomeBaralho";
             resources.ApplyResources(dataGridViewTextBoxColumn1, "dataGridViewTextBoxColumn1");
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
             dataGridViewTextBoxColumn2.DataPropertyName = "DataDeCriacaoBaralho";
             resources.ApplyResources(dataGridViewTextBoxColumn2, "dataGridViewTextBoxColumn2");
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
             dataGridViewTextBoxColumn3.DataPropertyName = "FormatoDeJogoBaralho";
             resources.ApplyResources(dataGridViewTextBoxColumn3, "dataGridViewTextBoxColumn3");
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
             dataGridViewTextBoxColumn4.DataPropertyName = "QuantidadeDeCartasNoBaralho";
             resources.ApplyResources(dataGridViewTextBoxColumn4, "dataGridViewTextBoxColumn4");
             dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn5
             // 
             dataGridViewTextBoxColumn5.DataPropertyName = "PrecoDoBaralho";
             resources.ApplyResources(dataGridViewTextBoxColumn5, "dataGridViewTextBoxColumn5");
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn6
             // 
             dataGridViewTextBoxColumn6.DataPropertyName = "CustoDeManaConvertidoDoBaralho";
             resources.ApplyResources(dataGridViewTextBoxColumn6, "dataGridViewTextBoxColumn6");
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn7
             // 
             dataGridViewTextBoxColumn7.DataPropertyName = "CorBaralho";
             resources.ApplyResources(dataGridViewTextBoxColumn7, "dataGridViewTextBoxColumn7");
             dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // baralhoBindingSource1
             // 

@@ -5,6 +5,8 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using FluentValidation;
+using System.ComponentModel;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -20,6 +22,7 @@ namespace Cod3rsGrowth.Forms
         private Baralho _baralho;
         private Carta cartaSelecionada;
         private Thread threadFormListaBaralhoJogador;
+        private Thread threadFormNovoBaralho;
         const int QUANTIDADE_MINIMA = 0;
 
         public FormListaDeCartaDoBaralho(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
@@ -52,7 +55,8 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarListaDeCopiaDeCartasNoBaralho()
         {
-            dataGridViewListaDeCartasDoBaralho.DataSource = _baralho.CartasDoBaralho;
+            var cartasDoJogador = new BindingList<CopiaDeCartasNoBaralho>(_baralho.CartasDoBaralho);
+            dataGridViewListaDeCartasDoBaralho.DataSource = cartasDoJogador;
         }
 
         private void AoClicarCarregaDadosDaCarta(object sender, DataGridViewCellEventArgs e)
@@ -93,7 +97,6 @@ namespace Cod3rsGrowth.Forms
                 threadFormListaBaralhoJogador = new Thread(CarregarFormListaBaralhoJogador);
                 threadFormListaBaralhoJogador.SetApartmentState(ApartmentState.STA);
                 threadFormListaBaralhoJogador.Start();
-
             }
             catch (Exception ex)
             {
@@ -109,12 +112,28 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarVoltaParaTelaDeNovoBaralho(object sender, EventArgs e)
         {
             this.Close();
+            threadFormNovoBaralho = new Thread(CarregarFormNovoBaralho);
+            threadFormNovoBaralho.SetApartmentState(ApartmentState.STA);
+            threadFormNovoBaralho.Start();
+        }
+
+        private void CarregarFormNovoBaralho(object obj)
+        {
+            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController, _jogador, _baralho));
         }
 
         private void AoClicarRemoveCartaDaListaDeCartasDoBaralho(object sender, EventArgs e)
         {
             var copiaExcluir = _baralho?.CartasDoBaralho?.Where(copia => copia.IdCarta == cartaSelecionada.Id).First();
-            _baralho.CartasDoBaralho.Remove(copiaExcluir);
+
+            foreach (var copia in _baralho.CartasDoBaralho)
+            {
+                if(copia?.IdCarta == cartaSelecionada?.Id)
+                {
+                    _baralho.CartasDoBaralho.Remove(copia);
+                    break;
+                }
+            }
             CarregarListaDeCopiaDeCartasNoBaralho();
         }
     }

@@ -5,6 +5,7 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using FluentValidation;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -57,7 +58,14 @@ namespace Cod3rsGrowth.Forms
             if (textBoxNovaSenha.Text.Length > valorNulo) jogador.SenhaHashJogador = textBoxNovaSenha.Text;
             if (textBoxConfirmarNovaSenha.Text.Length > valorNulo) jogador.SenhaHashConfirmacaoJogador = textBoxConfirmarNovaSenha.Text;
 
-            jogadorServico.Atualizar(jogador);
+            try
+            {
+                jogadorServico.Atualizar(jogador);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             this.Close();
             threadFormsJogador = new Thread(CarregarJanelaJogador);

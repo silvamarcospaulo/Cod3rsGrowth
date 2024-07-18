@@ -339,9 +339,6 @@
   <data name="labelPrecoBaralho.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="labelPrecoBaralho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 383</value>
-  </data>
   <data name="labelPrecoBaralho.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 19</value>
   </data>

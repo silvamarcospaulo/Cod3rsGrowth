@@ -32,7 +32,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     NomeCarta = "Ilha",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -42,7 +42,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     NomeCarta = "Pantano",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -52,7 +52,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     NomeCarta = "Floresta",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -62,7 +62,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     NomeCarta = "Planice",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -72,7 +72,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     NomeCarta = "Montanha",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -82,7 +82,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     NomeCarta = "Niv-Mizzet, Parum",
                     CustoDeManaConvertidoCarta = 6,
                     TipoDeCarta = "Creature",
-                    RaridadeCarta = RaridadeEnum.Rare,
+                    RaridadeCarta = RaridadeEnum.Raro,
                     PrecoCarta = Convert.ToDecimal(5),
                     CorCarta = "Azul, Vermelho"
                 },
@@ -92,7 +92,7 @@ namespace Cod3rsGrowth.Teste.Testes
                     NomeCarta = "Ghalta, Fome Primordial",
                     CustoDeManaConvertidoCarta = 12,
                     TipoDeCarta = "Creature",
-                    RaridadeCarta = RaridadeEnum.Rare,
+                    RaridadeCarta = RaridadeEnum.Raro,
                     PrecoCarta = Convert.ToDecimal(5),
                     CorCarta = "Verde"
                 }
@@ -125,7 +125,7 @@ namespace Cod3rsGrowth.Teste.Testes
         public void ao_ObterTodos_com_filtro_raridade_carta_rara_deve_retornar_uma_lista_com_duas_cartas()
         {
             const int quantidadeDeCartasEsperadas = 2;
-            const RaridadeEnum raridadeFiltro = RaridadeEnum.Rare;
+            const RaridadeEnum raridadeFiltro = RaridadeEnum.Raro;
 
             var quantidadeDeCartasMock = servicoCarta.ObterTodos(new CartaFiltro() { RaridadeCarta = new List<RaridadeEnum>() { raridadeFiltro } }).Count();
 
@@ -152,7 +152,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 NomeCarta = "Niv-Mizzet, Parum",
                 CustoDeManaConvertidoCarta = 6,
                 TipoDeCarta = "Creature",
-                RaridadeCarta = RaridadeEnum.Rare,
+                RaridadeCarta = RaridadeEnum.Raro,
                 PrecoCarta = Convert.ToDecimal(5),
                 CorCarta = "Azul, Vermelho"
             };
@@ -181,7 +181,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 NomeCarta = "",
                 CustoDeManaConvertidoCarta = 2,
                 TipoDeCarta = "Artifact",
-                RaridadeCarta = RaridadeEnum.Common,
+                RaridadeCarta = RaridadeEnum.Comum,
                 PrecoCarta = 0.5m,
                 CorCarta = ""
             };
@@ -202,7 +202,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 NomeCarta = "Sol Ring",
                 CustoDeManaConvertidoCarta = -1,
                 TipoDeCarta = "Artifact",
-                RaridadeCarta = RaridadeEnum.Common,
+                RaridadeCarta = RaridadeEnum.Comum,
                 PrecoCarta = 0.5m,
                 CorCarta = ""
             };
@@ -221,7 +221,7 @@ namespace Cod3rsGrowth.Teste.Testes
                 NomeCarta = "Sol Ring",
                 CustoDeManaConvertidoCarta = 2,
                 TipoDeCarta = "Artifact",
-                RaridadeCarta = RaridadeEnum.Common,
+                RaridadeCarta = RaridadeEnum.Comum,
                 PrecoCarta = 0.5m,
                 CorCarta = ""
             };

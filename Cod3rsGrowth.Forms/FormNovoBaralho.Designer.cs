@@ -70,11 +70,12 @@
             raridadeCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             precoCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             corCartaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            imagemDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             cartaBindingSource = new BindingSource(components);
             textBoxFiltrarNome = new TextBox();
             labelFiltroNome = new Label();
             panel3 = new Panel();
+            labelNomeCartaSelecionada = new Label();
+            label3 = new Label();
             buttonAdicionarCarta = new Button();
             numericUpDownQuantidadeDeCopiasDeCarta = new NumericUpDown();
             label1 = new Label();
@@ -559,7 +560,7 @@
             dataGridViewCartas.AutoGenerateColumns = false;
             dataGridViewCartas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCartas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCartas.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomeCartaDataGridViewTextBoxColumn, custoDeManaConvertidoCartaDataGridViewTextBoxColumn, tipoDeCartaDataGridViewTextBoxColumn, raridadeCartaDataGridViewTextBoxColumn, precoCartaDataGridViewTextBoxColumn, corCartaDataGridViewTextBoxColumn, imagemDataGridViewTextBoxColumn });
+            dataGridViewCartas.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomeCartaDataGridViewTextBoxColumn, custoDeManaConvertidoCartaDataGridViewTextBoxColumn, tipoDeCartaDataGridViewTextBoxColumn, raridadeCartaDataGridViewTextBoxColumn, precoCartaDataGridViewTextBoxColumn, corCartaDataGridViewTextBoxColumn });
             dataGridViewCartas.DataSource = cartaBindingSource;
             dataGridViewCartas.Location = new Point(3, 48);
             dataGridViewCartas.Name = "dataGridViewCartas";
@@ -567,7 +568,7 @@
             dataGridViewCartas.RowTemplate.Height = 25;
             dataGridViewCartas.Size = new Size(602, 541);
             dataGridViewCartas.TabIndex = 4;
-            dataGridViewCartas.CellContentClick += AoClicarMostraImagemDaCarta;
+            dataGridViewCartas.CellContentClick += AoClicarSelecionaCarta;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -622,14 +623,6 @@
             corCartaDataGridViewTextBoxColumn.Name = "corCartaDataGridViewTextBoxColumn";
             corCartaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // imagemDataGridViewTextBoxColumn
-            // 
-            imagemDataGridViewTextBoxColumn.DataPropertyName = "Imagem";
-            imagemDataGridViewTextBoxColumn.HeaderText = "Imagem";
-            imagemDataGridViewTextBoxColumn.Name = "imagemDataGridViewTextBoxColumn";
-            imagemDataGridViewTextBoxColumn.ReadOnly = true;
-            imagemDataGridViewTextBoxColumn.Visible = false;
-            // 
             // cartaBindingSource
             // 
             cartaBindingSource.DataSource = typeof(Dominio.Modelos.Carta);
@@ -643,6 +636,7 @@
             textBoxFiltrarNome.Name = "textBoxFiltrarNome";
             textBoxFiltrarNome.Size = new Size(505, 25);
             textBoxFiltrarNome.TabIndex = 1;
+            textBoxFiltrarNome.Enter += AoClicarAplicaSelecaoDeFiltros;
             // 
             // labelFiltroNome
             // 
@@ -659,6 +653,8 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(labelNomeCartaSelecionada);
+            panel3.Controls.Add(label3);
             panel3.Controls.Add(buttonAdicionarCarta);
             panel3.Controls.Add(numericUpDownQuantidadeDeCopiasDeCarta);
             panel3.Controls.Add(label1);
@@ -680,6 +676,30 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(200, 601);
             panel3.TabIndex = 2;
+            // 
+            // labelNomeCartaSelecionada
+            // 
+            labelNomeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelNomeCartaSelecionada.AutoSize = true;
+            labelNomeCartaSelecionada.FlatStyle = FlatStyle.System;
+            labelNomeCartaSelecionada.Location = new Point(8, 484);
+            labelNomeCartaSelecionada.Name = "labelNomeCartaSelecionada";
+            labelNomeCartaSelecionada.Size = new Size(0, 15);
+            labelNomeCartaSelecionada.TabIndex = 0;
+            labelNomeCartaSelecionada.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label3.AutoSize = true;
+            label3.FlatStyle = FlatStyle.System;
+            label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(8, 464);
+            label3.Name = "label3";
+            label3.Size = new Size(132, 19);
+            label3.TabIndex = 0;
+            label3.Text = "Carta selecionada:";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // buttonAdicionarCarta
             // 
@@ -966,5 +986,7 @@
         private DataGridViewTextBoxColumn precoCartaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn corCartaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn imagemDataGridViewTextBoxColumn;
+        private Label labelNomeCartaSelecionada;
+        private Label label3;
     }
 }

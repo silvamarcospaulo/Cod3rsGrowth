@@ -10,14 +10,19 @@ namespace Cod3rsGrowth.Dominio.Modelos
         public int Id { get; set; }
         [Column("Nome")]
         public string NomeCarta { get; set; }
+
         [Column("CustoDeManaConvertido")]
         public int CustoDeManaConvertidoCarta { get; set; }
-        [Column("TipoDeCarta")]
-        public string TipoDeCarta {  get; set; }
+
+        [Column("Tipo")]
+        public string TipoDeCarta { get; set; }
+
         [Column("Raridade")]
         public RaridadeEnum RaridadeCarta { get; set; }
+
         [Column("Preco")]
         public decimal PrecoCarta { get; set; }
+
         [Column("Cor")]
         public string CorCarta { get; set; }
     }

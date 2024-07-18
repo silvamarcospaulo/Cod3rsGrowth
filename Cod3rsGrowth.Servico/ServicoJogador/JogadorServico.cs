@@ -26,6 +26,15 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             _validadorJogador = validadorJogador;
         }
 
+        private bool ValidacaoUsuarioDisponível(string usuario)
+        {
+            var jogadorBanco = ObterTodos(new JogadorFiltro { UsuarioJogador = usuario });
+
+            if (jogadorBanco?.Count() != VALOR_NULO) throw new Exception ("Usuário indisponível!");
+
+            return true;
+        }
+
         private static decimal SomarPrecoDeTodasAsCartasDoJogador(List<Baralho>? baralhosJogador)
         {
             if (baralhosJogador.IsNullOrEmpty()) return VALOR_NULO;
@@ -57,6 +66,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             try
             {
+                ValidacaoUsuarioDisponível(jogador.UsuarioJogador);
+
                 _validadorJogador.Validate(jogador, options =>
                 {
                     options.ThrowOnFailures();
@@ -158,7 +169,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public Jogador ObterPorId(int idJogador)
         {
             var jogador = _IJogadorRepository.ObterPorId(idJogador);
-            jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
+            var oi = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
+            jogador.BaralhosJogador = oi;
             return jogador;
         }
 
@@ -166,11 +178,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         {
             var jogadores = _IJogadorRepository.ObterTodos(filtro);
 
-            foreach (var jogador in jogadores)
-            {
-                jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador?.Id });
-                Atualizar(jogador);
-            }
             return jogadores;
         }
 

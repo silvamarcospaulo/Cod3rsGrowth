@@ -117,1525 +117,1525 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;baralhoBindingSource.Name" xml:space="preserve">
-    <value>baralhoBindingSource</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="checkBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 202</value>
   </data>
-  <data name="&gt;&gt;buttonNovoBaralho.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;groupFiltrar.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;button1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="dataGridViewBaralhos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 57</value>
   </data>
-  <data name="&gt;&gt;formatoDeJogoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+  <data name="&gt;&gt;textBoxFiltrarNome.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoPauper.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dataGridViewJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 119</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;idJogadorDataGridViewTextBoxColumn.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;labelUsuarioJogador.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="corToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonLimparFiltro.TabIndex" type="System.Int32, mscorlib">
-    <value>2223</value>
-  </data>
-  <data name="&gt;&gt;labelQuantidadeDeBaralhosJogador.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoPauper.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="Nome.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="checkBoxBranco.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="labelPrecoMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 299</value>
-  </data>
-  <data name="&gt;&gt;buttonLimparFiltro.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;labelMin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn7.Name" xml:space="preserve">
-    <value>dataGridViewTextBoxColumn7</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoCommander.Name" xml:space="preserve">
-    <value>checkBoxFormatoCommander</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 59</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;dateTimePickerDataMinima.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 58</value>
-  </data>
-  <data name="labelFiltroNome.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="groupFiltrar.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;checkBox4.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;checkBox3.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="buttonLimparFiltro.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 697</value>
-  </data>
-  <data name="labelPrecoMax.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;labelUsuarioJogador.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="textBoxFiltrarNome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 69</value>
-  </data>
-  <data name="buttonAplicarFiltro.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;checkBoxAzul.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelPrecoCartasTotalJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>348, 86</value>
-  </data>
-  <data name="checkBoxBranco.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 152</value>
-  </data>
-  <data name="labelDataDeCriacao.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 456</value>
-  </data>
-  <data name="&gt;&gt;labelMin.Name" xml:space="preserve">
-    <value>labelMin</value>
-  </data>
-  <data name="panel3.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;Nome.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CustoDeManaConvertidoDoBaralho.Name" xml:space="preserve">
-    <value>CustoDeManaConvertidoDoBaralho</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoTotalDeCartas.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="labelMin.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelNomeJogador.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownMax.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;checkBoxVermelho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="dataGridViewBaralho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 116</value>
-  </data>
-  <data name="&gt;&gt;labelFiltros.Name" xml:space="preserve">
-    <value>labelFiltros</value>
-  </data>
-  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 172</value>
-  </data>
-  <data name="&gt;&gt;formatoDeJogoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
-    <value>formatoDeJogoBaralhoDataGridViewTextBoxColumn</value>
-  </data>
-  <data name="checkBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 252</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown2.Name" xml:space="preserve">
-    <value>numericUpDown2</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownMax.Name" xml:space="preserve">
-    <value>numericUpDownMax</value>
-  </data>
-  <data name="&gt;&gt;baralhoBindingSource.Type" xml:space="preserve">
+  <data name="&gt;&gt;baralhoBindingSource1.Type" xml:space="preserve">
     <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;numericUpDown2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;numericUpDownMin.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;checkBoxAzul.Parent" xml:space="preserve">
+  <data name="&gt;&gt;textBoxFiltrarNome.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="labelUsuarioJogador.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;labelPrecoCartasTotalJogador.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;labelUsuarioJogador.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 641</value>
-  </data>
-  <data name="&gt;&gt;labelDataDeCriacao.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelPrecoTotalDeCartas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 86</value>
-  </data>
-  <data name="checkBoxIncolor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 252</value>
-  </data>
-  <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
   <data name="&gt;&gt;dataGridViewTextBoxColumn3.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;labelPrecoTotalDeCartas.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;labelFormatoDeJogo.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="QuantidadeDeCartasNoBaralho.HeaderText" xml:space="preserve">
+    <value>Quantidade de Cartas</value>
+  </data>
+  <data name="&gt;&gt;idDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxVermelho.Name" xml:space="preserve">
+    <value>checkBoxVermelho</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownMax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralhoDoJogador.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
-    <value>custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn</value>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="labelNome.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;nomeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkBoxFormatoPauper.Name" xml:space="preserve">
-    <value>checkBoxFormatoPauper</value>
+  <data name="Nome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>246, 39</value>
   </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;numericUpDown2.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;buttonNovoBaralho.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="numericUpDown2.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dataGridViewJogador.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>1024, 640</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralho.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;Nome.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;labelMonteSeuBaralho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonNovoBaralho.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralhoDoJogador.Name" xml:space="preserve">
-    <value>dataGridViewBaralhoDoJogador</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxFiltos.Name" xml:space="preserve">
-    <value>checkedListBoxFiltos</value>
-  </data>
-  <data name="&gt;&gt;labelFiltros.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;checkBoxVerde.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxAzul.Name" xml:space="preserve">
-    <value>checkBoxAzul</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="trackBar1.TabIndex" type="System.Int32, mscorlib">
-    <value>2231</value>
-  </data>
-  <data name="&gt;&gt;labelMax.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;textBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoBaralho.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoStandard.Name" xml:space="preserve">
-    <value>checkBoxFormatoStandard</value>
-  </data>
-  <data name="&gt;&gt;labelQuantidadeDeBaralhosJogador.Name" xml:space="preserve">
-    <value>labelQuantidadeDeBaralhosJogador</value>
-  </data>
-  <data name="&gt;&gt;buttonSair.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="Nome.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Impact, 30pt, style=Bold</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoMin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonAplicarFiltro.Name" xml:space="preserve">
-    <value>buttonAplicarFiltro</value>
-  </data>
-  <data name="&gt;&gt;QuantidadeDeCartasNoBaralho.Name" xml:space="preserve">
-    <value>QuantidadeDeCartasNoBaralho</value>
-  </data>
-  <data name="dataGridViewTextBoxColumn6.HeaderText" xml:space="preserve">
-    <value>CustoDeManaConvertidoDoBaralho</value>
-  </data>
-  <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="labelFiltroNome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 72</value>
-  </data>
-  <data name="labelMonteSeuBaralho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 88</value>
-  </data>
-  <data name="&gt;&gt;textBoxFiltrarNome.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="labelUsuario.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownMin.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="dataGridViewTextBoxColumn4.HeaderText" xml:space="preserve">
-    <value>QuantidadeDeCartasNoBaralho</value>
-  </data>
-  <data name="Nome.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;buttonEditarPerfil.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelMax.Name" xml:space="preserve">
-    <value>labelMax</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;labelFiltroNome.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;idJogadorDataGridViewTextBoxColumn.Type" xml:space="preserve">
+  <data name="&gt;&gt;dataGridViewTextBoxColumn5.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelNomeJogador.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="idJogadorDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>IdJogador</value>
-  </data>
-  <data name="&gt;&gt;dataDeCriacaoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxFiltrarNome.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownMax.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelPrecoTotalDeCartas.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;dateTimePickerDataMaxima.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralho.Name" xml:space="preserve">
-    <value>dataGridViewBaralho</value>
-  </data>
-  <data name="&gt;&gt;checkBoxVermelho.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoCartasTotalJogador.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelFiltros.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 19</value>
-  </data>
-  <data name="numericUpDownMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 323</value>
-  </data>
-  <data name="&gt;&gt;checkBoxIncolor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="buttonNovoBaralho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 188</value>
-  </data>
-  <data name="quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Quantidade de cartas</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;labelNome.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;QuantidadeDeCartasNoBaralho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="textBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox3.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;buttonAplicarFiltro.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;corBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
-    <value>corBaralhoDataGridViewTextBoxColumn</value>
   </data>
   <data name="&gt;&gt;numericUpDownMin.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;dataGridViewBaralhos.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="labelUsername.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="dataGridViewTextBoxColumn5.HeaderText" xml:space="preserve">
-    <value>PrecoDoBaralho</value>
-  </data>
-  <data name="&gt;&gt;labelUsuario.Name" xml:space="preserve">
-    <value>labelUsuario</value>
-  </data>
-  <data name="&gt;&gt;corToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelQuantidadeDeBaralhos.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn5.Name" xml:space="preserve">
-    <value>dataGridViewTextBoxColumn5</value>
-  </data>
-  <data name="&gt;&gt;dateTimePickerDataMinima.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoCartasTotalJogador.Name" xml:space="preserve">
-    <value>labelPrecoCartasTotalJogador</value>
-  </data>
-  <data name="&gt;&gt;checkBoxPreto.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="formatoDeJogoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Formato de Jogo</value>
-  </data>
-  <data name="labelMonteSeuBaralho.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;checkBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CustoDeManaConvertidoDoBaralho.HeaderText" xml:space="preserve">
-    <value>CMC</value>
-  </data>
-  <data name="&gt;&gt;checkBoxPreto.Name" xml:space="preserve">
-    <value>checkBoxPreto</value>
-  </data>
-  <data name="buttonEditarPerfil.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 100</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoCartasTotalJogador.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;checkBox6.Name" xml:space="preserve">
-    <value>checkBox6</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>FormJogador</value>
-  </data>
-  <data name="&gt;&gt;labelDadosJogador.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="buttonSair.Location" type="System.Drawing.Point, System.Drawing">
-    <value>709, 9</value>
-  </data>
-  <data name="&gt;&gt;precoDoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;checkBoxIncolor.Name" xml:space="preserve">
-    <value>checkBoxIncolor</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon1.Name" xml:space="preserve">
-    <value>notifyIcon1</value>
-  </data>
-  <data name="&gt;&gt;PrecoDoBaralho.Name" xml:space="preserve">
-    <value>PrecoDoBaralho</value>
-  </data>
-  <data name="&gt;&gt;labelDadosJogador.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="checkBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 202</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;dateTimePickerDataMinima.Name" xml:space="preserve">
-    <value>dateTimePickerDataMinima</value>
-  </data>
-  <data name="&gt;&gt;labelMonteSeuBaralho.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxFiltos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonSair.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataDeCriacaoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
-    <value>dataDeCriacaoBaralhoDataGridViewTextBoxColumn</value>
+  <data name="&gt;&gt;formatoDeJogoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>formatoDeJogoBaralhoDataGridViewTextBoxColumn</value>
   </data>
   <data name="&gt;&gt;numericUpDownMin.ZOrder" xml:space="preserve">
     <value>26</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>800, 450</value>
-  </data>
-  <data name="labelFormatoDeJogo.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="checkBox7.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralhos.Name" xml:space="preserve">
-    <value>dataGridViewBaralhos</value>
-  </data>
-  <data name="&gt;&gt;nomeToolStripMenuItem.Name" xml:space="preserve">
-    <value>nomeToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;buttonLimparFiltro.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+  <data name="&gt;&gt;labelPrecoCartasTotalJogador.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoPauper.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="checkBoxPreto.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 177</value>
-  </data>
-  <data name="dataGridViewTextBoxColumn7.HeaderText" xml:space="preserve">
-    <value>CorBaralho</value>
-  </data>
-  <data name="&gt;&gt;labelFormatoDeJogo.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;checkBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="numericUpDownMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 295</value>
-  </data>
-  <data name="checkBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;checkBoxAzul.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="labelPrecoMin.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewJogador.Name" xml:space="preserve">
-    <value>dataGridViewJogador</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox5.Name" xml:space="preserve">
-    <value>checkBox5</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FormListaBaralhosDoJogador</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewJogador.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="buttonAplicarFiltro.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 323</value>
-  </data>
-  <data name="dataGridViewTextBoxColumn3.HeaderText" xml:space="preserve">
-    <value>FormatoDeJogoBaralho</value>
-  </data>
-  <data name="labelFiltros.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;checkBox7.Parent" xml:space="preserve">
-    <value>groupFiltrar</value>
-  </data>
-  <data name="&gt;&gt;buttonEditarPerfil.Name" xml:space="preserve">
-    <value>buttonEditarPerfil</value>
-  </data>
-  <data name="&gt;&gt;labelQuantidadeDeBaralhos.Name" xml:space="preserve">
-    <value>labelQuantidadeDeBaralhos</value>
-  </data>
-  <data name="&gt;&gt;groupFiltrar.Name" xml:space="preserve">
-    <value>groupFiltrar</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn4.Name" xml:space="preserve">
-    <value>dataGridViewTextBoxColumn4</value>
-  </data>
-  <data name="&gt;&gt;labelCor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="numericUpDown2.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="checkBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 152</value>
-  </data>
-  <data name="&gt;&gt;groupFiltrar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="labelCor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 109</value>
-  </data>
-  <data name="&gt;&gt;Nome.Name" xml:space="preserve">
-    <value>Nome</value>
-  </data>
-  <data name="&gt;&gt;nomeBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox4.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;labelQuantidadeDeBaralhos.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoCartasTotalJogador.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="labelNomeJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 59</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoMax.Name" xml:space="preserve">
-    <value>labelPrecoMax</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoBaralho.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelDataDeCriacao.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="labelDadosJogador.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="buttonEditarPerfil.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelUsuario.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 33</value>
-  </data>
-  <data name="&gt;&gt;checkBoxVerde.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelUsuarioJogador.Name" xml:space="preserve">
-    <value>labelUsuarioJogador</value>
-  </data>
-  <data name="QuantidadeDeCartasNoBaralho.HeaderText" xml:space="preserve">
-    <value>Quantidade de Cartas</value>
-  </data>
-  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownMin.Name" xml:space="preserve">
-    <value>numericUpDownMin</value>
-  </data>
-  <data name="dataGridViewBaralhoDoJogador.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;labelMax.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox7.Name" xml:space="preserve">
-    <value>checkBox7</value>
-  </data>
-  <data name="&gt;&gt;labelFiltroNome.Name" xml:space="preserve">
-    <value>labelFiltroNome</value>
-  </data>
-  <data name="dataGridViewJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 119</value>
-  </data>
-  <data name="dateTimePickerDataMaxima.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 504</value>
-  </data>
-  <data name="&gt;&gt;dateTimePickerDataMinima.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="dataGridViewJogador.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="checkBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 344</value>
-  </data>
-  <data name="&gt;&gt;labelFiltros.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoStandard.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="buttonNovoBaralho.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="checkedListBoxFiltos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 120</value>
-  </data>
-  <data name="dateTimePickerDataMinima.TabIndex" type="System.Int32, mscorlib">
-    <value>2231</value>
-  </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="labelPrecoMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 299</value>
-  </data>
-  <data name="&gt;&gt;labelCor.Name" xml:space="preserve">
-    <value>labelCor</value>
-  </data>
-  <data name="dataGridViewJogador.Size" type="System.Drawing.Size, System.Drawing">
-    <value>776, 319</value>
-  </data>
-  <data name="&gt;&gt;labelFiltroNome.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelDataDeCriacao.TabIndex" type="System.Int32, mscorlib">
-    <value>2230</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralhos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="trackBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 45</value>
-  </data>
-  <data name="&gt;&gt;checkBoxVerde.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;nomeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralhos.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;buttonEditarPerfil.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;checkBoxBranco.Name" xml:space="preserve">
-    <value>checkBoxBranco</value>
-  </data>
-  <data name="&gt;&gt;buttonEditarPerfil.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="checkBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="checkBoxVerde.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;checkBoxBranco.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="checkBoxVermelho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 227</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;button1.Name" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
-    <value>quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn</value>
-  </data>
-  <data name="&gt;&gt;dateTimePickerDataMaxima.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>565, 55</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoMax.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoBaralho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelPrecoBaralho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 383</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>7, 15</value>
-  </data>
-  <data name="&gt;&gt;numericUpDownMax.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="PrecoDoBaralho.HeaderText" xml:space="preserve">
-    <value>Preço</value>
-  </data>
-  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 24</value>
-  </data>
-  <data name="idDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Id</value>
-  </data>
-  <data name="&gt;&gt;idDataGridViewTextBoxColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelUsername.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 86</value>
-  </data>
-  <data name="labelMax.TabIndex" type="System.Int32, mscorlib">
-    <value>2224</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoTotalDeCartas.Name" xml:space="preserve">
-    <value>labelPrecoTotalDeCartas</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="numericUpDownMax.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="labelNome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 58</value>
-  </data>
-  <data name="&gt;&gt;jogadorBindingSource1.Name" xml:space="preserve">
-    <value>jogadorBindingSource1</value>
-  </data>
-  <data name="&gt;&gt;checkBox2.Name" xml:space="preserve">
-    <value>checkBox2</value>
-  </data>
-  <data name="Nome.Text" xml:space="preserve">
-    <value>MTG DeckBuilder</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;labelUsuario.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewJogador.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>CMC</value>
-  </data>
-  <data name="&gt;&gt;labelQuantidadeDeBaralhos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox2.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewJogador.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoMin.Name" xml:space="preserve">
-    <value>labelPrecoMin</value>
-  </data>
-  <data name="&gt;&gt;labelDataDeCriacao.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoPauper.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="dataGridViewBaralho.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="&gt;&gt;panel3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;CustoDeManaConvertidoDoBaralho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="DataDeCriacaoBaralho.HeaderText" xml:space="preserve">
-    <value>Data de criação</value>
-  </data>
-  <data name="&gt;&gt;labelMin.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="dataGridViewBaralhos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 57</value>
-  </data>
-  <data name="&gt;&gt;labelNome.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="textBoxFiltrarNome.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;labelDadosJogador.Name" xml:space="preserve">
-    <value>labelDadosJogador</value>
-  </data>
-  <data name="checkBoxVermelho.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="checkBoxFormatoCommander.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 37</value>
-  </data>
-  <data name="numericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 671</value>
-  </data>
-  <data name="Nome.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 48</value>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn1</value>
   </data>
   <data name="&gt;&gt;checkBoxVermelho.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn3.Name" xml:space="preserve">
-    <value>dataGridViewTextBoxColumn3</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoMax.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn6.Name" xml:space="preserve">
-    <value>dataGridViewTextBoxColumn6</value>
-  </data>
-  <data name="&gt;&gt;baralhoBindingSource1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelMin.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 100</value>
-  </data>
-  <data name="&gt;&gt;dateTimePickerDataMaxima.Name" xml:space="preserve">
-    <value>dateTimePickerDataMaxima</value>
-  </data>
-  <data name="&gt;&gt;trackBar1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhosJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 58</value>
-  </data>
-  <data name="&gt;&gt;buttonLimparFiltro.Name" xml:space="preserve">
-    <value>buttonLimparFiltro</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="labelFormatoDeJogo.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 19</value>
-  </data>
-  <data name="dataGridViewBaralhos.TabIndex" type="System.Int32, mscorlib">
-    <value>2224</value>
-  </data>
-  <data name="&gt;&gt;panel3.Name" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;panel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonAplicarFiltro.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="dataGridViewTextBoxColumn1.HeaderText" xml:space="preserve">
-    <value>NomeBaralho</value>
-  </data>
-  <data name="&gt;&gt;buttonAplicarFiltro.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;trackBar1.Name" xml:space="preserve">
-    <value>trackBar1</value>
-  </data>
-  <data name="&gt;&gt;checkedListBoxFiltos.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;jogadorBindingSource.Name" xml:space="preserve">
-    <value>jogadorBindingSource</value>
-  </data>
-  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
-    <value>textBox1</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
-    <value>toolStripMenuItem1</value>
-  </data>
-  <data name="&gt;&gt;checkBox3.Name" xml:space="preserve">
-    <value>checkBox3</value>
-  </data>
-  <data name="&gt;&gt;precoDoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
-    <value>precoDoBaralhoDataGridViewTextBoxColumn</value>
-  </data>
-  <data name="&gt;&gt;labelMonteSeuBaralho.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoStandard.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;DataDeCriacaoBaralho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 455</value>
-  </data>
-  <data name="labelCor.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;checkBoxBranco.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 20</value>
-  </data>
-  <data name="&gt;&gt;buttonLimparFiltro.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;checkBoxPreto.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralho.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelCor.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="numericUpDownMin.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;checkBox4.Name" xml:space="preserve">
-    <value>checkBox4</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralhoDoJogador.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="corToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoCommander.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;labelUsuario.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;checkBox7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="dateTimePickerDataMinima.Location" type="System.Drawing.Point, System.Drawing">
-    <value>40, 479</value>
-  </data>
-  <data name="checkBoxAzul.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;PrecoDoBaralho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelDataDeCriacao.Name" xml:space="preserve">
-    <value>labelDataDeCriacao</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;checkBox2.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="checkBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="labelMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 613</value>
-  </data>
-  <data name="&gt;&gt;buttonNovoBaralho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="checkBox6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 177</value>
-  </data>
-  <data name="&gt;&gt;buttonSair.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;labelMax.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;trackBar1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;checkBoxIncolor.ZOrder" xml:space="preserve">
-    <value>25</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="&gt;&gt;corToolStripMenuItem.Name" xml:space="preserve">
-    <value>corToolStripMenuItem</value>
+  <data name="&gt;&gt;checkBoxIncolor.ZOrder" xml:space="preserve">
+    <value>25</value>
   </data>
-  <data name="Nome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="numericUpDownMax.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <data name="&gt;&gt;checkBox5.Parent" xml:space="preserve">
-    <value>groupFiltrar</value>
+  <data name="labelCor.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;checkBox4.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown2.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="checkedListBoxFiltos.TabIndex" type="System.Int32, mscorlib">
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="checkBox3.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;labelUsuarioJogador.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="Nome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 39</value>
+  <data name="formatoDeJogoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Formato de Jogo</value>
   </data>
-  <data name="button1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="checkBoxFormatoPauper.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;labelDataDeCriacao.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;labelUsername.Parent" xml:space="preserve">
-    <value>panel1</value>
+  <data name="buttonLimparFiltro.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 697</value>
   </data>
-  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>727, 12</value>
+  <data name="checkBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 252</value>
   </data>
-  <data name="&gt;&gt;checkBoxIncolor.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelNomeJogador.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoCommander.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoMin.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;checkBoxPreto.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;checkBox5.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;labelFormatoDeJogo.Name" xml:space="preserve">
-    <value>labelFormatoDeJogo</value>
-  </data>
-  <data name="labelPrecoBaralho.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelNome.Name" xml:space="preserve">
-    <value>labelNome</value>
-  </data>
-  <data name="checkBoxPreto.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;nomeBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
-    <value>nomeBaralhoDataGridViewTextBoxColumn</value>
-  </data>
-  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;textBoxFiltrarNome.Name" xml:space="preserve">
-    <value>textBoxFiltrarNome</value>
-  </data>
-  <data name="&gt;&gt;labelDadosJogador.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralhoDoJogador.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxVerde.Name" xml:space="preserve">
-    <value>checkBoxVerde</value>
-  </data>
-  <data name="checkBoxIncolor.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoMin.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;baralhoBindingSource1.Name" xml:space="preserve">
-    <value>baralhoBindingSource1</value>
-  </data>
-  <data name="checkBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 127</value>
-  </data>
-  <data name="&gt;&gt;dateTimePickerDataMaxima.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;buttonSair.Name" xml:space="preserve">
-    <value>buttonSair</value>
-  </data>
-  <data name="&gt;&gt;labelNomeJogador.Name" xml:space="preserve">
-    <value>labelNomeJogador</value>
-  </data>
-  <data name="&gt;&gt;labelUsername.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelMonteSeuBaralho.Name" xml:space="preserve">
-    <value>labelMonteSeuBaralho</value>
-  </data>
-  <data name="nomeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
-  </data>
-  <data name="&gt;&gt;checkBoxBranco.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="checkBoxFormatoStandard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 62</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;textBoxFiltrarNome.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;corBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+  <data name="&gt;&gt;PrecoDoBaralho.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoTotalDeCartas.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelNome.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelFiltroNome.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewBaralhoDoJogador.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;labelQuantidadeDeBaralhosJogador.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelFormatoDeJogo.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;checkBox6.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="precoDoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Preco</value>
-  </data>
-  <data name="&gt;&gt;idJogadorDataGridViewTextBoxColumn.Name" xml:space="preserve">
-    <value>idJogadorDataGridViewTextBoxColumn</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="labelDadosJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 9</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1724, 140</value>
-  </data>
-  <data name="&gt;&gt;labelUsername.Name" xml:space="preserve">
-    <value>labelUsername</value>
-  </data>
-  <data name="&gt;&gt;checkBox6.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;labelFormatoDeJogo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelUsername.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="dateTimePickerDataMaxima.TabIndex" type="System.Int32, mscorlib">
-    <value>2232</value>
-  </data>
-  <data name="buttonSair.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;groupFiltrar.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;labelPrecoBaralho.Name" xml:space="preserve">
-    <value>labelPrecoBaralho</value>
-  </data>
-  <data name="checkBoxFormatoStandard.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupFiltrar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
-    <value>flowLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
-    <value>numericUpDown1</value>
-  </data>
-  <data name="dataDeCriacaoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Data de Criação</value>
-  </data>
-  <data name="labelUsuarioJogador.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 86</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoCommander.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="&gt;&gt;labelQuantidadeDeBaralhosJogador.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;labelNomeJogador.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;checkBox7.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;jogadorBindingSource1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="checkBox6.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;DataDeCriacaoBaralho.Name" xml:space="preserve">
-    <value>DataDeCriacaoBaralho</value>
-  </data>
-  <data name="&gt;&gt;labelFiltros.Parent" xml:space="preserve">
-    <value>panel2</value>
   </data>
   <data name="dataGridViewBaralhoDoJogador.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 116</value>
   </data>
-  <data name="&gt;&gt;labelPrecoMax.Type" xml:space="preserve">
+  <data name="&gt;&gt;groupFiltrar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelMin.Name" xml:space="preserve">
+    <value>labelMin</value>
+  </data>
+  <data name="dateTimePickerDataMinima.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 479</value>
+  </data>
+  <data name="&gt;&gt;labelQuantidadeDeBaralhos.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn3.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn3</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralho.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownMax.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="labelMonteSeuBaralho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 88</value>
+  </data>
+  <data name="labelPrecoMax.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoMin.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Name" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
+    <value>toolStripMenuItem1</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxFiltos.Name" xml:space="preserve">
+    <value>checkedListBoxFiltos</value>
+  </data>
+  <data name="&gt;&gt;checkBox2.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="labelMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 584</value>
+  </data>
+  <data name="&gt;&gt;buttonAplicarFiltro.Name" xml:space="preserve">
+    <value>buttonAplicarFiltro</value>
+  </data>
+  <data name="checkBoxFormatoStandard.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1724, 140</value>
+  </data>
+  <data name="&gt;&gt;checkBox7.Name" xml:space="preserve">
+    <value>checkBox7</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn2.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn2</value>
+  </data>
+  <data name="buttonNovoBaralho.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="idJogadorDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>IdJogador</value>
+  </data>
+  <data name="labelMin.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownMax.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="dataGridViewBaralho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 116</value>
+  </data>
+  <data name="&gt;&gt;labelUsername.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dataGridViewTextBoxColumn1.HeaderText" xml:space="preserve">
+    <value>NomeBaralho</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralhos.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dataGridViewJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dataGridViewTextBoxColumn7.HeaderText" xml:space="preserve">
+    <value>CorBaralho</value>
+  </data>
+  <data name="checkBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="dataGridViewTextBoxColumn3.HeaderText" xml:space="preserve">
+    <value>FormatoDeJogoBaralho</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAzul.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;buttonLimparFiltro.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;checkBoxBranco.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerDataMaxima.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBoxPreto.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralho.Name" xml:space="preserve">
+    <value>dataGridViewBaralho</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoTotalDeCartas.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dataGridViewTextBoxColumn2.HeaderText" xml:space="preserve">
     <value>DataDeCriacaoBaralho</value>
   </data>
-  <data name="&gt;&gt;checkedListBoxFiltos.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="corBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Cor</value>
-  </data>
-  <data name="checkBoxVerde.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 202</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="groupFiltrar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>629, 112</value>
-  </data>
-  <data name="nomeBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Nome</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn2.Name" xml:space="preserve">
-    <value>dataGridViewTextBoxColumn2</value>
-  </data>
-  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 69</value>
-  </data>
-  <data name="labelQuantidadeDeBaralhos.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;Nome.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="checkBoxFormatoCommander.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="checkBoxFormatoPauper.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 87</value>
+  <data name="&gt;&gt;checkBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;notifyIcon1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;labelCor.ZOrder" xml:space="preserve">
-    <value>24</value>
+  <data name="&gt;&gt;checkBox5.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;checkBoxBranco.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>217, 58</value>
+  </data>
+  <data name="&gt;&gt;checkBox6.Name" xml:space="preserve">
+    <value>checkBox6</value>
+  </data>
+  <data name="checkBoxFormatoCommander.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="checkBoxFormatoCommander.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 37</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelPrecoTotalDeCartas.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;labelNomeJogador.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxFiltos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelNome.Parent" xml:space="preserve">
+    <value>panel1</value>
   </data>
   <data name="checkBoxAzul.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 127</value>
   </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;checkBox3.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="&gt;&gt;checkBox3.Type" xml:space="preserve">
+  <data name="checkBoxBranco.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 152</value>
+  </data>
+  <data name="textBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;panel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelFiltros.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownMax.Name" xml:space="preserve">
+    <value>numericUpDownMax</value>
+  </data>
+  <data name="&gt;&gt;checkBoxPreto.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="trackBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 350</value>
+  <data name="&gt;&gt;labelDataDeCriacao.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonNovoBaralho.Name" xml:space="preserve">
-    <value>buttonNovoBaralho</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Name" xml:space="preserve">
-    <value>dataGridViewTextBoxColumn1</value>
-  </data>
-  <data name="&gt;&gt;checkBoxFormatoStandard.Parent" xml:space="preserve">
+  <data name="&gt;&gt;dateTimePickerDataMaxima.Parent" xml:space="preserve">
     <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;labelNomeJogador.Name" xml:space="preserve">
+    <value>labelNomeJogador</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoTotalDeCartas.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;labelUsername.Name" xml:space="preserve">
+    <value>labelUsername</value>
+  </data>
+  <data name="&gt;&gt;idJogadorDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>idJogadorDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;checkBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn7.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn7</value>
+  </data>
+  <data name="Nome.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Impact, 30pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;labelUsuarioJogador.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxBranco.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonLimparFiltro.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxFiltos.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="checkBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;corToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>565, 55</value>
+  </data>
+  <data name="checkBoxVerde.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="labelUsuario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 33</value>
+  </data>
+  <data name="&gt;&gt;labelMin.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PrecoDoBaralho.Name" xml:space="preserve">
+    <value>PrecoDoBaralho</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn4.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn4</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>108, 59</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelUsuarioJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBoxVerde.Name" xml:space="preserve">
+    <value>checkBoxVerde</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.Name" xml:space="preserve">
+    <value>trackBar1</value>
+  </data>
+  <data name="groupFiltrar.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="labelFormatoDeJogo.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;buttonNovoBaralho.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;checkBoxIncolor.Name" xml:space="preserve">
+    <value>checkBoxIncolor</value>
+  </data>
+  <data name="&gt;&gt;textBoxFiltrarNome.Name" xml:space="preserve">
+    <value>textBoxFiltrarNome</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoCommander.Name" xml:space="preserve">
+    <value>checkBoxFormatoCommander</value>
+  </data>
+  <data name="&gt;&gt;labelFormatoDeJogo.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;buttonLimparFiltro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoTotalDeCartas.Name" xml:space="preserve">
+    <value>labelPrecoTotalDeCartas</value>
+  </data>
+  <data name="&gt;&gt;labelFiltroNome.Name" xml:space="preserve">
+    <value>labelFiltroNome</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerDataMinima.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelDataDeCriacao.Name" xml:space="preserve">
+    <value>labelDataDeCriacao</value>
+  </data>
+  <data name="labelUsuario.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoCommander.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;buttonEditarPerfil.Name" xml:space="preserve">
+    <value>buttonEditarPerfil</value>
+  </data>
+  <data name="&gt;&gt;labelDadosJogador.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelMonteSeuBaralho.Name" xml:space="preserve">
+    <value>labelMonteSeuBaralho</value>
+  </data>
+  <data name="&gt;&gt;labelNome.Name" xml:space="preserve">
+    <value>labelNome</value>
+  </data>
+  <data name="&gt;&gt;labelDataDeCriacao.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;labelFormatoDeJogo.Name" xml:space="preserve">
+    <value>labelFormatoDeJogo</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;DataDeCriacaoBaralho.Name" xml:space="preserve">
+    <value>DataDeCriacaoBaralho</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoPauper.Name" xml:space="preserve">
+    <value>checkBoxFormatoPauper</value>
+  </data>
+  <data name="&gt;&gt;checkBoxVermelho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSair.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="numericUpDownMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 323</value>
+  </data>
+  <data name="checkBoxPreto.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;checkBox5.Parent" xml:space="preserve">
+    <value>groupFiltrar</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewJogador.Name" xml:space="preserve">
+    <value>dataGridViewJogador</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Name" xml:space="preserve">
+    <value>numericUpDown1</value>
+  </data>
+  <data name="&gt;&gt;precoDoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>precoDoBaralhoDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="nomeBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="&gt;&gt;labelUsuario.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelQuantidadeDeBaralhosJogador.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;checkBox3.Name" xml:space="preserve">
+    <value>checkBox3</value>
   </data>
   <data name="&gt;&gt;trackBar1.Type" xml:space="preserve">
     <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkBoxVermelho.Name" xml:space="preserve">
-    <value>checkBoxVermelho</value>
+  <data name="dateTimePickerDataMinima.TabIndex" type="System.Int32, mscorlib">
+    <value>2231</value>
+  </data>
+  <data name="&gt;&gt;labelNome.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxVermelho.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;checkBox4.Name" xml:space="preserve">
+    <value>checkBox4</value>
+  </data>
+  <data name="checkBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 344</value>
+  </data>
+  <data name="Nome.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn5.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn5</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="checkBoxVermelho.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="dataGridViewTextBoxColumn5.HeaderText" xml:space="preserve">
+    <value>PrecoDoBaralho</value>
+  </data>
+  <data name="&gt;&gt;quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewJogador.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="labelNome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 58</value>
+  </data>
+  <data name="&gt;&gt;trackBar1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="buttonSair.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dataGridViewBaralho.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="checkBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 152</value>
+  </data>
+  <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="buttonNovoBaralho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 188</value>
+  </data>
+  <data name="numericUpDown1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="labelDadosJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 9</value>
+  </data>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoMax.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;textBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;checkedListBoxFiltos.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;corBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoBaralho.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;corToolStripMenuItem.Name" xml:space="preserve">
+    <value>corToolStripMenuItem</value>
+  </data>
+  <data name="buttonEditarPerfil.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 100</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerDataMinima.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoCartasTotalJogador.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;labelQuantidadeDeBaralhosJogador.Name" xml:space="preserve">
+    <value>labelQuantidadeDeBaralhosJogador</value>
+  </data>
+  <data name="&gt;&gt;labelFiltroNome.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 127</value>
+  </data>
+  <data name="&gt;&gt;checkBox5.Name" xml:space="preserve">
+    <value>checkBox5</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerDataMinima.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>359, 58</value>
+  </data>
+  <data name="&gt;&gt;textBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDownMin.Name" xml:space="preserve">
+    <value>numericUpDownMin</value>
+  </data>
+  <data name="&gt;&gt;Nome.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="labelUsername.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 86</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoTotalDeCartas.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;labelUsuario.Name" xml:space="preserve">
+    <value>labelUsuario</value>
+  </data>
+  <data name="&gt;&gt;labelFormatoDeJogo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;baralhoBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 172</value>
+  </data>
+  <data name="&gt;&gt;buttonSair.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelFiltroNome.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;Nome.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;QuantidadeDeCartasNoBaralho.Name" xml:space="preserve">
+    <value>QuantidadeDeCartasNoBaralho</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nome.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 48</value>
+  </data>
+  <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 69</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoPauper.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="checkBoxIncolor.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="labelPrecoMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 299</value>
+  </data>
+  <data name="&gt;&gt;groupFiltrar.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CustoDeManaConvertidoDoBaralho.HeaderText" xml:space="preserve">
+    <value>CMC</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;labelUsuarioJogador.Name" xml:space="preserve">
+    <value>labelUsuarioJogador</value>
+  </data>
+  <data name="labelPrecoBaralho.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonNovoBaralho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelPrecoCartasTotalJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>348, 86</value>
+  </data>
+  <data name="&gt;&gt;labelMonteSeuBaralho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nome.Text" xml:space="preserve">
+    <value>MTG DeckBuilder</value>
+  </data>
+  <data name="&gt;&gt;labelMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonAplicarFiltro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupFiltrar.Name" xml:space="preserve">
+    <value>groupFiltrar</value>
+  </data>
+  <data name="checkBoxVerde.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 202</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralhoDoJogador.Name" xml:space="preserve">
+    <value>dataGridViewBaralhoDoJogador</value>
+  </data>
+  <data name="&gt;&gt;checkBoxIncolor.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoBaralho.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="panel3.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon1.Name" xml:space="preserve">
+    <value>notifyIcon1</value>
+  </data>
+  <data name="&gt;&gt;corBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>corBaralhoDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;labelFiltros.Name" xml:space="preserve">
+    <value>labelFiltros</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="labelDataDeCriacao.TabIndex" type="System.Int32, mscorlib">
+    <value>2230</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="numericUpDownMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 295</value>
+  </data>
+  <data name="textBoxFiltrarNome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 69</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoStandard.Name" xml:space="preserve">
+    <value>checkBoxFormatoStandard</value>
+  </data>
+  <data name="labelDataDeCriacao.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 456</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewJogador.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;jogadorBindingSource1.Name" xml:space="preserve">
+    <value>jogadorBindingSource1</value>
+  </data>
+  <data name="trackBar1.TabIndex" type="System.Int32, mscorlib">
+    <value>2231</value>
+  </data>
+  <data name="dataGridViewJogador.Size" type="System.Drawing.Size, System.Drawing">
+    <value>776, 319</value>
+  </data>
+  <data name="&gt;&gt;labelCor.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="nomeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 22</value>
+  </data>
+  <data name="Nome.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="labelCor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 109</value>
+  </data>
+  <data name="&gt;&gt;nomeBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>nomeBaralhoDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelQuantidadeDeBaralhos.Name" xml:space="preserve">
+    <value>labelQuantidadeDeBaralhos</value>
+  </data>
+  <data name="dataGridViewTextBoxColumn4.HeaderText" xml:space="preserve">
+    <value>QuantidadeDeCartasNoBaralho</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;checkBoxVerde.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="labelPrecoBaralho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 383</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoStandard.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;checkBox7.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAzul.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;jogadorBindingSource.Name" xml:space="preserve">
+    <value>jogadorBindingSource</value>
+  </data>
+  <data name="labelPrecoMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 299</value>
+  </data>
+  <data name="&gt;&gt;labelUsername.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;checkBoxVerde.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralhoDoJogador.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelFiltroNome.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;Nome.Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="labelNomeJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 59</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoCommander.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewJogador.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonEditarPerfil.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
   </data>
-  <data name="labelMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 584</value>
+  <data name="checkBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="PrecoDoBaralho.HeaderText" xml:space="preserve">
+    <value>Preço</value>
+  </data>
+  <data name="&gt;&gt;labelQuantidadeDeBaralhosJogador.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkedListBoxFiltos.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;labelMin.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;formatoDeJogoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelUsername.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;labelNomeJogador.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxIncolor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 252</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerDataMaxima.Name" xml:space="preserve">
+    <value>dateTimePickerDataMaxima</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;checkBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="checkBoxAzul.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="checkBox6.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;labelMonteSeuBaralho.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoBaralho.Name" xml:space="preserve">
+    <value>labelPrecoBaralho</value>
+  </data>
+  <data name="buttonAplicarFiltro.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="dateTimePickerDataMaxima.TabIndex" type="System.Int32, mscorlib">
+    <value>2232</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAzul.Name" xml:space="preserve">
+    <value>checkBoxAzul</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
     <value>25</value>
-  </metadata>
-  <metadata name="DataDeCriacaoBaralho.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="buttonAplicarFiltro.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 323</value>
+  </data>
+  <data name="&gt;&gt;DataDeCriacaoBaralho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoMin.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;nomeToolStripMenuItem.Name" xml:space="preserve">
+    <value>nomeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;labelCor.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;CustoDeManaConvertidoDoBaralho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonLimparFiltro.TabIndex" type="System.Int32, mscorlib">
+    <value>2223</value>
+  </data>
+  <data name="labelMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 613</value>
+  </data>
+  <data name="labelPrecoTotalDeCartas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>217, 86</value>
+  </data>
+  <data name="&gt;&gt;quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 24</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>727, 12</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerDataMaxima.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="trackBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 45</value>
+  </data>
+  <data name="&gt;&gt;buttonEditarPerfil.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="labelFiltroNome.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>800, 450</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralhos.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="quantidadeDeCartasNoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Quantidade de cartas</value>
+  </data>
+  <data name="&gt;&gt;baralhoBindingSource1.Name" xml:space="preserve">
+    <value>baralhoBindingSource1</value>
+  </data>
+  <data name="&gt;&gt;labelMax.Name" xml:space="preserve">
+    <value>labelMax</value>
+  </data>
+  <data name="&gt;&gt;labelQuantidadeDeBaralhosJogador.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelPrecoMin.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonEditarPerfil.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="numericUpDownMin.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;labelDadosJogador.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="checkedListBoxFiltos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>623, 120</value>
+  </data>
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="dataDeCriacaoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Data de Criação</value>
+  </data>
+  <data name="Nome.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBoxPreto.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 177</value>
+  </data>
+  <data name="labelDadosJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonAplicarFiltro.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 641</value>
+  </data>
+  <data name="groupFiltrar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>629, 112</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 100</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dateTimePickerDataMaxima.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 504</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoCartasTotalJogador.Name" xml:space="preserve">
+    <value>labelPrecoCartasTotalJogador</value>
+  </data>
+  <data name="&gt;&gt;labelMax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxPreto.Name" xml:space="preserve">
+    <value>checkBoxPreto</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;checkBoxIncolor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;buttonLimparFiltro.Name" xml:space="preserve">
+    <value>buttonLimparFiltro</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>CMC</value>
+  </data>
+  <data name="labelNome.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormListaBaralhosDoJogador</value>
+  </data>
+  <data name="&gt;&gt;dataDeCriacaoBaralhoDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>dataDeCriacaoBaralhoDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;labelFiltros.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="precoDoBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Preco</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>FormJogador</value>
+  </data>
+  <data name="&gt;&gt;buttonAplicarFiltro.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhos.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="dataGridViewBaralhoDoJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;labelMax.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown2.Name" xml:space="preserve">
+    <value>numericUpDown2</value>
+  </data>
+  <data name="checkBoxFormatoPauper.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="dataGridViewBaralhos.TabIndex" type="System.Int32, mscorlib">
+    <value>2224</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 455</value>
+  </data>
+  <data name="&gt;&gt;textBoxFiltrarNome.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1024, 640</value>
+  </data>
+  <data name="&gt;&gt;checkBoxVerde.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="labelUsername.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralhos.Name" xml:space="preserve">
+    <value>dataGridViewBaralhos</value>
+  </data>
+  <data name="checkBoxFormatoPauper.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 87</value>
+  </data>
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoBaralho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox1.Name" xml:space="preserve">
+    <value>textBox1</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoCommander.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;dataDeCriacaoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelNome.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;panel3.Name" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="dataGridViewTextBoxColumn6.HeaderText" xml:space="preserve">
+    <value>CustoDeManaConvertidoDoBaralho</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelMonteSeuBaralho.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;QuantidadeDeCartasNoBaralho.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelFiltros.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 19</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;buttonNovoBaralho.Name" xml:space="preserve">
+    <value>buttonNovoBaralho</value>
+  </data>
+  <data name="labelUsuarioJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 86</value>
+  </data>
+  <data name="&gt;&gt;dateTimePickerDataMinima.Name" xml:space="preserve">
+    <value>dateTimePickerDataMinima</value>
+  </data>
+  <data name="&gt;&gt;labelMonteSeuBaralho.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;precoDoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelDadosJogador.Name" xml:space="preserve">
+    <value>labelDadosJogador</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoStandard.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="corBaralhoDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Cor</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="labelFiltros.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;checkBox6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoMax.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="numericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 671</value>
+  </data>
+  <data name="labelMax.TabIndex" type="System.Int32, mscorlib">
+    <value>2224</value>
+  </data>
+  <data name="&gt;&gt;checkBox6.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;labelUsuarioJogador.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="DataDeCriacaoBaralho.HeaderText" xml:space="preserve">
+    <value>Data de criação</value>
+  </data>
+  <data name="&gt;&gt;checkBoxBranco.Name" xml:space="preserve">
+    <value>checkBoxBranco</value>
+  </data>
+  <data name="&gt;&gt;checkBox4.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;checkBoxAzul.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxPreto.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoMin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelNomeJogador.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;baralhoBindingSource.Name" xml:space="preserve">
+    <value>baralhoBindingSource</value>
+  </data>
+  <data name="&gt;&gt;labelQuantidadeDeBaralhos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoStandard.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox3.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;Nome.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="checkBoxVermelho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 227</value>
+  </data>
+  <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkBox6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 177</value>
+  </data>
+  <data name="&gt;&gt;checkBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="idDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="&gt;&gt;checkBox7.Parent" xml:space="preserve">
+    <value>groupFiltrar</value>
+  </data>
+  <data name="&gt;&gt;jogadorBindingSource1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBoxFormatoPauper.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;checkBox6.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="buttonSair.Location" type="System.Drawing.Point, System.Drawing">
+    <value>709, 9</value>
+  </data>
+  <data name="&gt;&gt;checkBox2.Name" xml:space="preserve">
+    <value>checkBox2</value>
+  </data>
+  <data name="&gt;&gt;labelMax.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoMax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="buttonEditarPerfil.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;labelUsuario.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;custoDeManaConvertidoDoBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="trackBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>81, 350</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoMax.Name" xml:space="preserve">
+    <value>labelPrecoMax</value>
+  </data>
+  <data name="&gt;&gt;labelCor.Name" xml:space="preserve">
+    <value>labelCor</value>
+  </data>
+  <data name="&gt;&gt;labelDadosJogador.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelFiltroNome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 72</value>
+  </data>
+  <data name="&gt;&gt;nomeBaralhoDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSair.Name" xml:space="preserve">
+    <value>buttonSair</value>
+  </data>
+  <data name="&gt;&gt;labelPrecoMin.Name" xml:space="preserve">
+    <value>labelPrecoMin</value>
+  </data>
+  <data name="&gt;&gt;labelQuantidadeDeBaralhos.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="textBoxFiltrarNome.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="labelQuantidadeDeBaralhosJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;buttonSair.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;CustoDeManaConvertidoDoBaralho.Name" xml:space="preserve">
+    <value>CustoDeManaConvertidoDoBaralho</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTextBoxColumn6.Name" xml:space="preserve">
+    <value>dataGridViewTextBoxColumn6</value>
+  </data>
+  <data name="&gt;&gt;checkBoxBranco.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;labelCor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralho.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;checkBox2.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralhos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewBaralhoDoJogador.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;labelFiltros.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxFormatoStandard.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 62</value>
+  </data>
+  <data name="labelNomeJogador.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <metadata name="QuantidadeDeCartasNoBaralho.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="jogadorBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>204, 32</value>
   </metadata>
-  <metadata name="PrecoDoBaralho.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <metadata name="baralhoBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>195, 23</value>
   </metadata>
-  <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>372, 23</value>
-  </metadata>
-  <metadata name="jogadorBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>32, 32</value>
-  </metadata>
-  <metadata name="QuantidadeDeCartasNoBaralho.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.Language" type="System.Globalization.CultureInfo, System.Private.CoreLib, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
     <value>pt-BR</value>
   </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>397, 17</value>
-  </metadata>
-  <metadata name="baralhoBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>195, 23</value>
-  </metadata>
-  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="DataDeCriacaoBaralho.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="baralhoBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>24, 23</value>
+  </metadata>
+  <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>372, 23</value>
+  </metadata>
+  <metadata name="PrecoDoBaralho.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>397, 17</value>
+  </metadata>
+  <metadata name="jogadorBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>32, 32</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
   </metadata>
 </root>

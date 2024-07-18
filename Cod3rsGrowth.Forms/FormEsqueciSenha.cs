@@ -5,6 +5,7 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using FluentValidation;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -43,7 +44,14 @@ namespace Cod3rsGrowth.Forms
                 DataNascimentoJogador = new DateTime(day: data.Day, month: data.Month, year: data.Year)
             };
 
-            jogadorServico.AlterarSenha(jogadorRestaurarSenha);
+            try
+            {
+                jogadorServico.AlterarSenha(jogadorRestaurarSenha);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             this.Close();
             threadFormsEntrar = new Thread(CarregarJanelaJogadorEntrar);
