@@ -745,9 +745,8 @@
             labelCorParcial.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
             labelCorParcial.Location = new Point(8, 231);
             labelCorParcial.Name = "labelCorParcial";
-            labelCorParcial.Size = new Size(198, 15);
+            labelCorParcial.Size = new Size(0, 15);
             labelCorParcial.TabIndex = 24;
-            labelCorParcial.Text = "Azul, Verde, Branco, Preto, Vermelho";
             labelCorParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelPrecoParcial
@@ -756,9 +755,8 @@
             labelPrecoParcial.FlatStyle = FlatStyle.System;
             labelPrecoParcial.Location = new Point(8, 195);
             labelPrecoParcial.Name = "labelPrecoParcial";
-            labelPrecoParcial.Size = new Size(38, 15);
+            labelPrecoParcial.Size = new Size(0, 15);
             labelPrecoParcial.TabIndex = 23;
-            labelPrecoParcial.Text = "label1";
             labelPrecoParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // buttonVisualizarBaralho
@@ -781,9 +779,8 @@
             labelCustoParcial.FlatStyle = FlatStyle.System;
             labelCustoParcial.Location = new Point(8, 159);
             labelCustoParcial.Name = "labelCustoParcial";
-            labelCustoParcial.Size = new Size(38, 15);
+            labelCustoParcial.Size = new Size(0, 15);
             labelCustoParcial.TabIndex = 22;
-            labelCustoParcial.Text = "label1";
             labelCustoParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelQuantidadeParcial
@@ -792,9 +789,8 @@
             labelQuantidadeParcial.FlatStyle = FlatStyle.System;
             labelQuantidadeParcial.Location = new Point(8, 123);
             labelQuantidadeParcial.Name = "labelQuantidadeParcial";
-            labelQuantidadeParcial.Size = new Size(38, 15);
+            labelQuantidadeParcial.Size = new Size(0, 15);
             labelQuantidadeParcial.TabIndex = 21;
-            labelQuantidadeParcial.Text = "label1";
             labelQuantidadeParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // comboBoxFormato

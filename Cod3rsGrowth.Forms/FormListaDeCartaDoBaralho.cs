@@ -143,11 +143,12 @@ namespace Cod3rsGrowth.Forms
             {
                 var copiaExcluir = _baralho?.CartasDoBaralho?.FirstOrDefault(copia => copia.IdCarta == cartaSelecionada.Id);
 
-                foreach (var copia in _baralho.CartasDoBaralho)
+                foreach (var copia in _baralho?.CartasDoBaralho)
                 {
                     if (copia?.IdCarta == cartaSelecionada.Id)
                     {
                         _baralho.CartasDoBaralho.Remove(copia);
+                        break;
                     }
                 }
                 CarregarListaDeCopiaDeCartasNoBaralho();

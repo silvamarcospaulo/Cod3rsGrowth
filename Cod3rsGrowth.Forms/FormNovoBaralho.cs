@@ -215,6 +215,7 @@ namespace Cod3rsGrowth.Forms
             numericUpDownMin.Value = Convert.ToDecimal(null);
             numericUpDownMax.Value = Convert.ToDecimal(null);
             numericUpDownCmc.Value = Convert.ToDecimal(null);
+            textBoxFiltrarNome.Text = string.Empty;
         }
 
         private void CarregarFormListaBaralhoJogador(object obj)
