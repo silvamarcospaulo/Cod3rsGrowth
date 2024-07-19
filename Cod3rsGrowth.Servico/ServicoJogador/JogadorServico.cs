@@ -30,7 +30,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         {
             var jogadorBanco = ObterTodos(new JogadorFiltro { UsuarioJogador = usuario });
 
-            if (jogadorBanco?.Count() != VALOR_NULO) throw new Exception ("Usuário indisponível!");
+            if (jogadorBanco.Any<Jogador>()) throw new Exception ("Usuário indisponível!");
 
             return true;
         }

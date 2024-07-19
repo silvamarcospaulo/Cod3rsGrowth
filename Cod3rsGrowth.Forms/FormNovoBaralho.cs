@@ -25,6 +25,7 @@ namespace Cod3rsGrowth.Forms
         private int QUANTIDADE_MINIMA = 0;
         private Baralho baralhoParcial;
         private Carta cartaSelecionada;
+        private string STRING_VAZIA = string.Empty;
 
         public FormNovoBaralho(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
             JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController, Jogador _jogador, Baralho? _baralhoParcial)
@@ -54,17 +55,17 @@ namespace Cod3rsGrowth.Forms
 
             if (baralhoParcial is null)
             {
-                labelQuantidadeParcial.Text = "";
-                labelCustoParcial.Text = "";
-                labelPrecoParcial.Text = "";
-                labelCorParcial.Text = "";
+                labelQuantidadeParcial.Text = STRING_VAZIA;
+                labelCustoParcial.Text = STRING_VAZIA;
+                labelPrecoParcial.Text = STRING_VAZIA;
+                labelCorParcial.Text = STRING_VAZIA;
             }
             else
             {
-                labelQuantidadeParcial.Text = baralhoParcial?.QuantidadeDeCartasNoBaralho.ToString();
-                labelCustoParcial.Text = baralhoParcial?.CustoDeManaConvertidoDoBaralho.ToString();
+                labelQuantidadeParcial.Text = baralhoParcial.QuantidadeDeCartasNoBaralho.ToString();
+                labelCustoParcial.Text = baralhoParcial.CustoDeManaConvertidoDoBaralho.ToString();
                 labelPrecoParcial.Text = $"R${Math.Round(baralhoParcial.PrecoDoBaralho, casasDecimais)}";
-                labelCorParcial.Text = baralhoParcial?.CorBaralho;
+                labelCorParcial.Text = baralhoParcial.CorBaralho;
             }
             numericUpDownQuantidadeDeCopiasDeCarta.Value = Convert.ToDecimal(QUANTIDADE_MINIMA);
         }

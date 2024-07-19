@@ -23,7 +23,8 @@ namespace Cod3rsGrowth.Forms
         private Carta cartaSelecionada;
         private Thread threadFormListaBaralhoJogador;
         private Thread threadFormNovoBaralho;
-        const int QUANTIDADE_MINIMA = 0;
+        private const int QUANTIDADE_MINIMA = 0;
+        private string STRING_VAZIA = string.Empty;
 
         public FormListaDeCartaDoBaralho(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
             JwtServico tokenServico, ConexaoDados conexaoDados, LoginController loginController, Jogador jogador, Baralho baralho)
@@ -83,12 +84,12 @@ namespace Cod3rsGrowth.Forms
 
         private void LimparDadosDaCarta()
         {
-            labelNomeCartaSelecionada.Text = "";
-            labelTipoCartaSelecionada.Text = "";
-            labelCustoManaCartaSelecionada.Text = "";
-            labelPrecoCartaSelecionada.Text = "";
-            labelRariadeCartaSelecionada.Text = "";
-            labelCorCartaSelecionada.Text = "";
+            labelNomeCartaSelecionada.Text = STRING_VAZIA;
+            labelTipoCartaSelecionada.Text = STRING_VAZIA;
+            labelCustoManaCartaSelecionada.Text = STRING_VAZIA  ;
+            labelPrecoCartaSelecionada.Text = STRING_VAZIA;
+            labelRariadeCartaSelecionada.Text = STRING_VAZIA;
+            labelCorCartaSelecionada.Text = STRING_VAZIA;
         }
 
         private void CarregarDadosDaCarta()
@@ -140,14 +141,13 @@ namespace Cod3rsGrowth.Forms
         {
             if (cartaSelecionada is not null)
             {
-                var copiaExcluir = _baralho?.CartasDoBaralho?.Where(copia => copia.IdCarta == cartaSelecionada.Id).First();
+                var copiaExcluir = _baralho?.CartasDoBaralho?.FirstOrDefault(copia => copia.IdCarta == cartaSelecionada.Id);
 
                 foreach (var copia in _baralho.CartasDoBaralho)
                 {
-                    if (copia?.IdCarta == cartaSelecionada?.Id)
+                    if (copia?.IdCarta == cartaSelecionada.Id)
                     {
                         _baralho.CartasDoBaralho.Remove(copia);
-                        break;
                     }
                 }
                 CarregarListaDeCopiaDeCartasNoBaralho();

@@ -10,6 +10,7 @@ namespace Cod3rsGrowth.Teste.Repository
     public class CartaRepositoryMock : ICartaRepository
     {
         private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
+        private const int VALOR_NULO = 0;
 
         private int GerarIdCarta()
         {
@@ -61,7 +62,7 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.CorCarta?.Count > 0)
+            if (filtro?.CorCarta?.Count > VALOR_NULO)
             {
                 foreach (var cor in filtro?.CorCarta)
                 {
@@ -71,7 +72,7 @@ namespace Cod3rsGrowth.Teste.Repository
                 }
             }
 
-            if (filtro?.TipoDeCarta?.Count > 0)
+            if (filtro?.TipoDeCarta?.Count > VALOR_NULO)
             {
                 foreach (var tipo in filtro?.TipoDeCarta)
                 {
@@ -81,7 +82,7 @@ namespace Cod3rsGrowth.Teste.Repository
                 }
             }
 
-            if (filtro?.RaridadeCarta?.Count > 0)
+            if (filtro?.RaridadeCarta?.Count > VALOR_NULO)
             {
                 foreach (var raridade in filtro?.RaridadeCarta)
                 {

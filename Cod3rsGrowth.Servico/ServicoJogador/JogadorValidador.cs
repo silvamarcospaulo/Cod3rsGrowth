@@ -52,7 +52,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
 
                 RuleFor(jogador => jogador)
-                    .Must(ValidacaoSenhaConfirmacaoSenha).WithMessage("A senha e a confirmação devem concidir!");
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem concidir!");
             });
 
             RuleSet("Atualizar", () =>
@@ -75,10 +75,10 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                         "Conter mais de 8 dígitos.\n");
 
                 RuleFor(jogador => jogador)
-                    .Must(ValidacaoUsuarioConfirmacaoUsuario).WithMessage("O usuário e a confirmação devem concidir!");
+                    .Must(ValidacaoUsuarioEConfirmacaoCorrepondem).WithMessage("O usuário e a confirmação devem concidir!");
 
                 RuleFor(jogador => jogador)
-                    .Must(ValidacaoSenhaConfirmacaoSenha).WithMessage("A senha e a confirmação devem concidir!");
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem concidir!");
             });
 
             RuleSet("AlterarSenha", () =>
@@ -96,7 +96,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                         "Conter mais de 8 dígitos.\n");
 
                 RuleFor(jogador => jogador)
-                    .Must(ValidacaoSenhaConfirmacaoSenha).WithMessage("A senha e a confirmação devem concidir!");
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem concidir!");
             });
         }
 
@@ -118,13 +118,13 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             return Regex.IsMatch(senha, "^[a-zA-Z0-9]+$");
         }
 
-        private static bool ValidacaoSenhaConfirmacaoSenha(Jogador jogador)
+        private static bool ValidacaoSenhaEConfirmacaoCorrepondem(Jogador jogador)
         {
             if (jogador?.SenhaHashJogador.Length >= VALOR_NULO) return jogador.SenhaHashJogador == jogador.SenhaHashConfirmacaoJogador;
             return true;
         }
 
-        private static bool ValidacaoUsuarioConfirmacaoUsuario(Jogador jogador)
+        private static bool ValidacaoUsuarioEConfirmacaoCorrepondem(Jogador jogador)
         {
             if (jogador?.UsuarioJogador.Length >= VALOR_NULO) return jogador.UsuarioJogador == jogador.UsuarioConfirmacaoJogador;
             return true;
