@@ -7,6 +7,8 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class CartaRepository : ICartaRepository
     {
+        private const int VALOR_NULO = 0;
+
         private ConexaoDados conexaoDados;
 
         public CartaRepository(ConexaoDados _conexaoDados)
@@ -49,7 +51,7 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.CorCarta?.Count > 0)
+            if (filtro?.CorCarta?.Count > VALOR_NULO)
             {
                 foreach (var cor in filtro?.CorCarta)
                 {
@@ -59,7 +61,7 @@ namespace Cod3rsGrowth.Infra.Repository
                 }
             }
 
-            if (filtro?.TipoDeCarta?.Count > 0)
+            if (filtro?.TipoDeCarta?.Count > VALOR_NULO)
             {
                 foreach (var tipo in filtro?.TipoDeCarta)
                 {
@@ -69,7 +71,7 @@ namespace Cod3rsGrowth.Infra.Repository
                 }
             }
 
-            if (filtro?.RaridadeCarta?.Count > 0)
+            if (filtro?.RaridadeCarta?.Count > VALOR_NULO)
             {
                 foreach (var raridade in filtro?.RaridadeCarta)
                 {
