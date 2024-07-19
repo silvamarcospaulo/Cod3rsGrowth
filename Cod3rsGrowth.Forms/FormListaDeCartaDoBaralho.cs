@@ -41,22 +41,36 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormListaDeCartasDoBaralho(object sender, EventArgs e)
         {
+            CarregarListaDeCopiaDeCartasNoBaralho();
+            LimparDadosDaCarta();
+        }
+
+        private void AtualizarDadosBaralhoNaTela()
+        {
             const int casasDecimais = 2;
 
-            CarregarListaDeCopiaDeCartasNoBaralho();
             labelNomeParcial.Text = _baralho.NomeBaralho;
             labelFormatoParcial.Text = _baralho.FormatoDeJogoBaralho.ToString();
             labelQuantidadeParcial.Text = _baralho.QuantidadeDeCartasNoBaralho.ToString();
             labelCustoParcial.Text = _baralho.CustoDeManaConvertidoDoBaralho.ToString();
             labelPrecoParcial.Text = $"R${Math.Round(_baralho.PrecoDoBaralho, casasDecimais)}";
             labelCorParcial.Text = _baralho.CorBaralho;
-            LimparDadosDaCarta();
+        }
+
+        private void AtualizarDadosBaralho()
+        {
+            _baralho.QuantidadeDeCartasNoBaralho = BaralhoServico.SomarQuantidadeDeCartasDoBaralho(_baralho.CartasDoBaralho);
+            _baralho.CustoDeManaConvertidoDoBaralho = BaralhoServico.SomarCustoDeManaConvertidoDoBaralho(_baralho.CartasDoBaralho);
+            _baralho.PrecoDoBaralho = BaralhoServico.SomarPrecoDoBaralho(_baralho.CartasDoBaralho);
+            _baralho.CorBaralho = BaralhoServico.ConferirCoresDoBaralho(_baralho.CartasDoBaralho);
         }
 
         private void CarregarListaDeCopiaDeCartasNoBaralho()
         {
             var cartasDoJogador = new BindingList<CopiaDeCartasNoBaralho>(_baralho.CartasDoBaralho);
             dataGridViewListaDeCartasDoBaralho.DataSource = cartasDoJogador;
+            AtualizarDadosBaralho();
+            AtualizarDadosBaralhoNaTela();
         }
 
         private void AoClicarCarregaDadosDaCarta(object sender, DataGridViewCellEventArgs e)
@@ -124,17 +138,20 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarRemoveCartaDaListaDeCartasDoBaralho(object sender, EventArgs e)
         {
-            var copiaExcluir = _baralho?.CartasDoBaralho?.Where(copia => copia.IdCarta == cartaSelecionada.Id).First();
-
-            foreach (var copia in _baralho.CartasDoBaralho)
+            if (cartaSelecionada is not null)
             {
-                if(copia?.IdCarta == cartaSelecionada?.Id)
+                var copiaExcluir = _baralho?.CartasDoBaralho?.Where(copia => copia.IdCarta == cartaSelecionada.Id).First();
+
+                foreach (var copia in _baralho.CartasDoBaralho)
                 {
-                    _baralho.CartasDoBaralho.Remove(copia);
-                    break;
+                    if (copia?.IdCarta == cartaSelecionada?.Id)
+                    {
+                        _baralho.CartasDoBaralho.Remove(copia);
+                        break;
+                    }
                 }
+                CarregarListaDeCopiaDeCartasNoBaralho();
             }
-            CarregarListaDeCopiaDeCartasNoBaralho();
         }
     }
 }

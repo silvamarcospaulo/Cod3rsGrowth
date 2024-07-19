@@ -44,7 +44,6 @@ namespace Cod3rsGrowth.Forms
         {
             CarregarItensDoComboBoxFormatoDoBaralho();
             VerficarSeBaralhoExiste();
-            AtualizarDadosBaralhoNaTela();
             dataGridViewCartas.DataSource = cartaServico.ObterTodos(null);
             baralhoParcial.IdJogador = jogador.Id;
         }
@@ -62,10 +61,10 @@ namespace Cod3rsGrowth.Forms
             }
             else
             {
-                labelQuantidadeParcial.Text = baralhoParcial.QuantidadeDeCartasNoBaralho.ToString();
-                labelCustoParcial.Text = baralhoParcial.CustoDeManaConvertidoDoBaralho.ToString();
+                labelQuantidadeParcial.Text = baralhoParcial?.QuantidadeDeCartasNoBaralho.ToString();
+                labelCustoParcial.Text = baralhoParcial?.CustoDeManaConvertidoDoBaralho.ToString();
                 labelPrecoParcial.Text = $"R${Math.Round(baralhoParcial.PrecoDoBaralho, casasDecimais)}";
-                labelCorParcial.Text = baralhoParcial.CorBaralho;
+                labelCorParcial.Text = baralhoParcial?.CorBaralho;
             }
             numericUpDownQuantidadeDeCopiasDeCarta.Value = Convert.ToDecimal(QUANTIDADE_MINIMA);
         }
@@ -76,6 +75,12 @@ namespace Cod3rsGrowth.Forms
             {
                 baralhoParcial = baralhoParcial = new Baralho();
                 baralhoParcial.CartasDoBaralho = new List<CopiaDeCartasNoBaralho>();
+            }
+            else
+            {
+                AtualizarDadosBaralho();
+                AtualizarDadosBaralhoNaTela();
+                textBoxNomeBaralho.Text = baralhoParcial.NomeBaralho;
             }
         }
 
@@ -115,7 +120,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAdicionaCartaAoBaralho(object sender, EventArgs e)
         {
-            if (numericUpDownQuantidadeDeCopiasDeCarta.Value > QUANTIDADE_MINIMA)
+            if (numericUpDownQuantidadeDeCopiasDeCarta.Value > QUANTIDADE_MINIMA && cartaSelecionada is not null)
             {
                 var quantidade = Convert.ToInt32(numericUpDownQuantidadeDeCopiasDeCarta.Value);
                 var copiaExistente = baralhoParcial?.CartasDoBaralho?.FirstOrDefault(copia => copia?.Carta?.Id == cartaSelecionada?.Id);
@@ -135,6 +140,7 @@ namespace Cod3rsGrowth.Forms
                     });
                 }
                 AtualizarDadosBaralho();
+                AtualizarDadosBaralhoNaTela();
             }
         }
 
@@ -190,8 +196,6 @@ namespace Cod3rsGrowth.Forms
             baralhoParcial.PrecoDoBaralho = BaralhoServico.SomarPrecoDoBaralho(baralhoParcial.CartasDoBaralho);
             baralhoParcial.CorBaralho = BaralhoServico.ConferirCoresDoBaralho(baralhoParcial.CartasDoBaralho);
             numericUpDownQuantidadeDeCopiasDeCarta.Value = Convert.ToDecimal(QUANTIDADE_MINIMA);
-
-            AtualizarDadosBaralhoNaTela();
         }
 
         private void LimparFiltro()
