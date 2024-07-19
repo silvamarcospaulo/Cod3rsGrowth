@@ -66,7 +66,8 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         private static DateTime GerarDataDeCriacaoBaralho()
         {
             DateTime dataAtual = DateTime.Now;
-            return new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day);
+            var dataCriacao = new DateTime(day: dataAtual.Day, month: dataAtual.Month, year: dataAtual.Year);
+            return dataCriacao;
         }
 
         public int Criar(Baralho baralho)
@@ -82,7 +83,8 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
                 baralhoCriar.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
                 baralhoCriar.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
                 baralhoCriar.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
-                baralhoCriar.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
+                var dataDeCriacao = GerarDataDeCriacaoBaralho();
+                baralhoCriar.DataDeCriacaoBaralho = dataDeCriacao;
 
                 _validadorBaralho.ValidateAndThrow(baralho);
                 var idBaralhoCriado = _IBaralhoRepository.Criar(baralho);
