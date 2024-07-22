@@ -7,6 +7,7 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using System.Windows.Forms;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -147,14 +148,21 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarVisualizaListaDeCartasDoBaralho(object sender, EventArgs e)
         {
-            baralhoParcial.IdJogador = jogador.Id;
-            baralhoParcial.NomeBaralho = textBoxNomeBaralho.Text;
-            baralhoParcial.FormatoDeJogoBaralho = (FormatoDeJogoEnum)comboBoxFormato.SelectedValue;
+            if (baralhoParcial.CartasDoBaralho.Any<CopiaDeCartasNoBaralho>())
+            {
+                baralhoParcial.IdJogador = jogador.Id;
+                baralhoParcial.NomeBaralho = textBoxNomeBaralho.Text;
+                baralhoParcial.FormatoDeJogoBaralho = (FormatoDeJogoEnum)comboBoxFormato.SelectedValue;
 
-            this.Close();
-            threadListaDeCartaDoBaralho = new Thread(CarregarFormListaDeCartaDoBaralho);
-            threadListaDeCartaDoBaralho.SetApartmentState(ApartmentState.STA);
-            threadListaDeCartaDoBaralho.Start();
+                this.Close();
+                threadListaDeCartaDoBaralho = new Thread(CarregarFormListaDeCartaDoBaralho);
+                threadListaDeCartaDoBaralho.SetApartmentState(ApartmentState.STA);
+                threadListaDeCartaDoBaralho.Start();
+            }
+            else
+            {
+                var resultado = MessageBox.Show("A lista de baralho não possui nenguma carta", "Erro ao visualizar lista de carta do baralho");
+            }
         }
 
         private void CarregarFormListaDeCartaDoBaralho(object obj)

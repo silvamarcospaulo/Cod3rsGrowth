@@ -86,7 +86,7 @@ namespace Cod3rsGrowth.Forms
         {
             labelNomeCartaSelecionada.Text = STRING_VAZIA;
             labelTipoCartaSelecionada.Text = STRING_VAZIA;
-            labelCustoManaCartaSelecionada.Text = STRING_VAZIA  ;
+            labelCustoManaCartaSelecionada.Text = STRING_VAZIA;
             labelPrecoCartaSelecionada.Text = STRING_VAZIA;
             labelRariadeCartaSelecionada.Text = STRING_VAZIA;
             labelCorCartaSelecionada.Text = STRING_VAZIA;
@@ -115,7 +115,7 @@ namespace Cod3rsGrowth.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro ao criar novo baralho");
             }
         }
 
@@ -139,19 +139,35 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarRemoveCartaDaListaDeCartasDoBaralho(object sender, EventArgs e)
         {
-            if (cartaSelecionada is not null)
+            if (cartaSelecionada is null)
             {
-                var copiaExcluir = _baralho?.CartasDoBaralho?.FirstOrDefault(copia => copia.IdCarta == cartaSelecionada.Id);
+                MessageBox.Show("Nenhuma carta foi selecionada!", "Erro ao remover carta");
+            }
 
-                foreach (var copia in _baralho?.CartasDoBaralho)
+            var cartaParaRemover = _baralho?.CartasDoBaralho?.FirstOrDefault(copia => copia.IdCarta == cartaSelecionada?.Id) ?? null;
+
+            var resposta = new DialogResult();
+
+            if (cartaParaRemover is not null)
+            {
+                resposta = MessageBox.Show($"Remover {cartaParaRemover.NomeCarta} da lista de carta do baralho?", "Confirmação", MessageBoxButtons.YesNo);
+            }
+            else
+            {
+                MessageBox.Show("Não existe uma carta correspondente na lista!", "Erro ao remover carta");
+            }
+
+            if (resposta == DialogResult.Yes)
+            {
+                if (_baralho.CartasDoBaralho.Remove(cartaParaRemover))
                 {
-                    if (copia?.IdCarta == cartaSelecionada.Id)
-                    {
-                        _baralho.CartasDoBaralho.Remove(copia);
-                        break;
-                    }
+                    MessageBox.Show($"A carta {cartaParaRemover.NomeCarta} foi removida da lista com sucesso!", "Carta removida com sucesso!");
+                    CarregarListaDeCopiaDeCartasNoBaralho();
                 }
-                CarregarListaDeCopiaDeCartasNoBaralho();
+                else
+                {
+                    MessageBox.Show($"Erro ao remover {cartaParaRemover.NomeCarta} da lista de cartas!", "Erro ao remover carta");
+                }
             }
         }
     }

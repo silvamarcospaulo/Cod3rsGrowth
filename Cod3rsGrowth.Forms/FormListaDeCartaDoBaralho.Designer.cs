@@ -41,7 +41,11 @@
             labelPreco = new Label();
             labelCmc = new Label();
             panel1 = new Panel();
+            labelNomeParcial = new Label();
+            labelFormatoParcial = new Label();
             buttonRemoverCarta = new Button();
+            buttonVoltar = new Button();
+            labelDadosBaralho = new Label();
             labelCorCartaSelecionada = new Label();
             labelCorCarta = new Label();
             labelRariadeCartaSelecionada = new Label();
@@ -65,7 +69,6 @@
             numericUpDownCmc = new NumericUpDown();
             checkBoxTipoDeCartaEncantamento = new CheckBox();
             checkBoxTipoDeCartaMagicaInstantanea = new CheckBox();
-            checkBoxTipoDeCartaFeitico = new CheckBox();
             labelDataDeCriacao = new Label();
             labelPrecoCarta = new Label();
             labelMax = new Label();
@@ -74,31 +77,11 @@
             checkBoxBranco = new CheckBox();
             checkBoxAzul = new CheckBox();
             checkBoxPreto = new CheckBox();
-            checkBoxTipoDeCartaTerrenoBasico = new CheckBox();
             labelMin = new Label();
             checkBoxVerde = new CheckBox();
-            checkBoxTipoDeCartaTerreno = new CheckBox();
             labelCor = new Label();
             checkBoxIncolor = new CheckBox();
             checkBoxVermelho = new CheckBox();
-            panel3 = new Panel();
-            buttonVoltar = new Button();
-            labelNomeParcial = new Label();
-            labelFormatoParcial = new Label();
-            labelDadosBaralho = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            button1 = new Button();
-            label5 = new Label();
-            label6 = new Label();
-            comboBox1 = new ComboBox();
-            label7 = new Label();
-            textBox1 = new TextBox();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
             panel2 = new Panel();
             dataGridViewListaDeCartasDoBaralho = new DataGridView();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -112,7 +95,6 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDownMax).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCmc).BeginInit();
-            panel3.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewListaDeCartasDoBaralho).BeginInit();
             ((System.ComponentModel.ISupportInitialize)copiaDeCartasNoBaralhoBindingSource).BeginInit();
@@ -120,11 +102,11 @@
             // 
             // labelCorParcial
             // 
-            labelCorParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCorParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCorParcial.AutoSize = true;
             labelCorParcial.FlatStyle = FlatStyle.System;
             labelCorParcial.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-            labelCorParcial.Location = new Point(3, 549);
+            labelCorParcial.Location = new Point(8, 787);
             labelCorParcial.Name = "labelCorParcial";
             labelCorParcial.Size = new Size(198, 15);
             labelCorParcial.TabIndex = 0;
@@ -133,10 +115,10 @@
             // 
             // labelPrecoParcial
             // 
-            labelPrecoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelPrecoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelPrecoParcial.AutoSize = true;
             labelPrecoParcial.FlatStyle = FlatStyle.System;
-            labelPrecoParcial.Location = new Point(3, 501);
+            labelPrecoParcial.Location = new Point(8, 737);
             labelPrecoParcial.Name = "labelPrecoParcial";
             labelPrecoParcial.Size = new Size(38, 15);
             labelPrecoParcial.TabIndex = 0;
@@ -145,13 +127,13 @@
             // 
             // buttonCriarBaralhoBaralho
             // 
-            buttonCriarBaralhoBaralho.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonCriarBaralhoBaralho.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonCriarBaralhoBaralho.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonCriarBaralhoBaralho.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             buttonCriarBaralhoBaralho.ImeMode = ImeMode.NoControl;
-            buttonCriarBaralhoBaralho.Location = new Point(8, 570);
+            buttonCriarBaralhoBaralho.Location = new Point(8, 817);
             buttonCriarBaralhoBaralho.Name = "buttonCriarBaralhoBaralho";
-            buttonCriarBaralhoBaralho.Size = new Size(185, 25);
+            buttonCriarBaralhoBaralho.Size = new Size(235, 25);
             buttonCriarBaralhoBaralho.TabIndex = 1;
             buttonCriarBaralhoBaralho.Text = "Confirmar lista e criar baralho";
             buttonCriarBaralhoBaralho.UseVisualStyleBackColor = true;
@@ -159,10 +141,10 @@
             // 
             // labelCustoParcial
             // 
-            labelCustoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCustoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCustoParcial.AutoSize = true;
             labelCustoParcial.FlatStyle = FlatStyle.System;
-            labelCustoParcial.Location = new Point(3, 453);
+            labelCustoParcial.Location = new Point(8, 687);
             labelCustoParcial.Name = "labelCustoParcial";
             labelCustoParcial.Size = new Size(38, 15);
             labelCustoParcial.TabIndex = 0;
@@ -171,10 +153,10 @@
             // 
             // labelQuantidadeParcial
             // 
-            labelQuantidadeParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelQuantidadeParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelQuantidadeParcial.AutoSize = true;
             labelQuantidadeParcial.FlatStyle = FlatStyle.System;
-            labelQuantidadeParcial.Location = new Point(3, 405);
+            labelQuantidadeParcial.Location = new Point(8, 637);
             labelQuantidadeParcial.Name = "labelQuantidadeParcial";
             labelQuantidadeParcial.Size = new Size(38, 15);
             labelQuantidadeParcial.TabIndex = 0;
@@ -183,11 +165,11 @@
             // 
             // labelNome
             // 
-            labelNome.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelNome.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelNome.AutoSize = true;
             labelNome.FlatStyle = FlatStyle.System;
             labelNome.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelNome.Location = new Point(3, 283);
+            labelNome.Location = new Point(8, 510);
             labelNome.Name = "labelNome";
             labelNome.Size = new Size(54, 19);
             labelNome.TabIndex = 0;
@@ -196,11 +178,11 @@
             // 
             // labelFormato
             // 
-            labelFormato.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelFormato.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelFormato.AutoSize = true;
             labelFormato.FlatStyle = FlatStyle.System;
             labelFormato.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelFormato.Location = new Point(3, 331);
+            labelFormato.Location = new Point(8, 560);
             labelFormato.Name = "labelFormato";
             labelFormato.Size = new Size(70, 19);
             labelFormato.TabIndex = 0;
@@ -209,11 +191,11 @@
             // 
             // labelCorBaralho
             // 
-            labelCorBaralho.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCorBaralho.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCorBaralho.AutoSize = true;
             labelCorBaralho.FlatStyle = FlatStyle.System;
             labelCorBaralho.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCorBaralho.Location = new Point(3, 523);
+            labelCorBaralho.Location = new Point(8, 760);
             labelCorBaralho.Name = "labelCorBaralho";
             labelCorBaralho.Size = new Size(38, 19);
             labelCorBaralho.TabIndex = 0;
@@ -222,11 +204,11 @@
             // 
             // labelQuantidadeDeCartas
             // 
-            labelQuantidadeDeCartas.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelQuantidadeDeCartas.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelQuantidadeDeCartas.AutoSize = true;
             labelQuantidadeDeCartas.FlatStyle = FlatStyle.System;
             labelQuantidadeDeCartas.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelQuantidadeDeCartas.Location = new Point(3, 379);
+            labelQuantidadeDeCartas.Location = new Point(8, 610);
             labelQuantidadeDeCartas.Name = "labelQuantidadeDeCartas";
             labelQuantidadeDeCartas.Size = new Size(156, 19);
             labelQuantidadeDeCartas.TabIndex = 0;
@@ -235,11 +217,11 @@
             // 
             // labelPreco
             // 
-            labelPreco.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelPreco.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelPreco.AutoSize = true;
             labelPreco.FlatStyle = FlatStyle.System;
             labelPreco.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelPreco.Location = new Point(3, 475);
+            labelPreco.Location = new Point(8, 710);
             labelPreco.Name = "labelPreco";
             labelPreco.Size = new Size(52, 19);
             labelPreco.TabIndex = 0;
@@ -248,11 +230,11 @@
             // 
             // labelCmc
             // 
-            labelCmc.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCmc.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCmc.AutoSize = true;
             labelCmc.FlatStyle = FlatStyle.System;
             labelCmc.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCmc.Location = new Point(3, 427);
+            labelCmc.Location = new Point(8, 660);
             labelCmc.Name = "labelCmc";
             labelCmc.Size = new Size(189, 19);
             labelCmc.TabIndex = 0;
@@ -261,22 +243,37 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(labelNomeParcial);
+            panel1.Controls.Add(buttonCriarBaralhoBaralho);
+            panel1.Controls.Add(labelFormatoParcial);
             panel1.Controls.Add(buttonRemoverCarta);
+            panel1.Controls.Add(labelCorParcial);
+            panel1.Controls.Add(buttonVoltar);
+            panel1.Controls.Add(labelDadosBaralho);
+            panel1.Controls.Add(labelPrecoParcial);
             panel1.Controls.Add(labelCorCartaSelecionada);
             panel1.Controls.Add(labelCorCarta);
+            panel1.Controls.Add(labelCustoParcial);
             panel1.Controls.Add(labelRariadeCartaSelecionada);
             panel1.Controls.Add(labelRaridadeCarta);
+            panel1.Controls.Add(labelQuantidadeParcial);
             panel1.Controls.Add(labelPrecoCartaSelecionada);
             panel1.Controls.Add(labelPrecoDaCarta);
+            panel1.Controls.Add(labelNome);
             panel1.Controls.Add(labelCustoManaCartaSelecionada);
             panel1.Controls.Add(labelCustoMana);
+            panel1.Controls.Add(labelFormato);
             panel1.Controls.Add(labelTipoCartaSelecionada);
+            panel1.Controls.Add(labelCorBaralho);
             panel1.Controls.Add(labelTipoCarta);
             panel1.Controls.Add(labelNomeCartaSelecionada);
+            panel1.Controls.Add(labelQuantidadeDeCartas);
             panel1.Controls.Add(labelNomeCarta);
             panel1.Controls.Add(labelDadosCarta);
+            panel1.Controls.Add(labelPreco);
             panel1.Controls.Add(numericUpDownMax);
             panel1.Controls.Add(numericUpDownMin);
+            panel1.Controls.Add(labelCmc);
             panel1.Controls.Add(checkBoxRaridadeMitico);
             panel1.Controls.Add(checkBoxRaridadeRaro);
             panel1.Controls.Add(checkBoxRaridadeIncomum);
@@ -285,7 +282,6 @@
             panel1.Controls.Add(numericUpDownCmc);
             panel1.Controls.Add(checkBoxTipoDeCartaEncantamento);
             panel1.Controls.Add(checkBoxTipoDeCartaMagicaInstantanea);
-            panel1.Controls.Add(checkBoxTipoDeCartaFeitico);
             panel1.Controls.Add(labelDataDeCriacao);
             panel1.Controls.Add(labelPrecoCarta);
             panel1.Controls.Add(labelMax);
@@ -294,39 +290,88 @@
             panel1.Controls.Add(checkBoxBranco);
             panel1.Controls.Add(checkBoxAzul);
             panel1.Controls.Add(checkBoxPreto);
-            panel1.Controls.Add(checkBoxTipoDeCartaTerrenoBasico);
             panel1.Controls.Add(labelMin);
             panel1.Controls.Add(checkBoxVerde);
-            panel1.Controls.Add(checkBoxTipoDeCartaTerreno);
             panel1.Controls.Add(labelCor);
             panel1.Controls.Add(checkBoxIncolor);
             panel1.Controls.Add(checkBoxVermelho);
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(808, 0);
+            panel1.Location = new Point(769, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 601);
+            panel1.Size = new Size(255, 855);
             panel1.TabIndex = 2275;
+            // 
+            // labelNomeParcial
+            // 
+            labelNomeParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelNomeParcial.AutoSize = true;
+            labelNomeParcial.FlatStyle = FlatStyle.System;
+            labelNomeParcial.Location = new Point(8, 537);
+            labelNomeParcial.Name = "labelNomeParcial";
+            labelNomeParcial.Size = new Size(38, 15);
+            labelNomeParcial.TabIndex = 0;
+            labelNomeParcial.Text = "label1";
+            labelNomeParcial.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelFormatoParcial
+            // 
+            labelFormatoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelFormatoParcial.AutoSize = true;
+            labelFormatoParcial.FlatStyle = FlatStyle.System;
+            labelFormatoParcial.Location = new Point(8, 587);
+            labelFormatoParcial.Name = "labelFormatoParcial";
+            labelFormatoParcial.Size = new Size(38, 15);
+            labelFormatoParcial.TabIndex = 0;
+            labelFormatoParcial.Text = "label1";
+            labelFormatoParcial.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // buttonRemoverCarta
             // 
-            buttonRemoverCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonRemoverCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             buttonRemoverCarta.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonRemoverCarta.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             buttonRemoverCarta.ImeMode = ImeMode.NoControl;
-            buttonRemoverCarta.Location = new Point(8, 570);
+            buttonRemoverCarta.Location = new Point(8, 434);
             buttonRemoverCarta.Name = "buttonRemoverCarta";
-            buttonRemoverCarta.Size = new Size(185, 25);
+            buttonRemoverCarta.Size = new Size(235, 25);
             buttonRemoverCarta.TabIndex = 2278;
             buttonRemoverCarta.Text = "Remover carta da lista";
             buttonRemoverCarta.UseVisualStyleBackColor = true;
             buttonRemoverCarta.Click += AoClicarRemoveCartaDaListaDeCartasDoBaralho;
             // 
+            // buttonVoltar
+            // 
+            buttonVoltar.Anchor = AnchorStyles.Top;
+            buttonVoltar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonVoltar.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonVoltar.ImeMode = ImeMode.NoControl;
+            buttonVoltar.Location = new Point(8, 12);
+            buttonVoltar.Name = "buttonVoltar";
+            buttonVoltar.Size = new Size(235, 25);
+            buttonVoltar.TabIndex = 2279;
+            buttonVoltar.Text = "Voltar";
+            buttonVoltar.UseVisualStyleBackColor = true;
+            buttonVoltar.Click += AoClicarVoltaParaTelaDeNovoBaralho;
+            // 
+            // labelDadosBaralho
+            // 
+            labelDadosBaralho.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelDadosBaralho.FlatStyle = FlatStyle.System;
+            labelDadosBaralho.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            labelDadosBaralho.ImeMode = ImeMode.NoControl;
+            labelDadosBaralho.Location = new Point(25, 472);
+            labelDadosBaralho.Name = "labelDadosBaralho";
+            labelDadosBaralho.Size = new Size(200, 30);
+            labelDadosBaralho.TabIndex = 0;
+            labelDadosBaralho.Text = "Dados baralho";
+            labelDadosBaralho.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // labelCorCartaSelecionada
             // 
-            labelCorCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCorCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCorCartaSelecionada.AutoSize = true;
             labelCorCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelCorCartaSelecionada.Location = new Point(8, 527);
+            labelCorCartaSelecionada.Location = new Point(8, 404);
             labelCorCartaSelecionada.Name = "labelCorCartaSelecionada";
             labelCorCartaSelecionada.Size = new Size(38, 15);
             labelCorCartaSelecionada.TabIndex = 0;
@@ -335,11 +380,11 @@
             // 
             // labelCorCarta
             // 
-            labelCorCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCorCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCorCarta.AutoSize = true;
             labelCorCarta.FlatStyle = FlatStyle.System;
             labelCorCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCorCarta.Location = new Point(8, 503);
+            labelCorCarta.Location = new Point(8, 377);
             labelCorCarta.Name = "labelCorCarta";
             labelCorCarta.Size = new Size(38, 19);
             labelCorCarta.TabIndex = 0;
@@ -348,10 +393,10 @@
             // 
             // labelRariadeCartaSelecionada
             // 
-            labelRariadeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelRariadeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelRariadeCartaSelecionada.AutoSize = true;
             labelRariadeCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelRariadeCartaSelecionada.Location = new Point(8, 483);
+            labelRariadeCartaSelecionada.Location = new Point(8, 354);
             labelRariadeCartaSelecionada.Name = "labelRariadeCartaSelecionada";
             labelRariadeCartaSelecionada.Size = new Size(44, 15);
             labelRariadeCartaSelecionada.TabIndex = 0;
@@ -360,11 +405,11 @@
             // 
             // labelRaridadeCarta
             // 
-            labelRaridadeCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelRaridadeCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelRaridadeCarta.AutoSize = true;
             labelRaridadeCarta.FlatStyle = FlatStyle.System;
             labelRaridadeCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelRaridadeCarta.Location = new Point(8, 459);
+            labelRaridadeCarta.Location = new Point(8, 327);
             labelRaridadeCarta.Name = "labelRaridadeCarta";
             labelRaridadeCarta.Size = new Size(74, 19);
             labelRaridadeCarta.TabIndex = 0;
@@ -373,10 +418,10 @@
             // 
             // labelPrecoCartaSelecionada
             // 
-            labelPrecoCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelPrecoCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelPrecoCartaSelecionada.AutoSize = true;
             labelPrecoCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelPrecoCartaSelecionada.Location = new Point(8, 439);
+            labelPrecoCartaSelecionada.Location = new Point(8, 304);
             labelPrecoCartaSelecionada.Name = "labelPrecoCartaSelecionada";
             labelPrecoCartaSelecionada.Size = new Size(38, 15);
             labelPrecoCartaSelecionada.TabIndex = 0;
@@ -385,11 +430,11 @@
             // 
             // labelPrecoDaCarta
             // 
-            labelPrecoDaCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelPrecoDaCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelPrecoDaCarta.AutoSize = true;
             labelPrecoDaCarta.FlatStyle = FlatStyle.System;
             labelPrecoDaCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelPrecoDaCarta.Location = new Point(8, 415);
+            labelPrecoDaCarta.Location = new Point(8, 277);
             labelPrecoDaCarta.Name = "labelPrecoDaCarta";
             labelPrecoDaCarta.Size = new Size(52, 19);
             labelPrecoDaCarta.TabIndex = 0;
@@ -398,10 +443,10 @@
             // 
             // labelCustoManaCartaSelecionada
             // 
-            labelCustoManaCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCustoManaCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCustoManaCartaSelecionada.AutoSize = true;
             labelCustoManaCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelCustoManaCartaSelecionada.Location = new Point(8, 395);
+            labelCustoManaCartaSelecionada.Location = new Point(8, 254);
             labelCustoManaCartaSelecionada.Name = "labelCustoManaCartaSelecionada";
             labelCustoManaCartaSelecionada.Size = new Size(38, 15);
             labelCustoManaCartaSelecionada.TabIndex = 0;
@@ -410,11 +455,11 @@
             // 
             // labelCustoMana
             // 
-            labelCustoMana.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelCustoMana.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCustoMana.AutoSize = true;
             labelCustoMana.FlatStyle = FlatStyle.System;
             labelCustoMana.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCustoMana.Location = new Point(8, 371);
+            labelCustoMana.Location = new Point(8, 227);
             labelCustoMana.Name = "labelCustoMana";
             labelCustoMana.Size = new Size(44, 19);
             labelCustoMana.TabIndex = 0;
@@ -423,10 +468,10 @@
             // 
             // labelTipoCartaSelecionada
             // 
-            labelTipoCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelTipoCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelTipoCartaSelecionada.AutoSize = true;
             labelTipoCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelTipoCartaSelecionada.Location = new Point(8, 351);
+            labelTipoCartaSelecionada.Location = new Point(8, 204);
             labelTipoCartaSelecionada.Name = "labelTipoCartaSelecionada";
             labelTipoCartaSelecionada.Size = new Size(38, 15);
             labelTipoCartaSelecionada.TabIndex = 0;
@@ -435,11 +480,11 @@
             // 
             // labelTipoCarta
             // 
-            labelTipoCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelTipoCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelTipoCarta.AutoSize = true;
             labelTipoCarta.FlatStyle = FlatStyle.System;
             labelTipoCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelTipoCarta.Location = new Point(8, 327);
+            labelTipoCarta.Location = new Point(8, 177);
             labelTipoCarta.Name = "labelTipoCarta";
             labelTipoCarta.Size = new Size(43, 19);
             labelTipoCarta.TabIndex = 0;
@@ -448,10 +493,10 @@
             // 
             // labelNomeCartaSelecionada
             // 
-            labelNomeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelNomeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelNomeCartaSelecionada.AutoSize = true;
             labelNomeCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelNomeCartaSelecionada.Location = new Point(8, 307);
+            labelNomeCartaSelecionada.Location = new Point(8, 154);
             labelNomeCartaSelecionada.Name = "labelNomeCartaSelecionada";
             labelNomeCartaSelecionada.Size = new Size(38, 15);
             labelNomeCartaSelecionada.TabIndex = 0;
@@ -460,11 +505,11 @@
             // 
             // labelNomeCarta
             // 
-            labelNomeCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            labelNomeCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelNomeCarta.AutoSize = true;
             labelNomeCarta.FlatStyle = FlatStyle.System;
             labelNomeCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelNomeCarta.Location = new Point(8, 283);
+            labelNomeCarta.Location = new Point(8, 127);
             labelNomeCarta.Name = "labelNomeCarta";
             labelNomeCarta.Size = new Size(54, 19);
             labelNomeCarta.TabIndex = 0;
@@ -477,7 +522,7 @@
             labelDadosCarta.FlatStyle = FlatStyle.System;
             labelDadosCarta.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             labelDadosCarta.ImeMode = ImeMode.NoControl;
-            labelDadosCarta.Location = new Point(0, 251);
+            labelDadosCarta.Location = new Point(25, 89);
             labelDadosCarta.Name = "labelDadosCarta";
             labelDadosCarta.Size = new Size(200, 30);
             labelDadosCarta.TabIndex = 0;
@@ -487,7 +532,7 @@
             // numericUpDownMax
             // 
             numericUpDownMax.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            numericUpDownMax.Location = new Point(48, 961);
+            numericUpDownMax.Location = new Point(103, 1215);
             numericUpDownMax.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
             numericUpDownMax.Name = "numericUpDownMax";
             numericUpDownMax.Size = new Size(145, 23);
@@ -498,7 +543,7 @@
             // 
             numericUpDownMin.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             numericUpDownMin.Cursor = Cursors.Hand;
-            numericUpDownMin.Location = new Point(48, 935);
+            numericUpDownMin.Location = new Point(103, 1189);
             numericUpDownMin.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
             numericUpDownMin.Name = "numericUpDownMin";
             numericUpDownMin.Size = new Size(145, 23);
@@ -511,7 +556,7 @@
             checkBoxRaridadeMitico.FlatStyle = FlatStyle.System;
             checkBoxRaridadeMitico.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxRaridadeMitico.ImeMode = ImeMode.NoControl;
-            checkBoxRaridadeMitico.Location = new Point(94, 894);
+            checkBoxRaridadeMitico.Location = new Point(149, 1148);
             checkBoxRaridadeMitico.Name = "checkBoxRaridadeMitico";
             checkBoxRaridadeMitico.Size = new Size(60, 24);
             checkBoxRaridadeMitico.TabIndex = 2255;
@@ -525,7 +570,7 @@
             checkBoxRaridadeRaro.FlatStyle = FlatStyle.System;
             checkBoxRaridadeRaro.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxRaridadeRaro.ImeMode = ImeMode.NoControl;
-            checkBoxRaridadeRaro.Location = new Point(8, 894);
+            checkBoxRaridadeRaro.Location = new Point(63, 1148);
             checkBoxRaridadeRaro.Name = "checkBoxRaridadeRaro";
             checkBoxRaridadeRaro.Size = new Size(60, 24);
             checkBoxRaridadeRaro.TabIndex = 2254;
@@ -539,7 +584,7 @@
             checkBoxRaridadeIncomum.FlatStyle = FlatStyle.System;
             checkBoxRaridadeIncomum.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxRaridadeIncomum.ImeMode = ImeMode.NoControl;
-            checkBoxRaridadeIncomum.Location = new Point(94, 866);
+            checkBoxRaridadeIncomum.Location = new Point(149, 1120);
             checkBoxRaridadeIncomum.Name = "checkBoxRaridadeIncomum";
             checkBoxRaridadeIncomum.Size = new Size(92, 24);
             checkBoxRaridadeIncomum.TabIndex = 2253;
@@ -553,7 +598,7 @@
             checkBoxRaridadeComum.FlatStyle = FlatStyle.System;
             checkBoxRaridadeComum.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxRaridadeComum.ImeMode = ImeMode.NoControl;
-            checkBoxRaridadeComum.Location = new Point(8, 866);
+            checkBoxRaridadeComum.Location = new Point(63, 1120);
             checkBoxRaridadeComum.Name = "checkBoxRaridadeComum";
             checkBoxRaridadeComum.Size = new Size(76, 24);
             checkBoxRaridadeComum.TabIndex = 2252;
@@ -567,7 +612,7 @@
             labelRaridade.FlatStyle = FlatStyle.System;
             labelRaridade.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             labelRaridade.ImeMode = ImeMode.NoControl;
-            labelRaridade.Location = new Point(8, 843);
+            labelRaridade.Location = new Point(63, 1097);
             labelRaridade.Name = "labelRaridade";
             labelRaridade.Size = new Size(69, 19);
             labelRaridade.TabIndex = 2251;
@@ -577,7 +622,7 @@
             // numericUpDownCmc
             // 
             numericUpDownCmc.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            numericUpDownCmc.Location = new Point(8, 1006);
+            numericUpDownCmc.Location = new Point(63, 1260);
             numericUpDownCmc.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
             numericUpDownCmc.Name = "numericUpDownCmc";
             numericUpDownCmc.Size = new Size(185, 23);
@@ -590,7 +635,7 @@
             checkBoxTipoDeCartaEncantamento.FlatStyle = FlatStyle.System;
             checkBoxTipoDeCartaEncantamento.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxTipoDeCartaEncantamento.ImeMode = ImeMode.NoControl;
-            checkBoxTipoDeCartaEncantamento.Location = new Point(8, 708);
+            checkBoxTipoDeCartaEncantamento.Location = new Point(63, 962);
             checkBoxTipoDeCartaEncantamento.Name = "checkBoxTipoDeCartaEncantamento";
             checkBoxTipoDeCartaEncantamento.Size = new Size(101, 24);
             checkBoxTipoDeCartaEncantamento.TabIndex = 7;
@@ -604,7 +649,7 @@
             checkBoxTipoDeCartaMagicaInstantanea.FlatStyle = FlatStyle.System;
             checkBoxTipoDeCartaMagicaInstantanea.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxTipoDeCartaMagicaInstantanea.ImeMode = ImeMode.NoControl;
-            checkBoxTipoDeCartaMagicaInstantanea.Location = new Point(8, 680);
+            checkBoxTipoDeCartaMagicaInstantanea.Location = new Point(63, 934);
             checkBoxTipoDeCartaMagicaInstantanea.Name = "checkBoxTipoDeCartaMagicaInstantanea";
             checkBoxTipoDeCartaMagicaInstantanea.Size = new Size(131, 24);
             checkBoxTipoDeCartaMagicaInstantanea.TabIndex = 6;
@@ -612,27 +657,13 @@
             checkBoxTipoDeCartaMagicaInstantanea.Text = "Magica Instantânea";
             checkBoxTipoDeCartaMagicaInstantanea.UseVisualStyleBackColor = true;
             // 
-            // checkBoxTipoDeCartaFeitico
-            // 
-            checkBoxTipoDeCartaFeitico.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            checkBoxTipoDeCartaFeitico.FlatStyle = FlatStyle.System;
-            checkBoxTipoDeCartaFeitico.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxTipoDeCartaFeitico.ImeMode = ImeMode.NoControl;
-            checkBoxTipoDeCartaFeitico.Location = new Point(8, 652);
-            checkBoxTipoDeCartaFeitico.Name = "checkBoxTipoDeCartaFeitico";
-            checkBoxTipoDeCartaFeitico.Size = new Size(89, 24);
-            checkBoxTipoDeCartaFeitico.TabIndex = 5;
-            checkBoxTipoDeCartaFeitico.Tag = "";
-            checkBoxTipoDeCartaFeitico.Text = "Feitiço";
-            checkBoxTipoDeCartaFeitico.UseVisualStyleBackColor = true;
-            // 
             // labelDataDeCriacao
             // 
             labelDataDeCriacao.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelDataDeCriacao.FlatStyle = FlatStyle.System;
             labelDataDeCriacao.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             labelDataDeCriacao.ImeMode = ImeMode.NoControl;
-            labelDataDeCriacao.Location = new Point(8, 983);
+            labelDataDeCriacao.Location = new Point(63, 1237);
             labelDataDeCriacao.Name = "labelDataDeCriacao";
             labelDataDeCriacao.Size = new Size(179, 19);
             labelDataDeCriacao.TabIndex = 0;
@@ -645,7 +676,7 @@
             labelPrecoCarta.FlatStyle = FlatStyle.System;
             labelPrecoCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             labelPrecoCarta.ImeMode = ImeMode.NoControl;
-            labelPrecoCarta.Location = new Point(8, 922);
+            labelPrecoCarta.Location = new Point(63, 1176);
             labelPrecoCarta.Name = "labelPrecoCarta";
             labelPrecoCarta.Size = new Size(130, 19);
             labelPrecoCarta.TabIndex = 0;
@@ -657,7 +688,7 @@
             labelMax.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelMax.FlatStyle = FlatStyle.System;
             labelMax.ImeMode = ImeMode.NoControl;
-            labelMax.Location = new Point(8, 964);
+            labelMax.Location = new Point(63, 1218);
             labelMax.Name = "labelMax";
             labelMax.Size = new Size(30, 15);
             labelMax.TabIndex = 2250;
@@ -669,7 +700,7 @@
             buttonLimparFiltro.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonLimparFiltro.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             buttonLimparFiltro.ImeMode = ImeMode.NoControl;
-            buttonLimparFiltro.Location = new Point(8, 1065);
+            buttonLimparFiltro.Location = new Point(63, 1319);
             buttonLimparFiltro.Name = "buttonLimparFiltro";
             buttonLimparFiltro.Size = new Size(185, 25);
             buttonLimparFiltro.TabIndex = 18;
@@ -682,7 +713,7 @@
             buttonAplicarFiltro.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonAplicarFiltro.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             buttonAplicarFiltro.ImeMode = ImeMode.NoControl;
-            buttonAplicarFiltro.Location = new Point(8, 1038);
+            buttonAplicarFiltro.Location = new Point(63, 1292);
             buttonAplicarFiltro.Name = "buttonAplicarFiltro";
             buttonAplicarFiltro.Size = new Size(185, 25);
             buttonAplicarFiltro.TabIndex = 17;
@@ -695,7 +726,7 @@
             checkBoxBranco.FlatStyle = FlatStyle.System;
             checkBoxBranco.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxBranco.ImeMode = ImeMode.NoControl;
-            checkBoxBranco.Location = new Point(94, 759);
+            checkBoxBranco.Location = new Point(149, 1013);
             checkBoxBranco.Name = "checkBoxBranco";
             checkBoxBranco.Size = new Size(76, 24);
             checkBoxBranco.TabIndex = 9;
@@ -709,7 +740,7 @@
             checkBoxAzul.FlatStyle = FlatStyle.System;
             checkBoxAzul.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxAzul.ImeMode = ImeMode.NoControl;
-            checkBoxAzul.Location = new Point(8, 759);
+            checkBoxAzul.Location = new Point(63, 1013);
             checkBoxAzul.Name = "checkBoxAzul";
             checkBoxAzul.Size = new Size(60, 24);
             checkBoxAzul.TabIndex = 8;
@@ -723,33 +754,19 @@
             checkBoxPreto.FlatStyle = FlatStyle.System;
             checkBoxPreto.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxPreto.ImeMode = ImeMode.NoControl;
-            checkBoxPreto.Location = new Point(94, 787);
+            checkBoxPreto.Location = new Point(149, 1041);
             checkBoxPreto.Name = "checkBoxPreto";
             checkBoxPreto.Size = new Size(67, 24);
             checkBoxPreto.TabIndex = 11;
             checkBoxPreto.Text = "Preto";
             checkBoxPreto.UseVisualStyleBackColor = true;
             // 
-            // checkBoxTipoDeCartaTerrenoBasico
-            // 
-            checkBoxTipoDeCartaTerrenoBasico.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            checkBoxTipoDeCartaTerrenoBasico.FlatStyle = FlatStyle.System;
-            checkBoxTipoDeCartaTerrenoBasico.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxTipoDeCartaTerrenoBasico.ImeMode = ImeMode.NoControl;
-            checkBoxTipoDeCartaTerrenoBasico.Location = new Point(8, 596);
-            checkBoxTipoDeCartaTerrenoBasico.Name = "checkBoxTipoDeCartaTerrenoBasico";
-            checkBoxTipoDeCartaTerrenoBasico.Size = new Size(118, 24);
-            checkBoxTipoDeCartaTerrenoBasico.TabIndex = 3;
-            checkBoxTipoDeCartaTerrenoBasico.Tag = "";
-            checkBoxTipoDeCartaTerrenoBasico.Text = "Terreno Básico";
-            checkBoxTipoDeCartaTerrenoBasico.UseVisualStyleBackColor = true;
-            // 
             // labelMin
             // 
             labelMin.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelMin.FlatStyle = FlatStyle.System;
             labelMin.ImeMode = ImeMode.NoControl;
-            labelMin.Location = new Point(8, 945);
+            labelMin.Location = new Point(63, 1199);
             labelMin.Name = "labelMin";
             labelMin.Size = new Size(28, 15);
             labelMin.TabIndex = 2235;
@@ -762,26 +779,12 @@
             checkBoxVerde.FlatStyle = FlatStyle.System;
             checkBoxVerde.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxVerde.ImeMode = ImeMode.NoControl;
-            checkBoxVerde.Location = new Point(8, 815);
+            checkBoxVerde.Location = new Point(63, 1069);
             checkBoxVerde.Name = "checkBoxVerde";
             checkBoxVerde.Size = new Size(69, 24);
             checkBoxVerde.TabIndex = 12;
             checkBoxVerde.Text = "Verde";
             checkBoxVerde.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxTipoDeCartaTerreno
-            // 
-            checkBoxTipoDeCartaTerreno.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            checkBoxTipoDeCartaTerreno.FlatStyle = FlatStyle.System;
-            checkBoxTipoDeCartaTerreno.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxTipoDeCartaTerreno.ImeMode = ImeMode.NoControl;
-            checkBoxTipoDeCartaTerreno.Location = new Point(8, 624);
-            checkBoxTipoDeCartaTerreno.Name = "checkBoxTipoDeCartaTerreno";
-            checkBoxTipoDeCartaTerreno.Size = new Size(89, 24);
-            checkBoxTipoDeCartaTerreno.TabIndex = 4;
-            checkBoxTipoDeCartaTerreno.Tag = "";
-            checkBoxTipoDeCartaTerreno.Text = "Terreno";
-            checkBoxTipoDeCartaTerreno.UseVisualStyleBackColor = true;
             // 
             // labelCor
             // 
@@ -789,7 +792,7 @@
             labelCor.FlatStyle = FlatStyle.System;
             labelCor.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             labelCor.ImeMode = ImeMode.NoControl;
-            labelCor.Location = new Point(8, 736);
+            labelCor.Location = new Point(63, 990);
             labelCor.Name = "labelCor";
             labelCor.Size = new Size(38, 19);
             labelCor.TabIndex = 0;
@@ -802,7 +805,7 @@
             checkBoxIncolor.FlatStyle = FlatStyle.System;
             checkBoxIncolor.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxIncolor.ImeMode = ImeMode.NoControl;
-            checkBoxIncolor.Location = new Point(8, 787);
+            checkBoxIncolor.Location = new Point(63, 1041);
             checkBoxIncolor.Name = "checkBoxIncolor";
             checkBoxIncolor.Size = new Size(76, 24);
             checkBoxIncolor.TabIndex = 10;
@@ -815,264 +818,20 @@
             checkBoxVermelho.FlatStyle = FlatStyle.System;
             checkBoxVermelho.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             checkBoxVermelho.ImeMode = ImeMode.NoControl;
-            checkBoxVermelho.Location = new Point(94, 815);
+            checkBoxVermelho.Location = new Point(149, 1069);
             checkBoxVermelho.Name = "checkBoxVermelho";
             checkBoxVermelho.Size = new Size(92, 24);
             checkBoxVermelho.TabIndex = 13;
             checkBoxVermelho.Text = "Vermelho";
             checkBoxVermelho.UseVisualStyleBackColor = true;
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(buttonVoltar);
-            panel3.Controls.Add(labelNomeParcial);
-            panel3.Controls.Add(labelFormatoParcial);
-            panel3.Controls.Add(labelCorParcial);
-            panel3.Controls.Add(labelDadosBaralho);
-            panel3.Controls.Add(labelPrecoParcial);
-            panel3.Controls.Add(label3);
-            panel3.Controls.Add(labelCustoParcial);
-            panel3.Controls.Add(label4);
-            panel3.Controls.Add(labelQuantidadeParcial);
-            panel3.Controls.Add(button1);
-            panel3.Controls.Add(labelNome);
-            panel3.Controls.Add(label5);
-            panel3.Controls.Add(labelFormato);
-            panel3.Controls.Add(labelCorBaralho);
-            panel3.Controls.Add(label6);
-            panel3.Controls.Add(labelQuantidadeDeCartas);
-            panel3.Controls.Add(comboBox1);
-            panel3.Controls.Add(labelPreco);
-            panel3.Controls.Add(label7);
-            panel3.Controls.Add(labelCmc);
-            panel3.Controls.Add(textBox1);
-            panel3.Controls.Add(label8);
-            panel3.Controls.Add(label9);
-            panel3.Controls.Add(label10);
-            panel3.Controls.Add(label11);
-            panel3.Controls.Add(label12);
-            panel3.Dock = DockStyle.Left;
-            panel3.Location = new Point(0, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(200, 601);
-            panel3.TabIndex = 2277;
-            // 
-            // buttonVoltar
-            // 
-            buttonVoltar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonVoltar.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            buttonVoltar.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonVoltar.ImeMode = ImeMode.NoControl;
-            buttonVoltar.Location = new Point(8, 6);
-            buttonVoltar.Name = "buttonVoltar";
-            buttonVoltar.Size = new Size(185, 25);
-            buttonVoltar.TabIndex = 2279;
-            buttonVoltar.Text = "Voltar";
-            buttonVoltar.UseVisualStyleBackColor = true;
-            buttonVoltar.Click += AoClicarVoltaParaTelaDeNovoBaralho;
-            // 
-            // labelNomeParcial
-            // 
-            labelNomeParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            labelNomeParcial.AutoSize = true;
-            labelNomeParcial.FlatStyle = FlatStyle.System;
-            labelNomeParcial.Location = new Point(3, 309);
-            labelNomeParcial.Name = "labelNomeParcial";
-            labelNomeParcial.Size = new Size(38, 15);
-            labelNomeParcial.TabIndex = 0;
-            labelNomeParcial.Text = "label1";
-            labelNomeParcial.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // labelFormatoParcial
-            // 
-            labelFormatoParcial.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            labelFormatoParcial.AutoSize = true;
-            labelFormatoParcial.FlatStyle = FlatStyle.System;
-            labelFormatoParcial.Location = new Point(3, 357);
-            labelFormatoParcial.Name = "labelFormatoParcial";
-            labelFormatoParcial.Size = new Size(38, 15);
-            labelFormatoParcial.TabIndex = 0;
-            labelFormatoParcial.Text = "label1";
-            labelFormatoParcial.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // labelDadosBaralho
-            // 
-            labelDadosBaralho.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            labelDadosBaralho.FlatStyle = FlatStyle.System;
-            labelDadosBaralho.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            labelDadosBaralho.ImeMode = ImeMode.NoControl;
-            labelDadosBaralho.Location = new Point(0, 251);
-            labelDadosBaralho.Name = "labelDadosBaralho";
-            labelDadosBaralho.Size = new Size(200, 30);
-            labelDadosBaralho.TabIndex = 0;
-            labelDadosBaralho.Text = "Dados baralho";
-            labelDadosBaralho.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label3.AutoSize = true;
-            label3.FlatStyle = FlatStyle.System;
-            label3.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(8, 1048);
-            label3.Name = "label3";
-            label3.Size = new Size(198, 15);
-            label3.TabIndex = 24;
-            label3.Text = "Azul, Verde, Branco, Preto, Vermelho";
-            label3.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label4.AutoSize = true;
-            label4.FlatStyle = FlatStyle.System;
-            label4.Location = new Point(8, 1010);
-            label4.Name = "label4";
-            label4.Size = new Size(38, 15);
-            label4.TabIndex = 23;
-            label4.Text = "label1";
-            label4.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            button1.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ImeMode = ImeMode.NoControl;
-            button1.Location = new Point(8, 1065);
-            button1.Name = "button1";
-            button1.Size = new Size(185, 25);
-            button1.TabIndex = 20;
-            button1.Text = "Visualizar baralho";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label5.AutoSize = true;
-            label5.FlatStyle = FlatStyle.System;
-            label5.Location = new Point(8, 972);
-            label5.Name = "label5";
-            label5.Size = new Size(38, 15);
-            label5.TabIndex = 22;
-            label5.Text = "label1";
-            label5.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label6.AutoSize = true;
-            label6.FlatStyle = FlatStyle.System;
-            label6.Location = new Point(8, 934);
-            label6.Name = "label6";
-            label6.Size = new Size(38, 15);
-            label6.TabIndex = 21;
-            label6.Text = "label1";
-            label6.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // comboBox1
-            // 
-            comboBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(8, 888);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(185, 23);
-            comboBox1.TabIndex = 7;
-            // 
-            // label7
-            // 
-            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label7.AutoSize = true;
-            label7.FlatStyle = FlatStyle.System;
-            label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(8, 819);
-            label7.Name = "label7";
-            label7.Size = new Size(54, 19);
-            label7.TabIndex = 0;
-            label7.Text = "Nome:";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // textBox1
-            // 
-            textBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBox1.Cursor = Cursors.Hand;
-            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(8, 840);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(185, 25);
-            textBox1.TabIndex = 6;
-            // 
-            // label8
-            // 
-            label8.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label8.AutoSize = true;
-            label8.FlatStyle = FlatStyle.System;
-            label8.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(8, 867);
-            label8.Name = "label8";
-            label8.Size = new Size(70, 19);
-            label8.TabIndex = 1;
-            label8.Text = "Formato:";
-            label8.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label9
-            // 
-            label9.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label9.AutoSize = true;
-            label9.FlatStyle = FlatStyle.System;
-            label9.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(8, 1027);
-            label9.Name = "label9";
-            label9.Size = new Size(38, 19);
-            label9.TabIndex = 5;
-            label9.Text = "Cor:";
-            label9.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label10
-            // 
-            label10.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label10.AutoSize = true;
-            label10.FlatStyle = FlatStyle.System;
-            label10.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(8, 913);
-            label10.Name = "label10";
-            label10.Size = new Size(156, 19);
-            label10.TabIndex = 2;
-            label10.Text = "Quantidade de cartas:";
-            label10.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label11
-            // 
-            label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label11.AutoSize = true;
-            label11.FlatStyle = FlatStyle.System;
-            label11.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(8, 989);
-            label11.Name = "label11";
-            label11.Size = new Size(52, 19);
-            label11.TabIndex = 4;
-            label11.Text = "Preço:";
-            label11.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label12
-            // 
-            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label12.AutoSize = true;
-            label12.FlatStyle = FlatStyle.System;
-            label12.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(8, 951);
-            label12.Name = "label12";
-            label12.Size = new Size(189, 19);
-            label12.TabIndex = 3;
-            label12.Text = "Custo de mana convertido:";
-            label12.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // panel2
             // 
             panel2.Controls.Add(dataGridViewListaDeCartasDoBaralho);
-            panel2.Location = new Point(199, 0);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(611, 601);
+            panel2.Size = new Size(769, 855);
             panel2.TabIndex = 2276;
             // 
             // dataGridViewListaDeCartasDoBaralho
@@ -1089,7 +848,7 @@
             dataGridViewListaDeCartasDoBaralho.Name = "dataGridViewListaDeCartasDoBaralho";
             dataGridViewListaDeCartasDoBaralho.ReadOnly = true;
             dataGridViewListaDeCartasDoBaralho.RowTemplate.Height = 25;
-            dataGridViewListaDeCartasDoBaralho.Size = new Size(611, 601);
+            dataGridViewListaDeCartasDoBaralho.Size = new Size(769, 855);
             dataGridViewListaDeCartasDoBaralho.TabIndex = 0;
             dataGridViewListaDeCartasDoBaralho.CellClick += AoClicarCarregaDadosDaCarta;
             // 
@@ -1147,23 +906,23 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1008, 601);
-            Controls.Add(buttonCriarBaralhoBaralho);
-            Controls.Add(panel1);
-            Controls.Add(panel3);
+            ClientSize = new Size(1008, 816);
             Controls.Add(panel2);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            MinimizeBox = false;
+            MinimumSize = new Size(1024, 855);
             Name = "FormListaDeCartaDoBaralho";
-            Text = "MTG - Deckbuilder | Confirmar lista do baralho";
+            SizeGripStyle = SizeGripStyle.Show;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "MTG DeckBuilder - Confirmar lista do baralho";
+            WindowState = FormWindowState.Maximized;
             Load += CarregarFormListaDeCartasDoBaralho;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMax).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMin).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCmc).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewListaDeCartasDoBaralho).EndInit();
             ((System.ComponentModel.ISupportInitialize)copiaDeCartasNoBaralhoBindingSource).EndInit();
@@ -1193,7 +952,6 @@
         private NumericUpDown numericUpDownCmc;
         private CheckBox checkBoxTipoDeCartaEncantamento;
         private CheckBox checkBoxTipoDeCartaMagicaInstantanea;
-        private CheckBox checkBoxTipoDeCartaFeitico;
         private Label labelDataDeCriacao;
         private Label labelPrecoCarta;
         private Label labelMax;
@@ -1202,27 +960,11 @@
         private CheckBox checkBoxBranco;
         private CheckBox checkBoxAzul;
         private CheckBox checkBoxPreto;
-        private CheckBox checkBoxTipoDeCartaTerrenoBasico;
         private Label labelMin;
         private CheckBox checkBoxVerde;
-        private CheckBox checkBoxTipoDeCartaTerreno;
         private Label labelCor;
         private CheckBox checkBoxIncolor;
         private CheckBox checkBoxVermelho;
-        private Panel panel3;
-        private Label label3;
-        private Label label4;
-        private Button button1;
-        private Label label5;
-        private Label label6;
-        private ComboBox comboBox1;
-        private Label label7;
-        private TextBox textBox1;
-        private Label label8;
-        private Label label9;
-        private Label label10;
-        private Label label11;
-        private Label label12;
         private Panel panel2;
         private DataGridView dataGridViewListaDeCartasDoBaralho;
         private Label labelDadosCarta;

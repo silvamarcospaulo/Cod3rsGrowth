@@ -44,6 +44,8 @@
             label1 = new Label();
             labelConfirmarSenha = new Label();
             textBoxConfirmarSenha = new TextBox();
+            buttonVisualizarSenha = new Button();
+            buttonVisualizarSenhaConfirmacao = new Button();
             SuspendLayout();
             // 
             // labelNome
@@ -52,7 +54,7 @@
             labelNome.AutoSize = true;
             labelNome.FlatStyle = FlatStyle.System;
             labelNome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelNome.Location = new Point(12, 82);
+            labelNome.Location = new Point(12, 81);
             labelNome.Name = "labelNome";
             labelNome.Size = new Size(56, 21);
             labelNome.TabIndex = 0;
@@ -110,7 +112,7 @@
             textBoxSenha.Cursor = Cursors.Hand;
             textBoxSenha.Location = new Point(12, 337);
             textBoxSenha.Name = "textBoxSenha";
-            textBoxSenha.Size = new Size(351, 23);
+            textBoxSenha.Size = new Size(276, 23);
             textBoxSenha.TabIndex = 5;
             textBoxSenha.UseSystemPasswordChar = true;
             // 
@@ -200,7 +202,7 @@
             label1.AutoSize = true;
             label1.FlatStyle = FlatStyle.System;
             label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(12, 46);
+            label1.Location = new Point(12, 56);
             label1.Name = "label1";
             label1.Size = new Size(87, 15);
             label1.TabIndex = 9;
@@ -221,16 +223,39 @@
             // textBoxConfirmarSenha
             // 
             textBoxConfirmarSenha.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxConfirmarSenha.Location = new Point(12, 391);
+            textBoxConfirmarSenha.Location = new Point(12, 390);
             textBoxConfirmarSenha.Name = "textBoxConfirmarSenha";
-            textBoxConfirmarSenha.Size = new Size(351, 23);
+            textBoxConfirmarSenha.Size = new Size(276, 23);
             textBoxConfirmarSenha.TabIndex = 6;
+            textBoxConfirmarSenha.UseSystemPasswordChar = true;
             // 
-            // FormsJogadorCadastro
+            // buttonVisualizarSenha
+            // 
+            buttonVisualizarSenha.Location = new Point(294, 337);
+            buttonVisualizarSenha.Name = "buttonVisualizarSenha";
+            buttonVisualizarSenha.Size = new Size(69, 23);
+            buttonVisualizarSenha.TabIndex = 11;
+            buttonVisualizarSenha.Text = "Visualizar";
+            buttonVisualizarSenha.UseVisualStyleBackColor = true;
+            buttonVisualizarSenha.Click += AoClicarVisualizaSenha;
+            // 
+            // buttonVisualizarSenhaConfirmacao
+            // 
+            buttonVisualizarSenhaConfirmacao.Location = new Point(294, 390);
+            buttonVisualizarSenhaConfirmacao.Name = "buttonVisualizarSenhaConfirmacao";
+            buttonVisualizarSenhaConfirmacao.Size = new Size(69, 23);
+            buttonVisualizarSenhaConfirmacao.TabIndex = 12;
+            buttonVisualizarSenhaConfirmacao.Text = "Visualizar";
+            buttonVisualizarSenhaConfirmacao.UseVisualStyleBackColor = true;
+            buttonVisualizarSenhaConfirmacao.Click += AoClicarVisualizaConfirmacaoDeSenha;
+            // 
+            // FormJogadorCadastro
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(375, 500);
+            Controls.Add(buttonVisualizarSenhaConfirmacao);
+            Controls.Add(buttonVisualizarSenha);
             Controls.Add(textBoxConfirmarSenha);
             Controls.Add(labelConfirmarSenha);
             Controls.Add(textBoxSenha);
@@ -249,7 +274,7 @@
             Controls.Add(labelDataDeNascimento);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "FormsJogadorCadastro";
+            Name = "FormJogadorCadastro";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MTG DeckBuilder - Cadastro";
             ResumeLayout(false);
@@ -274,5 +299,7 @@
         private Label label1;
         private Label labelConfirmarSenha;
         private TextBox textBoxConfirmarSenha;
+        private Button buttonVisualizarSenha;
+        private Button buttonVisualizarSenhaConfirmacao;
     }
 }

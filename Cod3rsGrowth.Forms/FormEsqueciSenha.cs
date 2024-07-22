@@ -50,7 +50,7 @@ namespace Cod3rsGrowth.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro ao recuperar conta");
             }
 
             this.Close();
@@ -70,6 +70,30 @@ namespace Cod3rsGrowth.Forms
         private void CarregarJanelaJogadorEntrar(object obj)
         {
             Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+        }
+
+        private void AoClicarVisualizaSenha(object sender, EventArgs e)
+        {
+            if (textBoxNovasenha.UseSystemPasswordChar)
+            {
+                textBoxNovasenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxNovasenha.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void AoClicarVisualizaConfirmacaoDeSenha(object sender, EventArgs e)
+        {
+            if (textBoxConfirmarNovaSenha.UseSystemPasswordChar)
+            {
+                textBoxConfirmarNovaSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxConfirmarNovaSenha.UseSystemPasswordChar = true;
+            }
         }
     }
 }

@@ -436,6 +436,7 @@
             Controls.Add(panel1);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormListaBaralhosDoJogador";
             SizeGripStyle = SizeGripStyle.Show;
             WindowState = FormWindowState.Maximized;

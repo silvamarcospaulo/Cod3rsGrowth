@@ -44,6 +44,8 @@
             labelConfirmarNovaSenha = new Label();
             textBoxConfirmarNovaSenha = new TextBox();
             buttonAtualizar = new Button();
+            buttonVisualizarSenhaConfirmacao = new Button();
+            buttonVisualizarSenha = new Button();
             SuspendLayout();
             // 
             // dateTimePickerDataDeNascimento
@@ -140,8 +142,9 @@
             textBoxNovasenha.Cursor = Cursors.Hand;
             textBoxNovasenha.Location = new Point(12, 337);
             textBoxNovasenha.Name = "textBoxNovasenha";
-            textBoxNovasenha.Size = new Size(351, 23);
+            textBoxNovasenha.Size = new Size(276, 23);
             textBoxNovasenha.TabIndex = 5;
+            textBoxNovasenha.UseSystemPasswordChar = true;
             // 
             // textBoxUsuario
             // 
@@ -205,8 +208,9 @@
             // 
             textBoxConfirmarNovaSenha.Location = new Point(12, 391);
             textBoxConfirmarNovaSenha.Name = "textBoxConfirmarNovaSenha";
-            textBoxConfirmarNovaSenha.Size = new Size(351, 23);
+            textBoxConfirmarNovaSenha.Size = new Size(276, 23);
             textBoxConfirmarNovaSenha.TabIndex = 6;
+            textBoxConfirmarNovaSenha.UseSystemPasswordChar = true;
             // 
             // buttonAtualizar
             // 
@@ -219,12 +223,34 @@
             buttonAtualizar.UseVisualStyleBackColor = true;
             buttonAtualizar.Click += AoClicarRestauraSenhaDoJogador;
             // 
+            // buttonVisualizarSenhaConfirmacao
+            // 
+            buttonVisualizarSenhaConfirmacao.Location = new Point(294, 391);
+            buttonVisualizarSenhaConfirmacao.Name = "buttonVisualizarSenhaConfirmacao";
+            buttonVisualizarSenhaConfirmacao.Size = new Size(69, 23);
+            buttonVisualizarSenhaConfirmacao.TabIndex = 14;
+            buttonVisualizarSenhaConfirmacao.Text = "Visualizar";
+            buttonVisualizarSenhaConfirmacao.UseVisualStyleBackColor = true;
+            buttonVisualizarSenhaConfirmacao.Click += AoClicarVisualizaConfirmacaoDeSenha;
+            // 
+            // buttonVisualizarSenha
+            // 
+            buttonVisualizarSenha.Location = new Point(294, 337);
+            buttonVisualizarSenha.Name = "buttonVisualizarSenha";
+            buttonVisualizarSenha.Size = new Size(69, 23);
+            buttonVisualizarSenha.TabIndex = 13;
+            buttonVisualizarSenha.Text = "Visualizar";
+            buttonVisualizarSenha.UseVisualStyleBackColor = true;
+            buttonVisualizarSenha.Click += AoClicarVisualizaSenha;
+            // 
             // FormEsqueciSenha
             // 
             AcceptButton = buttonAtualizar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(375, 500);
+            Controls.Add(buttonVisualizarSenhaConfirmacao);
+            Controls.Add(buttonVisualizarSenha);
             Controls.Add(buttonAtualizar);
             Controls.Add(textBoxConfirmarNovaSenha);
             Controls.Add(labelConfirmarNovaSenha);
@@ -268,5 +294,7 @@
         private Label labelConfirmarNovaSenha;
         private TextBox textBoxConfirmarNovaSenha;
         private Button buttonAtualizar;
+        private Button buttonVisualizarSenhaConfirmacao;
+        private Button buttonVisualizarSenha;
     }
 }

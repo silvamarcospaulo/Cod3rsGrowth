@@ -15,24 +15,18 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public BaralhoValidador()
         {
-            RuleFor(baralho => baralho.IdJogador)
-                .GreaterThan(VALOR_MINIMO_ID_JOGADOR).WithMessage("Campo Id do jogador tem quer ser maior do que Um");
-
             RuleFor(baralho => baralho.NomeBaralho)
-                .NotNull()
-                .WithMessage("Campo nome de baralho não pode ser nulo")
-                .NotEmpty()
-                .WithMessage("Campo nome de baralho não pode ser vazio");
+                .NotNull().WithMessage("Insira um nome para o baralho.\n")
+                .NotEmpty().WithMessage("Insira um nome para o baralho.\n");
 
             RuleFor(baralho => baralho.CartasDoBaralho)
-                .NotEmpty()
-                .WithMessage("O baralho deve possuir uma lista de cartas não vazia");
+                .NotEmpty().WithMessage("Não é possível criar um baralho com uma lista vazia.\n");
 
             RuleFor(baralho => baralho.CartasDoBaralho).NotNull().DependentRules(() =>
             {
                 RuleFor(baralho => baralho.FormatoDeJogoBaralho)
                 .Must((baralho, formatoDeJogo) => ValidacaoTipoDeBaralho(baralho.CartasDoBaralho, formatoDeJogo))
-                .WithMessage("Quantidade de cartas do baralho não compativel com o formato de jogo selecionado");
+                .WithMessage("Quantidade de cartas do baralho não compativel com o formato de jogo selecionado.\n");
             });
         }
 

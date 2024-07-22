@@ -1,5 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
 using FluentValidation;
+using LinqToDB.DataProvider.SapHana;
 using System.Text.RegularExpressions;
 
 namespace Cod3rsGrowth.Servico.ServicoJogador
@@ -20,83 +21,106 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             RuleSet("Criar", () =>
             {
                 RuleFor(jogador => jogador.NomeJogador)
-                    .NotNull().WithMessage("Campo NOME é obrigatório.")
-                    .NotEmpty().WithMessage("Campo NOME é obrigatório.");
+                    .NotNull().WithMessage("Preencha seu nome no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha seu nome no campo indicado.\n");
 
                 RuleFor(jogador => jogador.SobrenomeJogador)
-                    .NotNull().WithMessage("Campo SOBRENOME é obrigatório.")
-                    .NotEmpty().WithMessage("Campo SOBRENOME é obrigatório.");
+                    .NotNull().WithMessage("Preencha seu sobrenome no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha seu sobrenome no campo indicado.\n");
 
                 RuleFor(jogador => jogador.DataNascimentoJogador)
-                    .NotNull().WithMessage("Campo DATA DE NASCIMENTO é obrigatório.")
-                    .NotEmpty().WithMessage("Campo DATA DE NASCIMENTO é obrigatório.")
-                    .LessThanOrEqualTo(valorDataNascimentoMinima).WithMessage("O jogador deve possuir mais de 13 anos para criar conta");
+                    .NotNull().WithMessage("Preencha sua data de nascimento no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha sua data de nascimento no campo indicado.\n")
+                    .LessThanOrEqualTo(valorDataNascimentoMinima).WithMessage("MTG Deckbuilder possui conteúdo exclusivo para maiores de 13 anos.\n");
 
                 RuleFor(jogador => jogador.UsuarioJogador)
-                    .NotNull().WithMessage("Campo USUÁRIO é obrigatório.")
-                    .NotEmpty().WithMessage("Campo USUÁRIO é obrigatório.")
-                    .Must(ValidacaoJogadorUsuario).WithMessage("O usuário deve conter:\n" +
-                        "Somente letras minúsculas [a-z];\n" +
-                        "Conter mais de 8 dígitos.");
+                    .NotNull().WithMessage("Preencha seu nome de usuário no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha seu nome de usuário no campo indicado.\n");
+
+                RuleFor(jogador => jogador.UsuarioJogador)
+                    .Must(ValidacaoJogadorUsuario).WithMessage(
+                        "O usuário deve conter:\n" +
+                        "   Somente letras minúsculas [a-z].\n" +
+                        "   Conter mais de 6 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
 
                 RuleFor(jogador => jogador.SenhaHashJogador)
-                    .NotNull().WithMessage("Campo SENHA é obrigatório.")
-                    .NotEmpty().WithMessage("Campo SENHA é obrigatório.")
+                    .NotNull().WithMessage("Preencha sua senha no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha sua senha no campo indicado.\n");
+
+                RuleFor(jogador => jogador.SenhaHashJogador)
                     .Must(ValidacaoJogadorSenha).WithMessage(
-                        "A Senha deve conter:" +
-                        "Ao menos uma letra maiúscula [A-Z];\n" +
-                        "Ao menos uma letra minúscula [a-z];\n" +
-                        "Ao menos um número [0123456789];\n" +
-                        "Não deve conter caracteres especiais;\n" +
-                        "Conter mais de 8 dígitos.\n");
+                        "A Senha deve conter:\n" +
+                        "   Ao menos uma letra maiúscula [A-Z].\n" +
+                        "   Ao menos uma letra minúscula [a-z].\n" +
+                        "   Ao menos um número [0123456789].\n" +
+                        "   Não deve conter caracteres especiais.\n" +
+                        "   Conter mais de 8 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
 
 
                 RuleFor(jogador => jogador)
-                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem concidir!");
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
             });
 
             RuleSet("Atualizar", () =>
             {
                 RuleFor(jogador => jogador.UsuarioJogador)
-                    .NotNull().WithMessage("Campo USUÁRIO é obrigatório.")
-                    .NotEmpty().WithMessage("Campo USUÁRIO é obrigatório.")
-                    .Must(ValidacaoJogadorUsuario).WithMessage("O Nome deve conter:\n" +
-                        "Somente letras minúsculas [a-z];\n" +
-                        "Conter mais de 8 dígitos.");
+                    .NotNull().WithMessage("Preencha seu nome de usuário no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha seu nome de usuário no campo indicado.\n");
+
+                RuleFor(jogador => jogador.UsuarioJogador)
+                    .Must(ValidacaoJogadorUsuario).WithMessage(
+                        "O usuário deve conter:\n" +
+                        "   Somente letras minúsculas [a-z].\n" +
+                        "   Conter mais de 6 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
+
+                RuleFor(jogador => jogador)
+                    .Must(ValidacaoUsuarioEConfirmacaoCorrepondem).WithMessage("O usuário e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
 
                 RuleFor(jogador => jogador.SenhaHashJogador)
-                    .NotNull().WithMessage("Campo SENHA é obrigatório.")
-                    .NotEmpty().WithMessage("Campo SENHA é obrigatório.")
-                    .Must(ValidacaoJogadorSenha).WithMessage("A Senha deve conter:\n" +
-                        "Ao menos uma letra maiúscula [A-Z];\n" +
-                        "Ao menos uma letra minúscula [a-z];\n" +
-                        "Ao menos um número [0123456789];\n" +
-                        "Não deve conter caracteres especiais;\n" +
-                        "Conter mais de 8 dígitos.\n");
+                    .NotNull().WithMessage("Preencha sua senha no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha sua senha no campo indicado.\n");
+
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                    .Must(ValidacaoJogadorSenha).WithMessage(
+                        "A Senha deve conter:\n" +
+                        "   Ao menos uma letra maiúscula [A-Z].\n" +
+                        "   Ao menos uma letra minúscula [a-z].\n" +
+                        "   Ao menos um número [0123456789].\n" +
+                        "   Não deve conter caracteres especiais.\n" +
+                        "   Conter mais de 8 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
+
 
                 RuleFor(jogador => jogador)
-                    .Must(ValidacaoUsuarioEConfirmacaoCorrepondem).WithMessage("O usuário e a confirmação devem concidir!");
-
-                RuleFor(jogador => jogador)
-                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem concidir!");
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
             });
 
             RuleSet("AlterarSenha", () =>
             {
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                    .NotNull().WithMessage("Preencha sua senha no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha sua senha no campo indicado.\n");
 
                 RuleFor(jogador => jogador.SenhaHashJogador)
-                    .NotNull().WithMessage("Campo SENHA é obrigatório.")
-                    .NotEmpty().WithMessage("Campo SENHA é obrigatório.")
                     .Must(ValidacaoJogadorSenha).WithMessage(
                         "A Senha deve conter:\n" +
-                        "Ao menos uma letra maiúscula [A-Z];\n" +
-                        "Ao menos uma letra minúscula [a-z];\n" +
-                        "Ao menos um número [0123456789];\n" +
-                        "Não deve conter caracteres especiais;\n" +
-                        "Conter mais de 8 dígitos.\n");
+                        "   Ao menos uma letra maiúscula [A-Z].\n" +
+                        "   Ao menos uma letra minúscula [a-z].\n" +
+                        "   Ao menos um número [0123456789].\n" +
+                        "   Não deve conter caracteres especiais.\n" +
+                        "   Conter mais de 8 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
+
 
                 RuleFor(jogador => jogador)
-                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem concidir!");
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
             });
         }
 

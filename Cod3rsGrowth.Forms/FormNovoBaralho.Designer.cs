@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             panel1 = new Panel();
             numericUpDownMax = new NumericUpDown();
             numericUpDownMin = new NumericUpDown();
@@ -609,9 +609,9 @@
             // precoCartaDataGridViewTextBoxColumn
             // 
             precoCartaDataGridViewTextBoxColumn.DataPropertyName = "PrecoCarta";
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = "0";
-            precoCartaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            precoCartaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             precoCartaDataGridViewTextBoxColumn.HeaderText = "Preco";
             precoCartaDataGridViewTextBoxColumn.Name = "precoCartaDataGridViewTextBoxColumn";
             precoCartaDataGridViewTextBoxColumn.ReadOnly = true;
@@ -682,7 +682,7 @@
             labelNomeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             labelNomeCartaSelecionada.AutoSize = true;
             labelNomeCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelNomeCartaSelecionada.Location = new Point(8, 484);
+            labelNomeCartaSelecionada.Location = new Point(8, 470);
             labelNomeCartaSelecionada.Name = "labelNomeCartaSelecionada";
             labelNomeCartaSelecionada.Size = new Size(0, 15);
             labelNomeCartaSelecionada.TabIndex = 0;
@@ -694,7 +694,7 @@
             label3.AutoSize = true;
             label3.FlatStyle = FlatStyle.System;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(8, 464);
+            label3.Location = new Point(8, 445);
             label3.Name = "label3";
             label3.Size = new Size(132, 19);
             label3.TabIndex = 0;
@@ -707,7 +707,7 @@
             buttonAdicionarCarta.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonAdicionarCarta.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             buttonAdicionarCarta.ImeMode = ImeMode.NoControl;
-            buttonAdicionarCarta.Location = new Point(8, 533);
+            buttonAdicionarCarta.Location = new Point(8, 522);
             buttonAdicionarCarta.Name = "buttonAdicionarCarta";
             buttonAdicionarCarta.Size = new Size(185, 25);
             buttonAdicionarCarta.TabIndex = 2258;
@@ -718,7 +718,7 @@
             // numericUpDownQuantidadeDeCopiasDeCarta
             // 
             numericUpDownQuantidadeDeCopiasDeCarta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            numericUpDownQuantidadeDeCopiasDeCarta.Location = new Point(148, 507);
+            numericUpDownQuantidadeDeCopiasDeCarta.Location = new Point(148, 493);
             numericUpDownQuantidadeDeCopiasDeCarta.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
             numericUpDownQuantidadeDeCopiasDeCarta.Name = "numericUpDownQuantidadeDeCopiasDeCarta";
             numericUpDownQuantidadeDeCopiasDeCarta.Size = new Size(45, 23);
@@ -731,7 +731,7 @@
             label1.FlatStyle = FlatStyle.System;
             label1.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ImeMode = ImeMode.NoControl;
-            label1.Location = new Point(8, 509);
+            label1.Location = new Point(8, 495);
             label1.Name = "label1";
             label1.Size = new Size(185, 19);
             label1.TabIndex = 2256;
@@ -743,7 +743,7 @@
             labelCorParcial.AutoSize = true;
             labelCorParcial.FlatStyle = FlatStyle.System;
             labelCorParcial.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-            labelCorParcial.Location = new Point(8, 231);
+            labelCorParcial.Location = new Point(8, 275);
             labelCorParcial.Name = "labelCorParcial";
             labelCorParcial.Size = new Size(0, 15);
             labelCorParcial.TabIndex = 24;
@@ -753,7 +753,7 @@
             // 
             labelPrecoParcial.AutoSize = true;
             labelPrecoParcial.FlatStyle = FlatStyle.System;
-            labelPrecoParcial.Location = new Point(8, 195);
+            labelPrecoParcial.Location = new Point(8, 231);
             labelPrecoParcial.Name = "labelPrecoParcial";
             labelPrecoParcial.Size = new Size(0, 15);
             labelPrecoParcial.TabIndex = 23;
@@ -765,7 +765,7 @@
             buttonVisualizarBaralho.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonVisualizarBaralho.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             buttonVisualizarBaralho.ImeMode = ImeMode.NoControl;
-            buttonVisualizarBaralho.Location = new Point(8, 563);
+            buttonVisualizarBaralho.Location = new Point(8, 564);
             buttonVisualizarBaralho.Name = "buttonVisualizarBaralho";
             buttonVisualizarBaralho.Size = new Size(185, 25);
             buttonVisualizarBaralho.TabIndex = 20;
@@ -777,7 +777,7 @@
             // 
             labelCustoParcial.AutoSize = true;
             labelCustoParcial.FlatStyle = FlatStyle.System;
-            labelCustoParcial.Location = new Point(8, 159);
+            labelCustoParcial.Location = new Point(8, 187);
             labelCustoParcial.Name = "labelCustoParcial";
             labelCustoParcial.Size = new Size(0, 15);
             labelCustoParcial.TabIndex = 22;
@@ -787,7 +787,7 @@
             // 
             labelQuantidadeParcial.AutoSize = true;
             labelQuantidadeParcial.FlatStyle = FlatStyle.System;
-            labelQuantidadeParcial.Location = new Point(8, 123);
+            labelQuantidadeParcial.Location = new Point(8, 143);
             labelQuantidadeParcial.Name = "labelQuantidadeParcial";
             labelQuantidadeParcial.Size = new Size(0, 15);
             labelQuantidadeParcial.TabIndex = 21;
@@ -799,7 +799,7 @@
             comboBoxFormato.DisplayMember = "FormatoDeJogoBaralho";
             comboBoxFormato.FlatStyle = FlatStyle.System;
             comboBoxFormato.FormattingEnabled = true;
-            comboBoxFormato.Location = new Point(8, 79);
+            comboBoxFormato.Location = new Point(8, 91);
             comboBoxFormato.Name = "comboBoxFormato";
             comboBoxFormato.Size = new Size(185, 23);
             comboBoxFormato.TabIndex = 7;
@@ -824,7 +824,7 @@
             // 
             textBoxNomeBaralho.Cursor = Cursors.Hand;
             textBoxNomeBaralho.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxNomeBaralho.Location = new Point(8, 33);
+            textBoxNomeBaralho.Location = new Point(8, 37);
             textBoxNomeBaralho.Name = "textBoxNomeBaralho";
             textBoxNomeBaralho.Size = new Size(185, 25);
             textBoxNomeBaralho.TabIndex = 6;
@@ -834,7 +834,7 @@
             labelFormato.AutoSize = true;
             labelFormato.FlatStyle = FlatStyle.System;
             labelFormato.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelFormato.Location = new Point(8, 59);
+            labelFormato.Location = new Point(8, 67);
             labelFormato.Name = "labelFormato";
             labelFormato.Size = new Size(148, 19);
             labelFormato.TabIndex = 1;
@@ -846,7 +846,7 @@
             labelCorBaralho.AutoSize = true;
             labelCorBaralho.FlatStyle = FlatStyle.System;
             labelCorBaralho.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCorBaralho.Location = new Point(8, 211);
+            labelCorBaralho.Location = new Point(8, 251);
             labelCorBaralho.Name = "labelCorBaralho";
             labelCorBaralho.Size = new Size(38, 19);
             labelCorBaralho.TabIndex = 5;
@@ -858,7 +858,7 @@
             labelQuantidadeDeCartas.AutoSize = true;
             labelQuantidadeDeCartas.FlatStyle = FlatStyle.System;
             labelQuantidadeDeCartas.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelQuantidadeDeCartas.Location = new Point(8, 103);
+            labelQuantidadeDeCartas.Location = new Point(8, 119);
             labelQuantidadeDeCartas.Name = "labelQuantidadeDeCartas";
             labelQuantidadeDeCartas.Size = new Size(156, 19);
             labelQuantidadeDeCartas.TabIndex = 2;
@@ -870,7 +870,7 @@
             labelPreco.AutoSize = true;
             labelPreco.FlatStyle = FlatStyle.System;
             labelPreco.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelPreco.Location = new Point(8, 175);
+            labelPreco.Location = new Point(8, 207);
             labelPreco.Name = "labelPreco";
             labelPreco.Size = new Size(52, 19);
             labelPreco.TabIndex = 4;
@@ -882,7 +882,7 @@
             labelCmc.AutoSize = true;
             labelCmc.FlatStyle = FlatStyle.System;
             labelCmc.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCmc.Location = new Point(8, 139);
+            labelCmc.Location = new Point(8, 163);
             labelCmc.Name = "labelCmc";
             labelCmc.Size = new Size(189, 19);
             labelCmc.TabIndex = 3;
@@ -897,10 +897,13 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(panel3);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             MinimumSize = new Size(1024, 640);
             Name = "FormNovoBaralho";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "MTG -DeckBuilder | Criação de baralho";
+            SizeGripStyle = SizeGripStyle.Show;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "MTG DeckBuilder - Criação de baralho";
             WindowState = FormWindowState.Maximized;
             Load += CarregarFormNovoBaralho;
             panel1.ResumeLayout(false);

@@ -39,6 +39,7 @@
             labelMtgDeckBuilder = new Label();
             labelUsuarioMensagemDeErro = new Label();
             labelSenhaMensagemDeErro = new Label();
+            buttonVisualizarSenha = new Button();
             SuspendLayout();
             // 
             // labelNome
@@ -109,10 +110,18 @@
             labelSenhaMensagemDeErro.ForeColor = Color.Red;
             labelSenhaMensagemDeErro.Name = "labelSenhaMensagemDeErro";
             // 
+            // buttonVisualizarSenha
+            // 
+            resources.ApplyResources(buttonVisualizarSenha, "buttonVisualizarSenha");
+            buttonVisualizarSenha.Name = "buttonVisualizarSenha";
+            buttonVisualizarSenha.UseVisualStyleBackColor = true;
+            buttonVisualizarSenha.Click += AoClicarVisualizaSenha;
+            // 
             // FormJogadorEntrar
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(buttonVisualizarSenha);
             Controls.Add(labelSenhaMensagemDeErro);
             Controls.Add(labelUsuarioMensagemDeErro);
             Controls.Add(labelMtgDeckBuilder);
@@ -143,5 +152,6 @@
         private Label labelMtgDeckBuilder;
         private Label labelUsuarioMensagemDeErro;
         private Label labelSenhaMensagemDeErro;
+        private Button buttonVisualizarSenha;
     }
 }

@@ -98,5 +98,16 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormEsqueciSenha(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController));
         }
 
+        private void AoClicarVisualizaSenha(object sender, EventArgs e)
+        {
+            if (textBoxSenha.UseSystemPasswordChar)
+            {
+                textBoxSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxSenha.UseSystemPasswordChar = true;
+            }
+        }
     }
 }

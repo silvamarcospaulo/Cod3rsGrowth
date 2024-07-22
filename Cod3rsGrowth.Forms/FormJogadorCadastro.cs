@@ -58,7 +58,7 @@ namespace Cod3rsGrowth.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Erro ao criar conta.");
             }
         }
 
@@ -78,6 +78,30 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarCarregarJogadorEntrarEmNovaJanela(Object obj)
         {
             Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+        }
+
+        private void AoClicarVisualizaSenha(object sender, EventArgs e)
+        {
+            if (textBoxSenha.UseSystemPasswordChar)
+            {
+                textBoxSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxSenha.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void AoClicarVisualizaConfirmacaoDeSenha(object sender, EventArgs e)
+        {
+            if (textBoxConfirmarSenha.UseSystemPasswordChar)
+            {
+                textBoxConfirmarSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxConfirmarSenha.UseSystemPasswordChar = true;
+            }
         }
     }
 }
