@@ -49,7 +49,6 @@ namespace Cod3rsGrowth.Forms
                 ServiceProvider.GetRequiredService<BaralhoServico>(),
                 ServiceProvider.GetRequiredService<JogadorServico>(),
                 ServiceProvider.GetRequiredService<JwtServico>(),
-                ServiceProvider.GetRequiredService<ConexaoDados>(),
                 ServiceProvider.GetRequiredService<LoginController>()
             ));
         }

@@ -1,5 +1,4 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -15,18 +14,16 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
         private JwtServico tokenServico;
-        private ConexaoDados conexaoDados;
         private LoginController loginController;
         private Thread threadFormsEntrar;
 
         public FormEsqueciSenha(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
+            JogadorServico _jogadorServico, JwtServico _tokenServico, LoginController _loginController)
         {
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
             tokenServico = _tokenServico;
-            conexaoDados = _conexaoDados;
             loginController = _loginController;
             InitializeComponent();
         }
@@ -69,7 +66,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarJanelaJogadorEntrar(object obj)
         {
-            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController));
         }
 
         private void AoClicarVisualizaSenha(object sender, EventArgs e)

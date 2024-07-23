@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             numericUpDownMax = new NumericUpDown();
             numericUpDownMin = new NumericUpDown();
@@ -609,9 +609,9 @@
             // precoCartaDataGridViewTextBoxColumn
             // 
             precoCartaDataGridViewTextBoxColumn.DataPropertyName = "PrecoCarta";
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = "0";
-            precoCartaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = "0";
+            precoCartaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             precoCartaDataGridViewTextBoxColumn.HeaderText = "Preco";
             precoCartaDataGridViewTextBoxColumn.Name = "precoCartaDataGridViewTextBoxColumn";
             precoCartaDataGridViewTextBoxColumn.ReadOnly = true;

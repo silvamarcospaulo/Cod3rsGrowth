@@ -1,5 +1,4 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -17,7 +16,6 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
         private JwtServico _tokenServico;
-        private ConexaoDados _conexaoDados;
         private LoginController _loginController;
         private Baralho _baralho;
         private Carta cartaSelecionada;
@@ -27,13 +25,12 @@ namespace Cod3rsGrowth.Forms
         private string STRING_VAZIA = string.Empty;
 
         public FormListaDeCartaDoBaralho(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
-            JwtServico tokenServico, ConexaoDados conexaoDados, LoginController loginController, Jogador jogador, Baralho baralho)
+            JwtServico tokenServico, LoginController loginController, Jogador jogador, Baralho baralho)
         {
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
             _tokenServico = tokenServico;
-            _conexaoDados = conexaoDados;
             _loginController = loginController;
             _jogador = jogador;
             _baralho = baralho;
@@ -76,10 +73,13 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregaDadosDaCarta(object sender, DataGridViewCellEventArgs e)
         {
-            var selecao = dataGridViewListaDeCartasDoBaralho.Rows[e.RowIndex];
-            var copia = (CopiaDeCartasNoBaralho)selecao.DataBoundItem;
-            cartaSelecionada = copia?.Carta;
-            CarregarDadosDaCarta();
+            if (e.RowIndex >= 0)
+            {
+                var selecao = dataGridViewListaDeCartasDoBaralho.Rows[e.RowIndex];
+                var copia = (CopiaDeCartasNoBaralho)selecao.DataBoundItem;
+                cartaSelecionada = copia?.Carta;
+                CarregarDadosDaCarta();
+            }
         }
 
         private void LimparDadosDaCarta()
@@ -103,7 +103,7 @@ namespace Cod3rsGrowth.Forms
             labelCorCartaSelecionada.Text = cartaSelecionada.CorCarta;
         }
 
-        private void buttonCriarBaralhoBaralho_Click(object sender, EventArgs e)
+        private void AoClicarCriaBaralho(object sender, EventArgs e)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormListaBaralhoJogador(object obj)
         {
-            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController, _jogador));
+            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
         }
 
         private void AoClicarVoltaParaTelaDeNovoBaralho(object sender, EventArgs e)
@@ -134,40 +134,34 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormNovoBaralho(object obj)
         {
-            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController, _jogador, _baralho));
+            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, _baralho));
         }
 
         private void AoClicarRemoveCartaDaListaDeCartasDoBaralho(object sender, EventArgs e)
         {
-            if (cartaSelecionada is null)
+            try
             {
-                MessageBox.Show("Nenhuma carta foi selecionada!", "Erro ao remover carta");
-            }
+                if (cartaSelecionada is null)
+                    MessageBox.Show("Nenhuma carta foi selecionada!", "Erro ao remover carta");
 
-            var cartaParaRemover = _baralho?.CartasDoBaralho?.FirstOrDefault(copia => copia.IdCarta == cartaSelecionada?.Id) ?? null;
+                var cartaParaRemover = _baralho?.CartasDoBaralho?.FirstOrDefault(copia => copia.IdCarta == cartaSelecionada?.Id) ?? null;
 
-            var resposta = new DialogResult();
+                var resposta = new DialogResult();
 
-            if (cartaParaRemover is not null)
-            {
-                resposta = MessageBox.Show($"Remover {cartaParaRemover.NomeCarta} da lista de carta do baralho?", "Confirmação", MessageBoxButtons.YesNo);
-            }
-            else
-            {
-                MessageBox.Show("Não existe uma carta correspondente na lista!", "Erro ao remover carta");
-            }
+                resposta = cartaParaRemover is not null
+                    ? MessageBox.Show($"Remover {cartaParaRemover.NomeCarta} da lista de carta do baralho?", "Confirmação", MessageBoxButtons.YesNo)
+                    : MessageBox.Show("Não existe uma carta correspondente na lista!", "Erro ao remover carta");
 
-            if (resposta == DialogResult.Yes)
-            {
-                if (_baralho.CartasDoBaralho.Remove(cartaParaRemover))
+                if (resposta == DialogResult.Yes)
                 {
+                    _baralho.CartasDoBaralho.Remove(cartaParaRemover);
                     MessageBox.Show($"A carta {cartaParaRemover.NomeCarta} foi removida da lista com sucesso!", "Carta removida com sucesso!");
                     CarregarListaDeCopiaDeCartasNoBaralho();
                 }
-                else
-                {
-                    MessageBox.Show($"Erro ao remover {cartaParaRemover.NomeCarta} da lista de cartas!", "Erro ao remover carta");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao remover {cartaSelecionada.NomeCarta} da lista de cartas!\n{ex.Message}", "Erro ao remover carta");
             }
         }
     }

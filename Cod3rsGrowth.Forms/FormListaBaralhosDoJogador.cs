@@ -1,7 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -17,7 +16,6 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
         private JwtServico tokenServico;
-        private ConexaoDados conexaoDados;
         private LoginController loginController;
         private Thread threadFormEntrar;
         private Thread threadFormEditarPerfil;
@@ -27,14 +25,13 @@ namespace Cod3rsGrowth.Forms
         DateTime DATA_PADRAO = Convert.ToDateTime("01/01/2001");
 
         public FormListaBaralhosDoJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
-            JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController, Jogador _jogador)
+            JwtServico _tokenServico, LoginController _loginController, Jogador _jogador)
         {
             jogador = _jogador;
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
             tokenServico = _tokenServico;
-            conexaoDados = _conexaoDados;
             loginController = _loginController;
 
             InitializeComponent();
@@ -65,7 +62,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormJogadorEntrar(object obj)
         {
-            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController));
         }
 
         private void AoClicarAbrirTelaDeEdicaoDePerfil(object sender, EventArgs e)
@@ -78,7 +75,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormJogadorEditarPerfil(object obj)
         {
-            Application.Run(new FormJogadorEditarPerfil(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
+            Application.Run(new FormJogadorEditarPerfil(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador));
         }
 
         private void AoClicarAplicaSelecaoDeFiltros(object sender, EventArgs e)
@@ -207,7 +204,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormNovoBaralho(object obj)
         {
-            Application.Run(new FormNovoBaralho(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador, null));
+            Application.Run(new FormNovoBaralho(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador, null));
         }
     }
 }

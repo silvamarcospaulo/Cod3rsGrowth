@@ -76,6 +76,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
             try
             {
+                baralhoCriar.IdJogador = baralho.IdJogador;
                 baralhoCriar.NomeBaralho = baralho.NomeBaralho;
                 baralhoCriar.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
                 baralhoCriar.CartasDoBaralho = baralho.CartasDoBaralho;
@@ -86,8 +87,8 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
                 var dataDeCriacao = GerarDataDeCriacaoBaralho();
                 baralhoCriar.DataDeCriacaoBaralho = dataDeCriacao;
 
-                _validadorBaralho.ValidateAndThrow(baralho);
-                var idBaralhoCriado = _IBaralhoRepository.Criar(baralho);
+                _validadorBaralho.ValidateAndThrow(baralhoCriar);
+                var idBaralhoCriado = _IBaralhoRepository.Criar(baralhoCriar);
 
                 return idBaralhoCriado;
             }

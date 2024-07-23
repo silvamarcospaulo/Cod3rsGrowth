@@ -1,7 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -18,7 +17,6 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
         private JwtServico tokenServico;
-        private ConexaoDados conexaoDados;
         private LoginController loginController;
         private Thread threadFormListaBaralhoJogador;
         private Thread threadListaDeCartaDoBaralho;
@@ -29,14 +27,13 @@ namespace Cod3rsGrowth.Forms
         private string STRING_VAZIA = string.Empty;
 
         public FormNovoBaralho(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
-            JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController, Jogador _jogador, Baralho? _baralhoParcial)
+            JwtServico _tokenServico, LoginController _loginController, Jogador _jogador, Baralho? _baralhoParcial)
         {
             jogador = _jogador;
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
             tokenServico = _tokenServico;
-            conexaoDados = _conexaoDados;
             baralhoParcial = _baralhoParcial;
             loginController = _loginController;
             InitializeComponent();
@@ -167,7 +164,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormListaDeCartaDoBaralho(object obj)
         {
-            Application.Run(new FormListaDeCartaDoBaralho(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador, baralhoParcial));
+            Application.Run(new FormListaDeCartaDoBaralho(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador, baralhoParcial));
         }
 
         private void AoClicarComumDesselecionaOutrasCheckBoxRaridade(object sender, EventArgs e)
@@ -228,7 +225,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormListaBaralhoJogador(object obj)
         {
-            Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController, jogador));
+            Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador));
         }
 
         private CartaFiltro GerarFiltro(object sender, EventArgs e)

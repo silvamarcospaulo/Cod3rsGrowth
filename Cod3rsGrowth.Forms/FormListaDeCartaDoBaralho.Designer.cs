@@ -137,7 +137,7 @@
             buttonCriarBaralhoBaralho.TabIndex = 1;
             buttonCriarBaralhoBaralho.Text = "Confirmar lista e criar baralho";
             buttonCriarBaralhoBaralho.UseVisualStyleBackColor = true;
-            buttonCriarBaralhoBaralho.Click += buttonCriarBaralhoBaralho_Click;
+            buttonCriarBaralhoBaralho.Click += AoClicarCriaBaralho;
             // 
             // labelCustoParcial
             // 
