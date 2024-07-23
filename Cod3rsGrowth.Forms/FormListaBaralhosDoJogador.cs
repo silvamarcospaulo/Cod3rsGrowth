@@ -6,50 +6,59 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using System.ComponentModel;
 
 namespace Cod3rsGrowth.Forms
 {
     public partial class FormListaBaralhosDoJogador : Form
     {
-        private Jogador jogador;
-        private CartaServico cartaServico;
-        private BaralhoServico baralhoServico;
-        private JogadorServico jogadorServico;
-        private JwtServico tokenServico;
-        private LoginController loginController;
+        private Jogador _jogador;
+        private CartaServico _cartaServico;
+        private BaralhoServico _baralhoServico;
+        private JogadorServico _jogadorServico;
+        private JwtServico _tokenServico;
+        private LoginController _loginController;
         private Thread threadFormEntrar;
         private Thread threadFormEditarPerfil;
         private Thread threadFormNovoBaralho;
-        const int QUANTIDADE_MINIMA = 0;
-        const int PRECO_PADRAO = 0;
-        DateTime DATA_PADRAO = Convert.ToDateTime("01/01/2001");
+        private Thread threadFromsListaBaralhosDoJogador;
+        private const int QUANTIDADE_MINIMA = 0;
+        private const int PRECO_PADRAO = 0;
+        private DateTime DATA_PADRAO = Convert.ToDateTime("01/01/2001");
+        private DialogResult resposta;
+        private Baralho baralhoSelecionado;
 
-        public FormListaBaralhosDoJogador(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
-            JwtServico _tokenServico, LoginController _loginController, Jogador _jogador)
+
+        public FormListaBaralhosDoJogador(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
+            JwtServico tokenServico, LoginController loginController, Jogador jogador)
         {
-            jogador = _jogador;
-            cartaServico = _cartaServico;
-            baralhoServico = _baralhoServico;
-            jogadorServico = _jogadorServico;
-            tokenServico = _tokenServico;
-            loginController = _loginController;
+            _jogador = jogador;
+            _cartaServico = cartaServico;
+            _baralhoServico = baralhoServico;
+            _jogadorServico = jogadorServico;
+            _tokenServico = tokenServico;
+            _loginController = loginController;
 
             InitializeComponent();
         }
 
         public void CarregarFormListaBaralhosDoJogador(object sender, EventArgs e)
         {
+            CarregarLabelJogador();
+            var listaDeBaralho = new BindingList<Baralho>(_baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = _jogador.Id }));
+            dataGridViewBaralhos.DataSource = listaDeBaralho;
+        }
+
+        private void CarregarLabelJogador()
+        {
             const int casasDecimais = 2;
 
-            Text = $"MTG DeckBuilder - Home | {jogador.NomeJogador} {jogador.SobrenomeJogador}";
+            Text = $"MTG DeckBuilder - Home | {_jogador.NomeJogador} {_jogador.SobrenomeJogador}";
 
-            labelDadosJogador.Text = $"Nome jogador: {jogador.NomeJogador} {jogador.SobrenomeJogador}" +
-                $"   |   Usuário: {jogador.UsuarioJogador}" +
-                $"   |   Quantidade de baralho: {jogador.QuantidadeDeBaralhosJogador}" +
-                $"   |   Preco total das cartas: R${Math.Round(jogador.PrecoDasCartasJogador, casasDecimais)}";
-
-            var listaDeBaralho = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
-            dataGridViewBaralhos.DataSource = listaDeBaralho;
+            labelDadosJogador.Text = $"Nome _jogador: {_jogador.NomeJogador} {_jogador.SobrenomeJogador}" +
+                $"   |   Usuário: {_jogador.UsuarioJogador}" +
+                $"   |   Quantidade de baralho: {_jogador.QuantidadeDeBaralhosJogador}" +
+                $"   |   Preco total das cartas: R${Math.Round(_jogador.PrecoDasCartasJogador, casasDecimais)}";
         }
 
         private void AoClicarFinalizaASessao(object sender, EventArgs e)
@@ -62,7 +71,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormJogadorEntrar(object obj)
         {
-            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController));
+            Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
         }
 
         private void AoClicarAbrirTelaDeEdicaoDePerfil(object sender, EventArgs e)
@@ -75,19 +84,19 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormJogadorEditarPerfil(object obj)
         {
-            Application.Run(new FormJogadorEditarPerfil(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador));
+            Application.Run(new FormJogadorEditarPerfil(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
         }
 
         private void AoClicarAplicaSelecaoDeFiltros(object sender, EventArgs e)
         {
-            dataGridViewBaralhos.DataSource = baralhoServico.ObterTodos(GerarFiltro(sender, e));
+            dataGridViewBaralhos.DataSource = _baralhoServico.ObterTodos(GerarFiltro(sender, e));
         }
 
         private BaralhoFiltro GerarFiltro(object sender, EventArgs e)
         {
             var filtro = new BaralhoFiltro()
             {
-                IdJogador = jogador.Id
+                IdJogador = _jogador.Id
             };
 
             filtro = VerificarFiltroFormatoDeJogo(filtro);
@@ -171,7 +180,7 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarLimpaSelecaoDeFiltros(object sender, EventArgs e)
         {
             LimparFiltro();
-            dataGridViewBaralhos.DataSource = baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = jogador.Id });
+            dataGridViewBaralhos.DataSource = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = _jogador.Id });
 
         }
 
@@ -204,7 +213,39 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormNovoBaralho(object obj)
         {
-            Application.Run(new FormNovoBaralho(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador, null));
+            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, null));
+        }
+
+        private void AoClicarCarregaDadosDoBaralho(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var selecao = dataGridViewBaralhos.Rows[e.RowIndex];
+                var baralhoGrid = (Baralho)selecao.DataBoundItem;
+                baralhoSelecionado = baralhoGrid;
+
+                AoClicarApagaBaralho(sender, e);
+            }
+        }
+
+        private void AoClicarApagaBaralho(object sender, EventArgs e)
+        {
+            try
+            {
+                resposta = MessageBox.Show("Apagar baralho?", "Confirmação", MessageBoxButtons.YesNo);
+
+                if (resposta == DialogResult.Yes)
+                {
+                    _baralhoServico.Excluir(baralhoSelecionado.Id);
+                    MessageBox.Show("Baralho excluído!");
+
+                    CarregarFormListaBaralhosDoJogador(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Não foi possível apagar o baralho selecionado no momento, tente novamente mais tarde!\n{ex.Message}", "Erro ao apagar baralho");
+            }
         }
     }
 }

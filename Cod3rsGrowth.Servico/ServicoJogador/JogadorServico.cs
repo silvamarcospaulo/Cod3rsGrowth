@@ -151,7 +151,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             try
             {
-                _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador })?.ForEach(baralho => _baralhoServico.Excluir(baralho.Id));
+                jogadorExcluir?.BaralhosJogador?.ForEach(baralho => _baralhoServico.Excluir(baralho.Id));
 
                 _IJogadorRepository.Excluir(jogadorExcluir.Id);
             }

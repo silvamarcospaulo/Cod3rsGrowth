@@ -128,6 +128,9 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             try
             {
                 var baralhoExcluir = ObterPorId(idBaralho);
+
+                baralhoExcluir.CartasDoBaralho.ForEach(copia => ExcluirCopiaDeCartas(copia.Id));
+
                 _IBaralhoRepository.Excluir(idBaralho);
             }
             catch (ValidationException e)
@@ -141,7 +144,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             var baralho = _IBaralhoRepository.ObterPorId(idBaralho);
 
-            baralho.CartasDoBaralho = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id }); Atualizar(baralho);
+            baralho.CartasDoBaralho = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id });
 
             return baralho;
         }

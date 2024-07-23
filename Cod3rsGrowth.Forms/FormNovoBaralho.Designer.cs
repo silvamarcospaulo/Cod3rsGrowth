@@ -568,7 +568,7 @@
             dataGridViewCartas.RowTemplate.Height = 25;
             dataGridViewCartas.Size = new Size(602, 541);
             dataGridViewCartas.TabIndex = 4;
-            dataGridViewCartas.CellContentClick += AoClicarSelecionaCarta;
+            dataGridViewCartas.CellClick += AoClicarSelecionaCarta;
             // 
             // idDataGridViewTextBoxColumn
             // 
