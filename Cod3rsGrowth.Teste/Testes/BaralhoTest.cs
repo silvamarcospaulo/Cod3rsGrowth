@@ -334,7 +334,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "Campo nome de baralho não pode ser vazio";
+            const string mensagemDeErroEsperada = "Insira um nome para o baralho.\n";
 
             var baralhoTeste = new Baralho()
             {
@@ -398,7 +398,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(0)]
         public void ao_Criar_commmander_com_mais_de_uma_copia_de_carta_nao_terreno_deve_retornar_Exception(int quantidadeDeCartasTeste)
         {
-            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
+            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado.\n";
 
             var baralhoTeste = new Baralho()
             {
@@ -480,7 +480,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(FormatoDeJogoEnum.Standard)]
         public void ao_Criar_com_quantidade_de_cartas_nao_compativel_com_o_tipo_de_jogo_pauper_ou_standard_deve_retornar_Exception(FormatoDeJogoEnum formatoDeJogoTeste)
         {
-            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado";
+            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho não compativel com o formato de jogo selecionado.\n";
 
             var baralhoTeste = new Baralho()
             {
