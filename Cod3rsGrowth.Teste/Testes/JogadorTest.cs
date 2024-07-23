@@ -135,15 +135,15 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "Campo NOME é obrigatório.";
+            const string mensagemDeErroEsperada = "Preencha seu nome no campo indicado.\n";
 
             var jogadorTeste = new Jogador()
             {
                 Id = 4,
                 NomeJogador = "",
                 SobrenomeJogador = "Detofol",
-                UsuarioJogador = "pauloo",
-                UsuarioConfirmacaoJogador = "pauloo",
+                UsuarioJogador = "mpauloo",
+                UsuarioConfirmacaoJogador = "mpauloo",
                 SenhaHashJogador = "Senha123",
                 SenhaHashConfirmacaoJogador = "Senha123",
                 Role = "Jogador",
@@ -162,15 +162,15 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_data_de_nascimento_vazia_deve_retornar_Excepion()
         {
-            const string mensagemDeErroEsperada = "Campo DATA DE NASCIMENTO é obrigatório.";
+            const string mensagemDeErroEsperada = "Preencha sua data de nascimento no campo indicado.\n";
 
             var jogadorTeste = new Jogador()
             {
                 Id = 4,
                 NomeJogador = "Detofol",
                 SobrenomeJogador = "Detofol",
-                UsuarioJogador = "pauloo",
-                UsuarioConfirmacaoJogador = "pauloo",
+                UsuarioJogador = "paulgoo",
+                UsuarioConfirmacaoJogador = "paulgoo",
                 SenhaHashJogador = "Senha123",
                 SenhaHashConfirmacaoJogador = "Senha123",
                 Role = "Jogador",
@@ -189,15 +189,15 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_idade_menor_que_treze_anos_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "O jogador deve possuir mais de 13 anos para criar conta";
+            const string mensagemDeErroEsperada = "MTG Deckbuilder possui conteúdo exclusivo para maiores de 13 anos.\n";
 
             var jogadorTeste = new Jogador()
             {
                 Id = 4,
                 NomeJogador = "Detofol",
                 SobrenomeJogador = "Detofol",
-                UsuarioJogador = "pauloo",
-                UsuarioConfirmacaoJogador = "pauloo",
+                UsuarioJogador = "paulop",
+                UsuarioConfirmacaoJogador = "paulop",
                 SenhaHashJogador = "Senha123",
                 SenhaHashConfirmacaoJogador = "Senha123",
                 Role = "Jogador",
@@ -221,8 +221,8 @@ namespace Cod3rsGrowth.Teste.Testes
                 Id = 4,
                 NomeJogador = "Detofol",
                 SobrenomeJogador = "Detofol",
-                UsuarioJogador = "pauloo",
-                UsuarioConfirmacaoJogador = "pauloo",
+                UsuarioJogador = "paulooo",
+                UsuarioConfirmacaoJogador = "paulooo",
                 SenhaHashJogador = "Senha123",
                 SenhaHashConfirmacaoJogador = "Senha123",
                 Role = "Jogador",
@@ -243,9 +243,9 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(2)]
         public void ao_Atualizar_com_dados_validos_deve_adicionar_um_novo_jogador(int idJogadorTeste)
         {
-
-
             var jogadorTeste = servicoJogador.ObterPorId(idJogadorTeste);
+            jogadorTeste.SenhaHashJogador = "4e890854906f50e9ea4953ee9ec0468bc3f65ceee72876c850c3e5167c9220a6";
+            jogadorTeste.SenhaHashConfirmacaoJogador = "4e890854906f50e9ea4953ee9ec0468bc3f65ceee72876c850c3e5167c9220a6";
 
             servicoJogador.Atualizar(jogadorTeste);
 
@@ -300,7 +300,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                     NomeCarta = "Ghalta, Fome Primordial",
                                     CustoDeManaConvertidoCarta = 12,
                                     TipoDeCarta = "Creature",
-                                    RaridadeCarta = RaridadeEnum.Rare,
+                                    RaridadeCarta = RaridadeEnum.Raro,
                                     PrecoCarta = Convert.ToDecimal(5),
                                     CorCarta = "{G}"
                                 },
@@ -315,7 +315,7 @@ namespace Cod3rsGrowth.Teste.Testes
                                     NomeCarta = "Floresta",
                                     CustoDeManaConvertidoCarta = 0,
                                     TipoDeCarta = "Basic Land",
-                                    RaridadeCarta = RaridadeEnum.Common,
+                                    RaridadeCarta = RaridadeEnum.Comum,
                                     PrecoCarta = Convert.ToDecimal(0.5),
                                     CorCarta = ""
                                 },
@@ -328,7 +328,9 @@ namespace Cod3rsGrowth.Teste.Testes
                         CustoDeManaConvertidoDoBaralho = 0,
                         CorBaralho = "{G}"
                     }
-                }
+                },
+                SenhaHashJogador = "4e890854906f50e9ea4953ee9ec0468bc3f65ceee72876c850c3e5167c9220a6",
+                SenhaHashConfirmacaoJogador = "4e890854906f50e9ea4953ee9ec0468bc3f65ceee72876c850c3e5167c9220a6"
             };
 
             var jogadorTesteExistente = servicoJogador.ObterPorId(jogadorTeste.Id);

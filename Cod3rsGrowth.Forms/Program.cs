@@ -49,7 +49,6 @@ namespace Cod3rsGrowth.Forms
                 ServiceProvider.GetRequiredService<BaralhoServico>(),
                 ServiceProvider.GetRequiredService<JogadorServico>(),
                 ServiceProvider.GetRequiredService<JwtServico>(),
-                ServiceProvider.GetRequiredService<ConexaoDados>(),
                 ServiceProvider.GetRequiredService<LoginController>()
             ));
         }
@@ -117,10 +116,10 @@ namespace Cod3rsGrowth.Forms
             colecao.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             colecao.AddAuthentication(x =>
-                {
-                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                 .AddJwtBearer(x =>
                 {
                     x.RequireHttpsMetadata = false;

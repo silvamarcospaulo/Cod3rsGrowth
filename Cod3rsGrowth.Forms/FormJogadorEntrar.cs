@@ -1,5 +1,4 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -15,7 +14,6 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
         private JwtServico _tokenServico;
-        private ConexaoDados _conexaoDados;
         private LoginController _loginController;
         private Jogador _jogador;
         private Thread threadFormsJogador;
@@ -23,13 +21,12 @@ namespace Cod3rsGrowth.Forms
         private Thread threadFormsEsqueciSenha;
 
         public FormJogadorEntrar(CartaServico cartaServico, BaralhoServico baralhoServico,
-            JogadorServico jogadorServico, JwtServico tokenServico, ConexaoDados conexaoDados, LoginController loginController)
+            JogadorServico jogadorServico, JwtServico tokenServico, LoginController loginController)
         {
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
             _tokenServico = tokenServico;
-            _conexaoDados = conexaoDados;
             _loginController = loginController;
             InitializeComponent();
         }
@@ -69,7 +66,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregaFormJogador(object obj)
         {
-            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController, _jogador));
+            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
         }
 
         private void AoClicarAbreTelaDeCadastroDeConta(object sender, LinkLabelLinkClickedEventArgs e)
@@ -82,7 +79,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAbrirTelaDeCadastroEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorCadastro(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController));
+            Application.Run(new FormJogadorCadastro(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
         }
 
         private void AoClicarAbreTelaDeRestauracaoDeSenha(object sender, LinkLabelLinkClickedEventArgs e)
@@ -95,8 +92,19 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAbrirTelaDeEsqueciSenhaEmNovaJanela(object obj)
         {
-            Application.Run(new FormEsqueciSenha(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _conexaoDados, _loginController));
+            Application.Run(new FormEsqueciSenha(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
         }
 
+        private void AoClicarVisualizaSenha(object sender, EventArgs e)
+        {
+            if (textBoxSenha.UseSystemPasswordChar)
+            {
+                textBoxSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxSenha.UseSystemPasswordChar = true;
+            }
+        }
     }
 }

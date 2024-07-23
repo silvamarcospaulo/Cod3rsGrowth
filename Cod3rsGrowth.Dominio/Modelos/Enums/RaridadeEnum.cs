@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Cod3rsGrowth.Dominio.Modelos.Enums
 {
     public enum RaridadeEnum
     {
-        [Description("Common")]
-        Common = 0,
-        [Description("Uncommon")]
-        Uncommon = 1,
-        [Description("Rare")]
-        Rare = 2,
-        [Description("Mythic")]
-        Mythic = 3,
+        [Description("Comum")]
+        Comum = 0,
+        [Description("Incomum")]
+        Incomum = 1,
+        [Description("Raro")]
+        Raro = 2,
+        [Description("Mítico")]
+        Mitico = 3,
         [Description("Desconhecido")]
         Desconhecido = 4
     }

@@ -1,11 +1,9 @@
-﻿using Cod3rsGrowth.Dominio.Modelos.CartasJson;
+﻿using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Dominio.Modelos.CartasJson;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using FluentMigrator;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cod3rsGrowth.Dominio.Migrador
 {
@@ -24,8 +22,8 @@ namespace Cod3rsGrowth.Dominio.Migrador
 
             var arquivosJson = new List<string>
             {
-                "cartas202406242110291.json",
                 "cartas202406242110292.json",
+                "cartas202406242110291.json",
                 "cartas202406242110293.json",
                 "cartas202406242110294.json",
                 "cartas202406242110295.json",
@@ -49,12 +47,11 @@ namespace Cod3rsGrowth.Dominio.Migrador
                 Insert.IntoTable("Carta").Row(new
                 {
                     Nome = carta.Name,
-                    CustoDeManaConvertido = carta?.Cmc ?? valorNulo,
-                    TipoDeCarta = carta?.type_line ?? string.Empty,
+                    CustoDeManaConvertido = Convert.ToInt32(carta?.Cmc ?? valorNulo),
+                    Tipo = carta?.type_line ?? string.Empty,
                     Raridade = raridadeCarta,
-                    Preco = Convert.ToDecimal(carta?.Prices?.Usd ?? caractereNulo),
-                    Cor = coresDaCarta,
-                    Imagem = carta?.Image_uris?.png ?? string.Empty
+                    Preco = carta?.Prices?.Usd ?? valorNulo,
+                    Cor = coresDaCarta
                 });
             }
         }
@@ -69,10 +66,10 @@ namespace Cod3rsGrowth.Dominio.Migrador
             const int valorInvalido = 4;
             switch (raridade)
             {
-                case "common": return Convert.ToInt32(RaridadeEnum.Common);
-                case "uncommon": return Convert.ToInt32(RaridadeEnum.Uncommon);
-                case "rare": return Convert.ToInt32(RaridadeEnum.Rare);
-                case "mythic": return Convert.ToInt32(RaridadeEnum.Mythic);
+                case "common": return Convert.ToInt32(RaridadeEnum.Comum);
+                case "uncommon": return Convert.ToInt32(RaridadeEnum.Incomum);
+                case "rare": return Convert.ToInt32(RaridadeEnum.Raro);
+                case "mythic": return Convert.ToInt32(RaridadeEnum.Mitico);
                 default: return valorInvalido;
             };
         }

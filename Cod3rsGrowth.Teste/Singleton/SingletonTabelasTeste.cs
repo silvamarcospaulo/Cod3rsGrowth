@@ -12,7 +12,7 @@ namespace Cod3rsGrowth.Teste.Singleton
                     NomeCarta = "Ilha",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -22,7 +22,7 @@ namespace Cod3rsGrowth.Teste.Singleton
                     NomeCarta = "Pantano",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -32,7 +32,7 @@ namespace Cod3rsGrowth.Teste.Singleton
                     NomeCarta = "Floresta",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -42,7 +42,7 @@ namespace Cod3rsGrowth.Teste.Singleton
                     NomeCarta = "Planice",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -52,7 +52,7 @@ namespace Cod3rsGrowth.Teste.Singleton
                     NomeCarta = "Montanha",
                     CustoDeManaConvertidoCarta = 0,
                     TipoDeCarta = "Basic Land",
-                    RaridadeCarta = RaridadeEnum.Common,
+                    RaridadeCarta = RaridadeEnum.Comum,
                     PrecoCarta = Convert.ToDecimal(0.5),
                     CorCarta = ""
                 },
@@ -62,7 +62,7 @@ namespace Cod3rsGrowth.Teste.Singleton
                     NomeCarta = "Niv-Mizzet, Parum",
                     CustoDeManaConvertidoCarta = 6,
                     TipoDeCarta = "Creature",
-                    RaridadeCarta = RaridadeEnum.Rare,
+                    RaridadeCarta = RaridadeEnum.Raro,
                     PrecoCarta = Convert.ToDecimal(5),
                     CorCarta = "Azul, Vermelho"
                 },
@@ -72,7 +72,7 @@ namespace Cod3rsGrowth.Teste.Singleton
                     NomeCarta = "Ghalta, Fome Primordial",
                     CustoDeManaConvertidoCarta = 12,
                     TipoDeCarta = "Creature",
-                    RaridadeCarta = RaridadeEnum.Rare,
+                    RaridadeCarta = RaridadeEnum.Raro,
                     PrecoCarta = Convert.ToDecimal(5),
                     CorCarta = "Verde"
                 }

@@ -1,20 +1,16 @@
-﻿using LinqToDB;
+﻿using Cod3rsGrowth.Dominio.Auth;
+using Cod3rsGrowth.Dominio.Interfaces;
+using Cod3rsGrowth.Dominio.Migrador;
+using Cod3rsGrowth.Infra.Repository;
+using FluentMigrator.Runner;
+using LinqToDB;
 using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
-using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-
-using Cod3rsGrowth.Dominio.Auth;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Cod3rsGrowth.Dominio.Interfaces;
-using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra.Repository;
-using FluentValidation;
-using static System.Formats.Asn1.AsnWriter;
-using FluentMigrator.Runner;
-using Cod3rsGrowth.Dominio.Migrador;
+using System.Configuration;
+using System.Text;
 
 namespace Cod3rsGrowth.Infra
 {

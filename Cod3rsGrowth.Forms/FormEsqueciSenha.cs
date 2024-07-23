@@ -1,10 +1,10 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Cod3rsGrowth.Web.Controllers;
+using FluentValidation;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -14,18 +14,16 @@ namespace Cod3rsGrowth.Forms
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
         private JwtServico tokenServico;
-        private ConexaoDados conexaoDados;
         private LoginController loginController;
         private Thread threadFormsEntrar;
 
         public FormEsqueciSenha(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, JwtServico _tokenServico, ConexaoDados _conexaoDados, LoginController _loginController)
+            JogadorServico _jogadorServico, JwtServico _tokenServico, LoginController _loginController)
         {
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
             tokenServico = _tokenServico;
-            conexaoDados = _conexaoDados;
             loginController = _loginController;
             InitializeComponent();
         }
@@ -43,7 +41,14 @@ namespace Cod3rsGrowth.Forms
                 DataNascimentoJogador = new DateTime(day: data.Day, month: data.Month, year: data.Year)
             };
 
-            jogadorServico.AlterarSenha(jogadorRestaurarSenha);
+            try
+            {
+                jogadorServico.AlterarSenha(jogadorRestaurarSenha);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro ao recuperar conta");
+            }
 
             this.Close();
             threadFormsEntrar = new Thread(CarregarJanelaJogadorEntrar);
@@ -61,7 +66,31 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarJanelaJogadorEntrar(object obj)
         {
-            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, conexaoDados, loginController));
+            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController));
+        }
+
+        private void AoClicarVisualizaSenha(object sender, EventArgs e)
+        {
+            if (textBoxNovasenha.UseSystemPasswordChar)
+            {
+                textBoxNovasenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxNovasenha.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void AoClicarVisualizaConfirmacaoDeSenha(object sender, EventArgs e)
+        {
+            if (textBoxConfirmarNovaSenha.UseSystemPasswordChar)
+            {
+                textBoxConfirmarNovaSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxConfirmarNovaSenha.UseSystemPasswordChar = true;
+            }
         }
     }
 }

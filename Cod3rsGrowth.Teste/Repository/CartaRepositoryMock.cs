@@ -10,6 +10,7 @@ namespace Cod3rsGrowth.Teste.Repository
     public class CartaRepositoryMock : ICartaRepository
     {
         private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
+        private const int VALOR_NULO = 0;
 
         private int GerarIdCarta()
         {
@@ -61,18 +62,34 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.TipoDeCarta != null)
+            if (filtro?.CorCarta?.Count > VALOR_NULO)
             {
-                query = from q in query
-                        where q.TipoDeCarta.Contains(filtro.TipoDeCarta)
-                        select q;
+                foreach (var cor in filtro?.CorCarta)
+                {
+                    query = from q in query
+                            where q.CorCarta == cor
+                            select q;
+                }
             }
 
-            if (filtro?.RaridadeCarta != null)
+            if (filtro?.TipoDeCarta?.Count > VALOR_NULO)
             {
-                query = from q in query
-                        where q.RaridadeCarta == filtro.RaridadeCarta
-                        select q;
+                foreach (var tipo in filtro?.TipoDeCarta)
+                {
+                    query = from q in query
+                            where q.TipoDeCarta.Contains(tipo)
+                            select q;
+                }
+            }
+
+            if (filtro?.RaridadeCarta?.Count > VALOR_NULO)
+            {
+                foreach (var raridade in filtro?.RaridadeCarta)
+                {
+                    query = from q in query
+                            where q.RaridadeCarta == raridade
+                            select q;
+                }
             }
 
             if (filtro?.PrecoCartaMinimo != null)
