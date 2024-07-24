@@ -11,6 +11,5 @@ namespace Cod3rsGrowth.Infra
         public ITable<CopiaDeCartasNoBaralho> TabelaCartasDoBaralho => this.GetTable<CopiaDeCartasNoBaralho>();
         public ITable<Baralho> TabelaBaralho => this.GetTable<Baralho>();
         public ITable<Jogador> TabelaJogador => this.GetTable<Jogador>();
-
     }
 }

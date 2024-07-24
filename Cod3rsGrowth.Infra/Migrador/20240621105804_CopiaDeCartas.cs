@@ -9,8 +9,8 @@ namespace Cod3rsGrowth.Dominio.Migrador
         {
             Create.Table("CopiaDeCartas")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
-                .WithColumn("IdBaralho").AsInt64().NotNullable().ForeignKey("Baralho", "Id")
-                .WithColumn("IdCarta").AsInt64().NotNullable().ForeignKey("Carta", "Id")
+                .WithColumn("IdBaralho").AsInt64().NotNullable().ForeignKey("Baralho", "Id").OnDeleteOrUpdate(System.Data.Rule.Cascade)
+                .WithColumn("IdCarta").AsInt64().NotNullable().ForeignKey("Carta", "Id").OnDeleteOrUpdate(System.Data.Rule.Cascade)
                 .WithColumn("Quantidade").AsInt64().NotNullable();
         }
 

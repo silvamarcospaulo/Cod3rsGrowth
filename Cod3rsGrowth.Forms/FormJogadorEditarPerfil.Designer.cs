@@ -40,8 +40,7 @@
             labelNovoUsuario = new Label();
             labelConfirmarNovoUsuario = new Label();
             labelNome = new Label();
-            labelEditarPerfil = new Label();
-            label1 = new Label();
+            labelInformacoesDoPerfil = new Label();
             labelSobrenome = new Label();
             labelUsuario = new Label();
             labelDataDeNascimento = new Label();
@@ -49,6 +48,12 @@
             labelSobrenomeJogador = new Label();
             labelUsuarioJogador = new Label();
             labelDataDeNascimentoJogador = new Label();
+            buttonApagarPerfil = new Button();
+            label2 = new Label();
+            labelEncerrarPerfil = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label1 = new Label();
             SuspendLayout();
             // 
             // textBoxConfirmarNovaSenha
@@ -122,18 +127,11 @@
             labelNome.FlatStyle = FlatStyle.System;
             labelNome.Name = "labelNome";
             // 
-            // labelEditarPerfil
+            // labelInformacoesDoPerfil
             // 
-            resources.ApplyResources(labelEditarPerfil, "labelEditarPerfil");
-            labelEditarPerfil.FlatStyle = FlatStyle.System;
-            labelEditarPerfil.Name = "labelEditarPerfil";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(label1, "label1");
-            label1.FlatStyle = FlatStyle.System;
-            label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Name = "label1";
+            resources.ApplyResources(labelInformacoesDoPerfil, "labelInformacoesDoPerfil");
+            labelInformacoesDoPerfil.FlatStyle = FlatStyle.System;
+            labelInformacoesDoPerfil.Name = "labelInformacoesDoPerfil";
             // 
             // labelSobrenome
             // 
@@ -181,12 +179,58 @@
             labelDataDeNascimentoJogador.ForeColor = SystemColors.ControlDarkDark;
             labelDataDeNascimentoJogador.Name = "labelDataDeNascimentoJogador";
             // 
+            // buttonApagarPerfil
+            // 
+            resources.ApplyResources(buttonApagarPerfil, "buttonApagarPerfil");
+            buttonApagarPerfil.Cursor = Cursors.Hand;
+            buttonApagarPerfil.Name = "buttonApagarPerfil";
+            buttonApagarPerfil.UseVisualStyleBackColor = true;
+            buttonApagarPerfil.Click += AoClicarApagaPerfil;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.FlatStyle = FlatStyle.System;
+            label2.ForeColor = SystemColors.ControlDarkDark;
+            label2.Name = "label2";
+            // 
+            // labelEncerrarPerfil
+            // 
+            resources.ApplyResources(labelEncerrarPerfil, "labelEncerrarPerfil");
+            labelEncerrarPerfil.FlatStyle = FlatStyle.System;
+            labelEncerrarPerfil.Name = "labelEncerrarPerfil";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(label3, "label3");
+            label3.FlatStyle = FlatStyle.System;
+            label3.ForeColor = SystemColors.ControlDarkDark;
+            label3.Name = "label3";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(label4, "label4");
+            label4.FlatStyle = FlatStyle.System;
+            label4.Name = "label4";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(label1, "label1");
+            label1.FlatStyle = FlatStyle.System;
+            label1.ForeColor = SystemColors.ControlDarkDark;
+            label1.Name = "label1";
+            // 
             // FormJogadorEditarPerfil
             // 
             AcceptButton = buttonEnviarAlteracoes;
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = linkLabelCancelar;
+            Controls.Add(label3);
+            Controls.Add(label4);
+            Controls.Add(label2);
+            Controls.Add(labelEncerrarPerfil);
+            Controls.Add(buttonApagarPerfil);
             Controls.Add(labelDataDeNascimentoJogador);
             Controls.Add(labelUsuarioJogador);
             Controls.Add(labelSobrenomeJogador);
@@ -195,7 +239,7 @@
             Controls.Add(labelUsuario);
             Controls.Add(labelSobrenome);
             Controls.Add(label1);
-            Controls.Add(labelEditarPerfil);
+            Controls.Add(labelInformacoesDoPerfil);
             Controls.Add(labelNome);
             Controls.Add(textBoxConfirmarNovaSenha);
             Controls.Add(labelConfirmarNovaSenha);
@@ -210,6 +254,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "FormJogadorEditarPerfil";
+            Load += CarregarJogadorEditarPerfil;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -228,8 +273,7 @@
         private Label labelNovoUsuario;
         private Label labelConfirmarNovoUsuario;
         private Label labelNome;
-        private Label labelEditarPerfil;
-        private Label label1;
+        private Label labelInformacoesDoPerfil;
         private Label labelSobrenome;
         private Label labelUsuario;
         private Label labelDataDeNascimento;
@@ -237,5 +281,11 @@
         private Label labelSobrenomeJogador;
         private Label labelUsuarioJogador;
         private Label labelDataDeNascimentoJogador;
+        private Button buttonApagarPerfil;
+        private Label label2;
+        private Label labelEncerrarPerfil;
+        private Label label3;
+        private Label label4;
+        private Label label1;
     }
 }

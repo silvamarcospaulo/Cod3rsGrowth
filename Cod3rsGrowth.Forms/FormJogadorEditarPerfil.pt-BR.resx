@@ -117,23 +117,202 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="textBoxConfirmarNovaSenha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 491</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="textBoxConfirmarNovaSenha.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
+  <data name="labelConfirmarNovaSenha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 461</value>
+  </data>
+  <data name="textBoxNovaSenha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 429</value>
+  </data>
   <data name="textBoxNovaSenha.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="textBoxConfirmarNovoUsuario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 367</value>
   </data>
   <data name="textBoxConfirmarNovoUsuario.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <data name="linkLabelCancelar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 693</value>
+  </data>
   <data name="linkLabelCancelar.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
+  </data>
+  <data name="buttonEnviarAlteracoes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 523</value>
   </data>
   <data name="buttonEnviarAlteracoes.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
+  <data name="textBoxNovoUsuario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 305</value>
+  </data>
   <data name="textBoxNovoUsuario.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="labelNovaSenha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 399</value>
+  </data>
+  <data name="labelNovoUsuario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 275</value>
+  </data>
+  <data name="labelConfirmarNovoUsuario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 337</value>
+  </data>
+  <data name="labelNome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 80</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelInformacoesDoPerfil.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelInformacoesDoPerfil.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelInformacoesDoPerfil.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 20pt</value>
+  </data>
+  <data name="labelInformacoesDoPerfil.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 37</value>
+  </data>
+  <data name="labelInformacoesDoPerfil.Text" xml:space="preserve">
+    <value>Informações do perfil</value>
+  </data>
+  <data name="labelInformacoesDoPerfil.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="labelSobrenome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 114</value>
+  </data>
+  <data name="labelUsuario.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 148</value>
+  </data>
+  <data name="labelDataDeNascimento.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 182</value>
+  </data>
+  <data name="labelNomeJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>74, 80</value>
+  </data>
+  <data name="labelSobrenomeJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>112, 114</value>
+  </data>
+  <data name="labelUsuarioJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 148</value>
+  </data>
+  <data name="labelDataDeNascimentoJogador.Location" type="System.Drawing.Point, System.Drawing">
+    <value>171, 182</value>
+  </data>
+  <data name="buttonApagarPerfil.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="buttonApagarPerfil.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonApagarPerfil.Size" type="System.Drawing.Size, System.Drawing">
+    <value>351, 36</value>
+  </data>
+  <data name="buttonApagarPerfil.Text" xml:space="preserve">
+    <value>Encerrar conta</value>
+  </data>
+  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 15</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Essa ação excluirá todos seus dados e é irreversível!</value>
+  </data>
+  <data name="label2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="labelEncerrarPerfil.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="labelEncerrarPerfil.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelEncerrarPerfil.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 20pt</value>
+  </data>
+  <data name="labelEncerrarPerfil.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelEncerrarPerfil.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 37</value>
+  </data>
+  <data name="labelEncerrarPerfil.Text" xml:space="preserve">
+    <value>Encerrar conta</value>
+  </data>
+  <data name="labelEncerrarPerfil.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 15</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Edite Usuário e Senha.</value>
+  </data>
+  <data name="label3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="label4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 20pt</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 37</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Editar perfil</value>
+  </data>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 55</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 15</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Todas as suas informações de perfil aqui!</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>375, 721</value>
   </data>
 </root>

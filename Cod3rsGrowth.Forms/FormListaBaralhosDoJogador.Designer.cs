@@ -363,6 +363,7 @@
             dataGridViewBaralhos.Name = "dataGridViewBaralhos";
             dataGridViewBaralhos.ReadOnly = true;
             dataGridViewBaralhos.RowTemplate.Height = 25;
+            dataGridViewBaralhos.CellClick += AoClicarCarregaDadosDoBaralho;
             // 
             // dataGridViewTextBoxColumn1
             // 
