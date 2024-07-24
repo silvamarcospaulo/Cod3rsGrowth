@@ -147,13 +147,9 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public void Excluir(int idJogador)
         {
-            var jogadorExcluir = ObterPorId(idJogador);
-
             try
             {
-                jogadorExcluir?.BaralhosJogador?.ForEach(baralho => _baralhoServico.Excluir(baralho.Id));
-
-                _IJogadorRepository.Excluir(jogadorExcluir.Id);
+                _IJogadorRepository.Excluir(idJogador);
             }
             catch (ValidationException e)
             {

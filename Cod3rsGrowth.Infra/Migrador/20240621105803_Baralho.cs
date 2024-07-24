@@ -1,4 +1,5 @@
 ﻿using FluentMigrator;
+using FluentMigrator.SqlServer;
 
 namespace Cod3rsGrowth.Dominio.Migrador
 {
@@ -10,7 +11,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
         {
             Create.Table("Baralho")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
-                .WithColumn("IdJogador").AsInt64().NotNullable().ForeignKey("Jogador", "Id")
+                .WithColumn("IdJogador").AsInt64().NotNullable().ForeignKey("Jogador", "Id").OnDeleteOrUpdate(System.Data.Rule.Cascade)
                 .WithColumn("Nome").AsString(255).NotNullable()
                 .WithColumn("DataDeCriacao").AsDateTime2().NotNullable()
                 .WithColumn("FormatoDeJogo").AsInt32().NotNullable()

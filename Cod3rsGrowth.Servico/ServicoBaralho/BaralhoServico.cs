@@ -1,24 +1,31 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
+using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
+using LinqToDB;
+using LinqToDB.Data;
+using Microsoft.Extensions.Options;
+using System.Transactions;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class BaralhoServico : IBaralhoRepository
     {
-        private readonly IBaralhoRepository _IBaralhoRepository;
+        private readonly IBaralhoRepository _baralhoRepository;
         private readonly CartaServico _cartaServico;
         private readonly IValidator<Baralho> _validadorBaralho;
         private const int VALOR_NULO = 0;
+        private readonly ConexaoDados _conexaoDados;
 
         public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
-            IValidator<Baralho> validadorBaralho)
+            IValidator<Baralho> validadorBaralho, ConexaoDados conexaoDados)
         {
-            _IBaralhoRepository = baralhoRepository;
+            _baralhoRepository = baralhoRepository;
             _cartaServico = cartaServico;
             _validadorBaralho = validadorBaralho;
+            _conexaoDados = conexaoDados;
         }
 
         public static decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
@@ -70,32 +77,63 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return dataCriacao;
         }
 
-        public int Criar(Baralho baralho)
+        public Baralho ValidarBaralho(Baralho baralho)
         {
-            var baralhoCriar = new Baralho();
-
             try
             {
-                baralhoCriar.IdJogador = baralho.IdJogador;
-                baralhoCriar.NomeBaralho = baralho.NomeBaralho;
-                baralhoCriar.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
-                baralhoCriar.CartasDoBaralho = baralho.CartasDoBaralho;
-                baralhoCriar.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
-                baralhoCriar.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
-                baralhoCriar.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
-                baralhoCriar.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
-                var dataDeCriacao = GerarDataDeCriacaoBaralho();
-                baralhoCriar.DataDeCriacaoBaralho = dataDeCriacao;
+                var baralhoCriar = new Baralho
+                {
+                    IdJogador = baralho.IdJogador,
+                    NomeBaralho = baralho.NomeBaralho,
+                    FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
+                    CartasDoBaralho = baralho.CartasDoBaralho,
+                    PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho),
+                    QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho),
+                    CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho),
+                    CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho),
+                    DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho()
+                };
 
                 _validadorBaralho.ValidateAndThrow(baralhoCriar);
-                var idBaralhoCriado = _IBaralhoRepository.Criar(baralhoCriar);
 
-                return idBaralhoCriado;
+                return baralhoCriar;
             }
             catch (ValidationException e)
             {
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
-                throw new Exception($"{mensagemDeErro}");
+                throw new ValidationException($"Validação falhou: {mensagemDeErro}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao validar o baralho.");
+            }
+        }
+
+        public int Criar(Baralho baralho)
+        {
+            using (var transaction = _conexaoDados.BeginTransaction())
+            {
+                try
+                {
+                    var baralhoCriar = ValidarBaralho(baralho);
+
+                    var idBaralhoCriado = _baralhoRepository.Criar(baralhoCriar);
+
+                    foreach (var copia in baralhoCriar.CartasDoBaralho)
+                    {
+                        copia.IdBaralho = idBaralhoCriado;
+                        CriarCopiaDeCartas(copia);
+                    }
+
+                    transaction.Commit();
+
+                    return baralhoCriar.Id;
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao criar o baralho.");
+                }
             }
         }
 
@@ -114,7 +152,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             try
             {
                 _validadorBaralho.ValidateAndThrow(baralhoAtualizado);
-                _IBaralhoRepository.Atualizar(baralhoAtualizado);
+                _baralhoRepository.Atualizar(baralhoAtualizado);
             }
             catch (ValidationException e)
             {
@@ -127,11 +165,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             try
             {
-                var baralhoExcluir = ObterPorId(idBaralho);
-
-                baralhoExcluir.CartasDoBaralho.ForEach(copia => ExcluirCopiaDeCartas(copia.Id));
-
-                _IBaralhoRepository.Excluir(idBaralho);
+                _baralhoRepository.Excluir(idBaralho);
             }
             catch (ValidationException e)
             {
@@ -142,7 +176,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public Baralho ObterPorId(int idBaralho)
         {
-            var baralho = _IBaralhoRepository.ObterPorId(idBaralho);
+            var baralho = _baralhoRepository.ObterPorId(idBaralho);
 
             baralho.CartasDoBaralho = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id });
 
@@ -151,36 +185,36 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            var baralhos = _IBaralhoRepository.ObterTodos(filtro);
+            var baralhos = _baralhoRepository.ObterTodos(filtro);
 
             return baralhos;
         }
 
         public void CriarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            _IBaralhoRepository.CriarCopiaDeCartas(copiaDeCartasNoBaralho);
+            _baralhoRepository.CriarCopiaDeCartas(copiaDeCartasNoBaralho);
         }
 
         public void AtualizarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
             var copiaDeCartasNoBaralhoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.Id);
             copiaDeCartasNoBaralhoAtualizar.QuantidadeCopiasDaCartaNoBaralho = copiaDeCartasNoBaralho.QuantidadeCopiasDaCartaNoBaralho;
-            _IBaralhoRepository.AtualizarCopiaDeCartas(copiaDeCartasNoBaralhoAtualizar);
+            _baralhoRepository.AtualizarCopiaDeCartas(copiaDeCartasNoBaralhoAtualizar);
         }
 
         public void ExcluirCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            _IBaralhoRepository.ExcluirCopiaDeCartas(idCopiaDeCartasNoBaralho);
+            _baralhoRepository.ExcluirCopiaDeCartas(idCopiaDeCartasNoBaralho);
         }
 
         public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            return _IBaralhoRepository.ObterPorIdCopiaDeCartas(idCopiaDeCartasNoBaralho);
+            return _baralhoRepository.ObterPorIdCopiaDeCartas(idCopiaDeCartasNoBaralho);
         }
 
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
-            var copiaDeCartas = _IBaralhoRepository.ObterTodosCopiaDeCartas(filtro);
+            var copiaDeCartas = _baralhoRepository.ObterTodosCopiaDeCartas(filtro);
 
             foreach (var copia in copiaDeCartas)
             {
