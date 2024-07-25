@@ -121,6 +121,9 @@
   <data name="textBoxConfirmarNovaSenha.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 491</value>
   </data>
+  <data name="textBoxConfirmarNovaSenha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 23</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="textBoxConfirmarNovaSenha.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -130,6 +133,9 @@
   </data>
   <data name="textBoxNovaSenha.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 429</value>
+  </data>
+  <data name="textBoxNovaSenha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 23</value>
   </data>
   <data name="textBoxNovaSenha.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -311,6 +317,30 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Todas as suas informações de perfil aqui!</value>
+  </data>
+  <data name="buttonVisualizarSenhaConfirmacao.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 491</value>
+  </data>
+  <data name="buttonVisualizarSenhaConfirmacao.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 23</value>
+  </data>
+  <data name="buttonVisualizarSenhaConfirmacao.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="buttonVisualizarSenhaConfirmacao.Text" xml:space="preserve">
+    <value>Visualizar</value>
+  </data>
+  <data name="buttonVisualizarSenha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>294, 429</value>
+  </data>
+  <data name="buttonVisualizarSenha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 23</value>
+  </data>
+  <data name="buttonVisualizarSenha.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="buttonVisualizarSenha.Text" xml:space="preserve">
+    <value>Visualizar</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>375, 721</value>

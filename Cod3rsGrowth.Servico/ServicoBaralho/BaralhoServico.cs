@@ -111,8 +111,6 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             var baralhoAtualizado = ObterPorId(baralho.Id);
 
-            baralhoAtualizado.NomeBaralho = baralho.NomeBaralho;
-            baralhoAtualizado.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
             baralhoAtualizado.CartasDoBaralho = baralho.CartasDoBaralho;
             baralhoAtualizado.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
             baralhoAtualizado.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);

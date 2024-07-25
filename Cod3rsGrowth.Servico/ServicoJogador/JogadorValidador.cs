@@ -67,10 +67,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             RuleSet("Atualizar", () =>
             {
                 RuleFor(jogador => jogador.UsuarioJogador)
-                    .NotNull().WithMessage("Preencha seu nome de usuário no campo indicado.\n")
-                    .NotEmpty().WithMessage("Preencha seu nome de usuário no campo indicado.\n");
-
-                RuleFor(jogador => jogador.UsuarioJogador)
                     .Must(ValidacaoJogadorUsuario).WithMessage(
                         "O usuário deve conter:\n" +
                         "   Somente letras minúsculas [a-z].\n" +
@@ -82,10 +78,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
 
                 RuleFor(jogador => jogador.SenhaHashJogador)
-                    .NotNull().WithMessage("Preencha sua senha no campo indicado.\n")
-                    .NotEmpty().WithMessage("Preencha sua senha no campo indicado.\n");
-
-                RuleFor(jogador => jogador.SenhaHashJogador)
                     .Must(ValidacaoJogadorSenha).WithMessage(
                         "A Senha deve conter:\n" +
                         "   Ao menos uma letra maiúscula [A-Z].\n" +
@@ -94,7 +86,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                         "   Não deve conter caracteres especiais.\n" +
                         "   Conter mais de 8 dígitos.\n")
                     .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
-
 
                 RuleFor(jogador => jogador)
                     .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")

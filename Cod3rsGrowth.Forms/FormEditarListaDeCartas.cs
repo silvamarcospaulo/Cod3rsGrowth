@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Cod3rsGrowth.Forms
 {
-    public partial class FormListaDeCartaDoBaralho : Form
+    public partial class FormEditarBaralhoListaDeCarta : Form
     {
         private Jogador _jogador;
         private CartaServico _cartaServico;
@@ -19,12 +19,12 @@ namespace Cod3rsGrowth.Forms
         private LoginController _loginController;
         private Baralho _baralho;
         private Carta cartaSelecionada;
-        private Thread threadFormListaBaralhoJogador;
-        private Thread threadFormNovoBaralho;
+        private Thread threadFormListaBaralhosDoJogador;
+        private Thread threadFormEditarBaralho;
         private const int QUANTIDADE_MINIMA = 0;
         private string STRING_VAZIA = string.Empty;
 
-        public FormListaDeCartaDoBaralho(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
+        public FormEditarBaralhoListaDeCarta(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
             JwtServico tokenServico, LoginController loginController, Jogador jogador, Baralho baralho)
         {
             _cartaServico = cartaServico;
@@ -107,34 +107,29 @@ namespace Cod3rsGrowth.Forms
         {
             try
             {
-                _baralhoServico.Criar(_baralho);
+                _baralhoServico.Atualizar(_baralho);
                 this.Close();
-                threadFormListaBaralhoJogador = new Thread(CarregarFormListaBaralhoJogador);
-                threadFormListaBaralhoJogador.SetApartmentState(ApartmentState.STA);
-                threadFormListaBaralhoJogador.Start();
+                threadFormListaBaralhosDoJogador = new Thread(CarregarFormListaBaralhosDoJogador);
+                threadFormListaBaralhosDoJogador.SetApartmentState(ApartmentState.STA);
+                threadFormListaBaralhosDoJogador.Start();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Erro ao criar novo baralho");
+                MessageBox.Show(ex.Message, "Erro ao Atualizar novo baralho");
             }
         }
 
-        private void CarregarFormListaBaralhoJogador(object obj)
-        {
-            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
-        }
-
-        private void AoClicarVoltaParaTelaDeNovoBaralho(object sender, EventArgs e)
+        private void AoClicarAbreTelaDeAdionarCartasAoBaralho(object sender, EventArgs e)
         {
             this.Close();
-            threadFormNovoBaralho = new Thread(CarregarFormNovoBaralho);
-            threadFormNovoBaralho.SetApartmentState(ApartmentState.STA);
-            threadFormNovoBaralho.Start();
+            threadFormEditarBaralho = new Thread(CarregarFormEditarBaralho);
+            threadFormEditarBaralho.SetApartmentState(ApartmentState.STA);
+            threadFormEditarBaralho.Start();
         }
 
-        private void CarregarFormNovoBaralho(object obj)
+        private void CarregarFormEditarBaralho(object obj)
         {
-            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, _baralho));
+            Application.Run(new FormEditarBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, _baralho));
         }
 
         private void AoClicarRemoveCartaDaListaDeCartasDoBaralho(object sender, EventArgs e)
@@ -163,6 +158,26 @@ namespace Cod3rsGrowth.Forms
             {
                 MessageBox.Show($"Erro ao remover {cartaSelecionada.NomeCarta} da lista de cartas!\n{ex.Message}", "Erro ao remover carta");
             }
+        }
+
+        private void AoClicarVoltarParaTelaDeListaDeBaralhosDoJogador(object sender, EventArgs e)
+        {
+            const string mensagem = "Tem certeza que deseja cancelar a edição de baralho?\nSeu progresso será perdido!";
+            const string tituloMessageBox = "Cancelar edição de baralho";
+            var resultado = MessageBox.Show(mensagem, tituloMessageBox, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                this.Close();
+                threadFormListaBaralhosDoJogador = new Thread(CarregarFormListaBaralhosDoJogador);
+                threadFormListaBaralhosDoJogador.SetApartmentState(ApartmentState.STA);
+                threadFormListaBaralhosDoJogador.Start();
+            }
+        }
+
+        private void CarregarFormListaBaralhosDoJogador(object obj)
+        {
+            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
         }
     }
 }

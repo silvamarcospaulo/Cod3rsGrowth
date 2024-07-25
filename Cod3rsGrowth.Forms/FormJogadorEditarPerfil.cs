@@ -51,24 +51,25 @@ namespace Cod3rsGrowth.Forms
         {
             var valorNulo = 0;
 
-            if (textBoxNovoUsuario.Text.Length > valorNulo) _jogador.UsuarioJogador = textBoxNovoUsuario.Text;
-            if (textBoxConfirmarNovoUsuario.Text.Length > valorNulo) _jogador.UsuarioConfirmacaoJogador = textBoxConfirmarNovoUsuario.Text;
-            if (textBoxNovaSenha.Text.Length > valorNulo) _jogador.SenhaHashJogador = textBoxNovaSenha.Text;
-            if (textBoxConfirmarNovaSenha.Text.Length > valorNulo) _jogador.SenhaHashConfirmacaoJogador = textBoxConfirmarNovaSenha.Text;
+            _jogador.UsuarioJogador = textBoxNovoUsuario.Text.Length > valorNulo ? textBoxNovoUsuario.Text : null;
+            _jogador.UsuarioConfirmacaoJogador = textBoxConfirmarNovoUsuario.Text.Length > valorNulo ? textBoxConfirmarNovoUsuario.Text : null;
+
+            _jogador.SenhaHashJogador = textBoxNovaSenha.Text.Length > valorNulo ? textBoxNovaSenha.Text : null;
+            _jogador.SenhaHashConfirmacaoJogador = textBoxConfirmarNovaSenha.Text.Length > valorNulo ? textBoxConfirmarNovaSenha.Text : null;
 
             try
             {
                 _jogadorServico.Atualizar(_jogador);
+
+                this.Close();
+                threadFormsJogadorEntrar = new Thread(CarregarJanelaDeLogin);
+                threadFormsJogadorEntrar.SetApartmentState(ApartmentState.STA);
+                threadFormsJogadorEntrar.Start();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            this.Close();
-            threadFormsJogadorEntrar = new Thread(CarregarJanelaDeLogin);
-            threadFormsJogadorEntrar.SetApartmentState(ApartmentState.STA);
-            threadFormsJogadorEntrar.Start();
         }
 
         private void CarregarJanelaDeLogin(object obj)
@@ -96,6 +97,30 @@ namespace Cod3rsGrowth.Forms
             catch (Exception ex)
             {
                 MessageBox.Show($"Não foi possível encerrar sua conta no momento, tente novamente mais tarde!\n{ex.Message}", "Erro ao encerrar conta");
+            }
+        }
+
+        private void AoClicarVisualizaSenha(object sender, EventArgs e)
+        {
+            if (textBoxNovaSenha.UseSystemPasswordChar)
+            {
+                textBoxNovaSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxNovaSenha.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void AoClicarVisualizaConfirmacaoDeSenha(object sender, EventArgs e)
+        {
+            if (textBoxConfirmarNovaSenha.UseSystemPasswordChar)
+            {
+                textBoxConfirmarNovaSenha.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                textBoxConfirmarNovaSenha.UseSystemPasswordChar = true;
             }
         }
     }

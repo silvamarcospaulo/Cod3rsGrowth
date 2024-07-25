@@ -1,16 +1,24 @@
-﻿using Cod3rsGrowth.Dominio.Filtros;
-using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
+﻿using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
-using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
+using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Web.Controllers;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Dominio.Modelos.Enums;
 
 namespace Cod3rsGrowth.Forms
 {
-    public partial class FormNovoBaralho : Form
+    public partial class FormEditarBaralho : Form
     {
         private Jogador jogador;
         private CartaServico cartaServico;
@@ -26,8 +34,8 @@ namespace Cod3rsGrowth.Forms
         private Carta cartaSelecionada;
         private string STRING_VAZIA = string.Empty;
 
-        public FormNovoBaralho(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
-            JwtServico _tokenServico, LoginController _loginController, Jogador _jogador, Baralho? _baralhoParcial)
+        public FormEditarBaralho(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
+            JwtServico _tokenServico, LoginController _loginController, Jogador _jogador, Baralho _baralhoParcial)
         {
             jogador = _jogador;
             cartaServico = _cartaServico;
@@ -39,48 +47,28 @@ namespace Cod3rsGrowth.Forms
             InitializeComponent();
         }
 
-        private void CarregarFormNovoBaralho(object sender, EventArgs e)
+        private void CarregarFromEditarBaralho(object sender, EventArgs e)
         {
-            CarregarItensDoComboBoxFormatoDoBaralho();
-            VerficarSeBaralhoExiste();
+            AtualizarDadosBaralho();
+            AtualizarDadosBaralhoNaTela();
+
+            labelNomeBaralho.Text = baralhoParcial.NomeBaralho;
+            labelFormatoBaralho.Text = baralhoParcial.FormatoDeJogoBaralho.ToString();
             dataGridViewCartas.DataSource = cartaServico.ObterTodos(null);
-            baralhoParcial.IdJogador = jogador.Id;
         }
 
         private void AtualizarDadosBaralhoNaTela()
         {
             const int casasDecimais = 2;
 
-            if (baralhoParcial is null)
-            {
-                labelQuantidadeParcial.Text = STRING_VAZIA;
-                labelCustoParcial.Text = STRING_VAZIA;
-                labelPrecoParcial.Text = STRING_VAZIA;
-                labelCorParcial.Text = STRING_VAZIA;
-            }
-            else
-            {
-                labelQuantidadeParcial.Text = baralhoParcial.QuantidadeDeCartasNoBaralho.ToString();
-                labelCustoParcial.Text = baralhoParcial.CustoDeManaConvertidoDoBaralho.ToString();
-                labelPrecoParcial.Text = $"R${Math.Round(baralhoParcial.PrecoDoBaralho, casasDecimais)}";
-                labelCorParcial.Text = baralhoParcial.CorBaralho;
-            }
-            numericUpDownQuantidadeDeCopiasDeCarta.Value = Convert.ToDecimal(QUANTIDADE_MINIMA);
-        }
+            labelNomeBaralho.Text = baralhoParcial.NomeBaralho;
+            labelFormatoBaralho.Text = baralhoParcial.FormatoDeJogoBaralho.ToString();
+            labelQuantidadeParcial.Text = baralhoParcial.QuantidadeDeCartasNoBaralho.ToString();
+            labelCustoParcial.Text = baralhoParcial.CustoDeManaConvertidoDoBaralho.ToString();
+            labelPrecoParcial.Text = $"R${Math.Round(baralhoParcial.PrecoDoBaralho, casasDecimais)}";
+            labelCorParcial.Text = baralhoParcial.CorBaralho;
 
-        private void VerficarSeBaralhoExiste()
-        {
-            if (baralhoParcial is null)
-            {
-                baralhoParcial = baralhoParcial = new Baralho();
-                baralhoParcial.CartasDoBaralho = new List<CopiaDeCartasNoBaralho>();
-            }
-            else
-            {
-                AtualizarDadosBaralho();
-                AtualizarDadosBaralhoNaTela();
-                textBoxNomeBaralho.Text = baralhoParcial.NomeBaralho;
-            }
+            numericUpDownQuantidadeDeCopiasDeCarta.Value = Convert.ToDecimal(QUANTIDADE_MINIMA);
         }
 
         private void AoClicarLimpaSelecaoDeFiltros(object sender, EventArgs e)
@@ -148,11 +136,9 @@ namespace Cod3rsGrowth.Forms
             if (baralhoParcial.CartasDoBaralho.Any<CopiaDeCartasNoBaralho>())
             {
                 baralhoParcial.IdJogador = jogador.Id;
-                baralhoParcial.NomeBaralho = textBoxNomeBaralho.Text;
-                baralhoParcial.FormatoDeJogoBaralho = (FormatoDeJogoEnum)comboBoxFormato.SelectedValue;
 
                 this.Close();
-                threadListaDeCartaDoBaralho = new Thread(CarregarFormListaDeCartaDoBaralho);
+                threadListaDeCartaDoBaralho = new Thread(CarregarFormEditarBaralhoListaDeCarta);
                 threadListaDeCartaDoBaralho.SetApartmentState(ApartmentState.STA);
                 threadListaDeCartaDoBaralho.Start();
             }
@@ -162,9 +148,9 @@ namespace Cod3rsGrowth.Forms
             }
         }
 
-        private void CarregarFormListaDeCartaDoBaralho(object obj)
+        private void CarregarFormEditarBaralhoListaDeCarta(object obj)
         {
-            Application.Run(new FormNovoBaralhoListaDeCarta(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador, baralhoParcial));
+            Application.Run(new FormEditarBaralhoListaDeCarta(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador, baralhoParcial));
         }
 
         private void AoClicarComumDesselecionaOutrasCheckBoxRaridade(object sender, EventArgs e)
@@ -322,11 +308,6 @@ namespace Cod3rsGrowth.Forms
             if (numericUpDownCmc.Value != PRECO_PADRAO) filtro.CustoDeManaConvertidoCarta = Convert.ToInt32(numericUpDownMax.Value);
 
             return filtro;
-        }
-
-        private void CarregarItensDoComboBoxFormatoDoBaralho()
-        {
-            comboBoxFormato.DataSource = Enum.GetValues(typeof(FormatoDeJogoEnum));
         }
     }
 }

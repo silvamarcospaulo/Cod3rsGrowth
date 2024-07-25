@@ -54,6 +54,8 @@
             label3 = new Label();
             label4 = new Label();
             label1 = new Label();
+            buttonVisualizarSenhaConfirmacao = new Button();
+            buttonVisualizarSenha = new Button();
             SuspendLayout();
             // 
             // textBoxConfirmarNovaSenha
@@ -220,12 +222,28 @@
             label1.ForeColor = SystemColors.ControlDarkDark;
             label1.Name = "label1";
             // 
+            // buttonVisualizarSenhaConfirmacao
+            // 
+            resources.ApplyResources(buttonVisualizarSenhaConfirmacao, "buttonVisualizarSenhaConfirmacao");
+            buttonVisualizarSenhaConfirmacao.Name = "buttonVisualizarSenhaConfirmacao";
+            buttonVisualizarSenhaConfirmacao.UseVisualStyleBackColor = true;
+            buttonVisualizarSenhaConfirmacao.Click += AoClicarVisualizaConfirmacaoDeSenha;
+            // 
+            // buttonVisualizarSenha
+            // 
+            resources.ApplyResources(buttonVisualizarSenha, "buttonVisualizarSenha");
+            buttonVisualizarSenha.Name = "buttonVisualizarSenha";
+            buttonVisualizarSenha.UseVisualStyleBackColor = true;
+            buttonVisualizarSenha.Click += AoClicarVisualizaSenha;
+            // 
             // FormJogadorEditarPerfil
             // 
             AcceptButton = buttonEnviarAlteracoes;
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = linkLabelCancelar;
+            Controls.Add(buttonVisualizarSenhaConfirmacao);
+            Controls.Add(buttonVisualizarSenha);
             Controls.Add(label3);
             Controls.Add(label4);
             Controls.Add(label2);
@@ -287,5 +305,7 @@
         private Label label3;
         private Label label4;
         private Label label1;
+        private Button buttonVisualizarSenhaConfirmacao;
+        private Button buttonVisualizarSenha;
     }
 }

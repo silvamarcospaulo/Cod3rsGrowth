@@ -44,7 +44,28 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void Atualizar(Baralho baralho)
         {
-            _conexaoDados.Update(baralho);
+            using (var transaction = _conexaoDados.BeginTransaction())
+            {
+                try
+                {
+                    ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id }).ForEach(copia => ExcluirCopiaDeCartas(copia.Id));
+
+                    foreach (var copia in baralho.CartasDoBaralho)
+                    {
+                        copia.IdBaralho = baralho.Id;
+                        CriarCopiaDeCartas(copia);
+                    }
+
+                    _conexaoDados.Update(baralho);
+
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao editar o baralho.");
+                }
+            }
         }
 
         public void Excluir(int idBaralho)
@@ -143,7 +164,7 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void ExcluirCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            _conexaoDados.Delete(ObterPorId(idCopiaDeCartasNoBaralho));
+            _conexaoDados.Delete(ObterPorIdCopiaDeCartas(idCopiaDeCartasNoBaralho));
         }
 
         public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)

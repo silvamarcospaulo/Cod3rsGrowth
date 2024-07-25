@@ -224,8 +224,18 @@ namespace Cod3rsGrowth.Forms
                 var baralhoGrid = (Baralho)selecao.DataBoundItem;
                 baralhoSelecionado = baralhoGrid;
 
-                AoClicarApagaBaralho(sender, e);
+                baralhoSelecionado = _baralhoServico.ObterPorId(baralhoSelecionado.Id);
+
+                this.Close();
+                threadFormNovoBaralho = new Thread(CarregarFormEditarBaralhoListaDeCarta);
+                threadFormNovoBaralho.SetApartmentState(ApartmentState.STA);
+                threadFormNovoBaralho.Start();
             }
+        }
+
+        private void CarregarFormEditarBaralhoListaDeCarta(object obj)
+        {
+            Application.Run(new FormEditarBaralhoListaDeCarta(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, baralhoSelecionado));
         }
 
         private void AoClicarApagaBaralho(object sender, EventArgs e)
