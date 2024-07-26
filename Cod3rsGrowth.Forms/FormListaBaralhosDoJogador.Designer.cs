@@ -225,7 +225,7 @@
             resources.ApplyResources(buttonEditarPerfil, "buttonEditarPerfil");
             buttonEditarPerfil.Name = "buttonEditarPerfil";
             buttonEditarPerfil.UseVisualStyleBackColor = true;
-            buttonEditarPerfil.Click += AoClicarAbrirTelaDeEdicaoDePerfil;
+            buttonEditarPerfil.Click += AoClicarAbrirTelaDeCadastrarEditarPerfil;
             // 
             // labelFiltros
             // 

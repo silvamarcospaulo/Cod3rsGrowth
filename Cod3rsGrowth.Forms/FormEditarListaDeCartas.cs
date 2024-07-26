@@ -73,7 +73,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregaDadosDaCarta(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= QUANTIDADE_MINIMA)
             {
                 var selecao = dataGridViewListaDeCartasDoBaralho.Rows[e.RowIndex];
                 var copia = (CopiaDeCartasNoBaralho)selecao.DataBoundItem;

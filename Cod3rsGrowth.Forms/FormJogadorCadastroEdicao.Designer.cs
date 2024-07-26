@@ -1,6 +1,6 @@
 ﻿namespace Cod3rsGrowth.Forms
 {
-    partial class FormJogadorCadastro
+    partial class FormJogadorCadastroEdicao
     {
         /// <summary>
         /// Required designer variable.
@@ -37,15 +37,20 @@
             textBoxNome = new TextBox();
             dateTimePickerDataDeNascimento = new DateTimePicker();
             buttonCadastrar = new Button();
-            linkLabelJaPossuoConta = new LinkLabel();
             labelSobrenome = new Label();
             textBoxSobrenome = new TextBox();
             labelCadastro = new Label();
-            label1 = new Label();
             labelConfirmarSenha = new Label();
             textBoxConfirmarSenha = new TextBox();
             buttonVisualizarSenha = new Button();
             buttonVisualizarSenhaConfirmacao = new Button();
+            labelAlertaEncerrarConta = new Label();
+            buttonApagarPerfil = new Button();
+            textBoxConfirmarUsuario = new TextBox();
+            labelConfirmarNovoUsuario = new Label();
+            linkLabelJaPossuoConta = new LinkLabel();
+            buttonCancelar = new Button();
+            buttonEditar = new Button();
             SuspendLayout();
             // 
             // labelNome
@@ -54,7 +59,7 @@
             labelNome.AutoSize = true;
             labelNome.FlatStyle = FlatStyle.System;
             labelNome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelNome.Location = new Point(12, 81);
+            labelNome.Location = new Point(12, 66);
             labelNome.Name = "labelNome";
             labelNome.Size = new Size(56, 21);
             labelNome.TabIndex = 0;
@@ -66,7 +71,7 @@
             labelUsername.AutoSize = true;
             labelUsername.FlatStyle = FlatStyle.System;
             labelUsername.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelUsername.Location = new Point(12, 196);
+            labelUsername.Location = new Point(12, 178);
             labelUsername.Name = "labelUsername";
             labelUsername.Size = new Size(67, 21);
             labelUsername.TabIndex = 0;
@@ -78,7 +83,7 @@
             labelSenha.AutoSize = true;
             labelSenha.FlatStyle = FlatStyle.System;
             labelSenha.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSenha.Location = new Point(12, 310);
+            labelSenha.Location = new Point(12, 346);
             labelSenha.Name = "labelSenha";
             labelSenha.Size = new Size(56, 21);
             labelSenha.TabIndex = 0;
@@ -90,7 +95,7 @@
             labelDataDeNascimento.AutoSize = true;
             labelDataDeNascimento.FlatStyle = FlatStyle.System;
             labelDataDeNascimento.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelDataDeNascimento.Location = new Point(12, 253);
+            labelDataDeNascimento.Location = new Point(12, 290);
             labelDataDeNascimento.Name = "labelDataDeNascimento";
             labelDataDeNascimento.Size = new Size(153, 21);
             labelDataDeNascimento.TabIndex = 0;
@@ -101,7 +106,7 @@
             // 
             textBoxUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxUsuario.Cursor = Cursors.Hand;
-            textBoxUsuario.Location = new Point(12, 226);
+            textBoxUsuario.Location = new Point(12, 205);
             textBoxUsuario.Name = "textBoxUsuario";
             textBoxUsuario.Size = new Size(351, 23);
             textBoxUsuario.TabIndex = 3;
@@ -110,17 +115,17 @@
             // 
             textBoxSenha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxSenha.Cursor = Cursors.Hand;
-            textBoxSenha.Location = new Point(12, 337);
+            textBoxSenha.Location = new Point(12, 373);
             textBoxSenha.Name = "textBoxSenha";
             textBoxSenha.Size = new Size(276, 23);
-            textBoxSenha.TabIndex = 5;
+            textBoxSenha.TabIndex = 6;
             textBoxSenha.UseSystemPasswordChar = true;
             // 
             // textBoxNome
             // 
             textBoxNome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxNome.Cursor = Cursors.Hand;
-            textBoxNome.Location = new Point(12, 112);
+            textBoxNome.Location = new Point(12, 93);
             textBoxNome.Name = "textBoxNome";
             textBoxNome.Size = new Size(351, 23);
             textBoxNome.TabIndex = 1;
@@ -131,38 +136,23 @@
             dateTimePickerDataDeNascimento.Cursor = Cursors.Hand;
             dateTimePickerDataDeNascimento.DropDownAlign = LeftRightAlignment.Right;
             dateTimePickerDataDeNascimento.Format = DateTimePickerFormat.Short;
-            dateTimePickerDataDeNascimento.Location = new Point(12, 283);
+            dateTimePickerDataDeNascimento.Location = new Point(12, 317);
             dateTimePickerDataDeNascimento.MinDate = new DateTime(1924, 1, 1, 0, 0, 0, 0);
             dateTimePickerDataDeNascimento.Name = "dateTimePickerDataDeNascimento";
             dateTimePickerDataDeNascimento.Size = new Size(351, 23);
-            dateTimePickerDataDeNascimento.TabIndex = 4;
+            dateTimePickerDataDeNascimento.TabIndex = 5;
             // 
             // buttonCadastrar
             // 
-            buttonCadastrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonCadastrar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             buttonCadastrar.Cursor = Cursors.Hand;
-            buttonCadastrar.Location = new Point(12, 427);
+            buttonCadastrar.Location = new Point(12, 458);
             buttonCadastrar.Name = "buttonCadastrar";
             buttonCadastrar.Size = new Size(351, 36);
-            buttonCadastrar.TabIndex = 7;
+            buttonCadastrar.TabIndex = 10;
             buttonCadastrar.Text = "Cadastrar";
             buttonCadastrar.UseVisualStyleBackColor = true;
             buttonCadastrar.Click += AoClicarCadastrarNovoUsuario;
-            // 
-            // linkLabelJaPossuoConta
-            // 
-            linkLabelJaPossuoConta.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            linkLabelJaPossuoConta.AutoSize = true;
-            linkLabelJaPossuoConta.Cursor = Cursors.Hand;
-            linkLabelJaPossuoConta.LinkBehavior = LinkBehavior.NeverUnderline;
-            linkLabelJaPossuoConta.Location = new Point(142, 473);
-            linkLabelJaPossuoConta.Name = "linkLabelJaPossuoConta";
-            linkLabelJaPossuoConta.Size = new Size(91, 15);
-            linkLabelJaPossuoConta.TabIndex = 8;
-            linkLabelJaPossuoConta.TabStop = true;
-            linkLabelJaPossuoConta.Text = "Já possuo conta";
-            linkLabelJaPossuoConta.TextAlign = ContentAlignment.MiddleCenter;
-            linkLabelJaPossuoConta.LinkClicked += AoClicarVoltarParaTelaDeLogin;
             // 
             // labelSobrenome
             // 
@@ -170,7 +160,7 @@
             labelSobrenome.AutoSize = true;
             labelSobrenome.FlatStyle = FlatStyle.System;
             labelSobrenome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelSobrenome.Location = new Point(12, 139);
+            labelSobrenome.Location = new Point(12, 122);
             labelSobrenome.Name = "labelSobrenome";
             labelSobrenome.Size = new Size(94, 21);
             labelSobrenome.TabIndex = 0;
@@ -180,7 +170,7 @@
             // 
             textBoxSobrenome.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBoxSobrenome.Cursor = Cursors.Hand;
-            textBoxSobrenome.Location = new Point(12, 166);
+            textBoxSobrenome.Location = new Point(12, 149);
             textBoxSobrenome.Name = "textBoxSobrenome";
             textBoxSobrenome.Size = new Size(351, 23);
             textBoxSobrenome.TabIndex = 2;
@@ -191,30 +181,19 @@
             labelCadastro.AutoSize = true;
             labelCadastro.FlatStyle = FlatStyle.System;
             labelCadastro.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            labelCadastro.Location = new Point(12, 9);
+            labelCadastro.Location = new Point(12, 14);
             labelCadastro.Name = "labelCadastro";
             labelCadastro.Size = new Size(157, 37);
             labelCadastro.TabIndex = 8;
             labelCadastro.Text = "Cadastre-se";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.FlatStyle = FlatStyle.System;
-            label1.ForeColor = SystemColors.ControlDarkDark;
-            label1.Location = new Point(12, 56);
-            label1.Name = "label1";
-            label1.Size = new Size(87, 15);
-            label1.TabIndex = 9;
-            label1.Text = "É rápido e fácil!";
-            // 
             // labelConfirmarSenha
             // 
-            labelConfirmarSenha.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            labelConfirmarSenha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             labelConfirmarSenha.AutoSize = true;
             labelConfirmarSenha.FlatStyle = FlatStyle.System;
             labelConfirmarSenha.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelConfirmarSenha.Location = new Point(12, 364);
+            labelConfirmarSenha.Location = new Point(12, 402);
             labelConfirmarSenha.Name = "labelConfirmarSenha";
             labelConfirmarSenha.Size = new Size(129, 21);
             labelConfirmarSenha.TabIndex = 10;
@@ -222,44 +201,143 @@
             // 
             // textBoxConfirmarSenha
             // 
-            textBoxConfirmarSenha.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxConfirmarSenha.Location = new Point(12, 390);
+            textBoxConfirmarSenha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxConfirmarSenha.Location = new Point(12, 429);
             textBoxConfirmarSenha.Name = "textBoxConfirmarSenha";
             textBoxConfirmarSenha.Size = new Size(276, 23);
-            textBoxConfirmarSenha.TabIndex = 6;
+            textBoxConfirmarSenha.TabIndex = 8;
             textBoxConfirmarSenha.UseSystemPasswordChar = true;
             // 
             // buttonVisualizarSenha
             // 
-            buttonVisualizarSenha.Location = new Point(294, 337);
+            buttonVisualizarSenha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            buttonVisualizarSenha.Location = new Point(294, 373);
             buttonVisualizarSenha.Name = "buttonVisualizarSenha";
             buttonVisualizarSenha.Size = new Size(69, 23);
-            buttonVisualizarSenha.TabIndex = 11;
+            buttonVisualizarSenha.TabIndex = 7;
             buttonVisualizarSenha.Text = "Visualizar";
             buttonVisualizarSenha.UseVisualStyleBackColor = true;
             buttonVisualizarSenha.Click += AoClicarVisualizaSenha;
             // 
             // buttonVisualizarSenhaConfirmacao
             // 
-            buttonVisualizarSenhaConfirmacao.Location = new Point(294, 390);
+            buttonVisualizarSenhaConfirmacao.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            buttonVisualizarSenhaConfirmacao.Location = new Point(294, 429);
             buttonVisualizarSenhaConfirmacao.Name = "buttonVisualizarSenhaConfirmacao";
             buttonVisualizarSenhaConfirmacao.Size = new Size(69, 23);
-            buttonVisualizarSenhaConfirmacao.TabIndex = 12;
+            buttonVisualizarSenhaConfirmacao.TabIndex = 9;
             buttonVisualizarSenhaConfirmacao.Text = "Visualizar";
             buttonVisualizarSenhaConfirmacao.UseVisualStyleBackColor = true;
             buttonVisualizarSenhaConfirmacao.Click += AoClicarVisualizaConfirmacaoDeSenha;
             // 
-            // FormJogadorCadastro
+            // labelAlertaEncerrarConta
+            // 
+            labelAlertaEncerrarConta.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelAlertaEncerrarConta.AutoSize = true;
+            labelAlertaEncerrarConta.FlatStyle = FlatStyle.System;
+            labelAlertaEncerrarConta.ForeColor = SystemColors.ControlDarkDark;
+            labelAlertaEncerrarConta.ImeMode = ImeMode.NoControl;
+            labelAlertaEncerrarConta.Location = new Point(13, 542);
+            labelAlertaEncerrarConta.Name = "labelAlertaEncerrarConta";
+            labelAlertaEncerrarConta.Size = new Size(275, 15);
+            labelAlertaEncerrarConta.TabIndex = 41;
+            labelAlertaEncerrarConta.Text = "Essa ação excluirá todos seus dados e é irreversível!";
+            labelAlertaEncerrarConta.TextAlign = ContentAlignment.MiddleLeft;
+            labelAlertaEncerrarConta.Visible = false;
+            // 
+            // buttonApagarPerfil
+            // 
+            buttonApagarPerfil.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            buttonApagarPerfil.Cursor = Cursors.Hand;
+            buttonApagarPerfil.Enabled = false;
+            buttonApagarPerfil.ImeMode = ImeMode.NoControl;
+            buttonApagarPerfil.Location = new Point(12, 500);
+            buttonApagarPerfil.Name = "buttonApagarPerfil";
+            buttonApagarPerfil.Size = new Size(351, 36);
+            buttonApagarPerfil.TabIndex = 12;
+            buttonApagarPerfil.Text = "Encerrar conta";
+            buttonApagarPerfil.UseVisualStyleBackColor = true;
+            buttonApagarPerfil.Visible = false;
+            buttonApagarPerfil.Click += AoClicarApagaPerfil;
+            // 
+            // textBoxConfirmarUsuario
+            // 
+            textBoxConfirmarUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxConfirmarUsuario.Cursor = Cursors.Hand;
+            textBoxConfirmarUsuario.Location = new Point(12, 261);
+            textBoxConfirmarUsuario.Name = "textBoxConfirmarUsuario";
+            textBoxConfirmarUsuario.Size = new Size(351, 23);
+            textBoxConfirmarUsuario.TabIndex = 4;
+            // 
+            // labelConfirmarNovoUsuario
+            // 
+            labelConfirmarNovoUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelConfirmarNovoUsuario.AutoSize = true;
+            labelConfirmarNovoUsuario.FlatStyle = FlatStyle.System;
+            labelConfirmarNovoUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            labelConfirmarNovoUsuario.ImeMode = ImeMode.NoControl;
+            labelConfirmarNovoUsuario.Location = new Point(12, 234);
+            labelConfirmarNovoUsuario.Name = "labelConfirmarNovoUsuario";
+            labelConfirmarNovoUsuario.Size = new Size(140, 21);
+            labelConfirmarNovoUsuario.TabIndex = 43;
+            labelConfirmarNovoUsuario.Text = "Confirmar usuario:";
+            // 
+            // linkLabelJaPossuoConta
+            // 
+            linkLabelJaPossuoConta.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            linkLabelJaPossuoConta.AutoSize = true;
+            linkLabelJaPossuoConta.Cursor = Cursors.Hand;
+            linkLabelJaPossuoConta.Enabled = false;
+            linkLabelJaPossuoConta.LinkBehavior = LinkBehavior.NeverUnderline;
+            linkLabelJaPossuoConta.Location = new Point(161, 563);
+            linkLabelJaPossuoConta.Name = "linkLabelJaPossuoConta";
+            linkLabelJaPossuoConta.Size = new Size(53, 15);
+            linkLabelJaPossuoConta.TabIndex = 13;
+            linkLabelJaPossuoConta.TabStop = true;
+            linkLabelJaPossuoConta.Text = "Cancelar";
+            linkLabelJaPossuoConta.TextAlign = ContentAlignment.MiddleCenter;
+            linkLabelJaPossuoConta.Visible = false;
+            linkLabelJaPossuoConta.LinkClicked += AoClicarLinkVoltarParaTelaDeListaDeBaralho;
+            // 
+            // buttonCancelar
+            // 
+            buttonCancelar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            buttonCancelar.Cursor = Cursors.Hand;
+            buttonCancelar.ImeMode = ImeMode.NoControl;
+            buttonCancelar.Location = new Point(12, 500);
+            buttonCancelar.Name = "buttonCancelar";
+            buttonCancelar.Size = new Size(351, 36);
+            buttonCancelar.TabIndex = 11;
+            buttonCancelar.Text = "Cancelar";
+            buttonCancelar.UseVisualStyleBackColor = true;
+            buttonCancelar.Click += AoClicarVoltarParaTelaDeLogin;
+            // 
+            // buttonEditar
+            // 
+            buttonEditar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            buttonEditar.Cursor = Cursors.Hand;
+            buttonEditar.Enabled = false;
+            buttonEditar.Location = new Point(12, 458);
+            buttonEditar.Name = "buttonEditar";
+            buttonEditar.Size = new Size(351, 36);
+            buttonEditar.TabIndex = 44;
+            buttonEditar.Text = "Enviar alterações";
+            buttonEditar.UseVisualStyleBackColor = true;
+            buttonEditar.Visible = false;
+            buttonEditar.Click += AoClicarEnviaAlteracoesDePerfil;
+            // 
+            // FormJogadorCadastroEdicao
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(375, 500);
+            ClientSize = new Size(375, 564);
+            Controls.Add(textBoxConfirmarUsuario);
+            Controls.Add(labelConfirmarNovoUsuario);
             Controls.Add(buttonVisualizarSenhaConfirmacao);
             Controls.Add(buttonVisualizarSenha);
             Controls.Add(textBoxConfirmarSenha);
             Controls.Add(labelConfirmarSenha);
             Controls.Add(textBoxSenha);
-            Controls.Add(label1);
             Controls.Add(labelCadastro);
             Controls.Add(textBoxSobrenome);
             Controls.Add(linkLabelJaPossuoConta);
@@ -272,11 +350,16 @@
             Controls.Add(labelNome);
             Controls.Add(labelSobrenome);
             Controls.Add(labelDataDeNascimento);
+            Controls.Add(labelAlertaEncerrarConta);
+            Controls.Add(buttonCancelar);
+            Controls.Add(buttonEditar);
+            Controls.Add(buttonApagarPerfil);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "FormJogadorCadastro";
+            Name = "FormJogadorCadastroEdicao";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MTG DeckBuilder - Cadastro";
+            Load += CarregarFormJogadorCadastroEdicao;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -292,14 +375,19 @@
         private TextBox textBoxNome;
         private DateTimePicker dateTimePickerDataDeNascimento;
         private Button buttonCadastrar;
-        private LinkLabel linkLabelJaPossuoConta;
         private Label labelSobrenome;
         private TextBox textBoxSobrenome;
         private Label labelCadastro;
-        private Label label1;
         private Label labelConfirmarSenha;
         private TextBox textBoxConfirmarSenha;
         private Button buttonVisualizarSenha;
         private Button buttonVisualizarSenhaConfirmacao;
+        private Label labelAlertaEncerrarConta;
+        private Button buttonApagarPerfil;
+        private TextBox textBoxConfirmarUsuario;
+        private Label labelConfirmarNovoUsuario;
+        private LinkLabel linkLabelJaPossuoConta;
+        private Button buttonCancelar;
+        private Button buttonEditar;
     }
 }

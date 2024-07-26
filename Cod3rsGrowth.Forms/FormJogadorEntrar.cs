@@ -79,7 +79,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAbrirTelaDeCadastroEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorCadastro(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
+            Application.Run(new FormJogadorCadastroEdicao(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, null));
         }
 
         private void AoClicarAbreTelaDeRestauracaoDeSenha(object sender, LinkLabelLinkClickedEventArgs e)
@@ -97,14 +97,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarVisualizaSenha(object sender, EventArgs e)
         {
-            if (textBoxSenha.UseSystemPasswordChar)
-            {
-                textBoxSenha.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBoxSenha.UseSystemPasswordChar = true;
-            }
+            textBoxSenha.UseSystemPasswordChar = !textBoxSenha.UseSystemPasswordChar;
         }
     }
 }

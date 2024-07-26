@@ -74,17 +74,17 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
         }
 
-        private void AoClicarAbrirTelaDeEdicaoDePerfil(object sender, EventArgs e)
+        private void AoClicarAbrirTelaDeCadastrarEditarPerfil(object sender, EventArgs e)
         {
             this.Close();
-            threadFormEditarPerfil = new Thread(CarregarFormJogadorEditarPerfil);
+            threadFormEditarPerfil = new Thread(CarregarFormJogadorCadastrarEditarPerfil);
             threadFormEditarPerfil.SetApartmentState(ApartmentState.STA);
             threadFormEditarPerfil.Start();
         }
 
-        private void CarregarFormJogadorEditarPerfil(object obj)
+        private void CarregarFormJogadorCadastrarEditarPerfil(object obj)
         {
-            Application.Run(new FormJogadorEditarPerfil(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
+            Application.Run(new FormJogadorCadastroEdicao(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
         }
 
         private void AoClicarAplicaSelecaoDeFiltros(object sender, EventArgs e)
