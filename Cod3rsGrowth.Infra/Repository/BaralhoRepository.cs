@@ -8,33 +8,75 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class BaralhoRepository : IBaralhoRepository
     {
-        private readonly ConexaoDados conexaoDados;
+        private readonly ConexaoDados _conexaoDados;
         private const int VALOR_NULO = 1;
 
-        public BaralhoRepository(ConexaoDados _conexaoDados)
+        public BaralhoRepository(ConexaoDados conexaoDados)
         {
-            conexaoDados = _conexaoDados;
+            _conexaoDados = conexaoDados;
         }
 
         public int Criar(Baralho baralho)
         {
-            return conexaoDados.InsertWithInt32Identity(baralho);
+            using (var transaction = _conexaoDados.BeginTransaction())
+            {
+                try
+                {
+                    var idBaralhoCriado = _conexaoDados.InsertWithInt32Identity(baralho);
+
+                    foreach (var copia in baralho.CartasDoBaralho)
+                    {
+                        copia.IdBaralho = idBaralhoCriado;
+                        CriarCopiaDeCartas(copia);
+                    }
+
+                    transaction.Commit();
+
+                    return idBaralhoCriado;
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao criar o baralho.");
+                }
+            }
         }
 
         public void Atualizar(Baralho baralho)
         {
-            conexaoDados.Update(baralho);
+            using (var transaction = _conexaoDados.BeginTransaction())
+            {
+                try
+                {
+                    ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id }).ForEach(copia => ExcluirCopiaDeCartas(copia.Id));
+
+                    foreach (var copia in baralho.CartasDoBaralho)
+                    {
+                        copia.IdBaralho = baralho.Id;
+                        CriarCopiaDeCartas(copia);
+                    }
+
+                    _conexaoDados.Update(baralho);
+
+                    transaction.Commit();
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Erro ao editar o baralho.");
+                }
+            }
         }
 
         public void Excluir(int idBaralho)
         {
             var baralhoExcluir = ObterPorId(idBaralho);
-            conexaoDados.Delete(baralhoExcluir);
+            _conexaoDados.Delete(baralhoExcluir);
         }
 
         public Baralho ObterPorId(int idBaralho)
         {
-            return conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.Id == idBaralho) ??
+            return _conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.Id == idBaralho) ??
                 throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
 
@@ -42,7 +84,7 @@ namespace Cod3rsGrowth.Infra.Repository
         {
             
 
-            IQueryable<Baralho> query = from q in conexaoDados.TabelaBaralho
+            IQueryable<Baralho> query = from q in _conexaoDados.TabelaBaralho
                                         select q;
 
             if (filtro?.IdJogador is not null)
@@ -112,28 +154,28 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public void CriarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            conexaoDados.Insert(copiaDeCartasNoBaralho);
+            _conexaoDados.Insert(copiaDeCartasNoBaralho);
         }
 
         public void AtualizarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            conexaoDados.Update(copiaDeCartasNoBaralho);
+            _conexaoDados.Update(copiaDeCartasNoBaralho);
         }
 
         public void ExcluirCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            conexaoDados.Delete(ObterPorId(idCopiaDeCartasNoBaralho));
+            _conexaoDados.Delete(ObterPorIdCopiaDeCartas(idCopiaDeCartasNoBaralho));
         }
 
         public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            return conexaoDados.GetTable<CopiaDeCartasNoBaralho>().FirstOrDefault(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.Id == idCopiaDeCartasNoBaralho) ??
+            return _conexaoDados.GetTable<CopiaDeCartasNoBaralho>().FirstOrDefault(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.Id == idCopiaDeCartasNoBaralho) ??
                 throw new Exception($"Registro Nao Encontrado");
         }
 
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
-            IQueryable<CopiaDeCartasNoBaralho> query = from q in conexaoDados.TabelaCartasDoBaralho
+            IQueryable<CopiaDeCartasNoBaralho> query = from q in _conexaoDados.TabelaCartasDoBaralho
                                                        select q;
 
             if (filtro?.IdBaralho != null)

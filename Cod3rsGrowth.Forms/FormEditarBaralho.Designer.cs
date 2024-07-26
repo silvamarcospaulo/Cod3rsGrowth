@@ -1,6 +1,10 @@
-﻿namespace Cod3rsGrowth.Forms
+﻿using Cod3rsGrowth.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Forms;
+
+namespace Cod3rsGrowth.Forms
 {
-    partial class FormNovoBaralho
+    partial class FormEditarBaralho
     {
         /// <summary>
         /// Required designer variable.
@@ -74,6 +78,8 @@
             textBoxFiltrarNome = new TextBox();
             labelFiltroNome = new Label();
             panel3 = new Panel();
+            labelNomeBaralho = new Label();
+            labelFormatoBaralho = new Label();
             labelNomeCartaSelecionada = new Label();
             label3 = new Label();
             buttonAdicionarCarta = new Button();
@@ -84,15 +90,13 @@
             buttonVisualizarBaralho = new Button();
             labelCustoParcial = new Label();
             labelQuantidadeParcial = new Label();
-            comboBoxFormato = new ComboBox();
-            baralhoBindingSource = new BindingSource(components);
             labelNome = new Label();
-            textBoxNomeBaralho = new TextBox();
             labelFormato = new Label();
             labelCorBaralho = new Label();
             labelQuantidadeDeCartas = new Label();
             labelPreco = new Label();
             labelCmc = new Label();
+            baralhoBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMax).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMin).BeginInit();
@@ -653,6 +657,8 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(labelNomeBaralho);
+            panel3.Controls.Add(labelFormatoBaralho);
             panel3.Controls.Add(labelNomeCartaSelecionada);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(buttonAdicionarCarta);
@@ -663,9 +669,7 @@
             panel3.Controls.Add(buttonVisualizarBaralho);
             panel3.Controls.Add(labelCustoParcial);
             panel3.Controls.Add(labelQuantidadeParcial);
-            panel3.Controls.Add(comboBoxFormato);
             panel3.Controls.Add(labelNome);
-            panel3.Controls.Add(textBoxNomeBaralho);
             panel3.Controls.Add(labelFormato);
             panel3.Controls.Add(labelCorBaralho);
             panel3.Controls.Add(labelQuantidadeDeCartas);
@@ -676,6 +680,26 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(200, 601);
             panel3.TabIndex = 2;
+            // 
+            // labelNomeBaralho
+            // 
+            labelNomeBaralho.AutoSize = true;
+            labelNomeBaralho.FlatStyle = FlatStyle.System;
+            labelNomeBaralho.Location = new Point(8, 38);
+            labelNomeBaralho.Name = "labelNomeBaralho";
+            labelNomeBaralho.Size = new Size(0, 15);
+            labelNomeBaralho.TabIndex = 2259;
+            labelNomeBaralho.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // labelFormatoBaralho
+            // 
+            labelFormatoBaralho.AutoSize = true;
+            labelFormatoBaralho.FlatStyle = FlatStyle.System;
+            labelFormatoBaralho.Location = new Point(8, 84);
+            labelFormatoBaralho.Name = "labelFormatoBaralho";
+            labelFormatoBaralho.Size = new Size(0, 15);
+            labelFormatoBaralho.TabIndex = 2260;
+            labelFormatoBaralho.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // labelNomeCartaSelecionada
             // 
@@ -743,7 +767,7 @@
             labelCorParcial.AutoSize = true;
             labelCorParcial.FlatStyle = FlatStyle.System;
             labelCorParcial.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular, GraphicsUnit.Point);
-            labelCorParcial.Location = new Point(8, 275);
+            labelCorParcial.Location = new Point(8, 268);
             labelCorParcial.Name = "labelCorParcial";
             labelCorParcial.Size = new Size(0, 15);
             labelCorParcial.TabIndex = 24;
@@ -753,7 +777,7 @@
             // 
             labelPrecoParcial.AutoSize = true;
             labelPrecoParcial.FlatStyle = FlatStyle.System;
-            labelPrecoParcial.Location = new Point(8, 231);
+            labelPrecoParcial.Location = new Point(8, 222);
             labelPrecoParcial.Name = "labelPrecoParcial";
             labelPrecoParcial.Size = new Size(0, 15);
             labelPrecoParcial.TabIndex = 23;
@@ -777,7 +801,7 @@
             // 
             labelCustoParcial.AutoSize = true;
             labelCustoParcial.FlatStyle = FlatStyle.System;
-            labelCustoParcial.Location = new Point(8, 187);
+            labelCustoParcial.Location = new Point(8, 176);
             labelCustoParcial.Name = "labelCustoParcial";
             labelCustoParcial.Size = new Size(0, 15);
             labelCustoParcial.TabIndex = 22;
@@ -787,26 +811,11 @@
             // 
             labelQuantidadeParcial.AutoSize = true;
             labelQuantidadeParcial.FlatStyle = FlatStyle.System;
-            labelQuantidadeParcial.Location = new Point(8, 143);
+            labelQuantidadeParcial.Location = new Point(8, 130);
             labelQuantidadeParcial.Name = "labelQuantidadeParcial";
             labelQuantidadeParcial.Size = new Size(0, 15);
             labelQuantidadeParcial.TabIndex = 21;
             labelQuantidadeParcial.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // comboBoxFormato
-            // 
-            comboBoxFormato.DataSource = baralhoBindingSource;
-            comboBoxFormato.DisplayMember = "FormatoDeJogoBaralho";
-            comboBoxFormato.FlatStyle = FlatStyle.System;
-            comboBoxFormato.FormattingEnabled = true;
-            comboBoxFormato.Location = new Point(8, 91);
-            comboBoxFormato.Name = "comboBoxFormato";
-            comboBoxFormato.Size = new Size(185, 23);
-            comboBoxFormato.TabIndex = 7;
-            // 
-            // baralhoBindingSource
-            // 
-            baralhoBindingSource.DataSource = typeof(Dominio.Modelos.Baralho);
             // 
             // labelNome
             // 
@@ -820,21 +829,12 @@
             labelNome.Text = "Nome do baralho:";
             labelNome.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // textBoxNomeBaralho
-            // 
-            textBoxNomeBaralho.Cursor = Cursors.Hand;
-            textBoxNomeBaralho.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxNomeBaralho.Location = new Point(8, 37);
-            textBoxNomeBaralho.Name = "textBoxNomeBaralho";
-            textBoxNomeBaralho.Size = new Size(185, 25);
-            textBoxNomeBaralho.TabIndex = 6;
-            // 
             // labelFormato
             // 
             labelFormato.AutoSize = true;
             labelFormato.FlatStyle = FlatStyle.System;
             labelFormato.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelFormato.Location = new Point(8, 67);
+            labelFormato.Location = new Point(8, 59);
             labelFormato.Name = "labelFormato";
             labelFormato.Size = new Size(148, 19);
             labelFormato.TabIndex = 1;
@@ -846,7 +846,7 @@
             labelCorBaralho.AutoSize = true;
             labelCorBaralho.FlatStyle = FlatStyle.System;
             labelCorBaralho.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCorBaralho.Location = new Point(8, 251);
+            labelCorBaralho.Location = new Point(8, 243);
             labelCorBaralho.Name = "labelCorBaralho";
             labelCorBaralho.Size = new Size(38, 19);
             labelCorBaralho.TabIndex = 5;
@@ -858,7 +858,7 @@
             labelQuantidadeDeCartas.AutoSize = true;
             labelQuantidadeDeCartas.FlatStyle = FlatStyle.System;
             labelQuantidadeDeCartas.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelQuantidadeDeCartas.Location = new Point(8, 119);
+            labelQuantidadeDeCartas.Location = new Point(8, 105);
             labelQuantidadeDeCartas.Name = "labelQuantidadeDeCartas";
             labelQuantidadeDeCartas.Size = new Size(156, 19);
             labelQuantidadeDeCartas.TabIndex = 2;
@@ -870,7 +870,7 @@
             labelPreco.AutoSize = true;
             labelPreco.FlatStyle = FlatStyle.System;
             labelPreco.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelPreco.Location = new Point(8, 207);
+            labelPreco.Location = new Point(8, 197);
             labelPreco.Name = "labelPreco";
             labelPreco.Size = new Size(52, 19);
             labelPreco.TabIndex = 4;
@@ -882,14 +882,18 @@
             labelCmc.AutoSize = true;
             labelCmc.FlatStyle = FlatStyle.System;
             labelCmc.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCmc.Location = new Point(8, 163);
+            labelCmc.Location = new Point(8, 151);
             labelCmc.Name = "labelCmc";
             labelCmc.Size = new Size(189, 19);
             labelCmc.TabIndex = 3;
             labelCmc.Text = "Custo de mana convertido:";
             labelCmc.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // FormNovoBaralho
+            // baralhoBindingSource
+            // 
+            baralhoBindingSource.DataSource = typeof(Dominio.Modelos.Baralho);
+            // 
+            // FormEditarBaralho
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -900,12 +904,12 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimumSize = new Size(1024, 640);
-            Name = "FormNovoBaralho";
+            Name = "FormEditarBaralho";
             SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterParent;
             Text = "MTG DeckBuilder - Criação de baralho";
             WindowState = FormWindowState.Maximized;
-            Load += CarregarFormNovoBaralho;
+            Load += CarregarFromEditarBaralho;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)numericUpDownMax).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownMin).EndInit();
@@ -955,14 +959,10 @@
         private NumericUpDown numericUpDownCmc;
         private Button buttonCancelar;
         private Button buttonVisualizarBaralho;
-        private ComboBox comboBoxFormato;
-        private TextBox textBoxNomeBaralho;
         private Label labelCorBaralho;
         private Label labelPreco;
         private Label labelCmc;
         private Label labelQuantidadeDeCartas;
-        private Label labelFormato;
-        private Label labelNome;
         private Label labelQuantidadeParcial;
         private Label labelCustoParcial;
         private Label labelPrecoParcial;
@@ -987,5 +987,9 @@
         private DataGridViewTextBoxColumn imagemDataGridViewTextBoxColumn;
         private Label labelNomeCartaSelecionada;
         private Label label3;
+        private Label labelNomeBaralho;
+        private Label labelFormatoBaralho;
+        private Label labelNome;
+        private Label labelFormato;
     }
-}   
+}

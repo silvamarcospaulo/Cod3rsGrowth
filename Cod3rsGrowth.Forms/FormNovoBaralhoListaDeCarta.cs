@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Cod3rsGrowth.Forms
 {
-    public partial class FormListaDeCartaDoBaralho : Form
+    public partial class FormNovoBaralhoListaDeCarta : Form
     {
         private Jogador _jogador;
         private CartaServico _cartaServico;
@@ -24,7 +24,7 @@ namespace Cod3rsGrowth.Forms
         private const int QUANTIDADE_MINIMA = 0;
         private string STRING_VAZIA = string.Empty;
 
-        public FormListaDeCartaDoBaralho(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
+        public FormNovoBaralhoListaDeCarta(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
             JwtServico tokenServico, LoginController loginController, Jogador jogador, Baralho baralho)
         {
             _cartaServico = cartaServico;

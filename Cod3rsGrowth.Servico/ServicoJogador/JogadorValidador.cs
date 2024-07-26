@@ -40,41 +40,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 RuleFor(jogador => jogador.UsuarioJogador)
                     .Must(ValidacaoJogadorUsuario).WithMessage(
                         "O usuário deve conter:\n" +
-                        "   Somente letras minúsculas [a-z].\n" +
-                        "   Conter mais de 6 dígitos.\n")
-                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
-
-                RuleFor(jogador => jogador.SenhaHashJogador)
-                    .NotNull().WithMessage("Preencha sua senha no campo indicado.\n")
-                    .NotEmpty().WithMessage("Preencha sua senha no campo indicado.\n");
-
-                RuleFor(jogador => jogador.SenhaHashJogador)
-                    .Must(ValidacaoJogadorSenha).WithMessage(
-                        "A Senha deve conter:\n" +
-                        "   Ao menos uma letra maiúscula [A-Z].\n" +
-                        "   Ao menos uma letra minúscula [a-z].\n" +
-                        "   Ao menos um número [0123456789].\n" +
-                        "   Não deve conter caracteres especiais.\n" +
-                        "   Conter mais de 8 dígitos.\n")
-                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
-
-
-                RuleFor(jogador => jogador)
-                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
-                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
-            });
-
-            RuleSet("Atualizar", () =>
-            {
-                RuleFor(jogador => jogador.UsuarioJogador)
-                    .NotNull().WithMessage("Preencha seu nome de usuário no campo indicado.\n")
-                    .NotEmpty().WithMessage("Preencha seu nome de usuário no campo indicado.\n");
-
-                RuleFor(jogador => jogador.UsuarioJogador)
-                    .Must(ValidacaoJogadorUsuario).WithMessage(
-                        "O usuário deve conter:\n" +
-                        "   Somente letras minúsculas [a-z].\n" +
-                        "   Conter mais de 6 dígitos.\n")
+                        "Somente letras minúsculas [a-z].\n" +
+                        "Conter mais de 6 dígitos.\n")
                     .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
 
                 RuleFor(jogador => jogador)
@@ -88,13 +55,41 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 RuleFor(jogador => jogador.SenhaHashJogador)
                     .Must(ValidacaoJogadorSenha).WithMessage(
                         "A Senha deve conter:\n" +
-                        "   Ao menos uma letra maiúscula [A-Z].\n" +
-                        "   Ao menos uma letra minúscula [a-z].\n" +
-                        "   Ao menos um número [0123456789].\n" +
-                        "   Não deve conter caracteres especiais.\n" +
-                        "   Conter mais de 8 dígitos.\n")
+                        "Ao menos uma letra maiúscula [A-Z].\n" +
+                        "Ao menos uma letra minúscula [a-z].\n" +
+                        "Ao menos um número [0123456789].\n" +
+                        "Não deve conter caracteres especiais.\n" +
+                        "Conter mais de 8 dígitos.\n")
                     .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
 
+
+                RuleFor(jogador => jogador)
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
+            });
+
+            RuleSet("Atualizar", () =>
+            {
+                RuleFor(jogador => jogador.UsuarioJogador)
+                    .Must(ValidacaoJogadorUsuario).WithMessage(
+                        "O usuário deve conter:\n" +
+                        "Somente letras minúsculas [a-z].\n" +
+                        "Conter mais de 6 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
+
+                RuleFor(jogador => jogador)
+                    .Must(ValidacaoUsuarioEConfirmacaoCorrepondem).WithMessage("O usuário e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
+
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                    .Must(ValidacaoJogadorSenha).WithMessage(
+                        "A Senha deve conter:\n" +
+                        "Ao menos uma letra maiúscula [A-Z].\n" +
+                        "Ao menos uma letra minúscula [a-z].\n" +
+                        "Ao menos um número [0123456789].\n" +
+                        "Não deve conter caracteres especiais.\n" +
+                        "Conter mais de 8 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
 
                 RuleFor(jogador => jogador)
                     .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
@@ -110,11 +105,11 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 RuleFor(jogador => jogador.SenhaHashJogador)
                     .Must(ValidacaoJogadorSenha).WithMessage(
                         "A Senha deve conter:\n" +
-                        "   Ao menos uma letra maiúscula [A-Z].\n" +
-                        "   Ao menos uma letra minúscula [a-z].\n" +
-                        "   Ao menos um número [0123456789].\n" +
-                        "   Não deve conter caracteres especiais.\n" +
-                        "   Conter mais de 8 dígitos.\n")
+                        "Ao menos uma letra maiúscula [A-Z].\n" +
+                        "Ao menos uma letra minúscula [a-z].\n" +
+                        "Ao menos um número [0123456789].\n" +
+                        "Não deve conter caracteres especiais.\n" +
+                        "Conter mais de 8 dígitos.\n")
                     .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
 
 

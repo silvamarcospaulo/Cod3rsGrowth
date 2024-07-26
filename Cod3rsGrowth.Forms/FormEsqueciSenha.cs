@@ -71,26 +71,12 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarVisualizaSenha(object sender, EventArgs e)
         {
-            if (textBoxNovasenha.UseSystemPasswordChar)
-            {
-                textBoxNovasenha.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBoxNovasenha.UseSystemPasswordChar = true;
-            }
+            textBoxNovasenha.UseSystemPasswordChar = !textBoxNovasenha.UseSystemPasswordChar;
         }
 
         private void AoClicarVisualizaConfirmacaoDeSenha(object sender, EventArgs e)
         {
-            if (textBoxConfirmarNovaSenha.UseSystemPasswordChar)
-            {
-                textBoxConfirmarNovaSenha.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBoxConfirmarNovaSenha.UseSystemPasswordChar = true;
-            }
+            textBoxConfirmarNovaSenha.UseSystemPasswordChar = !textBoxConfirmarNovaSenha.UseSystemPasswordChar;
         }
     }
 }
