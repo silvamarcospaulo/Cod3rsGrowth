@@ -17,9 +17,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         private readonly IValidator<Baralho> _validadorBaralho;
         private const int VALOR_NULO = 0;
 
-        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
-            IValidator<Baralho> validadorBaralho)
-            IValidator<Baralho> validadorBaralho)
+        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico, IValidator<Baralho> validadorBaralho)
         {
             _baralhoRepository = baralhoRepository;
             _cartaServico = cartaServico;
@@ -106,27 +104,6 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             catch (Exception e)
             {
                 throw new Exception(e.Message);
-            }
-        }
-
-        public int Criar(Baralho baralho)
-        {
-            try
-            {
-                var baralhoCriar = ValidarBaralho(baralho);
-
-                var idBaralhoCriado = _baralhoRepository.Criar(baralhoCriar);
-
-                return idBaralhoCriado;
-            }
-            catch(ValidationException e)
-            {
-                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
-                throw new Exception($"{mensagemDeErro}");
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"Erro ao criar o baralho.\n{e.Message}");
             }
         }
 

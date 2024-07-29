@@ -66,7 +66,6 @@ namespace Cod3rsGrowth.Forms
         }
 
         private void AoClicarAbrirTelaDeCadastrarEditarPerfil(object sender, EventArgs e)
-        private void AoClicarAbrirTelaDeCadastrarEditarPerfil(object sender, EventArgs e)
         {
             this.Close();
             threadFormEditarPerfil = new Thread(CarregarFormJogadorCadastrarEditarPerfilEmNovaJanela);
