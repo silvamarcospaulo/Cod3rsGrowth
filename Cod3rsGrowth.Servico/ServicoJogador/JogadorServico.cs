@@ -28,7 +28,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         private bool ValidacaoUsuarioDisponível(string usuario)
         {
-            return ObterTodos(new JogadorFiltro { UsuarioJogador = usuario }).Any<Jogador>();
+            return ObterTodos(new JogadorFiltro { UsuarioJogador = usuario }).Any() ? throw new Exception($"Usuário {usuario} indisponível.") : true;
         }
 
         private static decimal SomarPrecoDeTodasAsCartasDoJogador(List<Baralho>? baralhosJogador)
@@ -62,7 +62,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             try
             {
-                if (ValidacaoUsuarioDisponível(jogador.UsuarioJogador)) throw new Exception("Usuário indisponível.");
+                if (!ValidacaoUsuarioDisponível(jogador.UsuarioJogador)) throw new Exception("Usuário indisponível.");
 
                 _validadorJogador.Validate(jogador, options =>
                 {

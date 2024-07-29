@@ -18,6 +18,7 @@ namespace Cod3rsGrowth.Forms
         private Carta cartaSelecionada;
         private Thread threadFormListaBaralhosDoJogador;
         private Thread threadFormEditarBaralho;
+        private DialogResult resposta;
         private const int QUANTIDADE_MINIMA = 0;
         private string STRING_VAZIA = string.Empty;
 
@@ -172,6 +173,29 @@ namespace Cod3rsGrowth.Forms
         private void CarregarFormListaBaralhosDoJogadorEmNovaJanela(object obj)
         {
             Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
+        }
+
+        private void AoClicarApagaBaralho(object sender, EventArgs e)
+        {
+            try
+            {
+                resposta = MessageBox.Show("Apagar baralho?", "Confirmação", MessageBoxButtons.YesNo);
+
+                if (resposta == DialogResult.Yes)
+                {
+                    _baralhoServico.Excluir(_baralho.Id);
+                    MessageBox.Show("Baralho excluído!");
+
+                    this.Close();
+                    threadFormListaBaralhosDoJogador = new Thread(CarregarFormListaBaralhosDoJogadorEmNovaJanela);
+                    threadFormListaBaralhosDoJogador.SetApartmentState(ApartmentState.STA);
+                    threadFormListaBaralhosDoJogador.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Não foi possível apagar o baralho selecionado no momento, tente novamente mais tarde!\n{ex.Message}", "Erro ao apagar baralho");
+            }
         }
     }
 }

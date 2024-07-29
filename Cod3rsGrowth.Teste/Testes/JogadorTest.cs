@@ -189,7 +189,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_idade_menor_que_treze_anos_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "MTG Deckbuilder possui conte�do exclusivo para maiores de 13 anos.\n";
+            const string mensagemDeErroEsperada = "MTG Deckbuilder possui conteúdo exclusivo para maiores de 13 anos.\n";
 
             var jogadorTeste = new Jogador()
             {
@@ -244,8 +244,10 @@ namespace Cod3rsGrowth.Teste.Testes
         public void ao_Atualizar_com_dados_validos_deve_adicionar_um_novo_jogador(int idJogadorTeste)
         {
             var jogadorTeste = servicoJogador.ObterPorId(idJogadorTeste);
-            jogadorTeste.SenhaHashJogador = "4e890854906f50e9ea4953ee9ec0468bc3f65ceee72876c850c3e5167c9220a6";
-            jogadorTeste.SenhaHashConfirmacaoJogador = "4e890854906f50e9ea4953ee9ec0468bc3f65ceee72876c850c3e5167c9220a6";
+            jogadorTeste.UsuarioJogador = null;
+            jogadorTeste.UsuarioConfirmacaoJogador = null;
+            jogadorTeste.SenhaHashJogador = "Senha123";
+            jogadorTeste.SenhaHashConfirmacaoJogador = "Senha123";
 
             servicoJogador.Atualizar(jogadorTeste);
 

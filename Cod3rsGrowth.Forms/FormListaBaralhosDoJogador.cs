@@ -21,7 +21,6 @@ namespace Cod3rsGrowth.Forms
         private const int QUANTIDADE_MINIMA = 0;
         private const int PRECO_PADRAO = 0;
         private DateTime DATA_PADRAO = Convert.ToDateTime("01/01/2001");
-        private DialogResult resposta;
         private Baralho baralhoSelecionado;
 
 
@@ -228,26 +227,6 @@ namespace Cod3rsGrowth.Forms
         private void CarregarFormEditarBaralhoListaDeCartaEmNovaJanela(object obj)
         {
             Application.Run(new FormEditarBaralhoListaDeCarta(_cartaServico, _baralhoServico, _jogadorServico, _jogador, baralhoSelecionado));
-        }
-
-        private void AoClicarApagaBaralho(object sender, EventArgs e)
-        {
-            try
-            {
-                resposta = MessageBox.Show("Apagar baralho?", "Confirmação", MessageBoxButtons.YesNo);
-
-                if (resposta == DialogResult.Yes)
-                {
-                    _baralhoServico.Excluir(baralhoSelecionado.Id);
-                    MessageBox.Show("Baralho excluído!");
-
-                    CarregarFormListaBaralhosDoJogador(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Não foi possível apagar o baralho selecionado no momento, tente novamente mais tarde!\n{ex.Message}", "Erro ao apagar baralho");
-            }
         }
     }
 }
