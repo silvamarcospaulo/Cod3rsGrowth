@@ -2,9 +2,6 @@
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
-using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
-using FluentValidation;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -14,20 +11,15 @@ namespace Cod3rsGrowth.Forms
         private CartaServico _cartaServico;
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
-        private JwtServico _tokenServico;
-        private LoginController _loginController;
         private Thread threadFormsJogadorEntrar;
         private DialogResult resposta;
 
-        public FormJogadorEditarPerfil(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
-            JwtServico tokenServico, LoginController loginController, Jogador jogador)
+        public FormJogadorEditarPerfil(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico, Jogador jogador)
         {
             _jogador = jogador;
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
-            _tokenServico = tokenServico;
-            _loginController = loginController;
             InitializeComponent();
         }
 
@@ -42,7 +34,7 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarCancelaEdicaoDePerfil(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
-            threadFormsJogadorEntrar = new Thread(CarregarJanelaDeLogin);
+            threadFormsJogadorEntrar = new Thread(CarregarJanelaDeLoginEmNovaJanela);
             threadFormsJogadorEntrar.SetApartmentState(ApartmentState.STA);
             threadFormsJogadorEntrar.Start();
         }
@@ -66,14 +58,14 @@ namespace Cod3rsGrowth.Forms
             }
 
             this.Close();
-            threadFormsJogadorEntrar = new Thread(CarregarJanelaDeLogin);
+            threadFormsJogadorEntrar = new Thread(CarregarJanelaDeLoginEmNovaJanela);
             threadFormsJogadorEntrar.SetApartmentState(ApartmentState.STA);
             threadFormsJogadorEntrar.Start();
         }
 
-        private void CarregarJanelaDeLogin(object obj)
+        private void CarregarJanelaDeLoginEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
+            Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico));
         }
 
         private void AoClicarApagaPerfil(object sender, EventArgs e)
@@ -88,7 +80,7 @@ namespace Cod3rsGrowth.Forms
                     MessageBox.Show("Conta encerrada!");
 
                     this.Close();
-                    threadFormsJogadorEntrar = new Thread(CarregarJanelaDeLogin);
+                    threadFormsJogadorEntrar = new Thread(CarregarJanelaDeLoginEmNovaJanela);
                     threadFormsJogadorEntrar.SetApartmentState(ApartmentState.STA);
                     threadFormsJogadorEntrar.Start();
                 }

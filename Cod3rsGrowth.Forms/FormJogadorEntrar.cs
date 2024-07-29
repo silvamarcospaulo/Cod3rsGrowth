@@ -3,8 +3,6 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -13,21 +11,16 @@ namespace Cod3rsGrowth.Forms
         private CartaServico _cartaServico;
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
-        private JwtServico _tokenServico;
-        private LoginController _loginController;
         private Jogador _jogador;
         private Thread threadFormsJogador;
         private Thread threadFormsCadastro;
         private Thread threadFormsEsqueciSenha;
 
-        public FormJogadorEntrar(CartaServico cartaServico, BaralhoServico baralhoServico,
-            JogadorServico jogadorServico, JwtServico tokenServico, LoginController loginController)
+        public FormJogadorEntrar(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico)
         {
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
-            _tokenServico = tokenServico;
-            _loginController = loginController;
             InitializeComponent();
         }
 
@@ -44,13 +37,12 @@ namespace Cod3rsGrowth.Forms
                     SenhaHashJogador = textBoxSenha.Text
                 };
 
-                var resultado = _loginController.Autenticacao(jogadorAutenticar) as OkObjectResult;
-                var jogador = (Jogador)resultado?.Value;
+                var resultado = JwtServico.AutenticarJogador(jogadorAutenticar, _jogadorServico);
 
-                _jogador = _jogadorServico.ObterPorId(jogador.Id);
+                _jogador = _jogadorServico.ObterPorId(resultado.Id);
 
                 this.Close();
-                threadFormsJogador = new Thread(CarregaFormJogador);
+                threadFormsJogador = new Thread(CarregaFormJogadorEmNovaJanela);
                 threadFormsJogador.SetApartmentState(ApartmentState.STA);
                 threadFormsJogador.Start();
             }
@@ -64,47 +56,40 @@ namespace Cod3rsGrowth.Forms
             }
         }
 
-        private void CarregaFormJogador(object obj)
+        private void CarregaFormJogadorEmNovaJanela(object obj)
         {
-            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
+            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }
 
         private void AoClicarAbreTelaDeCadastroDeConta(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
-            threadFormsCadastro = new Thread(AoClicarAbrirTelaDeCadastroEmNovaJanela);
+            threadFormsCadastro = new Thread(CarregaFormCadastroEmNovaJanela);
             threadFormsCadastro.SetApartmentState(ApartmentState.STA);
             threadFormsCadastro.Start();
         }
 
-        private void AoClicarAbrirTelaDeCadastroEmNovaJanela(object obj)
+        private void CarregaFormCadastroEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorCadastro(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
+            Application.Run(new FormJogadorCadastro(_cartaServico, _baralhoServico, _jogadorServico));
         }
 
         private void AoClicarAbreTelaDeRestauracaoDeSenha(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
-            threadFormsEsqueciSenha = new Thread(AoClicarAbrirTelaDeEsqueciSenhaEmNovaJanela);
+            threadFormsEsqueciSenha = new Thread(CarregaFormEsqueciSenhaEmNovaJanela);
             threadFormsEsqueciSenha.SetApartmentState(ApartmentState.STA);
             threadFormsEsqueciSenha.Start();
         }
 
-        private void AoClicarAbrirTelaDeEsqueciSenhaEmNovaJanela(object obj)
+        private void CarregaFormEsqueciSenhaEmNovaJanela(object obj)
         {
-            Application.Run(new FormEsqueciSenha(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
+            Application.Run(new FormEsqueciSenha(_cartaServico, _baralhoServico, _jogadorServico));
         }
 
         private void AoClicarVisualizaSenha(object sender, EventArgs e)
         {
-            if (textBoxSenha.UseSystemPasswordChar)
-            {
-                textBoxSenha.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBoxSenha.UseSystemPasswordChar = true;
-            }
+            textBoxSenha.UseSystemPasswordChar = !textBoxSenha.UseSystemPasswordChar;
         }
     }
 }

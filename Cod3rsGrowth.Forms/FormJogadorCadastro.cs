@@ -2,29 +2,22 @@
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
-using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
 
 namespace Cod3rsGrowth.Forms
 {
     public partial class FormJogadorCadastro : Form
     {
-        private CartaServico cartaServico;
-        private BaralhoServico baralhoServico;
-        private JogadorServico jogadorServico;
-        private JwtServico tokenServico;
-        private LoginController loginController;
-        private Jogador jogador;
+        private CartaServico _cartaServico;
+        private BaralhoServico _baralhoServico;
+        private JogadorServico _jogadorServico;
+        private Jogador _jogador;
         private Thread threadFormsJogador;
 
-        public FormJogadorCadastro(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico,
-            JwtServico _tokenServico, LoginController _loginController)
+        public FormJogadorCadastro(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico)
         {
-            cartaServico = _cartaServico;
-            baralhoServico = _baralhoServico;
-            jogadorServico = _jogadorServico;
-            tokenServico = _tokenServico;
-            loginController = _loginController;
+            _cartaServico = cartaServico;
+            _baralhoServico = baralhoServico;
+            _jogadorServico = jogadorServico;
             InitializeComponent();
         }
 
@@ -45,8 +38,8 @@ namespace Cod3rsGrowth.Forms
 
             try
             {
-                var idJogador = jogadorServico.Criar(jogadorAutenticar);
-                jogador = jogadorServico.ObterPorId(idJogador);
+                var idJogador = _jogadorServico.Criar(jogadorAutenticar);
+                _jogador = _jogadorServico.ObterPorId(idJogador);
 
                 this.Close();
                 threadFormsJogador = new Thread(AoClicarCarregarJogadorEmNovaJanela);
@@ -61,7 +54,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregarJogadorEmNovaJanela(Object obj)
         {
-            Application.Run(new FormListaBaralhosDoJogador(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController, jogador));
+            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }
 
         private void AoClicarVoltarParaTelaDeLogin(object sender, LinkLabelLinkClickedEventArgs e)
@@ -74,31 +67,17 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregarJogadorEntrarEmNovaJanela(Object obj)
         {
-            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController));
+            Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico));
         }
 
         private void AoClicarVisualizaSenha(object sender, EventArgs e)
         {
-            if (textBoxSenha.UseSystemPasswordChar)
-            {
-                textBoxSenha.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBoxSenha.UseSystemPasswordChar = true;
-            }
+            textBoxSenha.UseSystemPasswordChar = !textBoxSenha.UseSystemPasswordChar;
         }
 
         private void AoClicarVisualizaConfirmacaoDeSenha(object sender, EventArgs e)
         {
-            if (textBoxConfirmarSenha.UseSystemPasswordChar)
-            {
-                textBoxConfirmarSenha.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBoxConfirmarSenha.UseSystemPasswordChar = true;
-            }
+            textBoxConfirmarSenha.UseSystemPasswordChar = !textBoxConfirmarSenha.UseSystemPasswordChar;
         }
     }
 }

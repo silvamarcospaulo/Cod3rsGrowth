@@ -2,9 +2,6 @@
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
-using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
-using FluentValidation;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -13,18 +10,13 @@ namespace Cod3rsGrowth.Forms
         private CartaServico cartaServico;
         private BaralhoServico baralhoServico;
         private JogadorServico jogadorServico;
-        private JwtServico tokenServico;
-        private LoginController loginController;
         private Thread threadFormsEntrar;
 
-        public FormEsqueciSenha(CartaServico _cartaServico, BaralhoServico _baralhoServico,
-            JogadorServico _jogadorServico, JwtServico _tokenServico, LoginController _loginController)
+        public FormEsqueciSenha(CartaServico _cartaServico, BaralhoServico _baralhoServico, JogadorServico _jogadorServico)
         {
             cartaServico = _cartaServico;
             baralhoServico = _baralhoServico;
             jogadorServico = _jogadorServico;
-            tokenServico = _tokenServico;
-            loginController = _loginController;
             InitializeComponent();
         }
 
@@ -51,7 +43,7 @@ namespace Cod3rsGrowth.Forms
             }
 
             this.Close();
-            threadFormsEntrar = new Thread(CarregarJanelaJogadorEntrar);
+            threadFormsEntrar = new Thread(CarregarJanelaJogadorEntrarEmNovaJanela);
             threadFormsEntrar.SetApartmentState(ApartmentState.STA);
             threadFormsEntrar.Start();
         }
@@ -59,38 +51,24 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarCancelaRestauracaoDeSenha(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
-            threadFormsEntrar = new Thread(CarregarJanelaJogadorEntrar);
+            threadFormsEntrar = new Thread(CarregarJanelaJogadorEntrarEmNovaJanela);
             threadFormsEntrar.SetApartmentState(ApartmentState.STA);
             threadFormsEntrar.Start();
         }
 
-        private void CarregarJanelaJogadorEntrar(object obj)
+        private void CarregarJanelaJogadorEntrarEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico, tokenServico, loginController));
+            Application.Run(new FormJogadorEntrar(cartaServico, baralhoServico, jogadorServico));
         }
 
         private void AoClicarVisualizaSenha(object sender, EventArgs e)
         {
-            if (textBoxNovasenha.UseSystemPasswordChar)
-            {
-                textBoxNovasenha.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBoxNovasenha.UseSystemPasswordChar = true;
-            }
+            textBoxNovasenha.UseSystemPasswordChar = !textBoxNovasenha.UseSystemPasswordChar;
         }
 
         private void AoClicarVisualizaConfirmacaoDeSenha(object sender, EventArgs e)
         {
-            if (textBoxConfirmarNovaSenha.UseSystemPasswordChar)
-            {
-                textBoxConfirmarNovaSenha.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                textBoxConfirmarNovaSenha.UseSystemPasswordChar = true;
-            }
+            textBoxConfirmarNovaSenha.UseSystemPasswordChar = !textBoxConfirmarNovaSenha.UseSystemPasswordChar;
         }
     }
 }

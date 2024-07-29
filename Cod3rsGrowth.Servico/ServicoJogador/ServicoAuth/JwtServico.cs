@@ -1,7 +1,9 @@
 ﻿using Cod3rsGrowth.Dominio.Auth;
 using Cod3rsGrowth.Dominio.Modelos;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 
@@ -60,6 +62,54 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
             }
 
             return false;
+        }
+
+        public static Jogador AutenticarJogador(Jogador modelo, JogadorServico jogadorServico)
+        {
+            var jogador = new Jogador();
+
+            var diretorioToken = ObterCaminhoArquivoToken();
+
+            var lerTokenTxt = System.IO.File.ReadAllLines(diretorioToken).ToList();
+
+            var handler = new JwtSecurityTokenHandler();
+
+            var _lerTokenTxt = new List<string>();
+
+            _lerTokenTxt.AddRange(lerTokenTxt);
+
+            for (int contador = 0; contador < lerTokenTxt?.Count(); contador++)
+            {
+                if (VerificarTokenTxt(lerTokenTxt[contador], modelo.UsuarioJogador, handler))
+                {
+                    jogador = JogadorServico.ObtemIdJogador(modelo.UsuarioJogador, jogadorServico);
+                }
+                else
+                {
+                    _lerTokenTxt.Remove(lerTokenTxt[contador]);
+                }
+            }
+
+            System.IO.File.WriteAllLines(diretorioToken, _lerTokenTxt);
+
+            if (jogador?.NomeJogador is null)
+            {
+                jogador = JogadorServico.AutenticaUsuarioSenhaJogador(modelo, jogadorServico);
+
+                if (jogador is null) return null;
+
+                var token = GeradorDeToken(jogador);
+
+                var escreverTokenTxt = new StreamWriter(diretorioToken, true);
+
+                escreverTokenTxt.WriteLine(token);
+
+                escreverTokenTxt.Dispose();
+
+                jogador.SenhaHashJogador = "";
+            }
+
+            return jogador;
         }
     }
 }

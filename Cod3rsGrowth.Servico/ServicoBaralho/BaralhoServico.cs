@@ -1,7 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
 using LinqToDB;
@@ -17,15 +16,13 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         private readonly CartaServico _cartaServico;
         private readonly IValidator<Baralho> _validadorBaralho;
         private const int VALOR_NULO = 0;
-        private readonly ConexaoDados _conexaoDados;
 
         public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
-            IValidator<Baralho> validadorBaralho, ConexaoDados conexaoDados)
+            IValidator<Baralho> validadorBaralho)
         {
             _baralhoRepository = baralhoRepository;
             _cartaServico = cartaServico;
             _validadorBaralho = validadorBaralho;
-            _conexaoDados = conexaoDados;
         }
 
         public static decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
@@ -101,39 +98,32 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             catch (ValidationException e)
             {
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
-                throw new ValidationException($"Validação falhou: {mensagemDeErro}");
+                throw new ValidationException(mensagemDeErro);
             }
             catch (Exception e)
             {
-                throw new Exception("Erro ao validar o baralho.");
+                throw new Exception(e.Message);
             }
         }
 
         public int Criar(Baralho baralho)
         {
-            using (var transaction = _conexaoDados.BeginTransaction())
+            try
             {
-                try
-                {
-                    var baralhoCriar = ValidarBaralho(baralho);
+                var baralhoCriar = ValidarBaralho(baralho);
 
-                    var idBaralhoCriado = _baralhoRepository.Criar(baralhoCriar);
+                var idBaralhoCriado = _baralhoRepository.Criar(baralhoCriar);
 
-                    foreach (var copia in baralhoCriar.CartasDoBaralho)
-                    {
-                        copia.IdBaralho = idBaralhoCriado;
-                        CriarCopiaDeCartas(copia);
-                    }
-
-                    transaction.Commit();
-
-                    return baralhoCriar.Id;
-                }
-                catch (Exception e)
-                {
-                    transaction.Rollback();
-                    throw new Exception("Erro ao criar o baralho.");
-                }
+                return baralhoCriar.Id;
+            }
+            catch(ValidationException e)
+            {
+                string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
+                throw new ValidationException($"Validação falhou:\n{mensagemDeErro}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Erro ao criar o baralho.\n{e.Message}");
             }
         }
 

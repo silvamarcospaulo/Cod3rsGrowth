@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cod3rsGrowth.Web\Cod3rsGrowth.Web.csproj" />
+    <ProjectReference Include="..\Cod3rsGrowth.Infra\Cod3rsGrowth.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>

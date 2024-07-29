@@ -1,7 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Teste.Singleton;
 
 namespace Cod3rsGrowth.Teste.Repository

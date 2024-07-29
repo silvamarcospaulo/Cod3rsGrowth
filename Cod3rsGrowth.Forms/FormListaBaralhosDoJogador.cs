@@ -4,8 +4,6 @@ using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
-using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
 using System.ComponentModel;
 
 namespace Cod3rsGrowth.Forms
@@ -16,8 +14,6 @@ namespace Cod3rsGrowth.Forms
         private CartaServico _cartaServico;
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
-        private JwtServico _tokenServico;
-        private LoginController _loginController;
         private Thread threadFormEntrar;
         private Thread threadFormEditarPerfil;
         private Thread threadFormNovoBaralho;
@@ -29,15 +25,12 @@ namespace Cod3rsGrowth.Forms
         private Baralho baralhoSelecionado;
 
 
-        public FormListaBaralhosDoJogador(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
-            JwtServico tokenServico, LoginController loginController, Jogador jogador)
+        public FormListaBaralhosDoJogador(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico, Jogador jogador)
         {
-            _jogador = jogador;
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
-            _tokenServico = tokenServico;
-            _loginController = loginController;
+            _jogador = jogador;
 
             InitializeComponent();
         }
@@ -64,27 +57,27 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarFinalizaASessao(object sender, EventArgs e)
         {
             this.Close();
-            threadFormEntrar = new Thread(CarregarFormJogadorEntrar);
+            threadFormEntrar = new Thread(CarregarFormJogadorEntrarEmNovaJanela);
             threadFormEntrar.SetApartmentState(ApartmentState.STA);
             threadFormEntrar.Start();
         }
 
-        private void CarregarFormJogadorEntrar(object obj)
+        private void CarregarFormJogadorEntrarEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
+            Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico));
         }
 
         private void AoClicarAbrirTelaDeEdicaoDePerfil(object sender, EventArgs e)
         {
             this.Close();
-            threadFormEditarPerfil = new Thread(CarregarFormJogadorEditarPerfil);
+            threadFormEditarPerfil = new Thread(CarregarFormJogadorEditarPerfilEmNovaJanela);
             threadFormEditarPerfil.SetApartmentState(ApartmentState.STA);
             threadFormEditarPerfil.Start();
         }
 
-        private void CarregarFormJogadorEditarPerfil(object obj)
+        private void CarregarFormJogadorEditarPerfilEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorEditarPerfil(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
+            Application.Run(new FormJogadorEditarPerfil(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }
 
         private void AoClicarAplicaSelecaoDeFiltros(object sender, EventArgs e)
@@ -206,14 +199,14 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarAbreTelaDeCriacaoDeBaralho(object sender, EventArgs e)
         {
             this.Close();
-            threadFormNovoBaralho = new Thread(CarregarFormNovoBaralho);
+            threadFormNovoBaralho = new Thread(CarregarFormNovoBaralhoEmNovaJanela);
             threadFormNovoBaralho.SetApartmentState(ApartmentState.STA);
             threadFormNovoBaralho.Start();
         }
 
-        private void CarregarFormNovoBaralho(object obj)
+        private void CarregarFormNovoBaralhoEmNovaJanela(object obj)
         {
-            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, null));
+            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _jogador, null));
         }
 
         private void AoClicarCarregaDadosDoBaralho(object sender, DataGridViewCellEventArgs e)
