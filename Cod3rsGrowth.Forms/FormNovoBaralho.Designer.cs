@@ -988,4 +988,4 @@
         private Label labelNomeCartaSelecionada;
         private Label label3;
     }
-}
+}   

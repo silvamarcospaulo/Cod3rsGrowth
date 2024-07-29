@@ -5,22 +5,22 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
+using System.Windows.Forms;
 
 namespace Cod3rsGrowth.Forms
 {
     public partial class FormNovoBaralho : Form
     {
-        private Jogador _jogador;
         private CartaServico _cartaServico;
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
-        private JwtServico _tokenServico;
+        private Jogador _jogador;
         private Baralho _baralhoParcial;
+        private Carta _cartaSelecionada;
         private Thread threadFormListaBaralhoJogador;
         private Thread threadListaDeCartaDoBaralho;
         private int PRECO_PADRAO = 0;
         private int QUANTIDADE_MINIMA = 0;
-        private Carta cartaSelecionada;
         private string STRING_VAZIA = string.Empty;
 
         public FormNovoBaralho(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico, Jogador jogador, Baralho? baralhoParcial)
@@ -59,11 +59,8 @@ namespace Cod3rsGrowth.Forms
                 labelPrecoParcial.Text = $"R${Math.Round(_baralhoParcial.PrecoDoBaralho, casasDecimais)}";
                 labelCorParcial.Text = _baralhoParcial.CorBaralho;
             }
-
             numericUpDownQuantidadeDeCopiasDeCarta.Value = Convert.ToDecimal(QUANTIDADE_MINIMA);
         }
-
-
 
         private void VerficarSeBaralhoExiste()
         {
@@ -101,7 +98,7 @@ namespace Cod3rsGrowth.Forms
             if (resultado == DialogResult.Yes)
             {
                 this.Close();
-                threadFormListaBaralhoJogador = new Thread(CarregarFormListaBaralhoJogadorEmNovaJanela);
+                threadFormListaBaralhoJogador = new Thread(CarregarFormListaBaralhoJogadorEmNovaJanelaEmNovaJanela);
                 threadFormListaBaralhoJogador.SetApartmentState(ApartmentState.STA);
                 threadFormListaBaralhoJogador.Start();
             }
@@ -110,16 +107,16 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarSelecionaCarta(object sender, DataGridViewCellEventArgs e)
         {
             var carta = dataGridViewCartas.Rows[e.RowIndex];
-            cartaSelecionada = (Carta)carta.DataBoundItem;
-            labelNomeCartaSelecionada.Text = cartaSelecionada?.NomeCarta ?? "";
+            _cartaSelecionada = (Carta)carta.DataBoundItem;
+            labelNomeCartaSelecionada.Text = _cartaSelecionada?.NomeCarta ?? "";
         }
 
         private void AoClicarAdicionaCartaAoBaralho(object sender, EventArgs e)
         {
-            if (numericUpDownQuantidadeDeCopiasDeCarta.Value > QUANTIDADE_MINIMA && cartaSelecionada is not null)
+            if (numericUpDownQuantidadeDeCopiasDeCarta.Value > QUANTIDADE_MINIMA && _cartaSelecionada is not null)
             {
                 var quantidade = Convert.ToInt32(numericUpDownQuantidadeDeCopiasDeCarta.Value);
-                var copiaExistente = _baralhoParcial?.CartasDoBaralho?.FirstOrDefault(copia => copia?.Carta?.Id == cartaSelecionada?.Id);
+                var copiaExistente = _baralhoParcial?.CartasDoBaralho?.FirstOrDefault(copia => copia?.Carta?.Id == _cartaSelecionada?.Id);
 
                 if (copiaExistente is not null)
                 {
@@ -129,9 +126,9 @@ namespace Cod3rsGrowth.Forms
                 {
                     _baralhoParcial?.CartasDoBaralho?.Add(new CopiaDeCartasNoBaralho()
                     {
-                        NomeCarta = cartaSelecionada?.NomeCarta,
-                        Carta = cartaSelecionada,
-                        IdCarta = cartaSelecionada.Id,
+                        NomeCarta = _cartaSelecionada?.NomeCarta,
+                        Carta = _cartaSelecionada,
+                        IdCarta = _cartaSelecionada.Id,
                         QuantidadeCopiasDaCartaNoBaralho = quantidade
                     });
                 }
@@ -149,7 +146,7 @@ namespace Cod3rsGrowth.Forms
                 _baralhoParcial.FormatoDeJogoBaralho = (FormatoDeJogoEnum)comboBoxFormato.SelectedValue;
 
                 this.Close();
-                threadListaDeCartaDoBaralho = new Thread(CarregarFormListaDeCartaDoBaralhoEmNovaJanela);
+                threadListaDeCartaDoBaralho = new Thread(CarregarFormListaDeCartaDoBaralhoEmNovaJanelaEmNovaJanela);
                 threadListaDeCartaDoBaralho.SetApartmentState(ApartmentState.STA);
                 threadListaDeCartaDoBaralho.Start();
             }
@@ -159,9 +156,9 @@ namespace Cod3rsGrowth.Forms
             }
         }
 
-        private void CarregarFormListaDeCartaDoBaralhoEmNovaJanela(object obj)
+        private void CarregarFormListaDeCartaDoBaralhoEmNovaJanelaEmNovaJanela(object obj)
         {
-            Application.Run(new FormListaDeCartaDoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _jogador, _baralhoParcial));
+            Application.Run(new FormNovoBaralhoListaDeCarta(_cartaServico, _baralhoServico, _jogadorServico, _jogador, _baralhoParcial));
         }
 
         private void AoClicarComumDesselecionaOutrasCheckBoxRaridade(object sender, EventArgs e)
@@ -220,7 +217,7 @@ namespace Cod3rsGrowth.Forms
             textBoxFiltrarNome.Text = string.Empty;
         }
 
-        private void CarregarFormListaBaralhoJogadorEmNovaJanela(object obj)
+        private void CarregarFormListaBaralhoJogadorEmNovaJanelaEmNovaJanela(object obj)
         {
             Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }

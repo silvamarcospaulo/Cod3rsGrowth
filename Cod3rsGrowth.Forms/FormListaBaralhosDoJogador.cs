@@ -27,11 +27,10 @@ namespace Cod3rsGrowth.Forms
 
         public FormListaBaralhosDoJogador(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico, Jogador jogador)
         {
+            _jogador = jogador;
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
-            _jogador = jogador;
-
             InitializeComponent();
         }
 
@@ -67,15 +66,15 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico));
         }
 
-        private void AoClicarAbrirTelaDeEdicaoDePerfil(object sender, EventArgs e)
+        private void AoClicarAbrirTelaDeCadastrarEditarPerfil(object sender, EventArgs e)
         {
             this.Close();
-            threadFormEditarPerfil = new Thread(CarregarFormJogadorEditarPerfilEmNovaJanela);
+            threadFormEditarPerfil = new Thread(CarregarFormJogadorCadastrarEditarPerfilEmNovaJanela);
             threadFormEditarPerfil.SetApartmentState(ApartmentState.STA);
             threadFormEditarPerfil.Start();
         }
 
-        private void CarregarFormJogadorEditarPerfilEmNovaJanela(object obj)
+        private void CarregarFormJogadorCadastrarEditarPerfilEmNovaJanela(object obj)
         {
             Application.Run(new FormJogadorCadastroEdicao(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }
@@ -211,14 +210,24 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregaDadosDoBaralho(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= decimal.Zero)
+            if (e.RowIndex >= 0)
             {
                 var selecao = dataGridViewBaralhos.Rows[e.RowIndex];
                 var baralhoGrid = (Baralho)selecao.DataBoundItem;
                 baralhoSelecionado = baralhoGrid;
 
-                AoClicarApagaBaralho(sender, e);
+                baralhoSelecionado = _baralhoServico.ObterPorId(baralhoSelecionado.Id);
+
+                this.Close();
+                threadFormNovoBaralho = new Thread(CarregarFormEditarBaralhoListaDeCartaEmNovaJanela);
+                threadFormNovoBaralho.SetApartmentState(ApartmentState.STA);
+                threadFormNovoBaralho.Start();
             }
+        }
+
+        private void CarregarFormEditarBaralhoListaDeCartaEmNovaJanela(object obj)
+        {
+            Application.Run(new FormEditarBaralhoListaDeCarta(_cartaServico, _baralhoServico, _jogadorServico, _jogador, baralhoSelecionado));
         }
 
         private void AoClicarApagaBaralho(object sender, EventArgs e)

@@ -2,7 +2,6 @@
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
-using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -22,7 +21,6 @@ namespace Cod3rsGrowth.Forms
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
             _jogador = jogador;
-
             InitializeComponent();
         }
 
@@ -108,7 +106,7 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }
 
-        private void CarregarJogadorEntrarEmNovaJanela(Object obj)
+        private void CarregarFormJogadorEntrarEmNovaJanela(Object obj)
         {
             Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico));
         }
@@ -126,7 +124,7 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarVoltarParaTelaDeLogin(object sender, EventArgs e)
         {
             this.Close();
-            threadFormsJogador = new Thread(CarregarJogadorEntrarEmNovaJanela);
+            threadFormsJogador = new Thread(CarregarFormJogadorEntrarEmNovaJanela);
             threadFormsJogador.SetApartmentState(ApartmentState.STA);
             threadFormsJogador.Start();
         }

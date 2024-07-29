@@ -19,25 +19,25 @@ namespace Cod3rsGrowth.Forms
 {
     public partial class FormEditarBaralho : Form
     {
+        private Jogador _jogador;
         private CartaServico _cartaServico;
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
-        private Jogador _jogador;
-        private Baralho _baralhoParcial;
         private Thread threadFormListaBaralhoJogador;
         private Thread threadListaDeCartaDoBaralho;
         private int PRECO_PADRAO = 0;
         private int QUANTIDADE_MINIMA = 0;
+        private Baralho _baralhoParcial;
         private Carta cartaSelecionada;
         private string STRING_VAZIA = string.Empty;
 
         public FormEditarBaralho(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico, Jogador jogador, Baralho baralhoParcial)
         {
+            _jogador = jogador;
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
             _baralhoParcial = baralhoParcial;
-            _jogador = jogador;
             InitializeComponent();
         }
 
