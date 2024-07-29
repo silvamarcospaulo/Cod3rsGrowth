@@ -71,7 +71,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregaFormCadastroEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorCadastro(_cartaServico, _baralhoServico, _jogadorServico));
+            Application.Run(new FormJogadorCadastroEdicao(_cartaServico, _baralhoServico, _jogadorServico, null));
         }
 
         private void AoClicarAbreTelaDeRestauracaoDeSenha(object sender, LinkLabelLinkClickedEventArgs e)

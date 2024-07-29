@@ -77,7 +77,7 @@ namespace Cod3rsGrowth.Forms
 
         private void CarregarFormJogadorEditarPerfilEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorEditarPerfil(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
+            Application.Run(new FormJogadorCadastroEdicao(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }
 
         private void AoClicarAplicaSelecaoDeFiltros(object sender, EventArgs e)
@@ -211,7 +211,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarCarregaDadosDoBaralho(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= decimal.Zero)
             {
                 var selecao = dataGridViewBaralhos.Rows[e.RowIndex];
                 var baralhoGrid = (Baralho)selecao.DataBoundItem;
