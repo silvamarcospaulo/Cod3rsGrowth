@@ -6,6 +6,8 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth;
 using FluentValidation;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Cod3rsGrowth.Servico.ServicoJogador
 {
@@ -28,6 +30,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         private bool ValidacaoUsuarioDisponível(string usuario)
         {
+            return ObterTodos(new JogadorFiltro { UsuarioJogador = usuario }).Any() ? throw new Exception($"Usuário {usuario} indisponível.") : true;
             return ObterTodos(new JogadorFiltro { UsuarioJogador = usuario }).Any() ? throw new Exception($"Usuário {usuario} indisponível.") : true;
         }
 
@@ -85,7 +88,17 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             try
             {
                 var jogadorBanco = ObterPorId(jogador.Id);
+            try
+            {
+                var jogadorBanco = ObterPorId(jogador.Id);
 
+                var jogadorAtualizar = new Jogador();
+
+                jogadorAtualizar.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogador.BaralhosJogador);
+                jogadorAtualizar.PrecoDasCartasJogador = SomarPrecoDeTodasAsCartasDoJogador(jogador.BaralhosJogador);
+                jogadorAtualizar.QuantidadeDeBaralhosJogador = SomarQuantidadeDeBaralhosDoJogador(jogador.BaralhosJogador);
+                jogadorAtualizar.SenhaHashJogador = jogador.SenhaHashJogador;
+                jogadorAtualizar.SenhaHashConfirmacaoJogador = jogador.SenhaHashConfirmacaoJogador;
                 var jogadorAtualizar = new Jogador();
 
                 jogadorAtualizar.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogador.BaralhosJogador);
@@ -101,6 +114,17 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     options.ThrowOnFailures();
                     options.IncludeRuleSets("Atualizar");
                 });
+
+                jogadorAtualizar.SenhaHashJogador = jogador?.SenhaHashJogador is not null ? HashServico.Gerar(jogador.SenhaHashJogador) : jogadorBanco.SenhaHashJogador;
+                jogadorAtualizar.UsuarioJogador = jogador?.UsuarioJogador is not null ? (ValidacaoUsuarioDisponível(jogador.UsuarioJogador) ? jogador.UsuarioJogador : jogadorBanco.UsuarioJogador) : jogadorBanco.UsuarioJogador;
+
+                jogadorAtualizar.NomeJogador = jogadorBanco.NomeJogador;
+                jogadorAtualizar.SobrenomeJogador = jogadorBanco.SobrenomeJogador;
+                jogadorAtualizar.Role = jogadorBanco.Role;
+                jogadorAtualizar.DataNascimentoJogador = jogadorBanco.DataNascimentoJogador;
+                jogadorAtualizar.DataDeCriacaoContaJogador = jogadorBanco.DataDeCriacaoContaJogador;
+                jogadorAtualizar.Id = jogadorBanco.Id;
+
 
                 jogadorAtualizar.SenhaHashJogador = jogador?.SenhaHashJogador is not null ? HashServico.Gerar(jogador.SenhaHashJogador) : jogadorBanco.SenhaHashJogador;
                 jogadorAtualizar.UsuarioJogador = jogador?.UsuarioJogador is not null ? (ValidacaoUsuarioDisponível(jogador.UsuarioJogador) ? jogador.UsuarioJogador : jogadorBanco.UsuarioJogador) : jogadorBanco.UsuarioJogador;

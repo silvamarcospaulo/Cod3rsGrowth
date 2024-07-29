@@ -19,6 +19,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
         public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
             IValidator<Baralho> validadorBaralho)
+            IValidator<Baralho> validadorBaralho)
         {
             _baralhoRepository = baralhoRepository;
             _cartaServico = cartaServico;
@@ -74,26 +75,28 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             return dataCriacao;
         }
 
-        public Baralho ValidarBaralho(Baralho baralho)
+        public int Criar(Baralho baralho)
         {
+            var baralhoCriar = new Baralho();
+
             try
             {
-                var baralhoCriar = new Baralho
-                {
-                    IdJogador = baralho.IdJogador,
-                    NomeBaralho = baralho.NomeBaralho,
-                    FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho,
-                    CartasDoBaralho = baralho.CartasDoBaralho,
-                    PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho),
-                    QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho),
-                    CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho),
-                    CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho),
-                    DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho()
-                };
+                baralhoCriar.IdJogador = baralho.IdJogador;
+                baralhoCriar.NomeBaralho = baralho.NomeBaralho;
+                baralhoCriar.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
+                baralhoCriar.CartasDoBaralho = baralho.CartasDoBaralho;
+                baralhoCriar.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
+                baralhoCriar.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
+                baralhoCriar.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
+                baralhoCriar.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
+                var dataDeCriacao = GerarDataDeCriacaoBaralho();
+                baralhoCriar.DataDeCriacaoBaralho = dataDeCriacao;
 
                 _validadorBaralho.ValidateAndThrow(baralhoCriar);
 
-                return baralhoCriar;
+                var idBaralhoCriado = _baralhoRepository.Criar(baralhoCriar);
+
+                return idBaralhoCriado;
             }
             catch (ValidationException e)
             {
@@ -131,8 +134,6 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             var baralhoAtualizado = ObterPorId(baralho.Id);
 
-            baralhoAtualizado.NomeBaralho = baralho.NomeBaralho;
-            baralhoAtualizado.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
             baralhoAtualizado.CartasDoBaralho = baralho.CartasDoBaralho;
             baralhoAtualizado.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
             baralhoAtualizado.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);

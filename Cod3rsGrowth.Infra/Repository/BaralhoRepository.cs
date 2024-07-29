@@ -9,10 +9,13 @@ namespace Cod3rsGrowth.Infra.Repository
     public class BaralhoRepository : IBaralhoRepository
     {
         private readonly ConexaoDados _conexaoDados;
+        private readonly ConexaoDados _conexaoDados;
         private const int VALOR_NULO = 1;
 
         public BaralhoRepository(ConexaoDados conexaoDados)
+        public BaralhoRepository(ConexaoDados conexaoDados)
         {
+            _conexaoDados = conexaoDados;
             _conexaoDados = conexaoDados;
         }
 
@@ -51,10 +54,12 @@ namespace Cod3rsGrowth.Infra.Repository
         {
             var baralhoExcluir = ObterPorId(idBaralho);
             _conexaoDados.Delete(baralhoExcluir);
+            _conexaoDados.Delete(baralhoExcluir);
         }
 
         public Baralho ObterPorId(int idBaralho)
         {
+            return _conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.Id == idBaralho) ??
             return _conexaoDados.GetTable<Baralho>().FirstOrDefault(baralho => baralho.Id == idBaralho) ??
                 throw new Exception($"Baralho {idBaralho} Nao Encontrado");
         }
@@ -63,6 +68,7 @@ namespace Cod3rsGrowth.Infra.Repository
         {
             
 
+            IQueryable<Baralho> query = from q in _conexaoDados.TabelaBaralho
             IQueryable<Baralho> query = from q in _conexaoDados.TabelaBaralho
                                         select q;
 
@@ -134,10 +140,12 @@ namespace Cod3rsGrowth.Infra.Repository
         public void CriarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
             _conexaoDados.Insert(copiaDeCartasNoBaralho);
+            _conexaoDados.Insert(copiaDeCartasNoBaralho);
         }
 
         public void AtualizarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
+            _conexaoDados.Update(copiaDeCartasNoBaralho);
             _conexaoDados.Update(copiaDeCartasNoBaralho);
         }
 
@@ -149,11 +157,13 @@ namespace Cod3rsGrowth.Infra.Repository
         public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
             return _conexaoDados.GetTable<CopiaDeCartasNoBaralho>().FirstOrDefault(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.Id == idCopiaDeCartasNoBaralho) ??
+            return _conexaoDados.GetTable<CopiaDeCartasNoBaralho>().FirstOrDefault(copiaDeCartasNoBaralho => copiaDeCartasNoBaralho.Id == idCopiaDeCartasNoBaralho) ??
                 throw new Exception($"Registro Nao Encontrado");
         }
 
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
+            IQueryable<CopiaDeCartasNoBaralho> query = from q in _conexaoDados.TabelaCartasDoBaralho
             IQueryable<CopiaDeCartasNoBaralho> query = from q in _conexaoDados.TabelaCartasDoBaralho
                                                        select q;
 

@@ -91,6 +91,7 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarVisualizaSenha(object sender, EventArgs e)
         {
             textBoxSenha.UseSystemPasswordChar = !textBoxSenha.UseSystemPasswordChar;
+            textBoxSenha.UseSystemPasswordChar = !textBoxSenha.UseSystemPasswordChar;
         }
     }
 }
