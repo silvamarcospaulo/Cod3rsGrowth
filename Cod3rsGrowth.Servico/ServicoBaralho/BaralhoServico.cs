@@ -98,7 +98,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             catch (ValidationException e)
             {
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
-                throw new ValidationException(mensagemDeErro);
+                throw new Exception($"{mensagemDeErro}");
             }
             catch (Exception e)
             {
@@ -114,12 +114,12 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
 
                 var idBaralhoCriado = _baralhoRepository.Criar(baralhoCriar);
 
-                return baralhoCriar.Id;
+                return idBaralhoCriado;
             }
             catch(ValidationException e)
             {
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
-                throw new ValidationException($"Validação falhou:\n{mensagemDeErro}");
+                throw new Exception($"{mensagemDeErro}");
             }
             catch (Exception e)
             {

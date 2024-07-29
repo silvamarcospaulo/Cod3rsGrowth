@@ -1,4 +1,4 @@
-using Cod3rsGrowth.Dominio.Filtros;
+ï»¿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -189,7 +189,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_idade_menor_que_treze_anos_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "MTG Deckbuilder possui conteúdo exclusivo para maiores de 13 anos.\n";
+            const string mensagemDeErroEsperada = "MTG Deckbuilder possui conteï¿½do exclusivo para maiores de 13 anos.\n";
 
             var jogadorTeste = new Jogador()
             {
