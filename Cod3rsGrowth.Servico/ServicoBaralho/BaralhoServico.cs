@@ -1,100 +1,98 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
+using LinqToDB;
+using LinqToDB.Data;
+using Microsoft.Extensions.Options;
+using System.Transactions;
 
 namespace Cod3rsGrowth.Servico.ServicoBaralho
 {
     public class BaralhoServico : IBaralhoRepository
     {
-        private readonly IBaralhoRepository _IBaralhoRepository;
+        private readonly IBaralhoRepository _baralhoRepository;
         private readonly CartaServico _cartaServico;
         private readonly IValidator<Baralho> _validadorBaralho;
+        private const int VALOR_NULO = 0;
 
-        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
-            IValidator<Baralho> validadorBaralho)
+        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico, IValidator<Baralho> validadorBaralho)
         {
-            _IBaralhoRepository = baralhoRepository;
+            _baralhoRepository = baralhoRepository;
             _cartaServico = cartaServico;
             _validadorBaralho = validadorBaralho;
         }
 
-        private static decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        public static decimal SomarPrecoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        {
+            if (baralho?.Count() > VALOR_NULO) return baralho.Sum(copia => copia.Carta.PrecoCarta * copia.QuantidadeCopiasDaCartaNoBaralho);
+            return VALOR_NULO;
+        }
+
+        public static int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        {
+
+            if (baralho?.Count() > VALOR_NULO) return baralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho);
+            return VALOR_NULO;
+        }
+
+        public static string ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
+        {
+            if (baralho?.Count() > VALOR_NULO)
+            {
+                var cores = baralho
+                .SelectMany(carta => carta?.Carta?.CorCarta.Trim('{', '}').Split(',').Select(cor => cor.Trim()))
+                .Where(caractere => !string.IsNullOrWhiteSpace(caractere)).Distinct();
+
+                return string.Join(", ", cores);
+            }
+
+            return null;
+        }
+
+        public static int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
         {
             try
             {
-                return baralho.Sum(carta => carta.Carta.PrecoCarta *
-                    carta.QuantidadeCopiasDaCartaNoBaralho);
+                var custoDeManaConvertidoDoBaralho = 0;
+                baralho.ForEach(carta => custoDeManaConvertidoDoBaralho += (carta.Carta.CustoDeManaConvertidoCarta * carta.QuantidadeCopiasDaCartaNoBaralho));
+                custoDeManaConvertidoDoBaralho /= SomarQuantidadeDeCartasDoBaralho(baralho);
+                return custoDeManaConvertidoDoBaralho;
             }
             catch (Exception e)
             {
-                return 0;
-            }
-        }
-
-        private static int SomarQuantidadeDeCartasDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
-        {
-            try
-            {
-                return baralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho);
-            }
-            catch (Exception e)
-            {
-                return 0;
-            }
-        }
-
-        private static int SomarCustoDeManaConvertidoDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
-        {
-            try
-            {
-                return Convert.ToInt32(baralho.Sum(cartas => cartas.Carta.CustoDeManaConvertidoCarta)
-                / SomarQuantidadeDeCartasDoBaralho(baralho));
-            }
-            catch(Exception e)
-            {
-                return 0;
-            }
-        }
-
-        private static List<CoresEnum> ConferirCoresDoBaralho(List<CopiaDeCartasNoBaralho> baralho)
-        {
-            try
-            {
-                var cores = new List<CoresEnum>();
-                baralho.ForEach(carta => cores.AddRange(carta.Carta.CorCarta));
-
-                return cores.Distinct().ToList();
-            }
-            catch (Exception e)
-            {
-                return new List<CoresEnum>();
+                return VALOR_NULO;
             }
         }
 
         private static DateTime GerarDataDeCriacaoBaralho()
         {
             DateTime dataAtual = DateTime.Now;
-            return new DateTime(dataAtual.Year, dataAtual.Month, dataAtual.Day);
+            var dataCriacao = new DateTime(day: dataAtual.Day, month: dataAtual.Month, year: dataAtual.Year);
+            return dataCriacao;
         }
 
         public int Criar(Baralho baralho)
         {
-            baralho.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
-            baralho.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
-            baralho.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
-            baralho.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
-            baralho.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
+            var baralhoCriar = new Baralho();
 
             try
             {
-                _validadorBaralho.ValidateAndThrow(baralho);
-                var idBaralhoCriado = _IBaralhoRepository.Criar(baralho);
+                baralhoCriar.IdJogador = baralho.IdJogador;
+                baralhoCriar.NomeBaralho = baralho.NomeBaralho;
+                baralhoCriar.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
+                baralhoCriar.CartasDoBaralho = baralho.CartasDoBaralho;
+                baralhoCriar.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
+                baralhoCriar.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
+                baralhoCriar.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
+                baralhoCriar.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
+                var dataDeCriacao = GerarDataDeCriacaoBaralho();
+                baralhoCriar.DataDeCriacaoBaralho = dataDeCriacao;
 
-                baralho.CorBaralho.ForEach(cor => _IBaralhoRepository.CriarCorBaralho(
-                    new CorBaralho() { IdBaralho = idBaralhoCriado, Cor = cor }));
+                _validadorBaralho.ValidateAndThrow(baralhoCriar);
+
+                var idBaralhoCriado = _baralhoRepository.Criar(baralhoCriar);
 
                 return idBaralhoCriado;
             }
@@ -103,25 +101,26 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
                 throw new Exception($"{mensagemDeErro}");
             }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public void Atualizar(Baralho baralho)
         {
-            var baralhoAtualizado = ObterPorId(baralho.IdBaralho);
+            var baralhoAtualizado = ObterPorId(baralho.Id);
 
-            baralhoAtualizado.NomeBaralho = baralho.NomeBaralho;
-            baralhoAtualizado.FormatoDeJogoBaralho = baralho.FormatoDeJogoBaralho;
             baralhoAtualizado.CartasDoBaralho = baralho.CartasDoBaralho;
-            baralhoAtualizado.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralhoAtualizado.CartasDoBaralho);
-            baralhoAtualizado.DataDeCriacaoBaralho = GerarDataDeCriacaoBaralho();
-            baralhoAtualizado.PrecoDoBaralho = SomarPrecoDoBaralho(baralhoAtualizado.CartasDoBaralho);
-            baralhoAtualizado.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralhoAtualizado.CartasDoBaralho);
-            baralhoAtualizado.CorBaralho = ConferirCoresDoBaralho(baralhoAtualizado.CartasDoBaralho);
+            baralhoAtualizado.PrecoDoBaralho = SomarPrecoDoBaralho(baralho.CartasDoBaralho);
+            baralhoAtualizado.QuantidadeDeCartasNoBaralho = SomarQuantidadeDeCartasDoBaralho(baralho.CartasDoBaralho);
+            baralhoAtualizado.CorBaralho = ConferirCoresDoBaralho(baralho.CartasDoBaralho);
+            baralhoAtualizado.CustoDeManaConvertidoDoBaralho = SomarCustoDeManaConvertidoDoBaralho(baralho.CartasDoBaralho);
 
             try
             {
                 _validadorBaralho.ValidateAndThrow(baralhoAtualizado);
-                _IBaralhoRepository.Atualizar(baralhoAtualizado);
+                _baralhoRepository.Atualizar(baralhoAtualizado);
             }
             catch (ValidationException e)
             {
@@ -134,12 +133,7 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         {
             try
             {
-                var baralhoExcluir = ObterPorId(idBaralho);
-                var oi = _IBaralhoRepository.ObterTodosCorBaralho(new CorBaralhoFiltro() { idBaralho = idBaralho });
-                oi?.ForEach(cor => ExcluirCorBaralho(cor.IdCorBaralho));
-                var oioi = _IBaralhoRepository.ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = idBaralho });
-                oioi?.ForEach(cor => ExcluirCopiaDeCartas(cor.IdCopiaDeCartasNoBaralho));
-                _IBaralhoRepository.Excluir(idBaralho);
+                _baralhoRepository.Excluir(idBaralho);
             }
             catch (ValidationException e)
             {
@@ -148,61 +142,55 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             }
         }
 
-        public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
-        {
-            return _IBaralhoRepository.ObterTodos(filtro);
-        }
-
         public Baralho ObterPorId(int idBaralho)
         {
-            return _IBaralhoRepository.ObterPorId(idBaralho);
+            var baralho = _baralhoRepository.ObterPorId(idBaralho);
+
+            baralho.CartasDoBaralho = ObterTodosCopiaDeCartas(new CopiaDeCartasNoBaralhoFiltro() { IdBaralho = baralho.Id });
+
+            return baralho;
         }
 
-        public void CriarCorBaralho(CorBaralho corBaralho)
+        public List<Baralho> ObterTodos(BaralhoFiltro? filtro)
         {
-            _IBaralhoRepository.CriarCorBaralho(corBaralho);
-        }
+            var baralhos = _baralhoRepository.ObterTodos(filtro);
 
-        public void ExcluirCorBaralho(int idCorBaralho)
-        {
-            _IBaralhoRepository.Excluir(idCorBaralho);
-        }
-
-        public CorBaralho ObterPorIdCorBaralho(int idCorBaralho)
-        {
-            return _IBaralhoRepository.ObterPorIdCorBaralho(idCorBaralho);
-        }
-
-        public List<CorBaralho> ObterTodosCorBaralho(CorBaralhoFiltro? filtro)
-        {
-            return _IBaralhoRepository.ObterTodosCorBaralho(filtro);
+            return baralhos;
         }
 
         public void CriarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            _IBaralhoRepository.CriarCopiaDeCartas(copiaDeCartasNoBaralho);
+            _baralhoRepository.CriarCopiaDeCartas(copiaDeCartasNoBaralho);
         }
 
         public void AtualizarCopiaDeCartas(CopiaDeCartasNoBaralho copiaDeCartasNoBaralho)
         {
-            var copiaDeCartasNoBaralhoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.IdCopiaDeCartasNoBaralho);
+            var copiaDeCartasNoBaralhoAtualizar = ObterPorIdCopiaDeCartas(copiaDeCartasNoBaralho.Id);
             copiaDeCartasNoBaralhoAtualizar.QuantidadeCopiasDaCartaNoBaralho = copiaDeCartasNoBaralho.QuantidadeCopiasDaCartaNoBaralho;
-            _IBaralhoRepository.AtualizarCopiaDeCartas(copiaDeCartasNoBaralhoAtualizar);
+            _baralhoRepository.AtualizarCopiaDeCartas(copiaDeCartasNoBaralhoAtualizar);
         }
 
         public void ExcluirCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            _IBaralhoRepository.ExcluirCopiaDeCartas(idCopiaDeCartasNoBaralho);
+            _baralhoRepository.ExcluirCopiaDeCartas(idCopiaDeCartasNoBaralho);
         }
 
         public CopiaDeCartasNoBaralho ObterPorIdCopiaDeCartas(int idCopiaDeCartasNoBaralho)
         {
-            return _IBaralhoRepository.ObterPorIdCopiaDeCartas(idCopiaDeCartasNoBaralho);
+            return _baralhoRepository.ObterPorIdCopiaDeCartas(idCopiaDeCartasNoBaralho);
         }
 
         public List<CopiaDeCartasNoBaralho> ObterTodosCopiaDeCartas(CopiaDeCartasNoBaralhoFiltro filtro)
         {
-            return _IBaralhoRepository.ObterTodosCopiaDeCartas(filtro);
+            var copiaDeCartas = _baralhoRepository.ObterTodosCopiaDeCartas(filtro);
+
+            foreach (var copia in copiaDeCartas)
+            {
+                copia.Carta = _cartaServico.ObterPorId(copia.IdCarta);
+                copia.NomeCarta = copia.Carta.NomeCarta;
+            }
+
+            return copiaDeCartas;
         }
     }
 }

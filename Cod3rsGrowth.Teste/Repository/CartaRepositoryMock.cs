@@ -1,8 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
-using Cod3rsGrowth.Infra.Repository;
 using Cod3rsGrowth.Teste.Singleton;
 
 namespace Cod3rsGrowth.Teste.Repository
@@ -10,7 +8,7 @@ namespace Cod3rsGrowth.Teste.Repository
     public class CartaRepositoryMock : ICartaRepository
     {
         private List<Carta> tabelaCarta = SingletonTabelasTeste.InstanciaCarta;
-        private List<CorCarta> tabelaCorCarta = SingletonTabelasTeste.InstanciaCorCarta;
+        private const int VALOR_NULO = 0;
 
         private int GerarIdCarta()
         {
@@ -18,40 +16,29 @@ namespace Cod3rsGrowth.Teste.Repository
             const int Incremento = 1;
 
             var cartas = ObterTodos(null);
-            var ultimoId = cartas.Any() ? cartas.Max(carta => carta.IdCarta) : ValorInicial - Incremento;
-
-            return ultimoId + Incremento;
-        }
-
-        private int GerarIdCorCarta()
-        {
-            const int ValorInicial = 1;
-            const int Incremento = 1;
-
-            var CoresCarta = tabelaCorCarta;
-            var ultimoId = CoresCarta.Any() ? CoresCarta.Max(corCarta => corCarta.IdCarta) : ValorInicial - Incremento;
+            var ultimoId = cartas.Any() ? cartas.Max(carta => carta.Id) : ValorInicial - Incremento;
 
             return ultimoId + Incremento;
         }
 
         public int Criar(Carta carta)
         {
-            carta.IdCarta = GerarIdCarta();
+            carta.Id = GerarIdCarta();
             tabelaCarta.Add(carta);
 
-            return carta.IdCarta;
+            return carta.Id;
         }
 
         public void Atualizar(Carta carta)
         {
-            var cartaBanco = ObterPorId(carta.IdCarta);
+            var cartaBanco = ObterPorId(carta.Id);
             cartaBanco.RaridadeCarta = carta.RaridadeCarta;
             cartaBanco.PrecoCarta = carta.PrecoCarta;
         }
 
         public Carta ObterPorId(int idCarta)
         {
-            return tabelaCarta.FirstOrDefault(carta => carta.IdCarta == idCarta) ?? throw new Exception($"Carta {idCarta} Nao Encontrada");
+            return tabelaCarta.FirstOrDefault(carta => carta.Id == idCarta) ?? throw new Exception($"Carta {idCarta} Nao Encontrada");
         }
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
@@ -73,18 +60,34 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.TipoDeCarta != null)
+            if (filtro?.CorCarta?.Count > VALOR_NULO)
             {
-                query = from q in query
-                        where q.TipoDeCarta == filtro.TipoDeCarta
-                        select q;
+                foreach (var cor in filtro?.CorCarta)
+                {
+                    query = from q in query
+                            where q.CorCarta == cor
+                            select q;
+                }
             }
 
-            if (filtro?.RaridadeCarta != null)
+            if (filtro?.TipoDeCarta?.Count > VALOR_NULO)
             {
-                query = from q in query
-                        where q.RaridadeCarta == filtro.RaridadeCarta
-                        select q;
+                foreach (var tipo in filtro?.TipoDeCarta)
+                {
+                    query = from q in query
+                            where q.TipoDeCarta.Contains(tipo)
+                            select q;
+                }
+            }
+
+            if (filtro?.RaridadeCarta?.Count > VALOR_NULO)
+            {
+                foreach (var raridade in filtro?.RaridadeCarta)
+                {
+                    query = from q in query
+                            where q.RaridadeCarta == raridade
+                            select q;
+                }
             }
 
             if (filtro?.PrecoCartaMinimo != null)
@@ -101,26 +104,7 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.PrecoCartaMaximo != null)
-            {
-                query = from q in query
-                        where q.PrecoCarta >= filtro.PrecoCartaMaximo
-                        select q;
-            }
-
             return query.ToList();
-        }
-
-        public void CriarCorCarta(CorCarta corCarta)
-        {
-            corCarta.IdCorCarta = GerarIdCorCarta();
-            tabelaCorCarta.Add(corCarta);
-        }
-
-        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
-        {
-            if (filtro?.idCarta != null) return tabelaCorCarta.FindAll(corCarta => corCarta.IdCarta == filtro.idCarta);
-            return tabelaCorCarta;
         }
     }
 }
