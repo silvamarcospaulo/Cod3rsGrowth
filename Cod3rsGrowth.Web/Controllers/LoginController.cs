@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Web.Controllers
         {
             _jogadorServico = jogadorServico;
         }
-
+        
         [HttpPost]
         [Route("login")]
         public ActionResult Autenticacao([FromServices] Jogador modelo)

@@ -23,9 +23,8 @@
     <PackageReference Include="Xunit.Microsoft.DependencyInjection" Version="7.0.10" />
     <PackageReference Include="System.Resources.Extensions" Version="7.0.0" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\Cod3rsGrowth.Servico\Cod3rsGrowth.Servico.csproj" />
+    <ProjectReference Include="..\Cod3rsGrowth.Infra\Cod3rsGrowth.Infra.csproj" />
   </ItemGroup>
 
 </Project>

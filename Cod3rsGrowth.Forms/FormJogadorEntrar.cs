@@ -27,8 +27,8 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarAutenticaUsuarioSenha(object sender, EventArgs e)
         {
-            labelUsuarioMensagemDeErro.Text = "";
-            labelSenhaMensagemDeErro.Text = "";
+            labelUsuarioMensagemDeErro.Text = string.Empty;
+            labelSenhaMensagemDeErro.Text = string.Empty;
 
             try
             {
@@ -90,7 +90,6 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarVisualizaSenha(object sender, EventArgs e)
         {
-            textBoxSenha.UseSystemPasswordChar = !textBoxSenha.UseSystemPasswordChar;
             textBoxSenha.UseSystemPasswordChar = !textBoxSenha.UseSystemPasswordChar;
         }
     }
