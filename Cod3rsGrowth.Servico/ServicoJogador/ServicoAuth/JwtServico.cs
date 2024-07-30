@@ -22,6 +22,65 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
             return jogador;
         }
 
+        private static string ObterCaminhoArquivoToken()
+        {
+            var diretorioLocal = AppDomain.CurrentDomain.BaseDirectory;
+            var caminho = Path.Combine(diretorioLocal, @"..\..\..\..\Cod3rsGrowth.Infra\Auth\token.txt");
+
+            if (!File.Exists(caminho))
+            {
+                File.Create(caminho).Dispose();
+            }
+
+            return Path.GetFullPath(caminho);
+        }
+
+        private static Jogador VerificarTokens(Jogador modelo, string diretorioToken, JogadorServico jogadorServico)
+        {
+            var lerTokenTxt = File.ReadAllLines(diretorioToken).ToList();
+            var tokensValidos = new List<string>();
+            Jogador jogador = null;
+
+            foreach (var token in lerTokenTxt)
+            {
+                if (ValidarToken(token, modelo.UsuarioJogador))
+                {
+                    jogador = JogadorServico.ObtemIdJogador(modelo.UsuarioJogador, jogadorServico);
+                    tokensValidos.Add(token);
+                }
+            }
+
+            AtualizarListaDeTokens(diretorioToken, tokensValidos);
+
+            return jogador;
+        }
+
+        private static void AtualizarListaDeTokens(string diretorioToken, List<string> tokensValidos)
+        {
+            File.WriteAllLines(diretorioToken, tokensValidos);
+        }
+
+        private static bool ValidarToken(string token, string usuario)
+        {
+            var handler = new JwtSecurityTokenHandler();
+
+            var validacoes = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo)),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+
+            if (handler.ReadToken(token).ValidTo > DateTime.Now)
+            {
+                var jogador = handler.ValidateToken(token, validacoes, out var tokenSecure);
+                return jogador.Identity.Name == usuario && handler.ReadToken(token).ValidTo > DateTime.Now;
+            }
+
+            return false;
+        }
+
         private static Jogador RefreshToken(Jogador modelo, JogadorServico jogadorServico, string diretorioToken)
         {
             var jogador = JogadorServico.AutenticaUsuarioSenhaJogador(modelo, jogadorServico);
@@ -61,64 +120,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador.ServicoToken
 
             var token = tokenHandler.CreateToken(tokenDescritor);
             return tokenHandler.WriteToken(token);
-        }
-
-        private static string ObterCaminhoArquivoToken()
-        {
-            var diretorioLocal = AppDomain.CurrentDomain.BaseDirectory;
-            var caminho = Path.Combine(diretorioLocal, @"..\..\..\..\Cod3rsGrowth.Infra\Auth\token.txt");
-
-            if (!File.Exists(caminho))
-            {
-                File.Create(caminho).Dispose();
-            }
-
-            return Path.GetFullPath(caminho);
-        }
-
-        private static bool ValidarToken(string token, string usuario)
-        {
-            var handler = new JwtSecurityTokenHandler();
-
-            var validacoes = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo)),
-                ValidateIssuer = false,
-                ValidateAudience = false
-            };
-
-            if (handler.ReadToken(token).ValidTo > DateTime.Now)
-            {
-                var jogador = handler.ValidateToken(token, validacoes, out var tokenSecure);
-                return jogador.Identity.Name == usuario && handler.ReadToken(token).ValidTo > DateTime.Now;
-            }
-
-            return false;
-        }
-
-        private static Jogador VerificarTokens(Jogador modelo, string diretorioToken, JogadorServico jogadorServico)
-        {
-            var lerTokenTxt = File.ReadAllLines(diretorioToken).ToList();
-            var tokensValidos = new List<string>();
-            Jogador jogador = null;
-
-            foreach (var token in lerTokenTxt)
-            {
-                if (ValidarToken(token, modelo.UsuarioJogador))
-                {
-                    jogador = JogadorServico.ObtemIdJogador(modelo.UsuarioJogador, jogadorServico);
-                    tokensValidos.Add(token);
-                }
-            }
-
-            AtualizarListaDeTokens(diretorioToken, tokensValidos);
-            return jogador;
-        }
-
-        private static void AtualizarListaDeTokens(string diretorioToken, List<string> tokensValidos)
-        {
-            File.WriteAllLines(diretorioToken, tokensValidos);
         }
     }
 }
