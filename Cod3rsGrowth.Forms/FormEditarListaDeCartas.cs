@@ -3,7 +3,6 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
 using FluentValidation;
 using System.ComponentModel;
 
@@ -15,23 +14,19 @@ namespace Cod3rsGrowth.Forms
         private CartaServico _cartaServico;
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
-        private JwtServico _tokenServico;
-        private LoginController _loginController;
         private Baralho _baralho;
         private Carta cartaSelecionada;
         private Thread threadFormListaBaralhosDoJogador;
         private Thread threadFormEditarBaralho;
+        private DialogResult resposta;
         private const int QUANTIDADE_MINIMA = 0;
         private string STRING_VAZIA = string.Empty;
 
-        public FormEditarBaralhoListaDeCarta(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
-            JwtServico tokenServico, LoginController loginController, Jogador jogador, Baralho baralho)
+        public FormEditarBaralhoListaDeCarta(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico, Jogador jogador, Baralho baralho)
         {
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
-            _tokenServico = tokenServico;
-            _loginController = loginController;
             _jogador = jogador;
             _baralho = baralho;
             InitializeComponent();
@@ -109,7 +104,7 @@ namespace Cod3rsGrowth.Forms
             {
                 _baralhoServico.Atualizar(_baralho);
                 this.Close();
-                threadFormListaBaralhosDoJogador = new Thread(CarregarFormListaBaralhosDoJogador);
+                threadFormListaBaralhosDoJogador = new Thread(CarregarFormListaBaralhosDoJogadorEmNovaJanela);
                 threadFormListaBaralhosDoJogador.SetApartmentState(ApartmentState.STA);
                 threadFormListaBaralhosDoJogador.Start();
             }
@@ -122,14 +117,14 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarAbreTelaDeAdionarCartasAoBaralho(object sender, EventArgs e)
         {
             this.Close();
-            threadFormEditarBaralho = new Thread(CarregarFormEditarBaralho);
+            threadFormEditarBaralho = new Thread(CarregarFormEditarBaralhoEmNovaJanela);
             threadFormEditarBaralho.SetApartmentState(ApartmentState.STA);
             threadFormEditarBaralho.Start();
         }
 
-        private void CarregarFormEditarBaralho(object obj)
+        private void CarregarFormEditarBaralhoEmNovaJanela(object obj)
         {
-            Application.Run(new FormEditarBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, _baralho));
+            Application.Run(new FormEditarBaralho(_cartaServico, _baralhoServico, _jogadorServico, _jogador, _baralho));
         }
 
         private void AoClicarRemoveCartaDaListaDeCartasDoBaralho(object sender, EventArgs e)
@@ -169,15 +164,38 @@ namespace Cod3rsGrowth.Forms
             if (resultado == DialogResult.Yes)
             {
                 this.Close();
-                threadFormListaBaralhosDoJogador = new Thread(CarregarFormListaBaralhosDoJogador);
+                threadFormListaBaralhosDoJogador = new Thread(CarregarFormListaBaralhosDoJogadorEmNovaJanela);
                 threadFormListaBaralhosDoJogador.SetApartmentState(ApartmentState.STA);
                 threadFormListaBaralhosDoJogador.Start();
             }
         }
 
-        private void CarregarFormListaBaralhosDoJogador(object obj)
+        private void CarregarFormListaBaralhosDoJogadorEmNovaJanela(object obj)
         {
-            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
+            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
+        }
+
+        private void AoClicarApagaBaralho(object sender, EventArgs e)
+        {
+            try
+            {
+                resposta = MessageBox.Show("Apagar baralho?", "Confirmação", MessageBoxButtons.YesNo);
+
+                if (resposta == DialogResult.Yes)
+                {
+                    _baralhoServico.Excluir(_baralho.Id);
+                    MessageBox.Show("Baralho excluído!");
+
+                    this.Close();
+                    threadFormListaBaralhosDoJogador = new Thread(CarregarFormListaBaralhosDoJogadorEmNovaJanela);
+                    threadFormListaBaralhosDoJogador.SetApartmentState(ApartmentState.STA);
+                    threadFormListaBaralhosDoJogador.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Não foi possível apagar o baralho selecionado no momento, tente novamente mais tarde!\n{ex.Message}", "Erro ao apagar baralho");
+            }
         }
     }
 }

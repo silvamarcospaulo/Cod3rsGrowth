@@ -4,8 +4,6 @@ using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
-using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
 using System.ComponentModel;
 
 namespace Cod3rsGrowth.Forms
@@ -16,8 +14,6 @@ namespace Cod3rsGrowth.Forms
         private CartaServico _cartaServico;
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
-        private JwtServico _tokenServico;
-        private LoginController _loginController;
         private Thread threadFormEntrar;
         private Thread threadFormEditarPerfil;
         private Thread threadFormNovoBaralho;
@@ -25,20 +21,15 @@ namespace Cod3rsGrowth.Forms
         private const int QUANTIDADE_MINIMA = 0;
         private const int PRECO_PADRAO = 0;
         private DateTime DATA_PADRAO = Convert.ToDateTime("01/01/2001");
-        private DialogResult resposta;
         private Baralho baralhoSelecionado;
 
 
-        public FormListaBaralhosDoJogador(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
-            JwtServico tokenServico, LoginController loginController, Jogador jogador)
+        public FormListaBaralhosDoJogador(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico, Jogador jogador)
         {
             _jogador = jogador;
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
-            _tokenServico = tokenServico;
-            _loginController = loginController;
-
             InitializeComponent();
         }
 
@@ -64,27 +55,27 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarFinalizaASessao(object sender, EventArgs e)
         {
             this.Close();
-            threadFormEntrar = new Thread(CarregarFormJogadorEntrar);
+            threadFormEntrar = new Thread(CarregarFormJogadorEntrarEmNovaJanela);
             threadFormEntrar.SetApartmentState(ApartmentState.STA);
             threadFormEntrar.Start();
         }
 
-        private void CarregarFormJogadorEntrar(object obj)
+        private void CarregarFormJogadorEntrarEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController));
+            Application.Run(new FormJogadorEntrar(_cartaServico, _baralhoServico, _jogadorServico));
         }
 
         private void AoClicarAbrirTelaDeCadastrarEditarPerfil(object sender, EventArgs e)
         {
             this.Close();
-            threadFormEditarPerfil = new Thread(CarregarFormJogadorCadastrarEditarPerfil);
+            threadFormEditarPerfil = new Thread(CarregarFormJogadorCadastrarEditarPerfilEmNovaJanela);
             threadFormEditarPerfil.SetApartmentState(ApartmentState.STA);
             threadFormEditarPerfil.Start();
         }
 
-        private void CarregarFormJogadorCadastrarEditarPerfil(object obj)
+        private void CarregarFormJogadorCadastrarEditarPerfilEmNovaJanela(object obj)
         {
-            Application.Run(new FormJogadorCadastroEdicao(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
+            Application.Run(new FormJogadorCadastroEdicao(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }
 
         private void AoClicarAplicaSelecaoDeFiltros(object sender, EventArgs e)
@@ -206,14 +197,14 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarAbreTelaDeCriacaoDeBaralho(object sender, EventArgs e)
         {
             this.Close();
-            threadFormNovoBaralho = new Thread(CarregarFormNovoBaralho);
+            threadFormNovoBaralho = new Thread(CarregarFormNovoBaralhoEmNovaJanela);
             threadFormNovoBaralho.SetApartmentState(ApartmentState.STA);
             threadFormNovoBaralho.Start();
         }
 
-        private void CarregarFormNovoBaralho(object obj)
+        private void CarregarFormNovoBaralhoEmNovaJanela(object obj)
         {
-            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, null));
+            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _jogador, null));
         }
 
         private void AoClicarCarregaDadosDoBaralho(object sender, DataGridViewCellEventArgs e)
@@ -227,35 +218,15 @@ namespace Cod3rsGrowth.Forms
                 baralhoSelecionado = _baralhoServico.ObterPorId(baralhoSelecionado.Id);
 
                 this.Close();
-                threadFormNovoBaralho = new Thread(CarregarFormEditarBaralhoListaDeCarta);
+                threadFormNovoBaralho = new Thread(CarregarFormEditarBaralhoListaDeCartaEmNovaJanela);
                 threadFormNovoBaralho.SetApartmentState(ApartmentState.STA);
                 threadFormNovoBaralho.Start();
             }
         }
 
-        private void CarregarFormEditarBaralhoListaDeCarta(object obj)
+        private void CarregarFormEditarBaralhoListaDeCartaEmNovaJanela(object obj)
         {
-            Application.Run(new FormEditarBaralhoListaDeCarta(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, baralhoSelecionado));
-        }
-
-        private void AoClicarApagaBaralho(object sender, EventArgs e)
-        {
-            try
-            {
-                resposta = MessageBox.Show("Apagar baralho?", "Confirmação", MessageBoxButtons.YesNo);
-
-                if (resposta == DialogResult.Yes)
-                {
-                    _baralhoServico.Excluir(baralhoSelecionado.Id);
-                    MessageBox.Show("Baralho excluído!");
-
-                    CarregarFormListaBaralhosDoJogador(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Não foi possível apagar o baralho selecionado no momento, tente novamente mais tarde!\n{ex.Message}", "Erro ao apagar baralho");
-            }
+            Application.Run(new FormEditarBaralhoListaDeCarta(_cartaServico, _baralhoServico, _jogadorServico, _jogador, baralhoSelecionado));
         }
     }
 }

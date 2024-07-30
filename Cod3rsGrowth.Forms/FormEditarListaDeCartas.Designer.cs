@@ -44,6 +44,7 @@ namespace Cod3rsGrowth.Forms
             labelPreco = new Label();
             labelCmc = new Label();
             panel1 = new Panel();
+            buttonApagarBaralho = new Button();
             buttonCancelarEdicao = new Button();
             labelNomeParcial = new Label();
             labelFormatoParcial = new Label();
@@ -247,6 +248,7 @@ namespace Cod3rsGrowth.Forms
             // 
             // panel1
             // 
+            panel1.Controls.Add(buttonApagarBaralho);
             panel1.Controls.Add(buttonCancelarEdicao);
             panel1.Controls.Add(labelNomeParcial);
             panel1.Controls.Add(buttonConfirmarEdicaoBaralho);
@@ -306,6 +308,20 @@ namespace Cod3rsGrowth.Forms
             panel1.Size = new Size(255, 916);
             panel1.TabIndex = 2275;
             // 
+            // buttonApagarBaralho
+            // 
+            buttonApagarBaralho.Anchor = AnchorStyles.Top;
+            buttonApagarBaralho.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonApagarBaralho.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonApagarBaralho.ImeMode = ImeMode.NoControl;
+            buttonApagarBaralho.Location = new Point(8, 43);
+            buttonApagarBaralho.Name = "buttonApagarBaralho";
+            buttonApagarBaralho.Size = new Size(235, 25);
+            buttonApagarBaralho.TabIndex = 2281;
+            buttonApagarBaralho.Text = "Apagar baralho";
+            buttonApagarBaralho.UseVisualStyleBackColor = true;
+            buttonApagarBaralho.Click += AoClicarApagaBaralho;
+            // 
             // buttonCancelarEdicao
             // 
             buttonCancelarEdicao.Anchor = AnchorStyles.Top;
@@ -350,7 +366,7 @@ namespace Cod3rsGrowth.Forms
             buttonRemoverCarta.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonRemoverCarta.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             buttonRemoverCarta.ImeMode = ImeMode.NoControl;
-            buttonRemoverCarta.Location = new Point(8, 495);
+            buttonRemoverCarta.Location = new Point(8, 450);
             buttonRemoverCarta.Name = "buttonRemoverCarta";
             buttonRemoverCarta.Size = new Size(235, 25);
             buttonRemoverCarta.TabIndex = 2278;
@@ -364,7 +380,7 @@ namespace Cod3rsGrowth.Forms
             buttonAdiconarCartasAoBaralho.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             buttonAdiconarCartasAoBaralho.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             buttonAdiconarCartasAoBaralho.ImeMode = ImeMode.NoControl;
-            buttonAdiconarCartasAoBaralho.Location = new Point(8, 43);
+            buttonAdiconarCartasAoBaralho.Location = new Point(8, 481);
             buttonAdiconarCartasAoBaralho.Name = "buttonAdiconarCartasAoBaralho";
             buttonAdiconarCartasAoBaralho.Size = new Size(235, 25);
             buttonAdiconarCartasAoBaralho.TabIndex = 2279;
@@ -390,7 +406,7 @@ namespace Cod3rsGrowth.Forms
             labelCorCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCorCartaSelecionada.AutoSize = true;
             labelCorCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelCorCartaSelecionada.Location = new Point(8, 465);
+            labelCorCartaSelecionada.Location = new Point(8, 420);
             labelCorCartaSelecionada.Name = "labelCorCartaSelecionada";
             labelCorCartaSelecionada.Size = new Size(38, 15);
             labelCorCartaSelecionada.TabIndex = 0;
@@ -403,7 +419,7 @@ namespace Cod3rsGrowth.Forms
             labelCorCarta.AutoSize = true;
             labelCorCarta.FlatStyle = FlatStyle.System;
             labelCorCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCorCarta.Location = new Point(8, 438);
+            labelCorCarta.Location = new Point(8, 393);
             labelCorCarta.Name = "labelCorCarta";
             labelCorCarta.Size = new Size(38, 19);
             labelCorCarta.TabIndex = 0;
@@ -415,7 +431,7 @@ namespace Cod3rsGrowth.Forms
             labelRariadeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelRariadeCartaSelecionada.AutoSize = true;
             labelRariadeCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelRariadeCartaSelecionada.Location = new Point(8, 415);
+            labelRariadeCartaSelecionada.Location = new Point(8, 370);
             labelRariadeCartaSelecionada.Name = "labelRariadeCartaSelecionada";
             labelRariadeCartaSelecionada.Size = new Size(44, 15);
             labelRariadeCartaSelecionada.TabIndex = 0;
@@ -428,7 +444,7 @@ namespace Cod3rsGrowth.Forms
             labelRaridadeCarta.AutoSize = true;
             labelRaridadeCarta.FlatStyle = FlatStyle.System;
             labelRaridadeCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelRaridadeCarta.Location = new Point(8, 388);
+            labelRaridadeCarta.Location = new Point(8, 343);
             labelRaridadeCarta.Name = "labelRaridadeCarta";
             labelRaridadeCarta.Size = new Size(74, 19);
             labelRaridadeCarta.TabIndex = 0;
@@ -440,7 +456,7 @@ namespace Cod3rsGrowth.Forms
             labelPrecoCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelPrecoCartaSelecionada.AutoSize = true;
             labelPrecoCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelPrecoCartaSelecionada.Location = new Point(8, 365);
+            labelPrecoCartaSelecionada.Location = new Point(8, 320);
             labelPrecoCartaSelecionada.Name = "labelPrecoCartaSelecionada";
             labelPrecoCartaSelecionada.Size = new Size(38, 15);
             labelPrecoCartaSelecionada.TabIndex = 0;
@@ -453,7 +469,7 @@ namespace Cod3rsGrowth.Forms
             labelPrecoDaCarta.AutoSize = true;
             labelPrecoDaCarta.FlatStyle = FlatStyle.System;
             labelPrecoDaCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelPrecoDaCarta.Location = new Point(8, 338);
+            labelPrecoDaCarta.Location = new Point(8, 293);
             labelPrecoDaCarta.Name = "labelPrecoDaCarta";
             labelPrecoDaCarta.Size = new Size(52, 19);
             labelPrecoDaCarta.TabIndex = 0;
@@ -465,7 +481,7 @@ namespace Cod3rsGrowth.Forms
             labelCustoManaCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelCustoManaCartaSelecionada.AutoSize = true;
             labelCustoManaCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelCustoManaCartaSelecionada.Location = new Point(8, 315);
+            labelCustoManaCartaSelecionada.Location = new Point(8, 270);
             labelCustoManaCartaSelecionada.Name = "labelCustoManaCartaSelecionada";
             labelCustoManaCartaSelecionada.Size = new Size(38, 15);
             labelCustoManaCartaSelecionada.TabIndex = 0;
@@ -478,7 +494,7 @@ namespace Cod3rsGrowth.Forms
             labelCustoMana.AutoSize = true;
             labelCustoMana.FlatStyle = FlatStyle.System;
             labelCustoMana.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCustoMana.Location = new Point(8, 288);
+            labelCustoMana.Location = new Point(8, 243);
             labelCustoMana.Name = "labelCustoMana";
             labelCustoMana.Size = new Size(44, 19);
             labelCustoMana.TabIndex = 0;
@@ -490,7 +506,7 @@ namespace Cod3rsGrowth.Forms
             labelTipoCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelTipoCartaSelecionada.AutoSize = true;
             labelTipoCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelTipoCartaSelecionada.Location = new Point(8, 265);
+            labelTipoCartaSelecionada.Location = new Point(8, 220);
             labelTipoCartaSelecionada.Name = "labelTipoCartaSelecionada";
             labelTipoCartaSelecionada.Size = new Size(38, 15);
             labelTipoCartaSelecionada.TabIndex = 0;
@@ -503,7 +519,7 @@ namespace Cod3rsGrowth.Forms
             labelTipoCarta.AutoSize = true;
             labelTipoCarta.FlatStyle = FlatStyle.System;
             labelTipoCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelTipoCarta.Location = new Point(8, 238);
+            labelTipoCarta.Location = new Point(8, 193);
             labelTipoCarta.Name = "labelTipoCarta";
             labelTipoCarta.Size = new Size(43, 19);
             labelTipoCarta.TabIndex = 0;
@@ -515,7 +531,7 @@ namespace Cod3rsGrowth.Forms
             labelNomeCartaSelecionada.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             labelNomeCartaSelecionada.AutoSize = true;
             labelNomeCartaSelecionada.FlatStyle = FlatStyle.System;
-            labelNomeCartaSelecionada.Location = new Point(8, 215);
+            labelNomeCartaSelecionada.Location = new Point(8, 170);
             labelNomeCartaSelecionada.Name = "labelNomeCartaSelecionada";
             labelNomeCartaSelecionada.Size = new Size(38, 15);
             labelNomeCartaSelecionada.TabIndex = 0;
@@ -528,7 +544,7 @@ namespace Cod3rsGrowth.Forms
             labelNomeCarta.AutoSize = true;
             labelNomeCarta.FlatStyle = FlatStyle.System;
             labelNomeCarta.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            labelNomeCarta.Location = new Point(8, 188);
+            labelNomeCarta.Location = new Point(8, 143);
             labelNomeCarta.Name = "labelNomeCarta";
             labelNomeCarta.Size = new Size(54, 19);
             labelNomeCarta.TabIndex = 0;
@@ -541,7 +557,7 @@ namespace Cod3rsGrowth.Forms
             labelDadosCarta.FlatStyle = FlatStyle.System;
             labelDadosCarta.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
             labelDadosCarta.ImeMode = ImeMode.NoControl;
-            labelDadosCarta.Location = new Point(25, 150);
+            labelDadosCarta.Location = new Point(25, 105);
             labelDadosCarta.Name = "labelDadosCarta";
             labelDadosCarta.Size = new Size(200, 30);
             labelDadosCarta.TabIndex = 0;
@@ -1020,5 +1036,6 @@ namespace Cod3rsGrowth.Forms
         private DataGridViewTextBoxColumn cartaDataGridViewTextBoxColumn;
         private BindingSource copiaDeCartasNoBaralhoBindingSource;
         private Button buttonCancelarEdicao;
+        private Button buttonApagarBaralho;
     }
 }

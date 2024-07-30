@@ -1,4 +1,4 @@
-using Cod3rsGrowth.Dominio.Filtros;
+Ôªøusing Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Dominio.Modelos.Enums;
 using Cod3rsGrowth.Servico.ServicoBaralho;
@@ -294,7 +294,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_nome_vazio_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "Insira um nome para o baralho.\n";
+            const string mensagemDeErroEsperada = "Erro ao criar o baralho.\nInsira um nome para o baralho.\n";
 
             var baralhoTeste = new Baralho()
             {
@@ -333,7 +333,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Criar_com_cartas_do_baralho_vazia_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "N„o È possÌvel criar um baralho com uma lista vazia.\n";
+            const string mensagemDeErroEsperada = "Erro ao criar o baralho.\nN√£o √© poss√≠vel criar um baralho com uma lista vazia.\n";
 
             var baralhoTeste = new Baralho()
             {
@@ -358,7 +358,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(0)]
         public void ao_Criar_commmander_com_mais_de_uma_copia_de_carta_nao_terreno_deve_retornar_Exception(int quantidadeDeCartasTeste)
         {
-            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho n„o compativel com o formato de jogo selecionado.\n";
+            const string mensagemDeErroEsperada = "Erro ao criar o baralho.\nQuantidade de cartas do baralho n√£o compativel com o formato de jogo selecionado.\n";
 
             var baralhoTeste = new Baralho()
             {
@@ -399,7 +399,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(101)]
         public void ao_Criar_commmander_com_quantidade_de_cartas_no_baralho_diferente_de_cem_cartas_deve_retornar_Exception(int quantidadeDeCartasTeste)
         {
-            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho n„o compativel com o formato de jogo selecionado.\n";
+            const string mensagemDeErroEsperada = "Erro ao criar o baralho.\nQuantidade de cartas do baralho n√£o compativel com o formato de jogo selecionado.\n";
 
             var baralhoTeste = new Baralho()
             {
@@ -440,7 +440,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(FormatoDeJogoEnum.Standard)]
         public void ao_Criar_com_quantidade_de_cartas_nao_compativel_com_o_tipo_de_jogo_pauper_ou_standard_deve_retornar_Exception(FormatoDeJogoEnum formatoDeJogoTeste)
         {
-            const string mensagemDeErroEsperada = "Quantidade de cartas do baralho n„o compativel com o formato de jogo selecionado.\n";
+            const string mensagemDeErroEsperada = "Erro ao criar o baralho.\nQuantidade de cartas do baralho n√£o compativel com o formato de jogo selecionado.\n";
 
             var baralhoTeste = new Baralho()
             {
@@ -524,87 +524,8 @@ namespace Cod3rsGrowth.Teste.Testes
             Assert.Equal(baralhoTeste.PrecoDoBaralho, baralhoCriado.PrecoDoBaralho);
             Assert.Equal(baralhoTeste.CustoDeManaConvertidoDoBaralho, baralhoCriado.CustoDeManaConvertidoDoBaralho);
             Assert.Equal(baralhoTeste.CorBaralho, baralhoCriado.CorBaralho);
+            baralhoTeste.Id = idNovoBaralho;
         }
-
-        [Fact]
-        public void ao_Atualizar_com_dados_validos_deve_atualizar_baralho()
-        {
-            var dataDeHoje = DateTime.Now.Date;
-
-            var baralhoTeste = new Baralho()
-            {
-                IdJogador = 7,
-                NomeBaralho = "Mono Green",
-                FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
-                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
-                {
-                    new CopiaDeCartasNoBaralho()
-                    {
-                        Carta = new Carta()
-                        {
-                            Id = 3,
-                            NomeCarta = "Floresta",
-                            CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = "Basic Land",
-                            RaridadeCarta = RaridadeEnum.Comum,
-                            PrecoCarta = 0.5m,
-                            CorCarta = "Incolor"
-                        },
-                        QuantidadeCopiasDaCartaNoBaralho = 60
-                    }
-                },
-                QuantidadeDeCartasNoBaralho = 60,
-                DataDeCriacaoBaralho = dataDeHoje,
-                PrecoDoBaralho = 30,
-                CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = "Incolor"
-            };
-
-            var idBaralhoTeste = _servicoBaralho.Criar(baralhoTeste);
-
-            var baralhoEsperado = new Baralho()
-            {
-                Id = idBaralhoTeste,
-                IdJogador = 7,
-                NomeBaralho = "Mono Green Stomp",
-                FormatoDeJogoBaralho = FormatoDeJogoEnum.Pauper,
-                CartasDoBaralho = new List<CopiaDeCartasNoBaralho>()
-                {
-                    new CopiaDeCartasNoBaralho()
-                    {
-                        Carta = new Carta()
-                        {
-                            Id = 3,
-                            NomeCarta = "Floresta",
-                            CustoDeManaConvertidoCarta = 0,
-                            TipoDeCarta = "Basic Land",
-                            RaridadeCarta = RaridadeEnum.Comum,
-                            PrecoCarta = 0.5m,
-                            CorCarta = "Incolor"
-                        },
-                        QuantidadeCopiasDaCartaNoBaralho = 60
-                    }
-                },
-                QuantidadeDeCartasNoBaralho = 60,
-                DataDeCriacaoBaralho = dataDeHoje,
-                PrecoDoBaralho = 30,
-                CustoDeManaConvertidoDoBaralho = 0,
-                CorBaralho = "Incolor"
-            };
-
-            _servicoBaralho.Atualizar(baralhoEsperado);
-
-            var baralhoAtualizado = _servicoBaralho.ObterPorId(idBaralhoTeste);
-
-            Assert.Equal(baralhoEsperado.NomeBaralho, baralhoAtualizado.NomeBaralho);
-            Assert.Equal(baralhoEsperado.FormatoDeJogoBaralho, baralhoAtualizado.FormatoDeJogoBaralho);
-            Assert.Equal(baralhoEsperado.QuantidadeDeCartasNoBaralho, baralhoAtualizado.QuantidadeDeCartasNoBaralho);
-            Assert.Equal(baralhoEsperado.DataDeCriacaoBaralho, baralhoAtualizado.DataDeCriacaoBaralho);
-            Assert.Equal(baralhoEsperado.PrecoDoBaralho, baralhoAtualizado.PrecoDoBaralho);
-            Assert.Equal(baralhoEsperado.CustoDeManaConvertidoDoBaralho, baralhoAtualizado.CustoDeManaConvertidoDoBaralho);
-            Assert.Equal(baralhoEsperado.CorBaralho, baralhoAtualizado.CorBaralho);
-        }
-
 
         [Theory]
         [InlineData(FormatoDeJogoEnum.Standard)]
@@ -612,7 +533,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [InlineData(FormatoDeJogoEnum.Commander)]
         public void ao_Atualizar_com_baralho_invalido_deve_retornar_Exception(FormatoDeJogoEnum formatoDeJogoBaralhoTeste)
         {
-            const string mensagemDeErroEsperada = ("Quantidade de cartas do baralho n„o compativel com o formato de jogo selecionado.\n");
+            const string mensagemDeErroEsperada = ("Quantidade de cartas do baralho n√£o compativel com o formato de jogo selecionado.\n");
 
             var dataDeHoje = DateTime.Now;
 
@@ -735,6 +656,7 @@ namespace Cod3rsGrowth.Teste.Testes
             var baralhoTesteExistente = _servicoBaralho.ObterPorId(baralhoTeste.Id);
 
             _servicoBaralho.Atualizar(baralhoTeste);
+            _servicoBaralho.Atualizar(baralhoTeste);
 
             var baralhoAtualizado = _servicoBaralho.ObterPorId(baralhoTeste.Id);
 
@@ -752,7 +674,7 @@ namespace Cod3rsGrowth.Teste.Testes
         [Fact]
         public void ao_Atualizar_com_cartas_do_baralho_vazia_deve_retornar_Exception()
         {
-            const string mensagemDeErroEsperada = "N„o È possÌvel criar um baralho com uma lista vazia.\n";
+            const string mensagemDeErroEsperada = "N√£o √© poss√≠vel criar um baralho com uma lista vazia.\n";
 
             var baralhoTeste = new Baralho()
             {

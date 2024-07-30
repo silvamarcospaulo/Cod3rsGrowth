@@ -8,7 +8,6 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
 using FluentMigrator.Runner;
 using FluentValidation;
 using LinqToDB;
@@ -20,7 +19,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Configuration;
 using System.Text;
 
@@ -47,9 +45,7 @@ namespace Cod3rsGrowth.Forms
             Application.Run(new FormJogadorEntrar(
                 ServiceProvider.GetRequiredService<CartaServico>(),
                 ServiceProvider.GetRequiredService<BaralhoServico>(),
-                ServiceProvider.GetRequiredService<JogadorServico>(),
-                ServiceProvider.GetRequiredService<JwtServico>(),
-                ServiceProvider.GetRequiredService<LoginController>()
+                ServiceProvider.GetRequiredService<JogadorServico>()
             ));
         }
 
@@ -62,7 +58,6 @@ namespace Cod3rsGrowth.Forms
                     .AddScoped<CartaServico>()
                     .AddScoped<BaralhoServico>()
                     .AddScoped<JogadorServico>()
-                    .AddScoped<LoginController>()
                     .AddScoped<JwtServico>()
                     .AddScoped<ICartaRepository, CartaRepository>()
                     .AddScoped<IBaralhoRepository, BaralhoRepository>()
@@ -133,7 +128,6 @@ namespace Cod3rsGrowth.Forms
                     };
                 });
 
-            colecao.AddScoped<LoginController>();
             colecao.AddScoped<JwtServico>();
 
             return colecao.BuildServiceProvider(false);

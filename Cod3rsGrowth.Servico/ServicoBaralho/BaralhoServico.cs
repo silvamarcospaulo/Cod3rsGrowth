@@ -1,8 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Infra;
-using Cod3rsGrowth.Infra.Repository;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using FluentValidation;
 using LinqToDB;
@@ -18,10 +16,8 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
         private readonly CartaServico _cartaServico;
         private readonly IValidator<Baralho> _validadorBaralho;
         private const int VALOR_NULO = 0;
-        private readonly ConexaoDados _conexaoDados;
 
-        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico,
-            IValidator<Baralho> validadorBaralho)
+        public BaralhoServico(IBaralhoRepository baralhoRepository, CartaServico cartaServico, IValidator<Baralho> validadorBaralho)
         {
             _baralhoRepository = baralhoRepository;
             _cartaServico = cartaServico;
@@ -104,6 +100,10 @@ namespace Cod3rsGrowth.Servico.ServicoBaralho
             {
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
                 throw new Exception($"{mensagemDeErro}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
 

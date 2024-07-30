@@ -6,12 +6,21 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Dominio", "Cod3rsGrowth.Dominio\Cod3rsGrowth.Dominio.csproj", "{275AE471-E52A-4D0B-96B7-7CEC8E54963D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Infra", "Cod3rsGrowth.Infra\Cod3rsGrowth.Infra.csproj", "{08536E15-61A4-4517-91EA-C744166CDCAB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B2B1BFCA-A54C-4CAF-8DB7-9E38D0CC6B58} = {B2B1BFCA-A54C-4CAF-8DB7-9E38D0CC6B58}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Forms", "Cod3rsGrowth.Forms\Cod3rsGrowth.Forms.csproj", "{A8F8EEF0-3577-47F6-BE3C-3872075EC29E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{08536E15-61A4-4517-91EA-C744166CDCAB} = {08536E15-61A4-4517-91EA-C744166CDCAB}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Web", "Cod3rsGrowth.Web\Cod3rsGrowth.Web.csproj", "{61361589-B5D7-49F5-A122-6C89864984FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Servico", "Cod3rsGrowth.Servico\Cod3rsGrowth.Servico.csproj", "{B2B1BFCA-A54C-4CAF-8DB7-9E38D0CC6B58}"
+	ProjectSection(ProjectDependencies) = postProject
+		{275AE471-E52A-4D0B-96B7-7CEC8E54963D} = {275AE471-E52A-4D0B-96B7-7CEC8E54963D}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Teste", "Cod3rsGrowth.Teste\Cod3rsGrowth.Teste.csproj", "{312DD331-13F1-4F5D-8E1A-0FEC9F58CC97}"
 EndProject

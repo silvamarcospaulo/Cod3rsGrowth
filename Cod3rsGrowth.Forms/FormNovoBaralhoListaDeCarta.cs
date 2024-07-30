@@ -3,7 +3,6 @@ using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
-using Cod3rsGrowth.Web.Controllers;
 using FluentValidation;
 using System.ComponentModel;
 
@@ -15,8 +14,6 @@ namespace Cod3rsGrowth.Forms
         private CartaServico _cartaServico;
         private BaralhoServico _baralhoServico;
         private JogadorServico _jogadorServico;
-        private JwtServico _tokenServico;
-        private LoginController _loginController;
         private Baralho _baralho;
         private Carta cartaSelecionada;
         private Thread threadFormListaBaralhoJogador;
@@ -24,14 +21,11 @@ namespace Cod3rsGrowth.Forms
         private const int QUANTIDADE_MINIMA = 0;
         private string STRING_VAZIA = string.Empty;
 
-        public FormNovoBaralhoListaDeCarta(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico,
-            JwtServico tokenServico, LoginController loginController, Jogador jogador, Baralho baralho)
+        public FormNovoBaralhoListaDeCarta(CartaServico cartaServico, BaralhoServico baralhoServico, JogadorServico jogadorServico, Jogador jogador, Baralho baralho)
         {
             _cartaServico = cartaServico;
             _baralhoServico = baralhoServico;
             _jogadorServico = jogadorServico;
-            _tokenServico = tokenServico;
-            _loginController = loginController;
             _jogador = jogador;
             _baralho = baralho;
             InitializeComponent();
@@ -109,7 +103,7 @@ namespace Cod3rsGrowth.Forms
             {
                 _baralhoServico.Criar(_baralho);
                 this.Close();
-                threadFormListaBaralhoJogador = new Thread(CarregarFormListaBaralhoJogador);
+                threadFormListaBaralhoJogador = new Thread(CarregarFormListaBaralhoJogadorEmNovaJonela);
                 threadFormListaBaralhoJogador.SetApartmentState(ApartmentState.STA);
                 threadFormListaBaralhoJogador.Start();
             }
@@ -119,22 +113,22 @@ namespace Cod3rsGrowth.Forms
             }
         }
 
-        private void CarregarFormListaBaralhoJogador(object obj)
+        private void CarregarFormListaBaralhoJogadorEmNovaJonela(object obj)
         {
-            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador));
+            Application.Run(new FormListaBaralhosDoJogador(_cartaServico, _baralhoServico, _jogadorServico, _jogador));
         }
 
         private void AoClicarVoltaParaTelaDeNovoBaralho(object sender, EventArgs e)
         {
             this.Close();
-            threadFormNovoBaralho = new Thread(CarregarFormNovoBaralho);
+            threadFormNovoBaralho = new Thread(CarregarFormNovoBaralhoEmNovaJanela);
             threadFormNovoBaralho.SetApartmentState(ApartmentState.STA);
             threadFormNovoBaralho.Start();
         }
 
-        private void CarregarFormNovoBaralho(object obj)
+        private void CarregarFormNovoBaralhoEmNovaJanela(object obj)
         {
-            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _tokenServico, _loginController, _jogador, _baralho));
+            Application.Run(new FormNovoBaralho(_cartaServico, _baralhoServico, _jogadorServico, _jogador, _baralho));
         }
 
         private void AoClicarRemoveCartaDaListaDeCartasDoBaralho(object sender, EventArgs e)

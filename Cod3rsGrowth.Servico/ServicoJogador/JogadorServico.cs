@@ -64,7 +64,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             try
             {
-                ValidacaoUsuarioDisponível(jogador.UsuarioJogador);
+                if (!ValidacaoUsuarioDisponível(jogador.UsuarioJogador)) throw new Exception("Usuário indisponível.");
 
                 _validadorJogador.Validate(jogador, options =>
                 {
@@ -84,6 +84,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
         public Jogador? Atualizar(Jogador jogador)
         {
+
             try
             {
                 var jogadorBanco = ObterPorId(jogador.Id);
@@ -184,7 +185,12 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         {
             var jogadorBanco = jogadorServico.ObterTodos(new JogadorFiltro() { UsuarioJogador = jogador.UsuarioJogador }).First();
 
-            if (HashServico.Comparar(jogador.SenhaHashJogador, jogadorBanco?.SenhaHashJogador)) return jogadorBanco;
+            if (HashServico.Comparar(jogador.SenhaHashJogador, jogadorBanco?.SenhaHashJogador))
+            {
+                jogadorBanco.SenhaHashJogador = string.Empty;
+
+                return jogadorBanco;
+            }
 
             return null;
         }
@@ -192,6 +198,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public static Jogador ObtemIdJogador(string nomeJogador, JogadorServico jogadorServico)
         {
             var jogador = jogadorServico.ObterTodos(new JogadorFiltro() { UsuarioJogador = nomeJogador }).First();
+            jogador.SenhaHashJogador = string.Empty;
             return jogador;
         }
     }
