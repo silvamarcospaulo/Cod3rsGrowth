@@ -7,6 +7,8 @@ namespace Cod3rsGrowth.Infra.Repository
 {
     public class CartaRepository : ICartaRepository
     {
+        private const int VALOR_NULO = 0;
+
         private ConexaoDados conexaoDados;
 
         public CartaRepository(ConexaoDados _conexaoDados)
@@ -26,14 +28,14 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Carta ObterPorId(int idCarta)
         {
-            return conexaoDados.GetTable<Carta>().FirstOrDefault(carta => carta.IdCarta == idCarta) ??
+            return conexaoDados.GetTable<Carta>().FirstOrDefault(carta => carta.Id == idCarta) ??
                 throw new Exception($"Carta {idCarta} Nao Encontrada");
         }
 
         public List<Carta> ObterTodos(CartaFiltro? filtro)
         {
             IQueryable<Carta> query = from q in conexaoDados.TabelaCarta
-                                        select q;
+                                      select q;
 
             if (filtro?.NomeCarta != null)
             {
@@ -49,18 +51,34 @@ namespace Cod3rsGrowth.Infra.Repository
                         select q;
             }
 
-            if (filtro?.TipoDeCarta != null)
+            if (filtro?.CorCarta?.Count > VALOR_NULO)
             {
-                query = from q in query
-                        where q.TipoDeCarta == filtro.TipoDeCarta
-                        select q;
+                foreach (var cor in filtro?.CorCarta)
+                {
+                    query = from q in query
+                            where q.CorCarta.Contains(cor)
+                            select q;
+                }
             }
 
-            if (filtro?.RaridadeCarta != null)
+            if (filtro?.TipoDeCarta?.Count > VALOR_NULO)
             {
-                query = from q in query
-                        where q.RaridadeCarta == filtro.RaridadeCarta
-                        select q;
+                foreach (var tipo in filtro?.TipoDeCarta)
+                {
+                    query = from q in query
+                            where q.TipoDeCarta.Contains(tipo)
+                            select q;
+                }
+            }
+
+            if (filtro?.RaridadeCarta?.Count > VALOR_NULO)
+            {
+                foreach (var raridade in filtro?.RaridadeCarta)
+                {
+                    query = from q in query
+                            where q.RaridadeCarta == raridade
+                            select q;
+                }
             }
 
             if (filtro?.PrecoCartaMinimo != null)
@@ -74,33 +92,6 @@ namespace Cod3rsGrowth.Infra.Repository
             {
                 query = from q in query
                         where q.PrecoCarta >= filtro.PrecoCartaMaximo
-                        select q;
-            }
-
-            if (filtro?.PrecoCartaMaximo != null)
-            {
-                query = from q in query
-                        where q.PrecoCarta >= filtro.PrecoCartaMaximo
-                        select q;
-            }
-
-            return query.ToList();
-        }
-
-        public void CriarCorCarta(CorCarta corCarta)
-        {
-            conexaoDados.Insert(corCarta);
-        }
-
-        public List<CorCarta> ObterTodosCorCarta(CorCartaFiltro? filtro)
-        {
-            IQueryable<CorCarta> query = from q in conexaoDados.TabelaCorCarta
-                select q;
-
-            if (filtro?.idCarta != null)
-            {
-                query = from q in query
-                        where q.IdCarta == filtro.idCarta
                         select q;
             }
 

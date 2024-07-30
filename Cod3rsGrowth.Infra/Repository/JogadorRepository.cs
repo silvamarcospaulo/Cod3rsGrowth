@@ -14,14 +14,15 @@ namespace Cod3rsGrowth.Infra.Repository
             conexaoDados = _conexaoDados;
         }
 
-        public void Criar(Jogador jogador)
+        public int Criar(Jogador jogador)
         {
-            conexaoDados.Insert(jogador);
+            return conexaoDados.InsertWithInt32Identity(jogador);
         }
 
-        public void Atualizar(Jogador jogador)
+        public Jogador Atualizar(Jogador jogador)
         {
             conexaoDados.Update(jogador);
+            return jogador;
         }
 
         public void Excluir(int idJogador)
@@ -32,19 +33,54 @@ namespace Cod3rsGrowth.Infra.Repository
 
         public Jogador ObterPorId(int idJogador)
         {
-            return conexaoDados.GetTable<Jogador>().FirstOrDefault(jogador => jogador.IdJogador == idJogador) ??
-                throw new Exception($"Jogador {idJogador} Nao Encontrada");
+            return conexaoDados.GetTable<Jogador>().FirstOrDefault(jogador => jogador.Id == idJogador);
+        }
+
+        public Jogador AutenticaLogin(Jogador jogador)
+        {
+            IQueryable<Jogador> query = from q in conexaoDados.TabelaJogador
+                                        select q;
+
+            if (jogador?.UsuarioJogador is not null)
+            {
+                query = from q in query
+                        where q.UsuarioJogador == jogador.UsuarioJogador && q.SenhaHashJogador == jogador.SenhaHashJogador
+                        select q;
+            }
+
+            return query.FirstOrDefault() ?? throw new Exception("Conta não existente. Verifique os dados inseridos ou crie uma conta");
         }
 
         public List<Jogador> ObterTodos(JogadorFiltro? filtro)
         {
             IQueryable<Jogador> query = from q in conexaoDados.TabelaJogador
-                                            select q;
+                                        select q;
 
             if (filtro?.NomeJogador != null)
             {
                 query = from q in query
-                        where q.NomeJogador.Contains(filtro.NomeJogador)
+                        where q.NomeJogador == filtro.NomeJogador
+                        select q;
+            }
+
+            if (filtro?.SobrenomeJogador != null)
+            {
+                query = from q in query
+                        where q.SobrenomeJogador == filtro.SobrenomeJogador
+                        select q;
+            }
+
+            if (filtro?.UsuarioJogador != null)
+            {
+                query = from q in query
+                        where q.UsuarioJogador == filtro.UsuarioJogador
+                        select q;
+            }
+
+            if (filtro?.DataNascimentoJogador != null)
+            {
+                query = from q in query
+                        where q.DataNascimentoJogador == filtro.DataNascimentoJogador
                         select q;
             }
 
@@ -52,34 +88,6 @@ namespace Cod3rsGrowth.Infra.Repository
             {
                 query = from q in query
                         where q.ContaAtivaJogador == filtro.ContaAtivaJogador
-                        select q;
-            }
-
-            if (filtro?.DataNascimentoJogadorMinimo != null)
-            {
-                query = from q in query
-                        where q.DataNascimentoJogador >= filtro.DataNascimentoJogadorMinimo
-                        select q;
-            }
-
-            if (filtro?.DataNascimentoJogadorMaximo != null)
-            {
-                query = from q in query
-                        where q.DataNascimentoJogador <= filtro.DataNascimentoJogadorMaximo
-                        select q;
-            }
-
-            if (filtro?.PrecoDasCartasJogadorMinimo != null)
-            {
-                query = from q in query
-                        where q.PrecoDasCartasJogador >= filtro.PrecoDasCartasJogadorMinimo
-                        select q;
-            }
-
-            if (filtro?.DataNascimentoJogadorMaximo != null)
-            {
-                query = from q in query
-                        where q.PrecoDasCartasJogador <= filtro.PrecoDasCartasJogadorMaximo
                         select q;
             }
 

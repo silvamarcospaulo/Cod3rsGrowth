@@ -1,98 +1,152 @@
 ﻿using Cod3rsGrowth.Dominio.Modelos;
-using Cod3rsGrowth.Dominio.Modelos.Enums;
 using FluentValidation;
-using LinqToDB.Common;
+using LinqToDB.DataProvider.SapHana;
+using System.Text.RegularExpressions;
 
 namespace Cod3rsGrowth.Servico.ServicoJogador
 {
     public class JogadorValidador : AbstractValidator<Jogador>
     {
-        private const int quantidadeBaralhoPauper = 60;
-        private const int quantidadeMaximaDeCopiaDeCartasStandard = 4;
-        private const int quantidadeBaralhoStandard = 60;
-        private const int quantidadeMaximaDeCopiaDeCartasCommander = 1;
-        private const int quantidadeMaximaDeCopiaDeCartasPauper = 4;
-        private const int quantidadeBaralhoCommander = 100;
+        private const int TAMANHO_MINIMO_SENHA = 8;
+        private const int TAMANHO_MINIMO_USUARIO = 6;
+        private const int VALOR_NULO = 0;
 
         public JogadorValidador()
         {
             DateTime valorDataHoje = DateTime.Now;
-            const int valorMinimoDeIdadeParaCriarConta = 13;
-            int valorAnoDeNascimentoMinimo = Convert.ToInt32(valorDataHoje.Year) - valorMinimoDeIdadeParaCriarConta;
+            const int VALOR_MINIMO_DE_IDADE_PARA_CRIAR_CONTA = 13;
+            int valorAnoDeNascimentoMinimo = Convert.ToInt32(valorDataHoje.Year) - VALOR_MINIMO_DE_IDADE_PARA_CRIAR_CONTA;
             DateTime valorDataNascimentoMinima = new DateTime(valorAnoDeNascimentoMinimo, valorDataHoje.Month, valorDataHoje.Day);
 
+            RuleSet("Criar", () =>
+            {
+                RuleFor(jogador => jogador.NomeJogador)
+                    .NotNull().WithMessage("Preencha seu nome no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha seu nome no campo indicado.\n");
 
-            RuleFor(jogador => jogador.NomeJogador)
-            .NotEmpty().WithMessage("Nome do Jogador nao preenchido");
+                RuleFor(jogador => jogador.SobrenomeJogador)
+                    .NotNull().WithMessage("Preencha seu sobrenome no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha seu sobrenome no campo indicado.\n");
 
-            RuleFor(jogador => jogador.DataNascimentoJogador)
-            .NotNull().WithMessage("Data de nascimente nao pode ser nula")
-            .NotEmpty().WithMessage("Data de nascimente nao preenchida")
-            .LessThanOrEqualTo(valorDataNascimentoMinima).WithMessage("O jogador deve possuir mais de 13 anos para criar conta");
+                RuleFor(jogador => jogador.DataNascimentoJogador)
+                    .NotNull().WithMessage("Preencha sua data de nascimento no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha sua data de nascimento no campo indicado.\n")
+                    .LessThanOrEqualTo(valorDataNascimentoMinima).WithMessage("MTG Deckbuilder possui conteúdo exclusivo para maiores de 13 anos.\n");
+
+                RuleFor(jogador => jogador.UsuarioJogador)
+                    .NotNull().WithMessage("Preencha seu nome de usuário no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha seu nome de usuário no campo indicado.\n");
+
+                RuleFor(jogador => jogador.UsuarioJogador)
+                    .Must(ValidacaoJogadorUsuario).WithMessage(
+                        "O usuário deve conter:\n" +
+                        "Somente letras minúsculas [a-z].\n" +
+                        "Conter mais de 6 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
+
+                RuleFor(jogador => jogador)
+                    .Must(ValidacaoUsuarioEConfirmacaoCorrepondem).WithMessage("O usuário e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
+
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                    .NotNull().WithMessage("Preencha sua senha no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha sua senha no campo indicado.\n");
+
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                    .Must(ValidacaoJogadorSenha).WithMessage(
+                        "A Senha deve conter:\n" +
+                        "Ao menos uma letra maiúscula [A-Z].\n" +
+                        "Ao menos uma letra minúscula [a-z].\n" +
+                        "Ao menos um número [0123456789].\n" +
+                        "Não deve conter caracteres especiais.\n" +
+                        "Conter mais de 8 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
+
+
+                RuleFor(jogador => jogador)
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
+            });
 
             RuleSet("Atualizar", () =>
             {
-                RuleFor(jogador => jogador.BaralhosJogador)
-                .Must(ValidacaoTipoDeBaralho).WithMessage("Quantidade de cartas do baralho nao compativel com o formato de jogo selecionado");
-                
-                RuleFor(jogador => jogador.NomeJogador)
-                .NotEmpty().WithMessage("Nome do Jogador nao preenchido")
-                .NotNull().WithMessage("Nome do Jogador nao preenchido2");
+                RuleFor(jogador => jogador.UsuarioJogador)
+                    .Must(ValidacaoJogadorUsuario).WithMessage(
+                        "O usuário deve conter:\n" +
+                        "Somente letras minúsculas [a-z].\n" +
+                        "Conter mais de 6 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
 
-                RuleFor(jogador => jogador.DataNascimentoJogador)
-                .NotNull().WithMessage("Data de nascimente nao pode ser nula")
-                .NotEmpty().WithMessage("Data de nascimente nao preenchida")
-                .LessThanOrEqualTo(valorDataNascimentoMinima).WithMessage("O jogador deve possuir mais de 13 anos para criar conta");
+                RuleFor(jogador => jogador)
+                    .Must(ValidacaoUsuarioEConfirmacaoCorrepondem).WithMessage("O usuário e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.UsuarioJogador));
+
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                    .Must(ValidacaoJogadorSenha).WithMessage(
+                        "A Senha deve conter:\n" +
+                        "Ao menos uma letra maiúscula [A-Z].\n" +
+                        "Ao menos uma letra minúscula [a-z].\n" +
+                        "Ao menos um número [0123456789].\n" +
+                        "Não deve conter caracteres especiais.\n" +
+                        "Conter mais de 8 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
+
+                RuleFor(jogador => jogador)
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
             });
 
-            RuleSet("Excluir", () =>
+            RuleSet("AlterarSenha", () =>
             {
-                RuleFor(jogador => jogador.BaralhosJogador)
-                .Must(ValidacaoExclusaoDeJogador).WithMessage("Não e possivel excluir a conta, pois o jogador possui baralhos ativos");
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                    .NotNull().WithMessage("Preencha sua senha no campo indicado.\n")
+                    .NotEmpty().WithMessage("Preencha sua senha no campo indicado.\n");
+
+                RuleFor(jogador => jogador.SenhaHashJogador)
+                    .Must(ValidacaoJogadorSenha).WithMessage(
+                        "A Senha deve conter:\n" +
+                        "Ao menos uma letra maiúscula [A-Z].\n" +
+                        "Ao menos uma letra minúscula [a-z].\n" +
+                        "Ao menos um número [0123456789].\n" +
+                        "Não deve conter caracteres especiais.\n" +
+                        "Conter mais de 8 dígitos.\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
+
+
+                RuleFor(jogador => jogador)
+                    .Must(ValidacaoSenhaEConfirmacaoCorrepondem).WithMessage("A senha e a confirmação devem coincidir!\n")
+                    .When(jogador => !string.IsNullOrEmpty(jogador.SenhaHashJogador));
             });
-        }
-
-        private static bool ValidacaoTipoDeBaralho(List<Baralho> baralhosJogador)
-        {
-            if (!baralhosJogador.IsNullOrEmpty())
-            {
-                foreach(var baralho in  baralhosJogador)
-                {
-                    switch (baralho.FormatoDeJogoBaralho)
-                    {
-                        case FormatoDeJogoEnum.Commander:
-                            if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) != quantidadeBaralhoCommander) return false;
-
-                            if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasCommander))) return false;
-
-                            break;
-
-                        case FormatoDeJogoEnum.Pauper:
-                            if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) < quantidadeBaralhoPauper) return false;
-
-                            if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasPauper))) return false;
-
-                            if (baralho.CartasDoBaralho.All(cartas => cartas.Carta.RaridadeCarta != RaridadeEnum.Common)) return false;
-
-                            break;
-
-                        case FormatoDeJogoEnum.Standard:
-                            if (baralho.CartasDoBaralho.Sum(cartas => cartas.QuantidadeCopiasDaCartaNoBaralho) < quantidadeBaralhoStandard) return false;
-
-                            if (baralho.CartasDoBaralho.All(cartas => (cartas.Carta.TipoDeCarta != TipoDeCartaEnum.TerrenoBasico) && (cartas.QuantidadeCopiasDaCartaNoBaralho > quantidadeMaximaDeCopiaDeCartasStandard))) return false;
-
-                            break;
-                    }
-                }
-            }
-            return true;
         }
 
         private static bool ValidacaoExclusaoDeJogador(List<Baralho> baralhosJogador)
         {
             const int quantidadeDeBaralhosParaExclusao = 0;
-
             return baralhosJogador.Count == quantidadeDeBaralhosParaExclusao;
+        }
+
+        private static bool ValidacaoJogadorUsuario(String usuario)
+        {
+            if (usuario.Length < TAMANHO_MINIMO_USUARIO) return false;
+            return Regex.IsMatch(usuario, "^[a-z]+$");
+        }
+
+        private static bool ValidacaoJogadorSenha(String senha)
+        {
+            if (senha.Length < TAMANHO_MINIMO_SENHA) return false;
+            return Regex.IsMatch(senha, "^[a-zA-Z0-9]+$");
+        }
+
+        private static bool ValidacaoSenhaEConfirmacaoCorrepondem(Jogador jogador)
+        {
+            if (jogador?.SenhaHashJogador.Length >= VALOR_NULO) return jogador.SenhaHashJogador == jogador.SenhaHashConfirmacaoJogador;
+            return true;
+        }
+
+        private static bool ValidacaoUsuarioEConfirmacaoCorrepondem(Jogador jogador)
+        {
+            if (jogador?.UsuarioJogador.Length >= VALOR_NULO) return jogador.UsuarioJogador == jogador.UsuarioConfirmacaoJogador;
+            return true;
         }
     }
 }
