@@ -17,87 +17,38 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Criar([FromBody] Baralho baralho)
+        public CreatedResult Criar([FromBody] Baralho baralho)
         {
-            if (baralho == null) return BadRequest("O baralho não pode ser nulo.");
-
-            try
-            {
-                baralho.Id = _baralhoServico.Criar(baralho);
-                return CreatedAtAction("Baralho criado com sucesso!", baralho);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao criar baralho: {ex.Message}");
-            }
+            baralho.Id = _baralhoServico.Criar(baralho);
+            return Created("Baralho criado com sucesso!", baralho);
         }
 
         [HttpGet]
-        public IActionResult ObterTodos([FromQuery] BaralhoFiltro? filtro)
+        public OkObjectResult ObterTodos([FromQuery] BaralhoFiltro filtro)
         {
-            try
-            {
-                var baralhos = _baralhoServico.ObterTodos(filtro);
-
-                if (baralhos == null || !baralhos.Any<Baralho>()) return NotFound("Nenhum baralho encontrado.");
-
-                return Ok(baralhos);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao obter baralhos: {ex.Message}");
-            }
+            var baralhos = _baralhoServico.ObterTodos(filtro);
+            return Ok(baralhos);
         }
 
-        [HttpGet("{id:int}")]
-        public IActionResult ObterPorId([FromRoute] int id)
+        [HttpGet("{id}")]
+        public OkObjectResult ObterPorId([FromRoute] int id)
         {
-            if (id <= 0) return BadRequest("ID inválido.");
-
-            try
-            {
-                var baralho = _baralhoServico.ObterPorId(id);
-
-                if (baralho == null) return NotFound("Baralho não encontrado.");
-
-                return Ok(baralho);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao obter baralho: {ex.Message}");
-            }
+            var baralho = _baralhoServico.ObterPorId(id);
+            return Ok(baralho);
         }
 
-        [HttpPatch("{id:int}")]
-        public IActionResult Atualizar([FromBody] Baralho baralho)
+        [HttpPatch]
+        public NoContentResult Atualizar([FromBody] Baralho baralho)
         {
-            if (baralho == null) return BadRequest("O baralho não pode ser nulo.");
-
-            try
-            {
-                _baralhoServico.Atualizar(baralho);
-                return Ok(baralho);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao atualizar baralho: {ex.Message}");
-            }
+            _baralhoServico.Atualizar(baralho);
+            return NoContent();
         }
 
-        [HttpDelete("{id:int}")]
-        public IActionResult Excluir([FromRoute] int id)
+        [HttpDelete("{id}")]
+        public NoContentResult Excluir([FromRoute] int id)
         {
-            if (id <= 0) return BadRequest("ID inválido.");
-
-            try
-            {
-                _baralhoServico.Excluir(id);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir baralho: {ex.Message}");
-            }
+            _baralhoServico.Excluir(id);
+            return NoContent();
         }
     }
 }

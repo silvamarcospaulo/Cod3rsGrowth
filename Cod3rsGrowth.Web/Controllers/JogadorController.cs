@@ -18,87 +18,38 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Criar([FromBody] Jogador jogador)
+        public CreatedResult Criar([FromBody] Jogador jogador)
         {
-            if (jogador == null) return BadRequest("O jogador não pode ser nulo.");
-
-            try
-            {
-                jogador.Id = _jogadorServico.Criar(jogador);
-                return CreatedAtAction("Conta criada com sucesso!", jogador);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao criar jogador: {ex.Message}");
-            }
+            jogador.Id = _jogadorServico.Criar(jogador);
+            return Created("Conta criada com sucesso!", jogador);
         }
 
         [HttpGet]
-        public IActionResult ObterTodos([FromQuery] JogadorFiltro? filtro)
+        public OkObjectResult ObterTodos([FromQuery] JogadorFiltro? filtro)
         {
-            try
-            {
-                var jogadores = _jogadorServico.ObterTodos(filtro);
-
-                if (jogadores == null || !jogadores.Any<Jogador>()) return NotFound("Nenhum jogador encontrado.");
-
-                return Ok(jogadores);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao obter jogadores: {ex.Message}");
-            }
+            var jogadores = _jogadorServico.ObterTodos(filtro);
+            return Ok(jogadores);
         }
 
-        [HttpGet("{id:int}")]
-        public IActionResult ObterPorId([FromRoute] int id)
+        [HttpGet("{id}")]
+        public OkObjectResult ObterPorId([FromRoute] int id)
         {
-            if (id <= 0) return BadRequest("ID inválido.");
-
-            try
-            {
-                var jogador = _jogadorServico.ObterPorId(id);
-
-                if (jogador == null) return NotFound("Jogador não encontrado.");
-
-                return Ok(jogador);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao obter jogador: {ex.Message}");
-            }
+            var jogador = _jogadorServico.ObterPorId(id);
+            return Ok(jogador);
         }
 
-        [HttpPatch("{id:int}")]
-        public IActionResult Atualizar([FromBody] Jogador jogador)
+        [HttpPatch]
+        public NoContentResult Atualizar([FromBody] Jogador jogador)
         {
-            if (jogador == null) return BadRequest("O jogador não pode ser nulo.");
-
-            try
-            {
-                _jogadorServico.Atualizar(jogador);
-                return Ok(jogador);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao atualizar jogador: {ex.Message}");
-            }
+            _jogadorServico.Atualizar(jogador);
+            return NoContent();
         }
 
-        [HttpDelete("{id:int}")]
-        public IActionResult Excluir([FromRoute] int id)
+        [HttpDelete("{id}")]
+        public NoContentResult Excluir([FromRoute] int id)
         {
-            if (id <= 0) return BadRequest("ID inválido.");
-
-            try
-            {
-                _jogadorServico.Excluir(id);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao excluir jogador: {ex.Message}");
-            }
+            _jogadorServico.Excluir(id);
+            return NoContent();
         }
     }
 }
