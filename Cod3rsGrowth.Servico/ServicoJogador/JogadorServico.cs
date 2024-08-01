@@ -169,7 +169,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public Jogador ObterPorId(int idJogador)
         {
             var jogador = _IJogadorRepository.ObterPorId(idJogador);
-            jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
+            jogador.BaralhosJogador = jogador is not null ? _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador }) : null;
 
             return jogador;
         }

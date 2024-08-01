@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,15 @@ namespace Cod3rsGrowth.Web.Controllers
         public JogadorController(JogadorServico jogadorServico)
         {
             _jogadorServico = jogadorServico;
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public IActionResult Autenticacao([FromBody] Jogador modelo)
+        {
+            var jogador = JwtServico.AutenticarJogador(modelo, _jogadorServico);
+
+            return Ok(jogador);
         }
 
         [HttpPost]
