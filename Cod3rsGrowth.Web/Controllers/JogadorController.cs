@@ -20,8 +20,8 @@ namespace Cod3rsGrowth.Web.Controllers
         [HttpPost]
         public CreatedResult Criar([FromBody] Jogador jogador)
         {
-            jogador.Id = _jogadorServico.Criar(jogador);
-            return Created("Conta criada com sucesso!", jogador);
+            _jogadorServico.Criar(jogador);
+            return Created(jogador.Id.ToString(), jogador);
         }
 
         [HttpGet]

@@ -1,6 +1,7 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Servico.ServicoBaralho;
+using Cod3rsGrowth.Servico.ServicoJogador;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cod3rsGrowth.Web.Controllers
@@ -19,8 +20,8 @@ namespace Cod3rsGrowth.Web.Controllers
         [HttpPost]
         public CreatedResult Criar([FromBody] Baralho baralho)
         {
-            baralho.Id = _baralhoServico.Criar(baralho);
-            return Created("Baralho criado com sucesso!", baralho);
+            _baralhoServico.Criar(baralho);
+            return Created(baralho.Id.ToString(), baralho);
         }
 
         [HttpGet]

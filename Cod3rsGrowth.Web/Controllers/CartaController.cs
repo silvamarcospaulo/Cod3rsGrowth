@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult ObterTodos([FromQuery] CartaFiltro? filtro)
+        public OkObjectResult ObterTodos([FromQuery] CartaFiltro? filtro)
         {
             var cartas = _cartaServico.ObterTodos(filtro);
 
@@ -24,7 +24,7 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterPorId([FromRoute] int id)
+        public OkObjectResult ObterPorId([FromRoute] int id)
         {
             var carta = _cartaServico.ObterPorId(id);
 
