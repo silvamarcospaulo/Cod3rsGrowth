@@ -1,8 +1,15 @@
 ﻿using Cod3rsGrowth.Dominio.Auth;
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Migrador;
+using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository;
+using Cod3rsGrowth.Servico.ServicoBaralho;
+using Cod3rsGrowth.Servico.ServicoCarta;
+using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using FluentMigrator.Runner;
+using FluentValidation;
 using LinqToDB;
 using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
@@ -18,7 +25,7 @@ namespace Cod3rsGrowth.Infra
     {
         public class ModuloDeInjecaoInfra
         {
-            private static string _chaveDeConexao = "DefaultConnection";
+            private static string _chaveDeConexao = "DeckBuilderDb";
             public static void BindServices(IServiceCollection servicos)
             {
                 var chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
@@ -26,6 +33,14 @@ namespace Cod3rsGrowth.Infra
                     .AddScoped<ICartaRepository, CartaRepository>()
                     .AddScoped<IBaralhoRepository, BaralhoRepository>()
                     .AddScoped<IJogadorRepository, JogadorRepository>()
+                    .AddScoped<CartaServico>()
+                    .AddScoped<BaralhoServico>()
+                    .AddScoped<JogadorServico>()
+                    .AddScoped<JwtServico>()
+                    .AddScoped<HashServico>()
+                    .AddScoped<IValidator<Carta>, CartaValidador>()
+                    .AddScoped<IValidator<Baralho>, BaralhoValidador>()
+                    .AddScoped<IValidator<Jogador>, JogadorValidador>()
                     .AddLinqToDBContext<ConexaoDados>((provider, options) => options
                         .UseSqlServer(ConfigurationManager.ConnectionStrings[_chaveDeConexao].ConnectionString)
                         .UseDefaultLogging(provider))

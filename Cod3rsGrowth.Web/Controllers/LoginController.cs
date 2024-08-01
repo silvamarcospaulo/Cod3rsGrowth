@@ -10,21 +10,22 @@ namespace Cod3rsGrowth.Web.Controllers
     [Route("v1")]
     public class LoginController : ControllerBase
     {
-        private JogadorServico _jogadorServico;
+        private readonly JogadorServico _jogadorServico;
 
         public LoginController(JogadorServico jogadorServico)
         {
             _jogadorServico = jogadorServico;
         }
-        
+
         [HttpPost]
         [Route("login")]
-        public ActionResult Autenticacao([FromServices] Jogador modelo)
+        public ActionResult Autenticacao([FromBody] Jogador modelo)
         {
+            if (modelo == null) return BadRequest("Não foi possível encontrar uma conta que corresponda ao que você inseriu.");
+
             var jogador = JwtServico.AutenticarJogador(modelo, _jogadorServico);
 
-            if (jogador is null)
-                return NotFound(new { BadRequest = "Não foi possível encontrar uma conta que corresponda ao que você inseriu." });
+            if (jogador is null) return NotFound("Usuário e senha não encontrados.");
 
             return Ok(jogador);
         }
