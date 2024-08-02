@@ -40,7 +40,7 @@ namespace Cod3rsGrowth.Web
             var problemDetails = new ProblemDetails
             {
                 Instance = contexto.Request.Path,
-                Title = "Erro.",
+                Title = "Erro. " + exception.Message,
                 Status = StatusCodes.Status500InternalServerError,
                 Type = "https://tools.ietf.org/html/rfc7807",
                 Detail = exception.StackTrace
@@ -70,7 +70,7 @@ namespace Cod3rsGrowth.Web
 
         private static void ConfigureBadRequestProblemDetails(ProblemDetails problemDetails, BadHttpRequestException exception)
         {
-            problemDetails.Title = "Requisição inválida";
+            problemDetails.Title = "Requisição inválida. " + exception.Message;
             problemDetails.Status = StatusCodes.Status400BadRequest;
             problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.5.1";
             problemDetails.Detail = exception.StackTrace;
@@ -78,7 +78,7 @@ namespace Cod3rsGrowth.Web
 
         private static void ConfigureValidationProblemDetails(ProblemDetails problemDetails, ValidationException exception)
         {
-            problemDetails.Title = "Erro de validação";
+            problemDetails.Title = "Erro de validação. " + exception.Message;
             problemDetails.Status = StatusCodes.Status400BadRequest;
             problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.5.1";
             problemDetails.Detail = exception.StackTrace;
@@ -86,7 +86,7 @@ namespace Cod3rsGrowth.Web
 
         private static void ConfigureSqlProblemDetails(ProblemDetails problemDetails, SqlException exception)
         {
-            problemDetails.Title = "Erro ao acessar o banco de dados";
+            problemDetails.Title = "Erro ao acessar o banco de dados. " + exception.Message;
             problemDetails.Status = StatusCodes.Status500InternalServerError;
             problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.6.1";
             problemDetails.Detail = exception.StackTrace;
@@ -94,7 +94,7 @@ namespace Cod3rsGrowth.Web
 
         private static void ConfigureDefaultProblemDetails(ProblemDetails problemDetails, Exception exception)
         {
-            problemDetails.Title = "Erro";
+            problemDetails.Title = "Erro. " + exception.Message;
             problemDetails.Status = StatusCodes.Status500InternalServerError;
             problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.6.1";
             problemDetails.Detail = exception.StackTrace;
@@ -102,7 +102,7 @@ namespace Cod3rsGrowth.Web
 
         private static void ConfigureNullReferenceExceptionProblemDetails(ProblemDetails problemDetails, Exception exception)
         {
-            problemDetails.Title = "Erro. Registro não encontrado.";
+            problemDetails.Title = "Erro. Registro não encontrado. " + exception.Message;
             problemDetails.Status = StatusCodes.Status500InternalServerError;
             problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.6.1";
             problemDetails.Detail = exception.StackTrace;
