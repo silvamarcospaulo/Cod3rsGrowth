@@ -1,18 +1,17 @@
+using Cod3rsGrowth.Infra;
+using Cod3rsGrowth.Web;
 using FluentMigrator.Runner;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddControllers();
+builder.Services.AddProblemDetails();
 builder.Services.AddSwaggerGen();
-//ModuloInjetor.ModuloDeInjecaoInfra.BindServices(builder.Services);
+ModuloInjetor.ModuloDeInjecaoInfra.BindServices(builder.Services);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -22,6 +21,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseRouting();
+
+var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
+
+app.UseProblemDetailsExceptionHandler(loggerFactory);
 
 app.MapControllers();
 
