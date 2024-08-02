@@ -27,7 +27,6 @@ namespace Cod3rsGrowth.Web.Controllers
         public OkObjectResult ObterPorId([FromRoute] int id)
         {
             var carta = _cartaServico.ObterPorId(id);
-
             return Ok(carta);
         }
     }

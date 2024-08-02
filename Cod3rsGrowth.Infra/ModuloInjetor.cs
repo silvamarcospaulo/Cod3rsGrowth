@@ -26,6 +26,7 @@ namespace Cod3rsGrowth.Infra
         public class ModuloDeInjecaoInfra
         {
             private static string _chaveDeConexao = "DeckBuilderDb";
+
             public static void BindServices(IServiceCollection servicos)
             {
                 var chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
