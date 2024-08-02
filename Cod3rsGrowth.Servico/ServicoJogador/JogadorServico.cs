@@ -64,7 +64,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
 
             try
             {
-                if (!ValidacaoUsuarioDisponível(jogador.UsuarioJogador)) throw new Exception("Usuário indisponível.");
+                if (!ValidacaoUsuarioDisponível(jogador.UsuarioJogador)) throw new ValidationException("Usuário indisponível.");
 
                 _validadorJogador.Validate(jogador, options =>
                 {
@@ -78,7 +78,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             catch (ValidationException e)
             {
                 string mensagemDeErro = string.Join(Environment.NewLine, e.Errors.Select(error => error.ErrorMessage));
-                throw new Exception($"{mensagemDeErro}");
+                throw new ValidationException($"{mensagemDeErro}");
             }
         }
 
