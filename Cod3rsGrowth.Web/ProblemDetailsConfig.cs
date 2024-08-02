@@ -56,6 +56,9 @@ namespace Cod3rsGrowth.Web
                 case SqlException sqlException:
                     ConfigureSqlProblemDetails(problemDetails, sqlException);
                     break;
+                case NullReferenceException nullReferenceException:
+                    ConfigureNullReferenceExceptionProblemDetails(problemDetails, nullReferenceException);
+                    break;
                 default:
                     ConfigureDefaultProblemDetails(problemDetails, exception);
                     break;
@@ -93,6 +96,14 @@ namespace Cod3rsGrowth.Web
         private static void ConfigureDefaultProblemDetails(ProblemDetails problemDetails, Exception exception)
         {
             problemDetails.Title = "Erro";
+            problemDetails.Status = StatusCodes.Status500InternalServerError;
+            problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.6.1";
+            problemDetails.Detail = exception.Message;
+        }
+
+        private static void ConfigureNullReferenceExceptionProblemDetails(ProblemDetails problemDetails, Exception exception)
+        {
+            problemDetails.Title = "Erro. Registro não encontrado.";
             problemDetails.Status = StatusCodes.Status500InternalServerError;
             problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.6.1";
             problemDetails.Detail = exception.Message;
