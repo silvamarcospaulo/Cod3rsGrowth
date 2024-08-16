@@ -18,7 +18,7 @@ namespace Cod3rsGrowth.Dominio.Migrador
         {
             var diretorioLocal = AppDomain.CurrentDomain.BaseDirectory;
 
-            string diretorioRaiz = Path.Combine(diretorioLocal, @"..\..\..\..\Cod3rsGrowth.Infra\Migrador\ApiScryfall");
+            string diretorioRaiz = Path.Combine(diretorioLocal, @"../../../../Cod3rsGrowth.Infra/Migrador/ApiScryfall");
 
             var arquivosJson = new List<string>
             {

@@ -14,6 +14,7 @@ using LinqToDB;
 using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
@@ -25,11 +26,14 @@ namespace Cod3rsGrowth.Infra
     {
         public class ModuloDeInjecaoInfra
         {
-            private static string _chaveDeConexao = "DeckBuilderDb";
+            private static string _stringDeConexao = "DeckBuilderDb";
+
+            private static string _chaveDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ConnectionString;
 
             public static void BindServices(IServiceCollection servicos)
             {
                 var chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
+
                 servicos
                     .AddScoped<ICartaRepository, CartaRepository>()
                     .AddScoped<IBaralhoRepository, BaralhoRepository>()
@@ -41,10 +45,29 @@ namespace Cod3rsGrowth.Infra
                     .AddScoped<HashServico>()
                     .AddScoped<IValidator<Carta>, CartaValidador>()
                     .AddScoped<IValidator<Baralho>, BaralhoValidador>()
-                    .AddScoped<IValidator<Jogador>, JogadorValidador>()
-                    .AddLinqToDBContext<ConexaoDados>((provider, options) => options
-                        .UseSqlServer(ConfigurationManager.ConnectionStrings[_chaveDeConexao].ConnectionString)
-                        .UseDefaultLogging(provider))
+                    .AddScoped<IValidator<Jogador>, JogadorValidador>();
+
+                servicos
+                    .AddLinqToDBContext<ConexaoDados>((provider, options)
+                        => options
+                        .UseSqlServer(ConfigurationManager
+                        .ConnectionStrings[_stringDeConexao].ConnectionString)
+                        .UseDefaultLogging(provider));
+
+                servicos
+                    .AddFluentMigratorCore()
+                    .ConfigureRunner(rb => rb
+                        .AddSqlServer()
+                        .WithGlobalConnectionString(_chaveDeConexao)
+                        .ScanIn(typeof(_20240621105800_Carta).Assembly).For.Migrations())
+                    .AddLogging(lb => lb.AddFluentMigratorConsole());
+
+                servicos
+                    .AddCors();
+                servicos
+                    .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+                servicos
                     .AddAuthentication(x =>
                     {
                         x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -62,13 +85,6 @@ namespace Cod3rsGrowth.Infra
                             ValidateAudience = false
                         };
                     });
-
-                servicos.AddFluentMigratorCore()
-                    .ConfigureRunner(rb => rb
-                        .AddSqlServer()
-                        .WithGlobalConnectionString(_chaveDeConexao)
-                        .ScanIn(typeof(_20240621105800_Carta).Assembly).For.Migrations())
-                    .AddLogging(lb => lb.AddFluentMigratorConsole());
             }
         }
 

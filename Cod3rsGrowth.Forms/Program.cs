@@ -92,29 +92,44 @@ namespace Cod3rsGrowth.Forms
 
         private static ServiceProvider CreateServices()
         {
-            string stringDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ConnectionString;
-            var colecao = new ServiceCollection();
+            string _chaveDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ConnectionString;
+            var servicos = new ServiceCollection();
 
-            colecao.AddLinqToDBContext<ConexaoDados>((provider, options)
-                        => options
-                        .UseSqlServer(ConfigurationManager
-                        .ConnectionStrings[_stringDeConexao].ConnectionString)
-                        .UseDefaultLogging(provider));
-            colecao.AddFluentMigratorCore()
+            servicos
+                .AddScoped<ICartaRepository, CartaRepository>()
+                .AddScoped<IBaralhoRepository, BaralhoRepository>()
+                .AddScoped<IJogadorRepository, JogadorRepository>()
+                .AddScoped<CartaServico>()
+                .AddScoped<BaralhoServico>()
+                .AddScoped<JogadorServico>()
+                .AddScoped<JwtServico>()
+                .AddScoped<HashServico>()
+                .AddScoped<IValidator<Carta>, CartaValidador>()
+                .AddScoped<IValidator<Baralho>, BaralhoValidador>()
+                .AddScoped<IValidator<Jogador>, JogadorValidador>();
+
+            servicos.AddLinqToDBContext<ConexaoDados>((provider, options)
+                    => options
+                    .UseSqlServer(ConfigurationManager
+                    .ConnectionStrings[_stringDeConexao].ConnectionString)
+                    .UseDefaultLogging(provider));
+
+            servicos.AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb
                     .AddSqlServer()
-                    .WithGlobalConnectionString(stringDeConexao)
+                    .WithGlobalConnectionString(_chaveDeConexao)
                     .ScanIn(typeof(_20240621105800_Carta).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole());
 
-            colecao.AddCors();
-            colecao.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            servicos.AddCors();
+            servicos.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            colecao.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            servicos
+                .AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
                 .AddJwtBearer(x =>
                 {
                     x.RequireHttpsMetadata = false;
@@ -128,9 +143,7 @@ namespace Cod3rsGrowth.Forms
                     };
                 });
 
-            colecao.AddScoped<JwtServico>();
-
-            return colecao.BuildServiceProvider(false);
+            return servicos.BuildServiceProvider(false);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
