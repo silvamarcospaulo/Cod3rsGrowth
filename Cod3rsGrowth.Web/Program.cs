@@ -1,13 +1,13 @@
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Web;
-using FluentMigrator.Runner;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
-builder.Services.AddSwaggerGen();
+builder.Services.AddDirectoryBrowser();
 
 ModuloInjetor.ModuloDeInjecaoInfra.BindServices(builder.Services);
 
@@ -16,12 +16,6 @@ var serviceProvider = builder.Services.BuildServiceProvider();
 ModuloInjetor.AtualizarBancoDeDados(serviceProvider);
 
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
@@ -32,5 +26,19 @@ var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
 app.UseProblemDetailsExceptionHandler(loggerFactory);
 
 app.MapControllers();
+
+app.UseStaticFiles(new StaticFileOptions { ServeUnknownFileTypes = true });
+app.UseFileServer(new FileServerOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "wwwroot")),
+    EnableDirectoryBrowsing = true
+}); app.UseStaticFiles(new StaticFileOptions { ServeUnknownFileTypes = true });
+app.UseFileServer(new FileServerOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "wwwroot")),
+    EnableDirectoryBrowsing = true
+});
 
 app.Run();
