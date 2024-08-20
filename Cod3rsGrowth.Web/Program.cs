@@ -23,22 +23,18 @@ app.UseRouting();
 
 var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
 
+
+app.UseFileServer(new FileServerOptions()
+{
+    EnableDirectoryBrowsing = true
+});
+app.UseStaticFiles(new StaticFileOptions()
+{
+    ServeUnknownFileTypes = true
+});
+
 app.UseProblemDetailsExceptionHandler(loggerFactory);
 
 app.MapControllers();
-
-app.UseStaticFiles(new StaticFileOptions { ServeUnknownFileTypes = true });
-app.UseFileServer(new FileServerOptions
-{
-    FileProvider = new PhysicalFileProvider(
-           Path.Combine(builder.Environment.ContentRootPath, "wwwroot")),
-    EnableDirectoryBrowsing = true
-}); app.UseStaticFiles(new StaticFileOptions { ServeUnknownFileTypes = true });
-app.UseFileServer(new FileServerOptions
-{
-    FileProvider = new PhysicalFileProvider(
-           Path.Combine(builder.Environment.ContentRootPath, "wwwroot")),
-    EnableDirectoryBrowsing = true
-});
 
 app.Run();
