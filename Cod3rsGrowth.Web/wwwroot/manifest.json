@@ -27,14 +27,13 @@
 		  "type": "sap.ui.model.resource.ResourceModel",
 		  "settings": {
 			"bundleName": "ui5.mtgdeckbuilder.i18n.i18n",
-			"supportedLocales": ["pt", "en"],
-			"fallbackLocale": "pt"
+			"fallbackLocale": ""
 			
 		  }
 		}
 	  },
 	  "rootView": {
-		"viewName": "ui5.mtgdeckbuilder.webapp.App",
+		"viewName": "ui5.mtgdeckbuilder.app.App",
 		"type": "XML",
 		"id": "App"
 	  },
@@ -44,7 +43,7 @@
 		  "routerClass": "sap.m.routing.Router",
 		  "type": "View",
 		  "viewType": "XML",
-		  "path": "ui5.mtgdeckbuilder.webapp",
+		  "path": "ui5.mtgdeckbuilder.app",
 		  "controlId": "app",
 		  "controlAggregation": "pages",
 		  "async": true

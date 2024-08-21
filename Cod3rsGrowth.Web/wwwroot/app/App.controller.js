@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
     "use strict";
 
-    return Controller.extend("ui5.mtgdeckbuilder.webapp.App", {
+    return Controller.extend("ui5.mtgdeckbuilder.app.App", {
 
         onChangeLanguage: function (oEvent){
             var selectedItem = oEvent.getParameter("selectedItem").getKey();
