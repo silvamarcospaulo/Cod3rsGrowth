@@ -1,8 +1,0 @@
-<mvc:View
-      controllerName="ui5.mtgdeckbuilder.webapp.jogador.controller.App"
-      xmlns="sap.m"
-      xmlns:mvc="sap.ui.core.mvc">
-      <Button
-            text="Olá mundo"
-            press=".onOla"/>
-</mvc:View>

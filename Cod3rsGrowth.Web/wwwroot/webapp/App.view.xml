@@ -1,0 +1,15 @@
+<mvc:View
+      controllerName="ui5.mtgdeckbuilder.webapp.App"
+      xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true">
+	<Shell>
+		<App id="app">
+			<Page id="appPage" title="{i18n>appTitle}">
+				<content>
+					<Text class="sapUiLargeMargin" text="{i18n>appText}"/>
+				</content>
+			</Page>
+		</App>
+	</Shell>
+</mvc:View>	
