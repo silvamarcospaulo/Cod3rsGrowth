@@ -26,14 +26,14 @@
 		"i18n": {
 		  "type": "sap.ui.model.resource.ResourceModel",
 		  "settings": {
-			"bundleName": "ui5.mtgdeckbuilder.i18n.i18n",
+			"bundleName": "mtgdeckbuilder.i18n.i18n",
 			"fallbackLocale": ""
 			
 		  }
 		}
 	  },
 	  "rootView": {
-		"viewName": "ui5.mtgdeckbuilder.app.App",
+		"viewName": "mtgdeckbuilder.app.App",
 		"type": "XML",
 		"id": "App"
 	  },
@@ -43,7 +43,7 @@
 		  "routerClass": "sap.m.routing.Router",
 		  "type": "View",
 		  "viewType": "XML",
-		  "path": "ui5.mtgdeckbuilder.app",
+		  "path": "mtgdeckbuilder.app",
 		  "controlId": "app",
 		  "controlAggregation": "pages",
 		  "async": true
