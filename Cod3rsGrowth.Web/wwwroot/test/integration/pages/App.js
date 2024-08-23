@@ -11,7 +11,7 @@ sap.ui.define([
 			naPaginaPrincipal: {
 				actions: {},
 				assertions: {
-					naTelaCarregadaCorretamente: function () {
+					aTelaFoiCarregadaCorretamente: function () {
 						return this.waitFor({
 							viewName : VIEW_NAME,
 							success: () => Opa5.assert.ok(true, "A tela foi carregada corretamente"),

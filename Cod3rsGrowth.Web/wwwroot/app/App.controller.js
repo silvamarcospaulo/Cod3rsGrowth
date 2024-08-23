@@ -3,9 +3,11 @@ sap.ui.define([
 ], function (Controller) {
     "use strict";
 
-    return Controller.extend("mtgdeckbuilder.app.App", {
+    const NOME = "mtgdeckbuilder.app.App";
+    
+    return Controller.extend(NOME, {
 
-        onChangeLanguage: function (oEvent){
+        IdentificaIdioma: function (oEvent){
             var selectedItem = oEvent.getParameter("selectedItem").getKey();
             sap.ui.getCore().getConfiguration().setLanguage(selectedItem);
         },

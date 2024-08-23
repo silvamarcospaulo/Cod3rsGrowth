@@ -1,6 +1,5 @@
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Web;
-using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +22,9 @@ app.UseRouting();
 
 var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
 
+app.UseProblemDetailsExceptionHandler(loggerFactory);
+
+app.MapControllers();
 
 app.UseFileServer(new FileServerOptions()
 {
@@ -32,9 +34,5 @@ app.UseStaticFiles(new StaticFileOptions()
 {
     ServeUnknownFileTypes = true
 });
-
-app.UseProblemDetailsExceptionHandler(loggerFactory);
-
-app.MapControllers();
 
 app.Run();

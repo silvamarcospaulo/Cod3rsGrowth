@@ -3,8 +3,8 @@ sap.ui.define([
     "mtgdeckbuilder/test/integration/pages/App"
 ], (opaTest, Lista) => {
     "use strict";
- 
-    QUnit.module("Jornada App");
+
+    QUnit.module("JornadaApp");
  
     opaTest("Ao carregar tela principal, o nome deve ser App", (Given, When, Then) => {
         Given.iStartMyUIComponent({
@@ -13,6 +13,6 @@ sap.ui.define([
             }
         });
 
-		Then.naPaginaPrincipal.naTelaCarregadaCorretamente();
+		Then.naPaginaPrincipal.aTelaFoiCarregadaCorretamente();
     }); 
 });
