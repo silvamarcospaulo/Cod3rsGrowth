@@ -6,7 +6,7 @@ sap.ui.define([
 
     QUnit.module("JornadaApp");
  
-    opaTest("Ao carregar tela principal, o nome deve ser App", (Given, When, Then) => {
+    opaTest("Ao carregar a tela, verifica o nome da view", (Given, When, Then) => {
         Given.iStartMyUIComponent({
             componentConfig: {
                 name: "mtgdeckbuilder"
