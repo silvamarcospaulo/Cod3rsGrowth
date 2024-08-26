@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
     "use strict";
 
-    const NAME_SPACE = "mtgdeckbuilder.app.App";
+    const NAME_SPACE = "mtgdeckbuilder.app.notFound.NotFound";
 
     return Controller.extend(NAME_SPACE, {
 

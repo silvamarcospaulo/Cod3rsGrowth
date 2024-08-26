@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
 	"mtgdeckbuilder/test/integration/arrangements/Startup",
-	"mtgdeckbuilder/test/integration/pages/JornadaApp"
+	"mtgdeckbuilder/test/integration/pages/JornadaApp",
+	"mtgdeckbuilder/test/integration/pages/notFound/JornadaPaginaNotFound"
 ], function (Opa5, Startup) {
 	"use strict";
 

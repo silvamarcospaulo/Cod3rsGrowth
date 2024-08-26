@@ -4,12 +4,12 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true">
 	<Shell>
-		<App id="App">
-			<Page id="appPage" title="{i18n>App.titulo}">
+		<App id="app">
+			<Page id="appPage" title="{i18n>App}">
 				<content>
-					<Text class="sapUiLargeMargin" text="{i18n>App.texto}"/>
+					<Text class="sapUiLargeMargin" text="{i18n>App.texto}" />
 				</content>
 			</Page>
-		</App>	
+		</App>
 	</Shell>
 </mvc:View>
