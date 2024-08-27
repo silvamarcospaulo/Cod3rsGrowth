@@ -33,7 +33,7 @@
 			}
 		},
 		"rootView": {
-			"viewName": "mtgdeckbuilder.app.App",
+			"viewName": "mtgdeckbuilder.app.view.App",
 			"type": "XML",
 			"id": "App"
 		},
@@ -49,7 +49,7 @@
 				"routerClass": "sap.m.routing.Router",
 				"type": "View",
 				"viewType": "XML",
-				"path": "mtgdeckbuilder.app",
+				"path": "mtgdeckbuilder.app.view",
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
@@ -67,12 +67,11 @@
 			"targets": {
 				"app": {
 					"id": "app",
-					"path": "mtgdeckbuilder.app",
-					"name": "App"
+					"name": "app"
 				},
 				"notFound": {
 					"id": "notFound",
-					"path": "mtgdeckbuilder.app.notFound",
+					
 					"name": "NotFound"
 				}
 			}

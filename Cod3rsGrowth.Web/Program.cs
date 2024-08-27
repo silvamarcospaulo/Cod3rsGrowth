@@ -55,7 +55,7 @@ app.Use(async (context, next) =>
 app.UseFileServer(new FileServerOptions
 {
     FileProvider = new PhysicalFileProvider(
-            Path.Combine(builder.Environment.ContentRootPath, "wwwroot/app"))
+            Path.Combine(builder.Environment.ContentRootPath, "wwwroot/app/"))
 });
 
 app.Run();

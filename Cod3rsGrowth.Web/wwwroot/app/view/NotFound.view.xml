@@ -1,12 +1,13 @@
 <mvc:View
-   controllerName="mtgdeckbuilder.app.notFound.NotFound"
+   controllerName="mtgdeckbuilder.app.controller.NotFound"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
 
    <MessagePage
-      title="{i18n>NotFound}"
       text="{i18n>NotFound.text}"
       description="{i18n>NotFound.description}"
       showNavButton="true"
-		navButtonPress="aoPressionarRetornarNavegacao"/>
+      navButtonPress="aoPressionarRetornarNavegacao">
+   </MessagePage>
+
 </mvc:View>

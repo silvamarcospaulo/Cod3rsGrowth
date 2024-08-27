@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="mtgdeckbuilder.app.App"
+	controllerName="mtgdeckbuilder.app.controller.App"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true">

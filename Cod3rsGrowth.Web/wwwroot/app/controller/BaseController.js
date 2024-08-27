@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (Controller, History, UIComponent) {
     "use strict";
 
-    return Controller.extend("mtgdeckbuilder.app.comum.BaseController", {
+    return Controller.extend("mtgdeckbuilder.app.controller.BaseController", {
 
         getRouter : function () {
             return UIComponent.getRouterFor(this);

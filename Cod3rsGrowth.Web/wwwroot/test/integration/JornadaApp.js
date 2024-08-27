@@ -16,6 +16,6 @@ sap.ui.define([
 
         Then.naPaginaPrincipal.aTelaFoiCarregadaCorretamente();
 
-        Then.iTeardownMyAppFrame();
+        Then.iTeardownMyApp();
     });
 });

@@ -1,6 +1,6 @@
 sap.ui.define([
     "sap/ui/test/opaQunit",
-    "mtgdeckbuilder/test/integration/pages/notFound/JornadaPaginaNotFound"
+    "mtgdeckbuilder/test/integration/pages/NotFound"
 ], (opaTest) => {
     "use strict";
 
@@ -11,11 +11,12 @@ sap.ui.define([
         Given.iStartMyUIComponent({
             componentConfig: {
                 name: "mtgdeckbuilder"
-            }
+            },
+            hash: "teste"
         });
 
-        Then.naPaginaNotFound.aTelaFoiCarregadaCorretamente();
+        Then.naPaginaNotFound.aTelaNotFoundFoiCarregadaCorretamente();
 
-        Then.iTeardownMyAppFrame();
+        Then.iTeardownMyApp();
     });
 });

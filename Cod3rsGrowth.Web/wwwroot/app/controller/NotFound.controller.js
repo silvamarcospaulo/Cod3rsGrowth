@@ -1,9 +1,9 @@
 sap.ui.define([
-    "mtgdeckbuilder/app/comum/BaseController"
+    "mtgdeckbuilder/app/controller/BaseController"
 ], function (BaseController) {
     "use strict";
 
-        const NAME_SPACE = "mtgdeckbuilder.app.App";
+        const NAME_SPACE = "mtgdeckbuilder.app.controller.NotFound";
 
         return BaseController.extend(NAME_SPACE, {
 
