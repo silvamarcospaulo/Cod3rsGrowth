@@ -7,7 +7,7 @@
 		<App id="app">
 			<Page id="appPage" title="{i18n>App}">
 				<content>
-					<Text class="sapUiLargeMargin" text="{i18n>App.texto}" />
+					<Text class="sapUiLargeMargin" text="{i18n>App.texto}"/>
 				</content>
 			</Page>
 		</App>

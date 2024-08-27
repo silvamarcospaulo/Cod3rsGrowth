@@ -1,18 +1,21 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller"
-], function (Controller) {
-    "use strict";
+],
+    function (Controller) {
+        "use strict"
 
-    const NAME_SPACE = "mtgdeckbuilder.app.App";
+        const NAME_SPACE = "mtgdeckbuilder.app.App";
 
-    return Controller.extend(NAME_SPACE, {
+        return Controller.extend(NAME_SPACE, {
 
-        IdentificadorDeIdiomas: function (oEvent) {
-            var selectedItem = oEvent.getParameter("selectedItem").getKey();
-            sap.ui.getCore().getConfiguration().setLanguage(selectedItem);
-        },
+            IdentificadorDeIdiomas: function (oEvent) {
+                var selectedItem = oEvent.getParameter("selectedItem").getKey();
+                sap.ui.getCore().getConfiguration().setLanguage(selectedItem);
+            },
 
-        onInit: function () {
-        }
-    });
-});
+            onInit: function(){
+                
+            }
+        });
+    }
+);

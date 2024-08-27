@@ -11,7 +11,7 @@ sap.ui.define([
 			naPaginaNotFound: {
 				actions: {},
 				assertions: {
-					aTelaFoiCarregadaCorretamente: function () {
+					aPaginaDeNotFound: function () {
 						return this.waitFor({
 							viewName : VIEW_NAME,
 							success: () => Opa5.assert.ok(true, "A tela NotFound foi carregada corretamente"),
