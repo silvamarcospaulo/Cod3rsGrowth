@@ -1,18 +1,15 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
-], function (Controller) {
+    "mtgdeckbuilder/app/comum/BaseController"
+], function (BaseController) {
     "use strict";
 
-    const NAMESPACE = "mtgdeckbuilder.app.App";
-    
-    return Controller.extend(NAMESPACE, {
+        const NAME_SPACE = "mtgdeckbuilder.app.App";
 
-        IdentificadorDeIdiomas: function (oEvent){
-            var selectedItem = oEvent.getParameter("selectedItem").getKey();
-            sap.ui.getCore().getConfiguration().setLanguage(selectedItem);
-        },
+        return BaseController.extend(NAME_SPACE, {
 
-        onInit: function () {
-        }
-    });
-});
+            onInit: function () {
+
+            }
+        });
+    }
+);

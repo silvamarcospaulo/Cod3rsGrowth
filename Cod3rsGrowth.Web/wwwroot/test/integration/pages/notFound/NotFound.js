@@ -5,11 +5,13 @@ sap.ui.define([
 
 		"use strict";
 
-		const VIEW_NAME = "app.notFound.JornadaPaginaNotFound";
+		const VIEW_NAME = "app.notFound.NotFound";
 
 		Opa5.createPageObjects({
 			naPaginaNotFound: {
+
 				actions: {},
+				
 				assertions: {
 					aPaginaDeNotFound: function () {
 						return this.waitFor({

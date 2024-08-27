@@ -4,7 +4,7 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true">
 	<Shell>
-		<App id="App">
+		<App id="app">
 			<Page id="appPage" title="{i18n>App}">
 				<content>
 					<Text class="sapUiLargeMargin" text="{i18n>App.texto}"/>

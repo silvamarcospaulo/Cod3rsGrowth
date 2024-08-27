@@ -1,7 +1,7 @@
 sap.ui.define([
     "sap/ui/test/opaQunit",
     "mtgdeckbuilder/test/integration/pages/notFound/JornadaPaginaNotFound"
-], (opaTest, Lista) => {
+], (opaTest) => {
     "use strict";
 
     QUnit.module("JornadaPaginaNotFound");
@@ -15,5 +15,7 @@ sap.ui.define([
         });
 
         Then.naPaginaNotFound.aTelaFoiCarregadaCorretamente();
+
+        Then.iTeardownMyAppFrame();
     });
 });

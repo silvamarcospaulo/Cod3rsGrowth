@@ -9,7 +9,9 @@ sap.ui.define([
 
 		Opa5.createPageObjects({
 			naPaginaPrincipal: {
+				
 				actions: {},
+
 				assertions: {
 					aTelaFoiCarregadaCorretamente: function () {
 						return this.waitFor({
@@ -18,7 +20,7 @@ sap.ui.define([
 							errorMessage: "A tela não foi carregada corretamente"
 						});
 					},
-				}
+				},
 			}
 		});
 	}

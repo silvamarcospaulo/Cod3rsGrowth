@@ -7,7 +7,7 @@ sap.ui.define([
 
     return Controller.extend("mtgdeckbuilder.app.comum.BaseController", {
 
-        getRouter: function () {
+        getRouter : function () {
             return UIComponent.getRouterFor(this);
         },
 
@@ -20,7 +20,7 @@ sap.ui.define([
             if (sPreviousHash !== undefined) {
                 window.history.go(-1);
             } else {
-                this.getRouter().navTo("appHome", {}, true);
+                this.getRouter().navTo("app", {}, true);
             }
         }
 

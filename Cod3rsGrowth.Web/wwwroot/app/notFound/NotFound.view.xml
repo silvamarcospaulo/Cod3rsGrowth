@@ -8,5 +8,5 @@
       text="{i18n>NotFound.text}"
       description="{i18n>NotFound.description}"
       showNavButton="true"
-		navButtonPress="onNavBack"/>
+		navButtonPress="aoPressionarRetornarNavegacao"/>
 </mvc:View>

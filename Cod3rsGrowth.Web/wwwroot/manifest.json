@@ -11,7 +11,8 @@
 	"sap.ui": {
 		"technology": "UI5",
 		"deviceTypes": {
-			"desktop": true
+			"desktop": true,
+			"mobile": true
 		}
 	},
 	"sap.ui5": {
@@ -27,9 +28,6 @@
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
 					"bundleName": "mtgdeckbuilder.i18n.i18n",
-					"supportedLocales": [
-						""
-					],
 					"fallbackLocale": ""
 				}
 			}
