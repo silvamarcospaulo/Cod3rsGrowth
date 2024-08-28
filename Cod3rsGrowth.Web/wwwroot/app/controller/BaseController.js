@@ -5,15 +5,16 @@ sap.ui.define([
 ], function (Controller, History, UIComponent) {
     "use strict";
 
-    return Controller.extend("mtgdeckbuilder.app.controller.BaseController", {
+    const NAME_SPACE = "mtgdeckbuilder.app.controller.BaseController";
+
+    return Controller.extend(NAME_SPACE, {
 
         getRouter: function () {
             return UIComponent.getRouterFor(this);
         },
 
-        retornarNavegacao: function (paginaAnterior) {
-            var _paginaAnterior = paginaAnterior
-            this.getRouter().navTo(_paginaAnterior, {}, true);
+        navegarPara: function (rota) {
+            return this.getRouter().navTo(rota, {}, true);
         }
     });
 });
