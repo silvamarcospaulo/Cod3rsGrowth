@@ -7,23 +7,13 @@ sap.ui.define([
 
     return Controller.extend("mtgdeckbuilder.app.controller.BaseController", {
 
-        getRouter : function () {
+        getRouter: function () {
             return UIComponent.getRouterFor(this);
         },
 
-        aoPressionarRetornarNavegacao: function () {
-            var oHistory, sPreviousHash;
-
-            oHistory = History.getInstance();
-            sPreviousHash = oHistory.getPreviousHash();
-
-            if (sPreviousHash !== undefined) {
-                window.history.go(-1);
-            } else {
-                this.getRouter().navTo("app", {}, true);
-            }
+        retornarNavegacao: function (paginaAnterior) {
+            var _paginaAnterior = paginaAnterior
+            this.getRouter().navTo(_paginaAnterior, {}, true);
         }
-
     });
-
 });
