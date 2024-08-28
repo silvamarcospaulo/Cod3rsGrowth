@@ -4,10 +4,12 @@
    xmlns:mvc="sap.ui.core.mvc">
 
    <MessagePage
+      title="c loko"
+      showNavButton="true"
+      navButtonPress="aoPressionarRetornarNavegacao"
       text="{i18n>NotFound.text}"
       description="{i18n>NotFound.description}"
-      showNavButton="true"
-      navButtonPress="aoPressionarRetornarNavegacao">
+      align="left">
    </MessagePage>
 
 </mvc:View>
