@@ -52,6 +52,7 @@
 				"path": "mtgdeckbuilder.app.view",
 				"controlId": "app",
 				"controlAggregation": "pages",
+            	"transition": "slide",
 				"bypassed": {
 					"target": "notFound"
 				},
@@ -60,14 +61,15 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "app",
-					"target": "app"
+					"name": "listagemJogador",
+					"target": "listagemJogador"
 				}
 			],
 			"targets": {
-				"app": {
-					"id": "app",
-					"name": "app"
+				"listagemJogador": {
+					"id": "listagemJogador",
+					"name": "ListagemJogador",
+					"level": 1
 				},
 				"notFound": {
 					"id": "notFound",

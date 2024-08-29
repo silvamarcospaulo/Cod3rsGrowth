@@ -1,10 +1,21 @@
 <mvc:View
 	controllerName="mtgdeckbuilder.app.controller.NotFound"
+	displayBlock="true"
+	height="100%"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true">
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Shell>
+		<App
+			id="app"
+			busy="{appView>/busy}"
+			busyIndicatorDelay="{appView>/delay}">
+			<f:FlexibleColumnLayout
+				id="layout"
+				layout="{appView>/layout}"
+				backgroundDesign="Translucent">
 
-
-	<App id="app" class="myAppDemoWT"/>
-
+			</f:FlexibleColumnLayout>
+		</App>
+	</Shell>
 </mvc:View>

@@ -3,13 +3,16 @@
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
 
-   <MessagePage
-      title="c loko"
+   <Page
+      id="page"
+      title="{i18n>NotFound}"
       showNavButton="true"
-      navButtonPress="aoPressionarRetornarNavegacao"
-      text="{i18n>NotFound.text}"
-      description="{i18n>NotFound.description}"
-      align="left">
-   </MessagePage>
+      navButtonPress="aoPressionarRetornarNavegacao">
+      <IllustratedMessage
+         title="{i18n>NotFound.text}"
+         description="{i18n>NotFound.description}"
+         illustrationType="sapIllus-PageNotFound"
+         enableDefaultTitleAndDescription="false"  />
+   </Page>
 
 </mvc:View>
