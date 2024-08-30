@@ -12,29 +12,54 @@
 		class="sapUiContentPadding">
 		<m:content>
 			<Table
-				rows="{/ProductCollection}"
+				rows="{Jogadores>/}"
 				selectionMode="MultiToggle"
 				paste="onPaste"
-				ariaLabelledBy="title"
-				title="{i18n>App}">
-
+				title="{i18n>App}"
+				id="table"
+				showColumnVisibilityMenu="{ui>/showVisibilityMenuEntry}"
+				enableColumnFreeze="{ui>/showFreezeMenuEntry}"
+				enableCellFilter="{ui>/enableCellFilter}"
+				columnSelect="onColumnSelect"
+				cellContextmenu="onProductIdCellContextMenu"
+				ariaLabelledBy="title">
+				<extension>
+					<m:OverflowToolbar style="Clear">
+						<m:Title id="title" text="Jogadores" />
+						<m:ToolbarSpacer />
+						<m:SearchField
+							placeholder="Filter"
+							value="{ui>/globalFilter}"
+							search="filterGlobally"
+							width="auto" />
+						<m:ToggleButton
+							icon="sap-icon://filter"
+							tooltip="Enable / Disable Cell Filter"
+							pressed="{ui>/enableCellFilter}" />
+						<m:Button
+							icon="sap-icon://decline"
+							tooltip="Clear all filters"
+							press="clearAllFilters" />
+						<m:ToolbarSeparator />
+					</m:OverflowToolbar>
+				</extension>
 				<columns>
 					<Column class="autoResize">
 						<m:Label text="{i18n>ListagemJogador.Coluna.Username}" />
 						<template>
-							<m:Text text="{UsuarioJogador}" wrapping="false" />
+							<m:Text text="{Jogadores>usuarioJogador}" wrapping="false" />
 						</template>
 					</Column>
 					<Column>
 						<m:Label text="{i18n>ListagemJogador.Coluna.Nome}" />
 						<template>
-							<m:Text text="{NomeJogador} + {SobrenomeJogador}" wrapping="false" />
+							<m:Text text="{Jogadores>nomeJogador} {Jogadores>sobrenomeJogador}" wrapping="false" />
 						</template>
 					</Column>
 					<Column>
 						<m:Label text="{i18n>ListagemJogador.Coluna.ContaAtiva}" />
 						<template>
-							<m:Text text="{Name}" wrapping="false" />
+							<m:Text text="{Jogadores>contaAtivaJogador}" wrapping="false" />
 						</template>
 					</Column>
 				</columns>
@@ -42,22 +67,15 @@
 		</m:content>
 		<m:footer>
 			<m:Toolbar>
-				<m:ToolbarSpacer/>
-				<m:Button text="{i18n>Approve}" press="onPress" type="Accept"/>
-				<m:Button text="Reject" press="onPress" type="Reject"/>
-
-				<m:Button text="Mark as Favorite" press="onPress" visible="{range>/isNoPhone}"/>
-
-				<m:Button text="Send Email" press="onPress" visible="{range>/isNoPhone}"/>
-
-				<m:Button text="Share" press="onPress" visible="{range>/isNoPhone}"/>
-
-				<m:Button text="Print" press="onPress" visible="{range>/isNotPhoneOrTablet}"/>
-				<m:Button icon="sap-icon://print" press="onPress" visible="{range>/isTablet}"/>
-
-				<m:Button text="Export as Excel" press="onPress" visible="{range>/isNotPhoneOrTablet}"/>
-
-				<m:Button icon="sap-icon://overflow" press="onOpen" visible="{range>/isPhoneOrTablet}"/>
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>ListagemJogador.Toolbar.BotaoAdicionar}" press="onPress"
+					type="Ghost" />
+				<m:Button text="{i18n>ListagemJogador.Toolbar.BotaoEditar}" press="onPress"
+					type="Ghost" />
+				<m:Button text="{i18n>ListagemJogador.Toolbar.BotaoExcluir}" press="onPress"
+					type="Ghost" />
+				<m:Button text="{i18n>ListagemJogador.Toolbar.BotaoDetalhes}" press="onPress"
+					type="Ghost" />
 			</m:Toolbar>
 		</m:footer>
 	</m:Page>

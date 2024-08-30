@@ -6,7 +6,7 @@ sap.ui.define([
 
 		"use strict";
 
-		const NOTFOUND_VIEW_NAME = "app.view.NotFound";
+		const NOTFOUND_VIEW_NAME = "app.notFound.NotFound";
 
 		Opa5.createPageObjects({
 			naPaginaNotFound: {

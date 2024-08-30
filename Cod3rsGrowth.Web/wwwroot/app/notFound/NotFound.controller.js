@@ -11,7 +11,7 @@ sap.ui.define([
             },
           
             aoPressionarRetornarNavegacao: function(){
-                const rota = "app";
+                const rota = "listagemJogador";
                 return this.navegarPara(rota);
             },
         });
