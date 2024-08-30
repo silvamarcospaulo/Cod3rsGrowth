@@ -9,7 +9,7 @@ sap.ui.define([
 ], function (Log, Controller, JSONModel, MessageToast, DateFormat, jQuery, UI5Date) {
     "use strict";
 
-    return Controller.extend("sap.ui.table.sample.Basic.Controller", {
+    return Controller.extend("mtgdeckbuilder.app.jogador.ListagemJogador", {
 
         onInit: function () {
             const oJSONModel = this.initSampleDataModel();

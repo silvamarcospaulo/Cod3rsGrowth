@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="mtgdeckbuilder.app.controller.ListagemJogador"
+	controllerName="mtgdeckbuilder.app.jogador.ListagemJogador"
 	xmlns="sap.ui.table"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:u="sap.ui.unified"
@@ -17,11 +17,7 @@
 				paste="onPaste"
 				ariaLabelledBy="title"
 				title="{i18n>App}">
-				<extension>
-					<m:OverflowToolbar style="Clear">
-						<m:Title id="title" text="{i18n>ListagemJogador.Titulo}" />
-					</m:OverflowToolbar>
-				</extension>
+
 				<columns>
 					<Column class="autoResize">
 						<m:Label text="{i18n>ListagemJogador.Coluna.Username}" />
@@ -44,5 +40,25 @@
 				</columns>
 			</Table>
 		</m:content>
+		<m:footer>
+			<m:Toolbar>
+				<m:ToolbarSpacer/>
+				<m:Button text="{i18n>Approve}" press="onPress" type="Accept"/>
+				<m:Button text="Reject" press="onPress" type="Reject"/>
+
+				<m:Button text="Mark as Favorite" press="onPress" visible="{range>/isNoPhone}"/>
+
+				<m:Button text="Send Email" press="onPress" visible="{range>/isNoPhone}"/>
+
+				<m:Button text="Share" press="onPress" visible="{range>/isNoPhone}"/>
+
+				<m:Button text="Print" press="onPress" visible="{range>/isNotPhoneOrTablet}"/>
+				<m:Button icon="sap-icon://print" press="onPress" visible="{range>/isTablet}"/>
+
+				<m:Button text="Export as Excel" press="onPress" visible="{range>/isNotPhoneOrTablet}"/>
+
+				<m:Button icon="sap-icon://overflow" press="onOpen" visible="{range>/isPhoneOrTablet}"/>
+			</m:Toolbar>
+		</m:footer>
 	</m:Page>
 </mvc:View>

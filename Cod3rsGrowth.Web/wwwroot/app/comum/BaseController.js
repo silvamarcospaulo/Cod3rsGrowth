@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (Controller, History, UIComponent) {
     "use strict";
 
-    const NAME_SPACE = "mtgdeckbuilder.app.controller.BaseController";
+    const NAME_SPACE = "mtgdeckbuilder.app.comum.BaseController";
 
     return Controller.extend(NAME_SPACE, {
 

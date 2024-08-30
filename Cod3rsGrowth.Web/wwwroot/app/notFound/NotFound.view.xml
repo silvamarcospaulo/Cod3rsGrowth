@@ -1,5 +1,5 @@
 <mvc:View
-   controllerName="mtgdeckbuilder.app.controller.NotFound"
+   controllerName="mtgdeckbuilder.app.notFound.NotFound"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
 

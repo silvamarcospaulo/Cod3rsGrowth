@@ -33,7 +33,7 @@
 			}
 		},
 		"rootView": {
-			"viewName": "mtgdeckbuilder.app.view.App",
+			"viewName": "mtgdeckbuilder.app.App",
 			"type": "XML",
 			"id": "App"
 		},
@@ -49,7 +49,7 @@
 				"routerClass": "sap.m.routing.Router",
 				"type": "View",
 				"viewType": "XML",
-				"path": "mtgdeckbuilder.app.view",
+				"path": "mtgdeckbuilder.app",
 				"controlId": "app",
 				"controlAggregation": "pages",
             	"transition": "slide",
@@ -66,14 +66,20 @@
 				}
 			],
 			"targets": {
-				"listagemJogador": {
-					"id": "listagemJogador",
-					"name": "ListagemJogador",
-					"level": 1
+				"app": {
+					"id": "app",
+					"path": "mtgdeckbuilder.app",
+					"name": "App"
 				},
 				"notFound": {
 					"id": "notFound",
+					"path": "mtgdeckbuilder.app.notFound",
 					"name": "NotFound"
+				},
+				"listagemJogador": {
+					"id": "listagemJogador",
+					"path": "mtgdeckbuilder.app.jogador",
+					"name": "ListagemJogador"
 				}
 			}
 		}

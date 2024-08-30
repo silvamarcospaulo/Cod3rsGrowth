@@ -1,5 +1,4 @@
 <mvc:View
-	controllerName="mtgdeckbuilder.app.controller.NotFound"
 	displayBlock="true"
 	height="100%"
 	xmlns="sap.m"
@@ -14,7 +13,6 @@
 				id="layout"
 				layout="{appView>/layout}"
 				backgroundDesign="Translucent">
-
 			</f:FlexibleColumnLayout>
 		</App>
 	</Shell>
