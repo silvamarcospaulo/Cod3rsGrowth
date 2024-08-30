@@ -30,6 +30,18 @@
 
       "dotnetRunMessages": true
     },
+    "TesteOpa": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "test/integration/opaTests.qunit.html",
+      "applicationUrl": "https://localhost:7174;http://localhost:5219",
+      "commandLineArgs": "--teste",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Test"
+      },
+
+      "dotnetRunMessages": true
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
@@ -38,5 +50,5 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
+    }
   }
-}

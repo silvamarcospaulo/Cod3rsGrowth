@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
 builder.Services.AddDirectoryBrowser();
 
-ModuloInjetor.ModuloDeInjecaoInfra.BindServices(builder.Services);
+ModuloInjetor.InjecaoDeDependencia(builder.Services, builder.Environment.EnvironmentName);
 
 var serviceProvider = builder.Services.BuildServiceProvider();
 
