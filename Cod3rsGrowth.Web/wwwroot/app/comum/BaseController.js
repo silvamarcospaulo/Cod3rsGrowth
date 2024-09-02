@@ -1,8 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History",
+    "sap/ui/model/json/JSONModel",
     "sap/ui/core/UIComponent"
-], function (Controller, History, UIComponent) {
+], function (Controller, JSONModel, UIComponent) {
     "use strict";
 
     const NAME_SPACE = "mtgdeckbuilder.app.comum.BaseController";
@@ -15,6 +15,23 @@ sap.ui.define([
 
         navegarPara: function (rota) {
             return this.getRouter().navTo(rota, {}, true);
-        }
+        },
+
+        obterTodos: function (url, nomeDoModelo) {
+            
+            //let uri = this.getRouter().getURL() + "/api/" + nomeDoModelo;
+            
+            debugger
+            
+            fetch(url)
+                .then(requisicao => {
+                    console.log(requisicao.status)
+                    return requisicao.json();
+                })
+                .then(dados => {
+                    const oDadosRequisicao = new JSONModel(dados);
+                    this.getView().setModel(oDadosRequisicao, nomeDoModelo)
+                })
+        }          
     });
 });

@@ -13,7 +13,7 @@ sap.ui.define([
             aoPressionarRetornarNavegacao: function(){
                 const rota = "listagemJogador";
                 return this.navegarPara(rota);
-            },
+            }
         });
     }
 );

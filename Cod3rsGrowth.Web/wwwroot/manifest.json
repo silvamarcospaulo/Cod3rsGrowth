@@ -30,10 +30,6 @@
 					"bundleName": "mtgdeckbuilder.i18n.i18n",
 					"fallbackLocale": ""
 				}
-			},
-			"Jogadores": {
-				"type": "sap.ui.model.json.JSONModel",
-				"uri": "https://localhost:7174/api/Jogador"
 			}
 		},
 		"rootView": {

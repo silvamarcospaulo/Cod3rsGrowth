@@ -12,54 +12,58 @@
 		class="sapUiContentPadding">
 		<m:content>
 			<Table
-				rows="{Jogadores>/}"
-				selectionMode="MultiToggle"
-				paste="onPaste"
+				rows="{Jogador>/}"
 				title="{i18n>App}"
 				id="table"
-				showColumnVisibilityMenu="{ui>/showVisibilityMenuEntry}"
-				enableColumnFreeze="{ui>/showFreezeMenuEntry}"
-				enableCellFilter="{ui>/enableCellFilter}"
-				columnSelect="onColumnSelect"
-				cellContextmenu="onProductIdCellContextMenu"
-				ariaLabelledBy="title">
+				editable="false"
+				enableSelectAll="false"
+				selectionMode="Single"
+				selectionBehavior="RowOnly"
+				>
 				<extension>
 					<m:OverflowToolbar style="Clear">
-						<m:Title id="title" text="Jogadores" />
+						<m:Title text="Jogadores" />
 						<m:ToolbarSpacer />
 						<m:SearchField
-							placeholder="Filter"
+							placeholder="Nome de usuário"
 							value="{ui>/globalFilter}"
 							search="filterGlobally"
-							width="auto" />
+							width="25em"/>
 						<m:ToggleButton
 							icon="sap-icon://filter"
 							tooltip="Enable / Disable Cell Filter"
-							pressed="{ui>/enableCellFilter}" />
+							pressed="{ui>/enableCellFilter}" visible="true"/>
 						<m:Button
 							icon="sap-icon://decline"
 							tooltip="Clear all filters"
 							press="clearAllFilters" />
+						<m:SearchField
+							id="buscaNomeJogador"
+							placeholder="Nome do jogador"
+							enableSuggestions="true"
+							value="{ui>/globalFilter}"
+							search="filterGlobally"
+							width="25em"/>
 						<m:ToolbarSeparator />
 					</m:OverflowToolbar>
 				</extension>
 				<columns>
-					<Column class="autoResize">
+					<Column>
 						<m:Label text="{i18n>ListagemJogador.Coluna.Username}" />
 						<template>
-							<m:Text text="{Jogadores>usuarioJogador}" wrapping="false" />
+							<m:Text text="{Jogador>usuarioJogador}" wrapping="false" />
 						</template>
 					</Column>
-					<Column>
+					<Column class="autoResize">
 						<m:Label text="{i18n>ListagemJogador.Coluna.Nome}" />
 						<template>
-							<m:Text text="{Jogadores>nomeJogador} {Jogadores>sobrenomeJogador}" wrapping="false" />
+							<m:Text text="{Jogador>nomeJogador} {Jogador>sobrenomeJogador}" wrapping="false" />
 						</template>
 					</Column>
-					<Column>
+					<Column class="autoResize">	
 						<m:Label text="{i18n>ListagemJogador.Coluna.ContaAtiva}" />
 						<template>
-							<m:Text text="{Jogadores>contaAtivaJogador}" wrapping="false" />
+							<m:Text text="{Jogador>contaAtivaJogador}" wrapping="false" />
 						</template>
 					</Column>
 				</columns>
@@ -69,12 +73,6 @@
 			<m:Toolbar>
 				<m:ToolbarSpacer />
 				<m:Button text="{i18n>ListagemJogador.Toolbar.BotaoAdicionar}" press="onPress"
-					type="Ghost" />
-				<m:Button text="{i18n>ListagemJogador.Toolbar.BotaoEditar}" press="onPress"
-					type="Ghost" />
-				<m:Button text="{i18n>ListagemJogador.Toolbar.BotaoExcluir}" press="onPress"
-					type="Ghost" />
-				<m:Button text="{i18n>ListagemJogador.Toolbar.BotaoDetalhes}" press="onPress"
 					type="Ghost" />
 			</m:Toolbar>
 		</m:footer>
