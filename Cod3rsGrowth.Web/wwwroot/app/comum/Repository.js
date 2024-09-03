@@ -1,12 +1,13 @@
 ﻿sap.ui.define([
     "mtgdeckbuilder/app/comum/BaseController",
+    "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel"
-], function (BaseController, JSONModel) {
+], function (BaseController, Controller, JSONModel) {
     "use strict";
 
     const NAME_SPACE = "mtgdeckbuilder.app.comum.Repository";
 
-    return BaseController.extend(NAME_SPACE, {
+    return Controller.extend(NAME_SPACE, {
 
         obterTodos: function (nomeDoModelo) {
 
@@ -27,7 +28,5 @@
                     console.error("Erro ao obter dados:", erro);
                 });
         }
-
-
     });
 });

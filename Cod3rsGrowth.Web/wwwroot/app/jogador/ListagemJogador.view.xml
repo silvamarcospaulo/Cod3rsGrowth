@@ -23,24 +23,38 @@
 					<m:OverflowToolbar style="Clear">
 						<m:Title text="Jogadores" />
 						<m:ToolbarSpacer />
+
 						<m:SearchField
-							placeholder="Nome de usuário"
+							placeholder="{i18n>ListagemJogador.CampoDeBusca.Username}"
 							value="{ui>/globalFilter}"
 							search="filterGlobally"
-							width="25em"/>
-						<m:Button
-							ariaHasPopup="Dialog"
-							tooltip="Open Date Picker"
-							icon="sap-icon://appointment-2"
-							press=".openDatePicker" />
+							showSearchButton="false"
+							width="auto" />
+
+						<m:ComboBox
+							placeholder="Status da conta"
+							width="auto">
+							<c:Item key="contaAtiva" text="{i18n>Formatter.ContaAtiva}" />
+							<c:Item key="contaInativa" text="{i18n>Formatter.ContaInativa}" />
+						</m:ComboBox>
+
+						<m:DatePicker
+							id="dataDeCadastro"
+							width="auto"
+							placeholder="Data de cadastro"
+							value="{
+								'path':'/valueDP2',
+								'type':'sap.ui.model.type.Date',
+								'formatOptions': {
+									'pattern': 'dd-MM-yyyy'
+								}
+							}"
+							change="dataAlterada" />
+
 						<m:ToggleButton
 							icon="sap-icon://filter"
 							tooltip="Enable / Disable Cell Filter"
-							pressed="{ui>/enableCellFilter}" visible="true"/>
-						<m:Button
-							icon="sap-icon://decline"
-							tooltip="Clear all filters"
-							press="clearAllFilters" />
+							pressed="{ui>/enableCellFilter}" visible="true" />
 						<m:ToolbarSeparator />
 					</m:OverflowToolbar>
 				</extension>
@@ -53,21 +67,24 @@
 					</Column>
 					<Column class="autoResize">
 						<m:Label text="{i18n>ListagemJogador.Coluna.DataDeCriacaoConta}" />
-					<template>
-						<m:Text text="{
-							path: 'Jogador>dataDeCriacaoContaJogador',
-							formatter: '.formatter.datas'
-						}" wrapping="false" />
-					</template>
+						<template>
+							<m:Text
+								text="{
+									path: 'Jogador>dataDeCriacaoContaJogador',
+									formatter: '.formatter.datas'
+								}"
+								wrapping="false" />
+						</template>
 					</Column>
-					<Column class="autoResize">	
+					<Column class="autoResize">
 						<m:Label text="{i18n>ListagemJogador.Coluna.ContaAtiva}" />
 						<template>
-							<m:Text text="{Jogador>contaAtivaJogador}" wrapping="false" />
-							<m:Text text="{
+							<m:Text
+								text="{
 								path: 'Jogador>contaAtivaJogador',
 								formatter: '.formatter.contasJogadorAtivo'
-								}" wrapping="false" />
+								}"
+								wrapping="false" />
 						</template>
 					</Column>
 				</columns>
