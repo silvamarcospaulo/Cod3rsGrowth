@@ -2,6 +2,7 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
+using static LinqToDB.Reflection.Methods.LinqToDB.Insert;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
@@ -81,6 +82,16 @@ namespace Cod3rsGrowth.Infra.Repository
             {
                 query = from q in query
                         where q.DataNascimentoJogador == filtro.DataNascimentoJogador
+                        select q;
+            }
+
+            if (filtro?.DataDeCriacaoContaJogador != null)
+            {
+
+                var ola = filtro.DataDeCriacaoContaJogador.Value;
+
+                query = from q in query
+                        where q.DataDeCriacaoContaJogador.ToLocalTime() == filtro.DataDeCriacaoContaJogador
                         select q;
             }
 

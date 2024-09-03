@@ -16,7 +16,7 @@
             return oType.formatValue(oDate, "string");
         },
 
-        contasJogadorAtivo: function (sStatusConta) {
+        statusContaJogador: function (sStatusConta) {
             const oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
             switch (sStatusConta) {
                 case true: return oResourceBundle.getText("Formatter.ContaAtiva");

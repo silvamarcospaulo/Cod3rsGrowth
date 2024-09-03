@@ -9,13 +9,13 @@
 
     return Controller.extend(NAME_SPACE, {
 
-        obterTodos: function (nomeDoModelo) {
+        obterTodos: async function (nomeDoModelo) {
 
             const urlPagina = window.location.origin;
 
             const url = urlPagina + "/api/" + nomeDoModelo;
 
-            fetch(url)
+            await fetch(url)
                 .then(requisicao => {
                     console.log(requisicao.status);
                     return requisicao.json();
@@ -27,6 +27,29 @@
                 .catch(erro => {
                     console.error("Erro ao obter dados:", erro);
                 });
-        }
+        },
+
+        obterTodosFiltros: async function (filtros, nomeDoModelo) {
+
+            const urlPagina = window.location.origin;
+
+            const url = urlPagina + "/api/" + nomeDoModelo + "?" + filtros;
+            
+            console. log(filtros)
+            
+            await fetch(url)
+                .then(requisicao => {
+                    console.log(requisicao.status);
+                    return requisicao.json();
+                })
+                .then(dados => {
+                    console. log(dados)
+                    const oDadosRequisicao = new JSONModel(dados);
+                    this.getView().setModel(oDadosRequisicao, nomeDoModelo);
+                })
+                .catch(erro => {
+                    console.error("Erro ao obter dados:", erro);
+                });
+            }
     });
 });

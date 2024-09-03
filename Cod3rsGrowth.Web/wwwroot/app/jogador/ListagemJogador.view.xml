@@ -54,9 +54,11 @@
 							change="dataAlterada" />
 
 						<m:ToggleButton
+							id="toggleFiltros"
+							text="{i18n>ListagemJogador.Filtrar}"
 							icon="sap-icon://filter"
-							tooltip="Enable / Disable Cell Filter"
-							visible="true" press=".aplicarFiltros"/>
+							tooltip="{i18n>ListagemJogador.Filtrar}"
+							visible="true" press=".aoPressionarBotaoFiltros"/>
 						<m:ToolbarSeparator />
 					</m:OverflowToolbar>
 				</extension>
@@ -84,7 +86,7 @@
 							<m:Text
 								text="{
 								path: 'Jogador>contaAtivaJogador',
-								formatter: '.formatter.contasJogadorAtivo'
+								formatter: '.formatter.statusContaJogador'
 								}"
 								wrapping="false" />
 						</template>

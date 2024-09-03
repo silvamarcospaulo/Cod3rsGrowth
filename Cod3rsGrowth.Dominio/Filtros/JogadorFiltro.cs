@@ -8,6 +8,7 @@ namespace Cod3rsGrowth.Dominio.Filtros
         public string? SobrenomeJogador { get; set; }
         public string? UsuarioJogador { get; set; }
         public DateTime? DataNascimentoJogador { get; set; }
+        public DateTime? DataDeCriacaoContaJogador { get; set; }
         public bool? ContaAtivaJogador { get; set; }
     }
 }
