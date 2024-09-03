@@ -8,8 +8,8 @@ namespace Cod3rsGrowth.Infra.StringDeConexoes
 {
     public static class StringDeConexao
     {
-        public static string Producao = "MTGDeckBuilderDb";
+        public static string Producao = "DeckBuilderDb";
 
-        public static string Teste = "MTGDeckBuilderDbTest";
+        public static string Teste = "DeckBuilderDb";
     }
 }

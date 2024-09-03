@@ -18,8 +18,7 @@
 				editable="false"
 				enableSelectAll="false"
 				selectionMode="Single"
-				selectionBehavior="RowOnly"
-				>
+				selectionBehavior="RowOnly">
 				<extension>
 					<m:OverflowToolbar style="Clear">
 						<m:Title text="Jogadores" />
@@ -29,6 +28,11 @@
 							value="{ui>/globalFilter}"
 							search="filterGlobally"
 							width="25em"/>
+						<m:Button
+							ariaHasPopup="Dialog"
+							tooltip="Open Date Picker"
+							icon="sap-icon://appointment-2"
+							press=".openDatePicker" />
 						<m:ToggleButton
 							icon="sap-icon://filter"
 							tooltip="Enable / Disable Cell Filter"
@@ -37,13 +41,6 @@
 							icon="sap-icon://decline"
 							tooltip="Clear all filters"
 							press="clearAllFilters" />
-						<m:SearchField
-							id="buscaNomeJogador"
-							placeholder="Nome do jogador"
-							enableSuggestions="true"
-							value="{ui>/globalFilter}"
-							search="filterGlobally"
-							width="25em"/>
 						<m:ToolbarSeparator />
 					</m:OverflowToolbar>
 				</extension>
@@ -55,15 +52,22 @@
 						</template>
 					</Column>
 					<Column class="autoResize">
-						<m:Label text="{i18n>ListagemJogador.Coluna.Nome}" />
-						<template>
-							<m:Text text="{Jogador>nomeJogador} {Jogador>sobrenomeJogador}" wrapping="false" />
-						</template>
+						<m:Label text="{i18n>ListagemJogador.Coluna.DataDeCriacaoConta}" />
+					<template>
+						<m:Text text="{
+							path: 'Jogador>dataDeCriacaoContaJogador',
+							formatter: '.formatter.datas'
+						}" wrapping="false" />
+					</template>
 					</Column>
 					<Column class="autoResize">	
 						<m:Label text="{i18n>ListagemJogador.Coluna.ContaAtiva}" />
 						<template>
 							<m:Text text="{Jogador>contaAtivaJogador}" wrapping="false" />
+							<m:Text text="{
+								path: 'Jogador>contaAtivaJogador',
+								formatter: '.formatter.contasJogadorAtivo'
+								}" wrapping="false" />
 						</template>
 					</Column>
 				</columns>

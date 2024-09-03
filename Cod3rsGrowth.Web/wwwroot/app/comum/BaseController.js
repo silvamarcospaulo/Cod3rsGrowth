@@ -15,23 +15,6 @@ sap.ui.define([
 
         navegarPara: function (rota) {
             return this.getRouter().navTo(rota, {}, true);
-        },
-
-        obterTodos: function (url, nomeDoModelo) {
-            
-            //let uri = this.getRouter().getURL() + "/api/" + nomeDoModelo;
-            
-            debugger
-            
-            fetch(url)
-                .then(requisicao => {
-                    console.log(requisicao.status)
-                    return requisicao.json();
-                })
-                .then(dados => {
-                    const oDadosRequisicao = new JSONModel(dados);
-                    this.getView().setModel(oDadosRequisicao, nomeDoModelo)
-                })
-        }          
+        }
     });
 });

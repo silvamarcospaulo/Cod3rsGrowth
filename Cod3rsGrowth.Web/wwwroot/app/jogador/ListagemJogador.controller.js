@@ -1,24 +1,21 @@
 sap.ui.define([
-    "mtgdeckbuilder/app/comum/BaseController"
-], function (BaseController) {
+    "mtgdeckbuilder/app/comum/Repository",
+    "sap/ui/model/json/JSONModel",
+    "mtgdeckbuilder/app/model/formatter"
+], function (Repository, JSONModel, formatter) {
     "use strict";
 
-    return BaseController.extend("mtgdeckbuilder.app.jogador.ListagemJogador", {
+    return Repository.extend("mtgdeckbuilder.app.jogador.ListagemJogador", {
+
+        formatter: formatter,
 
         onInit: function () {
-
             this.obterTodosJogadores();
         },
 
-        obterTodosJogadores: function(){
-
-            let url = this.getRouter().getURL() + "/api/" + "Jogador";
-
-
-            debugger
-
-            this.obterTodos(url, "Jogador")
+        obterTodosJogadores: function () {
+            this.obterTodos("Jogador");
         }
-    });
 
+    });
 });

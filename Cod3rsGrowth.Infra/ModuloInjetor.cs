@@ -85,7 +85,9 @@ namespace Cod3rsGrowth.Infra
 
         public static void InjecaoDeDependencia(IServiceCollection serviceProvider, string AmbienteDeExecucao)
         {
-            _chaveDeConexao = AmbienteDeExecucao == "--test" ? ConfigurationManager.ConnectionStrings[StringDeConexao.Teste].ConnectionString : ConfigurationManager.ConnectionStrings[StringDeConexao.Producao].ConnectionString;
+            //_chaveDeConexao = AmbienteDeExecucao == "--test" ? ConfigurationManager.ConnectionStrings[StringDeConexao.Teste].ConnectionString : ConfigurationManager.ConnectionStrings[StringDeConexao.Producao].ConnectionString;
+
+            _chaveDeConexao = ConfigurationManager.ConnectionStrings["DeckBuilderDb"].ConnectionString;
 
             BindServices(serviceProvider);
         }

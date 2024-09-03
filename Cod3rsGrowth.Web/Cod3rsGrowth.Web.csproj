@@ -8,8 +8,10 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'TesteOpa' " />
   <ItemGroup>
     <Content Remove="app.config" />
+    <Content Remove="wwwroot\app\model\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -37,4 +39,7 @@
     <ProjectReference Include="..\Cod3rsGrowth.Infra\Cod3rsGrowth.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\app\model\" />
+  </ItemGroup>
 </Project>
