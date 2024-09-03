@@ -25,6 +25,7 @@
 						<m:ToolbarSpacer />
 
 						<m:SearchField
+							id="campoBuscaUsuario"
 							placeholder="{i18n>ListagemJogador.CampoDeBusca.Username}"
 							value="{ui>/globalFilter}"
 							search="filterGlobally"
@@ -32,6 +33,7 @@
 							width="auto" />
 
 						<m:ComboBox
+							id="comboBoxStatusConta"
 							placeholder="Status da conta"
 							width="auto">
 							<c:Item key="contaAtiva" text="{i18n>Formatter.ContaAtiva}" />
@@ -39,7 +41,7 @@
 						</m:ComboBox>
 
 						<m:DatePicker
-							id="dataDeCadastro"
+							id="datePickerDataDeCadastro"
 							width="auto"
 							placeholder="Data de cadastro"
 							value="{
@@ -54,7 +56,7 @@
 						<m:ToggleButton
 							icon="sap-icon://filter"
 							tooltip="Enable / Disable Cell Filter"
-							pressed="{ui>/enableCellFilter}" visible="true" />
+							visible="true" press=".aplicarFiltros"/>
 						<m:ToolbarSeparator />
 					</m:OverflowToolbar>
 				</extension>

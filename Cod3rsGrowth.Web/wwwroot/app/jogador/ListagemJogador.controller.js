@@ -16,11 +16,18 @@ sap.ui.define([
         },
 
         obterTodosJogadores: function () {
-            this.obterTodos("Jogador");
+            const nomeDoModelo = "Jogador";
+            this.obterTodos(nomeDoModelo);
         },
 
-        dataAlterada: function (){
-            
-        }
+        aplicarFiltros: function(oEvent) {
+
+            const nomeUsuario = this.getView().byId("campoBuscaUsuario").getValue();
+
+            const dataDeCadastro = this.getView().byId("campoBuscaUsuario").getValue();
+
+            debugger
+            MessageToast.show("https://localhost:7174/api/Jogador" + oEvent.getParameter("value"));
+        },
     });
 });
