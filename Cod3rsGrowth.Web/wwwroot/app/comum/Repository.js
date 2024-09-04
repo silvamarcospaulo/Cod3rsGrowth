@@ -35,8 +35,8 @@
 
             const url = urlPagina + "/api/" + nomeDoModelo + "?" + filtros;
             
-            console. log(filtros)
-            
+            console. log(url)
+
             await fetch(url)
                 .then(requisicao => {
                     console.log(requisicao.status);

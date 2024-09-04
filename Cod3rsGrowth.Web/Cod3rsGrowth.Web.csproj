@@ -9,6 +9,7 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'TesteOpa' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Mac' " />
   <ItemGroup>
     <Content Remove="app.config" />
     <Content Remove="wwwroot\app\model\" />

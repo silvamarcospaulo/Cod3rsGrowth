@@ -10,9 +10,7 @@
             }
 
             var oType = new DateTime({ pattern: "dd/MM/yyyy" });
-
             var oDate = new Date(sData);
-
             return oType.formatValue(oDate, "string");
         },
 
