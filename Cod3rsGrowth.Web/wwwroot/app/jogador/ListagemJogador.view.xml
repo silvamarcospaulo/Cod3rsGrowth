@@ -23,8 +23,8 @@
                 selectionBehavior="RowOnly"
                 width="auto"
                 visibleRowCountMode="Auto"
-				enableColumnReordering="false"
-				alternateRowColors="true"
+                enableColumnReordering="false"
+                alternateRowColors="true"
                 minAutoRowCount="5"
                 extension="true"
             >
@@ -35,7 +35,7 @@
 
                         <m:SearchField
                             id="campoBuscaUsuario"
-                            placeholder="{i18n>ListagemJogador.CampoDeBusca.Username}"
+                            placeholder="{i18n>ListagemJogador.Placeholder.CampoDeBusca.Username}"
                             value="{ui>/globalFilter}"
                             search="filterGlobally"
                             showSearchButton="false"
@@ -44,15 +44,14 @@
 
                         <m:ComboBox
                             id="comboBoxStatusConta"
-                            placeholder="Status da conta"
-                            width="auto"
-                        >
+                            placeholder="{i18n>ListagemJogador.Placeholder.ComboBox.CampoInicial}"
+                            width="auto">
                             <c:Item
-                                key="contaAtiva"
+                                key="true"
                                 text="{i18n>Formatter.ContaAtiva}"
                             />
                             <c:Item
-                                key="contaInativa"
+                                key="false"
                                 text="{i18n>Formatter.ContaInativa}"
                             />
                         </m:ComboBox>
@@ -60,7 +59,7 @@
                         <m:DatePicker
                             id="datePickerDataDeCadastro"
                             width="auto"
-                            placeholder="Data de cadastro"
+                            placeholder="{i18n>ListagemJogador.Placeholder.DatePicker.DataDeCadastro}"
                             value="{
 								'path':'/dateTime',
 								'type':'sap.ui.model.type.DateTime',
@@ -71,13 +70,13 @@
                             change=".dataAlterada"
                         />
 
-                        <m:ToggleButton
+                        <m:Button
                             id="toggleFiltros"
-                            text="{i18n>ListagemJogador.Filtrar}"
+                            text="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
                             icon="sap-icon://filter"
-                            tooltip="{i18n>ListagemJogador.Filtrar}"
+                            tooltip="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
                             visible="true"
-                            press=".aoPressionarBotaoFiltros"
+                            press=".aoPressionarAplicarFiltros"
                         />
                         <m:ToolbarSeparator />
                     </m:OverflowToolbar>
@@ -129,7 +128,7 @@
             <m:Toolbar>
                 <m:ToolbarSpacer />
                 <m:Button
-                    text="{i18n>ListagemJogador.Toolbar.BotaoAdicionar}"
+                    text="{i18n>ListagemJogador.Toolbar.Buttom.AdicionarJogador}"
                     press="onPress"
                     type="Ghost"
                 />

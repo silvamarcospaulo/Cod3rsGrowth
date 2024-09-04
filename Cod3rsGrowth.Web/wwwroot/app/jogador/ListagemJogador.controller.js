@@ -4,12 +4,15 @@ sap.ui.define([
 ], function (Repository, formatter) {
     "use strict";
 
+    const CONTROLLER = "mtgdeckbuilder.app.jogador.ListagemJogador"
     const NOME_DO_MODELO = "Jogador";
     const ID_CAMPO_BUSCAR_POR_USUARIO = "campoBuscaUsuario";
     const ID_DATEPICKER_DATA_DE_CADASTRO = "datePickerDataDeCadastro";
     const ID_COMBOBOX_STATUS_CONTA = "comboBoxStatusConta";
+    const VALOR_NULO = 0;
+    const STRING_VAZIA = "";
 
-    return Repository.extend("mtgdeckbuilder.app.jogador.ListagemJogador", {
+    return Repository.extend(CONTROLLER, {
 
         formatter: formatter,
 
@@ -18,50 +21,35 @@ sap.ui.define([
         },
 
         obterTodosJogadores: async function () {
-            await this.obterTodos(NOME_DO_MODELO);
+
+            await this.obterTodos(STRING_VAZIA, NOME_DO_MODELO);
         },
 
-        aoPressionarBotaoFiltros: function (oEvent) {
+        aoPressionarAplicarFiltros: async function () {
 
-            if (this.getView().byId("toggleFiltros").getPressed()) {
-                this.aplicarFiltros();
-            } else {
-                this.limparFiltros();
-            }
-        },
+            const nomeUsuario = this.getView().byId(ID_CAMPO_BUSCAR_POR_USUARIO).getValue();
 
-        aplicarFiltros: async function () {
+            const dataDeCadastro = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).getValue();
 
-            let nomeUsuario = this.getView().byId(ID_CAMPO_BUSCAR_POR_USUARIO).getValue();
+            const statusConta = this.getView().byId(ID_COMBOBOX_STATUS_CONTA).getSelectedKey();
 
-            let dataDeCadastroFormatada = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).getValue();
+            const filtros = {};
 
-            let statusConta = this.getView().byId(ID_COMBOBOX_STATUS_CONTA).getValue() == 0 ? "" : (this.getView().byId(ID_COMBOBOX_STATUS_CONTA).getValue() == "Conta ativa" ? "true" : "false");
+            if (nomeUsuario) filtros.usuarioJogador = nomeUsuario;
+            if (dataDeCadastro) filtros.dataDeCriacaoContaJogador = dataDeCadastro;
+            if (statusConta) filtros.contaAtivaJogador = statusConta;
 
-            var filtros = "";
-
-            filtros = nomeUsuario.length == 0 ? filtros + "" : "usuarioJogador=" + nomeUsuario;
-
-            filtros = dataDeCadastroFormatada.length == 0 ? filtros + "" : (filtros.length == 0 ? filtros + "dataDeCriacaoContaJogador=" + dataDeCadastroFormatada : filtros + "&dataDeCriacaoContaJogador=" + dataDeCadastroFormatada);
-
-            filtros = statusConta.length == 0 ? filtros + "" : (filtros.length == 0 ? filtros + "contaAtivaJogador=" + statusConta : filtros + "&contaAtivaJogador=" + statusConta);
-
-            await this.obterTodosFiltros(filtros, NOME_DO_MODELO);
+            await this.obterTodos(filtros, NOME_DO_MODELO);
 
             this.removerValoresDosFiltros();
         },
 
-        limparFiltros: async function () {
-
-            await this.obterTodosJogadores();
-
-        },
-
-        removerValoresDosFiltros: function (){
+        removerValoresDosFiltros: function () {
 
             let nomeUsuario = this.getView().byId(ID_CAMPO_BUSCAR_POR_USUARIO).setValue();
             let dataDeCadastro = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).setValue();
-            let statusConta = this.getView().byId(ID_COMBOBOX_STATUS_CONTA).setValue();
+            let statusConta = this.getView().byId(ID_COMBOBOX_STATUS_CONTA).setSelectedKey();
+
         }
     });
 });

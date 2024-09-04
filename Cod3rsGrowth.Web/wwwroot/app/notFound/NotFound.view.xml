@@ -11,8 +11,7 @@
       <IllustratedMessage
          title="{i18n>NotFound.text}"
          description="{i18n>NotFound.description}"
-         illustrationType="sapIllus-PageNotFound"
-         enableDefaultTitleAndDescription="false"  />
+         illustrationType="sapIllus-PageNotFound" />
    </Page>
 
 </mvc:View>

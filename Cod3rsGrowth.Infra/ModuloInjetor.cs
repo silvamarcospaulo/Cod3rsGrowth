@@ -85,7 +85,18 @@ namespace Cod3rsGrowth.Infra
 
         public static void InjecaoDeDependencia(IServiceCollection serviceProvider, string AmbienteDeExecucao)
         {
-            _chaveDeConexao = AmbienteDeExecucao == "--test" ? ConfigurationManager.ConnectionStrings[StringDeConexao.Teste].ConnectionString : (AmbienteDeExecucao == "--win" ? ConfigurationManager.ConnectionStrings[StringDeConexao.Producao].ConnectionString : ConfigurationManager.ConnectionStrings[StringDeConexao.Mac].ConnectionString);
+            switch (AmbienteDeExecucao)
+            {
+                case "--teste":
+                    _chaveDeConexao = ConfigurationManager.ConnectionStrings[StringDeConexao.Teste].ConnectionString;
+                    break;
+                case "--win":
+                    _chaveDeConexao = ConfigurationManager.ConnectionStrings[StringDeConexao.Producao].ConnectionString;
+                    break;
+                case "--mac":
+                    _chaveDeConexao = ConfigurationManager.ConnectionStrings[StringDeConexao.Mac].ConnectionString;
+                    break;
+            }
 
             BindServices(serviceProvider);
         }
