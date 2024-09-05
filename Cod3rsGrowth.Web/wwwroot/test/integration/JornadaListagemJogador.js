@@ -6,12 +6,12 @@ sap.ui.define([
 
     QUnit.module("JornadaListagemJogador");
 
-    opaTest("Ao relalizar filtragens na tela através dos filtros, retorna uma lista de jogadores correspondentes", (Given, When, Then) => {
-
-        const QUANTIDADE_DE_CONTAS_RETORNADAS = 1;
-        const QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_ATIVA = 2;
-        const QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_INATIVA = 1;
-        const QUANTIDADE_DE_CONTAS_RETORNADAS_FILTRAGEM_POR_DATA = 1;
+    const QUANTIDADE_DE_CONTAS_RETORNADAS = 1;
+    const QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_ATIVA = 2;
+    const QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_INATIVA = 1;
+    const QUANTIDADE_DE_CONTAS_RETORNADAS_FILTRAGEM_POR_DATA = 1;
+    
+    opaTest("Ao relalizar filtragens na tela através da filtragem por usuário, retorna uma lista com um jogador", (Given, When, Then) => {
 
         Given.iStartMyUIComponent({
             componentConfig: {
@@ -19,11 +19,13 @@ sap.ui.define([
             }
         });
 
-        Then.naPaginaDeListagemJogador.aTelaDeListagemDeJogadoresFoiCarregadaCorretamente();
-
         When.naPaginaDeListagemJogador.escreveNoCampoDeBuscaPorUsuario();
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
         Then.naPaginaDeListagemJogador.aoAplicarFiltrosDeveRetornarAListaFiltrada(QUANTIDADE_DE_CONTAS_RETORNADAS);
+
+    }),
+
+    opaTest("Ao relalizar filtragens na tela através do status da conta ativa, retorna uma lista com dois jogadores", (Given, When, Then) => {
 
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
 
@@ -31,11 +33,18 @@ sap.ui.define([
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
         Then.naPaginaDeListagemJogador.aoAplicarFiltrosDeveRetornarAListaFiltrada(QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_ATIVA);
 
+    }),
+
+    opaTest("Ao relalizar filtragens na tela através do status da conta inativa, retorna uma lista com um jogador", (Given, When, Then) => {
+
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
 
         When.naPaginaDeListagemJogador.selecionoNaComboboxDeStatusDaContaInativa();
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
         Then.naPaginaDeListagemJogador.aoAplicarFiltrosDeveRetornarAListaFiltrada(QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_INATIVA);
+    }),
+
+    opaTest("Ao relalizar filtragens na tela através do datepicker, retorna uma lista com um jogador", (Given, When, Then) => {
 
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
 

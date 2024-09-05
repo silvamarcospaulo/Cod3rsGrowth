@@ -6,7 +6,7 @@
     "use strict";
 
     const NAME_SPACE = "mtgdeckbuilder.app.comum.Repository";
-    
+
     return Controller.extend(NAME_SPACE, {
 
         obterTodos: async function (filtros, nomeDoModelo) {

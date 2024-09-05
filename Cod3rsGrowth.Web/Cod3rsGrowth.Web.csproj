@@ -10,6 +10,7 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'TesteOpa' " />
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Mac' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'TesteOpaMac' " />
   <ItemGroup>
     <Content Remove="app.config" />
     <Content Remove="wwwroot\app\model\" />

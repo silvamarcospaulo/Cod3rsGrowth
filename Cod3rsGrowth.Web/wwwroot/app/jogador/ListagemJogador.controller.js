@@ -27,13 +27,11 @@ sap.ui.define([
 
         aoPressionarAplicarFiltros: async function () {
 
-            const nomeUsuario = this.getView().byId(ID_CAMPO_BUSCAR_POR_USUARIO).getValue();
+            let nomeUsuario = this.getView().byId(ID_CAMPO_BUSCAR_POR_USUARIO).getValue();
+            let dataDeCadastro = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).getValue();
+            let statusConta = this.getView().byId(ID_COMBOBOX_STATUS_CONTA).getSelectedKey();
 
-            const dataDeCadastro = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).getValue();
-
-            const statusConta = this.getView().byId(ID_COMBOBOX_STATUS_CONTA).getSelectedKey();
-
-            const filtros = {};
+            let filtros = {};
 
             if (nomeUsuario) filtros.usuarioJogador = nomeUsuario;
             if (dataDeCadastro) filtros.dataDeCriacaoContaJogador = dataDeCadastro;
@@ -42,6 +40,8 @@ sap.ui.define([
             await this.obterTodos(filtros, NOME_DO_MODELO);
 
             this.removerValoresDosFiltros();
+
+            this.checkElementCount();
         },
 
         removerValoresDosFiltros: function () {

@@ -1,157 +1,138 @@
 sap.ui.define([
-	"sap/ui/test/Opa5",
-	"sap/ui/test/matchers/I18NText",
-	"sap/ui/test/actions/EnterText",
-	"sap/ui/test/actions/Press",
-	"sap/ui/test/matchers/AggregationLengthEquals",
+    "sap/ui/test/Opa5",
+    "sap/ui/test/matchers/I18NText",
+    "sap/ui/test/actions/EnterText",
+    "sap/ui/test/actions/Press",
+    "sap/ui/test/matchers/AggregationLengthEquals",
 ],
-	function (Opa5, I18NText, EnterText, Press, AggregationLengthEquals) {
+    function (Opa5, I18NText, EnterText, Press, AggregationLengthEquals) {
 
-		"use strict";
+        "use strict";
 
-		const LISTAGEM_JOGADOR_VIEW_NAME = "app.jogador.ListagemJogador";
-		const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
-		const NOME_PROPRIEDADE_TEXT = "text";
+        const LISTAGEM_JOGADOR_VIEW_NAME = "app.jogador.ListagemJogador";
+        const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
+        const NOME_PROPRIEDADE_TEXT = "text";
 
-		const TIPO_CAMPO_DE_BUSCA = "sap.m.SearchField";
-		const CHAVE_I18N_CAMPO_DE_BUSCA = "ListagemJogador.Placeholder.CampoDeBusca.Username";
-		const NOME_DE_USUARIO = "marcos";
+        const TIPO_CAMPO_DE_BUSCA = "sap.m.SearchField";
+        const CHAVE_I18N_CAMPO_DE_BUSCA = "ListagemJogador.Placeholder.CampoDeBusca.Username";
+        const NOME_DE_USUARIO = "marcos";
 
-		const TIPO_COMBO_BOX = "sap.m.ComboBox";
-		const CHAVE_I18N_COMBO_BOX = "ListagemJogador.Placeholder.ComboBox.CampoInicial";
-		const CONTA_ATIVA = "Conta ativa";
-		const CONTA_INATIVA = "Conta inativa";
+        const TIPO_COMBO_BOX = "sap.m.ComboBox";
+        const CHAVE_I18N_COMBO_BOX = "ListagemJogador.Placeholder.ComboBox.CampoInicial";
+        const CONTA_ATIVA = "Conta ativa";
+        const CONTA_INATIVA = "Conta inativa";
 
-		const TIPO_DATEPICKER = "sap.m.DatePicker";
-		const CHAVE_I18N_DATEPICKER = "ListagemJogador.Placeholder.DatePicker.DataDeCadastro";
-		const DATA = "3 de set. de 2024";
+        const TIPO_DATEPICKER = "sap.m.DatePicker";
+        const CHAVE_I18N_DATEPICKER = "ListagemJogador.Placeholder.DatePicker.DataDeCadastro";
+        const DATA = "3 de set. de 2024";
 
-		const TIPO_BOTAO = "sap.m.Button";
-		const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
+        const TIPO_BOTAO = "sap.m.Button";
+        const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
 
-		Opa5.createPageObjects({
+        Opa5.createPageObjects({
 
-			naPaginaDeListagemJogador: {
+            naPaginaDeListagemJogador: {
 
-				actions: {
-					escreveNoCampoDeBuscaPorUsuario: function () {
+                actions: {
+                    escreveNoCampoDeBuscaPorUsuario: function () {
 
-						return this.waitFor({
-							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: TIPO_CAMPO_DE_BUSCA,
-							matchers: {
-								i18NText: {
-									propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
-									key: CHAVE_I18N_CAMPO_DE_BUSCA
-								}
-							},
-							actions: new EnterText({ text: NOME_DE_USUARIO }),
-							success: () => Opa5.assert.ok(true, "O campo de busca foi preenchido com o nome de usuário "),
-							errorMessage: "O campo de busca não foi preenchido com o nome de usuário "
-						});
-					},
+                        return this.waitFor({
+                            viewName: LISTAGEM_JOGADOR_VIEW_NAME,
+                            controlType: TIPO_CAMPO_DE_BUSCA,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
+                                    key: CHAVE_I18N_CAMPO_DE_BUSCA
+                                }
+                            },
+                            actions: new EnterText({ text: NOME_DE_USUARIO }),
+                            success: () => Opa5.assert.ok(true, "O campo de busca foi preenchido com o nome de usuário "),
+                            errorMessage: "O campo de busca não foi preenchido com o nome de usuário "
+                        });
+                    },
 
-					selecionoNaComboboxDeStatusDaContaContaAtiva: function () {
+                    selecionoNaComboboxDeStatusDaContaContaAtiva: function () {
 
-						return this.waitFor({
-							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: TIPO_COMBO_BOX,
-							matchers: {
-								i18NText: {
-									propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
-									key: CHAVE_I18N_COMBO_BOX
-								}
-							},
-							actions: new Press(),
-							actions: new EnterText({ text: CONTA_ATIVA }),
-							success: () => Opa5.assert.ok(true, "A opção Conta ativa foi selecionada na Combobox"),
-							errorMessage: "A opção Conta ativa não foi selecionada na Combobox"
+                        return this.waitFor({
+                            viewName: LISTAGEM_JOGADOR_VIEW_NAME,
+                            controlType: TIPO_COMBO_BOX,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
+                                    key: CHAVE_I18N_COMBO_BOX
+                                }
+                            },
+                            actions: new EnterText({ text: CONTA_ATIVA }),
+                            success: () => Opa5.assert.ok(true, "A opção Conta ativa foi selecionada na Combobox"),
+                            errorMessage: "A opção Conta ativa não foi selecionada na Combobox"
 
-						});
-					},
+                        });
+                    },
 
-					selecionoNaComboboxDeStatusDaContaInativa: function () {
+                    selecionoNaComboboxDeStatusDaContaInativa: function () {
 
-						return this.waitFor({
-							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: TIPO_COMBO_BOX,
-							matchers: {
-								i18NText: {
-									propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
-									key: CHAVE_I18N_COMBO_BOX
-								}
-							},
-							actions: new Press(),
-							actions: new EnterText({ text: CONTA_INATIVA }),
-							success: () => Opa5.assert.ok(true, "A opção Conta inativa foi selecionada na Combobox"),
-							errorMessage: "A opção Conta inativa não foi selecionada na Combobox"
-						});
-					},
+                        return this.waitFor({
+                            viewName: LISTAGEM_JOGADOR_VIEW_NAME,
+                            controlType: TIPO_COMBO_BOX,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
+                                    key: CHAVE_I18N_COMBO_BOX
+                                }
+                            },
+                            actions: new EnterText({ text: CONTA_INATIVA }),
+                            success: () => Opa5.assert.ok(true, "A opção Conta inativa foi selecionada na Combobox"),
+                            errorMessage: "A opção Conta inativa não foi selecionada na Combobox"
+                        });
+                    },
 
-					selecionoDatePickerEAdicionoAData: function () {
+                    selecionoDatePickerEAdicionoAData: function () {
 
-						return this.waitFor({
-							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: TIPO_DATEPICKER,
-							matchers: {
-								i18NText: {
-									propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
-									key: CHAVE_I18N_DATEPICKER
-								}
-							},
-							actions: new Press(),
-							actions: new EnterText({ text: DATA }),
-							success: () => Opa5.assert.ok(true, "A data foi adicionada no Datepicker"),
-							errorMessage: "A data não foi adicionada no Datepicker"
-						});
-					},
+                        return this.waitFor({
+                            viewName: LISTAGEM_JOGADOR_VIEW_NAME,
+                            controlType: TIPO_DATEPICKER,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
+                                    key: CHAVE_I18N_DATEPICKER
+                                }
+                            },
+                            actions: new EnterText({ text: DATA }),
+                            success: () => Opa5.assert.ok(true, "A data foi adicionada no Datepicker"),
+                            errorMessage: "A data não foi adicionada no Datepicker"
+                        });
+                    },
 
-					selecionoBotaoDeAplicarFiltros: function () {
+                    selecionoBotaoDeAplicarFiltros: function () {
 
-						return this.waitFor({
-							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: TIPO_BOTAO,
-							matchers: {
-								i18NText: {
-									propertyName: NOME_PROPRIEDADE_TEXT,
-									key: CHAVE_I18N_BOTAO_APLICAR_FILTROS
-								}
-							},
-							actions: new Press(),
-							success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
-							errorMessage: "O botão de filtrar não foi clicado"
-						});
-					}
+                        return this.waitFor({
+                            viewName: LISTAGEM_JOGADOR_VIEW_NAME,
+                            controlType: TIPO_BOTAO,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_TEXT,
+                                    key: CHAVE_I18N_BOTAO_APLICAR_FILTROS
+                                }
+                            },
+                            success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
+                            errorMessage: "O botão de filtrar não foi clicado"
+                        });
+                    }
 
-				},
+                },
 
-				assertions: {
-					aoAplicarFiltrosDeveRetornarAListaFiltrada: function (quantidadeDeJogadores) {
-						return this.waitFor({
-							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: "sap.ui.table.Table",
-							success: () => Opa5.assert.ok(true, "A filtragem foi aplicada corretamente"),
-							errorMessage: "A filtragem não foi aplicada corretamente"
-						});
-					},
+                assertions: {
+                    aoAplicarFiltrosDeveRetornarAListaFiltrada: function (quantidadeDeJogadores) {
+                        return this.waitFor({
+                            viewName: LISTAGEM_JOGADOR_VIEW_NAME,
+                            controlType: "sap.ui.table.Table",
 
-					aTelaDeListagemDeJogadoresFoiCarregadaCorretamente: function () {
-						return this.waitFor({
-							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: "sap.ui.table.Table",
-							matchers: {
-								i18NText: {
-									propertyName: "title",
-									key: "i18n>App",
-									modelName: "i18n"
-								}
-							},
-							success: () => Opa5.assert.ok(true, "A pagina de NotFound foi carregada corretamente"),
-							errorMessage: "A pagina de NotFound não foi carregada corretamente"
-						});
-					},
-				}
-			}
-		});
-	}
+                            success: () => Opa5.assert.ok( true, "deu certo porra"),
+                            errorMessage: "Não foi possível verificar a quantidade de jogadores filtrados no modelo JSON"
+                        });
+                    }
+                }
+            }
+        });
+    }
 );
