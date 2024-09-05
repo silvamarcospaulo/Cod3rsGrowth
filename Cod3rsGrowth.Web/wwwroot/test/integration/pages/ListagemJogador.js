@@ -130,7 +130,7 @@ sap.ui.define([
 								
 								return tabela[0].getModel("Jogador").getData().length == quantidadeDeJogadores
 							},
-							success: () => Opa5.assert.ok(true, "deu certo porra"),
+							success: () => Opa5.assert.ok(true, "A quantidade de itens na lista após a filtragem corresponde com a quantidade de itens esperada!"),
 							errorMessage: "Não foi possível verificar a quantidade de jogadores filtrados no modelo JSON"
 						});
 					}
