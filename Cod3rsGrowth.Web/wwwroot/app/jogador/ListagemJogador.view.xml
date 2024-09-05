@@ -26,45 +26,43 @@
                 enableColumnReordering="false"
                 alternateRowColors="true"
                 minAutoRowCount="5"
-                extension="true">
+                extension="true"
+            >
                 <extension>
                     <m:OverflowToolbar style="Clear">
-                        <m:Title text="Jogadores" />
+                        <m:Title text="{i18n>ListagemJogador.Tabela.Titulo.Jogadores}" />
                         <m:ToolbarSpacer />
 
                         <m:SearchField
                             id="campoBuscaUsuario"
                             placeholder="{i18n>ListagemJogador.Placeholder.CampoDeBusca.Username}"
-                            value="{ui>/globalFilter}"
+                            value="{ListagemJogadorFiltro>/usuarioJogador}"
                             search="filterGlobally"
                             showSearchButton="false"
-                            width="auto"/>
+                            width="auto"
+                        />
 
                         <m:ComboBox
                             id="comboBoxStatusConta"
                             placeholder="{i18n>ListagemJogador.Placeholder.ComboBox.CampoInicial}"
-                            width="auto">
+                            width="auto"
+                            selectedKey="{ListagemJogadorFiltro>/contaAtivaJogador}">
                             <c:Item
                                 key="true"
                                 text="{i18n>Formatter.ContaAtiva}"
                             />
                             <c:Item
                                 key="false"
-                                text="{i18n>Formatter.ContaInativa}"/>
+                                text="{i18n>Formatter.ContaInativa}"
+                            />
                         </m:ComboBox>
 
                         <m:DatePicker
                             id="datePickerDataDeCadastro"
                             width="auto"
+                            value="{ListagemJogadorFiltro>/dataDeCriacaoContaJogador}"
                             placeholder="{i18n>ListagemJogador.Placeholder.DatePicker.DataDeCadastro}"
-                            value="{
-								'path':'/dateTime',
-								'type':'sap.ui.model.type.DateTime',
-								'formatOptions': {
-									'pattern': 'dd/MM/yyyy'
-								}
-							}"
-                            change=".dataAlterada"/>
+                        />
 
                         <m:Button
                             id="toggleFiltros"
@@ -72,14 +70,16 @@
                             icon="sap-icon://filter"
                             tooltip="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
                             visible="true"
-                            press=".aoPressionarAplicarFiltros"/>
-                        <m:ToolbarSeparator/>
+                            press=".aoPressionarAplicarFiltros"
+                        />
+                        <m:ToolbarSeparator />
                     </m:OverflowToolbar>
                 </extension>
                 <columns>
                     <Column>
                         <m:Label
-                            text="{i18n>ListagemJogador.Coluna.Username}"/>
+                            text="{i18n>ListagemJogador.Coluna.Username}"
+                        />
                         <template>
                             <m:Text
                                 text="{Jogador>usuarioJogador}"
@@ -89,26 +89,30 @@
                     </Column>
                     <Column class="autoResize">
                         <m:Label
-                            text="{i18n>ListagemJogador.Coluna.DataDeCriacaoConta}"/>
+                            text="{i18n>ListagemJogador.Coluna.DataDeCriacaoConta}"
+                        />
                         <template>
                             <m:Text
                                 text="{
 									path: 'Jogador>dataDeCriacaoContaJogador',
 									formatter: '.formatter.datas'
 								}"
-                                wrapping="false"/>
+                                wrapping="false"
+                            />
                         </template>
                     </Column>
                     <Column class="autoResize">
                         <m:Label
-                            text="{i18n>ListagemJogador.Coluna.ContaAtiva}"/>
+                            text="{i18n>ListagemJogador.Coluna.ContaAtiva}"
+                        />
                         <template>
                             <m:Text
                                 text="{
 								path: 'Jogador>contaAtivaJogador',
 								formatter: '.formatter.statusContaJogador'
 								}"
-                                wrapping="false"/>
+                                wrapping="false"
+                            />
                         </template>
                     </Column>
                 </columns>
@@ -116,11 +120,12 @@
         </m:content>
         <m:footer>
             <m:Toolbar>
-                <m:ToolbarSpacer/>
+                <m:ToolbarSpacer />
                 <m:Button
                     text="{i18n>ListagemJogador.Toolbar.Buttom.AdicionarJogador}"
                     press="onPress"
-                    type="Ghost"/>
+                    type="Ghost"
+                />
             </m:Toolbar>
         </m:footer>
     </m:Page>

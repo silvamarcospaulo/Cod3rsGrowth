@@ -18,10 +18,10 @@ sap.ui.define([
                 name: "mtgdeckbuilder"
             }
         });
-
+        
         When.naPaginaDeListagemJogador.escreveNoCampoDeBuscaPorUsuario();
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
-        Then.naPaginaDeListagemJogador.aoAplicarFiltrosDeveRetornarAListaFiltrada(QUANTIDADE_DE_CONTAS_RETORNADAS);
+        Then.naPaginaDeListagemJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_CONTAS_RETORNADAS);
 
     }),
 
@@ -31,8 +31,7 @@ sap.ui.define([
 
         When.naPaginaDeListagemJogador.selecionoNaComboboxDeStatusDaContaContaAtiva();
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
-        Then.naPaginaDeListagemJogador.aoAplicarFiltrosDeveRetornarAListaFiltrada(QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_ATIVA);
-
+        Then.naPaginaDeListagemJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_ATIVA);
     }),
 
     opaTest("Ao relalizar filtragens na tela através do status da conta inativa, retorna uma lista com um jogador", (Given, When, Then) => {
@@ -41,7 +40,7 @@ sap.ui.define([
 
         When.naPaginaDeListagemJogador.selecionoNaComboboxDeStatusDaContaInativa();
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
-        Then.naPaginaDeListagemJogador.aoAplicarFiltrosDeveRetornarAListaFiltrada(QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_INATIVA);
+        Then.naPaginaDeListagemJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_CONTAS_RETORNADAS_CONTA_INATIVA);
     }),
 
     opaTest("Ao relalizar filtragens na tela através do datepicker, retorna uma lista com um jogador", (Given, When, Then) => {
@@ -50,7 +49,7 @@ sap.ui.define([
 
         When.naPaginaDeListagemJogador.selecionoDatePickerEAdicionoAData();
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
-        Then.naPaginaDeListagemJogador.aoAplicarFiltrosDeveRetornarAListaFiltrada(QUANTIDADE_DE_CONTAS_RETORNADAS_FILTRAGEM_POR_DATA);
+        Then.naPaginaDeListagemJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_CONTAS_RETORNADAS_FILTRAGEM_POR_DATA);
 
         Then.iTeardownMyApp();
     });

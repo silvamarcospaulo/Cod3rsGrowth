@@ -1,55 +1,57 @@
 sap.ui.define([
+    "mtgdeckbuilder/app/comum/BaseController",
     "mtgdeckbuilder/app/comum/Repository",
-    "mtgdeckbuilder/app/model/formatter"
-], function (Repository, formatter) {
+    "mtgdeckbuilder/app/model/formatter",
+    "sap/ui/model/json/JSONModel"
+], function (BaseController, Repository, formatter, JSONModel) {
     "use strict";
 
     const CONTROLLER = "mtgdeckbuilder.app.jogador.ListagemJogador"
+    const ID_LISTAGREM = "listagemJogador";
     const NOME_DO_MODELO = "Jogador";
+    const NOME_DO_MODELO_DE_FILTROS = "ListagemJogadorFiltro";
     const ID_CAMPO_BUSCAR_POR_USUARIO = "campoBuscaUsuario";
     const ID_DATEPICKER_DATA_DE_CADASTRO = "datePickerDataDeCadastro";
     const ID_COMBOBOX_STATUS_CONTA = "comboBoxStatusConta";
-    const VALOR_NULO = 0;
     const STRING_VAZIA = "";
 
-    return Repository.extend(CONTROLLER, {
+    return BaseController.extend(CONTROLLER, {
 
         formatter: formatter,
 
         onInit: function () {
-            this.obterTodosJogadores();
+            this.aoCoincidirRota();
         },
 
-        obterTodosJogadores: async function () {
-
-            await this.obterTodos(STRING_VAZIA, NOME_DO_MODELO);
+        aoCoincidirRota() {
+            let ESSA_VIEW = this.getView();
+            this.processarAcao(() => {
+                this.getRouter().getRoute(ID_LISTAGREM).attachPatternMatched(() => {
+                    Repository.obterTodos(ESSA_VIEW, STRING_VAZIA, NOME_DO_MODELO)
+                }, this);
+            });
         },
 
         aoPressionarAplicarFiltros: async function () {
+            let ESSA_VIEW = this.getView();
 
             let nomeUsuario = this.getView().byId(ID_CAMPO_BUSCAR_POR_USUARIO).getValue();
-            let dataDeCadastro = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).getValue();
             let statusConta = this.getView().byId(ID_COMBOBOX_STATUS_CONTA).getSelectedKey();
+            let dataDeCadastro = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).getValue();
 
-            let filtros = {};
+            let modeloFiltros = new JSONModel({ usuarioJogador: nomeUsuario, contaAtivaJogador: statusConta, dataDeCriacaoContaJogador: dataDeCadastro });
+            ESSA_VIEW.setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
 
-            if (nomeUsuario) filtros.usuarioJogador = nomeUsuario;
-            if (dataDeCadastro) filtros.dataDeCriacaoContaJogador = dataDeCadastro;
-            if (statusConta) filtros.contaAtivaJogador = statusConta;
+            let filtros = this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();
 
-            await this.obterTodos(filtros, NOME_DO_MODELO);
-
-            this.removerValoresDosFiltros();
-
-            this.checkElementCount();
+            return Repository.obterTodos(ESSA_VIEW, filtros, NOME_DO_MODELO)
+                .then(() => this.removerValoresDosFiltros());
         },
 
         removerValoresDosFiltros: function () {
-
-            let nomeUsuario = this.getView().byId(ID_CAMPO_BUSCAR_POR_USUARIO).setValue();
-            let dataDeCadastro = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).setValue();
-            let statusConta = this.getView().byId(ID_COMBOBOX_STATUS_CONTA).setSelectedKey();
-
+            let ESSA_VIEW = this.getView();
+            let modeloFiltros = new JSONModel({ usuarioJogador: "", contaAtivaJogador: "", dataDeCriacaoContaJogador: "" });
+            ESSA_VIEW.setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
         }
     });
 });
