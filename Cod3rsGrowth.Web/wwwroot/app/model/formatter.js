@@ -4,14 +4,15 @@
     "use strict";
 
     return {
-        datas: function (sData) {
-            if (!sData) {
+        datas: function (dataBanco) {
+            if (!dataBanco) {
                 return "";
             }
 
-            var oType = new DateTime({ pattern: "dd/MM/yyyy" });
-            var oDate = new Date(sData);
-            return oType.formatValue(oDate, "string");
+            var formatadorData = new Date(dataBanco);
+            var padraoData = new DateTime({ pattern: "dd/MM/yyyy" });
+            
+            return padraoData.formatValue(formatadorData, "string");
         },
 
         statusContaJogador: function (sStatusConta) {

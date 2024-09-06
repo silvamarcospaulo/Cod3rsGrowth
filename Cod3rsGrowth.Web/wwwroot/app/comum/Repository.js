@@ -20,7 +20,6 @@
 
             await fetch(urlRequisicao)
                 .then(requisicao => {
-                    console.log(requisicao.status);
                     return requisicao.json();
                 })
                 .then(dados => {

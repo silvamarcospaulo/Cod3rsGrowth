@@ -29,7 +29,6 @@ sap.ui.define([
                 return result;
             }
             catch (error) {
-                console.log("erro");
             }
         },
     });
