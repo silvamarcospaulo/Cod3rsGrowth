@@ -2,6 +2,7 @@
 using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Modelos;
 using LinqToDB;
+using static LinqToDB.Reflection.Methods.LinqToDB.Insert;
 
 namespace Cod3rsGrowth.Infra.Repository
 {
@@ -56,35 +57,55 @@ namespace Cod3rsGrowth.Infra.Repository
             IQueryable<Jogador> query = from q in conexaoDados.TabelaJogador
                                         select q;
 
-            if (filtro?.NomeJogador != null)
+            if (filtro?.NomeJogador is not null)
             {
                 query = from q in query
                         where q.NomeJogador == filtro.NomeJogador
                         select q;
             }
 
-            if (filtro?.SobrenomeJogador != null)
+            if (filtro?.SobrenomeJogador is not null)
             {
                 query = from q in query
                         where q.SobrenomeJogador == filtro.SobrenomeJogador
                         select q;
             }
 
-            if (filtro?.UsuarioJogador != null)
+            if (filtro?.UsuarioJogador is not null)
             {
                 query = from q in query
                         where q.UsuarioJogador == filtro.UsuarioJogador
                         select q;
             }
 
-            if (filtro?.DataNascimentoJogador != null)
+            if (filtro?.DataNascimentoJogador is not null)
             {
                 query = from q in query
-                        where q.DataNascimentoJogador == filtro.DataNascimentoJogador
+                        where q.DataNascimentoJogador == Convert.ToDateTime(filtro.DataNascimentoJogador)
                         select q;
             }
 
-            if (filtro?.ContaAtivaJogador != null)
+            if (filtro?.DataDeCriacaoContaJogador is not null)
+            {
+                const double MAXIMO_HORAS = 23;
+                const double MAXIMO_MINUTOS_SEGUNDOS = 59;
+                const double MAXIMO_MILISEGUNDOS = 999;
+
+
+                var dataFiltroMin = Convert.ToDateTime(filtro.DataDeCriacaoContaJogador);
+
+                var dataFiltroMax = dataFiltroMin.AddHours(MAXIMO_HORAS)
+                                 .AddMinutes(MAXIMO_MINUTOS_SEGUNDOS)
+                                 .AddSeconds(MAXIMO_MINUTOS_SEGUNDOS)
+                                 .AddMilliseconds(MAXIMO_MILISEGUNDOS);
+
+                query = from q in query
+                        where q.DataDeCriacaoContaJogador >= dataFiltroMin
+                        where q.DataDeCriacaoContaJogador <= dataFiltroMax
+                        select q;
+            }
+
+            if (filtro?.ContaAtivaJogador is not null)
             {
                 query = from q in query
                         where q.ContaAtivaJogador == filtro.ContaAtivaJogador

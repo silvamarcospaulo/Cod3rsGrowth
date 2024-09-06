@@ -5,7 +5,7 @@ sap.ui.define([
 
 		"use strict";
 
-		const VIEW_NAME = "app.view.App";
+		const VIEW_NAME = "app.App";
 
 		Opa5.createPageObjects({
 			naPaginaPrincipal: {

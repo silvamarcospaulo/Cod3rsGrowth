@@ -4,12 +4,14 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var AmbienteDeExecucao = args.FirstOrDefault();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddProblemDetails();
 builder.Services.AddDirectoryBrowser();
 
-ModuloInjetor.ModuloDeInjecaoInfra.BindServices(builder.Services);
+ModuloInjetor.InjecaoDeDependencia(builder.Services, AmbienteDeExecucao);
 
 var serviceProvider = builder.Services.BuildServiceProvider();
 

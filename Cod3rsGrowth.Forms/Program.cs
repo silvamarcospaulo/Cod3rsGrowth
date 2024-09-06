@@ -4,9 +4,11 @@ using Cod3rsGrowth.Dominio.Migrador;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Infra.Repository;
+using Cod3rsGrowth.Infra.StringDeConexoes;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
+using Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoToken;
 using FluentMigrator.Runner;
 using FluentValidation;
@@ -26,7 +28,8 @@ namespace Cod3rsGrowth.Forms
 {
     class Program
     {
-        private static string _stringDeConexao = "DeckBuilderDb";
+        private static string _stringDeConexao = StringDeConexao.Producao;
+
         private static byte[] chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
 
         [STAThread]
@@ -59,6 +62,7 @@ namespace Cod3rsGrowth.Forms
                     .AddScoped<BaralhoServico>()
                     .AddScoped<JogadorServico>()
                     .AddScoped<JwtServico>()
+                    .AddScoped<HashServico>()
                     .AddScoped<ICartaRepository, CartaRepository>()
                     .AddScoped<IBaralhoRepository, BaralhoRepository>()
                     .AddScoped<IJogadorRepository, JogadorRepository>()
