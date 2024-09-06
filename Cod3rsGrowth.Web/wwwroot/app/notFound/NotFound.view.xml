@@ -4,7 +4,6 @@
    xmlns:mvc="sap.ui.core.mvc">
 
    <Page
-      id="page"
       title="{i18n>NotFound}"
       showNavButton="true"
       navButtonPress="aoPressionarRetornarNavegacao">

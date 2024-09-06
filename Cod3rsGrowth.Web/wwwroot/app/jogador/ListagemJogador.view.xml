@@ -14,9 +14,8 @@
     >
         <m:content>
             <Table
-                rows="{Jogador>/}"
                 title="{i18n>App}"
-                id="table"
+                rows="{Jogador>/}"
                 editable="false"
                 enableSelectAll="false"
                 selectionMode="Single"
@@ -123,6 +122,9 @@
                 <m:Button
                     text="{i18n>ListagemJogador.Toolbar.Buttom.AdicionarJogador}"
                     type="Ghost"
+                    tooltip="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
+                    visible="true"
+                    press=".aoPressionarAbreTelaDeCriacaoDeJogador"
                 />
             </m:Toolbar>
         </m:footer>
