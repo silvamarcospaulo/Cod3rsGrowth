@@ -1,14 +1,13 @@
 ﻿sap.ui.define([
-    "mtgdeckbuilder/app/comum/BaseController",
-    "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel"
-], function (BaseController, Controller, JSONModel) {
+], function (JSONModel) {
     "use strict";
     
     return {
 
         obterTodos: async function (view, filtros, nomeDoModelo) {
-            let urlPagina = window.location.origin + "/api/" + nomeDoModelo;
+            let urlPesquisaApi = "/api/";
+            let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
             let url = new URL(urlPagina);
 
             let parametros = new URLSearchParams([
@@ -27,7 +26,6 @@
                     view.setModel(oDadosRequisicao, nomeDoModelo);
                 })
                 .catch(erro => {
-                    console.error("Erro ao obter dados:", erro);
                 });
         },
 

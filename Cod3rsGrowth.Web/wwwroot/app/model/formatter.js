@@ -17,9 +17,12 @@
 
         statusContaJogador: function (sStatusConta) {
             const oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+            const textoContaAtiva = "Formatter.ContaAtiva";
+            const textoContaInativa = "Formatter.ContaInativa";
+
             switch (sStatusConta) {
-                case true: return oResourceBundle.getText("Formatter.ContaAtiva");
-                case false: return oResourceBundle.getText("Formatter.ContaInativa");
+                case true: return oResourceBundle.getText(textoContaAtiva);
+                case false: return oResourceBundle.getText(textoContaInativa);
             }
         }
     };

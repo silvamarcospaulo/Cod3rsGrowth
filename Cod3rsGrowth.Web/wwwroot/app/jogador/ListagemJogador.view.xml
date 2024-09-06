@@ -31,8 +31,10 @@
                 <extension>
                     <m:OverflowToolbar style="Clear">
                         <m:Title text="{i18n>ListagemJogador.Tabela.Titulo.Jogadores}" />
+                        <m:ToolbarSpacer />
 
                         <m:SearchField
+                            id="campoBuscaUsuario"
                             placeholder="{i18n>ListagemJogador.Placeholder.CampoDeBusca.Username}"
                             value="{ListagemJogadorFiltro>/usuarioJogador}"
                             showSearchButton="false"
@@ -69,6 +71,7 @@
                             visible="true"
                             press=".aoPressionarAplicarFiltros"
                         />
+                        <m:ToolbarSeparator />
                     </m:OverflowToolbar>
                 </extension>
                 <columns>
@@ -116,6 +119,7 @@
         </m:content>
         <m:footer>
             <m:Toolbar>
+                <m:ToolbarSpacer />
                 <m:Button
                     text="{i18n>ListagemJogador.Toolbar.Buttom.AdicionarJogador}"
                     type="Ghost"

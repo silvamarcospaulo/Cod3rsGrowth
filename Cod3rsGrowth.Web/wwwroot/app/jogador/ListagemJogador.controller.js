@@ -7,7 +7,7 @@ sap.ui.define([
     "use strict";
 
     const CONTROLLER = "mtgdeckbuilder.app.jogador.ListagemJogador"
-    const ID_LISTAGREM = "listagemJogador";
+    const ID_LISTAGEM = "listagemJogador";
     const NOME_DO_MODELO = "Jogador";
     const NOME_DO_MODELO_DE_FILTROS = "ListagemJogadorFiltro";
     const ID_CAMPO_BUSCAR_POR_USUARIO = "campoBuscaUsuario";
@@ -16,19 +16,21 @@ sap.ui.define([
     const STRING_VAZIA = "";
 
     return BaseController.extend(CONTROLLER, {
-            
+
         formatter: formatter,
 
         onInit: function () {
-            this.aoCoincidirRota();
+            this.getRouter().getRoute(ID_LISTAGEM).attachPatternMatched(async () => {
+                return this.aoCoincidirRota();
+            }, this);
         },
 
-        aoCoincidirRota() {
-            this.processarAcao(() => {
-                this.getRouter().getRoute(ID_LISTAGREM).attachPatternMatched(() => {
-                    Repository.obterTodos(this.getView, STRING_VAZIA, NOME_DO_MODELO)
-                }, this);
-            });
+        aoCoincidirRota: function() {
+            this.processarAcao(async () => {
+                await Promise.all([
+                    Repository.obterTodos(this.getView(), STRING_VAZIA, NOME_DO_MODELO)
+                ])
+            })
         },
 
         aoPressionarAplicarFiltros: async function () {
@@ -37,17 +39,17 @@ sap.ui.define([
             let dataDeCadastro = this.getView().byId(ID_DATEPICKER_DATA_DE_CADASTRO).getValue();
 
             let modeloFiltros = new JSONModel({ usuarioJogador: nomeUsuario, contaAtivaJogador: statusConta, dataDeCriacaoContaJogador: dataDeCadastro });
-            this.getView.setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
+            this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
 
             let filtros = this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();
 
-            return Repository.obterTodos(this.getView, filtros, NOME_DO_MODELO)
+            return Repository.obterTodos(this.getView(), filtros, NOME_DO_MODELO)
                 .then(() => this.removerValoresDosFiltros());
         },
 
         removerValoresDosFiltros: function () {
-            let modeloFiltros = new JSONModel({ usuarioJogador: "", contaAtivaJogador: "", dataDeCriacaoContaJogador: "" });
-            this.getView.setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
+            let modeloFiltros = new JSONModel({ usuarioJogador: STRING_VAZIA, contaAtivaJogador: STRING_VAZIA, dataDeCriacaoContaJogador: STRING_VAZIA});
+            this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
         }
     });
 });
