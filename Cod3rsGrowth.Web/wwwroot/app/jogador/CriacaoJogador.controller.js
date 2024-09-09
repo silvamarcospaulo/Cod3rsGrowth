@@ -1,9 +1,8 @@
 sap.ui.define([
     "mtgdeckbuilder/app/comum/BaseController",
     "sap/ui/model/json/JSONModel",
-    "mtgdeckbuilder/app/comum/Repository",
-    "mtgdeckbuilder/app/model/formatter",
-], function (BaseController, JSONModel, Repository, formatter) {
+    "mtgdeckbuilder/app/comum/Repository"
+], function (BaseController, JSONModel, Repository) {
     "use strict";
 
     const CONTROLLER = "mtgdeckbuilder.app.jogador.CriacaoJogador";
@@ -16,13 +15,19 @@ sap.ui.define([
     const ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT = "idUsuarioConfirmacaoJogadorInput";
     const ID_SENHA_JOGADOR_INPUT = "idSenhaHashJogadorInput";
     const ID_SENHA_CONFIRMACAO_JOGADOR_INPUT = "idSenhaHashConfirmacaoJogadorInput";
+    const ID_BOTAO_MOSTRAR_SENHA = "idBotaoMostrarSenha";
+    const ID_BOTAO_MOSTRAR_CONFIRMACAO_DE_SENHA = "idBotaoMostrarConfirmacaoDeSenha";
+    const ICONE_BOTAO_MOTRAR_SENHA = "sap-icon://show";
+    const ICONE_BOTAO_ESCONDER_SENHA = "sap-icon://hide";
+    const TIPO_DE_INPUT_SENHA = "Password";
+    const TIPO_DE_INPUT_TEXTO = "Text";
 
     return BaseController.extend(CONTROLLER, {
 
         onInit: function () {
         },
 
-        aoClicarCriaNovoUsuario: function(){
+        aoClicarCriaNovoUsuario: function () {
             debugger
 
             let nomeJogadorInput = this.getView().byId(ID_NOME_JOGADOR_INPUT).getValue();
@@ -52,7 +57,25 @@ sap.ui.define([
             //Repository.Criar(dadosJogador);
         },
 
-        aoPressionarRetornarNavegacao: function(){
+        aoPressionarMudaAVisualizacaoDeSenha: function () {
+            this.mudaVisualizacaoDoInput(ID_SENHA_JOGADOR_INPUT, ID_BOTAO_MOSTRAR_SENHA);
+        },
+
+        aoPressionarMudaAVisualizacaoDeConfirmacaoDeSenha: function () {
+            this.mudaVisualizacaoDoInput(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT, ID_BOTAO_MOSTRAR_CONFIRMACAO_DE_SENHA);
+        },
+
+        mudaVisualizacaoDoInput: function (idDoInput, idDoBotao) {
+            let tipoDoInputAtual = this.getView().byId(idDoInput).getType();
+            var tipoDoInputAtualizado = tipoDoInputAtual === TIPO_DE_INPUT_SENHA ? TIPO_DE_INPUT_TEXTO : TIPO_DE_INPUT_SENHA;
+            this.getView().byId(idDoInput).setType(tipoDoInputAtualizado);
+
+            let iconeDoBotaoAtual = this.getView().byId(idDoBotao).getIcon();
+            var iconeDoBotaoAtualizado = iconeDoBotaoAtual === ICONE_BOTAO_MOTRAR_SENHA ? ICONE_BOTAO_ESCONDER_SENHA : ICONE_BOTAO_MOTRAR_SENHA;
+            this.getView().byId(idDoBotao).setIcon(iconeDoBotaoAtualizado);
+        },
+
+        aoPressionarRetornarNavegacao: function () {
             const rota = "listagemJogador";
             return this.navegarPara(rota);
         }

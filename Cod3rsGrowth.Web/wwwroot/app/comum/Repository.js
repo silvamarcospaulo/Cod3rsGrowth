@@ -29,5 +29,9 @@
                 });
         },
 
+        criar: async function (view, objeto) {
+            
+        }
+
     };
 });
