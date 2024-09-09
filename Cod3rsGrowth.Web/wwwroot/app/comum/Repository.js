@@ -30,20 +30,25 @@
         },
 
         criar: async function (objeto, nomeDoModelo) {
+            debugger
+            
             const metodoDeRequisicao = "POST";
             let urlPesquisaApi = "/api/";
             let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo + "/";
             let urlRequisicao = new URL(urlPagina);
             
-            let requisicao = await fetch(urlRequisicao, {
+            try{
+                let requisicao = await fetch(urlRequisicao, {
                 method: metodoDeRequisicao,
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: objeto,
-            });
-
-            console.log(requisicao);
+                    body: objeto,
+                });
+            }catch(requisicao){
+                return requisicao.erro;
+                ;
+            }
         },
     };
 });
