@@ -2,7 +2,7 @@
     "sap/ui/model/json/JSONModel"
 ], function (JSONModel) {
     "use strict";
-    
+
     return {
 
         obterTodos: async function (view, filtros, nomeDoModelo) {
@@ -28,26 +28,31 @@
                 .catch(erro => {
                 });
         },
-
         criar: async function (objeto, nomeDoModelo) {
-            debugger
-            
             const metodoDeRequisicao = "POST";
             let urlPesquisaApi = "/api/";
             let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo + "/";
             let urlRequisicao = new URL(urlPagina);
-            
-            try{
-                let requisicao = await fetch(urlRequisicao, {
-                method: metodoDeRequisicao,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+
+            debugger
+
+            try {
+                let resposta = await fetch(urlRequisicao, {
+                    method: metodoDeRequisicao,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: objeto,
                 });
-            }catch(requisicao){
-                return requisicao.erro;
-                ;
+
+                if (!resposta.ok) {
+                    const problemDetails = await resposta.json();
+                    throw new Error(problemDetails.Detail);
+                }
+
+                return await resposta.json();
+            } catch (erro) {
+                return { erro: erro.message };
             }
         },
     };

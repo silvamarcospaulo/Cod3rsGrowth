@@ -16,7 +16,6 @@ sap.ui.define([
     const CONTROLLER = "mtgdeckbuilder.app.jogador.CriacaoJogador";
     const ID_CRIACAO_JOGADOR = "criacaoJogador";
     const NOME_DO_MODELO_DE_CRIACAO_JOGADOR = "JogadorCriacao";
-    const STRING_VAZIA = "";
     const ROLE_JOGADOR = "Jogador";
     const ID_NOME_JOGADOR_INPUT = "idNomeJogadorInput";
     const ID_SOBRENOME_JOGADOR_INPUT = "idSobrenomeJogadorInput";
@@ -43,6 +42,8 @@ sap.ui.define([
     const ID_I18N_SENHA_OBRIGATORIO = "CriacaoJogador.MessageToast.SenhaObrigatorio";
     const ID_I18N_SENHA_INVALIDA = "CriacaoJogador.MessageToast.SenhaInvalida";
     const ID_I18N_CONFIRMACAO_SENHA_INCORRETA = "CriacaoJogador.MessageToast.ConfirmacaoSenhaIncorreta";
+
+
     let MENSAGENS_DE_ERRO;
 
     return BaseController.extend(CONTROLLER, {
@@ -60,7 +61,7 @@ sap.ui.define([
             })
         },
 
-        aoClicarCriaNovoUsuario: function () {
+        aoClicarCriaNovoUsuario: async function () {
             let nomeJogadorInput = this.getView().byId(ID_NOME_JOGADOR_INPUT).getValue();
             let sobrenomeJogadornomeJogadorInput = this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).getValue();
             let dataNascimentoJogadorInput = this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).getValue();
@@ -89,11 +90,25 @@ sap.ui.define([
 
             let jogadorCriacao = JSON.stringify(dadosJogador);
 
+            const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
+            const estadoDoDialogoDeSucesso = ValueState.Success;
+            const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
+            const estadoDoDialogoDeErro = ValueState.Error;
+
+            debugger
+
             if (this.validarJogador()) {
-                try{
-                    Repository.criar(jogadorCriacao, ROLE_JOGADOR);
-                }catch(error){
-                    this.abrirDialogoDeErro(error.Message);
+                try {
+                    let requisicao = await Repository.criar(jogadorCriacao, ROLE_JOGADOR);
+
+                    if (requisicao.erro) {
+                        this.abrirDialogo(tituloCaixaDeDialogoDeErro, requisicao.erro, estadoDoDialogoDeErro);
+                    } else {
+                        let mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
+                        this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
+                    }
+                } catch (error) {
+                    this.abrirDialogo(tituloCaixaDeDialogoDeErro, error, estadoDoDialogoDeErro);
                 }
             }
         },
@@ -109,35 +124,49 @@ sap.ui.define([
             let senhaValida = this.validarSenhaJogador();
             let confirmacaoSenhaValida = this.validarConfirmacaoSenhaJogador();
 
-            if (MENSAGENS_DE_ERRO)
-                this.abrirDialogoDeErro(MENSAGENS_DE_ERRO);
+            if (MENSAGENS_DE_ERRO) {
+                let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
+                let estadoDoDialogoDeErro = ValueState.Error;
+                this.abrirDialogo(tituloCaixaDeDialogoDeErro, MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
+            }
 
             return nomeValido && sobrenomeValido && dataNascimentoValido && usuarioValido &&
                 confirmacaoUsuarioValido && senhaValida && confirmacaoSenhaValida;
         },
 
-        abrirDialogoDeErro: function (mensagem) {
+        abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
             debugger
             var ButtonType = mobileLibrary.ButtonType;
             var DialogType = mobileLibrary.DialogType;
-            var ValueState = coreLibrary.ValueState;
-            let tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogo");
+
             let botaoCaixaDeDialogo = "OK";
-            if (!this.oErrorMessageDialog) {
-                this.oErrorMessageDialog = new Dialog({
-                    type: DialogType.Message,
-                    title: tituloCaixaDeDialogo,
-                    state: ValueState.Error,
-                    content: new Text({ text: mensagem }),
-                    beginButton: new Button({
-                        type: ButtonType.Emphasized,
-                        text: botaoCaixaDeDialogo,
-                        press: function () {
-                            this.oErrorMessageDialog.close();
-                        }.bind(this)
-                    })
+            let botao;
+
+            if (estadoDoDialogo === ValueState.Error) {
+                botao = new Button({
+                    type: ButtonType.Emphasized,
+                    text: botaoCaixaDeDialogo,
+                    press: function () {
+                        this.oErrorMessageDialog.close();
+                    }.bind(this)
+                });
+            } else {
+                botao = new Button({
+                    type: ButtonType.Emphasized,
+                    text: botaoCaixaDeDialogo,
+                    press: function () {
+                        this.aoPressionarRetornarNavegacao();
+                    }.bind(this)
                 });
             }
+
+            this.oErrorMessageDialog = new Dialog({
+                type: DialogType.Message,
+                title: tituloCaixaDeDialogo,
+                state: estadoDoDialogo,
+                content: new Text({ text: mensagem }),
+                beginButton: botao
+            });
 
             this.oErrorMessageDialog.open();
         },
@@ -249,7 +278,18 @@ sap.ui.define([
 
         aoPressionarRetornarNavegacao: function () {
             const rota = "listagemJogador";
+            this.removerValoresDosInputs();
             return this.navegarPara(rota);
+        },
+
+        removerValoresDosInputs: function(){
+            let nomeJogadorInput = this.getView().byId(ID_NOME_JOGADOR_INPUT).setValue();
+            let sobrenomeJogadornomeJogadorInput = this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValue();
+            let dataNascimentoJogadorInput = this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValue();
+            let usuarioJogadorInput = this.getView().byId(ID_USUARIO_JOGADOR_INPUT).setValue();
+            let usuarioConfirmacaoJogadorInput = this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).setValue();
+            let senhaHashJogadorInput = this.getView().byId(ID_SENHA_JOGADOR_INPUT).setValue();
+            let senhaHashConfirmacaoJogadorInput = this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).setValue();
         }
     });
 });
