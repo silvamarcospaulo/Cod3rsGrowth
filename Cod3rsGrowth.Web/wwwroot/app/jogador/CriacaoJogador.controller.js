@@ -34,7 +34,7 @@ sap.ui.define([
     const valueStateDeErro = "Error";
     const ID_I18N_NOME_OBRIGATORIO = "CriacaoJogador.MessageToast.NomeObrigatorio";
     const ID_I18N_SOBRENOME_OBRIGATORIO = "CriacaoJogador.MessageToast.SobrenomeObrigatorio";
-    const ID_I18N_DATA_NASCIMENTO_OBRIGATORIO = "CriacaoJogador.MessageToast.DataNascimentoObrigatorio";
+    const ID_I18N_DATA_NASCIMENTO_OBRIGATORIO = "CriacaoJogador.MessageToast.DataDeNascimentoObrigatorio";
     const ID_I18N_DATA_NASCIMENTO_MAIOR_QUE_TREZE_ANOS = "CriacaoJogador.MessageToast.DataNascimentoMaiorQueTrezeAnos";
     const ID_I18N_USUARIO_OBRIGATORIO = "CriacaoJogador.MessageToast.UsuarioObrigatorio";
     const ID_I18N_USUARIO_INVALIDO = "CriacaoJogador.MessageToast.UsuarioInvalido";
@@ -64,7 +64,7 @@ sap.ui.define([
         aoClicarCriaNovoUsuario: async function () {
             let nomeJogadorInput = this.getView().byId(ID_NOME_JOGADOR_INPUT).getValue();
             let sobrenomeJogadornomeJogadorInput = this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).getValue();
-            let dataNascimentoJogadorInput = this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).getValue();
+            let dataNascimentoJogadorInput = new Date(this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).getValue());
             let usuarioJogadorInput = this.getView().byId(ID_USUARIO_JOGADOR_INPUT).getValue();
             let usuarioConfirmacaoJogadorInput = this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).getValue();
             let senhaHashJogadorInput = this.getView().byId(ID_SENHA_JOGADOR_INPUT).getValue();
@@ -90,25 +90,30 @@ sap.ui.define([
 
             let jogadorCriacao = JSON.stringify(dadosJogador);
 
-            const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
-            const estadoDoDialogoDeSucesso = ValueState.Success;
             const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
             const estadoDoDialogoDeErro = ValueState.Error;
 
-            debugger
-
             if (this.validarJogador()) {
-                try {
-                    let requisicao = await Repository.criar(jogadorCriacao, ROLE_JOGADOR);
+                let requisicao = await Repository.criar(jogadorCriacao, ROLE_JOGADOR);
+                if (requisicao.ok) {
+                    const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
+                    const estadoDoDialogoDeSucesso = ValueState.Success;
+                    const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.MensagemDeSucesso");
+                    this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
+                } else {
+                    debugger
+                    let title = requisicao.Title;
+                    let details = requisicao.Detail;
+                    let type = requisicao.type;
+                    let status = requisicao.Status;
 
-                    if (requisicao.erro) {
-                        this.abrirDialogo(tituloCaixaDeDialogoDeErro, requisicao.erro, estadoDoDialogoDeErro);
-                    } else {
-                        let mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
-                        this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
-                    }
-                } catch (error) {
-                    this.abrirDialogo(tituloCaixaDeDialogoDeErro, error, estadoDoDialogoDeErro);
+                    let mensagemDeErro = {
+                        title: title,
+                        type: type,
+                        status: status
+                    };
+
+                    this.abrirDialogoErroApi(title, mensagemDeErro);
                 }
             }
         },
@@ -125,7 +130,7 @@ sap.ui.define([
             let confirmacaoSenhaValida = this.validarConfirmacaoSenhaJogador();
 
             if (MENSAGENS_DE_ERRO) {
-                let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
+                let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
                 let estadoDoDialogoDeErro = ValueState.Error;
                 this.abrirDialogo(tituloCaixaDeDialogoDeErro, MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
             }
@@ -135,7 +140,6 @@ sap.ui.define([
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
-            debugger
             var ButtonType = mobileLibrary.ButtonType;
             var DialogType = mobileLibrary.DialogType;
 
@@ -165,6 +169,32 @@ sap.ui.define([
                 title: tituloCaixaDeDialogo,
                 state: estadoDoDialogo,
                 content: new Text({ text: mensagem }),
+                beginButton: botao
+            });
+
+            this.oErrorMessageDialog.open();
+        },
+
+        abrirDialogoErroApi: function (tituloCaixaDeDialogo, mensagem) {
+            var ButtonType = mobileLibrary.ButtonType;
+            var DialogType = mobileLibrary.DialogType;
+
+            let botaoCaixaDeDialogo = "OK";
+            let botao;
+
+            botao = new Button({
+                type: ButtonType.Emphasized,
+                text: botaoCaixaDeDialogo,
+                press: function () {
+                    this.oErrorMessageDialog.close();
+                }.bind(this)
+            });
+
+            this.oErrorMessageDialog = new Dialog({
+                type: DialogType.Message,
+                title: tituloCaixaDeDialogo,
+                state: ValueState.Error,
+                content: new Text ({mensagem}),
                 beginButton: botao
             });
 
@@ -282,7 +312,7 @@ sap.ui.define([
             return this.navegarPara(rota);
         },
 
-        removerValoresDosInputs: function(){
+        removerValoresDosInputs: function () {
             let nomeJogadorInput = this.getView().byId(ID_NOME_JOGADOR_INPUT).setValue();
             let sobrenomeJogadornomeJogadorInput = this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValue();
             let dataNascimentoJogadorInput = this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValue();

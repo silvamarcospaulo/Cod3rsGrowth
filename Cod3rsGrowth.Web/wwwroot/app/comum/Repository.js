@@ -1,6 +1,12 @@
 ﻿sap.ui.define([
-    "sap/ui/model/json/JSONModel"
-], function (JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/ValueState",
+    "sap/ui/core/library",
+    "sap/m/Dialog",
+    "sap/m/Button",
+    "sap/m/library",
+    "sap/m/Text"
+], function (JSONModel, ValueState, coreLibrary, Dialog, Button, mobileLibrary, Text) {
     "use strict";
 
     return {
@@ -28,32 +34,26 @@
                 .catch(erro => {
                 });
         },
+
         criar: async function (objeto, nomeDoModelo) {
             const metodoDeRequisicao = "POST";
             let urlPesquisaApi = "/api/";
             let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo + "/";
             let urlRequisicao = new URL(urlPagina);
 
-            debugger
+            let resposta = await fetch(urlRequisicao, {
+                method: metodoDeRequisicao,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: objeto,
+            });
 
-            try {
-                let resposta = await fetch(urlRequisicao, {
-                    method: metodoDeRequisicao,
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: objeto,
-                });
+            if(!resposta.ok){
+                return resposta.json();  
+            };
 
-                if (!resposta.ok) {
-                    const problemDetails = await resposta.json();
-                    throw new Error(problemDetails.Detail);
-                }
-
-                return await resposta.json();
-            } catch (erro) {
-                return { erro: erro.message };
-            }
-        },
+            return resposta;
+        }
     };
 });
