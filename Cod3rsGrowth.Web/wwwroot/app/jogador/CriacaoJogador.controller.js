@@ -101,8 +101,6 @@ sap.ui.define([
                     const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.MensagemDeSucesso");
                     this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
                 } else {
-                    debugger
-
                     let mensagemDeErro = {
                         title: requisicao.Title,
                         status: requisicao.Status,
@@ -116,7 +114,7 @@ sap.ui.define([
                         "Tipo: " + mensagemDeErro.type + "\n" +
                         "Detalhes: " + mensagemDeErro.details;
 
-                    this.abrirDialogo(mensagemDeErro.title, mensagemFormatada, estadoDoDialogoDeErro);
+                    this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagemFormatada, estadoDoDialogoDeErro);
                 }
             }
         },
@@ -146,34 +144,29 @@ sap.ui.define([
             var ButtonType = mobileLibrary.ButtonType;
             var DialogType = mobileLibrary.DialogType;
 
-            let botaoCaixaDeDialogo = "OK";
+            debugger
+            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");
             let botao;
-            let idCaixaDeDialogo;
 
             if (estadoDoDialogo === ValueState.Error) {
                 botao = new Button({
-                    id: "idBotaoCaixaDeMensagemDeErro",
                     type: ButtonType.Emphasized,
-                    text: botaoCaixaDeDialogo,
+                    text: "OK",
                     press: function () {
                         this.oErrorMessageDialog.close();
                     }.bind(this)
-                });
-                idCaixaDeDialogo = "idCaixaDeMensagemDeErro";
+                })
             } else {
                 botao = new Button({
-                    id: "idBotaoCaixaDeMensagemDeSucesso",
                     type: ButtonType.Emphasized,
-                    text: botaoCaixaDeDialogo,
+                    text: "OK",
                     press: function () {
                         this.aoPressionarRetornarNavegacao();
                     }.bind(this)
                 });
-                idCaixaDeDialogo = "idCaixaDeMensagemDeSucesso";
             }
 
             this.oErrorMessageDialog = new Dialog({
-                id: idCaixaDeDialogo,
                 type: DialogType.Message,
                 title: tituloCaixaDeDialogo,
                 state: estadoDoDialogo,

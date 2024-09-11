@@ -1,33 +1,25 @@
 sap.ui.define([
     "sap/ui/test/Opa5",
     "sap/ui/test/matchers/I18NText",
+    "sap/ui/test/matchers/Matcher",
+    "sap/ui/test/matchers/Properties",
     "sap/ui/test/actions/EnterText",
     "sap/ui/test/actions/Press",
     "sap/ui/test/matchers/AggregationLengthEquals",
+    "sap/m/Dialog"
 ],
-    function (Opa5, I18NText, EnterText, Press, AggregationLengthEquals) {
+    function (Opa5, I18NText, Matcher, Properties, EnterText, Press, AggregationLengthEquals, Dialog) {
 
         "use strict";
 
         const CRIACAO_JOGADOR_VIEW_NAME = "app.jogador.CriacaoJogador";
 
         const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
-        const NOME_PROPRIEDADE_TOOLTIP = "tooltip";
         const NOME_PROPRIEDADE_TEXT = "text";
         const CONTROL_TYPE_INPUT = "sap.m.Input";
         const CONTROL_TYPE_BOTAO = "sap.m.Button";
         const CONTROL_TYPE_DATEPICKER = "sap.m.DatePicker";
-        const CONTROL_TYPE_MESSABOX = "sap.m.MessageBox";
-
-        const NOME_JOGADOR = "Jucleiton";
-        const SOBRENOME_JOGADOR = "Silva";
-        const DATA_DE_NASCIMENTO_JOGADOR = "03/03/2003";
-        const USUARIO_JOGADOR = "jucleitonsilva";
-        const SENHA_JOGADOR = "Senha123";
-
-        const DATA_DE_NASCIMENTO_JOGADOR_INVALIDO = "03032024";
-        const USUARIO_JOGADOR_INVALIDO = "jucleitonsilva1";
-        const SENHA_JOGADOR_INVALIDO = "-Senha123";
+        const CONTROL_TYPE_MESSAGEBOX = "sap.m.Dialog";
 
         const CHAVE_I18N_INPUT_NOME_JOGADOR = "CriacaoJogador.Placeholder.NomeJogador";
         const CHAVE_I18N_INPUT_SOBRENOME_JOGADOR = "CriacaoJogador.Placeholder.SobrenomeJogador";
@@ -37,12 +29,13 @@ sap.ui.define([
         const CHAVE_I18N_INPUT_SENHA_JOGADOR = "CriacaoJogador.Placeholder.SenhaHashJogador";
         const CHAVE_I18N_INPUT_SENHA_CONFIRMACAO_JOGADOR = "CriacaoJogador.Placeholder.SenhaHashConfirmacaoJogador";
         const CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR = "ListagemJogador.Toolbar.Buttom.AdicionarJogador";
+        const CHAVE_I18N_BOTAO_FECHAR_CAIXA_DE_DIALOGO = "OK";
 
         Opa5.createPageObjects({
             naPaginaDeCriacaoDeJogador: {
 
                 actions: {
-                    entreveUmValorValidoNoInputDeNomeDoJogador: function () {
+                    entreveUmValorNoInputDeNomeDoJogador: function (nome) {
                         return this.waitFor({
                             viewName: CRIACAO_JOGADOR_VIEW_NAME,
                             controlType: CONTROL_TYPE_INPUT,
@@ -52,13 +45,13 @@ sap.ui.define([
                                     key: CHAVE_I18N_INPUT_NOME_JOGADOR
                                 }
                             },
-                            actions: new EnterText({ text: NOME_JOGADOR }),
+                            actions: new EnterText({ text: nome }),
                             success: () => Opa5.assert.ok(true, "O input de nome do jogador foi preenchido"),
                             errorMessage: "O input de nome do jogador não foi preenchido"
                         });
                     },
 
-                    entreveUmValorValidoNoInputDeSobrenomeDoJogador: function () {
+                    entreveUmValorNoInputDeSobrenomeDoJogador: function (sobrenome) {
                         return this.waitFor({
                             viewName: CRIACAO_JOGADOR_VIEW_NAME,
                             controlType: CONTROL_TYPE_INPUT,
@@ -68,13 +61,13 @@ sap.ui.define([
                                     key: CHAVE_I18N_INPUT_SOBRENOME_JOGADOR
                                 }
                             },
-                            actions: new EnterText({ text: SOBRENOME_JOGADOR }),
+                            actions: new EnterText({ text: sobrenome }),
                             success: () => Opa5.assert.ok(true, "O input de sobrenome do jogador foi preenchido"),
                             errorMessage: "O input de sobrenome do jogador não foi preenchido"
                         });
                     },
 
-                    entreveUmValorValidoNoInputDeDataDeNascimentoDoJogador: function () {
+                    entreveUmValorNoInputDeDataDeNascimentoDoJogador: function (dataDeNascimento) {
                         return this.waitFor({
                             viewName: CRIACAO_JOGADOR_VIEW_NAME,
                             controlType: CONTROL_TYPE_DATEPICKER,
@@ -84,13 +77,13 @@ sap.ui.define([
                                     key: CHAVE_I18N_INPUT_DATA_DE_NASCIMENTO_JOGADOR
                                 }
                             },
-                            actions: new EnterText({ text: DATA_DE_NASCIMENTO_JOGADOR }),
+                            actions: new EnterText({ text: dataDeNascimento }),
                             success: () => Opa5.assert.ok(true, "O input de data de nascimento do jogador foi preenchido"),
                             errorMessage: "O input de data de nascimento do jogador não foi preenchido"
                         });
                     },
 
-                    entreveUmValorValidoNoInputDeUsuarioDoJogador: function () {
+                    entreveUmValorNoInputDeUsuarioDoJogador: function (usuario) {
                         return this.waitFor({
                             viewName: CRIACAO_JOGADOR_VIEW_NAME,
                             controlType: CONTROL_TYPE_INPUT,
@@ -100,13 +93,13 @@ sap.ui.define([
                                     key: CHAVE_I18N_INPUT_USUARIO_JOGADOR
                                 }
                             },
-                            actions: new EnterText({ text: USUARIO_JOGADOR }),
+                            actions: new EnterText({ text: usuario }),
                             success: () => Opa5.assert.ok(true, "O input de usuario do jogador foi preenchido"),
                             errorMessage: "O input de usuario do jogador não foi preenchido"
                         });
                     },
 
-                    entreveUmValorValidoNoInputDeConfirmacaoDeUsuarioDoJogador: function () {
+                    entreveUmValorNoInputDeConfirmacaoDeUsuarioDoJogador: function (usuario) {
                         return this.waitFor({
                             viewName: CRIACAO_JOGADOR_VIEW_NAME,
                             controlType: CONTROL_TYPE_INPUT,
@@ -116,13 +109,13 @@ sap.ui.define([
                                     key: CHAVE_I18N_INPUT_USUARIO_CONFIRMACAO_JOGADOR
                                 }
                             },
-                            actions: new EnterText({ text: USUARIO_JOGADOR }),
+                            actions: new EnterText({ text: usuario }),
                             success: () => Opa5.assert.ok(true, "O input de confirmacao de usuario do jogador foi preenchido"),
                             errorMessage: "O input de confirmacao de usuario do jogador não foi preenchido"
                         });
                     },
 
-                    entreveUmValorValidoNoInputDeSenhaDoJogador: function () {
+                    entreveUmValorNoInputDeSenhaDoJogador: function (senha) {
                         return this.waitFor({
                             viewName: CRIACAO_JOGADOR_VIEW_NAME,
                             controlType: CONTROL_TYPE_INPUT,
@@ -132,13 +125,13 @@ sap.ui.define([
                                     key: CHAVE_I18N_INPUT_SENHA_JOGADOR
                                 }
                             },
-                            actions: new EnterText({ text: SENHA_JOGADOR_INVALIDO }),
+                            actions: new EnterText({ text: senha }),
                             success: () => Opa5.assert.ok(true, "O input de senha do jogador foi preenchido"),
                             errorMessage: "O input de senha do jogador não foi preenchido"
                         });
                     },
 
-                    entreveUmValorValidoNoInputDeConfirmacaoDeSenhaDoJogador: function () {
+                    entreveUmValorNoInputDeConfirmacaoDeSenhaDoJogador: function (senha) {
                         return this.waitFor({
                             viewName: CRIACAO_JOGADOR_VIEW_NAME,
                             controlType: CONTROL_TYPE_INPUT,
@@ -148,13 +141,13 @@ sap.ui.define([
                                     key: CHAVE_I18N_INPUT_SENHA_CONFIRMACAO_JOGADOR
                                 }
                             },
-                            actions: new EnterText({ text: SENHA_JOGADOR }),
+                            actions: new EnterText({ text: senha }),
                             success: () => Opa5.assert.ok(true, "O input de confimação de senha do jogador foi preenchido"),
                             errorMessage: "O input de confimação de senha do jogador não foi preenchido"
                         });
                     },
 
-                    pressionoOBotaoDeAdicionarJogador: function () {
+                    pressionaOBotaoDeAdicionarJogador: function () {
                         return this.waitFor({
                             viewName: CRIACAO_JOGADOR_VIEW_NAME,
                             controlType: CONTROL_TYPE_BOTAO,
@@ -173,18 +166,37 @@ sap.ui.define([
 
                 assertions: {
                     verificaSeAbreUmaCaixaDeDialogoIndicandoErro: function () {
-                        const mensagemEsperada = "Preencha sua senha no campo indicado.A Senha deve conter: Ao menos uma letra maiúscula [A-Z]. Ao menos uma letra minúscula [a-z]. Ao menos um número [0123456789]. Não deve conter caracteres especiais. Conter mais de 8 dígitos.A senha e a confirmação devem coincidir!";
+                        const mensagemEsperada = "Erro.";
                         return this.waitFor({
-                            id: "idCaixaDeMensagemDeErro",
-                            controlType: CONTROL_TYPE_MESSABOX,
-                            visible: true,
+                            controlType: CONTROL_TYPE_MESSAGEBOX,
                             check: function (MessageBox) {
-                                return MessageBox.getData() === mensagemEsperada
+                                return MessageBox[0].getTitle() == mensagemEsperada;
                             },
-                            success: () => Opa5.assert.ok(true, "deu bom"),
-                            errorMessage: "Deu ruim"
+                            success: () => Opa5.assert.ok(true, "O erro nos dados inseridos foi indentificado com sucesso"),
+                            errorMessage: "O erro nos dados inseridos não foi indentificado"
                         });
-                    }
+                    },
+
+                    verificaSeAbreUmaCaixaDeDialogoIndicandoSucesso: function () {
+                        const mensagemEsperada = "Sucesso.";
+                        return this.waitFor({
+                            controlType: CONTROL_TYPE_MESSAGEBOX,
+                            check: function (MessageBox) {
+                                return MessageBox[0].getTitle() == mensagemEsperada;
+                            },
+                            success: () => Opa5.assert.ok(true, "O jogador foi criado com sucesso"),
+                            errorMessage: "O jogador não foi criado"
+                        });
+                    },
+
+                    pressionaOBotaoDeFecharCaixaDeDialogo: function () {
+                        return this.waitFor({
+                            controlType: CONTROL_TYPE_BOTAO,
+                            actions: new Press(),
+                            success: () => Opa5.assert.ok(true, "O botão de fechar caixa de diálogo foi pressionado"),
+                            errorMessage: "O botão de fechar caixa de diálogo não foi pressionado"
+                        });
+                    },
                 },
             }
         });

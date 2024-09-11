@@ -24,7 +24,7 @@ sap.ui.define([
 
 		const TIPO_DATEPICKER = "sap.m.DatePicker";
 		const CHAVE_I18N_DATEPICKER = "ListagemJogador.Placeholder.DatePicker.DataDeCadastro";
-		const DATA = "3 de set. de 2024";
+		const DATA = "03/09/2024";
 
 		const TIPO_BOTAO = "sap.m.Button";
 		const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
@@ -51,7 +51,7 @@ sap.ui.define([
 						});
 					},
 
-					selecionoNaComboboxDeStatusDaContaContaAtiva: function () {
+					selecionoNaComboboxDeStatusDaContaAtiva: function () {
 
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
@@ -127,8 +127,7 @@ sap.ui.define([
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: "sap.ui.table.Table",
 							check: function (tabela) {
-
-								return tabela[0].getModel("Jogador").getData().length == quantidadeDeJogadores
+								return tabela[0].getModel("Jogador").getData().length == quantidadeDeJogadores;
 							},
 							success: () => Opa5.assert.ok(true, "A filtragem retornou a quantidade esperada de jogadores"),
 							errorMessage: "Não foi possível verificar a quantidade de jogadores filtrados no modelo JSON"
