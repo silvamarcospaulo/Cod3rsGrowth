@@ -40,7 +40,9 @@ sap.ui.define([
         },
 
         validarUsuarioJogador: function (usuarioJogador) {
-            if (!usuarioJogador || usuarioJogador.length < 8) {
+
+            debugger
+            if (!usuarioJogador || usuarioJogador.length < 6) {
                 return false;
             }
 

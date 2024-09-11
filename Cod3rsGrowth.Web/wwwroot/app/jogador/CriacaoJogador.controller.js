@@ -34,7 +34,7 @@ sap.ui.define([
     const valueStateDeErro = "Error";
     const ID_I18N_NOME_OBRIGATORIO = "CriacaoJogador.MessageToast.NomeObrigatorio";
     const ID_I18N_SOBRENOME_OBRIGATORIO = "CriacaoJogador.MessageToast.SobrenomeObrigatorio";
-    const ID_I18N_DATA_NASCIMENTO_OBRIGATORIO = "CriacaoJogador.MessageToast.DataDeNascimentoObrigatorio";
+    const ID_I18N_DATA_NASCIMENTO_OBRIGATORIO = "CriacaoJogador.MessageToast.DataNascimentoObrigatorio";
     const ID_I18N_DATA_NASCIMENTO_MAIOR_QUE_TREZE_ANOS = "CriacaoJogador.MessageToast.DataNascimentoMaiorQueTrezeAnos";
     const ID_I18N_USUARIO_OBRIGATORIO = "CriacaoJogador.MessageToast.UsuarioObrigatorio";
     const ID_I18N_USUARIO_INVALIDO = "CriacaoJogador.MessageToast.UsuarioInvalido";
@@ -42,6 +42,7 @@ sap.ui.define([
     const ID_I18N_SENHA_OBRIGATORIO = "CriacaoJogador.MessageToast.SenhaObrigatorio";
     const ID_I18N_SENHA_INVALIDA = "CriacaoJogador.MessageToast.SenhaInvalida";
     const ID_I18N_CONFIRMACAO_SENHA_INCORRETA = "CriacaoJogador.MessageToast.ConfirmacaoSenhaIncorreta";
+    const QUEBRA_DE_LINHA = "\n";
 
 
     let MENSAGENS_DE_ERRO;
@@ -105,7 +106,7 @@ sap.ui.define([
                         title: requisicao.Title,
                         status: requisicao.Status,
                         type: requisicao.Type,
-                        details: requisicao.Detail
+                        details: requisicao.Detail.replace("at Cod3rs", "")
                     };
 
                     let mensagemFormatada =
@@ -144,14 +145,13 @@ sap.ui.define([
             var ButtonType = mobileLibrary.ButtonType;
             var DialogType = mobileLibrary.DialogType;
 
-            debugger
             let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");
             let botao;
 
             if (estadoDoDialogo === ValueState.Error) {
                 botao = new Button({
                     type: ButtonType.Emphasized,
-                    text: "OK",
+                    text: botaoCaixaDeDialogo,
                     press: function () {
                         this.oErrorMessageDialog.close();
                     }.bind(this)
@@ -159,7 +159,7 @@ sap.ui.define([
             } else {
                 botao = new Button({
                     type: ButtonType.Emphasized,
-                    text: "OK",
+                    text: botaoCaixaDeDialogo,
                     press: function () {
                         this.aoPressionarRetornarNavegacao();
                     }.bind(this)
@@ -181,7 +181,7 @@ sap.ui.define([
             let nomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().nomeJogador;
             if (!validador.validarNomeESobrenomeJogador(nomeJogador)) {
                 this.getView().byId(ID_NOME_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_NOME_OBRIGATORIO);
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_NOME_OBRIGATORIO) + QUEBRA_DE_LINHA;
                 return false;
             } else {
                 this.getView().byId(ID_NOME_JOGADOR_INPUT).setValueState();
@@ -193,7 +193,7 @@ sap.ui.define([
             let sobrenomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().sobrenomeJogador;
             if (!validador.validarNomeESobrenomeJogador(sobrenomeJogador)) {
                 this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SOBRENOME_OBRIGATORIO);
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SOBRENOME_OBRIGATORIO) + QUEBRA_DE_LINHA;
                 return false;
             } else {
                 this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValueState();
@@ -203,23 +203,24 @@ sap.ui.define([
 
         validarDataDeNascimentoJogador: function () {
             let dataNascimentoJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().dataNascimentoJogador;
-            if (!validador.validarDataDeNascimentoJogador(dataNascimentoJogador)) {
-                this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_DATA_NASCIMENTO_OBRIGATORIO);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_DATA_NASCIMENTO_MAIOR_QUE_TREZE_ANOS);
-                return false;
-            } else {
+            if (validador.validarDataDeNascimentoJogador(dataNascimentoJogador)) {
                 this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValueState();
                 return true;
+            } else {
+                this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValueState(valueStateDeErro);
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_DATA_NASCIMENTO_OBRIGATORIO) + QUEBRA_DE_LINHA;
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_DATA_NASCIMENTO_MAIOR_QUE_TREZE_ANOS) + QUEBRA_DE_LINHA;
+                return false;
             }
         },
 
         validarUsuarioJogador: function () {
+            debugger
             let usuarioJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().usuarioJogador;
             if (!validador.validarUsuarioJogador(usuarioJogador)) {
                 this.getView().byId(ID_USUARIO_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_USUARIO_OBRIGATORIO);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_USUARIO_INVALIDO);
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_USUARIO_OBRIGATORIO) + QUEBRA_DE_LINHA;
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_USUARIO_INVALIDO) + QUEBRA_DE_LINHA;
                 return false;
             } else {
                 this.getView().byId(ID_USUARIO_JOGADOR_INPUT).setValueState();
@@ -231,7 +232,7 @@ sap.ui.define([
             let jogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData();
             if (!validador.validarConfirmacaoDeUsuarioJogador(jogador.usuarioJogador, jogador.usuarioConfirmacaoJogador)) {
                 this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_CONFIRMACAO_USUARIO_INCORRETA);
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_CONFIRMACAO_USUARIO_INCORRETA) + QUEBRA_DE_LINHA;
                 return false;
             } else {
                 this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).setValueState();
@@ -243,8 +244,8 @@ sap.ui.define([
             let senhaJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().senhaHashJogador;
             if (!validador.validarSenhaJogador(senhaJogador)) {
                 this.getView().byId(ID_SENHA_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SENHA_OBRIGATORIO);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SENHA_INVALIDA);
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SENHA_OBRIGATORIO) + QUEBRA_DE_LINHA;
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SENHA_INVALIDA) + QUEBRA_DE_LINHA;
                 return false;
             } else {
                 this.getView().byId(ID_SENHA_JOGADOR_INPUT).setValueState();
@@ -256,7 +257,7 @@ sap.ui.define([
             let jogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData();
             if (!validador.validarConfirmacaoDeSenhaJogador(jogador.senhaHashJogador, jogador.senhaHashConfirmacaoJogador)) {
                 this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_CONFIRMACAO_SENHA_INCORRETA);
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_CONFIRMACAO_SENHA_INCORRETA) + QUEBRA_DE_LINHA;
                 return false;
             } else {
                 this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).setValueState();

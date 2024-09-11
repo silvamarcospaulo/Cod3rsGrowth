@@ -40,7 +40,7 @@
             let urlPesquisaApi = "/api/";
             let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo + "/";
             let urlRequisicao = new URL(urlPagina);
-
+            
             let resposta = await fetch(urlRequisicao, {
                 method: metodoDeRequisicao,
                 headers: {
