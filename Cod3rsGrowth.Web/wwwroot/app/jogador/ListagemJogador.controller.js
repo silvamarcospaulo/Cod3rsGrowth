@@ -56,5 +56,10 @@ sap.ui.define([
             const rotaTelaDeCriacao = "criacaoJogador";
             return this.navegarPara(rotaTelaDeCriacao);
         },
+
+        aoPressionarAbreTelaDeDetalhesDeJogador: function (){
+            const rotaTelaDeDetalhes = "detalhesJogador";
+            return this.navegarPara(rotaTelaDeDetalhes);
+        },
     });
 });
