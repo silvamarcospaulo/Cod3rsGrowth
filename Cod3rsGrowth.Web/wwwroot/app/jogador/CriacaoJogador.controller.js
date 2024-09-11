@@ -102,18 +102,21 @@ sap.ui.define([
                     this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
                 } else {
                     debugger
-                    let title = requisicao.Title;
-                    let details = requisicao.Detail;
-                    let type = requisicao.type;
-                    let status = requisicao.Status;
 
                     let mensagemDeErro = {
-                        title: title,
-                        type: type,
-                        status: status
+                        title: requisicao.Title,
+                        status: requisicao.Status,
+                        type: requisicao.Type,
+                        details: requisicao.Detail
                     };
 
-                    this.abrirDialogoErroApi(title, mensagemDeErro);
+                    let mensagemFormatada =
+                        "Título: " + mensagemDeErro.title + "\n" +
+                        "Status: " + mensagemDeErro.status + "\n" +
+                        "Tipo: " + mensagemDeErro.type + "\n" +
+                        "Detalhes: " + mensagemDeErro.details;
+
+                    this.abrirDialogo(mensagemDeErro.title, mensagemFormatada, estadoDoDialogoDeErro);
                 }
             }
         },
@@ -145,56 +148,36 @@ sap.ui.define([
 
             let botaoCaixaDeDialogo = "OK";
             let botao;
+            let idCaixaDeDialogo;
 
             if (estadoDoDialogo === ValueState.Error) {
                 botao = new Button({
+                    id: "idBotaoCaixaDeMensagemDeErro",
                     type: ButtonType.Emphasized,
                     text: botaoCaixaDeDialogo,
                     press: function () {
                         this.oErrorMessageDialog.close();
                     }.bind(this)
                 });
+                idCaixaDeDialogo = "idCaixaDeMensagemDeErro";
             } else {
                 botao = new Button({
+                    id: "idBotaoCaixaDeMensagemDeSucesso",
                     type: ButtonType.Emphasized,
                     text: botaoCaixaDeDialogo,
                     press: function () {
                         this.aoPressionarRetornarNavegacao();
                     }.bind(this)
                 });
+                idCaixaDeDialogo = "idCaixaDeMensagemDeSucesso";
             }
 
             this.oErrorMessageDialog = new Dialog({
+                id: idCaixaDeDialogo,
                 type: DialogType.Message,
                 title: tituloCaixaDeDialogo,
                 state: estadoDoDialogo,
                 content: new Text({ text: mensagem }),
-                beginButton: botao
-            });
-
-            this.oErrorMessageDialog.open();
-        },
-
-        abrirDialogoErroApi: function (tituloCaixaDeDialogo, mensagem) {
-            var ButtonType = mobileLibrary.ButtonType;
-            var DialogType = mobileLibrary.DialogType;
-
-            let botaoCaixaDeDialogo = "OK";
-            let botao;
-
-            botao = new Button({
-                type: ButtonType.Emphasized,
-                text: botaoCaixaDeDialogo,
-                press: function () {
-                    this.oErrorMessageDialog.close();
-                }.bind(this)
-            });
-
-            this.oErrorMessageDialog = new Dialog({
-                type: DialogType.Message,
-                title: tituloCaixaDeDialogo,
-                state: ValueState.Error,
-                content: new Text ({mensagem}),
                 beginButton: botao
             });
 

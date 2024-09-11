@@ -127,7 +127,7 @@ sap.ui.define([
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: "sap.ui.table.Table",
 							check: function (tabela) {
-								
+
 								return tabela[0].getModel("Jogador").getData().length == quantidadeDeJogadores
 							},
 							success: () => Opa5.assert.ok(true, "A filtragem retornou a quantidade esperada de jogadores"),

@@ -24,6 +24,8 @@ sap.ui.define([
         When.naPaginaDeCriacaoDeJogador.entreveUmValorValidoNoInputDeConfirmacaoDeSenhaDoJogador();
         When.naPaginaDeCriacaoDeJogador.pressionoOBotaoDeAdicionarJogador();
 
-        //Then.iTeardownMyApp();
+        Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
+
+        Then.iTeardownMyApp();
     });
 });

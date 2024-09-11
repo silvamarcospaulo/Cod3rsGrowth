@@ -17,6 +17,7 @@ sap.ui.define([
         const CONTROL_TYPE_INPUT = "sap.m.Input";
         const CONTROL_TYPE_BOTAO = "sap.m.Button";
         const CONTROL_TYPE_DATEPICKER = "sap.m.DatePicker";
+        const CONTROL_TYPE_MESSABOX = "sap.m.MessageBox";
 
         const NOME_JOGADOR = "Jucleiton";
         const SOBRENOME_JOGADOR = "Silva";
@@ -171,6 +172,19 @@ sap.ui.define([
                 },
 
                 assertions: {
+                    verificaSeAbreUmaCaixaDeDialogoIndicandoErro: function () {
+                        const mensagemEsperada = "Preencha sua senha no campo indicado.A Senha deve conter: Ao menos uma letra maiúscula [A-Z]. Ao menos uma letra minúscula [a-z]. Ao menos um número [0123456789]. Não deve conter caracteres especiais. Conter mais de 8 dígitos.A senha e a confirmação devem coincidir!";
+                        return this.waitFor({
+                            id: "idCaixaDeMensagemDeErro",
+                            controlType: CONTROL_TYPE_MESSABOX,
+                            visible: true,
+                            check: function (MessageBox) {
+                                return MessageBox.getData() === mensagemEsperada
+                            },
+                            success: () => Opa5.assert.ok(true, "deu bom"),
+                            errorMessage: "Deu ruim"
+                        });
+                    }
                 },
             }
         });
