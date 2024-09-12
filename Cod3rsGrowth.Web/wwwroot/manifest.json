@@ -70,7 +70,7 @@
 					"target": "criacaoJogador"
 				},
 				{
-					"pattern": "detalhesJogador",
+					"pattern": "detalhesJogador{id}",
 					"name": "detalhesJogador",
 					"target": "detalhesJogador"
 				}
