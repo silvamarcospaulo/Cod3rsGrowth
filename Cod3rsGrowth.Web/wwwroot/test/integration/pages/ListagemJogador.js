@@ -10,6 +10,7 @@ sap.ui.define([
 		"use strict";
 
 		const LISTAGEM_JOGADOR_VIEW_NAME = "app.jogador.ListagemJogador";
+		const CRIACAO_JOGADOR_VIEW_NAME = "app.jogador.CriacaoJogador";
 		const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
 		const NOME_PROPRIEDADE_TEXT = "text";
 
@@ -28,6 +29,7 @@ sap.ui.define([
 
 		const TIPO_BOTAO = "sap.m.Button";
 		const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
+		const CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR_FILTROS = "ListagemJogador.Toolbar.Buttom.AdicionarJogador";
 
 		Opa5.createPageObjects({
 
@@ -110,7 +112,23 @@ sap.ui.define([
 							matchers: {
 								i18NText: {
 									propertyName: NOME_PROPRIEDADE_TEXT,
-									key: CHAVE_I18N_BOTAO_APLICAR_FILTROS
+									key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOOR__FILTROS
+								}
+							},
+							actions: new Press(),
+							success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
+							errorMessage: "O botão de filtrar não foi clicado"
+						});
+					},
+
+					aoClicarNoBotaoAdicionarJogadorRedirecionaParaATelaDeCadastro: function () {
+						return this.waitFor({
+							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
+							controlType: TIPO_BOTAO,
+							matchers: {
+								i18NText: {
+									propertyName: NOME_PROPRIEDADE_TEXT,
+									key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR_FILTROS
 								}
 							},
 							actions: new Press(),
@@ -118,7 +136,6 @@ sap.ui.define([
 							errorMessage: "O botão de filtrar não foi clicado"
 						});
 					}
-
 				},
 
 				assertions: {

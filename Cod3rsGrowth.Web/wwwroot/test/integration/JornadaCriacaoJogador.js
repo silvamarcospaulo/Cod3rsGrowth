@@ -19,7 +19,6 @@ sap.ui.define([
     const SENHA_JOGADOR_INVALIDO = "-Senha123";
 
     opaTest("Ao realizar a criação com todos os campos válidos, cria um jogador e deve abrir uma caixa de diálogo informando sucesso", (Given, When, Then) => {
-
         Given.iStartMyUIComponent({
             componentConfig: {
                 name: "mtgdeckbuilder"
@@ -40,17 +39,11 @@ sap.ui.define([
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
-        Then.iTeardownMyApp();
+        When.naPaginaDeListagemJogador.aoClicarNoBotaoAdicionarJogadorRedirecionaParaATelaDeCadastro();
     });
 
     opaTest("Ao realizar a criação com campo nome inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
 
-        Given.iStartMyUIComponent({
-            componentConfig: {
-                name: "mtgdeckbuilder"
-            },
-            hash: "criacaoJogador"
-        });
 
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR_INVALIDO);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
@@ -65,17 +58,11 @@ sap.ui.define([
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
-        Then.iTeardownMyApp();
+
     });
 
     opaTest("Ao realizar a criação com campo sobrenome inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
 
-        Given.iStartMyUIComponent({
-            componentConfig: {
-                name: "mtgdeckbuilder"
-            },
-            hash: "criacaoJogador"
-        });
 
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR_INVALIDO);
@@ -90,17 +77,12 @@ sap.ui.define([
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
-        Then.iTeardownMyApp();
+
     });
 
     opaTest("Ao realizar a criação com campo data de nascimento inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
 
-        Given.iStartMyUIComponent({
-            componentConfig: {
-                name: "mtgdeckbuilder"
-            },
-            hash: "criacaoJogador"
-        });
+
 
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
@@ -115,17 +97,11 @@ sap.ui.define([
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
-        Then.iTeardownMyApp();
+
     });
 
     opaTest("Ao realizar a criação com campo usuário inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
 
-        Given.iStartMyUIComponent({
-            componentConfig: {
-                name: "mtgdeckbuilder"
-            },
-            hash: "criacaoJogador"
-        });
 
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
@@ -140,17 +116,12 @@ sap.ui.define([
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
-        Then.iTeardownMyApp();
+
     });
 
     opaTest("Ao realizar a criação com campo de confirmação de usuário que não coincide com o campo de usuário, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
 
-        Given.iStartMyUIComponent({
-            componentConfig: {
-                name: "mtgdeckbuilder"
-            },
-            hash: "criacaoJogador"
-        });
+
 
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
@@ -165,17 +136,12 @@ sap.ui.define([
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
-        Then.iTeardownMyApp();
+
     });
 
     opaTest("Ao realizar a criação com campo senha inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
 
-        Given.iStartMyUIComponent({
-            componentConfig: {
-                name: "mtgdeckbuilder"
-            },
-            hash: "criacaoJogador"
-        });
+
 
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
@@ -190,17 +156,11 @@ sap.ui.define([
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
-        Then.iTeardownMyApp();
     });
 
     opaTest("Ao realizar a criação com campo de confirmação de senha que não coincide com o campo de senha, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
 
-        Given.iStartMyUIComponent({
-            componentConfig: {
-                name: "mtgdeckbuilder"
-            },
-            hash: "criacaoJogador"
-        });
+
 
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);

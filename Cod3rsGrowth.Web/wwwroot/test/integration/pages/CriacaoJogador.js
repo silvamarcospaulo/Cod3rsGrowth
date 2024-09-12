@@ -197,6 +197,14 @@ sap.ui.define([
                             errorMessage: "O botão de fechar caixa de diálogo não foi pressionado"
                         });
                     },
+
+                    aTelaDeCriacaoFoiCarregada: function () {
+						return this.waitFor({
+							viewName: CRIACAO_JOGADOR_VIEW_NAME,
+							success: () => Opa5.assert.ok(true, "A tela de cadastro foi acessada com sucesso"),
+							errorMessage: "A tela de cadastro não foi acessada"
+						});
+					}
                 },
             }
         });
