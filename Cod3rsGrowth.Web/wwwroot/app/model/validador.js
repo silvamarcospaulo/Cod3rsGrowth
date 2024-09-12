@@ -5,26 +5,26 @@ sap.ui.define([
 
     return {
 
-        validarNomeESobrenomeJogador: function (nomeJogador) {
-            if (!nomeJogador) {
-                return false;
-            }
-
-            const regex = /[^a-zA-Z\s]/;
-
-            if (regex.test(nomeJogador)) {
+        validarSeCampoPossuiValor: function (valorDoCampo){
+            if (!valorDoCampo) {
                 return false;
             }
 
             return true;
         },
 
-        validarDataDeNascimentoJogador: function (dataNascimentoJogador) {
-            const idadeMinimaParaCriarConta = 13;
+        validarSeCampoPossuiSomenteLetrasMaiusculasEMinusculas: function (valorDoCampo) {
+            const regex = /[^a-zA-Z\s]/;
 
-            if (!dataNascimentoJogador) {
+            if (regex.test(valorDoCampo)) {
                 return false;
             }
+
+            return true;
+        },
+
+        validarSeJogadorEMaiorQueTrezeAnos: function (dataNascimentoJogador) {
+            const idadeMinimaParaCriarConta = 13;
 
             let dataNascimento = new Date(dataNascimentoJogador);
 
@@ -39,11 +39,7 @@ sap.ui.define([
             return true;
         },
 
-        validarUsuarioJogador: function (usuarioJogador) {
-            if (!usuarioJogador || usuarioJogador.length < 8) {
-                return false;
-            }
-
+        validarCaracteresUsuarioJogador: function (usuarioJogador) {
             const regex = /^[a-z]+$/;
 
             if (!regex.test(usuarioJogador)) {
@@ -53,19 +49,17 @@ sap.ui.define([
             return true;
         },
 
-        validarConfirmacaoDeUsuarioJogador: function (usuarioJogador, usuarioConfirmacaoJogador) {
-            if (usuarioJogador != usuarioConfirmacaoJogador || !usuarioConfirmacaoJogador) {
+        validarUsuarioPossuiAoMenosSeisDigitos: function (usuarioJogador) {
+            const tamanhoMinimoUsuario = 6;
+
+            if (usuarioJogador.length < tamanhoMinimoUsuario) {
                 return false;
             }
 
             return true;
         },
 
-        validarSenhaJogador: function (senhaJogador) {
-            if (!senhaJogador || senhaJogador.length < 8) {
-                return false;
-            }
-
+        validarSenhaPossuiOsCaracteresNecessarios: function (senhaJogador) {
             const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
             if (!regex.test(senhaJogador)) {
@@ -75,12 +69,22 @@ sap.ui.define([
             return true;
         },
 
-        validarConfirmacaoDeSenhaJogador: function (senhaJogador, senhaConfirmacaoJogador) {
-            if (senhaJogador != senhaConfirmacaoJogador || !senhaConfirmacaoJogador) {
+        validarSenhaPossuiAoMenosOitoDigitos: function (senhaJogador) {
+            const tamanhoMinimoSenha = 8;
+
+            if (senhaJogador.length < tamanhoMinimoSenha) {
                 return false;
             }
 
             return true;
-        }
+        },
+
+        validarSeOsValoresDosCamposSaoIguais: function (valorDoCampo, valorDoCampoDeConfirmacao){
+            if (valorDoCampo !== valorDoCampoDeConfirmacao) {
+                return false;
+            }
+
+            return true;
+        },
     };
 });

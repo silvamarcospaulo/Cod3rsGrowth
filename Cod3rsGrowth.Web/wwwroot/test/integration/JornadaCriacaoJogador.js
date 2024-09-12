@@ -11,37 +11,37 @@ sap.ui.define([
     const DATA_DE_NASCIMENTO_JOGADOR = "03/03/2003";
     const USUARIO_JOGADOR = "jucleitonnnnsilva";
     const SENHA_JOGADOR = "Senha123";
-    
+
     const NOME_JOGADOR_INVALIDO = "Jucleiton2";
     const SOBRENOME_JOGADOR_INVALIDO = "Silva2";
     const DATA_DE_NASCIMENTO_JOGADOR_INVALIDO = "03/03/2024";
     const USUARIO_JOGADOR_INVALIDO = "jucleitonsilva1";
     const SENHA_JOGADOR_INVALIDO = "-Senha123";
 
-    // opaTest("Ao realizar a criação com todos os campos válidos, cria um jogador e deve abrir uma caixa de diálogo informando sucesso", (Given, When, Then) => {
+    opaTest("Ao realizar a criação com todos os campos válidos, cria um jogador e deve abrir uma caixa de diálogo informando sucesso", (Given, When, Then) => {
 
-    //     Given.iStartMyUIComponent({
-    //         componentConfig: {
-    //             name: "mtgdeckbuilder"
-    //         },
-    //         hash: "criacaoJogador"
-    //     });
+        Given.iStartMyUIComponent({
+            componentConfig: {
+                name: "mtgdeckbuilder"
+            },
+            hash: "criacaoJogador"
+        });
 
-    //     When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
-    //     When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
-    //     When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR);
-    //     When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeUsuarioDoJogador(USUARIO_JOGADOR);
-    //     When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeConfirmacaoDeUsuarioDoJogador(USUARIO_JOGADOR);
-    //     When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSenhaDoJogador(SENHA_JOGADOR);
-    //     When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeConfirmacaoDeSenhaDoJogador(SENHA_JOGADOR);
-    //     When.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeAdicionarJogador();
+        When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
+        When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
+        When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR);
+        When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeUsuarioDoJogador(USUARIO_JOGADOR);
+        When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeConfirmacaoDeUsuarioDoJogador(USUARIO_JOGADOR);
+        When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSenhaDoJogador(SENHA_JOGADOR);
+        When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeConfirmacaoDeSenhaDoJogador(SENHA_JOGADOR);
+        When.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeAdicionarJogador();
 
-    //     Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoSucesso();
+        Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoSucesso();
 
-    //     Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
+        Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
-    //     Then.iTeardownMyApp();
-    // });
+        Then.iTeardownMyApp();
+    });
 
     opaTest("Ao realizar a criação com campo nome inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
 
@@ -64,7 +64,7 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
-        
+
         Then.iTeardownMyApp();
     });
 
