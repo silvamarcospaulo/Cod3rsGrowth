@@ -68,6 +68,11 @@
 					"pattern": "criacaoJogador",
 					"name": "criacaoJogador",
 					"target": "criacaoJogador"
+				},
+				{
+					"pattern": "detalhesJogador",
+					"name": "detalhesJogador",
+					"target": "detalhesJogador"
 				}
 			],
 			"targets": {
@@ -85,6 +90,11 @@
 					"id": "criacaoJogador",
 					"path": "mtgdeckbuilder.app.jogador",
 					"name": "CriacaoJogador"
+				},
+				"detalhesJogador": {
+					"id": "detalhesJogador",
+					"path": "mtgdeckbuilder.app.jogador",
+					"name": "DetalhesJogador"
 				}
 			}
 		}

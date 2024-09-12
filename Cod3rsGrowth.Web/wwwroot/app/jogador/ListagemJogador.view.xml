@@ -20,6 +20,7 @@
                 enableSelectAll="false"
                 selectionMode="Single"
                 selectionBehavior="RowOnly"
+                press="aoPressionarAbreTelaDeDetalhesDeJogador"
                 width="auto"
                 visibleRowCountMode="Auto"
                 enableColumnReordering="false"

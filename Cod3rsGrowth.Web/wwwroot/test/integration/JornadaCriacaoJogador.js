@@ -11,7 +11,7 @@ sap.ui.define([
     const DATA_DE_NASCIMENTO_JOGADOR = "03/03/2003";
     const USUARIO_JOGADOR = "jucleitonnnnsilva";
     const SENHA_JOGADOR = "Senha123";
-    
+
     const NOME_JOGADOR_INVALIDO = "Jucleiton2";
     const SOBRENOME_JOGADOR_INVALIDO = "Silva2";
     const DATA_DE_NASCIMENTO_JOGADOR_INVALIDO = "03/03/2024";
@@ -64,7 +64,7 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
-        
+
         Then.iTeardownMyApp();
     });
 

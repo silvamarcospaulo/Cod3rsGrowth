@@ -1,6 +1,5 @@
 ﻿sap.ui.define([
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/ValueState",
     "sap/ui/core/library",
     "sap/m/Dialog",
     "sap/m/Button",
@@ -38,7 +37,7 @@
         criar: async function (objeto, nomeDoModelo) {
             const metodoDeRequisicao = "POST";
             let urlPesquisaApi = "/api/";
-            let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo + "/";
+            let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
             let urlRequisicao = new URL(urlPagina);
             
             let resposta = await fetch(urlRequisicao, {

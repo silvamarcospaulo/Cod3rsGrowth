@@ -32,8 +32,13 @@ sap.ui.define([
     const TIPO_DE_INPUT_TEXTO = "Text";
     const i18n = "i18n";
     const valueStateDeErro = "Error";
+    const ID_I18N_TITULO_CAIXA_DE_DIALOGO_SUCESSO = "CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso";
+    const ID_I18N_TEXTO_CAIXA_DE_DIALOGO_SUCESSO = "CriacaoJogador.MessageToast.MensagemDeSucesso";
+    const ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO = "CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro"
     const ID_I18N_NOME_OBRIGATORIO = "CriacaoJogador.MessageToast.NomeObrigatorio";
+    const ID_I18N_NOME_COM_CARACTERES_INVALIDOS = "CriacaoJogador.MessageToast.NomeComCaracteresInvalidos";
     const ID_I18N_SOBRENOME_OBRIGATORIO = "CriacaoJogador.MessageToast.SobrenomeObrigatorio";
+    const ID_I18N_SOBRENOME_COM_CARACTERES_INVALIDOS = "CriacaoJogador.MessageToast.SobrenomeComCaracteresInvalidos";
     const ID_I18N_DATA_NASCIMENTO_OBRIGATORIO = "CriacaoJogador.MessageToast.DataNascimentoObrigatorio";
     const ID_I18N_DATA_NASCIMENTO_MAIOR_QUE_TREZE_ANOS = "CriacaoJogador.MessageToast.DataNascimentoMaiorQueTrezeAnos";
     const ID_I18N_USUARIO_OBRIGATORIO = "CriacaoJogador.MessageToast.UsuarioObrigatorio";
@@ -43,8 +48,6 @@ sap.ui.define([
     const ID_I18N_SENHA_INVALIDA = "CriacaoJogador.MessageToast.SenhaInvalida";
     const ID_I18N_CONFIRMACAO_SENHA_INCORRETA = "CriacaoJogador.MessageToast.ConfirmacaoSenhaIncorreta";
     const QUEBRA_DE_LINHA = "\n";
-
-
     let MENSAGENS_DE_ERRO;
 
     return BaseController.extend(CONTROLLER, {
@@ -56,21 +59,43 @@ sap.ui.define([
         },
 
         aoCoincidirRota: function () {
-            this.processarAcao(async () => {
-                await Promise.all([
-                ])
-            })
+            this.processarAcao(async () => { })
         },
 
         aoClicarCriaNovoUsuario: async function () {
+
+            this.ObterDadosDosInputs();
+            let dadosJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData();
+            let jogadorCriacao = JSON.stringify(dadosJogador);
+
+            if (this.validarJogador()) {
+                const requisicao = await Repository.criar(jogadorCriacao, ROLE_JOGADOR);
+
+                if (requisicao.ok) {
+                    const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_SUCESSO);
+                    const estadoDoDialogoDeSucesso = ValueState.Success;
+                    const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TEXTO_CAIXA_DE_DIALOGO_SUCESSO);
+
+                    this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
+                } else {
+                    let mensagemDeErro = this.criarObjetoDeMensagemDeErroRFC(requisicao);
+
+                    const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO);
+                    const estadoDoDialogoDeErro = ValueState.Error;
+
+                    this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagemDeErro, estadoDoDialogoDeErro);
+                }
+            }
+        },
+
+        ObterDadosDosInputs: function () {
             let nomeJogadorInput = this.getView().byId(ID_NOME_JOGADOR_INPUT).getValue();
             let sobrenomeJogadornomeJogadorInput = this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).getValue();
-            let dataNascimentoJogadorInput = new Date(this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).getValue());
+            let dataNascimentoJogadorInput = this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).getDateValue();
             let usuarioJogadorInput = this.getView().byId(ID_USUARIO_JOGADOR_INPUT).getValue();
             let usuarioConfirmacaoJogadorInput = this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).getValue();
             let senhaHashJogadorInput = this.getView().byId(ID_SENHA_JOGADOR_INPUT).getValue();
             let senhaHashConfirmacaoJogadorInput = this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).getValue();
-
 
             let modeloJogadorCriacao = new JSONModel(
                 {
@@ -86,50 +111,60 @@ sap.ui.define([
             );
 
             this.getView().setModel(modeloJogadorCriacao, NOME_DO_MODELO_DE_CRIACAO_JOGADOR);
+        },
 
-            let dadosJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData();
+        criarObjetoDeMensagemDeErroRFC: function (requisicao) {
+            let mensagemDeErro = {
+                title: requisicao.Title,
+                status: requisicao.Status,
+                type: requisicao.Type,
+                details: requisicao.Detail
+            };
 
-            let jogadorCriacao = JSON.stringify(dadosJogador);
+            let regex = /at .*/s;
+            let detalhesLimpos = mensagemDeErro.details.replace(regex, '').trim();
 
-            const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
-            const estadoDoDialogoDeErro = ValueState.Error;
+            detalhesLimpos = detalhesLimpos.replace(/(\r?\n\s*){2,}/g, '\n\n').trim();
 
-            if (this.validarJogador()) {
-                let requisicao = await Repository.criar(jogadorCriacao, ROLE_JOGADOR);
-                if (requisicao.ok) {
-                    const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
-                    const estadoDoDialogoDeSucesso = ValueState.Success;
-                    const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.MensagemDeSucesso");
-                    this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
-                } else {
-                    let mensagemDeErro = {
-                        title: requisicao.Title,
-                        status: requisicao.Status,
-                        type: requisicao.Type,
-                        details: requisicao.Detail.replace("at Cod3rs", "")
-                    };
+            let mensagemFormatada =
+                "Título: " + mensagemDeErro.title + "\n" +
+                "Status: " + mensagemDeErro.status + "\n" +
+                "Tipo: " + mensagemDeErro.type + "\n" +
+                "Detalhes: " + detalhesLimpos;
 
-                    let mensagemFormatada =
-                        "Título: " + mensagemDeErro.title + "\n" +
-                        "Status: " + mensagemDeErro.status + "\n" +
-                        "Tipo: " + mensagemDeErro.type + "\n" +
-                        "Detalhes: " + mensagemDeErro.details;
-
-                    this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagemFormatada, estadoDoDialogoDeErro);
-                }
-            }
+            return mensagemFormatada;
         },
 
         validarJogador: function () {
             MENSAGENS_DE_ERRO = "";
 
-            let nomeValido = this.validarNomeJogador();
-            let sobrenomeValido = this.validarSobrenomeJogador();
-            let dataNascimentoValido = this.validarDataDeNascimentoJogador();
-            let usuarioValido = this.validarUsuarioJogador();
-            let confirmacaoUsuarioValido = this.validarConfirmacaoUsuarioJogador();
-            let senhaValida = this.validarSenhaJogador();
-            let confirmacaoSenhaValida = this.validarConfirmacaoSenhaJogador();
+            let nomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().nomeJogador;
+            let nomeNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(nomeJogador), ID_NOME_JOGADOR_INPUT, ID_I18N_NOME_OBRIGATORIO);
+            let nomePossuiSomenteLetrasMaiusculasEMenusculas = this.aplicarValidacao(validador.validarSeCampoPossuiSomenteLetrasMaiusculasEMinusculas(nomeJogador), ID_NOME_JOGADOR_INPUT, ID_I18N_NOME_COM_CARACTERES_INVALIDOS);
+
+            let sobrenomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().sobrenomeJogador;
+            let sobrenomeNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(sobrenomeJogador), ID_SOBRENOME_JOGADOR_INPUT, ID_I18N_SOBRENOME_OBRIGATORIO);
+            let sobrenomePossuiSomenteLetrasMaiusculasEMenusculas = this.aplicarValidacao(validador.validarSeCampoPossuiSomenteLetrasMaiusculasEMinusculas(sobrenomeJogador), ID_SOBRENOME_JOGADOR_INPUT, ID_I18N_SOBRENOME_COM_CARACTERES_INVALIDOS);
+
+            let dataNascimentoJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().dataNascimentoJogador;
+            let dataNascimentoNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(dataNascimentoJogador), ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT, ID_I18N_DATA_NASCIMENTO_OBRIGATORIO);
+            let dataNascimentoMaiorQueTrezeAnos = this.aplicarValidacao(validador.validarSeJogadorEMaiorQueTrezeAnos(dataNascimentoJogador), ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT, ID_I18N_DATA_NASCIMENTO_MAIOR_QUE_TREZE_ANOS);
+
+            let usuarioJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().usuarioJogador;
+            let usuarioNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_OBRIGATORIO);
+            let usuarioPossuiAoMenosSeisDigitos = this.aplicarValidacao(validador.validarUsuarioPossuiAoMenosSeisDigitos(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_INVALIDO);
+            let usuarioPossuiSomenteLetrasMinusculas = this.aplicarValidacao(validador.validarCaracteresUsuarioJogador(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_INVALIDO);
+
+            let usuarioConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().usuarioConfirmacaoJogador;
+            let usuarioEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(usuarioJogador, usuarioConfirmacaoJogador), ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_USUARIO_INCORRETA);
+
+            let senhaJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().senhaHashJogador;
+            let senhaNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_OBRIGATORIO);
+            let senhaPossuiAoMenosOitoDigitos = this.aplicarValidacao(validador.validarSenhaPossuiAoMenosOitoDigitos(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
+            let senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero = this.aplicarValidacao(validador.validarSenhaPossuiOsCaracteresNecessarios(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
+
+            let senhaHashConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().senhaHashConfirmacaoJogador;
+            let senhaEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(senhaJogador, senhaHashConfirmacaoJogador), ID_SENHA_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_SENHA_INCORRETA);
 
             if (MENSAGENS_DE_ERRO) {
                 let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
@@ -137,14 +172,18 @@ sap.ui.define([
                 this.abrirDialogo(tituloCaixaDeDialogoDeErro, MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
             }
 
-            return nomeValido && sobrenomeValido && dataNascimentoValido && usuarioValido &&
-                confirmacaoUsuarioValido && senhaValida && confirmacaoSenhaValida;
+            return nomeNaoENulo && nomePossuiSomenteLetrasMaiusculasEMenusculas
+                && sobrenomeNaoENulo && sobrenomePossuiSomenteLetrasMaiusculasEMenusculas
+                && dataNascimentoNaoENulo && dataNascimentoMaiorQueTrezeAnos
+                && usuarioNaoENulo && usuarioPossuiAoMenosSeisDigitos
+                && usuarioPossuiSomenteLetrasMinusculas && usuarioEConfirmacaoCompativeis
+                && senhaNaoENulo && senhaPossuiAoMenosOitoDigitos
+                && senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero && senhaEConfirmacaoCompativeis;
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
             var ButtonType = mobileLibrary.ButtonType;
             var DialogType = mobileLibrary.DialogType;
-
             let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");
             let botao;
 
@@ -177,90 +216,13 @@ sap.ui.define([
             this.oErrorMessageDialog.open();
         },
 
-        validarNomeJogador: function () {
-            let nomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().nomeJogador;
-            if (!validador.validarNomeESobrenomeJogador(nomeJogador)) {
-                this.getView().byId(ID_NOME_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_NOME_OBRIGATORIO) + QUEBRA_DE_LINHA;
+        aplicarValidacao: function (validacao, idInput, idI18n) {
+            if (!validacao) {
+                this.getView().byId(idInput).setValueState(valueStateDeErro);
+                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(idI18n) + QUEBRA_DE_LINHA;
                 return false;
             } else {
-                this.getView().byId(ID_NOME_JOGADOR_INPUT).setValueState();
-                return true;
-            }
-        },
-
-        validarSobrenomeJogador: function () {
-            let sobrenomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().sobrenomeJogador;
-            if (!validador.validarNomeESobrenomeJogador(sobrenomeJogador)) {
-                this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SOBRENOME_OBRIGATORIO) + QUEBRA_DE_LINHA;
-                return false;
-            } else {
-                this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValueState();
-                return true;
-            }
-        },
-
-        validarDataDeNascimentoJogador: function () {
-            let dataNascimentoJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().dataNascimentoJogador;
-            if (validador.validarDataDeNascimentoJogador(dataNascimentoJogador)) {
-                this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValueState();
-                return true;
-            } else {
-                this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_DATA_NASCIMENTO_OBRIGATORIO) + QUEBRA_DE_LINHA;
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_DATA_NASCIMENTO_MAIOR_QUE_TREZE_ANOS) + QUEBRA_DE_LINHA;
-                return false;
-            }
-        },
-
-        validarUsuarioJogador: function () {
-            debugger
-            let usuarioJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().usuarioJogador;
-            if (!validador.validarUsuarioJogador(usuarioJogador)) {
-                this.getView().byId(ID_USUARIO_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_USUARIO_OBRIGATORIO) + QUEBRA_DE_LINHA;
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_USUARIO_INVALIDO) + QUEBRA_DE_LINHA;
-                return false;
-            } else {
-                this.getView().byId(ID_USUARIO_JOGADOR_INPUT).setValueState();
-                return true;
-            }
-        },
-
-        validarConfirmacaoUsuarioJogador: function () {
-            let jogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData();
-            if (!validador.validarConfirmacaoDeUsuarioJogador(jogador.usuarioJogador, jogador.usuarioConfirmacaoJogador)) {
-                this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_CONFIRMACAO_USUARIO_INCORRETA) + QUEBRA_DE_LINHA;
-                return false;
-            } else {
-                this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).setValueState();
-                return true;
-            }
-        },
-
-        validarSenhaJogador: function () {
-            let senhaJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().senhaHashJogador;
-            if (!validador.validarSenhaJogador(senhaJogador)) {
-                this.getView().byId(ID_SENHA_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SENHA_OBRIGATORIO) + QUEBRA_DE_LINHA;
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_SENHA_INVALIDA) + QUEBRA_DE_LINHA;
-                return false;
-            } else {
-                this.getView().byId(ID_SENHA_JOGADOR_INPUT).setValueState();
-                return true;
-            }
-        },
-
-        validarConfirmacaoSenhaJogador: function () {
-            let jogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData();
-            if (!validador.validarConfirmacaoDeSenhaJogador(jogador.senhaHashJogador, jogador.senhaHashConfirmacaoJogador)) {
-                this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_CONFIRMACAO_SENHA_INCORRETA) + QUEBRA_DE_LINHA;
-                return false;
-            } else {
-                this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).setValueState();
+                this.getView().byId(idInput).setValueState();
                 return true;
             }
         },
