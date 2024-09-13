@@ -45,12 +45,13 @@ sap.ui.define([
         When.naPaginaDeListagemJogador.selecionoDatePickerEAdicionoAData();
         When.naPaginaDeListagemJogador.selecionoBotaoDeAplicarFiltros();
         Then.naPaginaDeListagemJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_CONTAS_RETORNADAS_FILTRAGEM_POR_DATA);
+        Then.iTeardownMyApp();
     });
 
-    opaTest("Ao realizar filtragens na tela através do datepicker, retorna uma lista com um jogador", (Given, When, Then) => {
+    opaTest("Ao clicar no botão adicionar jogador, a view de criaçao foi carregada na tela", (Given, When, Then) => {
         When.naPaginaDeListagemJogador.aoClicarNoBotaoAdicionarJogadorRedirecionaParaATelaDeCadastro();
 
-        Then.naPaginaDeCriacaoDeJogador.aTelaDeCriacaoFoiCarregada();
+        Then.naPaginaDeListagemJogador.aTelaDeCriacaoFoiCarregada();
 
         Then.iTeardownMyApp();
     });

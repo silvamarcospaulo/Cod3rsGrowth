@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/ui/test/Opa5",
 	"mtgdeckbuilder/test/integration/arrangements/Startup",
 
-	"mtgdeckbuilder/test/integration/JornadaCriacaoJogador"
+	"mtgdeckbuilder/test/integration/JornadaListagemJogador"
 ], function (Opa5, Startup) {
 	"use strict";
 

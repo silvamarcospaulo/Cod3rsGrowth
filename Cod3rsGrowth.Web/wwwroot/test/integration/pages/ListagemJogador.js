@@ -112,7 +112,7 @@ sap.ui.define([
 							matchers: {
 								i18NText: {
 									propertyName: NOME_PROPRIEDADE_TEXT,
-									key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOOR__FILTROS
+									key: CHAVE_I18N_BOTAO_APLICAR_FILTROS
 								}
 							},
 							actions: new Press(),
@@ -148,6 +148,14 @@ sap.ui.define([
 							},
 							success: () => Opa5.assert.ok(true, "A filtragem retornou a quantidade esperada de jogadores"),
 							errorMessage: "Não foi possível verificar a quantidade de jogadores filtrados no modelo JSON"
+						});
+					},
+
+					aTelaDeCriacaoFoiCarregada: function () {
+						return this.waitFor({
+							viewName: CRIACAO_JOGADOR_VIEW_NAME,
+							success: () => Opa5.assert.ok(true, "A tela de cadastro foi acessada com sucesso"),
+							errorMessage: "A tela de cadastro não foi acessada"
 						});
 					}
 				}
