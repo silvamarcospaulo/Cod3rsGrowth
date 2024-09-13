@@ -22,7 +22,7 @@ sap.ui.define([
         onInit: function () {
             this.getRouter().getRoute(ID_LISTAGEM).attachPatternMatched(async () => {
                 return this.aoCoincidirRota();
-            }, this);
+            }, this)
         },
 
         aoCoincidirRota: function() {
@@ -41,7 +41,7 @@ sap.ui.define([
             let modeloFiltros = new JSONModel({ usuarioJogador: nomeUsuario, contaAtivaJogador: statusConta, dataDeCriacaoContaJogador: dataDeCadastro });
             this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
 
-            let filtros = this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();
+            let filtros = this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();  
 
             return Repository.obterTodos(this.getView(), filtros, NOME_DO_MODELO)
                 .then(() => this.removerValoresDosFiltros());
@@ -50,6 +50,16 @@ sap.ui.define([
         removerValoresDosFiltros: function () {
             let modeloFiltros = new JSONModel({ usuarioJogador: STRING_VAZIA, contaAtivaJogador: STRING_VAZIA, dataDeCriacaoContaJogador: STRING_VAZIA});
             this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
-        }
+        },
+
+        aoPressionarAbreTelaDeCriacaoDeJogador: function (){
+            const rotaTelaDeCriacao = "criacaoJogador";
+            return this.navegarPara(rotaTelaDeCriacao);
+        },
+
+        aoPressionarAbreTelaDeDetalhesDeJogador: function (){
+            const rotaTelaDeDetalhes = "detalhesJogador";
+            return this.navegarPara(rotaTelaDeDetalhes);
+        },
     });
 });

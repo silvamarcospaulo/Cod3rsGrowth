@@ -10,6 +10,7 @@ sap.ui.define([
 		"use strict";
 
 		const LISTAGEM_JOGADOR_VIEW_NAME = "app.jogador.ListagemJogador";
+		const CRIACAO_JOGADOR_VIEW_NAME = "app.jogador.CriacaoJogador";
 		const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
 		const NOME_PROPRIEDADE_TEXT = "text";
 
@@ -24,10 +25,11 @@ sap.ui.define([
 
 		const TIPO_DATEPICKER = "sap.m.DatePicker";
 		const CHAVE_I18N_DATEPICKER = "ListagemJogador.Placeholder.DatePicker.DataDeCadastro";
-		const DATA = "3 de set. de 2024";
+		const DATA = "03/09/2024";
 
 		const TIPO_BOTAO = "sap.m.Button";
 		const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
+		const CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR = "ListagemJogador.Toolbar.Buttom.AdicionarJogador";
 
 		Opa5.createPageObjects({
 
@@ -51,7 +53,7 @@ sap.ui.define([
 						});
 					},
 
-					selecionoNaComboboxDeStatusDaContaContaAtiva: function () {
+					selecionoNaComboboxDeStatusDaContaAtiva: function () {
 
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
@@ -117,8 +119,23 @@ sap.ui.define([
 							success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
 							errorMessage: "O botão de filtrar não foi clicado"
 						});
-					}
+					},
 
+					aoClicarNoBotaoAdicionarJogadorRedirecionaParaATelaDeCadastro: function () {
+						return this.waitFor({
+							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
+							controlType: TIPO_BOTAO,
+							matchers: {
+								i18NText: {
+									propertyName: NOME_PROPRIEDADE_TEXT,
+									key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR
+								}
+							},
+							actions: new Press(),
+							success: () => Opa5.assert.ok(true, "O botão de adicionar foi clicado"),
+							errorMessage: "O botão de adicionar não foi clicado"
+						});
+					}
 				},
 
 				assertions: {
@@ -127,13 +144,12 @@ sap.ui.define([
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: "sap.ui.table.Table",
 							check: function (tabela) {
-								
-								return tabela[0].getModel("Jogador").getData().length == quantidadeDeJogadores
+								return tabela[0].getModel("Jogador").getData().length == quantidadeDeJogadores;
 							},
-							success: () => Opa5.assert.ok(true, "deu certo porra"),
+							success: () => Opa5.assert.ok(true, "A filtragem retornou a quantidade esperada de jogadores"),
 							errorMessage: "Não foi possível verificar a quantidade de jogadores filtrados no modelo JSON"
 						});
-					}
+					},
 				}
 			}
 		});

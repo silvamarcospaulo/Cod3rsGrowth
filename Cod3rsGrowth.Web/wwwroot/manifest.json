@@ -63,6 +63,16 @@
 					"pattern": "",
 					"name": "listagemJogador",
 					"target": "listagemJogador"
+				},
+				{
+					"pattern": "criacaoJogador",
+					"name": "criacaoJogador",
+					"target": "criacaoJogador"
+				},
+				{
+					"pattern": "detalhesJogador",
+					"name": "detalhesJogador",
+					"target": "detalhesJogador"
 				}
 			],
 			"targets": {
@@ -75,6 +85,16 @@
 					"id": "listagemJogador",
 					"path": "mtgdeckbuilder.app.jogador",
 					"name": "ListagemJogador"
+				},
+				"criacaoJogador": {
+					"id": "criacaoJogador",
+					"path": "mtgdeckbuilder.app.jogador",
+					"name": "CriacaoJogador"
+				},
+				"detalhesJogador": {
+					"id": "detalhesJogador",
+					"path": "mtgdeckbuilder.app.jogador",
+					"name": "DetalhesJogador"
 				}
 			}
 		}

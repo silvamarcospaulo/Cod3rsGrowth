@@ -14,20 +14,19 @@
     >
         <m:content>
             <Table
-                rows="{Jogador>/}"
                 title="{i18n>App}"
-                id="table"
+                rows="{Jogador>/}"
                 editable="false"
                 enableSelectAll="false"
                 selectionMode="Single"
                 selectionBehavior="RowOnly"
+                press="aoPressionarAbreTelaDeDetalhesDeJogador"
                 width="auto"
                 visibleRowCountMode="Auto"
                 enableColumnReordering="false"
                 alternateRowColors="true"
                 minAutoRowCount="5"
-                extension="true"
-            >
+                extension="true">
                 <extension>
                     <m:OverflowToolbar style="Clear">
                         <m:Title text="{i18n>ListagemJogador.Tabela.Titulo.Jogadores}" />
@@ -38,8 +37,7 @@
                             placeholder="{i18n>ListagemJogador.Placeholder.CampoDeBusca.Username}"
                             value="{ListagemJogadorFiltro>/usuarioJogador}"
                             showSearchButton="false"
-                            width="auto"
-                        />
+                            width="auto"/>
 
                         <m:ComboBox
                             id="comboBoxStatusConta"
@@ -60,8 +58,7 @@
                             id="datePickerDataDeCadastro"
                             width="auto"
                             value="{ListagemJogadorFiltro>/dataDeCriacaoContaJogador}"
-                            placeholder="{i18n>ListagemJogador.Placeholder.DatePicker.DataDeCadastro}"
-                        />
+                            placeholder="{i18n>ListagemJogador.Placeholder.DatePicker.DataDeCadastro}"/>
 
                         <m:Button
                             id="toggleFiltros"
@@ -69,8 +66,7 @@
                             icon="sap-icon://filter"
                             tooltip="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
                             visible="true"
-                            press=".aoPressionarAplicarFiltros"
-                        />
+                            press=".aoPressionarAplicarFiltros"/>
                         <m:ToolbarSeparator />
                     </m:OverflowToolbar>
                 </extension>
@@ -82,8 +78,7 @@
                         <template>
                             <m:Text
                                 text="{Jogador>usuarioJogador}"
-                                wrapping="false"
-                            />
+                                wrapping="false"/>
                         </template>
                     </Column>
                     <Column class="autoResize">
@@ -96,8 +91,7 @@
 									path: 'Jogador>dataDeCriacaoContaJogador',
 									formatter: '.formatter.datas'
 								}"
-                                wrapping="false"
-                            />
+                                wrapping="false"/>
                         </template>
                     </Column>
                     <Column class="autoResize">
@@ -110,8 +104,7 @@
 								path: 'Jogador>contaAtivaJogador',
 								formatter: '.formatter.statusContaJogador'
 								}"
-                                wrapping="false"
-                            />
+                                wrapping="false"/>
                         </template>
                     </Column>
                 </columns>
@@ -123,7 +116,9 @@
                 <m:Button
                     text="{i18n>ListagemJogador.Toolbar.Buttom.AdicionarJogador}"
                     type="Ghost"
-                />
+                    tooltip="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
+                    visible="true"
+                    press=".aoPressionarAbreTelaDeCriacaoDeJogador"/>
             </m:Toolbar>
         </m:footer>
     </m:Page>

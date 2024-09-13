@@ -1,0 +1,132 @@
+<mvc:View
+    controllerName="mtgdeckbuilder.app.jogador.CriacaoJogador"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+>
+    <Page
+        title="{i18n>App}"
+        showNavButton="true"
+        navButtonPress="aoPressionarRetornarNavegacao">
+        <VBox
+            class="sapUiSmallMargin"
+            alignItems="Center"
+            justifyContent="Center"
+            alignContent="Center"
+        >
+            <f:Form
+                editable="true"
+                title="{i18n>CriacaoJogador.Toolbar.Titulo}">
+                <f:layout>
+                    <f:ResponsiveGridLayout
+                        labelSpanXL="4"
+                        labelSpanL="3"
+                        labelSpanM="4"
+                        emptySpanXL="0"
+                        emptySpanL="4"
+                        columnsXL="2"
+                        columnsL="1" />
+                </f:layout>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement
+                            label="{i18n>CriacaoJogador.Label.NomeJogador}"
+                        >
+                            <f:fields>
+                                <Input
+                                    id="idNomeJogadorInput"
+                                    placeholder="{i18n>CriacaoJogador.Placeholder.NomeJogador}"
+                                />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement
+                            label="{i18n>CriacaoJogador.Label.SobrenomeJogador}"
+                        >
+                            <f:fields>
+                                <Input
+                                    id="idSobrenomeJogadorInput"
+                                    placeholder="{i18n>CriacaoJogador.Placeholder.SobrenomeJogador}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement
+                            label="{i18n>CriacaoJogador.Label.DataDeNascimentoJogador}">
+                            <f:fields>
+                                <DatePicker
+                                    id="idDataDeNascimentoJogadorInput"
+                                    width="auto"
+                                    placeholder="{i18n>CriacaoJogador.Placeholder.DataDeNascimentoJogador}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement
+                            label="{i18n>CriacaoJogador.Label.UsuarioJogador}">
+                            <f:fields>
+                                <Input
+                                    id="idUsuarioJogadorInput"
+                                    placeholder="{i18n>CriacaoJogador.Placeholder.UsuarioJogador}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement
+                            label="{i18n>CriacaoJogador.Label.UsuarioConfirmacaoJogador}">
+                            <f:fields>
+                                <Input
+                                    id="idUsuarioConfirmacaoJogadorInput"
+                                    placeholder="{i18n>CriacaoJogador.Placeholder.UsuarioConfirmacaoJogador}" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement
+                            label="{i18n>CriacaoJogador.Label.SenhaHashJogador}">
+                            <f:fields>
+                                <Input
+                                    id="idSenhaHashJogadorInput"
+                                    type="Password"
+                                    placeholder="{i18n>CriacaoJogador.Placeholder.SenhaHashJogador}" />
+                                <Button
+                                    id="idBotaoMostrarSenha"
+                                    type="Ghost"
+                                    tooltip="{i18n>CriacaoJogador.Botao.Tooltip.VizualizarSenhaHashJogador}"
+                                    visible="true"
+                                    icon="sap-icon://show"
+                                    press="aoPressionarMudaAVisualizacaoDeSenha" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement
+                            label="{i18n>CriacaoJogador.Label.SenhaHashConfirmacaoJogador}">
+                            <f:fields>
+                                <Input
+                                    type="Password"
+                                    id="idSenhaHashConfirmacaoJogadorInput"
+                                    placeholder="{i18n>CriacaoJogador.Placeholder.SenhaHashConfirmacaoJogador}" />
+                                <Button
+                                    id="idBotaoMostrarConfirmacaoDeSenha"
+                                    type="Ghost"
+                                    tooltip="{i18n>CriacaoJogador.Botao.Tooltip.VizualizarConfirmacaoDeSenhaHashJogador}"
+                                    visible="true"
+                                    icon="sap-icon://show"
+                                    press="aoPressionarMudaAVisualizacaoDeConfirmacaoDeSenha" />
+                            </f:fields>
+                        </f:FormElement>
+
+                        <f:FormElement>
+                            <f:fields>
+                                <Button
+                                    text="{i18n>ListagemJogador.Toolbar.Buttom.AdicionarJogador}"
+                                    type="Ghost"
+                                    visible="true"
+                                    press="aoClicarCriaNovoUsuario" />
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:Form>
+        </VBox>
+    </Page>
+</mvc:View>

@@ -6,6 +6,7 @@ using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador.ServicoAuth;
 using FluentValidation;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Data;
 using System.Reflection.Metadata.Ecma335;
 
@@ -61,6 +62,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             jogador.PrecoDasCartasJogador = VALOR_NULO;
             jogador.ContaAtivaJogador = false;
             jogador.Role = roleJogador;
+            jogador.DataDeCriacaoContaJogador = DateTime.Now;
 
             try
             {
