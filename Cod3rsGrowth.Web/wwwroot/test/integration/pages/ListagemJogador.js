@@ -29,7 +29,7 @@ sap.ui.define([
 
 		const TIPO_BOTAO = "sap.m.Button";
 		const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
-		const CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR_FILTROS = "ListagemJogador.Toolbar.Buttom.AdicionarJogador";
+		const CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR = "ListagemJogador.Toolbar.Buttom.AdicionarJogador";
 
 		Opa5.createPageObjects({
 
@@ -128,7 +128,7 @@ sap.ui.define([
 							matchers: {
 								i18NText: {
 									propertyName: NOME_PROPRIEDADE_TEXT,
-									key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR_FILTROS
+									key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR
 								}
 							},
 							actions: new Press(),
@@ -150,14 +150,6 @@ sap.ui.define([
 							errorMessage: "Não foi possível verificar a quantidade de jogadores filtrados no modelo JSON"
 						});
 					},
-
-					aTelaDeCriacaoFoiCarregada: function () {
-						return this.waitFor({
-							viewName: CRIACAO_JOGADOR_VIEW_NAME,
-							success: () => Opa5.assert.ok(true, "A tela de cadastro foi acessada com sucesso"),
-							errorMessage: "A tela de cadastro não foi acessada"
-						});
-					}
 				}
 			}
 		});

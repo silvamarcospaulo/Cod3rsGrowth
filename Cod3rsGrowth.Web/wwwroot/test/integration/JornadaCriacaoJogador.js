@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/test/opaQunit",
+    "mtgdeckbuilder/test/integration/pages/ListagemJogador",
     "mtgdeckbuilder/test/integration/pages/CriacaoJogador"
-], (opaTest) => {
+], (opaTest, ListagemJogador, CriacaoJogador) => {
     "use strict";
 
     QUnit.module("JornadaCriacaoJogador");
@@ -40,6 +41,8 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
 
         When.naPaginaDeListagemJogador.aoClicarNoBotaoAdicionarJogadorRedirecionaParaATelaDeCadastro();
+
+        Then.naPaginaDeCriacaoDeJogador.aTelaDeCriacaoFoiCarregada();
     });
 
     opaTest("Ao realizar a criação com campo nome inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
