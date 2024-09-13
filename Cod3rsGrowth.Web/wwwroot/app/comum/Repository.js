@@ -5,7 +5,7 @@
     "sap/m/Button",
     "sap/m/library",
     "sap/m/Text"
-], function (JSONModel) {
+], function (JSONModel, ValueState, coreLibrary, Dialog, Button, mobileLibrary, Text) {
     "use strict";
 
     return {
@@ -52,31 +52,6 @@
                 return resposta.json();  
             };
 
-            return resposta;
-        },
-
-        obterPorId: async function (view, nomeDoModelo) {
-            debugger
-
-            let urlPesquisaApi = "/api/";
-            let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
-            let url = new URL(urlPagina);
-
-            let urlRequisicao = new URL(`${url.origin}${url.pathname}?${parametros}`);
-
-            let resposta = await fetch(urlRequisicao)
-                .then(requisicao => {
-                    return requisicao.json();
-                })
-                .then(dados => {
-                    const oDadosRequisicao = new JSONModel(dados);
-                    view.setModel(oDadosRequisicao, nomeDoModelo);
-                });
-
-            if(!resposta.ok){
-                return resposta.json();  
-            };
-    
             return resposta;
         }
     };
