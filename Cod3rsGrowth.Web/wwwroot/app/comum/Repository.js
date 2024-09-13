@@ -39,7 +39,7 @@
             let urlPesquisaApi = "/api/";
             let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
             let urlRequisicao = new URL(urlPagina);
-            
+
             let resposta = await fetch(urlRequisicao, {
                 method: metodoDeRequisicao,
                 headers: {
@@ -48,11 +48,33 @@
                 body: objeto,
             });
 
-            if(!resposta.ok){
-                return resposta.json();  
+            if (!resposta.ok) {
+                return resposta.json();
             };
 
             return resposta;
+        },
+
+        obterPorId: async function (view, requisicao, nomeDoModelo) {
+            let urlPesquisaApi = "/api/";
+            let barra = "/";
+            let hashDaRequisicao = window.location.hash;
+            var idDoItem = hashDaRequisicao.substring(hashDaRequisicao.lastIndexOf(barra) + 1);
+            let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + idDoItem;
+            let url = new URL(urlPagina);
+
+            let urlRequisicao = new URL(`${url.origin}${url.pathname}`);
+
+            await fetch(urlRequisicao)
+                .then(requisicao => {
+                    return requisicao.json();
+                })
+                .then(dados => {
+                    const oDadosRequisicao = new JSONModel(dados);
+                    view.setModel(oDadosRequisicao, nomeDoModelo)
+                })
+                .catch(erro => {
+                });
         }
     };
 });

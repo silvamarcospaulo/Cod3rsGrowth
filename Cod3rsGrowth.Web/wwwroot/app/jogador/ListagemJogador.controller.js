@@ -8,7 +8,8 @@ sap.ui.define([
 
     const CONTROLLER = "mtgdeckbuilder.app.jogador.ListagemJogador"
     const ID_LISTAGEM = "listagemJogador";
-    const NOME_DO_MODELO = "Jogador";
+    const NOME_DO_MODELO_DE_LISTA_JOGADORES = "Jogador";
+    const NOME_DO_MODELO_DE_JOGADOR_SELECIONADO = "Jogador";
     const NOME_DO_MODELO_DE_FILTROS = "ListagemJogadorFiltro";
     const ID_CAMPO_BUSCAR_POR_USUARIO = "campoBuscaUsuario";
     const ID_DATEPICKER_DATA_DE_CADASTRO = "datePickerDataDeCadastro";
@@ -25,10 +26,10 @@ sap.ui.define([
             }, this)
         },
 
-        aoCoincidirRota: function() {
+        aoCoincidirRota: function () {
             this.processarAcao(async () => {
                 await Promise.all([
-                    Repository.obterTodos(this.getView(), STRING_VAZIA, NOME_DO_MODELO)
+                    Repository.obterTodos(this.getView(), STRING_VAZIA, NOME_DO_MODELO_DE_LISTA_JOGADORES)
                 ])
             })
         },
@@ -41,25 +42,28 @@ sap.ui.define([
             let modeloFiltros = new JSONModel({ usuarioJogador: nomeUsuario, contaAtivaJogador: statusConta, dataDeCriacaoContaJogador: dataDeCadastro });
             this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
 
-            let filtros = this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();  
+            let filtros = this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();
 
-            return Repository.obterTodos(this.getView(), filtros, NOME_DO_MODELO)
+            return Repository.obterTodos(this.getView(), filtros, NOME_DO_MODELO_DE_LISTA_JOGADORES)
                 .then(() => this.removerValoresDosFiltros());
         },
 
         removerValoresDosFiltros: function () {
-            let modeloFiltros = new JSONModel({ usuarioJogador: STRING_VAZIA, contaAtivaJogador: STRING_VAZIA, dataDeCriacaoContaJogador: STRING_VAZIA});
+            let modeloFiltros = new JSONModel({ usuarioJogador: STRING_VAZIA, contaAtivaJogador: STRING_VAZIA, dataDeCriacaoContaJogador: STRING_VAZIA });
             this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
         },
 
-        aoPressionarAbreTelaDeCriacaoDeJogador: function (){
+        aoPressionarAbreTelaDeCriacaoDeJogador: function () {
             const rotaTelaDeCriacao = "criacaoJogador";
             return this.navegarPara(rotaTelaDeCriacao);
         },
 
-        aoPressionarAbreTelaDeDetalhesDeJogador: function (){
-            const rotaTelaDeDetalhes = "detalhesJogador";
-            return this.navegarPara(rotaTelaDeDetalhes);
+        aoPressionarAbreTelaDeDetalhesDeJogador: function () {
+            const rota = "detalhesJogador";
+            let indexJogadorSelecionado = this.getView().byId("idTabela").getSelectedIndex();
+            let listaJogadores = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData();
+            let JogadorSelecionado = listaJogadores[indexJogadorSelecionado];
+            return this.navegarPara(rota, JogadorSelecionado.id);
         },
     });
 });

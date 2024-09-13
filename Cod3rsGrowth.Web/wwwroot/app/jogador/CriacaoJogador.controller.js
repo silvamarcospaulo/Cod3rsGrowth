@@ -246,8 +246,12 @@ sap.ui.define([
         },
 
         aoPressionarRetornarNavegacao: function () {
+            debugger
             const rota = "listagemJogador";
-            this.removerValoresDosInputs();
+            const rotaDeCriacao = "criacaoJogador";
+            if (this.getRouter().oHashChanger.hash.includes(rotaDeCriacao)){
+                this.removerValoresDosInputs();
+            }
             return this.navegarPara(rota);
         },
 

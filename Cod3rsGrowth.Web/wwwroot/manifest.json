@@ -70,9 +70,14 @@
 					"target": "criacaoJogador"
 				},
 				{
-					"pattern": "detalhesJogador{id}",
+					"pattern": "detalhesJogador/{id}",
 					"name": "detalhesJogador",
 					"target": "detalhesJogador"
+				},
+				{
+					"pattern": "edicaoJogador/{id}",
+					"name": "edicaoJogador",
+					"target": "edicaoJogador"
 				}
 			],
 			"targets": {
@@ -95,6 +100,11 @@
 					"id": "detalhesJogador",
 					"path": "mtgdeckbuilder.app.jogador",
 					"name": "DetalhesJogador"
+				},
+				"edicaoJogador": {
+					"id": "edicaoJogador",
+					"path": "mtgdeckbuilder.app.jogador",
+					"name": "EdicaoJogador"
 				}
 			}
 		}

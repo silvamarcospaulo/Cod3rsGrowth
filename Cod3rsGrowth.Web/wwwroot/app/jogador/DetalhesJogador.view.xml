@@ -1,15 +1,115 @@
 <mvc:View
-controllerName="mtgdeckbuilder.app.jogador.DetalhesJogador"
-height="100%"
-xmlns:mvc="sap.ui.core.mvc"
-xmlns:u="sap.ui.unified"
-xmlns:f="sap.ui.layout.form"
-xmlns="sap.m"
-xmlns:l="sap.ui.layout"
->
-    <Page
+    controllerName="mtgdeckbuilder.app.jogador.DetalhesJogador"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:m="sap.m"
+    height="100%">
+    <m:Page
         title="{i18n>App}"
+        id="idPaginaDetalhesJogador"
+        enableScrolling="true"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
         showNavButton="true"
         navButtonPress="aoPressionarRetornarNavegacao">
-    </Page>
+        <m:content>
+            <m:ObjectHeader
+                title="{Name}">
+                <m:attributes>
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.Nome}"
+                        text="{JogadorSelecionado>/nomeJogador}" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.Sobrenome}"
+                        text="{JogadorSelecionado>/sobrenomeJogador}" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.DataDeNascimento}"
+                        text="{
+                            path: 'JogadorSelecionado>/dataNascimentoJogador',
+                            formatter: '.formatter.datas'
+                        }" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.Username}"
+                        text="{JogadorSelecionado>/usuarioJogador}" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.ContaAtiva}"
+                        text="{
+                            path: 'JogadorSelecionado>/contaAtivaJogador',
+                            formatter: '.formatter.statusContaJogador'
+                        }" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.DataDeCriacaoConta}"
+                        text="{
+                            path: 'JogadorSelecionado>/dataDeCriacaoContaJogador',
+                            formatter: '.formatter.datas'
+                        }" />
+                    <m:ObjectAttribute
+                        title="{i18n>DetalhesJogador.Label.QuantidadeDeBaralhosJogador}"
+                        text="{JogadorSelecionado>/quantidadeDeBaralhosJogador}" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.PrecoDasCartasJogador}"
+                        text="{JogadorSelecionado>/precoDasCartasJogador}" />
+                </m:attributes>
+            </m:ObjectHeader>
+            <Table
+                title="{i18n>DetalhesJogador.Tabela.Titulo.Baralhos}"
+                id="idTabelaBaralho"
+                rows="{JogadorSelecionado>/baralhosJogador}"
+                editable="false"
+                enableSelectAll="false"
+                selectionMode="Single"
+                selectionBehavior="RowOnly"
+                width="auto"
+                visibleRowCountMode="Auto"
+                enableColumnReordering="false"
+                alternateRowColors="true"
+                minAutoRowCount="5"
+                extension="true">
+                <columns>
+                    <Column>
+                        <m:Label
+                            text="{i18n>BaralhosJogador.Coluna.NomeBaralho}" />
+                        <template>
+                            <m:Text
+                                text="{JogadorSelecionado>nomeBaralho}"
+                                wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label
+                            text="{i18n>BaralhosJogador.Coluna.FormatoDeJogoBaralho}" />
+                        <template>
+                            <m:Text
+                                text="{
+                                    path: 'JogadorSelecionado>formatoDeJogoBaralho',
+                                    formatter: '.formatter.formatadorTipoDeBaralho'
+                                }"
+                                wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label
+                            text="{i18n>BaralhosJogador.Coluna.CorBaralho}" />
+                        <template>
+                            <m:Text
+                                text="{JogadorSelecionado>corBaralho}"
+                                wrapping="false" />
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+        <m:footer>
+            <m:Toolbar>
+                <m:ToolbarSpacer />
+                <m:Button
+                    text="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
+                    type="Ghost"
+                    tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
+                    visible="true"
+                    press=".aoPressionarAbreTelaDeEdicaoDeJogador" />
+                <m:Button
+                    text="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
+                    type="Ghost"
+                    tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
+                    visible="true" />
+            </m:Toolbar>
+        </m:footer>
+    </m:Page>
 </mvc:View>

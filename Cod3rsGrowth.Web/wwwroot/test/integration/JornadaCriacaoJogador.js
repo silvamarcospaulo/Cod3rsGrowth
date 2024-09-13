@@ -46,8 +46,6 @@ sap.ui.define([
     });
 
     opaTest("Ao realizar a criação com campo nome inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
-
-
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR_INVALIDO);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR);
@@ -60,13 +58,9 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
-
-
     });
 
     opaTest("Ao realizar a criação com campo sobrenome inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
-
-
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR_INVALIDO);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR);
@@ -79,14 +73,9 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
-
-
     });
 
     opaTest("Ao realizar a criação com campo data de nascimento inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
-
-
-
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR_INVALIDO);
@@ -99,13 +88,9 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
-
-
     });
 
     opaTest("Ao realizar a criação com campo usuário inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
-
-
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR);
@@ -118,14 +103,9 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
-
-
     });
 
     opaTest("Ao realizar a criação com campo de confirmação de usuário que não coincide com o campo de usuário, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
-
-
-
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR);
@@ -138,14 +118,9 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
-
-
     });
 
     opaTest("Ao realizar a criação com campo senha inválido, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
-
-
-
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR);
@@ -158,13 +133,9 @@ sap.ui.define([
         Then.naPaginaDeCriacaoDeJogador.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
 
         Then.naPaginaDeCriacaoDeJogador.pressionaOBotaoDeFecharCaixaDeDialogo();
-
     });
 
     opaTest("Ao realizar a criação com campo de confirmação de senha que não coincide com o campo de senha, deve abrir uma caixa de diálogo informando erro", (Given, When, Then) => {
-
-
-
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeNomeDoJogador(NOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeSobrenomeDoJogador(SOBRENOME_JOGADOR);
         When.naPaginaDeCriacaoDeJogador.entreveUmValorNoInputDeDataDeNascimentoDoJogador(DATA_DE_NASCIMENTO_JOGADOR);

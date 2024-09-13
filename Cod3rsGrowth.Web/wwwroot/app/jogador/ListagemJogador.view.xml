@@ -10,17 +10,17 @@
     <m:Page
         showHeader="false"
         enableScrolling="false"
-        class="sapUiContentPadding"
-    >
+        class="sapUiContentPadding">
         <m:content>
             <Table
                 title="{i18n>App}"
+                id="idTabela"
                 rows="{Jogador>/}"
                 editable="false"
                 enableSelectAll="false"
                 selectionMode="Single"
                 selectionBehavior="RowOnly"
-                press="aoPressionarAbreTelaDeDetalhesDeJogador"
+                rowSelectionChange = "aoPressionarAbreTelaDeDetalhesDeJogador"
                 width="auto"
                 visibleRowCountMode="Auto"
                 enableColumnReordering="false"
@@ -46,12 +46,10 @@
                             selectedKey="{ListagemJogadorFiltro>/contaAtivaJogador}">
                             <c:Item
                                 key="true"
-                                text="{i18n>Formatter.ContaAtiva}"
-                            />
+                                text="{i18n>Formatter.ContaAtiva}"/>
                             <c:Item
                                 key="false"
-                                text="{i18n>Formatter.ContaInativa}"
-                            />
+                                text="{i18n>Formatter.ContaInativa}"/>
                         </m:ComboBox>
 
                         <m:DatePicker
@@ -73,8 +71,7 @@
                 <columns>
                     <Column>
                         <m:Label
-                            text="{i18n>ListagemJogador.Coluna.Username}"
-                        />
+                            text="{i18n>ListagemJogador.Coluna.Username}"/>
                         <template>
                             <m:Text
                                 text="{Jogador>usuarioJogador}"
@@ -83,8 +80,7 @@
                     </Column>
                     <Column class="autoResize">
                         <m:Label
-                            text="{i18n>ListagemJogador.Coluna.DataDeCriacaoConta}"
-                        />
+                            text="{i18n>ListagemJogador.Coluna.DataDeCriacaoConta}"/>
                         <template>
                             <m:Text
                                 text="{
@@ -96,8 +92,7 @@
                     </Column>
                     <Column class="autoResize">
                         <m:Label
-                            text="{i18n>ListagemJogador.Coluna.ContaAtiva}"
-                        />
+                            text="{i18n>ListagemJogador.Coluna.ContaAtiva}"/>
                         <template>
                             <m:Text
                                 text="{
