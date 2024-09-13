@@ -63,8 +63,7 @@ sap.ui.define([
 							viewName: DETALHES_JOGADOR_VIEW_NAME,
 							controlType: TIPO_TABELA,
 							check: function (tabela) {
-                                console.log(tabela[0].getModel(modeloJogador).getData().baralhosJogador);
-								return tabela[0].getModel().getData().baralhosJogador.length == quantidadeEsperada;
+								return tabela[0].getModel(modeloJogador).getData().baralhosJogador.length == quantidadeEsperada;
 							},
 							success: () => Opa5.assert.ok(true, "O jogador possui a quantidade de baralhos esperada"),
 							errorMessage: "O jogador não possui a quantidade de baralhos esperada"
