@@ -132,8 +132,8 @@ sap.ui.define([
 								}
 							},
 							actions: new Press(),
-							success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
-							errorMessage: "O botão de filtrar não foi clicado"
+							success: () => Opa5.assert.ok(true, "O botão de adicionar foi clicado"),
+							errorMessage: "O botão de adicionar não foi clicado"
 						});
 					}
 				},
