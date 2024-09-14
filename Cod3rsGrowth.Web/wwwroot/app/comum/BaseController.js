@@ -20,7 +20,6 @@ sap.ui.define([
         },
 
         navegarPara: function (rota, id) {
-            debugger
             return this.getRouter().navTo(rota, {
                 id: id
             }, true);

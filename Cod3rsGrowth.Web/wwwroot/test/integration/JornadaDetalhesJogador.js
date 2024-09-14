@@ -11,7 +11,7 @@ sap.ui.define([
     const DATA_DE_NASCIMENTO_ESPERADA = "18/07/1999";
     const NOME_DE_USUARIO_ESPERADO = "marcos";
     const STATUS_ESPERADO = "Conta ativa";
-    const DATA_DE_CADASTRO_ESPERADA = "18/07/2024";
+    const DATA_DE_CADASTRO_ESPERADA = "03/09/2024";
     const QUANTIDADE_DE_BARALHOS = "4";
     const PRECO_DAS_CARTAS = "90";
     const QUANTIDADE_DE_BARALHOS_NA_LISTA = 4;

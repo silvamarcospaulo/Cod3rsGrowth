@@ -37,7 +37,6 @@ sap.ui.define([
         },
 
         aoPressionarAbreTelaDeEdicaoDeJogador: function () {
-            debugger
             const rotaTelaDeEdicao = "edicaoJogador";
             let jogadorEdicao = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData().id;
             return this.navegarPara(rotaTelaDeEdicao, jogadorEdicao);

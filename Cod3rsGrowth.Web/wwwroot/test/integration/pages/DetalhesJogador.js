@@ -18,8 +18,7 @@ sap.ui.define([
 
         const TIPO_ATRIBUTO = "sap.m.ObjectAttribute";
         const TIPO_TABELA = "sap.ui.table.Table";
-        const TIPO_BOTAO = "sap.m.Botao";
-        const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
+        const TIPO_BOTAO = "sap.m.Button";
 
         Opa5.createPageObjects({
 
@@ -29,13 +28,13 @@ sap.ui.define([
                     perssionarBotaoDeEditarJogador: function () {
                         return this.waitFor({
                             viewName: DETALHES_JOGADOR_VIEW_NAME,
-                            controlType: CONTROL_TYPE_BOTAO,
+                            controlType: TIPO_BOTAO,
                             matchers: {
-								i18NText: {
-									propertyName: NOME_PROPRIEDADE_PLACEHOLDER,
-									key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR
-								}
-							},
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_TEXT,
+                                    key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR
+                                }
+                            },
                             actions: new Press(),
                             success: () => Opa5.assert.ok(true, "O botao de editar jogador foi pressionado"),
                             errorMessage: "O botao de editar jogador não foi pressionado"
@@ -49,6 +48,7 @@ sap.ui.define([
                             viewName: DETALHES_JOGADOR_VIEW_NAME,
                             controlType: TIPO_ATRIBUTO,
                             matchers: new PropertyStrictEquals({
+
                                 name: NOME_PROPRIEDADE_TEXT,
                                 value: valorEsperado
                             }),
@@ -59,16 +59,30 @@ sap.ui.define([
 
                     aTabelaDeveConterAQuantidadeEsperada: function (quantidadeEsperada) {
                         const modeloJogador = "JogadorSelecionado";
-						return this.waitFor({
-							viewName: DETALHES_JOGADOR_VIEW_NAME,
-							controlType: TIPO_TABELA,
-							check: function (tabela) {
-								return tabela[0].getModel(modeloJogador).getData().baralhosJogador.length == quantidadeEsperada;
-							},
-							success: () => Opa5.assert.ok(true, "O jogador possui a quantidade de baralhos esperada"),
-							errorMessage: "O jogador não possui a quantidade de baralhos esperada"
-						});
-					},
+                        return this.waitFor({
+                            viewName: DETALHES_JOGADOR_VIEW_NAME,
+                            controlType: TIPO_TABELA,
+                            check: function (tabela) {
+                                return tabela[0].getModel(modeloJogador).getData().baralhosJogador.length == quantidadeEsperada;
+                            },
+                            success: () => Opa5.assert.ok(true, "O jogador possui a quantidade de baralhos esperada"),
+                            errorMessage: "O jogador não possui a quantidade de baralhos esperada"
+                        });
+                    },
+
+                    aPaginaDeEdicaoFoiCarregada: function () {
+                        const rotaDeEdicao = "edicaoJogador";
+                        return this.waitFor({
+                            viewName: EDICAO_JOGADOR_VIEW_NAME,
+                            check: function () {
+                                console.log(window.location.hash.includes);
+                                console.log(window.location.hash.includes(rotaDeEdicao));
+                                return window.location.hash.includes(rotaDeEdicao);
+                            },
+                            success: () => Opa5.assert.ok(true, "A pagina de criacao de jogador foi carregada corretamente"),
+                            errorMessage: "A pagina de criacao de jogador não foi carregada corretamente"
+                        });
+                    },
                 }
             }
         });

@@ -246,7 +246,6 @@ sap.ui.define([
         },
 
         aoPressionarRetornarNavegacao: function () {
-            debugger
             const rota = "listagemJogador";
             const rotaDeCriacao = "criacaoJogador";
             if (this.getRouter().oHashChanger.hash.includes(rotaDeCriacao)){
