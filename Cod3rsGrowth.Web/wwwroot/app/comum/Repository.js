@@ -9,8 +9,9 @@
     "use strict";
 
     return {
-
+        
         obterTodos: async function (view, filtros, nomeDoModelo) {
+            debugger
             let urlPesquisaApi = "/api/";
             let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
             let url = new URL(urlPagina);
@@ -56,10 +57,10 @@
         },
 
         obterPorId: async function (view, requisicao, nomeDoModelo) {
-            let urlPesquisaApi = "/api/";
-            let barra = "/";
+            const urlPesquisaApi = "/api/";
+            const barra = "/";
             let hashDaRequisicao = window.location.hash;
-            var idDoItem = hashDaRequisicao.substring(hashDaRequisicao.lastIndexOf(barra) + 1);
+            let idDoItem = hashDaRequisicao.substring(hashDaRequisicao.lastIndexOf(barra) + 1);
             let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + idDoItem;
             let url = new URL(urlPagina);
 

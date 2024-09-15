@@ -5,18 +5,23 @@
 
     return {
         datas: function (dataBanco) {
+            const stringVazia = "";
+            const tipoPrimitivoString = "string";
+            const padraoDeData = "dd/MM/yyyy";
+
             if (!dataBanco) {
-                return "";
+                return stringVazia;
             }
 
-            var formatadorData = new Date(dataBanco);
-            var padraoData = new DateTime({ pattern: "dd/MM/yyyy" });
+            let formatadorData = new Date(dataBanco);
+            let padraoData = new DateTime({ pattern: padraoDeData });
 
-            return padraoData.formatValue(formatadorData, "string");
+            return padraoData.formatValue(formatadorData, tipoPrimitivoString);
         },
 
         statusContaJogador: function (sStatusConta) {
-            const oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+            const i18n = "i18n";
+            const oResourceBundle = this.getOwnerComponent().getModel(i18n).getResourceBundle();
             const textoContaAtiva = "Formatter.ContaAtiva";
             const textoContaInativa = "Formatter.ContaInativa";
 
@@ -26,19 +31,12 @@
             }
         },
 
-        formatadorTipoDeBaralho: function (sStatusConta) {
-            const commander = "Commander";
-            const standard = "Standard";
-            const pauper = "Pauper";
-            const commanderKey = 0;
-            const standardKey = 1;
-            const pauperKey = 2;
+        formatadorTipoDeBaralho: function (formatoDeJogo) {
+            const nomeModeloFormatoDeJogo = "FormatoDeJogo";
 
-            switch (sStatusConta) {
-                case commanderKey: return commander;
-                case standardKey: return standard;
-                case pauperKey: return pauper;
-            }
+            let formatoDeJogoModelo = this.getView().getModel(nomeModeloFormatoDeJogo).getData();
+
+            return formatoDeJogoModelo[formatoDeJogo];
         }
     };
 });

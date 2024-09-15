@@ -2,7 +2,6 @@
     controllerName="mtgdeckbuilder.app.jogador.ListagemJogador"
     xmlns="sap.ui.table"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:u="sap.ui.unified"
     xmlns:c="sap.ui.core"
     xmlns:m="sap.m"
     height="100%"

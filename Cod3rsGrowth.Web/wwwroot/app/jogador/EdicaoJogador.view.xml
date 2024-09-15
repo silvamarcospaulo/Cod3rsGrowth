@@ -2,10 +2,7 @@
     controllerName="mtgdeckbuilder.app.jogador.CriacaoJogador"
     height="100%"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:u="sap.ui.unified"
-    xmlns:f="sap.ui.layout.form"
-    xmlns="sap.m"
-    xmlns:l="sap.ui.layout">
+    xmlns="sap.m">
     <Page
         title="{i18n>App}"
         showNavButton="true"
