@@ -19,13 +19,13 @@
                 enableSelectAll="false"
                 selectionMode="Single"
                 selectionBehavior="RowOnly"
-                rowSelectionChange = "aoPressionarAbreTelaDeDetalhesDeJogador"
                 width="auto"
                 visibleRowCountMode="Auto"
                 enableColumnReordering="false"
                 alternateRowColors="true"
                 minAutoRowCount="5"
-                extension="true">
+                extension="true"
+                cellClick="aoPressionarAbreTelaDeDetalhesDeJogador">
                 <extension>
                     <m:OverflowToolbar style="Clear">
                         <m:Title text="{i18n>ListagemJogador.Tabela.Titulo.Jogadores}" />

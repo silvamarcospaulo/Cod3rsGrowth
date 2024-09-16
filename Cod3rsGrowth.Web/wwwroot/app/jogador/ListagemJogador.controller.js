@@ -9,11 +9,12 @@ sap.ui.define([
     const CONTROLLER = "mtgdeckbuilder.app.jogador.ListagemJogador"
     const ID_LISTAGEM = "listagemJogador";
     const NOME_DO_MODELO_DE_LISTA_JOGADORES = "Jogador";
-    const NOME_DO_MODELO_DE_JOGADOR_SELECIONADO = "Jogador";
+    const NOME_DO_MODELO_DE_JOGADOR_SELECIONADO = "JogadorSelecionado";
     const NOME_DO_MODELO_DE_FILTROS = "ListagemJogadorFiltro";
     const ID_CAMPO_BUSCAR_POR_USUARIO = "campoBuscaUsuario";
     const ID_DATEPICKER_DATA_DE_CADASTRO = "datePickerDataDeCadastro";
     const ID_COMBOBOX_STATUS_CONTA = "comboBoxStatusConta";
+    const ID_DETALHES = "detalhesJogador";
     const STRING_VAZIA = "";
 
     return BaseController.extend(CONTROLLER, {
@@ -58,12 +59,14 @@ sap.ui.define([
             return this.navegarPara(rotaTelaDeCriacao);
         },
 
-        aoPressionarAbreTelaDeDetalhesDeJogador: function () {
-            const rota = "detalhesJogador";
-            let indexJogadorSelecionado = this.getView().byId("idTabela").getSelectedIndex();
-            let listaJogadores = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData();
-            let JogadorSelecionado = listaJogadores[indexJogadorSelecionado];
-            return this.navegarPara(rota, JogadorSelecionado.id);
+        aoPressionarAbreTelaDeDetalhesDeJogador: function (eventoDeClique) {
+            let jogadorClicado = {
+                id: eventoDeClique.getParameters().rowBindingContext.getObject().id
+            };
+            let jogadorSelecionado = new JSONModel(jogadorClicado);
+            sap.ui.getCore().setModel(jogadorSelecionado, NOME_DO_MODELO_DE_JOGADOR_SELECIONADO);
+
+            return this.navegarPara(ID_DETALHES, jogadorClicado.id);
         },
     });
 });

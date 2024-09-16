@@ -29,6 +29,25 @@
                 });
         },
 
+        obterEnums: async function (view, nomeDoModelo) {
+            let urlPesquisaApi = "/api/";
+            let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
+            let url = new URL(urlPagina);
+
+            let urlRequisicao = new URL(`${url.origin}${url.pathname}`);
+
+            await fetch(urlRequisicao)
+                .then(requisicao => {
+                    return requisicao.json();
+                })
+                .then(dados => {
+                    const oDadosRequisicao = new JSONModel(dados);
+                    view.setModel(oDadosRequisicao, nomeDoModelo);
+                })
+                .catch(erro => {
+                });
+        },
+
         criar: async function (objeto, nomeDoModelo) {
             const metodoDeRequisicao = "POST";
             let urlPesquisaApi = "/api/";
@@ -50,12 +69,10 @@
             return resposta;
         },
 
-        obterPorId: async function (view, requisicao, nomeDoModelo) {
+        obterPorId: async function (view, id, requisicao, nomeDoModelo) {
             const urlPesquisaApi = "/api/";
             const barra = "/";
-            let hashDaRequisicao = window.location.hash;
-            let idDoItem = hashDaRequisicao.substring(hashDaRequisicao.lastIndexOf(barra) + 1);
-            let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + idDoItem;
+            let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + id;
             let url = new URL(urlPagina);
 
             let urlRequisicao = new URL(`${url.origin}${url.pathname}`);

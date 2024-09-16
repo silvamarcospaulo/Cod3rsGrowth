@@ -12,15 +12,3 @@ public class FormatoDeJogoController : ControllerBase
         return Ok(chavesEDescricaoEnum);
     }
 }
-
-[ApiController]
-[Route("api/[controller]")]
-public class RaridadeController : ControllerBase
-{
-    [HttpGet]
-    public ActionResult<Dictionary<int, string>> Get()
-    {
-        var chavesEDescricaoEnum = DescricaoEnum.ObterDescricaoEnum<RaridadeEnum>();
-        return Ok(chavesEDescricaoEnum);
-    }
-}
