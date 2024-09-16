@@ -16,7 +16,7 @@ sap.ui.define([
     const PRECO_DAS_CARTAS = "90";
     const QUANTIDADE_DE_BARALHOS_NA_LISTA = 4;
     const COMBO_BOX_COR_AZUL = "Azul";
-    const QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_NOME = 2;
+    const QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_NOME = 1;
     const QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_FORMATO_COMMANDER = 4;
     const QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_FORMATO_STANDARD_PAUPER = 0;
     const QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_COR_AZUL = 1;
@@ -29,8 +29,7 @@ sap.ui.define([
             componentConfig: {
                 name: "mtgdeckbuilder"
             },
-            hash: "detalhesJogador/10"
-            //hash: "detalhesJogador/10025"
+            hash: "detalhesJogador/10025"
         });
 
         Then.naPaginaDeDetalhesJogador.confiroOValorDoCampo(NOME_ESPERADO);
@@ -44,37 +43,35 @@ sap.ui.define([
         Then.naPaginaDeDetalhesJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_BARALHOS_NA_LISTA);
     });
 
-    opaTest("Ao filtrar baralhos com nome do baralho, retorna uma lista com dois baralhos", (When, Then) => {
+    opaTest("Ao filtrar baralhos com nome do baralho, retorna uma lista com dois baralhos", (Given, When, Then) => {
         When.naPaginaDeDetalhesJogador.escreveNoCampoDeBuscaPorNomeDoBaralho();
         When.naPaginaDeDetalhesJogador.selecionoBotaoDeAplicarFiltros();
         Then.naPaginaDeDetalhesJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_NOME);
+    });
+
+    opaTest("Ao filtrar baralhos com formato de jogo commander, retorna uma lista com quatro baralhos", (Given, When, Then) => {
+        When.naPaginaDeDetalhesJogador.selecionoNoCampoComboBoxFormatoDeJogo(FORMATO_DE_JOGO_COMMANDER);
+        When.naPaginaDeDetalhesJogador.selecionoBotaoDeAplicarFiltros();
+        Then.naPaginaDeDetalhesJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_FORMATO_COMMANDER);
+    });
+
+    opaTest("Ao filtrar baralhos com formato de jogo standard, retorna uma lista com quatro baralhos", (Given, When, Then) => {
+        When.naPaginaDeDetalhesJogador.selecionoNoCampoComboBoxFormatoDeJogo(FORMATO_DE_JOGO_STANDARD);
+        When.naPaginaDeDetalhesJogador.selecionoBotaoDeAplicarFiltros();
+        Then.naPaginaDeDetalhesJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_FORMATO_STANDARD_PAUPER);
+    });
+
+    opaTest("Ao filtrar baralhos com cor baralho, retorna uma lista com um baralho", (Given, When, Then) => {
+        When.naPaginaDeDetalhesJogador.selecionoNoCampoComboBoxCor(COMBO_BOX_COR_AZUL);
+        When.naPaginaDeDetalhesJogador.selecionoBotaoDeAplicarFiltros();
+        Then.naPaginaDeDetalhesJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_COR_AZUL);
+
+    });
+
+    opaTest("Ao clicar no botão de editar jogador, deve carregar a view de edicao", (Given, When, Then) => {
+        When.naPaginaDeDetalhesJogador.pressionarBotaoDeEditarJogador();
+        Then.naPaginaDeDetalhesJogador.aPaginaDeEdicaoFoiCarregada();
 
         Then.iTeardownMyApp();
     });
-
-    // opaTest("Ao filtrar baralhos com formato de jogo commander, retorna uma lista com quatro baralhos", (When, Then) => {
-    //     When.naPaginaDeDetalhesJogador.selecionoNoCampoComboBoxFormatoDeJogo(FORMATO_DE_JOGO_COMMANDER);
-    //     When.naPaginaDeDetalhesJogador.selecionoBotaoDeAplicarFiltros();
-    //     Then.naPaginaDeDetalhesJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_FORMATO_COMMANDER);
-    // });
-
-    // opaTest("Ao filtrar baralhos com formato de jogo standard, retorna uma lista com quatro baralhos", (When, Then) => {
-    //     When.naPaginaDeDetalhesJogador.selecionoNoCampoComboBoxFormatoDeJogo(FORMATO_DE_JOGO_STANDARD);
-    //     When.naPaginaDeDetalhesJogador.selecionoBotaoDeAplicarFiltros();
-    //     Then.naPaginaDeDetalhesJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_FORMATO_STANDARD_PAUPER);
-    // });
-
-    // opaTest("Ao filtrar baralhos com cor baralho, retorna uma lista com um baralho", (When, Then) => {
-    //     When.naPaginaDeDetalhesJogador.selecionoNoCampoComboBoxCor(COMBO_BOX_COR_AZUL);
-    //     When.naPaginaDeDetalhesJogador.selecionoBotaoDeAplicarFiltros();
-    //     Then.naPaginaDeDetalhesJogador.aTabelaDeveConterAQuantidadeEsperada(QUANTIDADE_DE_BARALHOS_NA_LISTA_FILTRO_COR_AZUL);
-        
-    // });
-
-    // opaTest("Ao clicar no botão de editar jogador, deve carregar a view de edicao", (When, Then) => {
-    //     When.naPaginaDeDetalhesJogador.perssionarBotaoDeEditarJogador();
-    //     Then.naPaginaDeDetalhesJogador.aPaginaDeEdicaoFoiCarregada();
-
-    //     Then.iTeardownMyApp();
-    // });
 });

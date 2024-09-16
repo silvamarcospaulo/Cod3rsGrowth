@@ -142,7 +142,8 @@
                     text="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
                     type="Ghost"
                     tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
-                    visible="true" />
+                    visible="true"
+                    press="aoPressionarAbreTelaDeEdicaoDeJogador"/>
                 <m:Button
                     text="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
                     type="Ghost"

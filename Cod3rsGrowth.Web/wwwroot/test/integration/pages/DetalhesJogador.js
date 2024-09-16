@@ -25,7 +25,7 @@ sap.ui.define([
         const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
         const CHAVE_I18N_CAMPO_DE_BUSCA_NOME_BARALHO = "ListagemBaralho.Placeholder.CampoDeBusca.NomeBaralho";
         const CHAVE_I18N_COMBO_BOX_COR = "ListagemBaralho.Placeholder.Combobox.CorBaralho";
-        const CHAVE_I18N_COMBO_BOX_FORMATO_DE_JOGO = "ListagemBaralho.Placeholder.Combobox.FormatoDeJogo";
+        const CHAVE_I18N_COMBO_BOX_FORMATO_DE_JOGO = "ListagemBaralho.Placeholder.Combobox.FormatoBaralho";
         const nomeDoBaralho = "Ver";
 
         Opa5.createPageObjects({
@@ -33,7 +33,7 @@ sap.ui.define([
             naPaginaDeDetalhesJogador: {
 
                 actions: {
-                    perssionarBotaoDeEditarJogador: function () {
+                    pressionarBotaoDeEditarJogador: function () {
                         return this.waitFor({
                             viewName: DETALHES_JOGADOR_VIEW_NAME,
                             controlType: TIPO_BOTAO,
@@ -130,12 +130,12 @@ sap.ui.define([
                     },
 
                     aTabelaDeveConterAQuantidadeEsperada: function (quantidadeEsperada) {
-                        const modeloJogador = "JogadorSelecionado";
+                        const modeloBaralho = "Baralho";
                         return this.waitFor({
                             viewName: DETALHES_JOGADOR_VIEW_NAME,
                             controlType: TIPO_TABELA,
                             check: function (tabela) {
-                                return tabela[0].getModel(modeloJogador).getData().baralhosJogador.length == quantidadeEsperada;
+                                return tabela[0].getModel(modeloBaralho).getData().length == quantidadeEsperada;
                             },
                             success: () => Opa5.assert.ok(true, "O jogador possui a quantidade de baralhos esperada"),
                             errorMessage: "O jogador não possui a quantidade de baralhos esperada"
@@ -147,7 +147,6 @@ sap.ui.define([
                         return this.waitFor({
                             viewName: EDICAO_JOGADOR_VIEW_NAME,
                             check: function () {
-                                console.log(window.location.hash.includes);
                                 console.log(window.location.hash.includes(rotaDeEdicao));
                                 return window.location.hash.includes(rotaDeEdicao);
                             },

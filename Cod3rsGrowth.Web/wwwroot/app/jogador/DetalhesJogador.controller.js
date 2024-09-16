@@ -52,7 +52,6 @@ sap.ui.define([
         },
 
         aoPressionarAplicarFiltros: async function () {
-            debugger
             let nomeBaralho = this.getView().byId(ID_CAMPO_BUSCAR_POR_NOME).getValue();
             let formatoDeJogoBaralho = this.getView().byId(ID_COMBOBOX_FORMATO_DE_JOGO).getSelectedKey();
             let corBaralho = this.getView().byId(ID_COMBOBOX_COR).getValue();
@@ -83,7 +82,6 @@ sap.ui.define([
         },
 
         filtroObterTodosBaralhosDoJogador: function () {
-            debugger
             const barra = "/";
             const numeroUm = 1;
             ID_JOGADOR = window.location.hash.substring(window.location.hash.lastIndexOf(barra) + numeroUm);

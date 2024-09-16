@@ -6,7 +6,6 @@
     return {
         
         obterTodos: async function (view, filtros, nomeDoModelo) {
-            debugger
             let urlPesquisaApi = "/api/";
             let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
             let url = new URL(urlPagina);
