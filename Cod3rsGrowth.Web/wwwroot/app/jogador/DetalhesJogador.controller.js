@@ -57,7 +57,18 @@ sap.ui.define([
             let formatoDeJogoBaralho = this.getView().byId(ID_COMBOBOX_FORMATO_DE_JOGO).getSelectedKey();
             let corBaralho = this.getView().byId(ID_COMBOBOX_COR).getValue();
 
-            let modeloFiltros = new JSONModel({ nomeBaralho: nomeBaralho, formatoDeJogoBaralho: formatoDeJogoBaralho, corBaralho: corBaralho, idJogador: ID_JOGADOR });
+            let filtros = {
+                nomeBaralho: nomeBaralho,
+                corBaralho: corBaralho,
+                idJogador: ID_JOGADOR
+            };
+
+            if (formatoDeJogoBaralho) {
+                filtros.formatoDeJogoBaralho = formatoDeJogoBaralho;
+            }
+
+            let modeloFiltros = new JSONModel(filtros);
+
             this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
 
             let filtrosBaralho = this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();

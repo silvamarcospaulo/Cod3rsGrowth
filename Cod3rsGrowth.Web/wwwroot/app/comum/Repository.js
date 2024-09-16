@@ -1,11 +1,6 @@
 ﻿sap.ui.define([
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/library",
-    "sap/m/Dialog",
-    "sap/m/Button",
-    "sap/m/library",
-    "sap/m/Text"
-], function (JSONModel, ValueState, coreLibrary, Dialog, Button, mobileLibrary, Text) {
+], function (JSONModel) {
     "use strict";
 
     return {

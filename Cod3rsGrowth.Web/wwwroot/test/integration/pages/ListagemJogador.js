@@ -37,7 +37,6 @@ sap.ui.define([
 
 				actions: {
 					escreveNoCampoDeBuscaPorUsuario: function () {
-
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_CAMPO_DE_BUSCA,
@@ -54,7 +53,6 @@ sap.ui.define([
 					},
 
 					selecionoNaComboboxDeStatusDaContaAtiva: function () {
-
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_COMBO_BOX,
@@ -72,7 +70,6 @@ sap.ui.define([
 					},
 
 					selecionoNaComboboxDeStatusDaContaInativa: function () {
-
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_COMBO_BOX,
@@ -89,7 +86,6 @@ sap.ui.define([
 					},
 
 					selecionoDatePickerEAdicionoAData: function () {
-
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_DATEPICKER,

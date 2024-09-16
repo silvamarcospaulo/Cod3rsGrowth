@@ -71,7 +71,7 @@
 
                         <m:ComboBox
                             id="idComboBoxFormatoDeJogo"
-                            placeholder="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho}"
+                            placeholder="{i18n>ListagemBaralho.Placeholder.Combobox.FormatoBaralho}"
                             width="auto"
                             selectedKey="{FiltrosBaralho>/corBaralho}"
                     		items="{path: 'FormatoDeJogo>/'}">
@@ -82,7 +82,7 @@
 
                         <m:ComboBox
                             id="idComboBoxCor"
-                            placeholder="{i18n>ListagemBaralho.Placeholder.Combobox.FormatoBaralho}"
+                            placeholder="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho}"
                             width="auto"
                             selectedKey="{FiltrosBaralho>/formatoDeJogoBaralho}" >
                             <c:Item text="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho.Azul}"/>

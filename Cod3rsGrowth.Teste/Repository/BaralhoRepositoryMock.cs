@@ -66,10 +66,10 @@ namespace Cod3rsGrowth.Teste.Repository
                         select q;
             }
 
-            if (filtro?.Nome is not null)
+            if (filtro?.NomeBaralho is not null)
             {
                 query = from q in query
-                        where q.NomeBaralho.Contains(filtro.Nome)
+                        where q.NomeBaralho.Contains(filtro.NomeBaralho)
                         select q;
             }
 
