@@ -1,0 +1,11 @@
+{
+    "name": "mtgdeckbuilder",
+    "version": "1.0.0",
+    "description": "Aplicação UI5",
+    "scripts": {
+        "start": "ui5 serve -o index.html"
+    },
+    "devDependencies": {
+        "@ui5/cli": "^3.11.0"
+    }
+}

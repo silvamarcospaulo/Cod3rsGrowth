@@ -1,0 +1,155 @@
+<mvc:View
+    controllerName="mtgdeckbuilder.app.jogador.DetalhesJogador"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:c="sap.ui.core"
+    height="100%">
+    <m:Page
+        title="{i18n>App}"
+        id="idPaginaDetalhesJogador"
+        enableScrolling="true"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+        showNavButton="true"
+        navButtonPress="aoPressionarRetornarNavegacao">
+        <m:content>
+            <m:ObjectHeader
+                title="{Name}">
+                <m:attributes>
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.Nome}"
+                        text="{JogadorSelecionado>/nomeJogador}" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.Sobrenome}"
+                        text="{JogadorSelecionado>/sobrenomeJogador}" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.DataDeNascimento}"
+                        text="{
+                            path: 'JogadorSelecionado>/dataNascimentoJogador',
+                            formatter: '.formatter.datas'
+                        }" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.Username}"
+                        text="{JogadorSelecionado>/usuarioJogador}" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.ContaAtiva}"
+                        text="{
+                            path: 'JogadorSelecionado>/contaAtivaJogador',
+                            formatter: '.formatter.statusContaJogador'
+                        }" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.DataDeCriacaoConta}"
+                        text="{
+                            path: 'JogadorSelecionado>/dataDeCriacaoContaJogador',
+                            formatter: '.formatter.datas'
+                        }" />
+                    <m:ObjectAttribute
+                        title="{i18n>DetalhesJogador.Label.QuantidadeDeBaralhosJogador}"
+                        text="{JogadorSelecionado>/quantidadeDeBaralhosJogador}" />
+                    <m:ObjectAttribute title="{i18n>DetalhesJogador.Label.PrecoDasCartasJogador}"
+                        text="{JogadorSelecionado>/precoDasCartasJogador}" />
+                </m:attributes>
+            </m:ObjectHeader>
+            <Table
+                id="idTabelaBaralho"
+                rows="{Baralho>/}"
+                editable="false"
+                enableSelectAll="false"
+                selectionMode="Single"
+                selectionBehavior="RowOnly"
+                width="auto"
+                visibleRowCountMode="Auto"
+                enableColumnReordering="false"
+                alternateRowColors="true"
+                minAutoRowCount="5"
+                extension="true">
+                <extension>
+                    <m:OverflowToolbar style="Clear">
+                        <m:Title text="{i18n>DetalhesJogador.Tabela.Titulo.Baralhos}" />
+                        <m:ToolbarSpacer />
+
+                        <m:SearchField
+                            id="idCampoDeBuscaPorNome"
+                            placeholder="{i18n>ListagemBaralho.Placeholder.CampoDeBusca.NomeBaralho}"
+                            value="{FiltrosBaralho>/nomeBaralho}"
+                            showSearchButton="false"
+                            width="auto"/>
+
+                        <m:ComboBox
+                            id="idComboBoxFormatoDeJogo"
+                            placeholder="{i18n>ListagemBaralho.Placeholder.Combobox.FormatoBaralho}"
+                            width="auto"
+                            selectedKey="{FiltrosBaralho>/corBaralho}"
+                    		items="{path: 'FormatoDeJogo>/'}">
+                    		<m:items>
+                        		<c:ListItem key="{FormatoDeJogo>}" text="{FormatoDeJogo>}"/>
+                    		</m:items>
+                		</m:ComboBox>
+
+                        <m:ComboBox
+                            id="idComboBoxCor"
+                            placeholder="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho}"
+                            width="auto"
+                            selectedKey="{FiltrosBaralho>/formatoDeJogoBaralho}" >
+                            <c:Item text="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho.Azul}"/>
+                            <c:Item text="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho.Branco}"/>
+                            <c:Item text="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho.Verde}"/>
+                            <c:Item text="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho.Vermelho}"/>
+                            <c:Item text="{i18n>ListagemBaralho.Placeholder.Combobox.CorBaralho.Preto}"/>
+                        </m:ComboBox>
+
+                        <m:Button
+                            press="aoPressionarAplicarFiltros"
+                            text="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
+                            icon="sap-icon://filter"
+                            tooltip="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
+                            visible="true" />
+                        <m:ToolbarSeparator />
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column>
+                        <m:Label
+                            text="{i18n>BaralhosJogador.Coluna.NomeBaralho}" />
+                        <template>
+                            <m:Text
+                                text="{Baralho>nomeBaralho}"
+                                wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label
+                            text="{i18n>BaralhosJogador.Coluna.FormatoDeJogoBaralho}" />
+                        <template>
+                            <m:Text
+                                text="{
+                                    path: 'Baralho>formatoDeJogoBaralho',
+                                    formatter: '.formatter.formatadorTipoDeBaralho'
+                                }"
+                                wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column>
+                        <m:Label
+                            text="{i18n>BaralhosJogador.Coluna.CorBaralho}" />
+                        <template>
+                            <m:Text
+                                text="{Baralho>corBaralho}"
+                                wrapping="false" />
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+        <m:footer>
+            <m:Toolbar>
+                <m:ToolbarSpacer />
+                <m:Button
+                    text="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
+                    type="Ghost"
+                    tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
+                    visible="true"
+                    press="aoPressionarAbreTelaDeEdicaoDeJogador"/>
+                <m:Button
+                    text="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
+                    type="Ghost"
+                    tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
+                    visible="true" />
+            </m:Toolbar>
+        </m:footer>
+    </m:Page>
+</mvc:View>

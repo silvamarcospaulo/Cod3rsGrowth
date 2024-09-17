@@ -1,0 +1,119 @@
+<mvc:View
+    controllerName="mtgdeckbuilder.app.jogador.ListagemJogador"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:c="sap.ui.core"
+    xmlns:m="sap.m"
+    height="100%"
+>
+    <m:Page
+        showHeader="false"
+        enableScrolling="false"
+        class="sapUiContentPadding">
+        <m:content>
+            <Table
+                title="{i18n>App}"
+                id="idTabela"
+                rows="{Jogador>/}"
+                editable="false"
+                enableSelectAll="false"
+                selectionMode="Single"
+                selectionBehavior="RowOnly"
+                width="auto"
+                visibleRowCountMode="Auto"
+                enableColumnReordering="false"
+                alternateRowColors="true"
+                minAutoRowCount="5"
+                extension="true"
+                cellClick="aoPressionarAbreTelaDeDetalhesDeJogador">
+                <extension>
+                    <m:OverflowToolbar style="Clear">
+                        <m:Title text="{i18n>ListagemJogador.Tabela.Titulo.Jogadores}" />
+                        <m:ToolbarSpacer />
+
+                        <m:SearchField
+                            id="campoBuscaUsuario"
+                            placeholder="{i18n>ListagemJogador.Placeholder.CampoDeBusca.Username}"
+                            value="{ListagemJogadorFiltro>/usuarioJogador}"
+                            showSearchButton="false"
+                            width="auto"/>
+
+                        <m:ComboBox
+                            id="comboBoxStatusConta"
+                            placeholder="{i18n>ListagemJogador.Placeholder.ComboBox.CampoInicial}"
+                            width="auto"
+                            selectedKey="{ListagemJogadorFiltro>/contaAtivaJogador}">
+                            <c:Item
+                                key="true"
+                                text="{i18n>Formatter.ContaAtiva}"/>
+                            <c:Item
+                                key="false"
+                                text="{i18n>Formatter.ContaInativa}"/>
+                        </m:ComboBox>
+
+                        <m:DatePicker
+                            id="datePickerDataDeCadastro"
+                            width="auto"
+                            value="{ListagemJogadorFiltro>/dataDeCriacaoContaJogador}"
+                            placeholder="{i18n>ListagemJogador.Placeholder.DatePicker.DataDeCadastro}"/>
+
+                        <m:Button
+                            id="toggleFiltros"
+                            text="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
+                            icon="sap-icon://filter"
+                            tooltip="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
+                            visible="true"
+                            press=".aoPressionarAplicarFiltros"/>
+                        <m:ToolbarSeparator />
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column>
+                        <m:Label
+                            text="{i18n>ListagemJogador.Coluna.Username}"/>
+                        <template>
+                            <m:Text
+                                text="{Jogador>usuarioJogador}"
+                                wrapping="false"/>
+                        </template>
+                    </Column>
+                    <Column class="autoResize">
+                        <m:Label
+                            text="{i18n>ListagemJogador.Coluna.DataDeCriacaoConta}"/>
+                        <template>
+                            <m:Text
+                                text="{
+									path: 'Jogador>dataDeCriacaoContaJogador',
+									formatter: '.formatter.datas'
+								}"
+                                wrapping="false"/>
+                        </template>
+                    </Column>
+                    <Column class="autoResize">
+                        <m:Label
+                            text="{i18n>ListagemJogador.Coluna.ContaAtiva}"/>
+                        <template>
+                            <m:Text
+                                text="{
+								path: 'Jogador>contaAtivaJogador',
+								formatter: '.formatter.statusContaJogador'
+								}"
+                                wrapping="false"/>
+                        </template>
+                    </Column>
+                </columns>
+            </Table>
+        </m:content>
+        <m:footer>
+            <m:Toolbar>
+                <m:ToolbarSpacer />
+                <m:Button
+                    text="{i18n>ListagemJogador.Toolbar.Buttom.AdicionarJogador}"
+                    type="Ghost"
+                    tooltip="{i18n>ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros}"
+                    visible="true"
+                    press=".aoPressionarAbreTelaDeCriacaoDeJogador"/>
+            </m:Toolbar>
+        </m:footer>
+    </m:Page>
+</mvc:View>

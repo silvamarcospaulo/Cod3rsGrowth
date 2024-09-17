@@ -3,6 +3,7 @@ using Cod3rsGrowth.Dominio.Interfaces;
 using Cod3rsGrowth.Dominio.Migrador;
 using Cod3rsGrowth.Dominio.Modelos;
 using Cod3rsGrowth.Infra.Repository;
+using Cod3rsGrowth.Infra.StringDeConexoes;
 using Cod3rsGrowth.Servico.ServicoBaralho;
 using Cod3rsGrowth.Servico.ServicoCarta;
 using Cod3rsGrowth.Servico.ServicoJogador;
@@ -14,6 +15,7 @@ using LinqToDB;
 using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Configuration;
@@ -23,53 +25,80 @@ namespace Cod3rsGrowth.Infra
 {
     public class ModuloInjetor
     {
-        public class ModuloDeInjecaoInfra
+        private static string _chaveDeConexao;
+
+        private static void BindServices(IServiceCollection servicos)
         {
-            private static string _chaveDeConexao = "DeckBuilderDb";
+            var chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
 
-            public static void BindServices(IServiceCollection servicos)
+            servicos
+                .AddScoped<ICartaRepository, CartaRepository>()
+                .AddScoped<IBaralhoRepository, BaralhoRepository>()
+                .AddScoped<IJogadorRepository, JogadorRepository>()
+                .AddScoped<CartaServico>()
+                .AddScoped<BaralhoServico>()
+                .AddScoped<JogadorServico>()
+                .AddScoped<JwtServico>()
+                .AddScoped<HashServico>()
+                .AddScoped<IValidator<Carta>, CartaValidador>()
+                .AddScoped<IValidator<Baralho>, BaralhoValidador>()
+                .AddScoped<IValidator<Jogador>, JogadorValidador>();
+
+            servicos
+                .AddLinqToDBContext<ConexaoDados>((provider, options)
+                    => options
+                    .UseSqlServer(_chaveDeConexao)
+                    .UseDefaultLogging(provider));
+
+            servicos
+                .AddFluentMigratorCore()
+                .ConfigureRunner(rb => rb
+                    .AddSqlServer()
+                    .WithGlobalConnectionString(_chaveDeConexao)
+                    .ScanIn(typeof(_20240621105800_Carta).Assembly).For.Migrations())
+                .AddLogging(lb => lb.AddFluentMigratorConsole());
+
+            servicos
+                .AddCors();
+            servicos
+                .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            servicos
+                .AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(chave),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+        }
+
+        public static void InjecaoDeDependencia(IServiceCollection serviceProvider, string AmbienteDeExecucao)
+        {
+            switch (AmbienteDeExecucao)
             {
-                var chave = Encoding.ASCII.GetBytes(ConfiguracaoChave.Segredo);
-                servicos
-                    .AddScoped<ICartaRepository, CartaRepository>()
-                    .AddScoped<IBaralhoRepository, BaralhoRepository>()
-                    .AddScoped<IJogadorRepository, JogadorRepository>()
-                    .AddScoped<CartaServico>()
-                    .AddScoped<BaralhoServico>()
-                    .AddScoped<JogadorServico>()
-                    .AddScoped<JwtServico>()
-                    .AddScoped<HashServico>()
-                    .AddScoped<IValidator<Carta>, CartaValidador>()
-                    .AddScoped<IValidator<Baralho>, BaralhoValidador>()
-                    .AddScoped<IValidator<Jogador>, JogadorValidador>()
-                    .AddLinqToDBContext<ConexaoDados>((provider, options) => options
-                        .UseSqlServer(ConfigurationManager.ConnectionStrings[_chaveDeConexao].ConnectionString)
-                        .UseDefaultLogging(provider))
-                    .AddAuthentication(x =>
-                    {
-                        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                    })
-                    .AddJwtBearer(x =>
-                    {
-                        x.RequireHttpsMetadata = false;
-                        x.SaveToken = true;
-                        x.TokenValidationParameters = new TokenValidationParameters
-                        {
-                            ValidateIssuerSigningKey = true,
-                            IssuerSigningKey = new SymmetricSecurityKey(chave),
-                            ValidateIssuer = false,
-                            ValidateAudience = false
-                        };
-                    });
-
-                servicos.AddFluentMigratorCore()
-                    .ConfigureRunner(rb => rb
-                        .AddSqlServer()
-                        .WithGlobalConnectionString(_chaveDeConexao)
-                        .ScanIn(typeof(_20240621105800_Carta).Assembly).For.Migrations())
-                    .AddLogging(lb => lb.AddFluentMigratorConsole());
+                case "--teste":
+                    _chaveDeConexao = ConfigurationManager.ConnectionStrings[StringDeConexao.Teste].ConnectionString;
+                    break;
+                case "--win":
+                    _chaveDeConexao = ConfigurationManager.ConnectionStrings[StringDeConexao.Producao].ConnectionString;
+                    break;
+                case "--mac":
+                    _chaveDeConexao = ConfigurationManager.ConnectionStrings[StringDeConexao.Mac].ConnectionString;
+                    break;
             }
+
+            BindServices(serviceProvider);
         }
 
         public static void AtualizarBancoDeDados(IServiceProvider serviceProvider)
