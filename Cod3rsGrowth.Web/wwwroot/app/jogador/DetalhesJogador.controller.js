@@ -89,6 +89,12 @@ sap.ui.define([
             this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
 
             return this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();
+        },
+
+        aoPressionarApagaJogador: function () {
+            debugger
+            let idJogadorSelecionado = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData().id;
+            Repository.deletar(REQUISICAO, idJogadorSelecionado);
         }
     });
 });
