@@ -60,13 +60,8 @@ sap.ui.define([
         },
 
         aoPressionarAbreTelaDeDetalhesDeJogador: function (eventoDeClique) {
-            let jogadorClicado = {
-                id: eventoDeClique.getParameters().rowBindingContext.getObject().id
-            };
-            let jogadorSelecionado = new JSONModel(jogadorClicado);
-            sap.ui.getCore().setModel(jogadorSelecionado, NOME_DO_MODELO_DE_JOGADOR_SELECIONADO);
-
-            return this.navegarPara(ID_DETALHES, jogadorClicado.id);
+            let idJogadorSelecionado = eventoDeClique.getParameters().rowBindingContext.getObject().id
+            return this.navegarPara(ID_DETALHES, idJogadorSelecionado);
         },
     });
 });
