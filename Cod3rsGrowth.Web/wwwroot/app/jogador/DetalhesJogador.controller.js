@@ -24,13 +24,14 @@ sap.ui.define([
         formatter: formatter,
 
         onInit: function () {
-            this.getRouter().getRoute(ID_DETALHES).attachPatternMatched(async () => {
-                return this.aoCoincidirRota();
+            this.getRouter().getRoute(ID_DETALHES).attachPatternMatched(async (evento) => {
+                return this.aoCoincidirRota(evento);
             }, this)
         },
 
-        aoCoincidirRota: function () {
-            idJogador = sap.ui.getCore().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData().id;
+        aoCoincidirRota: function (evento) {
+            let propriedadesEvento = "arguments";
+            idJogador = evento.getParameter(propriedadesEvento).id;
             this.processarAcao(async () => {
                 await Promise.all([
                     Repository.obterEnums(this.getView(), NOME_DO_MODELO_DE_ENUM_TIPO_DE_BARALHO),

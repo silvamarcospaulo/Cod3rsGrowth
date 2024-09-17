@@ -118,18 +118,6 @@ sap.ui.define([
 						});
 					},
 
-					aoClicarEmUmaCelulaDaTabela: function () {
-						return this.waitFor({
-							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: TIPO_TABELA,
-							actions: function (tabela) {
-								tabela[0].getItems()[1].$().firePress();
-							},
-							success: () => Opa5.assert.ok(true, "O segundo item da tabela foi pressionado com sucesso"),
-							errorMessage: "Não foi possível pressionar o segundo item da tabela"
-						});
-					},
-
 					aoClicarNoBotaoAdicionarJogadorRedirecionaParaATelaDeCadastro: function () {
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,

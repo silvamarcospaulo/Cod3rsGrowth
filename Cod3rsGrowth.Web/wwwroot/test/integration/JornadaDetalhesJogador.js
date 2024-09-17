@@ -29,10 +29,9 @@ sap.ui.define([
         Given.iStartMyUIComponent({
             componentConfig: {
                 name: "mtgdeckbuilder"
-            }
+            },
+            hash: "detalhesJogador/10025"
         });
-
-        When.naPaginaDeListagemJogador.aoClicarEmUmaCelulaDaTabela();
 
         Then.naPaginaDeDetalhesJogador.confiroOValorDoCampo(NOME_ESPERADO);
         Then.naPaginaDeDetalhesJogador.confiroOValorDoCampo(SOBRE_NOME_ESPERADO);
