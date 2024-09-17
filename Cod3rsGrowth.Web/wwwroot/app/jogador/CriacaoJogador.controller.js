@@ -182,8 +182,8 @@ sap.ui.define([
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
-            var ButtonType = mobileLibrary.ButtonType;
-            var DialogType = mobileLibrary.DialogType;
+            let ButtonType = mobileLibrary.ButtonType;
+            let DialogType = mobileLibrary.DialogType;
             let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");
             let botao;
 
@@ -237,17 +237,20 @@ sap.ui.define([
 
         mudaVisualizacaoDoInput: function (idDoInput, idDoBotao) {
             let tipoDoInputAtual = this.getView().byId(idDoInput).getType();
-            var tipoDoInputAtualizado = tipoDoInputAtual === TIPO_DE_INPUT_SENHA ? TIPO_DE_INPUT_TEXTO : TIPO_DE_INPUT_SENHA;
+            let tipoDoInputAtualizado = tipoDoInputAtual === TIPO_DE_INPUT_SENHA ? TIPO_DE_INPUT_TEXTO : TIPO_DE_INPUT_SENHA;
             this.getView().byId(idDoInput).setType(tipoDoInputAtualizado);
 
             let iconeDoBotaoAtual = this.getView().byId(idDoBotao).getIcon();
-            var iconeDoBotaoAtualizado = iconeDoBotaoAtual === ICONE_BOTAO_MOTRAR_SENHA ? ICONE_BOTAO_ESCONDER_SENHA : ICONE_BOTAO_MOTRAR_SENHA;
+            let iconeDoBotaoAtualizado = iconeDoBotaoAtual === ICONE_BOTAO_MOTRAR_SENHA ? ICONE_BOTAO_ESCONDER_SENHA : ICONE_BOTAO_MOTRAR_SENHA;
             this.getView().byId(idDoBotao).setIcon(iconeDoBotaoAtualizado);
         },
 
         aoPressionarRetornarNavegacao: function () {
             const rota = "listagemJogador";
-            this.removerValoresDosInputs();
+            const rotaDeCriacao = "criacaoJogador";
+            if (this.getRouter().oHashChanger.hash.includes(rotaDeCriacao)){
+                this.removerValoresDosInputs();
+            }
             return this.navegarPara(rota);
         },
 

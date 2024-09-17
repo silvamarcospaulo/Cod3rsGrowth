@@ -1,0 +1,11 @@
+<mvc:View
+    controllerName="mtgdeckbuilder.app.jogador.CriacaoJogador"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page
+        title="{i18n>App}"
+        showNavButton="true"
+        navButtonPress=".aoPressionarRetornarNavegacao">
+    </Page>
+</mvc:View>

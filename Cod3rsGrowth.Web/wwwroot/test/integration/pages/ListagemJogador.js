@@ -14,6 +14,7 @@ sap.ui.define([
 		const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
 		const NOME_PROPRIEDADE_TEXT = "text";
 
+		const TIPO_TABELA = "sap.ui.table.Table";
 		const TIPO_CAMPO_DE_BUSCA = "sap.m.SearchField";
 		const CHAVE_I18N_CAMPO_DE_BUSCA = "ListagemJogador.Placeholder.CampoDeBusca.Username";
 		const NOME_DE_USUARIO = "marcos";
@@ -37,7 +38,6 @@ sap.ui.define([
 
 				actions: {
 					escreveNoCampoDeBuscaPorUsuario: function () {
-
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_CAMPO_DE_BUSCA,
@@ -54,7 +54,6 @@ sap.ui.define([
 					},
 
 					selecionoNaComboboxDeStatusDaContaAtiva: function () {
-
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_COMBO_BOX,
@@ -72,7 +71,6 @@ sap.ui.define([
 					},
 
 					selecionoNaComboboxDeStatusDaContaInativa: function () {
-
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_COMBO_BOX,
@@ -89,7 +87,6 @@ sap.ui.define([
 					},
 
 					selecionoDatePickerEAdicionoAData: function () {
-
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_DATEPICKER,
@@ -142,7 +139,7 @@ sap.ui.define([
 					aTabelaDeveConterAQuantidadeEsperada: function (quantidadeDeJogadores) {
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
-							controlType: "sap.ui.table.Table",
+							controlType: TIPO_TABELA,
 							check: function (tabela) {
 								return tabela[0].getModel("Jogador").getData().length == quantidadeDeJogadores;
 							},
