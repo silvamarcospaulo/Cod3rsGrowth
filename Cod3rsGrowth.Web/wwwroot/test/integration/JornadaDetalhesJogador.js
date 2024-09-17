@@ -2,7 +2,7 @@ sap.ui.define([
     "sap/ui/test/opaQunit",
     "mtgdeckbuilder/test/integration/pages/ListagemJogador",
     "mtgdeckbuilder/test/integration/pages/DetalhesJogador"
-], (opaTest) => {
+], (opaTest, ListagemJogador, DetalhesJogador) => {
     "use strict";
 
     QUnit.module("JornadaPaginaDetalhesJogador");
@@ -29,10 +29,10 @@ sap.ui.define([
         Given.iStartMyUIComponent({
             componentConfig: {
                 name: "mtgdeckbuilder"
-            },
+            }
         });
 
-        Then.naPaginaDeListagemJogador.aoClicarEmUmaCelulaDaTabela();
+        When.naPaginaDeListagemJogador.aoClicarEmUmaCelulaDaTabela();
 
         Then.naPaginaDeDetalhesJogador.confiroOValorDoCampo(NOME_ESPERADO);
         Then.naPaginaDeDetalhesJogador.confiroOValorDoCampo(SOBRE_NOME_ESPERADO);

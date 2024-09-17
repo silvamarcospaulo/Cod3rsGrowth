@@ -122,11 +122,11 @@ sap.ui.define([
 						return this.waitFor({
 							viewName: LISTAGEM_JOGADOR_VIEW_NAME,
 							controlType: TIPO_TABELA,
-							check: function (){
-
+							actions: function (tabela) {
+								tabela[0].getItems()[1].$().firePress();
 							},
-							success: () => Opa5.assert.ok(true, "O botão de adicionar foi clicado"),
-							errorMessage: "O botão de adicionar não foi clicado"
+							success: () => Opa5.assert.ok(true, "O segundo item da tabela foi pressionado com sucesso"),
+							errorMessage: "Não foi possível pressionar o segundo item da tabela"
 						});
 					},
 
