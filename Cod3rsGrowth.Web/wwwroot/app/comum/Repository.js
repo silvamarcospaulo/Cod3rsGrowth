@@ -91,6 +91,8 @@
 
         deletar: async function (requisicao, id) {
             debugger
+            
+            const metodoDeRequisicao = "DELETE";
             const urlPesquisaApi = "/api/";
             const barra = "/";
             let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + id;

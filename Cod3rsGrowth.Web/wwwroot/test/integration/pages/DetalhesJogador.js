@@ -14,13 +14,15 @@ sap.ui.define([
         const EDICAO_JOGADOR_VIEW_NAME = "app.jogador.EdicaoJogador";
         const NOME_PROPRIEDADE_TEXT = "text";
 
-        const CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR = "DetalhesJogador.Toolbar.Buttom.EditarJogador";
+        const CHAVE_I18N_BOTAO_EDITAR_JOGADOR = "DetalhesJogador.Toolbar.Buttom.EditarJogador";
+        const CHAVE_I18N_BOTAO_APAGAR_JOGADOR = "DetalhesJogador.Toolbar.Buttom.ApagarJogador";
 
         const TIPO_ATRIBUTO = "sap.m.ObjectAttribute";
         const TIPO_TABELA = "sap.ui.table.Table";
         const TIPO_CAMPO_DE_BUSCA = "sap.m.SearchField";
         const TIPO_COMBO_BOX = "sap.m.ComboBox";
         const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
+        const CONTROL_TYPE_MESSAGEBOX = "sap.m.Dialog";
         const TIPO_BOTAO = "sap.m.Button";
         const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
         const CHAVE_I18N_CAMPO_DE_BUSCA_NOME_BARALHO = "ListagemBaralho.Placeholder.CampoDeBusca.NomeBaralho";
@@ -40,12 +42,43 @@ sap.ui.define([
                             matchers: {
                                 i18NText: {
                                     propertyName: NOME_PROPRIEDADE_TEXT,
-                                    key: CHAVE_I18N_BOTAO_ADICIONAR_JOGADOR
+                                    key: CHAVE_I18N_BOTAO_EDITAR_JOGADOR
                                 }
                             },
                             actions: new Press(),
                             success: () => Opa5.assert.ok(true, "O botao de editar jogador foi pressionado"),
                             errorMessage: "O botao de editar jogador não foi pressionado"
+                        });
+                    },
+
+                    pressionarBotaoDeApagarJogador: function () {
+                        return this.waitFor({
+                            viewName: DETALHES_JOGADOR_VIEW_NAME,
+                            controlType: TIPO_BOTAO,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_TEXT,
+                                    key: CHAVE_I18N_BOTAO_APAGAR_JOGADOR
+                                }
+                            },
+                            actions: new Press(),
+                            success: () => Opa5.assert.ok(true, "O botao de apagar jogador foi pressionado"),
+                            errorMessage: "O botao de apagar jogador não foi pressionado"
+                        });
+                    },
+
+                    pressionarBotaoDeFecharDialogo: function () {
+                        return this.waitFor({
+                            controlType: TIPO_BOTAO,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_TEXT,
+                                    key: CHAVE_I18N_BOTAO_APAGAR_JOGADOR
+                                }
+                            },
+                            actions: new Press(),
+                            success: () => Opa5.assert.ok(true, "O botao de apagar jogador foi pressionado"),
+                            errorMessage: "O botao de apagar jogador não foi pressionado"
                         });
                     },
 
@@ -112,6 +145,15 @@ sap.ui.define([
                             errorMessage: "O botão de filtrar não foi clicado"
                         });
                     },
+
+                    selecionoBotaoDeNavegarParaTras: function () {
+                        return this.waitFor({
+                            controlType: "sap.m.Page",
+                            actions: new Press(),
+                            success: () => Opa5.assert.ok(true, "O botão de navback foi clicado"),
+                            errorMessage: "O botão de navback não foi clicado"
+                        });
+                    },
                 },
 
                 assertions: {
@@ -145,15 +187,14 @@ sap.ui.define([
                     aPaginaDeEdicaoFoiCarregada: function () {
                         const rotaDeEdicao = "edicaoJogador";
                         return this.waitFor({
-                            viewName: EDICAO_JOGADOR_VIEW_NAME,
                             check: function () {
-                                console.log(window.location.hash.includes(rotaDeEdicao));
+                                console.log(window.location.hash);
                                 return window.location.hash.includes(rotaDeEdicao);
                             },
                             success: () => Opa5.assert.ok(true, "A pagina de criacao de jogador foi carregada corretamente"),
                             errorMessage: "A pagina de criacao de jogador não foi carregada corretamente"
                         });
-                    },
+                    }
                 }
             }
         });
