@@ -15,6 +15,7 @@ sap.ui.define([
 
     const CONTROLLER = "mtgdeckbuilder.app.jogador.CriacaoJogador";
     const ID_CRIACAO_JOGADOR = "criacaoJogador";
+    const ID_EDICAO_JOGADOR = "edicaoJogador";
     const NOME_DO_MODELO_DE_CRIACAO_JOGADOR = "JogadorCriacao";
     const ROLE_JOGADOR = "Jogador";
     const ID_NOME_JOGADOR_INPUT = "idNomeJogadorInput";
@@ -48,6 +49,8 @@ sap.ui.define([
     const ID_I18N_SENHA_INVALIDA = "CriacaoJogador.MessageToast.SenhaInvalida";
     const ID_I18N_CONFIRMACAO_SENHA_INCORRETA = "CriacaoJogador.MessageToast.ConfirmacaoSenhaIncorreta";
     const QUEBRA_DE_LINHA = "\n";
+    const REQUISICAO = "Jogador";
+    const NOME_DO_MODELO_DE_JOGADOR_SELECIONADO = "JogadorSelecionado";
     let MENSAGENS_DE_ERRO;
 
     return BaseController.extend(CONTROLLER, {
@@ -56,10 +59,19 @@ sap.ui.define([
             this.getRouter().getRoute(ID_CRIACAO_JOGADOR).attachPatternMatched(async () => {
                 return this.aoCoincidirRota();
             }, this)
+            this.getRouter().getRoute(ID_EDICAO_JOGADOR).attachPatternMatched(async (evento) => {
+                return this.aoCoincidirRota(evento);
+            }, this)
         },
 
-        aoCoincidirRota: function () {
-            this.processarAcao(async () => { })
+        aoCoincidirRota: function (evento) {
+            let propriedadesEvento = "arguments";
+            let idJogador = evento.getParameter(propriedadesEvento).id;
+            this.processarAcao(async () => {
+                await Promise.all([
+                    Repository.obterPorId(this.getView(), idJogador, REQUISICAO, NOME_DO_MODELO_DE_JOGADOR_SELECIONADO),
+                ])
+            })
         },
 
         aoClicarCriaNovoUsuario: async function () {
@@ -189,12 +201,15 @@ sap.ui.define([
         },
 
         aoPressionarRetornarNavegacao: function () {
-            const rota = "listagemJogador";
             const rotaDeCriacao = "criacaoJogador";
             if (this.getRouter().oHashChanger.hash.includes(rotaDeCriacao)) {
+                const rota = "listagemJogador";
                 this.removerValoresDosInputs();
+                return this.navegarPara(rota);
             }
-            return this.navegarPara(rota);
+            const rota = "detalhesJogador";
+            let idJogador = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData().id;
+            return this.navegarPara(rota, idJogador);
         },
 
         removerValoresDosInputs: function () {

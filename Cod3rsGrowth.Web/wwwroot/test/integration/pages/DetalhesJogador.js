@@ -11,20 +11,15 @@ sap.ui.define([
         "use strict";
 
         const DETALHES_JOGADOR_VIEW_NAME = "app.jogador.DetalhesJogador";
-        const EDICAO_JOGADOR_VIEW_NAME = "app.jogador.EdicaoJogador";
         const NOME_PROPRIEDADE_TEXT = "text";
-
+        const TIPO_PAGE = "sap.m.Page"
         const CHAVE_I18N_BOTAO_EDITAR_JOGADOR = "DetalhesJogador.Toolbar.Buttom.EditarJogador";
         const CHAVE_I18N_BOTAO_APAGAR_JOGADOR = "DetalhesJogador.Toolbar.Buttom.ApagarJogador";
-        const CHAVE_I18N_BOTAO_CANCELAR_CONFIRMAR_DE_JOGADOR = "DeletarJogador.MessageToast.BotaoConfirmarDialogo";
-        const CHAVE_I18N_BOTAO_CANCELAR_EXCLUSAO_DE_JOGADOR = "DeletarJogador.MessageToast.BotaoCancelarDialogo";
-
         const TIPO_ATRIBUTO = "sap.m.ObjectAttribute";
         const TIPO_TABELA = "sap.ui.table.Table";
         const TIPO_CAMPO_DE_BUSCA = "sap.m.SearchField";
         const TIPO_COMBO_BOX = "sap.m.ComboBox";
         const NOME_PROPRIEDADE_PLACEHOLDER = "placeholder";
-        const CONTROL_TYPE_MESSAGEBOX = "sap.m.Dialog";
         const TIPO_BOTAO = "sap.m.Button";
         const CHAVE_I18N_BOTAO_APLICAR_FILTROS = "ListagemJogador.Placeholder.ToggleButtom.AplicarFiltros";
         const CHAVE_I18N_CAMPO_DE_BUSCA_NOME_BARALHO = "ListagemBaralho.Placeholder.CampoDeBusca.NomeBaralho";
@@ -150,7 +145,7 @@ sap.ui.define([
 
                     selecionoBotaoDeNavegarParaTras: function () {
                         return this.waitFor({
-                            controlType: "sap.m.Page",
+                            controlType: TIPO_PAGE,
                             actions: new Press(),
                             success: () => Opa5.assert.ok(true, "O botão de navback foi clicado"),
                             errorMessage: "O botão de navback não foi clicado"
@@ -158,32 +153,30 @@ sap.ui.define([
                     },
 
                     pressionarBotaoCancelarAExclusaoDeJogador: function () {
+                        let textoBotaoCancelar = "Cancelar";
                         return this.waitFor({
                             controlType: TIPO_BOTAO,
-                            matchers: {
-                                i18NText: {
-                                    propertyName: NOME_PROPRIEDADE_TEXT,
-                                    key: CHAVE_I18N_BOTAO_CANCELAR_EXCLUSAO_DE_JOGADOR
-                                }
-                            },
+                            matchers: new PropertyStrictEquals({
+                                name: NOME_PROPRIEDADE_TEXT,
+                                value: textoBotaoCancelar
+                            }),
                             actions: new Press(),
-                            success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
-                            errorMessage: "O botão de filtrar não foi clicado"
+                            success: () => Opa5.assert.ok(true, "O botão de cancelar foi pressionado"),
+                            errorMessage: "O botão de cancelar não foi pressionado"
                         });
                     },
 
                     pressionarBotaoConfirmarAExclusaoDeJogador: function () {
+                        let textoBotaoConfirmar = "Confirmar";
                         return this.waitFor({
                             controlType: TIPO_BOTAO,
-                            matchers: {
-                                i18NText: {
-                                    propertyName: NOME_PROPRIEDADE_TEXT,
-                                    key: CHAVE_I18N_BOTAO_CONFIRMAR_EXCLUSAO_DE_JOGADOR
-                                }
-                            },
+                            matchers: new PropertyStrictEquals({
+                                name: NOME_PROPRIEDADE_TEXT,
+                                value: textoBotaoConfirmar
+                            }),
                             actions: new Press(),
-                            success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
-                            errorMessage: "O botão de filtrar não foi clicado"
+                            success: () => Opa5.assert.ok(true, "O botão de confirmar foi pressionado"),
+                            errorMessage: "O botão de confirmar não foi pressionado"
                         });
                     },
                 },
@@ -194,7 +187,6 @@ sap.ui.define([
                             viewName: DETALHES_JOGADOR_VIEW_NAME,
                             controlType: TIPO_ATRIBUTO,
                             matchers: new PropertyStrictEquals({
-
                                 name: NOME_PROPRIEDADE_TEXT,
                                 value: valorEsperado
                             }),

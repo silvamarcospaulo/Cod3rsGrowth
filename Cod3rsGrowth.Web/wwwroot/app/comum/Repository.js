@@ -4,7 +4,7 @@
     "use strict";
 
     return {
-        
+
         criar: async function (objeto, nomeDoModelo) {
             const metodoDeRequisicao = "POST";
             let urlPesquisaApi = "/api/";
@@ -90,8 +90,6 @@
         },
 
         deletar: async function (requisicao, id) {
-            debugger
-            
             const metodoDeRequisicao = "DELETE";
             const urlPesquisaApi = "/api/";
             const barra = "/";

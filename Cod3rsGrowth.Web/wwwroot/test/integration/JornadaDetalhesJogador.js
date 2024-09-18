@@ -30,7 +30,7 @@ sap.ui.define([
             componentConfig: {
                 name: "mtgdeckbuilder"
             },
-            hash: "detalhesJogador/10025"
+            hash: "detalhesJogador/30023"
         });
 
         Then.naPaginaDeDetalhesJogador.confiroOValorDoCampo(NOME_ESPERADO);
@@ -75,9 +75,11 @@ sap.ui.define([
         When.naPaginaDeDetalhesJogador.selecionoBotaoDeNavegarParaTras();
     });
 
-    opaTest("Ao clicar no botão de editar jogador, deve carregar a view de edicao", (Given, When, Then) => {
+    opaTest("Ao clicar no botão de apagar jogador, deve abrir um diáogo de confirmação de exclusão de jogador", (Given, When, Then) => {
         When.naPaginaDeDetalhesJogador.pressionarBotaoDeApagarJogador();
         When.naPaginaDeDetalhesJogador.pressionarBotaoCancelarAExclusaoDeJogador();
+        When.naPaginaDeDetalhesJogador.pressionarBotaoDeApagarJogador();
+        When.naPaginaDeDetalhesJogador.pressionarBotaoConfirmarAExclusaoDeJogador();
 
         Then.iTeardownMyApp();
     });
