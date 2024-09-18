@@ -3,7 +3,15 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "mtgdeckbuilder/app/comum/Repository",
     "mtgdeckbuilder/app/model/formatter",
-], function (BaseController, JSONModel, Repository, formatter) {
+    "sap/m/MessageBox",
+    "sap/ui/core/ValueState",
+    "sap/ui/core/library",
+    "sap/m/Dialog",
+    "sap/m/Button",
+    "sap/m/library",
+    "sap/m/Text"
+], function (BaseController, JSONModel, Repository, formatter, MessageBox,
+    ValueState, coreLibrary, Dialog, Button, mobileLibrary, Text) {
     "use strict";
 
     const CONTROLLER = "mtgdeckbuilder.app.jogador.DetalhesJogador";
@@ -17,6 +25,7 @@ sap.ui.define([
     const ID_CAMPO_BUSCAR_POR_NOME = "idCampoDeBuscaPorNome";
     const ID_COMBOBOX_FORMATO_DE_JOGO = "idComboBoxFormatoDeJogo";
     const ID_COMBOBOX_COR = "idComboBoxCor";
+    const i18n = "i18n";
     let idJogador;
 
     return BaseController.extend(CONTROLLER, {
@@ -89,6 +98,121 @@ sap.ui.define([
             this.getView().setModel(modeloFiltros, NOME_DO_MODELO_DE_FILTROS);
 
             return this.getView().getModel(NOME_DO_MODELO_DE_FILTROS).getData();
-        }
+        },
+
+        aoPressionarApagaJogador: function () {
+            this.dialogoDeConfirmacao();
+        },
+
+        deletarJogador: async function () {
+            let idJogadorSelecionado = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData().id;
+            let requisicao = await Repository.deletar(REQUISICAO, idJogadorSelecionado);
+
+            let tituloCaixaDeDialogo;
+            let mensagem;
+            let estadoDoDialogo;
+
+            if (requisicao.ok) {
+                requisicao
+                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
+                mensagem = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.MensagemSucesso");
+                estadoDoDialogo = ValueState.Success;
+            } else {
+                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
+                mensagem = this.criarObjetoDeMensagemDeErroRFC(requisicao);
+                estadoDoDialogo = ValueState.Error;
+            }
+
+            this.abrirDialogo(tituloCaixaDeDialogo, mensagem, estadoDoDialogo)
+        },
+
+        dialogoDeConfirmacao: function () {
+            let ButtonType = mobileLibrary.ButtonType;
+            let DialogType = mobileLibrary.DialogType;
+            let titulo = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.TituloDialogo");
+            let mensagem = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.MensagemDialogo");
+            let textoBotaoConfirmar = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.BotaoConfirmarDialogo");
+            let textoBotaoCancelar = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.BotaoCancelarDialogo");
+            let valueStateDeConfirmacao = ValueState.Warning;
+
+            let botaoConfirmar = new Button({
+                type: ButtonType.Emphasized,
+                text: textoBotaoConfirmar,
+                press: function () {
+                    this.oConfirmationMessageDialog.close();
+                    this.deletarJogador();
+                }.bind(this)
+            });
+
+            let botaoCancelar = new Button({
+                type: ButtonType.Emphasized,
+                text: textoBotaoCancelar,
+                press: function () {
+                    this.oConfirmationMessageDialog.close();
+                }.bind(this)
+            });
+
+            this.oConfirmationMessageDialog = new Dialog({
+                type: DialogType.Message,
+                title: titulo,
+                state: valueStateDeConfirmacao,
+                content: new Text({ text: mensagem }),
+                beginButton: botaoConfirmar,
+                endButton: botaoCancelar
+            });
+
+            this.oConfirmationMessageDialog.open();
+        },
+
+        criarObjetoDeMensagemDeErroRFC: function (requisicao) {
+            let mensagemDeErro = {
+                title: requisicao.Title,
+                status: requisicao.Status,
+                type: requisicao.Type,
+                details: requisicao.Detail
+            };
+
+            let regex = /at .*/s;
+            let detalhesLimpos = mensagemDeErro.details.replace(regex, '').trim();
+
+            detalhesLimpos = detalhesLimpos.replace(/(\r?\n\s*){2,}/g, '\n\n').trim();
+
+            let mensagemFormatada =
+                "Título: " + mensagemDeErro.title + "\n" +
+                "Status: " + mensagemDeErro.status + "\n" +
+                "Tipo: " + mensagemDeErro.type + "\n" +
+                "Detalhes: " + detalhesLimpos;
+
+            return mensagemFormatada;
+        },
+
+        abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
+            let ButtonType = mobileLibrary.ButtonType;
+            let DialogType = mobileLibrary.DialogType;
+            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");
+
+            let botao = new Button({
+                type: ButtonType.Emphasized,
+                text: botaoCaixaDeDialogo,
+                press: function () {
+                    this.aoPressionarRetornarNavegacao();
+                }.bind(this)
+            });
+
+            this.oErrorMessageDialog = new Dialog({
+                type: DialogType.Message,
+                title: tituloCaixaDeDialogo,
+                state: estadoDoDialogo,
+                content: new Text({ text: mensagem }),
+                beginButton: botao
+            });
+
+            this.oErrorMessageDialog.open();
+        },
+
+        aoPressionarRetornarNavegacao: function () {
+            const rota = "listagemJogador";
+            return this.navegarPara(rota);
+        },
     });
 });

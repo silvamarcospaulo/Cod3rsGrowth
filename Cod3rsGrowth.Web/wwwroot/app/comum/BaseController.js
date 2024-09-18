@@ -3,7 +3,7 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/core/BusyIndicator",
     "sap/ui/model/json/JSONModel",
-], function (Controller, UIComponent) {
+], function (Controller, UIComponent, BusyIndicator, JSONModel) {
 
     "use strict";
 

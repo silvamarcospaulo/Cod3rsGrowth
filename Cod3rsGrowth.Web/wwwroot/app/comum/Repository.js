@@ -4,7 +4,28 @@
     "use strict";
 
     return {
-        
+
+        criar: async function (objeto, nomeDoModelo) {
+            const metodoDeRequisicao = "POST";
+            let urlPesquisaApi = "/api/";
+            let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
+            let urlRequisicao = new URL(urlPagina);
+
+            let resposta = await fetch(urlRequisicao, {
+                method: metodoDeRequisicao,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: objeto,
+            });
+
+            if (!resposta.ok) {
+                return resposta.json();
+            };
+
+            return resposta;
+        },
+
         obterTodos: async function (view, filtros, nomeDoModelo) {
             let urlPesquisaApi = "/api/";
             let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
@@ -48,27 +69,6 @@
                 });
         },
 
-        criar: async function (objeto, nomeDoModelo) {
-            const metodoDeRequisicao = "POST";
-            let urlPesquisaApi = "/api/";
-            let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
-            let urlRequisicao = new URL(urlPagina);
-
-            let resposta = await fetch(urlRequisicao, {
-                method: metodoDeRequisicao,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: objeto,
-            });
-
-            if (!resposta.ok) {
-                return resposta.json();
-            };
-
-            return resposta;
-        },
-
         obterPorId: async function (view, id, requisicao, nomeDoModelo) {
             const urlPesquisaApi = "/api/";
             const barra = "/";
@@ -87,6 +87,27 @@
                 })
                 .catch(erro => {
                 });
-        }
+        },
+
+        deletar: async function (requisicao, id) {
+            const metodoDeRequisicao = "DELETE";
+            const urlPesquisaApi = "/api/";
+            const barra = "/";
+            let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + id;
+            let urlRequisicao = new URL(urlPagina);
+
+            let resposta = await fetch(urlRequisicao, {
+                method: metodoDeRequisicao,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!resposta.ok) {
+                return resposta.json();
+            };
+
+            return resposta;
+        },
     };
 });

@@ -143,12 +143,13 @@
                     type="Ghost"
                     tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
                     visible="true"
-                    press="aoPressionarAbreTelaDeEdicaoDeJogador"/>
+                    press="aoPressionarAbreTelaDeEdicaoDeJogador" />
                 <m:Button
                     text="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
                     type="Ghost"
                     tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
-                    visible="true" />
+                    visible="true"
+                    press="aoPressionarApagaJogador" />
             </m:Toolbar>
         </m:footer>
     </m:Page>

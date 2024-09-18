@@ -104,7 +104,7 @@
 				"edicaoJogador": {
 					"id": "edicaoJogador",
 					"path": "mtgdeckbuilder.app.jogador",
-					"name": "EdicaoJogador"
+					"name": "CriacaoJogador"
 				}
 			}
 		}
