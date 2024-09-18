@@ -16,6 +16,8 @@ sap.ui.define([
 
         const CHAVE_I18N_BOTAO_EDITAR_JOGADOR = "DetalhesJogador.Toolbar.Buttom.EditarJogador";
         const CHAVE_I18N_BOTAO_APAGAR_JOGADOR = "DetalhesJogador.Toolbar.Buttom.ApagarJogador";
+        const CHAVE_I18N_BOTAO_CANCELAR_CONFIRMAR_DE_JOGADOR = "DeletarJogador.MessageToast.BotaoConfirmarDialogo";
+        const CHAVE_I18N_BOTAO_CANCELAR_EXCLUSAO_DE_JOGADOR = "DeletarJogador.MessageToast.BotaoCancelarDialogo";
 
         const TIPO_ATRIBUTO = "sap.m.ObjectAttribute";
         const TIPO_TABELA = "sap.ui.table.Table";
@@ -152,6 +154,36 @@ sap.ui.define([
                             actions: new Press(),
                             success: () => Opa5.assert.ok(true, "O botão de navback foi clicado"),
                             errorMessage: "O botão de navback não foi clicado"
+                        });
+                    },
+
+                    pressionarBotaoCancelarAExclusaoDeJogador: function () {
+                        return this.waitFor({
+                            controlType: TIPO_BOTAO,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_TEXT,
+                                    key: CHAVE_I18N_BOTAO_CANCELAR_EXCLUSAO_DE_JOGADOR
+                                }
+                            },
+                            actions: new Press(),
+                            success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
+                            errorMessage: "O botão de filtrar não foi clicado"
+                        });
+                    },
+
+                    pressionarBotaoConfirmarAExclusaoDeJogador: function () {
+                        return this.waitFor({
+                            controlType: TIPO_BOTAO,
+                            matchers: {
+                                i18NText: {
+                                    propertyName: NOME_PROPRIEDADE_TEXT,
+                                    key: CHAVE_I18N_BOTAO_CONFIRMAR_EXCLUSAO_DE_JOGADOR
+                                }
+                            },
+                            actions: new Press(),
+                            success: () => Opa5.assert.ok(true, "O botão de filtrar foi clicado"),
+                            errorMessage: "O botão de filtrar não foi clicado"
                         });
                     },
                 },
