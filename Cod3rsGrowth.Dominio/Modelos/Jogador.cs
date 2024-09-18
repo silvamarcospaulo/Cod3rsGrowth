@@ -5,6 +5,8 @@ namespace Cod3rsGrowth.Dominio.Modelos
 {
     [Table("Jogador")]
     public class Jogador
+
+
     {
         [PrimaryKey, Identity]
         public int Id { get; set; }

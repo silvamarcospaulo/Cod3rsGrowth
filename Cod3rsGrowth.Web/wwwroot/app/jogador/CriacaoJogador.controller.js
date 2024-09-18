@@ -14,8 +14,10 @@ sap.ui.define([
     "use strict";
 
     const CONTROLLER = "mtgdeckbuilder.app.jogador.CriacaoJogador";
+    const ID_LISTAGEM_JOGADOR = "listagemJogador";
     const ID_CRIACAO_JOGADOR = "criacaoJogador";
     const ID_EDICAO_JOGADOR = "edicaoJogador";
+    const ID_DETALHES_JOGADOR = "detalhesJogador";
     const NOME_DO_MODELO_DE_CRIACAO_JOGADOR = "JogadorCriacao";
     const ROLE_JOGADOR = "Jogador";
     const ID_NOME_JOGADOR_INPUT = "idNomeJogadorInput";
@@ -81,9 +83,12 @@ sap.ui.define([
             let jogadorCriacao = JSON.stringify(dadosJogador);
 
             if (this.validarJogador()) {
+                debugger
                 const requisicao = await Repository.criar(jogadorCriacao, ROLE_JOGADOR);
 
                 if (requisicao.ok) {
+                    let objetoRequisicao = await requisicao.json();
+                    Repository.obterPorId(this.getView(), objetoRequisicao.id, REQUISICAO, NOME_DO_MODELO_DE_JOGADOR_SELECIONADO);
                     const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_SUCESSO);
                     const estadoDoDialogoDeSucesso = ValueState.Success;
                     const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TEXTO_CAIXA_DE_DIALOGO_SUCESSO);
@@ -98,6 +103,28 @@ sap.ui.define([
                     this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagemDeErro, estadoDoDialogoDeErro);
                 }
             }
+        },
+
+        criarObjetoDeMensagemDeErroRFC: function (requisicao) {
+            let mensagemDeErro = {
+                title: requisicao.Title,
+                status: requisicao.Status,
+                type: requisicao.Type,
+                details: requisicao.Detail
+            };
+
+            let regex = /at .*/s;
+            let detalhesLimpos = mensagemDeErro.details.replace(regex, '').trim();
+
+            detalhesLimpos = detalhesLimpos.replace(/(\r?\n\s*){2,}/g, '\n\n').trim();
+
+            let mensagemFormatada =
+                "Título: " + mensagemDeErro.title + "\n" +
+                "Status: " + mensagemDeErro.status + "\n" +
+                "Tipo: " + mensagemDeErro.type + "\n" +
+                "Detalhes: " + detalhesLimpos;
+
+            return mensagemFormatada;
         },
 
         ObterDadosDosInputs: function () {
@@ -129,29 +156,29 @@ sap.ui.define([
             MENSAGENS_DE_ERRO = "";
 
             let nomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().nomeJogador;
-            let nomeNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(nomeJogador), ID_NOME_JOGADOR_INPUT, ID_I18N_NOME_OBRIGATORIO);
             let nomePossuiSomenteLetrasMaiusculasEMenusculas = this.aplicarValidacao(validador.validarSeCampoPossuiSomenteLetrasMaiusculasEMinusculas(nomeJogador), ID_NOME_JOGADOR_INPUT, ID_I18N_NOME_COM_CARACTERES_INVALIDOS);
+            let nomeNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(nomeJogador), ID_NOME_JOGADOR_INPUT, ID_I18N_NOME_OBRIGATORIO);
 
             let sobrenomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().sobrenomeJogador;
-            let sobrenomeNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(sobrenomeJogador), ID_SOBRENOME_JOGADOR_INPUT, ID_I18N_SOBRENOME_OBRIGATORIO);
             let sobrenomePossuiSomenteLetrasMaiusculasEMenusculas = this.aplicarValidacao(validador.validarSeCampoPossuiSomenteLetrasMaiusculasEMinusculas(sobrenomeJogador), ID_SOBRENOME_JOGADOR_INPUT, ID_I18N_SOBRENOME_COM_CARACTERES_INVALIDOS);
+            let sobrenomeNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(sobrenomeJogador), ID_SOBRENOME_JOGADOR_INPUT, ID_I18N_SOBRENOME_OBRIGATORIO);
 
             let dataNascimentoJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().dataNascimentoJogador;
-            let dataNascimentoNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(dataNascimentoJogador), ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT, ID_I18N_DATA_NASCIMENTO_OBRIGATORIO);
             let dataNascimentoMaiorQueTrezeAnos = this.aplicarValidacao(validador.validarSeJogadorEMaiorQueTrezeAnos(dataNascimentoJogador), ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT, ID_I18N_DATA_NASCIMENTO_MAIOR_QUE_TREZE_ANOS);
+            let dataNascimentoNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(dataNascimentoJogador), ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT, ID_I18N_DATA_NASCIMENTO_OBRIGATORIO);
 
             let usuarioJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().usuarioJogador;
-            let usuarioNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_OBRIGATORIO);
             let usuarioPossuiAoMenosSeisDigitos = this.aplicarValidacao(validador.validarUsuarioPossuiAoMenosSeisDigitos(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_INVALIDO);
             let usuarioPossuiSomenteLetrasMinusculas = this.aplicarValidacao(validador.validarCaracteresUsuarioJogador(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_INVALIDO);
+            let usuarioNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_OBRIGATORIO);
 
             let usuarioConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().usuarioConfirmacaoJogador;
             let usuarioEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(usuarioJogador, usuarioConfirmacaoJogador), ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_USUARIO_INCORRETA);
 
             let senhaJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().senhaHashJogador;
-            let senhaNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_OBRIGATORIO);
             let senhaPossuiAoMenosOitoDigitos = this.aplicarValidacao(validador.validarSenhaPossuiAoMenosOitoDigitos(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
             let senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero = this.aplicarValidacao(validador.validarSenhaPossuiOsCaracteresNecessarios(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
+            let senhaNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_OBRIGATORIO);
 
             let senhaHashConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_CRIACAO_JOGADOR).getData().senhaHashConfirmacaoJogador;
             let senhaEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(senhaJogador, senhaHashConfirmacaoJogador), ID_SENHA_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_SENHA_INCORRETA);
@@ -172,6 +199,7 @@ sap.ui.define([
         },
 
         aplicarValidacao: function (validacao, idInput, idI18n) {
+            debugger
             if (!validacao) {
                 this.getView().byId(idInput).setValueState(valueStateDeErro);
                 MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(idI18n) + QUEBRA_DE_LINHA;
@@ -201,25 +229,40 @@ sap.ui.define([
         },
 
         aoPressionarRetornarNavegacao: function () {
-            const rotaDeCriacao = "criacaoJogador";
-            if (this.getRouter().oHashChanger.hash.includes(rotaDeCriacao)) {
-                const rota = "listagemJogador";
-                this.removerValoresDosInputs();
-                return this.navegarPara(rota);
+            this.removerValoresDosInputs();
+            this.removerValueStates();
+            if (this.getRouter().oHashChanger.hash.includes(ID_CRIACAO_JOGADOR)) {
+                return this.navegarPara(ID_LISTAGEM_JOGADOR);
             }
-            const rota = "detalhesJogador";
+
+            this.navegarParaDetalhes();
+        },
+
+        navegarParaDetalhes: function () {
+            this.removerValoresDosInputs();
+            this.removerValueStates();
             let idJogador = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData().id;
-            return this.navegarPara(rota, idJogador);
+            return this.navegarPara(ID_DETALHES_JOGADOR, idJogador);
         },
 
         removerValoresDosInputs: function () {
-            let nomeJogadorInput = this.getView().byId(ID_NOME_JOGADOR_INPUT).setValue();
-            let sobrenomeJogadornomeJogadorInput = this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValue();
-            let dataNascimentoJogadorInput = this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValue();
-            let usuarioJogadorInput = this.getView().byId(ID_USUARIO_JOGADOR_INPUT).setValue();
-            let usuarioConfirmacaoJogadorInput = this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).setValue();
-            let senhaHashJogadorInput = this.getView().byId(ID_SENHA_JOGADOR_INPUT).setValue();
-            let senhaHashConfirmacaoJogadorInput = this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).setValue();
+            this.getView().byId(ID_NOME_JOGADOR_INPUT).setValue();
+            this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValue();
+            this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValue();
+            this.getView().byId(ID_USUARIO_JOGADOR_INPUT).setValue();
+            this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).setValue();
+            this.getView().byId(ID_SENHA_JOGADOR_INPUT).setValue();
+            this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).setValue();
+        },
+
+        removerValueStates: function () {
+            this.getView().byId(ID_NOME_JOGADOR_INPUT).setValueState();
+            this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValueState();
+            this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValueState();
+            this.getView().byId(ID_USUARIO_JOGADOR_INPUT).setValueState();
+            this.getView().byId(ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT).setValueState();
+            this.getView().byId(ID_SENHA_JOGADOR_INPUT).setValueState();
+            this.getView().byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).setValueState();
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
@@ -241,7 +284,7 @@ sap.ui.define([
                     type: ButtonType.Emphasized,
                     text: botaoCaixaDeDialogo,
                     press: function () {
-                        this.aoPressionarRetornarNavegacao();
+                        this.navegarParaDetalhes();
                     }.bind(this)
                 });
             }

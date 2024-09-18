@@ -105,22 +105,28 @@ sap.ui.define([
         },
 
         deletarJogador: async function () {
-            let idJogadorSelecionado = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData().id;
-            let requisicao = await Repository.deletar(REQUISICAO, idJogadorSelecionado);
-
+            const quantidadeDeBaralhosParaExclusao = 0;
+            let jogador = this.getView().getModel(NOME_DO_MODELO_DE_JOGADOR_SELECIONADO).getData();
             let tituloCaixaDeDialogo;
             let mensagem;
             let estadoDoDialogo;
 
-            if (requisicao.ok) {
-                requisicao
-                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
-                mensagem = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.MensagemSucesso");
-                estadoDoDialogo = ValueState.Success;
-            } else {
+            if (jogador.baralhosJogador.length > quantidadeDeBaralhosParaExclusao) {
                 tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
-                mensagem = this.criarObjetoDeMensagemDeErroRFC(requisicao);
+                mensagem = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.MensagemJogadorPossuiBaralhos");
                 estadoDoDialogo = ValueState.Error;
+            } else {
+                let requisicao = await Repository.deletar(REQUISICAO, jogador.id);
+
+                if (requisicao.ok) {
+                    tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
+                    mensagem = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.MensagemSucesso");
+                    estadoDoDialogo = ValueState.Success;
+                } else {
+                    tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
+                    mensagem = this.criarObjetoDeMensagemDeErroRFC(requisicao);
+                    estadoDoDialogo = ValueState.Error;
+                }
             }
 
             this.abrirDialogo(tituloCaixaDeDialogo, mensagem, estadoDoDialogo)
@@ -187,17 +193,30 @@ sap.ui.define([
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
+            debugger
             let ButtonType = mobileLibrary.ButtonType;
             let DialogType = mobileLibrary.DialogType;
             let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");
 
-            let botao = new Button({
-                type: ButtonType.Emphasized,
-                text: botaoCaixaDeDialogo,
-                press: function () {
-                    this.aoPressionarRetornarNavegacao();
-                }.bind(this)
-            });
+            let botao;
+            
+            if (estadoDoDialogo === ValueState.Error) {
+                botao = new Button({
+                    type: ButtonType.Emphasized,
+                    text: botaoCaixaDeDialogo,
+                    press: function () {
+                        this.oErrorMessageDialog.close();
+                    }.bind(this)
+                })
+            } else {
+                botao = new Button({
+                    type: ButtonType.Emphasized,
+                    text: botaoCaixaDeDialogo,
+                    press: function () {
+                        this.aoPressionarRetornarNavegacao();
+                    }.bind(this)
+                });
+            }
 
             this.oErrorMessageDialog = new Dialog({
                 type: DialogType.Message,

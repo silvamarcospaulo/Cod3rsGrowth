@@ -75,7 +75,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 });
 
                 jogador.SenhaHashJogador = HashServico.Gerar(jogador.SenhaHashJogador);
-                return _IJogadorRepository.Criar(jogador);
+                jogador.Id = _IJogadorRepository.Criar(jogador);
+                return jogador.Id;
             }
             catch (ValidationException e)
             {

@@ -38,6 +38,12 @@ namespace Cod3rsGrowth.Web.Controllers
         public OkObjectResult ObterTodos([FromQuery] JogadorFiltro? filtro)
         {
             var jogadores = _jogadorServico.ObterTodos(filtro);
+            foreach (var jogador in jogadores)
+            {
+                jogador.SenhaHashJogador = string.Empty;
+                jogador.SenhaHashConfirmacaoJogador = string.Empty;
+            };
+
             return Ok(jogadores);
         }
 
@@ -45,6 +51,8 @@ namespace Cod3rsGrowth.Web.Controllers
         public OkObjectResult ObterPorId([FromRoute] int id)
         {
             var jogador = _jogadorServico.ObterPorId(id);
+            jogador.SenhaHashJogador = string.Empty;
+            jogador.SenhaHashConfirmacaoJogador = string.Empty;
             return Ok(jogador);
         }
 
