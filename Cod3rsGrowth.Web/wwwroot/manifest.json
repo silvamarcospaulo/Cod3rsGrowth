@@ -52,7 +52,7 @@
 				"path": "mtgdeckbuilder.app",
 				"controlId": "app",
 				"controlAggregation": "pages",
-            	"transition": "slide",
+				"transition": "slide",
 				"bypassed": {
 					"target": "notFound"
 				},

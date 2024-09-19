@@ -83,10 +83,31 @@
                 })
                 .then(dados => {
                     const oDadosRequisicao = new JSONModel(dados);
-                    view.setModel(oDadosRequisicao, nomeDoModelo)
+                    view.setModel(oDadosRequisicao, nomeDoModelo);
                 })
                 .catch(erro => {
                 });
+        },
+
+        editar: async function (objeto, nomeDoModelo) {
+            const metodoDeRequisicao = "PATCH";
+            let urlPesquisaApi = "/api/";
+            let urlPagina = window.location.origin + urlPesquisaApi + nomeDoModelo;
+            let urlRequisicao = new URL(urlPagina);
+
+            let resposta = await fetch(urlRequisicao, {
+                method: metodoDeRequisicao,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: objeto,
+            });
+
+            if (!resposta.ok) {
+                return resposta.json();
+            };
+
+            return resposta;
         },
 
         deletar: async function (requisicao, id) {

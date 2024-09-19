@@ -193,7 +193,6 @@ sap.ui.define([
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
-            debugger
             let ButtonType = mobileLibrary.ButtonType;
             let DialogType = mobileLibrary.DialogType;
             let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");

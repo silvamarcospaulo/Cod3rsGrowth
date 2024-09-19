@@ -1,7 +1,6 @@
 sap.ui.define([
     "sap/ui/test/opaQunit",
     "mtgdeckbuilder/test/integration/pages/ListagemJogador",
-    "mtgdeckbuilder/test/integration/pages/CriacaoJogador"
 ], (opaTest, ListagemJogador, CriacaoJogador) => {
     "use strict";
 

@@ -91,7 +91,6 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
             try
             {
                 var jogadorBanco = ObterPorId(jogador.Id);
-
                 var jogadorAtualizar = new Jogador();
 
                 jogadorAtualizar.ContaAtivaJogador = VerificaJogadorAtivoOuDesavado(jogador.BaralhosJogador);
@@ -108,8 +107,8 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                     options.IncludeRuleSets("Atualizar");
                 });
 
-                jogadorAtualizar.SenhaHashJogador = jogador?.SenhaHashJogador is not null ? HashServico.Gerar(jogador.SenhaHashJogador) : jogadorBanco.SenhaHashJogador;
-                jogadorAtualizar.UsuarioJogador = jogador?.UsuarioJogador is not null ? (ValidacaoUsuarioDisponível(jogador.UsuarioJogador) ? jogador.UsuarioJogador : jogadorBanco.UsuarioJogador) : jogadorBanco.UsuarioJogador;
+                jogadorAtualizar.SenhaHashJogador = jogador?.SenhaHashJogador != string.Empty ? HashServico.Gerar(jogador.SenhaHashJogador) : jogadorBanco.SenhaHashJogador;
+                jogadorAtualizar.UsuarioJogador = jogador?.UsuarioJogador != string.Empty ? (ValidacaoUsuarioDisponível(jogador.UsuarioJogador) ? jogador.UsuarioJogador : jogadorBanco.UsuarioJogador) : jogadorBanco.UsuarioJogador;
 
                 jogadorAtualizar.NomeJogador = jogadorBanco.NomeJogador;
                 jogadorAtualizar.SobrenomeJogador = jogadorBanco.SobrenomeJogador;
