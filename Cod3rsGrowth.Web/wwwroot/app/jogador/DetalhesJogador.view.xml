@@ -1,8 +1,9 @@
 <mvc:View
     controllerName="mtgdeckbuilder.app.jogador.DetalhesJogador"
-    xmlns="sap.ui.table"
+    xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:m="sap.m"
+    xmlns:t="sap.ui.table"
     xmlns:c="sap.ui.core"
     height="100%">
     <m:Page
@@ -12,6 +13,22 @@
         class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
         showNavButton="true"
         navButtonPress="aoPressionarRetornarNavegacao">
+        <headerContent>
+            <m:Button
+                text="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
+                type="Ghost"
+                tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
+                visible="true"
+                width="10em"
+                press="aoPressionarAbreTelaDeEdicaoDeJogador" />
+            <m:Button
+                text="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
+                type="Ghost"
+                tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
+                visible="true"
+                width="10em"
+                press="aoPressionarApagaJogador" />
+		</headerContent>
         <m:content>
             <m:ObjectHeader
                 title="{Name}">
@@ -44,7 +61,7 @@
                         text="{JogadorSelecionado>/precoDasCartasJogador}" />
                 </m:attributes>
             </m:ObjectHeader>
-            <Table
+            <t:Table
                 id="idTabelaBaralho"
                 rows="{Baralho>/}"
                 editable="false"
@@ -57,7 +74,7 @@
                 alternateRowColors="true"
                 minAutoRowCount="5"
                 extension="true">
-                <extension>
+                <t:extension>
                     <m:OverflowToolbar style="Clear">
                         <m:Title text="{i18n>DetalhesJogador.Tabela.Titulo.Baralhos}" />
                         <m:ToolbarSpacer />
@@ -100,57 +117,40 @@
                             visible="true" />
                         <m:ToolbarSeparator />
                     </m:OverflowToolbar>
-                </extension>
-                <columns>
-                    <Column>
+                </t:extension>
+                <t:columns>
+                    <t:Column>
                         <m:Label
                             text="{i18n>BaralhosJogador.Coluna.NomeBaralho}" />
-                        <template>
+                        <t:template>
                             <m:Text
                                 text="{Baralho>nomeBaralho}"
                                 wrapping="false" />
-                        </template>
-                    </Column>
-                    <Column>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
                         <m:Label
                             text="{i18n>BaralhosJogador.Coluna.FormatoDeJogoBaralho}" />
-                        <template>
+                        <t:template>
                             <m:Text
                                 text="{
                                     path: 'Baralho>formatoDeJogoBaralho',
                                     formatter: '.formatter.formatadorTipoDeBaralho'
                                 }"
                                 wrapping="false" />
-                        </template>
-                    </Column>
-                    <Column>
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
                         <m:Label
                             text="{i18n>BaralhosJogador.Coluna.CorBaralho}" />
-                        <template>
+                        <t:template>
                             <m:Text
                                 text="{Baralho>corBaralho}"
                                 wrapping="false" />
-                        </template>
-                    </Column>
-                </columns>
-            </Table>
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
         </m:content>
-        <m:footer>
-            <m:Toolbar>
-                <m:ToolbarSpacer />
-                <m:Button
-                    text="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
-                    type="Ghost"
-                    tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.EditarJogador}"
-                    visible="true"
-                    press="aoPressionarAbreTelaDeEdicaoDeJogador" />
-                <m:Button
-                    text="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
-                    type="Ghost"
-                    tooltip="{i18n>DetalhesJogador.Toolbar.Buttom.ApagarJogador}"
-                    visible="true"
-                    press="aoPressionarApagaJogador" />
-            </m:Toolbar>
-        </m:footer>
     </m:Page>
 </mvc:View>
