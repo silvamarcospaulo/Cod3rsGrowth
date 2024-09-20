@@ -15,6 +15,7 @@ sap.ui.define([
     "use strict";
 
     const CONTROLLER = "mtgdeckbuilder.app.jogador.DetalhesJogador";
+    const ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO = "CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro"
     const ID_DETALHES = "detalhesJogador";
     const NOME_DO_MODELO_DE_JOGADOR_SELECIONADO = "JogadorSelecionado";
     const NOME_DO_MODELO_DE_ENUM_TIPO_DE_BARALHO = "FormatoDeJogo";
@@ -112,18 +113,21 @@ sap.ui.define([
             let estadoDoDialogo;
 
             if (jogador.baralhosJogador.length > quantidadeDeBaralhosParaExclusao) {
-                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
-                mensagem = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.MensagemJogadorPossuiBaralhos");
+                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO);
+                let idI18nMensagemErroValidacao = "CriacaoJogador.MessageToast.MensagemJogadorPossuiBaralhos";
+                mensagem = this.getView().getModel(i18n).getResourceBundle().getText(idI18nMensagemErroValidacao);
                 estadoDoDialogo = ValueState.Error;
             } else {
                 let requisicao = await Repository.deletar(REQUISICAO, jogador.id);
 
                 if (requisicao.ok) {
-                    tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso");
-                    mensagem = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.MensagemSucesso");
+                    let idI18nTituloDialogo = "CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso";
+                    let idI18nMensagemDialogoSucesso = "DeletarJogador.MessageToast.MensagemSucesso";
+                    tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText(idI18nTituloDialogo);
+                    mensagem = this.getView().getModel(i18n).getResourceBundle().getText(idI18nMensagemDialogoSucesso);
                     estadoDoDialogo = ValueState.Success;
                 } else {
-                    tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.TituloCaixaDeDialogoErro");
+                    tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO);
                     mensagem = this.criarObjetoDeMensagemDeErroRFC(requisicao);
                     estadoDoDialogo = ValueState.Error;
                 }
@@ -135,10 +139,14 @@ sap.ui.define([
         dialogoDeConfirmacao: function () {
             let ButtonType = mobileLibrary.ButtonType;
             let DialogType = mobileLibrary.DialogType;
-            let titulo = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.TituloDialogo");
-            let mensagem = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.MensagemDialogo");
-            let textoBotaoConfirmar = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.BotaoConfirmarDialogo");
-            let textoBotaoCancelar = this.getView().getModel(i18n).getResourceBundle().getText("DeletarJogador.MessageToast.BotaoCancelarDialogo");
+            let idI18nTituloDialogo = "DeletarJogador.MessageToast.TituloDialogo";
+            let idI18nMensagemDialogo = "DeletarJogador.MessageToast.MensagemDialogo";
+            let idI18nMTextoBotaoConfirmar = "DeletarJogador.MessageToast.BotaoConfirmarDialogo";
+            let idI18nMTextoBotaoCancelar = "DeletarJogador.MessageToast.BotaoCancelarDialogo";
+            let titulo = this.getView().getModel(i18n).getResourceBundle().getText(idI18nTituloDialogo);
+            let mensagem = this.getView().getModel(i18n).getResourceBundle().getText(idI18nMensagemDialogo);
+            let textoBotaoConfirmar = this.getView().getModel(i18n).getResourceBundle().getText(idI18nMTextoBotaoConfirmar);
+            let textoBotaoCancelar = this.getView().getModel(i18n).getResourceBundle().getText(idI18nMTextoBotaoCancelar);
             let valueStateDeConfirmacao = ValueState.Warning;
 
             let botaoConfirmar = new Button({
@@ -195,7 +203,8 @@ sap.ui.define([
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
             let ButtonType = mobileLibrary.ButtonType;
             let DialogType = mobileLibrary.DialogType;
-            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");
+            let idI18nBotaoFecharCaixaDeDialogo = "CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo";
+            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText(idI18nBotaoFecharCaixaDeDialogo);
 
             let botao;
             

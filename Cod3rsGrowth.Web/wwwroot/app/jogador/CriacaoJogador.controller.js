@@ -91,7 +91,7 @@ sap.ui.define([
         },
 
         aoClicarPrecessaAcao: function () {
-            if (this.ID_JOGADOR !== null) {
+            if (this.ID_JOGADOR) {
                 this.aoClicarAtualizaUsuario();
             } else {
                 this.aoClicarCriaNovoUsuario();
@@ -182,7 +182,7 @@ sap.ui.define([
             let senhaHashConfirmacaoJogadorInput = this.byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).getValue();
 
             let modeloJogador;
-            if (this.ID_JOGADOR !== null) {
+            if (this.ID_JOGADOR) {
                 modeloJogador = new JSONModel(
                     {
                         role: ROLE_JOGADOR,
@@ -335,7 +335,7 @@ sap.ui.define([
         aoPressionarRetornarNavegacao: function () {
             this.removerValoresDosInputs();
             this.removerValueStates();
-            if (this.ID_JOGADOR !== null) {
+            if (this.ID_JOGADOR) {
                 return this.navegarParaDetalhes();
             }
 
@@ -377,7 +377,7 @@ sap.ui.define([
             const idI18nBotaoSalvarEdicao = "ListagemJogador.Toolbar.Buttom.Confirmar"
 
             let modeloDeStringsI18n;
-            if (this.ID_JOGADOR !== null) {
+            if (this.ID_JOGADOR) {
                 modeloDeStringsI18n = new JSONModel(
                     {
                         titulo: idI18nTituloEdicao,
@@ -399,7 +399,8 @@ sap.ui.define([
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
             let ButtonType = mobileLibrary.ButtonType;
             let DialogType = mobileLibrary.DialogType;
-            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo");
+            let idI18nBotaoFecharCaixaDeDialogo = "CriacaoJogador.MessageToast.BotaoFecharCaixaDeDialogo";
+            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText(idI18nBotaoFecharCaixaDeDialogo);
             let botao;
 
             if (estadoDoDialogo === ValueState.Error) {
