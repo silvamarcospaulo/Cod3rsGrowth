@@ -4,7 +4,7 @@ sap.ui.define([
 ], (opaTest) => {
     "use strict";
 
-    QUnit.module("JornadaPaginaNotFound");
+    QUnit.module("JornadaNotFound");
 
     opaTest("Ao realizar uma requisição em uma rota não existente, deve responder a tela de NotFound", (Given, When, Then) => {
 

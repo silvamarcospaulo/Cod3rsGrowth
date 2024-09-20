@@ -37,6 +37,11 @@
             let formatoDeJogoModelo = this.getView().getModel(nomeModeloFormatoDeJogo).getData();
 
             return formatoDeJogoModelo[formatoDeJogo];
+        },
+
+        textosDaView: function (textoCampo) {
+            const i18n = "i18n";
+            return this.getView().getModel(i18n).getResourceBundle().getText(textoCampo);
         }
     };
 });

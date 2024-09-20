@@ -1,11 +1,10 @@
 sap.ui.define([
     "sap/ui/test/opaQunit",
-    "mtgdeckbuilder/test/integration/pages/ListagemJogador",
     "mtgdeckbuilder/test/integration/pages/DetalhesJogador"
-], (opaTest, ListagemJogador, DetalhesJogador) => {
+], (opaTest) => {
     "use strict";
 
-    QUnit.module("JornadaPaginaDetalhesJogador");
+    QUnit.module("JornadaDetalhesJogador");
 
     const NOME_ESPERADO = "Marcos Paulo";
     const SOBRE_NOME_ESPERADO = "Silva";
@@ -30,7 +29,7 @@ sap.ui.define([
             componentConfig: {
                 name: "mtgdeckbuilder"
             },
-            hash: "detalhesJogador/30023"
+            hash: "detalhesJogador/30026"
         });
 
         Then.naPaginaDeDetalhesJogador.confiroOValorDoCampo(NOME_ESPERADO);
@@ -71,7 +70,7 @@ sap.ui.define([
 
     opaTest("Ao clicar no botão de editar jogador, deve carregar a view de edicao", (Given, When, Then) => {
         When.naPaginaDeDetalhesJogador.pressionarBotaoDeEditarJogador();
-        Then.naPaginaDeDetalhesJogador.aPaginaDeEdicaoFoiCarregada();
+        Then.naPaginaDeEdicaoJogador.aPaginaDeEdicaoFoiCarregada();
         When.naPaginaDeDetalhesJogador.selecionoBotaoDeNavegarParaTras();
     });
 

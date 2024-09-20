@@ -207,18 +207,6 @@ sap.ui.define([
                             errorMessage: "O jogador não possui a quantidade de baralhos esperada"
                         });
                     },
-
-                    aPaginaDeEdicaoFoiCarregada: function () {
-                        const rotaDeEdicao = "edicaoJogador";
-                        return this.waitFor({
-                            check: function () {
-                                console.log(window.location.hash);
-                                return window.location.hash.includes(rotaDeEdicao);
-                            },
-                            success: () => Opa5.assert.ok(true, "A pagina de criacao de jogador foi carregada corretamente"),
-                            errorMessage: "A pagina de criacao de jogador não foi carregada corretamente"
-                        });
-                    }
                 }
             }
         });

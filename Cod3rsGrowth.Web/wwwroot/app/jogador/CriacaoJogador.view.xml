@@ -17,7 +17,10 @@
             alignContent="Center">
             <f:Form
                 editable="true"
-                title="{i18n>CriacaoJogador.Toolbar.Titulo}">
+                title="{
+                    path: 'StringsCampos>/titulo',
+                    formatter: '.formatter.textosDaView'
+                }">
                 <f:layout>
                     <f:ResponsiveGridLayout
                         labelSpanXL="4"
@@ -31,22 +34,21 @@
                 <f:FormContainer>
                     <f:formElements>
                         <f:FormElement
-                            label="{i18n>CriacaoJogador.Label.NomeJogador}"
-                        >
+                            label="{i18n>CriacaoJogador.Label.NomeJogador}">
                             <f:fields>
                                 <Input
                                     id="idNomeJogadorInput"
-                                    placeholder="{i18n>CriacaoJogador.Placeholder.NomeJogador}"
-                                />
+                                    value="{JogadorRequisicao>/nomeJogador}"
+                                    placeholder="{i18n>CriacaoJogador.Placeholder.NomeJogador}" />
                             </f:fields>
                         </f:FormElement>
 
                         <f:FormElement
-                            label="{i18n>CriacaoJogador.Label.SobrenomeJogador}"
-                        >
+                            label="{i18n>CriacaoJogador.Label.SobrenomeJogador}">
                             <f:fields>
                                 <Input
                                     id="idSobrenomeJogadorInput"
+                                    value="{JogadorRequisicao>/sobrenomeJogador}"
                                     placeholder="{i18n>CriacaoJogador.Placeholder.SobrenomeJogador}" />
                             </f:fields>
                         </f:FormElement>
@@ -56,6 +58,10 @@
                             <f:fields>
                                 <DatePicker
                                     id="idDataDeNascimentoJogadorInput"
+                                    value="{
+                                        path: 'JogadorRequisicao>/dataNascimentoJogador',
+                                        formatter: '.formatter.datas'
+                                    }"
                                     width="auto"
                                     placeholder="{i18n>CriacaoJogador.Placeholder.DataDeNascimentoJogador}" />
                             </f:fields>
@@ -66,6 +72,7 @@
                             <f:fields>
                                 <Input
                                     id="idUsuarioJogadorInput"
+                                    value="{JogadorRequisicao>/usuarioJogador}"
                                     placeholder="{i18n>CriacaoJogador.Placeholder.UsuarioJogador}" />
                             </f:fields>
                         </f:FormElement>
@@ -75,6 +82,7 @@
                             <f:fields>
                                 <Input
                                     id="idUsuarioConfirmacaoJogadorInput"
+                                    value="{JogadorRequisicao>/usuarioConfirmacaoJogador}"
                                     placeholder="{i18n>CriacaoJogador.Placeholder.UsuarioConfirmacaoJogador}" />
                             </f:fields>
                         </f:FormElement>
@@ -116,10 +124,13 @@
                         <f:FormElement>
                             <f:fields>
                                 <Button
-                                    text="{i18n>ListagemJogador.Toolbar.Buttom.AdicionarJogador}"
+                                    text="{
+                                        path: 'StringsCampos>/textoBotaoSalvar',
+                                        formatter: '.formatter.textosDaView'
+                                    }"
                                     type="Ghost"
                                     visible="true"
-                                    press="aoClicarCriaNovoUsuario" />
+                                    press="aoClicarPrecessaAcao" />
                             </f:fields>
                         </f:FormElement>
                     </f:formElements>
