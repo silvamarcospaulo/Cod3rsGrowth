@@ -13,7 +13,7 @@ namespace Cod3rsGrowth.Infra.Repository
         public JogadorRepository(ConexaoDados _conexaoDados)
         {
             conexaoDados = _conexaoDados;
-        }
+        }   
 
         public int Criar(Jogador jogador)
         {

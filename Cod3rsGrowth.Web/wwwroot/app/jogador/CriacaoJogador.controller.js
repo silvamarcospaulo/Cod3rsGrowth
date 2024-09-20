@@ -54,12 +54,12 @@ sap.ui.define([
     const ID_I18N_CONFIRMACAO_SENHA_INCORRETA = "CriacaoJogador.MessageToast.ConfirmacaoSenhaIncorreta";
     const QUEBRA_DE_LINHA = "\n";
     const REQUISICAO = "Jogador";
-    let ID_JOGADOR;
-    let MENSAGENS_DE_ERRO;
 
     return BaseController.extend(CONTROLLER, {
 
         formatter: formatter,
+        ID_JOGADOR: null,
+        MENSAGENS_DE_ERRO: null,
 
         onInit: function () {
             this.getRouter().getRoute(ID_EDICAO_JOGADOR).attachPatternMatched(async (evento) => {
@@ -72,10 +72,10 @@ sap.ui.define([
 
         aoCoincidirRotaEdicao: function (evento) {
             let propriedadesEvento = "arguments";
-            ID_JOGADOR = evento.getParameter(propriedadesEvento).id;
+            this.ID_JOGADOR = evento.getParameter(propriedadesEvento).id;
             this.processarAcao(async () => {
                 await Promise.all([
-                    Repository.obterPorId(this.getView(), ID_JOGADOR, REQUISICAO, NOME_DO_MODELO_DE_REQUISICAO_JOGADOR),
+                    Repository.obterPorId(this.getView(), this.ID_JOGADOR, REQUISICAO, NOME_DO_MODELO_DE_REQUISICAO_JOGADOR),
                     this.criaModeloDeStringsI18n(),
                     this.removerPropriedadeEdicaoDoCampo()
                 ])
@@ -91,10 +91,10 @@ sap.ui.define([
         },
 
         aoClicarPrecessaAcao: function () {
-            if (this.getRouter().oHashChanger.hash.includes(ID_CRIACAO_JOGADOR)) {
-                this.aoClicarCriaNovoUsuario();
-            } else {
+            if (this.ID_JOGADOR !== null) {
                 this.aoClicarAtualizaUsuario();
+            } else {
+                this.aoClicarCriaNovoUsuario();
             }
         },
 
@@ -182,7 +182,7 @@ sap.ui.define([
             let senhaHashConfirmacaoJogadorInput = this.byId(ID_SENHA_CONFIRMACAO_JOGADOR_INPUT).getValue();
 
             let modeloJogador;
-            if (this.getRouter().oHashChanger.hash.includes(ID_CRIACAO_JOGADOR)) {
+            if (this.ID_JOGADOR !== null) {
                 modeloJogador = new JSONModel(
                     {
                         role: ROLE_JOGADOR,
@@ -192,7 +192,8 @@ sap.ui.define([
                         usuarioJogador: usuarioJogadorInput,
                         usuarioConfirmacaoJogador: usuarioConfirmacaoJogadorInput,
                         senhaHashJogador: senhaHashJogadorInput,
-                        senhaHashConfirmacaoJogador: senhaHashConfirmacaoJogadorInput
+                        senhaHashConfirmacaoJogador: senhaHashConfirmacaoJogadorInput,
+                        id: this.ID_JOGADOR,
                     }
                 );
             } else {
@@ -205,8 +206,7 @@ sap.ui.define([
                         usuarioJogador: usuarioJogadorInput,
                         usuarioConfirmacaoJogador: usuarioConfirmacaoJogadorInput,
                         senhaHashJogador: senhaHashJogadorInput,
-                        senhaHashConfirmacaoJogador: senhaHashConfirmacaoJogadorInput,
-                        id: ID_JOGADOR,
+                        senhaHashConfirmacaoJogador: senhaHashConfirmacaoJogadorInput
                     }
                 );
             }
@@ -215,44 +215,50 @@ sap.ui.define([
         },
 
         removerPropriedadeEdicaoDoCampo: function () {
-            this.getView().byId(ID_NOME_JOGADOR_INPUT).setEnabled(false);
-            this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setEnabled(false);
-            this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setEnabled(false);
+            this.getView().byId(ID_NOME_JOGADOR_INPUT).setEditable(false);
+            this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setEditable(false);
+            this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setEditable(false);
         },
 
         validarJogadorEdicao: function () {
-            MENSAGENS_DE_ERRO = "";
+            this.MENSAGENS_DE_ERRO = "";
 
-            let camposValidados = true;
             let usuarioJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().usuarioJogador;
-            if (validador.validarSeCampoPossuiValor(usuarioJogador)) {
-                let usuarioConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().usuarioConfirmacaoJogador;
+            let usuarioConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().usuarioConfirmacaoJogador;
+            let usuarioPossuiAoMenosSeisDigitos = this.aplicarValidacao(validador.validarUsuarioPossuiAoMenosSeisDigitos(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_INVALIDO);
+            let usuarioPossuiSomenteLetrasMinusculas = this.aplicarValidacao(validador.validarCaracteresUsuarioJogador(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_INVALIDO);
+            let usuarioNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_OBRIGATORIO);
+            let usuarioEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(usuarioJogador, usuarioConfirmacaoJogador), ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_USUARIO_INCORRETA);
 
-                camposValidados = this.aplicarValidacao(validador.validarUsuarioPossuiAoMenosSeisDigitos(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_INVALIDO);
-                camposValidados = this.aplicarValidacao(validador.validarCaracteresUsuarioJogador(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_INVALIDO);
-                camposValidados = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(usuarioJogador, usuarioConfirmacaoJogador), ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_USUARIO_INCORRETA);
+            let senhaValidada = this.validarSenha();
+
+            if (this.MENSAGENS_DE_ERRO) {
+                let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO);
+                let estadoDoDialogoDeErro = ValueState.Error;
+                this.abrirDialogo(tituloCaixaDeDialogoDeErro, this.MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
             }
 
+            return senhaValidada && usuarioPossuiAoMenosSeisDigitos && usuarioPossuiSomenteLetrasMinusculas && usuarioNaoENulo && usuarioEConfirmacaoCompativeis;
+        },
+
+        validarSenha: function () {
             let senhaJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().senhaHashJogador;
+
             if (validador.validarSeCampoPossuiValor(senhaJogador)) {
                 let senhaHashConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().senhaHashConfirmacaoJogador;
 
-                camposValidados = this.aplicarValidacao(validador.validarSenhaPossuiAoMenosOitoDigitos(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
-                camposValidados = this.aplicarValidacao(validador.validarSenhaPossuiOsCaracteresNecessarios(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
-                camposValidados = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(senhaJogador, senhaHashConfirmacaoJogador), ID_SENHA_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_SENHA_INCORRETA);
+                let senhaPossuiAoMenosOitoDigitos = this.aplicarValidacao(validador.validarSenhaPossuiAoMenosOitoDigitos(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
+                let senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero = this.aplicarValidacao(validador.validarSenhaPossuiOsCaracteresNecessarios(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
+                let senhaEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(senhaJogador, senhaHashConfirmacaoJogador), ID_SENHA_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_SENHA_INCORRETA);
+
+                return senhaPossuiAoMenosOitoDigitos && senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero && senhaEConfirmacaoCompativeis;
             }
 
-            if (MENSAGENS_DE_ERRO) {
-                let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO);
-                let estadoDoDialogoDeErro = ValueState.Error;
-                this.abrirDialogo(tituloCaixaDeDialogoDeErro, MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
-            }
-
-            return camposValidados;
+            return true;
         },
 
         validarJogadorCriacao: function () {
-            MENSAGENS_DE_ERRO = "";
+            this.MENSAGENS_DE_ERRO = "";
 
             let nomeJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().nomeJogador;
             let nomePossuiSomenteLetrasMaiusculasEMenusculas = this.aplicarValidacao(validador.validarSeCampoPossuiSomenteLetrasMaiusculasEMinusculas(nomeJogador), ID_NOME_JOGADOR_INPUT, ID_I18N_NOME_COM_CARACTERES_INVALIDOS);
@@ -282,10 +288,10 @@ sap.ui.define([
             let senhaHashConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().senhaHashConfirmacaoJogador;
             let senhaEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(senhaJogador, senhaHashConfirmacaoJogador), ID_SENHA_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_SENHA_INCORRETA);
 
-            if (MENSAGENS_DE_ERRO) {
+            if (this.MENSAGENS_DE_ERRO) {
                 let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO);
                 let estadoDoDialogoDeErro = ValueState.Error;
-                this.abrirDialogo(tituloCaixaDeDialogoDeErro, MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
+                this.abrirDialogo(tituloCaixaDeDialogoDeErro, this.MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
             }
 
             return nomeNaoENulo && nomePossuiSomenteLetrasMaiusculasEMenusculas
@@ -300,7 +306,7 @@ sap.ui.define([
         aplicarValidacao: function (validacao, idInput, idI18n) {
             if (!validacao) {
                 this.getView().byId(idInput).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(idI18n) + QUEBRA_DE_LINHA;
+                this.MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(idI18n) + QUEBRA_DE_LINHA;
                 return false;
             } else {
                 this.getView().byId(idInput).setValueState();
@@ -329,11 +335,11 @@ sap.ui.define([
         aoPressionarRetornarNavegacao: function () {
             this.removerValoresDosInputs();
             this.removerValueStates();
-            if (this.getRouter().oHashChanger.hash.includes(ID_CRIACAO_JOGADOR)) {
-                return this.navegarPara(ID_LISTAGEM_JOGADOR);
+            if (this.ID_JOGADOR !== null) {
+                return this.navegarParaDetalhes();
             }
 
-            this.navegarParaDetalhes();
+            return this.navegarPara(ID_LISTAGEM_JOGADOR);
         },
 
         navegarParaDetalhes: function () {
@@ -371,18 +377,18 @@ sap.ui.define([
             const idI18nBotaoSalvarEdicao = "ListagemJogador.Toolbar.Buttom.Confirmar"
 
             let modeloDeStringsI18n;
-            if (this.getRouter().oHashChanger.hash.includes(ID_CRIACAO_JOGADOR)) {
+            if (this.ID_JOGADOR !== null) {
                 modeloDeStringsI18n = new JSONModel(
                     {
-                        titulo: idI18nTituloCriacao,
-                        textoBotaoSalvar: idI18nBotaoSalvarCriacao
+                        titulo: idI18nTituloEdicao,
+                        textoBotaoSalvar: idI18nBotaoSalvarEdicao
                     }
                 )
             } else {
                 modeloDeStringsI18n = new JSONModel(
                     {
-                        titulo: idI18nTituloEdicao,
-                        textoBotaoSalvar: idI18nBotaoSalvarEdicao
+                        titulo: idI18nTituloCriacao,
+                        textoBotaoSalvar: idI18nBotaoSalvarCriacao
                     }
                 )
             }

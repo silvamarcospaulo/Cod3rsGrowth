@@ -108,7 +108,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
                 });
 
                 jogadorAtualizar.SenhaHashJogador = jogador?.SenhaHashJogador != string.Empty ? HashServico.Gerar(jogador.SenhaHashJogador) : jogadorBanco.SenhaHashJogador;
-                jogadorAtualizar.UsuarioJogador = jogador?.UsuarioJogador != string.Empty ? (ValidacaoUsuarioDisponível(jogador.UsuarioJogador) ? jogador.UsuarioJogador : jogadorBanco.UsuarioJogador) : jogadorBanco.UsuarioJogador;
+                jogadorAtualizar.UsuarioJogador = jogadorAtualizar.UsuarioJogador != jogadorBanco.UsuarioJogador ? (ValidacaoUsuarioDisponível(jogador.UsuarioJogador) ? jogador.UsuarioJogador : jogadorBanco.UsuarioJogador) : jogadorBanco.UsuarioJogador;
 
                 jogadorAtualizar.NomeJogador = jogadorBanco.NomeJogador;
                 jogadorAtualizar.SobrenomeJogador = jogadorBanco.SobrenomeJogador;
@@ -171,6 +171,7 @@ namespace Cod3rsGrowth.Servico.ServicoJogador
         public Jogador ObterPorId(int idJogador)
         {
             var jogador = _IJogadorRepository.ObterPorId(idJogador);
+            jogador.UsuarioConfirmacaoJogador = jogador.UsuarioJogador;
             jogador.BaralhosJogador = _baralhoServico.ObterTodos(new BaralhoFiltro() { IdJogador = idJogador });
 
             return jogador;

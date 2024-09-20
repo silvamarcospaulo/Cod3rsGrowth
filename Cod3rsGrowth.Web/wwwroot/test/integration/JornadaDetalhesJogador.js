@@ -70,7 +70,7 @@ sap.ui.define([
 
     opaTest("Ao clicar no botão de editar jogador, deve carregar a view de edicao", (Given, When, Then) => {
         When.naPaginaDeDetalhesJogador.pressionarBotaoDeEditarJogador();
-        Then.naPaginaDeDetalhesJogador.aPaginaDeEdicaoFoiCarregada();
+        Then.naPaginaDeEdicaoJogador.aPaginaDeEdicaoFoiCarregada();
         When.naPaginaDeDetalhesJogador.selecionoBotaoDeNavegarParaTras();
     });
 
