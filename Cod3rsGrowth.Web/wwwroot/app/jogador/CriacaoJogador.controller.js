@@ -358,7 +358,6 @@ sap.ui.define([
         },
 
         removerValoresDosInputs: function () {
-            debugger
             this.getView().byId(ID_NOME_JOGADOR_INPUT).setValue();
             this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValue();
             this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValue();
@@ -369,7 +368,6 @@ sap.ui.define([
         },
 
         removerValueStates: function () {
-            debugger
             this.getView().byId(ID_NOME_JOGADOR_INPUT).setValueState();
             this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValueState();
             this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValueState();
