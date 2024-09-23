@@ -72,7 +72,6 @@ sap.ui.define([
         aoCoincidirRotaEdicao: function (evento) {
             let propriedadesEvento = "arguments";
             this.ID_JOGADOR = evento.getParameter(propriedadesEvento).id;
-            console.log("Id do jogador coincidir rota edicao: " + this.ID_JOGADOR);
             this.processarAcao(async () => {
                 await Promise.all([
                     Repository.obterPorId(this.getView(), this.ID_JOGADOR, REQUISICAO, NOME_DO_MODELO_DE_REQUISICAO_JOGADOR),
@@ -219,7 +218,6 @@ sap.ui.define([
         },
 
         alteraPropriedadesDosCampos: function () {
-            debugger
             if (this.ID_JOGADOR) {
                 this.getView().byId(ID_NOME_JOGADOR_INPUT).setEditable(false);
                 this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setEditable(false);
@@ -347,7 +345,6 @@ sap.ui.define([
         aoPressionarRetornarNavegacao: function () {
             this.removerValoresDosInputs();
             this.removerValueStates();
-            this.getView().setModel(new JSONModel(), NOME_DO_MODELO_DE_REQUISICAO_JOGADOR);
             if (this.ID_JOGADOR) {
                 return this.navegarParaDetalhes();
             }
@@ -356,12 +353,12 @@ sap.ui.define([
         },
 
         navegarParaDetalhes: function () {
-            debugger
-            console.log("No navegar para detalhes: " + this.ID_JOGADOR);
+            this.getView().setModel(new JSONModel(), NOME_DO_MODELO_DE_REQUISICAO_JOGADOR);
             return this.navegarPara(ID_DETALHES_JOGADOR, this.ID_JOGADOR);
         },
 
         removerValoresDosInputs: function () {
+            debugger
             this.getView().byId(ID_NOME_JOGADOR_INPUT).setValue();
             this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValue();
             this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValue();
@@ -372,6 +369,7 @@ sap.ui.define([
         },
 
         removerValueStates: function () {
+            debugger
             this.getView().byId(ID_NOME_JOGADOR_INPUT).setValueState();
             this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setValueState();
             this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setValueState();
@@ -382,7 +380,6 @@ sap.ui.define([
         },
 
         criaModeloDeStringsI18n: function () {
-            debugger
             const nomeDoModeloDeStringsI18n = "StringsCampos";
             const idI18nTituloCriacao = "CriacaoJogador.Toolbar.TituloCriacao";
             const idI18nTituloEdicao = "CriacaoJogador.Toolbar.TituloEdicao";
@@ -407,7 +404,6 @@ sap.ui.define([
             }
 
             this.getView().setModel(modeloDeStringsI18n, nomeDoModeloDeStringsI18n);
-            console.log(this.getView().getModel(nomeDoModeloDeStringsI18n).getData());
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
