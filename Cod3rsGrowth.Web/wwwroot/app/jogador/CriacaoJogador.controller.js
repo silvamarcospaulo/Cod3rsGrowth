@@ -35,7 +35,6 @@ sap.ui.define([
     const TIPO_DE_INPUT_SENHA = "Password";
     const TIPO_DE_INPUT_TEXTO = "Text";
     const i18n = "i18n";
-    const valueStateDeErro = "Error";
     const ID_I18N_TITULO_CAIXA_DE_DIALOGO_SUCESSO = "CriacaoJogador.MessageToast.TituloCaixaDeDialogoSucesso";
     const ID_I18N_TEXTO_CAIXA_DE_DIALOGO_CRIACAO_SUCESSO = "CriacaoJogador.MessageToast.MensagemDeSucessoCriacao";
     const ID_I18N_TEXTO_CAIXA_DE_DIALOGO_EDICAO_SUCESSO = "CriacaoJogador.MessageToast.MensagemDeSucessoEdicao";
@@ -221,6 +220,7 @@ sap.ui.define([
         },
 
         validarJogadorEdicao: function () {
+            debugger
             this.MENSAGENS_DE_ERRO = "";
 
             let usuarioJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().usuarioJogador;
@@ -230,7 +230,11 @@ sap.ui.define([
             let usuarioNaoENulo = this.aplicarValidacao(validador.validarSeCampoPossuiValor(usuarioJogador), ID_USUARIO_JOGADOR_INPUT, ID_I18N_USUARIO_OBRIGATORIO);
             let usuarioEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(usuarioJogador, usuarioConfirmacaoJogador), ID_USUARIO_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_USUARIO_INCORRETA);
 
-            let senhaValidada = this.validarSenha();
+            let senhaJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().senhaHashJogador;
+            let senhaHashConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().senhaHashConfirmacaoJogador;
+
+            let senhaValidada = this.validarSenha(senhaJogador);
+            let senhaEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(senhaJogador, senhaHashConfirmacaoJogador), ID_SENHA_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_SENHA_INCORRETA);
 
             if (this.MENSAGENS_DE_ERRO) {
                 let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_ERRO);
@@ -238,20 +242,16 @@ sap.ui.define([
                 this.abrirDialogo(tituloCaixaDeDialogoDeErro, this.MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
             }
 
-            return senhaValidada && usuarioPossuiAoMenosSeisDigitos && usuarioPossuiSomenteLetrasMinusculas && usuarioNaoENulo && usuarioEConfirmacaoCompativeis;
+            return senhaValidada && usuarioPossuiAoMenosSeisDigitos && usuarioPossuiSomenteLetrasMinusculas && usuarioNaoENulo && usuarioEConfirmacaoCompativeis && senhaEConfirmacaoCompativeis;
         },
 
-        validarSenha: function () {
-            let senhaJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().senhaHashJogador;
-
+        validarSenha: function (senhaJogador) {
+            debugger
             if (validador.validarSeCampoPossuiValor(senhaJogador)) {
-                let senhaHashConfirmacaoJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().senhaHashConfirmacaoJogador;
-
                 let senhaPossuiAoMenosOitoDigitos = this.aplicarValidacao(validador.validarSenhaPossuiAoMenosOitoDigitos(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
                 let senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero = this.aplicarValidacao(validador.validarSenhaPossuiOsCaracteresNecessarios(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
-                let senhaEConfirmacaoCompativeis = this.aplicarValidacao(validador.validarSeOsValoresDosCamposSaoIguais(senhaJogador, senhaHashConfirmacaoJogador), ID_SENHA_CONFIRMACAO_JOGADOR_INPUT, ID_I18N_CONFIRMACAO_SENHA_INCORRETA);
 
-                return senhaPossuiAoMenosOitoDigitos && senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero && senhaEConfirmacaoCompativeis;
+                return senhaPossuiAoMenosOitoDigitos && senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero;
             }
 
             return true;
@@ -304,9 +304,12 @@ sap.ui.define([
         },
 
         aplicarValidacao: function (validacao, idInput, idI18n) {
+            debugger
             if (!validacao) {
+                const valueStateDeErro = "Error";
                 this.getView().byId(idInput).setValueState(valueStateDeErro);
-                this.MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(idI18n) + QUEBRA_DE_LINHA;
+
+                this.MENSAGENS_DE_ERRO += !this.MENSAGENS_DE_ERRO.includes(this.getView().getModel(i18n).getResourceBundle().getText(idI18n)) ? this.getView().getModel(i18n).getResourceBundle().getText(idI18n) + QUEBRA_DE_LINHA : "";
                 return false;
             } else {
                 this.getView().byId(idInput).setValueState();
