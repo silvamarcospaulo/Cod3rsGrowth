@@ -91,15 +91,15 @@
 					"path": "mtgdeckbuilder.app.jogador",
 					"name": "ListagemJogador"
 				},
-				"criacaoJogador": {
-					"id": "criacaoJogador",
-					"path": "mtgdeckbuilder.app.jogador",
-					"name": "CriacaoJogador"
-				},
 				"detalhesJogador": {
 					"id": "detalhesJogador",
 					"path": "mtgdeckbuilder.app.jogador",
 					"name": "DetalhesJogador"
+				},
+				"criacaoJogador": {
+					"id": "criacaoJogador",
+					"path": "mtgdeckbuilder.app.jogador",
+					"name": "CriacaoJogador"
 				},
 				"edicaoJogador": {
 					"id": "edicaoJogador",

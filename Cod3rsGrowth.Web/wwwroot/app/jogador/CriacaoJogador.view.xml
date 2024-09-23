@@ -93,6 +93,7 @@
                                 <Input
                                     id="idSenhaHashJogadorInput"
                                     type="Password"
+                                    value="{JogadorRequisicao>/senhaHashJogador}"
                                     placeholder="{i18n>CriacaoJogador.Placeholder.SenhaHashJogador}" />
                                 <Button
                                     id="idBotaoMostrarSenha"
@@ -110,6 +111,7 @@
                                 <Input
                                     type="Password"
                                     id="idSenhaHashConfirmacaoJogadorInput"
+                                    value="{JogadorRequisicao>/senhaHashConfirmacaoJogador}"
                                     placeholder="{i18n>CriacaoJogador.Placeholder.SenhaHashConfirmacaoJogador}" />
                                 <Button
                                     id="idBotaoMostrarConfirmacaoDeSenha"

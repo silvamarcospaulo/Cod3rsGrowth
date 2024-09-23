@@ -72,19 +72,23 @@ sap.ui.define([
         aoCoincidirRotaEdicao: function (evento) {
             let propriedadesEvento = "arguments";
             this.ID_JOGADOR = evento.getParameter(propriedadesEvento).id;
+            console.log("Id do jogador coincidir rota edicao: " + this.ID_JOGADOR);
             this.processarAcao(async () => {
                 await Promise.all([
                     Repository.obterPorId(this.getView(), this.ID_JOGADOR, REQUISICAO, NOME_DO_MODELO_DE_REQUISICAO_JOGADOR),
                     this.criaModeloDeStringsI18n(),
-                    this.removerPropriedadeEdicaoDoCampo()
+                    this.alteraPropriedadesDosCampos()
                 ])
             });
         },
 
         aoCoincidirRotaCriacao: function () {
+            this.ID_JOGADOR = null;
+            this.getView().setModel(new JSONModel(), NOME_DO_MODELO_DE_REQUISICAO_JOGADOR);
             this.processarAcao(async () => {
                 await Promise.all([
-                    this.criaModeloDeStringsI18n()
+                    this.criaModeloDeStringsI18n(),
+                    this.alteraPropriedadesDosCampos()
                 ])
             });
         },
@@ -132,7 +136,8 @@ sap.ui.define([
 
                 if (requisicao.ok) {
                     let objetoRequisicao = await requisicao.json();
-                    Repository.obterPorId(this.getView(), objetoRequisicao.id, REQUISICAO, NOME_DO_MODELO_DE_REQUISICAO_JOGADOR);
+                    this.ID_JOGADOR = objetoRequisicao.id;
+                    Repository.obterPorId(this.getView(), this.ID_JOGADOR, REQUISICAO, NOME_DO_MODELO_DE_REQUISICAO_JOGADOR);
                     const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TITULO_CAIXA_DE_DIALOGO_SUCESSO);
                     const estadoDoDialogoDeSucesso = ValueState.Success;
                     const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(ID_I18N_TEXTO_CAIXA_DE_DIALOGO_CRIACAO_SUCESSO);
@@ -213,14 +218,20 @@ sap.ui.define([
             this.getView().setModel(modeloJogador, NOME_DO_MODELO_DE_REQUISICAO_JOGADOR);
         },
 
-        removerPropriedadeEdicaoDoCampo: function () {
-            this.getView().byId(ID_NOME_JOGADOR_INPUT).setEditable(false);
-            this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setEditable(false);
-            this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setEditable(false);
+        alteraPropriedadesDosCampos: function () {
+            debugger
+            if (this.ID_JOGADOR) {
+                this.getView().byId(ID_NOME_JOGADOR_INPUT).setEditable(false);
+                this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setEditable(false);
+                this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setEditable(false);
+            } else {
+                this.getView().byId(ID_NOME_JOGADOR_INPUT).setEditable(true);
+                this.getView().byId(ID_SOBRENOME_JOGADOR_INPUT).setEditable(true);
+                this.getView().byId(ID_DATA_DE_NASCIMENTO_JOGADOR_INPUT).setEditable(true);
+            }
         },
 
         validarJogadorEdicao: function () {
-            debugger
             this.MENSAGENS_DE_ERRO = "";
 
             let usuarioJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().usuarioJogador;
@@ -246,7 +257,6 @@ sap.ui.define([
         },
 
         validarSenha: function (senhaJogador) {
-            debugger
             if (validador.validarSeCampoPossuiValor(senhaJogador)) {
                 let senhaPossuiAoMenosOitoDigitos = this.aplicarValidacao(validador.validarSenhaPossuiAoMenosOitoDigitos(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
                 let senhaAoMenosUmaLetraMaiusculasUmaLetraMinusculaEUmNumero = this.aplicarValidacao(validador.validarSenhaPossuiOsCaracteresNecessarios(senhaJogador), ID_SENHA_JOGADOR_INPUT, ID_I18N_SENHA_INVALIDA);
@@ -304,7 +314,6 @@ sap.ui.define([
         },
 
         aplicarValidacao: function (validacao, idInput, idI18n) {
-            debugger
             if (!validacao) {
                 const valueStateDeErro = "Error";
                 this.getView().byId(idInput).setValueState(valueStateDeErro);
@@ -338,6 +347,7 @@ sap.ui.define([
         aoPressionarRetornarNavegacao: function () {
             this.removerValoresDosInputs();
             this.removerValueStates();
+            this.getView().setModel(new JSONModel(), NOME_DO_MODELO_DE_REQUISICAO_JOGADOR);
             if (this.ID_JOGADOR) {
                 return this.navegarParaDetalhes();
             }
@@ -346,10 +356,9 @@ sap.ui.define([
         },
 
         navegarParaDetalhes: function () {
-            this.removerValoresDosInputs();
-            this.removerValueStates();
-            let idJogador = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_JOGADOR).getData().id;
-            return this.navegarPara(ID_DETALHES_JOGADOR, idJogador);
+            debugger
+            console.log("No navegar para detalhes: " + this.ID_JOGADOR);
+            return this.navegarPara(ID_DETALHES_JOGADOR, this.ID_JOGADOR);
         },
 
         removerValoresDosInputs: function () {
@@ -373,6 +382,7 @@ sap.ui.define([
         },
 
         criaModeloDeStringsI18n: function () {
+            debugger
             const nomeDoModeloDeStringsI18n = "StringsCampos";
             const idI18nTituloCriacao = "CriacaoJogador.Toolbar.TituloCriacao";
             const idI18nTituloEdicao = "CriacaoJogador.Toolbar.TituloEdicao";
@@ -397,6 +407,7 @@ sap.ui.define([
             }
 
             this.getView().setModel(modeloDeStringsI18n, nomeDoModeloDeStringsI18n);
+            console.log(this.getView().getModel(nomeDoModeloDeStringsI18n).getData());
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
